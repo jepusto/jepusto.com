@@ -21,12 +21,13 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
+    div.addClass('in');
     if (show) {
-      div.addClass('in');
       $('div.r-code-collapse').each(function() {
         $(this).collapse('show');
       });
     }
+
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
