@@ -24,7 +24,9 @@
 
 /* Main show/hide button */
 #code-folding-buttons {float: right;}
-#code-folding-buttons .pull-right > .dropdown-menu {
+
+/* TODO used default academic and bootstrap 4.4 classes instead */
+/*#code-folding-buttons .pull-right > .dropdown-menu {
     right: 0;
     left: auto;
 }
@@ -35,12 +37,12 @@
     display: block;
 }
 #code-folding-buttons .dropdown-menu {
-    /* position: absolute;*/
+    !* position: absolute;*!
     top: 100%;
     left: 0;
     z-index: 1000;
     display: none;
-    /*float: left;*/
+    !*float: left;*!
     min-width: 160px;
     padding: 5px 0;
     margin: 2px 0 0;
@@ -58,5 +60,5 @@
 }
 #code-folding-buttons .dropdown-menu li {
     padding: 5px;
-}
+}*/
 /* End code folding */

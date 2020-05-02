@@ -760,9 +760,13 @@
   $(window).on('load resize orientationchange', normalizeCarouselSlideHeights);
 
   // Automatic main menu dropdowns on mouse over.
-  $('body').on('mouseenter mouseleave', '.dropdown', function (e) {
+  // FIXME
+  // TODO nasty bug is here, brakes regular (not menu) bootstrap dropdowns
+  // added additional selector .navbar like workaround
+  $('body .navbar').on('mouseenter mouseleave', '.dropdown', function (e) {
     var dropdown = $(e.target).closest('.dropdown');
-    var menu = $('.dropdown-menu', dropdown);
+    var menu = $('.navbar .dropdown-menu', dropdown);
+    // end FIXME
     dropdown.addClass('show');
     menu.addClass('show');
     setTimeout(function () {
