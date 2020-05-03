@@ -55,6 +55,72 @@
     </item>
     
     <item>
+      <title>An update on code folding with blogdown &#43; Academic theme</title>
+      <link>/code-folding-update/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      <guid>/code-folding-update/</guid>
+      <description>
+
+
+&lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sébastien Rochette worked out &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;the earlier implementation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Web developer &lt;a href=&#34;https://upwork.com/freelancers/~01328c0a21498eac2a&#34;&gt;Max B.&lt;/a&gt; worked out the kinks to get it working with the latest version of Academic. We connected through Upwork. Hire him there if you have web dev work!&lt;/li&gt;
+&lt;li&gt;As I’ve said before, I couldn’t write javascript to save my life, and my only contribution here is to write down the instructions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;code-folding-with-the-academic-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Code folding with the Academic theme&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;You’ll first need to add the codefolding javascript assets. Create a folder called &lt;code&gt;js&lt;/code&gt; under the &lt;code&gt;/static&lt;/code&gt; directory of your site. Add the file &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create a folder called &lt;code&gt;css&lt;/code&gt; under the &lt;code&gt;/static&lt;/code&gt; directory of your site. Add the file &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/css/codefolding.css&#34;&gt;&lt;code&gt;codefolding.css&lt;/code&gt;&lt;/a&gt;. This is the css for the buttons that will appear on your posts.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add the file &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/article_footer_js.html&#34;&gt;&lt;code&gt;article_footer_js.html&lt;/code&gt;&lt;/a&gt; to the &lt;code&gt;/layouts/partials&lt;/code&gt; directory of your site.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add the file &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/header_maincodefolding.html&#34;&gt;&lt;code&gt;header_maincodefolding.html&lt;/code&gt;&lt;/a&gt; to the &lt;code&gt;/layouts/partials&lt;/code&gt; directory of your site.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you do not already have a file &lt;code&gt;head_custom.html&lt;/code&gt; in the &lt;code&gt;/layouts/partials&lt;/code&gt; directory, create it. Add the following lines of code to the file:&lt;/p&gt;
+&lt;pre class=&#34;js&#34;&gt;&lt;code&gt;{{ if not site.Params.disable_codefolding }}
+  &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;{{ &amp;quot;css/codefolding.css&amp;quot; | relURL }}&amp;quot; /&amp;gt;
+{{ end }}&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you do not already have a file &lt;code&gt;site_footer.html&lt;/code&gt; in the &lt;code&gt;/layouts/partials&lt;/code&gt; directory, copy it over from &lt;code&gt;/themes/hugo-academic/layouts/partials&lt;/code&gt;. Add the following lines of code to it, somewhere towards the bottom (see &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/site_footer.html&#34;&gt;my version&lt;/a&gt; for example):&lt;/p&gt;
+&lt;pre class=&#34;js&#34;&gt;&lt;code&gt;&amp;lt;!-- Init code folding --&amp;gt;
+{{ partial &amp;quot;article_footer_js.html&amp;quot; . }}&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you do not already have the file &lt;code&gt;page_header.html&lt;/code&gt; in the &lt;code&gt;/layouts/partials&lt;/code&gt; directory, copy it over from &lt;code&gt;/themes/hugo-academic/layouts/partials&lt;/code&gt;. Add the following line of code at appropriate points so that your posts will include the “Show/hide code” button:&lt;/p&gt;
+&lt;pre class=&#34;js&#34;&gt;&lt;code&gt; {{ partial &amp;quot;header_maincodefolding&amp;quot; . }}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that you’ll likely need to add it twice due do conditionals in &lt;code&gt;page_header.html&lt;/code&gt;. For example, &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/page_header.html&#34;&gt;my version of the file&lt;/a&gt; includes the partial at lines 62 and 91.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Modify your &lt;code&gt;params.toml&lt;/code&gt; file (in the directory &lt;code&gt;/config/_default&lt;/code&gt;) to include the following lines:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;############################
+## Code folding
+############################
+
+# Set to true to disable code folding
+disable_codefolding = false
+# Set to &amp;quot;hide&amp;quot; or &amp;quot;show&amp;quot; all codes by default
+codefolding_show = &amp;quot;show&amp;quot;
+# Set to true to exclude the &amp;quot;Show/hide all&amp;quot; button
+codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-the-codefolding-parameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using the codefolding parameters&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;params.toml&lt;/code&gt; file now has three parameters that control code folding:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;disable_codefolding&lt;/code&gt; controls whether to load the code folding scripts on your site. Set it to &lt;code&gt;true&lt;/code&gt; to disable code folding globally.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;codefolding_show&lt;/code&gt; controls whether code blocks will be shown or hidden by default. If your previous posts have lots of code in them, set the default to &lt;code&gt;show&lt;/code&gt; to minimize changes in the appearance of your site.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;codefolding_nobutton&lt;/code&gt; controls whether the “Show/hide code” button will appear at the top of posts that include code blocks. Set it to &lt;code&gt;true&lt;/code&gt; to disable the button but keep the other code folding functionality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The above parameters are defaults for your entire site. To over-ride the defaults, you can also set the parameters in the YAML header of any post:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;disable_codefolding: true&lt;/code&gt; to turn off code folding for the post.&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;codefolding_show: hide&lt;/code&gt; to hide the code blocks in the post (as in &lt;a href=&#34;/package-downloads/&#34;&gt;this post&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;codefolding_nobutton: true&lt;/code&gt; to turn off the “Show/hide code” button at the top of the post (as in the present post).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope these instructions work for you. If not, questions, corrections, and clarifications are welcome. Happy blogging, y’all!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>lmeInfo</title>
       <link>/software/lmeinfo/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
@@ -914,6 +980,12 @@ SMDs &amp;lt;-
       <description>
 
 
+&lt;p&gt;&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    &lt;strong&gt;2020-05-03&lt;/strong&gt; This post describes an implementation of code folding for an older version of the Academic Theme. It does not work with Academic 4.+. See &lt;a href=&#34;/code-folding-update/&#34;&gt;my updated instructions&lt;/a&gt; to get it working with newer versions of Academic.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/p&gt;
 &lt;p&gt;Rmarkdown documents now have a very nifty &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding&#34;&gt;code folding option&lt;/a&gt;, which allows the reader of a compiled html document to toggle whether to view or hide code chunks. However, the feature is &lt;a href=&#34;https://github.com/rstudio/blogdown/issues/214&#34;&gt;not supported in blogdown&lt;/a&gt;, the popular Rmarkdown-based website/blog creation package. I recently ran across an implementation of codefolding for blogdown, developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I have been putzing around, trying to get it to work with my blog, which uses the Hugo &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt;—alas, to no avail. To my amazement and good fortune, Sébastien swooped in with &lt;a href=&#34;https://github.com/jepusto/jepusto.com/pull/9&#34;&gt;a pull request&lt;/a&gt; that cleaned up my blundering attempts at implementation. Now all of &lt;a href=&#34;/package-downloads&#34;&gt;my posts&lt;/a&gt; have &lt;a href=&#34;/handmade-clubSandwich&#34;&gt;working&lt;/a&gt; &lt;a href=&#34;/effective-sample-size-aggregation&#34;&gt;code folding&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll lay out how to make Sébastien’s code folding feature work with the Academic theme. To be totally clear, all of the hard bits of this were &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;solved by Sébastien&lt;/a&gt;. I don’t know javascript to save my life, and my only contribution is to write down the instructions in what I hope is a coherent fashion, so that you too can soon be doing the happy code folding dance if you so desire.&lt;/p&gt;
