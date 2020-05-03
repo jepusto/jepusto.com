@@ -15,6 +15,10 @@ header:
   image: ''
 ---
 
+{{% alert warning %}}
+__2020-05-03__ This post describes an implementation of code folding for an older version of the Academic Theme. It does not work with Academic 4.+. See [my updated instructions](/code-folding-update/) to get it working with newer versions of Academic.
+{{% /alert %}}
+
 Rmarkdown documents now have a very nifty [code folding option](https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding), which allows the reader of a compiled html document to toggle whether to view or hide code chunks. However, the feature is [not supported in blogdown](https://github.com/rstudio/blogdown/issues/214), the popular Rmarkdown-based website/blog creation package. I recently ran across an implementation of codefolding for blogdown, developed by [Sébastien Rochette](https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/). I have been putzing around, trying to get it to work with my blog, which uses the Hugo [Academic theme](https://sourcethemes.com/academic/)---alas, to no avail. To my amazement and good fortune, Sébastien swooped in with [a pull request](https://github.com/jepusto/jepusto.com/pull/9) that cleaned up my blundering attempts at implementation. Now all of [my posts](/package-downloads) have [working](/handmade-clubSandwich) [code folding](/effective-sample-size-aggregation)!
 
 ![](https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif)

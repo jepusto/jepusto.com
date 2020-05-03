@@ -1,0 +1,74 @@
+---
+title: An update on code folding with blogdown + Academic theme
+authors:
+- admin
+date: '2020-05-03'
+slug: code-folding-update
+number_sections: true
+codefolding_nobutton: true
+categories: []
+tags:
+  - programming
+  - Rstats
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p>About a year ago I added a code-folding feature to my site, following an approach developed by <a href="https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/">Sébastien Rochette</a>. I recently updated my site to work with the latest version of the <a href="https://sourcethemes.com/academic/">Academic theme</a> for Hugo, and it turns out that this broke <a href="/code-folding-with-blogdown-academic/">my code-folding implementation</a>. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:</p>
+<p><img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" /></p>
+<p>In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is <a href="https://sourcethemes.com/academic/updates/v4.8.0/">4.8 (March 2020)</a>. Credit where credit is due:</p>
+<ul>
+<li>Sébastien Rochette worked out <a href="https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/">the earlier implementation</a>.</li>
+<li>Web developer <a href="https://upwork.com/freelancers/~01328c0a21498eac2a">Max B.</a> worked out the kinks to get it working with the latest version of Academic. We connected through Upwork. Hire him there if you have web dev work!</li>
+<li>As I’ve said before, I couldn’t write javascript to save my life, and my only contribution here is to write down the instructions.</li>
+</ul>
+<div id="code-folding-with-the-academic-theme" class="section level2">
+<h2>Code folding with the Academic theme</h2>
+<ol style="list-style-type: decimal">
+<li><p>You’ll first need to add the codefolding javascript assets. Create a folder called <code>js</code> under the <code>/static</code> directory of your site. Add the file <a href="https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js"><code>codefolding.js</code></a>.</p></li>
+<li><p>Create a folder called <code>css</code> under the <code>/static</code> directory of your site. Add the file <a href="https://github.com/jepusto/jepusto.com/blob/master/static/css/codefolding.css"><code>codefolding.css</code></a>. This is the css for the buttons that will appear on your posts.</p></li>
+<li><p>Add the file <a href="https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/article_footer_js.html"><code>article_footer_js.html</code></a> to the <code>/layouts/partials</code> directory of your site.</p></li>
+<li><p>Add the file <a href="https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/header_maincodefolding.html"><code>header_maincodefolding.html</code></a> to the <code>/layouts/partials</code> directory of your site.</p></li>
+<li><p>If you do not already have a file <code>head_custom.html</code> in the <code>/layouts/partials</code> directory, create it. Add the following lines of code to the file:</p>
+<pre class="js"><code>{{ if not site.Params.disable_codefolding }}
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&quot;&gt;&lt;/script&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ &quot;css/codefolding.css&quot; | relURL }}&quot; /&gt;
+{{ end }}</code></pre></li>
+<li><p>If you do not already have a file <code>site_footer.html</code> in the <code>/layouts/partials</code> directory, copy it over from <code>/themes/hugo-academic/layouts/partials</code>. Add the following lines of code to it, somewhere towards the bottom (see <a href="https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/site_footer.html">my version</a> for example):</p>
+<pre class="js"><code>&lt;!-- Init code folding --&gt;
+{{ partial &quot;article_footer_js.html&quot; . }}</code></pre></li>
+<li><p>If you do not already have the file <code>page_header.html</code> in the <code>/layouts/partials</code> directory, copy it over from <code>/themes/hugo-academic/layouts/partials</code>. Add the following line of code at appropriate points so that your posts will include the “Show/hide code” button:</p>
+<pre class="js"><code> {{ partial &quot;header_maincodefolding&quot; . }}</code></pre>
+<p>Note that you’ll likely need to add it twice due do conditionals in <code>page_header.html</code>. For example, <a href="https://github.com/jepusto/jepusto.com/blob/master/layouts/partials/page_header.html">my version of the file</a> includes the partial at lines 62 and 91.</p></li>
+<li><p>Modify your <code>params.toml</code> file (in the directory <code>/config/_default</code>) to include the following lines:</p>
+<pre class="r"><code>############################
+## Code folding
+############################
+
+# Set to true to disable code folding
+disable_codefolding = false
+# Set to &quot;hide&quot; or &quot;show&quot; all codes by default
+codefolding_show = &quot;show&quot;
+# Set to true to exclude the &quot;Show/hide all&quot; button
+codefolding_nobutton = false</code></pre></li>
+</ol>
+</div>
+<div id="using-the-codefolding-parameters" class="section level2">
+<h2>Using the codefolding parameters</h2>
+<p>The <code>params.toml</code> file now has three parameters that control code folding:</p>
+<ul>
+<li><code>disable_codefolding</code> controls whether to load the code folding scripts on your site. Set it to <code>true</code> to disable code folding globally.</li>
+<li><code>codefolding_show</code> controls whether code blocks will be shown or hidden by default. If your previous posts have lots of code in them, set the default to <code>show</code> to minimize changes in the appearance of your site.</li>
+<li><code>codefolding_nobutton</code> controls whether the “Show/hide code” button will appear at the top of posts that include code blocks. Set it to <code>true</code> to disable the button but keep the other code folding functionality.</li>
+</ul>
+<p>The above parameters are defaults for your entire site. To over-ride the defaults, you can also set the parameters in the YAML header of any post:</p>
+<ul>
+<li>Set <code>disable_codefolding: true</code> to turn off code folding for the post.</li>
+<li>Set <code>codefolding_show: hide</code> to hide the code blocks in the post (as in <a href="/package-downloads/">this post</a>).</li>
+<li>Set <code>codefolding_nobutton: true</code> to turn off the “Show/hide code” button at the top of the post (as in the present post).</li>
+</ul>
+<p>I hope these instructions work for you. If not, questions, corrections, and clarifications are welcome. Happy blogging, y’all!</p>
+</div>
