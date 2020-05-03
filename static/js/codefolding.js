@@ -21,7 +21,6 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    div.addClass('in');
     if (show) {
       $('div.r-code-collapse').each(function() {
         $(this).collapse('show');
