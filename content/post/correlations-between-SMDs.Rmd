@@ -1,12 +1,15 @@
 ---
 title: Correlations between standardized mean differences
-author: 'James'
+authors:
+- admin
 date: '2015-09-17'
 slug: correlations-between-SMDs
 categories: []
 tags:
   - meta-analysis
-  - effect sizes
+  - effect size
+  - standardized mean difference
+  - distribution theory
 header:
   caption: ''
   image: ''

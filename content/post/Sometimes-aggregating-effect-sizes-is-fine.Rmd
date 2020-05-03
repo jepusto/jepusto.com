@@ -1,14 +1,16 @@
 ---
 title: 'Sometimes, aggregating effect sizes is fine'
-author: James
+authors:
+- admin
 date: '2019-07-02'
 slug: Sometimes-aggregating-effect-sizes-is-fine
 bibliography: [meta-references.bib]
 link-citations: true
 categories: []
 tags:
-  - effect sizes
+  - effect size
   - meta-analysis
+  - dependent effect sizes
 header:
   caption: ''
   image: ''

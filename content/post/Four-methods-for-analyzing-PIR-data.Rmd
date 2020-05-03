@@ -1,12 +1,13 @@
 ---
 title: "New article: Four methods for analyzing PIR data"
-author: 'James'
+authors:
+- admin
 date: '2015-02-11'
 slug: Four-methods-for-analyzing-PIR-data
 categories: []
 tags:
   - behavioral observation
-  - single-case research
+  - single-case design
 header:
   caption: ''
   image: ''

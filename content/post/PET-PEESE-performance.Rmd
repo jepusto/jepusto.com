@@ -1,12 +1,15 @@
 ---
 title: "You wanna PEESE of d's?"
-author: 'James'
+authors:
+- admin
 date: '2017-04-27'
 slug: PET-PEESE-performance
 categories: []
 tags:
   - meta-analysis
   - publication bias
+  - standardized mean difference
+  - simulation
 header:
   caption: ''
   image: ''

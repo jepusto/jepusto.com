@@ -1,11 +1,13 @@
 ---
 title: Effective sample size aggregation
-author: James
+authors:
+- admin
 date: '2019-01-22'
 slug: effective-sample-size-aggregation
 categories: []
 tags:
   - econometrics
+  - causal inference
   - weighting
 header:
   caption: ''

@@ -1,13 +1,15 @@
 ---
 title: Meta-sandwich with extra mustard
-author: 'James'
+authors:
+- admin
 date: '2014-04-26'
 slug: Robust-meta-analysis-3
 categories: []
 tags:
   - meta-analysis
   - sandwiches
-  - R
+  - Rstats
+  - robust variance estimation
 header:
   caption: ''
   image: ''

@@ -1,13 +1,15 @@
 ---
 title: Alternative formulas for the standardized mean difference
-author: 'James'
+authors:
+- admin
 date: '2016-06-03'
 slug: alternative-formulas-for-the-SMD
 categories: []
 tags:
   - meta-analysis
-  - effect sizes
+  - effect size
   - distribution theory
+  - standardized mean difference
 header:
   caption: ''
   image: ''

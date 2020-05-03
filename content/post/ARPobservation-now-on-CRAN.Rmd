@@ -1,12 +1,14 @@
 ---
 title: ARPobservation now on CRAN
-author: 'James'
+authors:
+- admin
 date: '2014-05-31'
 slug: ARPobservation-now-on-CRAN
 categories: []
 tags:
   - behavioral observation
-  - R
+  - alternating renewal process
+  - Rstats
 header:
   caption: ''
   image: ''

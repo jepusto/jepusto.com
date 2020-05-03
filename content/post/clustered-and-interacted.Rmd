@@ -1,15 +1,17 @@
 ---
 title: A handmade clubSandwich for multi-site trials
-author: James
+authors:
+- admin
 date: '2019-03-09'
 draft: true
 slug: clustered-and-interacted
 categories: []
 tags:
   - sandwiches
+  - robust variance estimation
   - econometrics
   - weighting
-  - instrumental-variables
+  - instrumental variables
 header:
   caption: ''
   image: ''

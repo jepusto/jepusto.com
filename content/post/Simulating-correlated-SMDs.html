@@ -1,13 +1,15 @@
 ---
 title: 'Simulating correlated standardized mean differences for meta-analysis'
-author: James
+authors:
+- admin
 date: '2019-09-30'
 slug: Simulating-correlated-SMDs
 bibliography: [meta-references.bib]
 link-citations: true
 categories: []
 tags:
-  - effect sizes
+  - effect size
+  - standardized mean difference
   - meta-analysis
   - simulation
   - programming
@@ -80,11 +82,11 @@ From these parameters, we’ll generate raw data, calculate effect size estimate
 <pre class="r"><code>delta &lt;- rnorm(4, mean = 0.2, sd = 0.1)
 r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = 0.6)</code></pre>
 <pre><code>## Loading required package: mvtnorm</code></pre>
-<pre><code>##           ES        SE  N
-## 1 0.64132944 0.3246720 40
-## 2 0.05108911 0.3162821 40
-## 3 1.15198746 0.3427266 40
-## 4 0.55054111 0.3224719 40</code></pre>
+<pre><code>##            ES        SE  N
+## 1  0.02795295 0.3162440 40
+## 2 -0.37019812 0.3190662 40
+## 3  0.15861202 0.3167507 40
+## 4 -0.29438342 0.3180256 40</code></pre>
 <p>Or if you’d rather specify the full <span class="math inline">\(\Psi_k\)</span> matrix yourself:</p>
 <pre class="r"><code>Psi_k &lt;- 0.6 + diag(0.4, nrow = 4)
 Psi_k</code></pre>
@@ -95,10 +97,10 @@ Psi_k</code></pre>
 ## [4,]  0.6  0.6  0.6  1.0</code></pre>
 <pre class="r"><code>r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = Psi_k)</code></pre>
 <pre><code>##            ES        SE  N
-## 1  0.55701600 0.3226181 40
-## 2 -0.02293332 0.3162387 40
-## 3  0.69964443 0.3262527 40
-## 4  0.26457166 0.3176807 40</code></pre>
+## 1  0.30796886 0.3181948 40
+## 2  0.24528651 0.3174770 40
+## 3  0.24496926 0.3174738 40
+## 4 -0.03142033 0.3162483 40</code></pre>
 <div id="exercises" class="section level2">
 <h2>Exercises</h2>
 <p>The function above is serviceable but quite basic. I can think of several additional features that one might like to have for use in research simulations, but I’m feeling both cheeky and lazy at the moment, so I’ll leave them for you, dear reader. Here are some suggested exercises:</p>
@@ -180,51 +182,49 @@ study_data &lt;-
 
 study_data</code></pre>
 <pre><code>##       delta J  N       Psi
-## 1 0.3111256 3 48 0.6294797
-## 2 0.1956214 7 42 0.6060976
-## 3 0.2815491 5 44 0.5811246
-## 4 0.2795690 4 50 0.6291896
-## 5 0.3043638 5 42 0.5622397
-## 6 0.1254436 6 48 0.7071844</code></pre>
+## 1 0.2164399 7 34 0.5219260
+## 2 0.1695641 4 54 0.5560842
+## 3 0.2023963 5 50 0.5796910
+## 4 0.1786634 3 42 0.5834660
+## 5 0.2328779 3 36 0.4235426
+## 6 0.1554537 6 48 0.5357454</code></pre>
 <p>Once we have the “menu” of study-level characteristics, it’s just a matter of mapping the parameters to the data-generating function. One way to do this is with <code>pmap_df</code>:</p>
 <pre class="r"><code>library(purrr)
 meta_data &lt;- pmap_df(study_data, r_SMDs_raw, .id = &quot;study&quot;)
 meta_data</code></pre>
-<pre><code>##    study         ES        SE  N
-## 1      1  0.2721693 0.2900664 48
-## 2      1  0.7334228 0.2986305 48
-## 3      1  0.5123774 0.2935761 48
-## 4      2  0.3154502 0.3106154 42
-## 5      2  0.2668093 0.3100451 42
-## 6      2  0.1954695 0.3093795 42
-## 7      2  0.2118610 0.3095144 42
-## 8      2  0.1367121 0.3089850 42
-## 9      2  0.4959342 0.3135482 42
-## 10     2  0.4498572 0.3126783 42
-## 11     3  0.5888123 0.3082799 44
-## 12     3  0.3811473 0.3043658 44
-## 13     3  0.8163772 0.3143935 44
-## 14     3  0.3862971 0.3044431 44
-## 15     3  0.5981227 0.3084932 44
-## 16     4  0.1385613 0.2831960 50
-## 17     4  0.4977074 0.2873680 50
-## 18     4  0.5043550 0.2874887 50
-## 19     4  0.7201316 0.2922362 50
-## 20     5  0.2622722 0.3099967 42
-## 21     5  0.1568256 0.3091044 42
-## 22     5  0.1474439 0.3090467 42
-## 23     5 -0.1640210 0.3091511 42
-## 24     5  0.1987481 0.3094056 42
-## 25     6  0.5297951 0.2939119 48
-## 26     6  0.2435053 0.2897893 48
-## 27     6  0.5982752 0.2953369 48
-## 28     6  0.6704369 0.2970169 48
-## 29     6  0.4207150 0.2919885 48
-## 30     6  0.3695821 0.2912353 48</code></pre>
+<pre><code>##    study          ES        SE  N
+## 1      1  0.13424472 0.3434074 34
+## 2      1  0.61637803 0.3515442 34
+## 3      1  0.89283387 0.3606973 34
+## 4      1  0.62649158 0.3518235 34
+## 5      1  0.43596110 0.3472993 34
+## 6      1  0.62143835 0.3516834 34
+## 7      1  0.60034463 0.3511104 34
+## 8      2 -0.01693615 0.2721706 54
+## 9      2  0.10887688 0.2723748 54
+## 10     2 -0.06254183 0.2722346 54
+## 11     2  0.60622010 0.2785817 54
+## 12     3  0.38220860 0.2855201 50
+## 13     3  0.17922070 0.2834336 50
+## 14     3  0.50984042 0.2875894 50
+## 15     3  0.26371265 0.2841204 50
+## 16     3  0.30662621 0.2845687 50
+## 17     4  0.18850878 0.3093255 42
+## 18     4  0.09359422 0.3087841 42
+## 19     4  0.06258202 0.3086860 42
+## 20     5  0.04903932 0.3333864 36
+## 21     5  0.06668237 0.3334314 36
+## 22     5  0.24701327 0.3346766 36
+## 23     6  0.01605121 0.2886800 48
+## 24     6  0.29727147 0.2903341 48
+## 25     6  0.26241278 0.2899686 48
+## 26     6  0.03451125 0.2886976 48
+## 27     6  0.21825135 0.2895705 48
+## 28     6 -0.01595245 0.2886799 48</code></pre>
 <pre class="r"><code>table(meta_data$study)</code></pre>
 <pre><code>## 
 ## 1 2 3 4 5 6 
-## 3 7 5 4 5 6</code></pre>
+## 7 4 5 3 3 6</code></pre>
 <p>Putting it all together into a function, we have</p>
 <pre class="r"><code>r_meta &lt;- function(K, mu, tau, J_mean, N_mean, rho, nu) {
   require(purrr)

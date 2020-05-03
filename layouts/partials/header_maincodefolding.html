@@ -1,12 +1,14 @@
-{{ if and (not .Site.Params.disable_codefolding) (not .Params.disable_codefolding) (not .Site.Params.codefolding_nobutton) (not .Params.codefolding_nobutton) (in (string .Content) "</pre>") }}
-<div id="code-folding-buttons" class="btn-group pull-right">
-  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast="">
-    <span>Show/hide code</span> 
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" style="min-width: 50px;">
-  <li><a id="rmd-show-all-code" href="#">Show all</a>
-  </li><li><a id="rmd-hide-all-code" href="#">Hide all</a></li>
-  </ul>
+{{ if and (not site.Params.disable_codefolding) (not .Params.disable_codefolding) (not site.Params.codefolding_nobutton) (not .Params.codefolding_nobutton) (in (string .Content) "</pre>") }}
+
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
 </div>
+
 {{ end }}

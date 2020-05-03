@@ -1,12 +1,14 @@
 ---
 title: Tau-U
-author: 'James'
+authors:
+- admin
 date: '2016-03-23'
 slug: Tau-U
 categories: []
 tags:
-  - effect sizes
-  - single-case research
+  - effect size
+  - single-case design
+  - non-overlap measures
 header:
   caption: ''
   image: ''

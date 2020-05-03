@@ -1,12 +1,15 @@
 ---
 title: "New working paper: Using log response ratios for meta-analyzing SCDs with behavioral outcomes"
-author: 'James'
+authors:
+- admin
 date: '2017-04-26'
 slug: using-log-response-ratios
 categories: []
 tags:
-  - single-case research
-  - effect sizes
+  - single-case design
+  - effect size
+  - response ratio
+  - meta-analysis
 header:
   caption: ''
   image: ''

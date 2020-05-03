@@ -1,11 +1,14 @@
 ---
 title: "New article: Alternating renewal process models for behavioral observation"
-author: 'James'
+authors:
+- admin
 date: '2014-10-16'
 slug: 
 categories: []
 tags:
   - behavioral observation
+  - alternating renewal process
+  - Rstats
 header:
   caption: ''
   image: ''

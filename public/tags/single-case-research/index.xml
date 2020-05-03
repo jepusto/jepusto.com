@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>single-case research | James E. Pustejovsky</title>
+    <link>/tags/single-case-research/</link>
+      <atom:link href="/tags/single-case-research/index.xml" rel="self" type="application/rss+xml" />
+    <description>single-case research</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>single-case research</title>
+      <link>/tags/single-case-research/</link>
+    </image>
+    
+    <item>
+      <title>SingleCaseES</title>
+      <link>/software/singlecasees/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/software/singlecasees/</guid>
+      <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://CRAN.R-project.org/package=SingleCaseES&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/jepusto/SingleCaseES&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code and installation instructions on Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-sizes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Single case effect size calculator&lt;/a&gt;: An interactive web application for calculating basic effect size indices.&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Gradual Effect Model calculator&lt;/a&gt;: An interactive web application for estimating effect sizes using the gradual effects model.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

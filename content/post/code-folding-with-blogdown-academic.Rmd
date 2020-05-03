@@ -1,6 +1,7 @@
 ---
 title: Code folding with blogdown + Academic theme
-author: James
+authors:
+- admin
 date: '2019-04-14'
 slug: code-folding-with-blogdown-academic
 number_sections: true
@@ -8,6 +9,7 @@ codefolding_nobutton: true
 categories: []
 tags:
   - programming
+  - Rstats
 header:
   caption: ''
   image: ''

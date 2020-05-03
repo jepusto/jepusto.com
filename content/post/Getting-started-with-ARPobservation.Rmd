@@ -1,11 +1,14 @@
 ---
 title: Getting started with ARPobservation
-author: 'James'
+authors:
+- admin
 date: '2013-10-24'
 slug: Getting-started-with-ARPobservation
 categories: []
 tags:
   - behavioral observation
+  - simulation
+  - Rstats
 header:
   caption: ''
   image: ''

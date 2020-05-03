@@ -1,12 +1,13 @@
 ---
 title: "New paper: A gradual effects model for single-case designs"
-author: 'James'
+authors:
+- admin
 date: '2018-05-14'
 slug: gradual-effects-model-paper
 categories: []
 tags:
-  - single-case research
-  - effect sizes
+  - single-case design
+  - effect size
   - generalized linear model
 header:
   caption: ''
