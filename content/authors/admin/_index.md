@@ -37,8 +37,7 @@ social:
   link: https://github.com/jepusto
 superuser: true
 user_groups:
-- Researchers
-- Visitors
+- Principal Investigators
 ---
 
 I am a statistician and assistant professor in the [College of Education](https://education.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu/), where I teach in the [Educational Psychology Department](https://education.utexas.edu/departments/educational-psychology) and the [graduate program in Quantitative Methods](https://education.utexas.edu/departments/educational-psychology/graduate-programs/quantitative-methods). My research involves developing statistical methods for problems in education, psychology, and other areas of social science research, with a focus on methods related to research synthesis and meta-analysis. 
