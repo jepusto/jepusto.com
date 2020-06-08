@@ -1,0 +1,68 @@
+---
+title: Weighting in multivariate meta-analysis 
+authors:
+- admin
+date: '2020-06-07'
+draft: true
+slug: weighting-in-multivariate-meta-analysis
+categories: []
+tags:
+  - meta-analysis
+header:
+  caption: ''
+  image: ''
+---
+
+One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. One version of the question came up recently on the [R-sig-meta-analysis listserv](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2020-June/002149.html), and Dr. Wolfgang Viechtbauer offered a [whole blog post](http://www.metafor-project.org/doku.php/tips:weights_in_rma.mv_models) in reply, demonstrating how weights work in simpler fixed effect and random effects meta-analysis and then how things get more complicated in multivariate models. I started thumb-typing my own reply as well, but then decided it would be better to write up a post so that I could use a bit of math notation (and to give my thumbs a break). So, call this further thoughts on weighting in multivariate meta-analysis. 
+
+## A little background
+
+It's helpful to start by looking briefly at the basic fixed effect and random effects models, assuming that you've got a set of studies that each contribute a single effect size estimate so everything's independent. Letting $T_j$ be the effect size from study $j$, with sampling variance $V_j$, both for $j = 1,...,k$, the basic random effects model is:
+$$
+T_j = \mu + v_j + e_j
+$$
+where $\mu$ is the overall average effect size, $v_j$ is a random effect with variance $\text{Var}(v_j) = \tau^2$ and $e_j$ is a sampling error with known variance $V_j$. The first step in estimating this model is to estimate $\tau^2$. There's lots of methods for doing so, let's just say we pick one and call the estimate $\hat\tau^2$. Then, to estimate $\mu$, we take a weighted average of the effect size estimates:
+$$
+\hat\mu = \frac{1}{W} \sum_{j=1}^k w_j T_j, \qquad \text{where} \quad W = \sum_{j=1}^k w_j.
+$$
+The weights used in the weighted average are typically chosen to make the overall estimate as precise as possible (i.e., having the smallest possible sampling variance or standard error). Mathematically, the best possible weights are __*inverse variance*__ weights, that is, setting the weight for each effect size estimate proportional to the inverse of how much variance there is in the estimate. With inverse variance weights, larger studies with more precise effect size estimates will tend to get more weight, and smaller, noisier studies will tend to get less weight. 
+
+In the basic random effects model, the weights for each study are proportional to 
+$$
+w_j = \frac{1}{\hat\tau^2 + V_j},
+$$
+for $j = 1,...,k$. The denominator term here includes both the (estimated) between-study heterogeneity and the sampling variance because both terms contribute to how noisy the effect size estimate is. In the fixed effect model, we ignore between-study heterogeneity so the weights are inversely proportional to the sampling variances, with $w_j = 1 / V_j$. In the random effects model, larger between-study heterogeneity will make the weights closer to equal, smaller between-study heterogeneity will lead to weights that tend to emphasize larger studies with more precise estimates. In the remainder, I'll show that there are some similar dynamics at work in a more complicated, multivariate meta-analysis model
+
+## A multivariate meta-analysis
+
+Now let's consider the case where some or all studies in our synthesis contribute more than one effect size estimate. Say that we have effect sizes $T_{ij}$, where $i$ indexes effect size estimates within study $j$, so $i = 1,...,n_j$, and $j$ indexes studies, for $j = 1,...,k$. Say that effect size estimate $T_{ij}$ has sampling variance $V_{ij}$, and there is some sampling correlation between effect sizes $h$ and $i$ within study $j$, denoted $r_{hij}$. 
+
+There are many models that a meta-analyst might consider for this data structure. However, a fairly common model would be one that includes random effects not only for between-study heterogeneity (as in the basic random effects model) but also random effects capturing within-study heterogeneity in true effect sizes. Let me write this model heirarchically, as
+$$
+\begin{align}
+T_{ij} &= \theta_j + v_{ij} + e_{ij} \\
+\theta_j &= \mu + u_j
+\end{align}
+$$
+In the first line of the model, $\theta_j$ denotes the average effect size parameter for study $j$, $v_{ij}$ captures within-study heterogeneity in the true effect size parameters and $e_{ij}$ is a sampling error. Above, I've assumed that we know the structure of the sampling errors, so $\text{Var}(e_{ij}) = V_{ij}$ and $\text{Cov}(e_{hj}, e_{ij}) = r_{hij} \sqrt{V_{hj} V_{ij}}$. Let's also denote the within-study variance as $\omega^2$, so $\text{Var}(v_{ij}) = \omega^2$. 
+In the second line of the model, $\mu$ is still the overall average effect size across all studies and effect sizes within studies and $u_j$ is a between-study error, with $\text{Var}(u_j) = \tau^2$, capturing the degree of heterogeneity in the _average_ effect sizes (the $\theta_j$'s) across studies. 
+
+One thing to note about this model is that it treats __*all*__ of the effect sizes as coming from a population with a common mean $\mu$. Some statisticians might object to calling it a multivariate model because we're not distinguishing averages for different dimensions (or variates) of the effect sizes. To this I say: whatev's, I'm gonna call it multivariate because you have to use the `rma.mv()` function from the `metafor` package to estimate it. I will acknowledge, though, that there will often be reason to use more complicated models, for example by replacing the overall average $\mu$ with some meta-regression $\mathbf{x}_{ij} \boldsymbol\beta$. That's a discussion for another day. For now, I'm only going to consider the model with just an overall average effect size parameter $\mu$. The question is, __*how to the individual effect size estimates $T_{ij}$ contribute to the estimate of this overall average effect?*__ 
+
+## Equally precise effect size estimates
+
+To make some headway, it is helpful to first consider an even more specific scenario where, within a given study, all effect size estimates are equally precise and equally correlated. In particular, let's assume that for each study $j$, the sampling variances are all equal, with $V_{ij} = V_j$ for $i = 1,...,n_j$, and the correlations between the sampling errors are also all equal, with $r_{hij} = r_j$ for $h,i = 1,...,n_j$. 
+
+This scenario is often not all that far-fetched. Within a given study, if the effect size estimates are for different measures of a common construct, it's not unlikely that they would all be based on similar sample sizes (+/- a bit of item non-response). This might be a bit less likely if the effect size estimates are for treatment effects from different follow-up times (since drop-out/non-response tends to increase over time), but still perhaps not totally unreasonable. Further, it's rather _uncommon_ to have good information about the correlations between effect size estimates from a given study (because primary studies don't often report all of the information needed to calculate these correlations). In practice, meta-analysts might need to simply [make a rough guess about the correlations](/imputing-covariance-matrices-for-multi-variate-meta-analysis/) and then use robust variance estimation and/or sensitivity analysis to check themselves. And if we're just ball-parking, then we'll probably assume a single correlation for all of the studies. 
+
+The handy thing about this particular scenario is that, because all of the effect size estimates within a study are equally precise and equally correlated, the most efficient way to estimate an average effect for a given study is to __*just take the simple average*__ (and, intuitively, this seems like the only sensible thing to do). To be precise, consider how we would estimate $\theta_j$ for a given study $j$. The most precise possible estimate is simply
+$$
+\hat\theta_j = \frac{1}{n_j} \sum_{i=1}^{n_j} T_{ij}.
+$$
+And we could do the same for each of the other studies, $j = 1,...,k$. 
+
+Now, consider how precise each of these estimates are, relative to the true effects in their respective studies. Conditional on the true effect $\theta_j$,
+$$
+\text{Var}(\hat\theta_j | \theta_j) = \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
+$$
+There are several things worth noting here. First, suppose that there is little within-study heterogeneity, so $\omega^2$ is close to zero. Then the variance of $\hat\theta_j$ is driven by the number of effect sizes within the study ($n_j$), the sampling variance of those effect sizes ($V_j$) and their correlation $r_j$. If $r_j$ is near one, then the average effect will have variance close to $V_j$. Averaging together a bunch of highly correlated estimates doesn't improve precision much. If $r_j$ is below one, then averaging yields a more precise estimate than any of the individual effect sizes, and averaging together more effect sizes will yield more precise estimate at the study level. 
