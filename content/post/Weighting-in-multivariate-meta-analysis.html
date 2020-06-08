@@ -56,7 +56,12 @@ In the second line of the model, <span class="math inline">\(\mu\)</span> is sti
 \hat\theta_j = \frac{1}{n_j} \sum_{i=1}^{n_j} T_{ij}.
 \]</span>
 And we could do the same for each of the other studies, <span class="math inline">\(j = 1,...,k\)</span>.</p>
-<p>Now, consider how precise each of these estimates are, relative to the true effects in their respective studies. Conditional on the true effect <span class="math inline">\(\theta_j\)</span>,
+<p>It turns out that the estimate of the overall average effect size is a weighted average of these study-specific average effect sizes:
+<span class="math display">\[
+\hat\mu = \frac{1}{W} \sum_{j=1}^k w_j \hat\theta_j,
+\]</span>
+for some weights <span class="math inline">\(w_1,...,w_k\)</span>. The question is then, what are these weights? Just like in the basic random effects model, they are inverse-variance weights. It’s just that the variance is a little bit more complicated.</p>
+<p>Consider how precise each of the study-specific estimates are, relative to the true effects in their respective studies. Conditional on the true effect <span class="math inline">\(\theta_j\)</span>,
 <span class="math display">\[
 \text{Var}(\hat\theta_j | \theta_j) = \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
 \]</span>

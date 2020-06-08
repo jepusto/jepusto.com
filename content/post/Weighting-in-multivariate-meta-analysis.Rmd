@@ -61,7 +61,13 @@ $$
 $$
 And we could do the same for each of the other studies, $j = 1,...,k$. 
 
-Now, consider how precise each of these estimates are, relative to the true effects in their respective studies. Conditional on the true effect $\theta_j$,
+It turns out that the estimate of the overall average effect size is a weighted average of these study-specific average effect sizes:
+$$
+\hat\mu = \frac{1}{W} \sum_{j=1}^k w_j \hat\theta_j,
+$$
+for some weights $w_1,...,w_k$. The question is then, what are these weights? Just like in the basic random effects model, they are inverse-variance weights. It's just that the variance is a little bit more complicated.
+
+Consider how precise each of the study-specific estimates are, relative to the true effects in their respective studies. Conditional on the true effect $\theta_j$,
 $$
 \text{Var}(\hat\theta_j | \theta_j) = \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
 $$

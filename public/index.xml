@@ -103,7 +103,12 @@ In the second line of the model, &lt;span class=&#34;math inline&#34;&gt;\(\mu\)
 \hat\theta_j = \frac{1}{n_j} \sum_{i=1}^{n_j} T_{ij}.
 \]&lt;/span&gt;
 And we could do the same for each of the other studies, &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,k\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Now, consider how precise each of these estimates are, relative to the true effects in their respective studies. Conditional on the true effect &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;,
+&lt;p&gt;It turns out that the estimate of the overall average effect size is a weighted average of these study-specific average effect sizes:
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat\mu = \frac{1}{W} \sum_{j=1}^k w_j \hat\theta_j,
+\]&lt;/span&gt;
+for some weights &lt;span class=&#34;math inline&#34;&gt;\(w_1,...,w_k\)&lt;/span&gt;. The question is then, what are these weights? Just like in the basic random effects model, they are inverse-variance weights. It’s just that the variance is a little bit more complicated.&lt;/p&gt;
+&lt;p&gt;Consider how precise each of the study-specific estimates are, relative to the true effects in their respective studies. Conditional on the true effect &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt;,
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}(\hat\theta_j | \theta_j) = \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
 \]&lt;/span&gt;
