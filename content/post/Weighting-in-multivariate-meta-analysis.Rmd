@@ -234,7 +234,7 @@ MVMA_no_omega <- rma.mv(yi = effectsize, V = V_mat,
 MVMA_no_omega
 ```
 
-Re-fitting the model with `rma.mv()` gives an between-study heterogeneity estimate of $\hat\tau = `r round(sqrt(MVMA_no_omega$sigma2),3)`$ and an overall average effect size estimate of $\hat\mu = `r round(as.numeric(MVMA_no_omega$b, 3))`$. Using this estimate, I'll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.
+Re-fitting the model with `rma.mv()` gives an between-study heterogeneity estimate of $\hat\tau = `r round(sqrt(MVMA_no_omega$sigma2),3)`$ and an overall average effect size estimate of $\hat\mu = `r round(as.numeric(MVMA_no_omega$b), 3)`$. Using this estimate, I'll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.
 
 ```{r}
 tau_sq <- MVMA_no_omega$sigma2

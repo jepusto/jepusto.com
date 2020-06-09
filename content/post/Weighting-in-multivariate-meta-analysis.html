@@ -192,7 +192,7 @@ MVMA_no_omega</code></pre>
 ## 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Re-fitting the model with <code>rma.mv()</code> gives an between-study heterogeneity estimate of <span class="math inline">\(\hat\tau = 0.308\)</span> and an overall average effect size estimate of <span class="math inline">\(\hat\mu = 0\)</span>. Using this estimate, I’ll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.</p>
+<p>Re-fitting the model with <code>rma.mv()</code> gives an between-study heterogeneity estimate of <span class="math inline">\(\hat\tau = 0.308\)</span> and an overall average effect size estimate of <span class="math inline">\(\hat\mu = 0.224\)</span>. Using this estimate, I’ll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.</p>
 <pre class="r"><code>tau_sq &lt;- MVMA_no_omega$sigma2
 
 corrdat_weights &lt;- 

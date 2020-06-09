@@ -237,7 +237,7 @@ MVMA_no_omega&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Re-fitting the model with &lt;code&gt;rma.mv()&lt;/code&gt; gives an between-study heterogeneity estimate of &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.308\)&lt;/span&gt; and an overall average effect size estimate of &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu = 0\)&lt;/span&gt;. Using this estimate, I’ll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.&lt;/p&gt;
+&lt;p&gt;Re-fitting the model with &lt;code&gt;rma.mv()&lt;/code&gt; gives an between-study heterogeneity estimate of &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.308\)&lt;/span&gt; and an overall average effect size estimate of &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu = 0.224\)&lt;/span&gt;. Using this estimate, I’ll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tau_sq &amp;lt;- MVMA_no_omega$sigma2
 
 corrdat_weights &amp;lt;- 
