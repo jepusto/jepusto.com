@@ -27,7 +27,7 @@
   
     
   
-  <meta name="description" content="One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. One version of the question came up recently on the R-sig-meta-analysis listserv, and Dr.">
+  <meta name="description" content="One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. When version of the question came up recently on the R-sig-meta-analysis listserv, Dr.">
 
   
   <link rel="alternate" hreflang="en-us" href="/weighting-in-multivariate-meta-analysis/">
@@ -241,7 +241,7 @@
   <meta property="og:site_name" content="James E. Pustejovsky">
   <meta property="og:url" content="/weighting-in-multivariate-meta-analysis/">
   <meta property="og:title" content="Weighting in multivariate meta-analysis | James E. Pustejovsky">
-  <meta property="og:description" content="One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. One version of the question came up recently on the R-sig-meta-analysis listserv, and Dr."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content="One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. When version of the question came up recently on the R-sig-meta-analysis listserv, Dr."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
@@ -291,7 +291,7 @@
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. One version of the question came up recently on the R-sig-meta-analysis listserv, and Dr."
+  "description": "One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. When version of the question came up recently on the R-sig-meta-analysis listserv, Dr."
 }
 </script>
 
@@ -775,23 +775,23 @@
       
 
 
-<p>One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. One version of the question came up recently on the <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2020-June/002149.html">R-sig-meta-analysis listserv</a>, and Dr. Wolfgang Viechtbauer offered a <a href="http://www.metafor-project.org/doku.php/tips:weights_in_rma.mv_models">whole blog post</a> in reply, demonstrating how weights work in simpler fixed effect and random effects meta-analysis and then how things get more complicated in multivariate models. I started thumb-typing my own reply as well, but then decided it would be better to write up a post so that I could use a bit of math notation (and to give my thumbs a break). So, call this further thoughts on weighting in multivariate meta-analysis.</p>
+<p>One common question about multivariate/multi-level meta-analysis is how such models assign weight to individual effect size estimates. When version of the question came up recently on the <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2020-June/002149.html">R-sig-meta-analysis listserv</a>, Dr. Wolfgang Viechtbauer offered a <a href="http://www.metafor-project.org/doku.php/tips:weights_in_rma.mv_models">whole blog post</a> in reply, demonstrating how weights work in simpler fixed effect and random effects meta-analysis and then how things get more complicated in multivariate models. I started thumb-typing my own reply as well, but then decided it would be better to write up a post so that I could use a bit of math notation (and to give my thumbs a break). So, call this further thoughts on weighting in multivariate meta-analysis.</p>
 <div id="a-little-background" class="section level2">
 <h2>A little background</h2>
 <p>It’s helpful to start by looking briefly at the basic fixed effect and random effects models, assuming that you’ve got a set of studies that each contribute a single effect size estimate so everything’s independent. Letting <span class="math inline">\(T_j\)</span> be the effect size from study <span class="math inline">\(j\)</span>, with sampling variance <span class="math inline">\(V_j\)</span>, both for <span class="math inline">\(j = 1,...,k\)</span>, the basic random effects model is:
 <span class="math display">\[
 T_j = \mu + v_j + e_j
 \]</span>
-where <span class="math inline">\(\mu\)</span> is the overall average effect size, <span class="math inline">\(v_j\)</span> is a random effect with variance <span class="math inline">\(\text{Var}(v_j) = \tau^2\)</span> and <span class="math inline">\(e_j\)</span> is a sampling error with known variance <span class="math inline">\(V_j\)</span>. The first step in estimating this model is to estimate <span class="math inline">\(\tau^2\)</span>. There’s lots of methods for doing so, let’s just say we pick one and call the estimate <span class="math inline">\(\hat\tau^2\)</span>. Then, to estimate <span class="math inline">\(\mu\)</span>, we take a weighted average of the effect size estimates:
+where <span class="math inline">\(\mu\)</span> is the overall average effect size, <span class="math inline">\(v_j\)</span> is a random effect with variance <span class="math inline">\(\text{Var}(v_j) = \tau^2\)</span> and <span class="math inline">\(e_j\)</span> is a sampling error with known variance <span class="math inline">\(V_j\)</span>. The first step in estimating this model is to estimate <span class="math inline">\(\tau^2\)</span>. There’s lots of methods for doing so, let’s not worry about those details—pick one and call the estimate <span class="math inline">\(\hat\tau^2\)</span>. Then, to estimate <span class="math inline">\(\mu\)</span>, we take a weighted average of the effect size estimates:
 <span class="math display">\[
 \hat\mu = \frac{1}{W} \sum_{j=1}^k w_j T_j, \qquad \text{where} \quad W = \sum_{j=1}^k w_j.
 \]</span>
-The weights used in the weighted average are typically chosen to make the overall estimate as precise as possible (i.e., having the smallest possible sampling variance or standard error). Mathematically, the best possible weights are <strong><em>inverse variance</em></strong> weights, that is, setting the weight for each effect size estimate proportional to the inverse of how much variance there is in the estimate. With inverse variance weights, larger studies with more precise effect size estimates will tend to get more weight, and smaller, noisier studies will tend to get less weight.</p>
+The weights used in the weighted average are chosen to make the overall estimate as precise as possible (i.e., having the smallest possible sampling variance or standard error). Mathematically, the best possible weights are <strong><em>inverse variance</em></strong> weights, that is, setting the weight for each effect size estimate proportional to the inverse of how much variance there is in the estimate. With inverse variance weights, larger studies with more precise effect size estimates will tend to get more weight, and smaller, noisier studies will tend to get less weight.</p>
 <p>In the basic random effects model, the weights for each study are proportional to
 <span class="math display">\[
 w_j = \frac{1}{\hat\tau^2 + V_j},
 \]</span>
-for <span class="math inline">\(j = 1,...,k\)</span>. The denominator term here includes both the (estimated) between-study heterogeneity and the sampling variance because both terms contribute to how noisy the effect size estimate is. In the fixed effect model, we ignore between-study heterogeneity so the weights are inversely proportional to the sampling variances, with <span class="math inline">\(w_j = 1 / V_j\)</span>. In the random effects model, larger between-study heterogeneity will make the weights closer to equal, smaller between-study heterogeneity will lead to weights that tend to emphasize larger studies with more precise estimates. In the remainder, I’ll show that there are some similar dynamics at work in a more complicated, multivariate meta-analysis model</p>
+for <span class="math inline">\(j = 1,...,k\)</span>. The denominator term here includes both the (estimated) between-study heterogeneity and the sampling variance because both terms contribute to how noisy the effect size estimate is. In the fixed effect model, we ignore between-study heterogeneity so the weights are inversely proportional to the sampling variances, with <span class="math inline">\(w_j = 1 / V_j\)</span>. In the random effects model, larger between-study heterogeneity will make the weights closer to equal, while smaller between-study heterogeneity will lead to weights that tend to emphasize larger studies with more precise estimates. In the remainder, I’ll show that there are some similar dynamics at work in a more complicated, multivariate meta-analysis model</p>
 </div>
 <div id="a-multivariate-meta-analysis" class="section level2">
 <h2>A multivariate meta-analysis</h2>
@@ -799,18 +799,18 @@ for <span class="math inline">\(j = 1,...,k\)</span>. The denominator term here 
 <p>There are many models that a meta-analyst might consider for this data structure. However, a fairly common model would be one that includes random effects not only for between-study heterogeneity (as in the basic random effects model) but also random effects capturing within-study heterogeneity in true effect sizes. Let me write this model heirarchically, as
 <span class="math display">\[
 \begin{align}
-T_{ij} &amp;= \theta_j + v_{ij} + e_{ij} \\
+T_{ij} &amp;= \theta_j + \eta_{ij} + e_{ij} \\
 \theta_j &amp;= \mu + u_j
 \end{align}
 \]</span>
-In the first line of the model, <span class="math inline">\(\theta_j\)</span> denotes the average effect size parameter for study <span class="math inline">\(j\)</span>, <span class="math inline">\(v_{ij}\)</span> captures within-study heterogeneity in the true effect size parameters and <span class="math inline">\(e_{ij}\)</span> is a sampling error. Above, I’ve assumed that we know the structure of the sampling errors, so <span class="math inline">\(\text{Var}(e_{ij}) = V_{ij}\)</span> and <span class="math inline">\(\text{Cov}(e_{hj}, e_{ij}) = r_{hij} \sqrt{V_{hj} V_{ij}}\)</span>. Let’s also denote the within-study variance as <span class="math inline">\(\omega^2\)</span>, so <span class="math inline">\(\text{Var}(v_{ij}) = \omega^2\)</span>.
+In the first line of the model, <span class="math inline">\(\theta_j\)</span> denotes the average effect size parameter for study <span class="math inline">\(j\)</span>, <span class="math inline">\(\eta_{ij}\)</span> captures within-study heterogeneity in the true effect size parameters and <span class="math inline">\(e_{ij}\)</span> is a sampling error. Above, I’ve assumed that we know the structure of the sampling errors, so <span class="math inline">\(\text{Var}(e_{ij}) = V_{ij}\)</span> and <span class="math inline">\(\text{Cov}(e_{hj}, e_{ij}) = r_{hij} \sqrt{V_{hj} V_{ij}}\)</span>. Let’s also denote the within-study variance as <span class="math inline">\(\omega^2\)</span>, so <span class="math inline">\(\text{Var}(v_{ij}) = \omega^2\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
 In the second line of the model, <span class="math inline">\(\mu\)</span> is still the overall average effect size across all studies and effect sizes within studies and <span class="math inline">\(u_j\)</span> is a between-study error, with <span class="math inline">\(\text{Var}(u_j) = \tau^2\)</span>, capturing the degree of heterogeneity in the <em>average</em> effect sizes (the <span class="math inline">\(\theta_j\)</span>’s) across studies.</p>
-<p>One thing to note about this model is that it treats <strong><em>all</em></strong> of the effect sizes as coming from a population with a common mean <span class="math inline">\(\mu\)</span>. Some statisticians might object to calling it a multivariate model because we’re not distinguishing averages for different dimensions (or variates) of the effect sizes. To this I say: whatev’s, I’m gonna call it multivariate because you have to use the <code>rma.mv()</code> function from the <code>metafor</code> package to estimate it. I will acknowledge, though, that there will often be reason to use more complicated models, for example by replacing the overall average <span class="math inline">\(\mu\)</span> with some meta-regression <span class="math inline">\(\mathbf{x}_{ij} \boldsymbol\beta\)</span>. That’s a discussion for another day. For now, I’m only going to consider the model with just an overall average effect size parameter <span class="math inline">\(\mu\)</span>. The question is, <strong><em>how to the individual effect size estimates <span class="math inline">\(T_{ij}\)</span> contribute to the estimate of this overall average effect?</em></strong></p>
+<p>One thing to note about this model is that it treats <strong><em>all</em></strong> of the effect sizes as coming from a population with a common mean <span class="math inline">\(\mu\)</span>. Some statisticians might object to calling it a multivariate model because we’re not distinguishing averages for different dimensions (or variates) of the effect sizes. To this I say: whatev’s, I’m gonna call it multivariate because you have to use the <code>rma.mv()</code> function from the <code>metafor</code> package to estimate it. I will acknowledge, though, that there will often be reason to use more complicated models, for example by replacing the overall average <span class="math inline">\(\mu\)</span> with some meta-regression <span class="math inline">\(\mathbf{x}_{ij} \boldsymbol\beta\)</span>. That’s a discussion for another day. For now, I’m only going to consider the model with just an overall average effect size parameter <span class="math inline">\(\mu\)</span>. The question is, how do the individual effect size estimates <span class="math inline">\(T_{ij}\)</span> contribute to the estimate of this overall average effect?</p>
 </div>
 <div id="equally-precise-effect-size-estimates" class="section level2">
 <h2>Equally precise effect size estimates</h2>
 <p>To make some headway, it is helpful to first consider an even more specific scenario where, within a given study, all effect size estimates are equally precise and equally correlated. In particular, let’s assume that for each study <span class="math inline">\(j\)</span>, the sampling variances are all equal, with <span class="math inline">\(V_{ij} = V_j\)</span> for <span class="math inline">\(i = 1,...,n_j\)</span>, and the correlations between the sampling errors are also all equal, with <span class="math inline">\(r_{hij} = r_j\)</span> for <span class="math inline">\(h,i = 1,...,n_j\)</span>.</p>
-<p>This scenario is often not all that far-fetched. Within a given study, if the effect size estimates are for different measures of a common construct, it’s not unlikely that they would all be based on similar sample sizes (+/- a bit of item non-response). This might be a bit less likely if the effect size estimates are for treatment effects from different follow-up times (since drop-out/non-response tends to increase over time), but still perhaps not totally unreasonable. Further, it’s rather <em>uncommon</em> to have good information about the correlations between effect size estimates from a given study (because primary studies don’t often report all of the information needed to calculate these correlations). In practice, meta-analysts might need to simply <a href="/imputing-covariance-matrices-for-multi-variate-meta-analysis/">make a rough guess about the correlations</a> and then use robust variance estimation and/or sensitivity analysis to check themselves. And if we’re just ball-parking, then we’ll probably assume a single correlation for all of the studies.</p>
+<p>This scenario might not be all that far-fetched. Within a given study, if the effect size estimates are for different measures of a common construct, it’s not unlikely that they would all be based on similar sample sizes (+/- a bit of item non-response). It might be a bit less likely if the effect size estimates are for treatment effects from different follow-up times (since drop-out/non-response tends to increase over time), but still perhaps not totally unreasonable. Further, it’s rather <em>uncommon</em> to have good information about the correlations between effect size estimates from a given study (because primary studies don’t often report all of the information needed to calculate these correlations). In practice, meta-analysts might need to simply <a href="/imputing-covariance-matrices-for-multi-variate-meta-analysis/">make a rough guess about the correlations</a> and then use robust variance estimation and/or sensitivity analysis to check themselves. And if we’re just ball-parking, then we’ll probably assume a single correlation for all of the studies.</p>
 <p>The handy thing about this particular scenario is that, because all of the effect size estimates within a study are equally precise and equally correlated, the most efficient way to estimate an average effect for a given study is to <strong><em>just take the simple average</em></strong> (and, intuitively, this seems like the only sensible thing to do). To be precise, consider how we would estimate <span class="math inline">\(\theta_j\)</span> for a given study <span class="math inline">\(j\)</span>. The most precise possible estimate is simply
 <span class="math display">\[
 \hat\theta_j = \frac{1}{n_j} \sum_{i=1}^{n_j} T_{ij}.
@@ -820,12 +820,51 @@ And we could do the same for each of the other studies, <span class="math inline
 <span class="math display">\[
 \hat\mu = \frac{1}{W} \sum_{j=1}^k w_j \hat\theta_j,
 \]</span>
-for some weights <span class="math inline">\(w_1,...,w_k\)</span>. The question is then, what are these weights? Just like in the basic random effects model, they are inverse-variance weights. It’s just that the variance is a little bit more complicated.</p>
+for some weights <span class="math inline">\(w_1,...,w_k\)</span>. But what are these weights? Just like in the basic random effects model, they are inverse-variance weights. It’s just that the variance is a little bit more complicated.</p>
 <p>Consider how precise each of the study-specific estimates are, relative to the true effects in their respective studies. Conditional on the true effect <span class="math inline">\(\theta_j\)</span>,
 <span class="math display">\[
 \text{Var}(\hat\theta_j | \theta_j) = \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
 \]</span>
-There are several things worth noting here. First, suppose that there is little within-study heterogeneity, so <span class="math inline">\(\omega^2\)</span> is close to zero. Then the variance of <span class="math inline">\(\hat\theta_j\)</span> is driven by the number of effect sizes within the study (<span class="math inline">\(n_j\)</span>), the sampling variance of those effect sizes (<span class="math inline">\(V_j\)</span>) and their correlation <span class="math inline">\(r_j\)</span>. If <span class="math inline">\(r_j\)</span> is near one, then the average effect will have variance close to <span class="math inline">\(V_j\)</span>. Averaging together a bunch of highly correlated estimates doesn’t improve precision much. If <span class="math inline">\(r_j\)</span> is below one, then averaging yields a more precise estimate than any of the individual effect sizes, and averaging together more effect sizes will yield more precise estimate at the study level.</p>
+Without conditioning on <span class="math inline">\(\theta_j\)</span>, the variance of the <span class="math inline">\(\hat\theta_j\)</span> estimates also includes a term for variation in the true study-specific average effect sizes, becoming
+<span class="math display">\[
+\text{Var}(\hat\theta_j) = \tau^2 + \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right).
+\]</span>
+The weights used in estimating <span class="math inline">\(\mu\)</span> are the inverse of this quantity:
+<span class="math display">\[
+w_j = \frac{1}{\tau^2 + \frac{1}{n_j}\left(\omega^2 + (n_j - 1) r_j V_j + V_j\right)}.
+\]</span>
+Within a study, each individual effect size gets an <span class="math inline">\(n_j^{th}\)</span> of this study-level weight, so
+<span class="math display">\[
+\hat\mu = \frac{1}{W} \sum_{j=1}^k \sum_{i=1}^{n_j} w_{ij} T_{ij},
+\]</span>
+where
+<span class="math display">\[
+w_{ij} = \frac{1}{n_j \tau^2 + \omega^2 + (n_j - 1) r_j V_j + V_j}.
+\]</span></p>
+<p>There are several things worth noting about this formulation of the weights. First, suppose that there is little between-study or within-study heterogeneity, so <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span> are both close to zero. Then the weights are driven by the number of effect sizes within the study (<span class="math inline">\(n_j\)</span>), the sampling variance of those effect sizes (<span class="math inline">\(V_j\)</span>) and their correlation <span class="math inline">\(r_j\)</span>. If <span class="math inline">\(r_j\)</span> is near one, then the average effect will have variance close to <span class="math inline">\(V_j\)</span>. Averaging together a bunch of highly correlated estimates doesn’t improve precision much, relative to just using one of the effect sizes. If <span class="math inline">\(r_j\)</span> is below one, then averaging yields a more precise estimate than any of the individual effect sizes, and averaging together more effect sizes will yield more precise estimate at the study level. If the assumed correlations are reasonably accurate, the weights used in the multi-variate meta-analysis will appropriately take into account the number of effect sizes within each study and the precision of those effect sizes.</p>
+<p>Second, now suppose that there is no between-study heterogeneity (<span class="math inline">\(\tau^2 = 0\)</span>) but there is positive within-study heterogeneity. Larger degrees of within-study heterogeneity will tend to equalize the weights <em>at the effect size level</em>, regardless of how effect size estimates are nested within studies. When there is within-study heterogeneity, averaging together a bunch of estimates will yield a more precise estimate of study-specific average effects, so studies with more effect sizes will tend to get a relatively larger share of the weight when <span class="math inline">\(\omega^2\)</span> is larger.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Third and finally, between-study heterogeneity will tend to equalize the weights at the study level, so that the overall average is pulled closer to a simple average of the study-specific average effects. This works very much like in basic random effects meta-analysis, where increased heterogeneity will lead to weights that are closer to equal and an average effect size estimate that is closer to a simple average.</p>
+</div>
+<div id="a-computational-example" class="section level2">
+<h2>A computational example</h2>
+<p>I think it’s useful to verify algebraic results like the ones I’ve given above by checking that you can reproduce them with real data. I’ll use the <code>corrdat</code> dataset from the <code>robumeta</code> package for illustration</p>
+<pre class="r"><code>data(corrdat, package = &quot;robumeta&quot;)</code></pre>
+<p>This dataset included a total of 172 from 39 unique studies. For each study, between 1 and 18 eligible effect size estimates were reported. Here is a histogram depicting the number of studies by the number of reported effect size estimates:</p>
+<p><img src="/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-3-1.png" width="480" /></p>
+<p>Here is the plot of the variances of each effect size versus the study IDs:</p>
+<pre class="r"><code>ggplot(corrdat, aes(studyid, var)) + 
+  geom_point()</code></pre>
+<p><img src="/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+</div>
+<div id="what-about-meta-regression" class="section level2">
+<h2>What about meta-regression?</h2>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note that this model also encompasses the multi-level meta-analysis described by <a href="https://doi.org/10.1002/jrsm.35">Konstantopoulos (2011)</a> and <a href="https://doi.org/10.3758/s13428-012-0261-6">Van den Noortgate, et al. (2013)</a> as a special case, with <span class="math inline">\(r_{hij} = 0\)</span> for all <span class="math inline">\(h,i=1,...,n_j\)</span> and <span class="math inline">\(j = 1,...,k\)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Perhaps that makes sense, if you’ve carefully selected the set of effect sizes for inclusion in your meta-analysis. However, it seems to me that it could sometimes lead to perverse results. Say that all studies but one include just a single effect size estimate, each using the absolute gold standard approach to assessing the outcome, but that one study took a “kitchen sink” approach and assessed the outcome a bunch of different ways, including the gold standard plus a bunch of junky scales. Inclusion of the junky scales will lead to within-study heterogeneity, which in turn will <em>pull the overall average effect size towards this study—the one with all the junk!</em> That seems less than ideal, and the sort of situation where it would be better to select from the study with multiple outcomes the single effect size estimate based on the outcome assessment that most closely aligns with the other studies.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
 
     </div>
@@ -1123,7 +1162,14 @@ There are several things worth noting here. First, suppose that there is little 
   
   
   
-  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "show");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
 
 
   <p class="powered-by">
