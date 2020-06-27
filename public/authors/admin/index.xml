@@ -5,12 +5,124 @@
     <link>/authors/admin/</link>
       <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Tue, 09 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Sat, 27 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/authors/admin/avatar_hu5c52b2b2df652bbfa34fe5ba8e97c2ca_630045_270x270_fill_q90_lanczos_center.jpg</url>
       <title>James E. Pustejovsky</title>
       <link>/authors/admin/</link>
     </image>
+    
+    <item>
+      <title>What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</title>
+      <link>/what-does-multivariate-mean/</link>
+      <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/what-does-multivariate-mean/</guid>
+      <description>
+
+
+&lt;p&gt;If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; A lot of the terminology in our field is pretty bad and ineloquent. As a leading example, look no further than Rubin and Little’s classification of missing data mechanisms as missing completely at random (MCAR), missing at random (MAR), or missing not at random (MNAR). Clear as mud, and the last one sounds like something you’d see on a handmade sign with a picture of someone’s pet puppy who wandered off last week.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://petkey.blob.core.windows.net/resource/images/940000/949000/949340_500W.jpg&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;As another example, consider that introductory statistics students always struggle to distinguish between no less than &lt;strong&gt;&lt;em&gt;three&lt;/em&gt;&lt;/strong&gt; different concepts that are all called “variance”: population variance, sample variance, and sampling variance.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; Unless the instructor also took diction training from the Royal Shakespeare Company, it’s no wonder that a fair number of students are left confused.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/Hamlet-z-transform.jpg&#34; /&gt;
+In this post, I will try to clarify (at least a little bit) another mess of terminology that crops up a lot in my work on meta-analysis: what do we mean when we say a model or method is “multivariate”? In the context of meta-analysis methods, I think there are at least three distinct senses in which this term is used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As an umbrella term for models/methods where there is more than one effect size estimate per study,&lt;/li&gt;
+&lt;li&gt;As a description for a class of methods within that broad umbrella, where certain aspects of the model are treated as known, or&lt;/li&gt;
+&lt;li&gt;As a description for a class of models for multivariate effect size estimates, where each effect size estimate from a study falls into one of a set of distinct categories.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let me explain what I mean by each of these.&lt;/p&gt;
+&lt;div id=&#34;multivariate-handwaving&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multivariate handwaving&lt;/h2&gt;
+&lt;p&gt;In the context of meta-analysis, the broadest meaning of “multivariate” is any method used for modeling data that includes more than one effect size estimate in some or all of the included studies. Formally, the term would apply to any model appropriate for a set of &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; studies, where study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; includes &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt; effect size estimates, and where the effect size estimates would be denoted &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,k\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;As it is used here, “multivariate” is really an umbrella term that could encompass a wide variety of methods and models, including multi-level meta-analysis or meta-regression models, multivariate methods in the narrower senses I will describe subsequently, and even robust variance estimation methods. It would also encompass techniques for handling this sort of data structure that aren’t strictly models, such as aggregating effect size estimates to the level of the study or using Harris Cooper’s “shifting unit-of-analysis” method &lt;span class=&#34;citation&#34;&gt;(Cooper, &lt;a href=&#34;#ref-Cooper1998synthesizing&#34; role=&#34;doc-biblioref&#34;&gt;1998&lt;/a&gt;)&lt;/span&gt;.
+This usage of “multivariate” involves a bit too much hand-waving for my taste (although I’ve been guilty of using the term this way in the past). I think a better, clearer term for this broad class of methods would be to call them methods for &lt;strong&gt;&lt;em&gt;meta-analysis of dependent effect sizes&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multivariate-sampling-errors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multivariate sampling errors&lt;/h2&gt;
+&lt;p&gt;Another sense in which “multivariate” is used pertains to a certain class of models for dependent effect sizes. In particular, “multivariate meta-analysis” sometimes means a model where the sampling variances and covariances of the effect size estimates are treated as fully known. Say that each effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; has a corresponding true effect size parameter &lt;span class=&#34;math inline&#34;&gt;\(\theta_{ij}\)&lt;/span&gt;, so that the sampling error is &lt;span class=&#34;math inline&#34;&gt;\(e_{ij} = T_{ij} - \theta_{ij}\)&lt;/span&gt;, or
+&lt;span class=&#34;math display&#34;&gt;\[
+T_{ij} = \theta_{ij} + e_{ij}.
+\]&lt;/span&gt;
+Typically, meta-analysis techniques treat the sampling errors as having known variances, &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(e_{ij}) = \sigma_{ij}^2\)&lt;/span&gt; for known &lt;span class=&#34;math inline&#34;&gt;\(\sigma_{ij}^2\)&lt;/span&gt;.
+Here, a multivariate meta-analysis would go a step further and make assumptions that &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj} \sigma_{ij}\)&lt;/span&gt; for &lt;em&gt;known&lt;/em&gt; correlations &lt;span class=&#34;math inline&#34;&gt;\(\rho_{hij}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(h,i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j=1,...,k\)&lt;/span&gt;.
+Typically, the sampling variances and covariances would play into how the model is estimated and how one conducts inference and gets standard errors on things, etc.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;citation&#34;&gt;Becker (&lt;a href=&#34;#ref-Becker2000multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2000&lt;/a&gt;)&lt;/span&gt; and &lt;span class=&#34;citation&#34;&gt;Gleser &amp;amp; Olkin (&lt;a href=&#34;#ref-Gleser2009stochastically&#34; role=&#34;doc-biblioref&#34;&gt;2009&lt;/a&gt;)&lt;/span&gt; describe a whole slew of different situations where meta-analysts will encounter multiple effect size estimates within a given study, and both provide formulas for the covariances between those effect sizes.
+In some situations, these covariances can be calculated just based on primary study sample sizes or other information readily available from study reports.
+In other situations (such as when one calculates &lt;a href=&#34;/correlations-between-smds/&#34;&gt;standardized mean differences for each of several outcomes on a common set of participants&lt;/a&gt;), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
+With this meaning of the term, multivariate meta-analysis methods are those that both directly model the dependent effects structure and that treat the sampling covariances as known. They are therefore distinct from methods, such as robust variance estimation, that do not rely on knowing the exact variance-covariance structure of the sampling errors.
+In my own work, I find it helpful to be able to draw this distinction, so I rather like this usage of “multivariate.” This will surely irritate some statisticians, though, who prefer the third, stricter meaning of the term.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;strictly-multivariate-models&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Strictly multivariate models&lt;/h2&gt;
+&lt;p&gt;A third meaning of multivariate is to denote a class of models for multivariate data, meaning data where each unit is measured on several dimensions or characteristics. In the meta-analysis context, multivariate effect sizes are ones where, for each included study or sample, we have effect sizes describing outcomes (e.g., treatment effects) on one or more dimensions.
+For example, say that we have a bunch of studies examining some sort of educational intervention, and each study reports effect sizes describing the intervention’s impact on a) reading performance, b) social studies achievement, and/or c) language arts achievement. What differentiates this sort of multivariate data from the first, “umbrella” sense of the term is that with strictly multivariate data, no study has more than one effect size within a given dimension. In contrast, meta-analysis of dependent effect sizes deal with data structures that are not necessarily so tidy and organized, such that we might not be able to classify each effect size into one of a finite and exhaustive set of categories.&lt;/p&gt;
+&lt;p&gt;When working with strictly multivariate data like this, a multivariate meta-analysis (or meta-regression) model would entail estimating average effects (or regression coefficients) &lt;em&gt;for each dimension&lt;/em&gt; rather than aggregating across dimensions. This class of models was discussed extensively in an excellent article by &lt;span class=&#34;citation&#34;&gt;Jackson et al. (&lt;a href=&#34;#ref-Jackson2011multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2011&lt;/a&gt;)&lt;/span&gt;.&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; With my example of educational intervention studies, we would estimate average impacts on reading performance, social studies achievement, and language arts achievement. Estimating an overall aggregate effect on academic achievement would make little sense here, because we’d be mixing apples, oranges, and kiwis.&lt;/p&gt;
+&lt;p&gt;Formally, this sort of data structure and model can be described as follows. As previously, say that we have a set of &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; studies, where study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; has &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt; effect sizes, &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, and correspoding sampling variances &lt;span class=&#34;math inline&#34;&gt;\(\sigma_{ij}^2\)&lt;/span&gt;, both for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...k\)&lt;/span&gt;. Effect size &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; from study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; can be classified into one of &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; dimensions. Let &lt;span class=&#34;math inline&#34;&gt;\(d^c_{ij}\)&lt;/span&gt; be an indicator for whether effect &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; falls into dimension &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt;. With a strictly multivariate structure, there is never more than one effect per category, so &lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{n_j} d^c_{ij} \leq 1\)&lt;/span&gt; for each &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,k\)&lt;/span&gt;. A typical multivariate random effects model would then be
+&lt;span class=&#34;math display&#34;&gt;\[
+T_{ij} = \sum_{c=1}^C \left(\mu_c + v_{cj}\right) d^c_{ij} + e_{ij},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mu_c\)&lt;/span&gt; is the average effect size for category &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(v_{cj}\)&lt;/span&gt; is a random effect for category &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(e_{ij}\)&lt;/span&gt; is the sampling error term. The classic assumption about the random effects is that they are dependent within study, so
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(v_{cj}) = \tau^2_c \qquad \text{and} \qquad \text{Cov}(v_{bj}, v_{cj}) = \tau_{bc}
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(b,c = 1,...,C\)&lt;/span&gt;. Typically, these sorts of models would also rely on assumptions about the correlations between the sampling errors, just as with the second meaning of multivariate. Thus, to complete the model, we would have &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj}\sigma_{ij}\)&lt;/span&gt; for known &lt;span class=&#34;math inline&#34;&gt;\(\rho_{hij}\)&lt;/span&gt;. In practice, we might want to impose some common structure to the correlations across studies, such as using &lt;span class=&#34;math inline&#34;&gt;\(\rho_{hij}\)&lt;/span&gt;’s that depend on the dimensions being correlated but are common across studies. Formally, we would have
+&lt;span class=&#34;math display&#34;&gt;\[
+\rho_{hij} = \sum_{b=1}^C \sum_{c=1}^C d^b_{ij} \ d^c_{ij} \ \rho_{bc}.
+\]&lt;/span&gt;
+Of course, even getting this level of detail about correlations between effect sizes might often be pretty challenging.&lt;/p&gt;
+&lt;p&gt;In a strictly multivariate meta-regression model, we would also allow the coefficients for each predictor to be specific to each category, so that
+&lt;span class=&#34;math display&#34;&gt;\[
+T_{ij} = \sum_{c=1}^C \left(\mathbf{x}_{ij}\boldsymbol\beta_c + v_{cj}\right) d^c_{ij} + e_{ij},
+\]&lt;/span&gt;
+In my example of educational intervention impact studies, say that are interested in whether the effects differ between quasi-experimental studies and true randomized control trials, and whether the effects differ based on the proportion of the sample that was economically disadvantaged. The strictly multivariate model would always involve interacting these predictors with the outcome category. In R’s equation notation, the meta-regression specification would be&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ES ~ 0 + Cat + Cat:RCT + Cat:disadvantaged_pct&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In contrast, in a generic meta-regression for dependent effect sizes, we might not include all of the interactions, and instead assume that the associations of the predictors were constant across outcome dimensions, as in&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ES ~ 0 + outcome_cat + RCT + college_pct&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the strict sense of the term, the model without interactions is no longer really a multivariate meta-regression.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;remarks&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Remarks&lt;/h2&gt;
+&lt;p&gt;An interesting property of strict multivariate meta-analysis models is that they involve partial pooling—or “borrowing of strength”—across dimensions &lt;span class=&#34;citation&#34;&gt;(Riley et al., &lt;a href=&#34;#ref-riley_evaluation_2007&#34; role=&#34;doc-biblioref&#34;&gt;2007&lt;/a&gt;, &lt;a href=&#34;#ref-riley_multivariate_2017&#34; role=&#34;doc-biblioref&#34;&gt;2017&lt;/a&gt;)&lt;/span&gt;. Even though the model has separate coefficients for each dimension, the estimates for a given dimension are influenced by the available effect sizes for &lt;em&gt;all&lt;/em&gt; dimensions. For instance, in the meta-analysis of educational intervention studies, the average impact on reading performance outcomes is based in part on the effect size estimates for the social studies and language arts performance. This happens because the model treats all of the dimensions as &lt;em&gt;correlated&lt;/em&gt;—through the correlated sampling errors and, potentially, through the correlated random effects structure. &lt;span class=&#34;citation&#34;&gt;Copas et al. (&lt;a href=&#34;#ref-copas_role_2018&#34; role=&#34;doc-biblioref&#34;&gt;2018&lt;/a&gt;)&lt;/span&gt; examine how this works and propose a diagnostic plot to understand how it happens in application. &lt;span class=&#34;citation&#34;&gt;Kirkham et al. (&lt;a href=&#34;#ref-kirkham_multivariate_2012&#34; role=&#34;doc-biblioref&#34;&gt;2012&lt;/a&gt;)&lt;/span&gt; also show that the borrowing of strength phenomenon can partially mitigate bias from selective outcome reporting. These concepts could be quite relevant even beyond the “strict” multivariate meta-analysis context in which they have been explored. It strikes me that it would be useful to investigate them in the more general context of meta-analysis with dependent effect sizes—that is, multivariate meta-analysis in the first, broadest sense.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level2 unnumbered&#34;&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-Becker2000multivariate&#34;&gt;
+&lt;p&gt;Becker, B. J. (2000). Multivariate meta-analysis. In S. D. Brown &amp;amp; H. E. A. Tinsley (Eds.), &lt;em&gt;Handbook of applied multivariate statistics and mathematical modeling&lt;/em&gt; (pp. 499–525). Academic Press. &lt;a href=&#34;https://doi.org/10.1016/B978-012691360-6/50018-5&#34;&gt;https://doi.org/10.1016/B978-012691360-6/50018-5&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-Cooper1998synthesizing&#34;&gt;
+&lt;p&gt;Cooper, H. M. (1998). &lt;em&gt;Synthesizing Research: A Guide for Literature Reviews&lt;/em&gt; (3rd ed.). Sage Publications, Inc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-copas_role_2018&#34;&gt;
+&lt;p&gt;Copas, J. B., Jackson, D., White, I. R., &amp;amp; Riley, R. D. (2018). The role of secondary outcomes in multivariate meta-analysis. &lt;em&gt;Journal of the Royal Statistical Society: Series C (Applied Statistics)&lt;/em&gt;, &lt;em&gt;67&lt;/em&gt;(5), 1177–1205. &lt;a href=&#34;https://doi.org/10.1111/rssc.12274&#34;&gt;https://doi.org/10.1111/rssc.12274&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-Gleser2009stochastically&#34;&gt;
+&lt;p&gt;Gleser, L. J., &amp;amp; Olkin, I. (2009). Stochastically dependent effect sizes. In H. Cooper, L. V. Hedges, &amp;amp; J. C. Valentine (Eds.), &lt;em&gt;The handbook of research synthesis and meta-analysis&lt;/em&gt; (2nd ed., pp. 357–376). Russell Sage Foundation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-Jackson2011multivariate&#34;&gt;
+&lt;p&gt;Jackson, D., Riley, R. D., &amp;amp; White, I. R. (2011). Multivariate meta-analysis: Potential and promise. &lt;em&gt;Statistics in Medicine&lt;/em&gt;. &lt;a href=&#34;https://doi.org/10.1002/sim.4172&#34;&gt;https://doi.org/10.1002/sim.4172&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-kirkham_multivariate_2012&#34;&gt;
+&lt;p&gt;Kirkham, J. J., Riley, R. D., &amp;amp; Williamson, P. R. (2012). A multivariate meta-analysis approach for reducing the impact of outcome reporting bias in systematic reviews. &lt;em&gt;Statistics in Medicine&lt;/em&gt;, &lt;em&gt;31&lt;/em&gt;(20), 2179–2195. &lt;a href=&#34;https://doi.org/10.1002/sim.5356&#34;&gt;https://doi.org/10.1002/sim.5356&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-riley_evaluation_2007&#34;&gt;
+&lt;p&gt;Riley, R. D., Abrams, K. R., Lambert, P. C., Sutton, A. J., &amp;amp; Thompson, J. R. (2007). An evaluation of bivariate random-effects meta-analysis for the joint synthesis of two correlated outcomes. &lt;em&gt;Statistics in Medicine&lt;/em&gt;, &lt;em&gt;26&lt;/em&gt;(1), 78–97. &lt;a href=&#34;https://doi.org/10.1002/sim.2524&#34;&gt;https://doi.org/10.1002/sim.2524&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-riley_multivariate_2017&#34;&gt;
+&lt;p&gt;Riley, R. D., Jackson, D., Salanti, G., Burke, D. L., Price, M., Kirkham, J., &amp;amp; White, I. R. (2017). Multivariate and network meta-analysis of multiple outcomes and multiple treatments: Rationale, concepts, and examples. &lt;em&gt;BMJ&lt;/em&gt;, j3932. &lt;a href=&#34;https://doi.org/10.1136/bmj.j3932&#34;&gt;https://doi.org/10.1136/bmj.j3932&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;“Mostly” rather than “uniformly” due to exceptions like Brad Efron (a.k.a. Mr. Bootstrap) and Rob Tibshirani (a.k.a. Mr. Lasso).&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;And then consider the square roots of these quantities, respectively: population standard deviation, sample standard deviation, and &lt;strong&gt;&lt;em&gt;standard error&lt;/em&gt;&lt;/strong&gt;. WTF?&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Read this article! It’s essential. And it comes with pages and pages of commentary by other statisticans.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Weighting in multivariate meta-analysis</title>
@@ -559,10 +671,10 @@ From these parameters, we’ll generate raw data, calculate effect size estimate
 r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = 0.6)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: mvtnorm&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##            ES        SE  N
-## 1  0.02795295 0.3162440 40
-## 2 -0.37019812 0.3190662 40
-## 3  0.15861202 0.3167507 40
-## 4 -0.29438342 0.3180256 40&lt;/code&gt;&lt;/pre&gt;
+## 1 -0.19106514 0.3169863 40
+## 2  0.18427227 0.3169334 40
+## 3  0.25646209 0.3175932 40
+## 4  0.00210429 0.3162279 40&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Or if you’d rather specify the full &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt; matrix yourself:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Psi_k &amp;lt;- 0.6 + diag(0.4, nrow = 4)
 Psi_k&lt;/code&gt;&lt;/pre&gt;
@@ -572,11 +684,11 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 ## [3,]  0.6  0.6  1.0  0.6
 ## [4,]  0.6  0.6  0.6  1.0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = Psi_k)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##            ES        SE  N
-## 1  0.30796886 0.3181948 40
-## 2  0.24528651 0.3174770 40
-## 3  0.24496926 0.3174738 40
-## 4 -0.03142033 0.3162483 40&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           ES        SE  N
+## 1 -0.1597097 0.3167580 40
+## 2 -0.1717717 0.3168410 40
+## 3 -0.4369032 0.3201744 40
+## 4  0.0657410 0.3163177 40&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;exercises&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Exercises&lt;/h2&gt;
 &lt;p&gt;The function above is serviceable but quite basic. I can think of several additional features that one might like to have for use in research simulations, but I’m feeling both cheeky and lazy at the moment, so I’ll leave them for you, dear reader. Here are some suggested exercises:&lt;/p&gt;
@@ -658,49 +770,50 @@ study_data &amp;lt;-
 
 study_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       delta J  N       Psi
-## 1 0.2164399 7 34 0.5219260
-## 2 0.1695641 4 54 0.5560842
-## 3 0.2023963 5 50 0.5796910
-## 4 0.1786634 3 42 0.5834660
-## 5 0.2328779 3 36 0.4235426
-## 6 0.1554537 6 48 0.5357454&lt;/code&gt;&lt;/pre&gt;
+## 1 0.1749657 6 56 0.6670410
+## 2 0.1371771 4 52 0.7952095
+## 3 0.1430044 2 46 0.5551301
+## 4 0.1953675 6 46 0.5339670
+## 5 0.1653242 4 42 0.5623903
+## 6 0.1419457 7 40 0.6615825&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once we have the “menu” of study-level characteristics, it’s just a matter of mapping the parameters to the data-generating function. One way to do this is with &lt;code&gt;pmap_df&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(purrr)
 meta_data &amp;lt;- pmap_df(study_data, r_SMDs_raw, .id = &amp;quot;study&amp;quot;)
 meta_data&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    study          ES        SE  N
-## 1      1  0.13424472 0.3434074 34
-## 2      1  0.61637803 0.3515442 34
-## 3      1  0.89283387 0.3606973 34
-## 4      1  0.62649158 0.3518235 34
-## 5      1  0.43596110 0.3472993 34
-## 6      1  0.62143835 0.3516834 34
-## 7      1  0.60034463 0.3511104 34
-## 8      2 -0.01693615 0.2721706 54
-## 9      2  0.10887688 0.2723748 54
-## 10     2 -0.06254183 0.2722346 54
-## 11     2  0.60622010 0.2785817 54
-## 12     3  0.38220860 0.2855201 50
-## 13     3  0.17922070 0.2834336 50
-## 14     3  0.50984042 0.2875894 50
-## 15     3  0.26371265 0.2841204 50
-## 16     3  0.30662621 0.2845687 50
-## 17     4  0.18850878 0.3093255 42
-## 18     4  0.09359422 0.3087841 42
-## 19     4  0.06258202 0.3086860 42
-## 20     5  0.04903932 0.3333864 36
-## 21     5  0.06668237 0.3334314 36
-## 22     5  0.24701327 0.3346766 36
-## 23     6  0.01605121 0.2886800 48
-## 24     6  0.29727147 0.2903341 48
-## 25     6  0.26241278 0.2899686 48
-## 26     6  0.03451125 0.2886976 48
-## 27     6  0.21825135 0.2895705 48
-## 28     6 -0.01595245 0.2886799 48&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    study           ES        SE  N
+## 1      1  0.427048814 0.2704019 56
+## 2      1  0.206502285 0.2679989 56
+## 3      1  0.270244756 0.2685234 56
+## 4      1  0.423149362 0.2703451 56
+## 5      1  0.525878094 0.2720096 56
+## 6      1  0.746186579 0.2767383 56
+## 7      2 -0.005809721 0.2773507 52
+## 8      2 -0.082222645 0.2774719 52
+## 9      2  0.114670949 0.2775871 52
+## 10     2 -0.001432641 0.2773501 52
+## 11     3 -0.031231291 0.2949027 46
+## 12     3  0.302264458 0.2966391 46
+## 13     4  0.085338908 0.2950242 46
+## 14     4 -0.062511255 0.2949592 46
+## 15     4 -0.040178730 0.2949150 46
+## 16     4 -0.082519741 0.2950151 46
+## 17     4  0.207953122 0.2957160 46
+## 18     4 -0.005713721 0.2948845 46
+## 19     5  0.293666394 0.3103483 42
+## 20     5  0.258312309 0.3099551 42
+## 21     5  0.362126706 0.3112512 42
+## 22     5  0.177656049 0.3092452 42
+## 23     6 -0.115158991 0.3165035 40
+## 24     6  0.094349350 0.3164129 40
+## 25     6 -0.052996601 0.3162862 40
+## 26     6 -0.042766762 0.3162658 40
+## 27     6 -0.314584445 0.3182800 40
+## 28     6  0.078519103 0.3163560 40
+## 29     6 -0.103034241 0.3164486 40&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;table(meta_data$study)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## 1 2 3 4 5 6 
-## 7 4 5 3 3 6&lt;/code&gt;&lt;/pre&gt;
+## 6 4 2 6 4 7&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Putting it all together into a function, we have&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r_meta &amp;lt;- function(K, mu, tau, J_mean, N_mean, rho, nu) {
   require(purrr)
@@ -774,9 +887,9 @@ and it’s even possible that some studies may have &lt;em&gt;all&lt;/em&gt; of 
 &lt;p&gt;These situations create a technical challenge for conducting a meta-analysis.
 Because effect size estimates from the same study are correlated, it’s not usually reasonable to use methods that are premised on each effect size estimate being independent (i.e., univariate methods).
 Instead, the analyst needs to apply methods that take into account the dependencies among estimates coming from the same study.
-It used to be common to use ad hoc approaches for handling dependence, such as averaging the estimates together or selecting one estimate per study and then using univariate methods &lt;span class=&#34;citation&#34;&gt;(cf. Becker &lt;a href=&#34;#ref-Becker2000multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2000&lt;/a&gt;)&lt;/span&gt;.
-More sophisticated, multivariate meta-analysis (MVMA) models that directly account for correlations among the effect size estimates had been developed &lt;span class=&#34;citation&#34;&gt;(Kalaian and Raudenbush &lt;a href=&#34;#ref-Kalaian1996multivariate&#34; role=&#34;doc-biblioref&#34;&gt;1996&lt;/a&gt;)&lt;/span&gt; but were challenging to implement and so rarely used (at least, that’s my impression).
-More recently, techniques such as multi-level meta-analysis &lt;span class=&#34;citation&#34;&gt;(MLMA; Van den Noortgate et al. &lt;a href=&#34;#ref-VandenNoortgate2013threelevel&#34; role=&#34;doc-biblioref&#34;&gt;2013&lt;/a&gt;, &lt;a href=&#34;#ref-VandenNoortgate2015metaanalysis&#34; role=&#34;doc-biblioref&#34;&gt;2015&lt;/a&gt;)&lt;/span&gt; and robust variance estimation &lt;span class=&#34;citation&#34;&gt;(RVE; Hedges, Tipton, and Johnson &lt;a href=&#34;#ref-Hedges2010robust&#34; role=&#34;doc-biblioref&#34;&gt;2010&lt;/a&gt;)&lt;/span&gt; have emerged, which account for dependencies while using all available effect size estimates and still being feasible to implement.
+It used to be common to use ad hoc approaches for handling dependence, such as averaging the estimates together or selecting one estimate per study and then using univariate methods &lt;span class=&#34;citation&#34;&gt;(cf. Becker, &lt;a href=&#34;#ref-Becker2000multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2000&lt;/a&gt;)&lt;/span&gt;.
+More sophisticated, multivariate meta-analysis (MVMA) models that directly account for correlations among the effect size estimates had been developed &lt;span class=&#34;citation&#34;&gt;(Kalaian &amp;amp; Raudenbush, &lt;a href=&#34;#ref-Kalaian1996multivariate&#34; role=&#34;doc-biblioref&#34;&gt;1996&lt;/a&gt;)&lt;/span&gt; but were challenging to implement and so rarely used (at least, that’s my impression).
+More recently, techniques such as multi-level meta-analysis &lt;span class=&#34;citation&#34;&gt;(MLMA; Van den Noortgate et al., &lt;a href=&#34;#ref-VandenNoortgate2013threelevel&#34; role=&#34;doc-biblioref&#34;&gt;2013&lt;/a&gt;, &lt;a href=&#34;#ref-VandenNoortgate2015metaanalysis&#34; role=&#34;doc-biblioref&#34;&gt;2015&lt;/a&gt;)&lt;/span&gt; and robust variance estimation &lt;span class=&#34;citation&#34;&gt;(RVE; Hedges et al., &lt;a href=&#34;#ref-Hedges2010robust&#34; role=&#34;doc-biblioref&#34;&gt;2010&lt;/a&gt;)&lt;/span&gt; have emerged, which account for dependencies while using all available effect size estimates and still being feasible to implement.
 These new techniques of MLMA and RVE are starting to be more widely adopted in practice, and it is not implausible that they will become the standard approach in psychological and educational meta-analysis within a few years.&lt;/p&gt;
 &lt;p&gt;Given the extent of interest in MLMA and RVE, one might wonder: are the older ad hoc approaches &lt;em&gt;ever&lt;/em&gt; reasonable or appropriate?
 I think that some are, under certain circumstances.
@@ -802,7 +915,7 @@ T_{jk} = \mathbf{x}_k \boldsymbol\beta + u_k + e_{jk},
 where &lt;span class=&#34;math inline&#34;&gt;\(u_k\)&lt;/span&gt; is a between-study random effect with variance &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(e_{jk}\)&lt;/span&gt; is the sampling error for effect size &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; from study &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;, assumed to have known variance &lt;span class=&#34;math inline&#34;&gt;\(S_{jk}^2\)&lt;/span&gt;.
 Errors from the same study are correlated, so &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(e_{ik}, e_{jk}) = \rho_{ijk} S_{ik} S_{jk}\)&lt;/span&gt;.
 This is a commonly considered model for dependent effect size estimates.
-In the paper that introduced RVE, &lt;span class=&#34;citation&#34;&gt;Hedges, Tipton, and Johnson (&lt;a href=&#34;#ref-Hedges2010robust&#34; role=&#34;doc-biblioref&#34;&gt;2010&lt;/a&gt;)&lt;/span&gt; termed it the “correlated effects” model (implemented in &lt;code&gt;robumeta&lt;/code&gt; as &lt;code&gt;model = &#34;CORR&#34;&lt;/code&gt;, which is the default).
+In the paper that introduced RVE, &lt;span class=&#34;citation&#34;&gt;Hedges et al. (&lt;a href=&#34;#ref-Hedges2010robust&#34; role=&#34;doc-biblioref&#34;&gt;2010&lt;/a&gt;)&lt;/span&gt; termed it the “correlated effects” model (implemented in &lt;code&gt;robumeta&lt;/code&gt; as &lt;code&gt;model = &#34;CORR&#34;&lt;/code&gt;, which is the default).
 Note that it also satisfies the conditions I outlined above: no within-study random effects, predictors that vary only between study.
 We can fit it using the &lt;code&gt;rma.mv()&lt;/code&gt; function in the &lt;code&gt;metafor&lt;/code&gt; package, as I will demonstrate below.&lt;/p&gt;
 &lt;p&gt;An alternative to this multivariate model would be to first average the effects within each study, then fit a univariate random effects model.
@@ -825,7 +938,7 @@ I’ll offer three, from most practical to most theoretical.
 &lt;/div&gt;
 &lt;div id=&#34;computational-equivalence&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Computational equivalence&lt;/h1&gt;
-&lt;p&gt;One good way to check the equivalence of the univariate and multivariate models is to apply both to a dataset. I’ll use the data from a stylized example described in &lt;span class=&#34;citation&#34;&gt;Tanner-Smith and Tipton (&lt;a href=&#34;#ref-TannerSmith2013robust&#34; role=&#34;doc-biblioref&#34;&gt;2013&lt;/a&gt;)&lt;/span&gt;, looking at the effects of alcohol abuse interventions on alcohol consumption among adolescents and young adults. (The data are simulated for teaching purposes, so don’t infer anything about real life from the results below!) The data are included in the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
+&lt;p&gt;One good way to check the equivalence of the univariate and multivariate models is to apply both to a dataset. I’ll use the data from a stylized example described in &lt;span class=&#34;citation&#34;&gt;Tanner-Smith &amp;amp; Tipton (&lt;a href=&#34;#ref-TannerSmith2013robust&#34; role=&#34;doc-biblioref&#34;&gt;2013&lt;/a&gt;)&lt;/span&gt;, looking at the effects of alcohol abuse interventions on alcohol consumption among adolescents and young adults. (The data are simulated for teaching purposes, so don’t infer anything about real life from the results below!) The data are included in the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 
 data(corrdat, package = &amp;quot;robumeta&amp;quot;)
@@ -1102,9 +1215,9 @@ microbenchmark(
                  data = corrdat, method = &amp;quot;REML&amp;quot;)
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
-##   expr     min       lq      mean  median       uq      max neval
-##    uni  8.6496  9.04635  9.658892  9.2733  9.71695  13.3316   100
-##  multi 78.4050 82.76230 87.136962 84.4908 86.62210 186.1949   100&lt;/code&gt;&lt;/pre&gt;
+##   expr     min      lq     mean   median       uq      max neval
+##    uni  8.5638  8.7961 11.13178  8.96360  9.20370 110.2299   100
+##  multi 78.7393 82.2588 85.56066 83.22175 84.71775 182.2056   100&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If the aggregation is done in advance, it is &lt;em&gt;way&lt;/em&gt; quicker to fit the univariate model. The short-cut would be useful if we needed to estimate &lt;em&gt;lots&lt;/em&gt; of multi-variate meta-regressions (as long as the equivalence conditions hold). For example, if we needed to bootstrap the multivariate model, we could pre-compute the aggregated effects and then just bootstrap the much simpler, much quicker univariate model.&lt;/p&gt;
 &lt;p&gt;I suspect that the results I’ve presented here can be further generalized, but this will need a bit of further investigation. For one, there are also equivalences between variance estimators: using the CR2 cluster-robust variance estimator for the multivariate model is equivalent to using the HC2 heteroskedasticity-robust variance estimator for the univariate model with aggregated effects.&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;
 For another, the same sort of equivalence relationships hold even if there are additional random effects in the model, so long as the random effects are at the study level or higher levels of aggregation (e.g., lab effects, where labs are nested within studies).
@@ -1114,25 +1227,25 @@ I’ll leave these generalizations as exercises for a future rainy day.&lt;/p&gt
 &lt;h1&gt;References&lt;/h1&gt;
 &lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
 &lt;div id=&#34;ref-Becker2000multivariate&#34;&gt;
-&lt;p&gt;Becker, Betsy Jane. 2000. “Multivariate Meta-analysis.” In &lt;em&gt;Handbook of Applied Multivariate Statistics and Mathematical Modeling&lt;/em&gt;, edited by Steven D Brown and Howard E. A. Tinsley, 499–525. San Diego, CA: Academic Press. &lt;a href=&#34;https://doi.org/10.1016/B978-012691360-6/50018-5&#34;&gt;https://doi.org/10.1016/B978-012691360-6/50018-5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Becker, B. J. (2000). Multivariate meta-analysis. In S. D. Brown &amp;amp; H. E. A. Tinsley (Eds.), &lt;em&gt;Handbook of applied multivariate statistics and mathematical modeling&lt;/em&gt; (pp. 499–525). Academic Press. &lt;a href=&#34;https://doi.org/10.1016/B978-012691360-6/50018-5&#34;&gt;https://doi.org/10.1016/B978-012691360-6/50018-5&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-borenstein2009introduction&#34;&gt;
-&lt;p&gt;Borenstein, Michael, Larry V. Hedges, Julian P T Higgins, and Hannah R Rothstein. 2009. &lt;em&gt;Introduction to Meta-Analysis&lt;/em&gt;. Chichester, UK: John Wiley &amp;amp; Sons, Ltd. &lt;a href=&#34;https://doi.org/10.1002/9780470743386&#34;&gt;https://doi.org/10.1002/9780470743386&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Borenstein, M., Hedges, L. V., Higgins, J. P. T., &amp;amp; Rothstein, H. R. (2009). &lt;em&gt;Introduction to Meta-Analysis&lt;/em&gt;. John Wiley &amp;amp; Sons, Ltd. &lt;a href=&#34;https://doi.org/10.1002/9780470743386&#34;&gt;https://doi.org/10.1002/9780470743386&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Hedges2010robust&#34;&gt;
-&lt;p&gt;Hedges, Larry V., Elizabeth Tipton, and Matthew C Johnson. 2010. “Robust variance estimation in meta-regression with dependent effect size estimates.” &lt;em&gt;Research Synthesis Methods&lt;/em&gt; 1 (1): 39–65. &lt;a href=&#34;https://doi.org/10.1002/jrsm.5&#34;&gt;https://doi.org/10.1002/jrsm.5&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hedges, L. V., Tipton, E., &amp;amp; Johnson, M. C. (2010). Robust variance estimation in meta-regression with dependent effect size estimates. &lt;em&gt;Research Synthesis Methods&lt;/em&gt;, &lt;em&gt;1&lt;/em&gt;(1), 39–65. &lt;a href=&#34;https://doi.org/10.1002/jrsm.5&#34;&gt;https://doi.org/10.1002/jrsm.5&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-Kalaian1996multivariate&#34;&gt;
-&lt;p&gt;Kalaian, Hripsime a., and Stephen W Raudenbush. 1996. “A multivariate mixed linear model for meta-analysis.” &lt;em&gt;Psychological Methods&lt;/em&gt; 1 (3): 227–35. &lt;a href=&#34;https://doi.org/10.1037/1082-989X.1.3.227&#34;&gt;https://doi.org/10.1037/1082-989X.1.3.227&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Kalaian, H. a., &amp;amp; Raudenbush, S. W. (1996). A multivariate mixed linear model for meta-analysis. &lt;em&gt;Psychological Methods&lt;/em&gt;, &lt;em&gt;1&lt;/em&gt;(3), 227–235. &lt;a href=&#34;https://doi.org/10.1037/1082-989X.1.3.227&#34;&gt;https://doi.org/10.1037/1082-989X.1.3.227&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-TannerSmith2013robust&#34;&gt;
-&lt;p&gt;Tanner-Smith, Emily E, and Elizabeth Tipton. 2013. “Robust variance estimation with dependent effect sizes: Practical considerations including a software tutorial in Stata and SPSS.” &lt;em&gt;Research Synthesis Methods&lt;/em&gt; 5 (1): 1–34. &lt;a href=&#34;https://doi.org/10.1002/jrsm.1091&#34;&gt;https://doi.org/10.1002/jrsm.1091&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Tanner-Smith, E. E., &amp;amp; Tipton, E. (2013). Robust variance estimation with dependent effect sizes: Practical considerations including a software tutorial in Stata and SPSS. &lt;em&gt;Research Synthesis Methods&lt;/em&gt;, &lt;em&gt;5&lt;/em&gt;(1), 1–34. &lt;a href=&#34;https://doi.org/10.1002/jrsm.1091&#34;&gt;https://doi.org/10.1002/jrsm.1091&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-VandenNoortgate2013threelevel&#34;&gt;
-&lt;p&gt;Van den Noortgate, Wim, José Antonio López-López, Fulgencio Marín-Martínez, and Julio Sánchez-Meca. 2013. “Three-level meta-analysis of dependent effect sizes.” &lt;em&gt;Behavior Research Methods&lt;/em&gt; 45 (2): 576–94. &lt;a href=&#34;https://doi.org/10.3758/s13428-012-0261-6&#34;&gt;https://doi.org/10.3758/s13428-012-0261-6&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Van den Noortgate, W., López-López, J. A., Marín-Martínez, F., &amp;amp; Sánchez-Meca, J. (2013). Three-level meta-analysis of dependent effect sizes. &lt;em&gt;Behavior Research Methods&lt;/em&gt;, &lt;em&gt;45&lt;/em&gt;(2), 576–594. &lt;a href=&#34;https://doi.org/10.3758/s13428-012-0261-6&#34;&gt;https://doi.org/10.3758/s13428-012-0261-6&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-VandenNoortgate2015metaanalysis&#34;&gt;
-&lt;p&gt;———. 2015. “Meta-analysis of multiple outcomes: a multilevel approach.” &lt;em&gt;Behavior Research Methods&lt;/em&gt; 47 (4): 1274–94. &lt;a href=&#34;https://doi.org/10.3758/s13428-014-0527-2&#34;&gt;https://doi.org/10.3758/s13428-014-0527-2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Van den Noortgate, W., López-López, J. A., Marín-Martínez, F., &amp;amp; Sánchez-Meca, J. (2015). Meta-analysis of multiple outcomes: A multilevel approach. &lt;em&gt;Behavior Research Methods&lt;/em&gt;, &lt;em&gt;47&lt;/em&gt;(4), 1274–1294. &lt;a href=&#34;https://doi.org/10.3758/s13428-014-0527-2&#34;&gt;https://doi.org/10.3758/s13428-014-0527-2&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1147,9 +1260,9 @@ with sampling variance
 &lt;span class=&#34;math display&#34;&gt;\[
 V_k = \frac{(J_k - 1)\rho_k + 1}{J} \times S_k^2
 \]&lt;/span&gt;
-&lt;span class=&#34;citation&#34;&gt;(cf. Borenstein et al. &lt;a href=&#34;#ref-borenstein2009introduction&#34; role=&#34;doc-biblioref&#34;&gt;2009&lt;/a&gt;, Eq. (24.6), p. 230)&lt;/span&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;The same thing holds if we use FML rather than RML estimation—try it for yourself and see!&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;As RVE and MLMA become more wide-spread, I could imagine it happening that a meta-analyst who uses aggregation and a univariate model might get push-back from a reviewer, who uncritically recommends using a “more advanced” method to handle dependence. The results in this post provide a way for the meta-analyst to establish that doing so would be unnecessary.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;span class=&#34;citation&#34;&gt;(cf. Borenstein et al., &lt;a href=&#34;#ref-borenstein2009introduction&#34; role=&#34;doc-biblioref&#34;&gt;2009&lt;/a&gt;, Eq. (24.6), p. 230)&lt;/span&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;The same thing holds if we use FML rather than RML estimation—try it for yourself and see!&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;As RVE and MLMA become more wide-spread, I could imagine it happening that a meta-analyst who uses aggregation and a univariate model might get push-back from a reviewer, who uncritically recommends using a “more advanced” method to handle dependence. The results in this post provide a way for the meta-analyst to establish that doing so would be unnecessary.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;Here’s verification with the computational example from above:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# multivariate CR2
 coef_test(MV_fit, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
@@ -1163,7 +1276,7 @@ coef_test(uni_fit, vcov = &amp;quot;CR2&amp;quot;, cluster = corrdat_agg$studyid
 ## 1 intrcpt  0.64656 0.17622   3.67 11.5      0.00342   **
 ## 2 college  0.37027 0.18597   1.99 11.9      0.06985    .
 ## 3   males -0.00763 0.00287  -2.66 14.5      0.01808    *&lt;/code&gt;&lt;/pre&gt;
-&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

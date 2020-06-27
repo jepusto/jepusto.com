@@ -1,0 +1,1202 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.1 A lot of the terminology in our field is pretty bad and ineloquent.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/what-does-multivariate-mean/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/what-does-multivariate-mean/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="/what-does-multivariate-mean/">
+  <meta property="og:title" content="What do meta-analysts mean by &#39;multivariate&#39; meta-analysis? | James E. Pustejovsky">
+  <meta property="og:description" content="If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.1 A lot of the terminology in our field is pretty bad and ineloquent."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-06-27T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-06-27T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/what-does-multivariate-mean/"
+  },
+  "headline": "What do meta-analysts mean by 'multivariate' meta-analysis?",
+  
+  "datePublished": "2020-06-27T00:00:00Z",
+  "dateModified": "2020-06-27T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "University of Texas at Austin",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.1 A lot of the terminology in our field is pretty bad and ineloquent."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>What do meta-analysts mean by &#39;multivariate&#39; meta-analysis? | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</h1>
+
+  
+
+  
+    
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2020-06-27
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/what-does-multivariate-mean/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> A lot of the terminology in our field is pretty bad and ineloquent. As a leading example, look no further than Rubin and Little’s classification of missing data mechanisms as missing completely at random (MCAR), missing at random (MAR), or missing not at random (MNAR). Clear as mud, and the last one sounds like something you’d see on a handmade sign with a picture of someone’s pet puppy who wandered off last week.</p>
+<p><img src="https://petkey.blob.core.windows.net/resource/images/940000/949000/949340_500W.jpg" /><!-- --></p>
+<p>As another example, consider that introductory statistics students always struggle to distinguish between no less than <strong><em>three</em></strong> different concepts that are all called “variance”: population variance, sample variance, and sampling variance.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Unless the instructor also took diction training from the Royal Shakespeare Company, it’s no wonder that a fair number of students are left confused.</p>
+<p><img src="/img/Hamlet-z-transform.jpg" />
+In this post, I will try to clarify (at least a little bit) another mess of terminology that crops up a lot in my work on meta-analysis: what do we mean when we say a model or method is “multivariate”? In the context of meta-analysis methods, I think there are at least three distinct senses in which this term is used:</p>
+<ul>
+<li>As an umbrella term for models/methods where there is more than one effect size estimate per study,</li>
+<li>As a description for a class of methods within that broad umbrella, where certain aspects of the model are treated as known, or</li>
+<li>As a description for a class of models for multivariate effect size estimates, where each effect size estimate from a study falls into one of a set of distinct categories.</li>
+</ul>
+<p>Let me explain what I mean by each of these.</p>
+<div id="multivariate-handwaving" class="section level2">
+<h2>Multivariate handwaving</h2>
+<p>In the context of meta-analysis, the broadest meaning of “multivariate” is any method used for modeling data that includes more than one effect size estimate in some or all of the included studies. Formally, the term would apply to any model appropriate for a set of <span class="math inline">\(k\)</span> studies, where study <span class="math inline">\(j\)</span> includes <span class="math inline">\(n_j\)</span> effect size estimates, and where the effect size estimates would be denoted <span class="math inline">\(T_{ij}\)</span>, for <span class="math inline">\(i = 1,...,n_j\)</span> and <span class="math inline">\(j = 1,...,k\)</span>.</p>
+<p>As it is used here, “multivariate” is really an umbrella term that could encompass a wide variety of methods and models, including multi-level meta-analysis or meta-regression models, multivariate methods in the narrower senses I will describe subsequently, and even robust variance estimation methods. It would also encompass techniques for handling this sort of data structure that aren’t strictly models, such as aggregating effect size estimates to the level of the study or using Harris Cooper’s “shifting unit-of-analysis” method <span class="citation">(Cooper, <a href="#ref-Cooper1998synthesizing" role="doc-biblioref">1998</a>)</span>.
+This usage of “multivariate” involves a bit too much hand-waving for my taste (although I’ve been guilty of using the term this way in the past). I think a better, clearer term for this broad class of methods would be to call them methods for <strong><em>meta-analysis of dependent effect sizes</em></strong>.</p>
+</div>
+<div id="multivariate-sampling-errors" class="section level2">
+<h2>Multivariate sampling errors</h2>
+<p>Another sense in which “multivariate” is used pertains to a certain class of models for dependent effect sizes. In particular, “multivariate meta-analysis” sometimes means a model where the sampling variances and covariances of the effect size estimates are treated as fully known. Say that each effect size estimate <span class="math inline">\(T_{ij}\)</span> has a corresponding true effect size parameter <span class="math inline">\(\theta_{ij}\)</span>, so that the sampling error is <span class="math inline">\(e_{ij} = T_{ij} - \theta_{ij}\)</span>, or
+<span class="math display">\[
+T_{ij} = \theta_{ij} + e_{ij}.
+\]</span>
+Typically, meta-analysis techniques treat the sampling errors as having known variances, <span class="math inline">\(\text{Var}(e_{ij}) = \sigma_{ij}^2\)</span> for known <span class="math inline">\(\sigma_{ij}^2\)</span>.
+Here, a multivariate meta-analysis would go a step further and make assumptions that <span class="math inline">\(\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj} \sigma_{ij}\)</span> for <em>known</em> correlations <span class="math inline">\(\rho_{hij}\)</span>, <span class="math inline">\(h,i = 1,...,n_j\)</span> and <span class="math inline">\(j=1,...,k\)</span>.
+Typically, the sampling variances and covariances would play into how the model is estimated and how one conducts inference and gets standard errors on things, etc.</p>
+<p><span class="citation">Becker (<a href="#ref-Becker2000multivariate" role="doc-biblioref">2000</a>)</span> and <span class="citation">Gleser &amp; Olkin (<a href="#ref-Gleser2009stochastically" role="doc-biblioref">2009</a>)</span> describe a whole slew of different situations where meta-analysts will encounter multiple effect size estimates within a given study, and both provide formulas for the covariances between those effect sizes.
+In some situations, these covariances can be calculated just based on primary study sample sizes or other information readily available from study reports.
+In other situations (such as when one calculates <a href="/correlations-between-smds/">standardized mean differences for each of several outcomes on a common set of participants</a>), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
+With this meaning of the term, multivariate meta-analysis methods are those that both directly model the dependent effects structure and that treat the sampling covariances as known. They are therefore distinct from methods, such as robust variance estimation, that do not rely on knowing the exact variance-covariance structure of the sampling errors.
+In my own work, I find it helpful to be able to draw this distinction, so I rather like this usage of “multivariate.” This will surely irritate some statisticians, though, who prefer the third, stricter meaning of the term.</p>
+</div>
+<div id="strictly-multivariate-models" class="section level2">
+<h2>Strictly multivariate models</h2>
+<p>A third meaning of multivariate is to denote a class of models for multivariate data, meaning data where each unit is measured on several dimensions or characteristics. In the meta-analysis context, multivariate effect sizes are ones where, for each included study or sample, we have effect sizes describing outcomes (e.g., treatment effects) on one or more dimensions.
+For example, say that we have a bunch of studies examining some sort of educational intervention, and each study reports effect sizes describing the intervention’s impact on a) reading performance, b) social studies achievement, and/or c) language arts achievement. What differentiates this sort of multivariate data from the first, “umbrella” sense of the term is that with strictly multivariate data, no study has more than one effect size within a given dimension. In contrast, meta-analysis of dependent effect sizes deal with data structures that are not necessarily so tidy and organized, such that we might not be able to classify each effect size into one of a finite and exhaustive set of categories.</p>
+<p>When working with strictly multivariate data like this, a multivariate meta-analysis (or meta-regression) model would entail estimating average effects (or regression coefficients) <em>for each dimension</em> rather than aggregating across dimensions. This class of models was discussed extensively in an excellent article by <span class="citation">Jackson et al. (<a href="#ref-Jackson2011multivariate" role="doc-biblioref">2011</a>)</span>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> With my example of educational intervention studies, we would estimate average impacts on reading performance, social studies achievement, and language arts achievement. Estimating an overall aggregate effect on academic achievement would make little sense here, because we’d be mixing apples, oranges, and kiwis.</p>
+<p>Formally, this sort of data structure and model can be described as follows. As previously, say that we have a set of <span class="math inline">\(k\)</span> studies, where study <span class="math inline">\(j\)</span> has <span class="math inline">\(n_j\)</span> effect sizes, <span class="math inline">\(T_{ij}\)</span>, and correspoding sampling variances <span class="math inline">\(\sigma_{ij}^2\)</span>, both for <span class="math inline">\(i = 1,...,n_j\)</span> and <span class="math inline">\(j = 1,...k\)</span>. Effect size <span class="math inline">\(i\)</span> from study <span class="math inline">\(j\)</span> can be classified into one of <span class="math inline">\(C\)</span> dimensions. Let <span class="math inline">\(d^c_{ij}\)</span> be an indicator for whether effect <span class="math inline">\(i\)</span> falls into dimension <span class="math inline">\(c\)</span>, for <span class="math inline">\(c = 1,...,C\)</span>. With a strictly multivariate structure, there is never more than one effect per category, so <span class="math inline">\(\sum_{i=1}^{n_j} d^c_{ij} \leq 1\)</span> for each <span class="math inline">\(c = 1,...,C\)</span> and <span class="math inline">\(j = 1,...,k\)</span>. A typical multivariate random effects model would then be
+<span class="math display">\[
+T_{ij} = \sum_{c=1}^C \left(\mu_c + v_{cj}\right) d^c_{ij} + e_{ij},
+\]</span>
+where <span class="math inline">\(\mu_c\)</span> is the average effect size for category <span class="math inline">\(c\)</span>, <span class="math inline">\(v_{cj}\)</span> is a random effect for category <span class="math inline">\(c\)</span> in study <span class="math inline">\(j\)</span>, and <span class="math inline">\(e_{ij}\)</span> is the sampling error term. The classic assumption about the random effects is that they are dependent within study, so
+<span class="math display">\[
+\text{Var}(v_{cj}) = \tau^2_c \qquad \text{and} \qquad \text{Cov}(v_{bj}, v_{cj}) = \tau_{bc}
+\]</span>
+for <span class="math inline">\(b,c = 1,...,C\)</span>. Typically, these sorts of models would also rely on assumptions about the correlations between the sampling errors, just as with the second meaning of multivariate. Thus, to complete the model, we would have <span class="math inline">\(\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj}\sigma_{ij}\)</span> for known <span class="math inline">\(\rho_{hij}\)</span>. In practice, we might want to impose some common structure to the correlations across studies, such as using <span class="math inline">\(\rho_{hij}\)</span>’s that depend on the dimensions being correlated but are common across studies. Formally, we would have
+<span class="math display">\[
+\rho_{hij} = \sum_{b=1}^C \sum_{c=1}^C d^b_{ij} \ d^c_{ij} \ \rho_{bc}.
+\]</span>
+Of course, even getting this level of detail about correlations between effect sizes might often be pretty challenging.</p>
+<p>In a strictly multivariate meta-regression model, we would also allow the coefficients for each predictor to be specific to each category, so that
+<span class="math display">\[
+T_{ij} = \sum_{c=1}^C \left(\mathbf{x}_{ij}\boldsymbol\beta_c + v_{cj}\right) d^c_{ij} + e_{ij},
+\]</span>
+In my example of educational intervention impact studies, say that are interested in whether the effects differ between quasi-experimental studies and true randomized control trials, and whether the effects differ based on the proportion of the sample that was economically disadvantaged. The strictly multivariate model would always involve interacting these predictors with the outcome category. In R’s equation notation, the meta-regression specification would be</p>
+<pre class="r"><code>ES ~ 0 + Cat + Cat:RCT + Cat:disadvantaged_pct</code></pre>
+<p>In contrast, in a generic meta-regression for dependent effect sizes, we might not include all of the interactions, and instead assume that the associations of the predictors were constant across outcome dimensions, as in</p>
+<pre class="r"><code>ES ~ 0 + outcome_cat + RCT + college_pct</code></pre>
+<p>In the strict sense of the term, the model without interactions is no longer really a multivariate meta-regression.</p>
+</div>
+<div id="remarks" class="section level2">
+<h2>Remarks</h2>
+<p>An interesting property of strict multivariate meta-analysis models is that they involve partial pooling—or “borrowing of strength”—across dimensions <span class="citation">(Riley et al., <a href="#ref-riley_evaluation_2007" role="doc-biblioref">2007</a>, <a href="#ref-riley_multivariate_2017" role="doc-biblioref">2017</a>)</span>. Even though the model has separate coefficients for each dimension, the estimates for a given dimension are influenced by the available effect sizes for <em>all</em> dimensions. For instance, in the meta-analysis of educational intervention studies, the average impact on reading performance outcomes is based in part on the effect size estimates for the social studies and language arts performance. This happens because the model treats all of the dimensions as <em>correlated</em>—through the correlated sampling errors and, potentially, through the correlated random effects structure. <span class="citation">Copas et al. (<a href="#ref-copas_role_2018" role="doc-biblioref">2018</a>)</span> examine how this works and propose a diagnostic plot to understand how it happens in application. <span class="citation">Kirkham et al. (<a href="#ref-kirkham_multivariate_2012" role="doc-biblioref">2012</a>)</span> also show that the borrowing of strength phenomenon can partially mitigate bias from selective outcome reporting. These concepts could be quite relevant even beyond the “strict” multivariate meta-analysis context in which they have been explored. It strikes me that it would be useful to investigate them in the more general context of meta-analysis with dependent effect sizes—that is, multivariate meta-analysis in the first, broadest sense.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-Becker2000multivariate">
+<p>Becker, B. J. (2000). Multivariate meta-analysis. In S. D. Brown &amp; H. E. A. Tinsley (Eds.), <em>Handbook of applied multivariate statistics and mathematical modeling</em> (pp. 499–525). Academic Press. <a href="https://doi.org/10.1016/B978-012691360-6/50018-5">https://doi.org/10.1016/B978-012691360-6/50018-5</a></p>
+</div>
+<div id="ref-Cooper1998synthesizing">
+<p>Cooper, H. M. (1998). <em>Synthesizing Research: A Guide for Literature Reviews</em> (3rd ed.). Sage Publications, Inc.</p>
+</div>
+<div id="ref-copas_role_2018">
+<p>Copas, J. B., Jackson, D., White, I. R., &amp; Riley, R. D. (2018). The role of secondary outcomes in multivariate meta-analysis. <em>Journal of the Royal Statistical Society: Series C (Applied Statistics)</em>, <em>67</em>(5), 1177–1205. <a href="https://doi.org/10.1111/rssc.12274">https://doi.org/10.1111/rssc.12274</a></p>
+</div>
+<div id="ref-Gleser2009stochastically">
+<p>Gleser, L. J., &amp; Olkin, I. (2009). Stochastically dependent effect sizes. In H. Cooper, L. V. Hedges, &amp; J. C. Valentine (Eds.), <em>The handbook of research synthesis and meta-analysis</em> (2nd ed., pp. 357–376). Russell Sage Foundation.</p>
+</div>
+<div id="ref-Jackson2011multivariate">
+<p>Jackson, D., Riley, R. D., &amp; White, I. R. (2011). Multivariate meta-analysis: Potential and promise. <em>Statistics in Medicine</em>. <a href="https://doi.org/10.1002/sim.4172">https://doi.org/10.1002/sim.4172</a></p>
+</div>
+<div id="ref-kirkham_multivariate_2012">
+<p>Kirkham, J. J., Riley, R. D., &amp; Williamson, P. R. (2012). A multivariate meta-analysis approach for reducing the impact of outcome reporting bias in systematic reviews. <em>Statistics in Medicine</em>, <em>31</em>(20), 2179–2195. <a href="https://doi.org/10.1002/sim.5356">https://doi.org/10.1002/sim.5356</a></p>
+</div>
+<div id="ref-riley_evaluation_2007">
+<p>Riley, R. D., Abrams, K. R., Lambert, P. C., Sutton, A. J., &amp; Thompson, J. R. (2007). An evaluation of bivariate random-effects meta-analysis for the joint synthesis of two correlated outcomes. <em>Statistics in Medicine</em>, <em>26</em>(1), 78–97. <a href="https://doi.org/10.1002/sim.2524">https://doi.org/10.1002/sim.2524</a></p>
+</div>
+<div id="ref-riley_multivariate_2017">
+<p>Riley, R. D., Jackson, D., Salanti, G., Burke, D. L., Price, M., Kirkham, J., &amp; White, I. R. (2017). Multivariate and network meta-analysis of multiple outcomes and multiple treatments: Rationale, concepts, and examples. <em>BMJ</em>, j3932. <a href="https://doi.org/10.1136/bmj.j3932">https://doi.org/10.1136/bmj.j3932</a></p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>“Mostly” rather than “uniformly” due to exceptions like Brad Efron (a.k.a. Mr. Bootstrap) and Rob Tibshirani (a.k.a. Mr. Lasso).<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>And then consider the square roots of these quantities, respectively: population standard deviation, sample standard deviation, and <strong><em>standard error</em></strong>. WTF?<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Read this article! It’s essential. And it comes with pages and pages of commentary by other statisticans.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/meta-analysis/">meta-analysis</a>
+  
+  <a class="badge badge-light" href="/tags/multivariate/">multivariate</a>
+  
+  <a class="badge badge-light" href="/tags/dependent-effect-sizes/">dependent effect sizes</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/what-does-multivariate-mean/&amp;text=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/what-does-multivariate-mean/&amp;t=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?&amp;body=/what-does-multivariate-mean/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/what-does-multivariate-mean/&amp;title=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?%20/what-does-multivariate-mean/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/what-does-multivariate-mean/&amp;title=What%20do%20meta-analysts%20mean%20by%20&amp;#39;multivariate&amp;#39;%20meta-analysis?" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/publication/selective-reporting-with-dependent-effects/">Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</a></li>
+      
+      <li><a href="/sometimes-aggregating-effect-sizes-is-fine/">Sometimes, aggregating effect sizes is fine</a></li>
+      
+      <li><a href="/weighting-in-multivariate-meta-analysis/">Weighting in multivariate meta-analysis</a></li>
+      
+      <li><a href="/publication/psychosocial-interventions-for-positive-affect/">Psychosocial interventions for cancer survivors: A meta-analysis of effects on positive affect</a></li>
+      
+      <li><a href="/simulating-correlated-smds/">Simulating correlated standardized mean differences for meta-analysis</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4dd9b94a466daca7ed2f06b98847fa44.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+  
+  
+  
+
+
+  <p class="powered-by">
+    © 2020 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

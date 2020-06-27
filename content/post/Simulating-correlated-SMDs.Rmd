@@ -5,6 +5,7 @@ authors:
 date: '2019-09-30'
 slug: Simulating-correlated-SMDs
 bibliography: [meta-references.bib]
+csl: apa.csl
 link-citations: true
 categories: []
 tags:
