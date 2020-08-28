@@ -19,22 +19,62 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2020-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/2/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2020-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/dependent-effect-sizes/</loc>
-    <lastmod>2020-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/selective-reporting-with-dependent-effects/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/melissa-a.-rodgers/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/meta-analysis/</loc>
-    <lastmod>2020-06-27T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/publication-bias/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -44,11 +84,6 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-06-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -74,11 +109,6 @@
   
   <url>
     <loc>/tags/programming/</loc>
-    <lastmod>2020-05-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/r/</loc>
     <lastmod>2020-05-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -133,22 +163,7 @@
   </url>
   
   <url>
-    <loc>/publication_types/2/</loc>
-    <lastmod>2020-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/daniel-m.-swan/</loc>
-    <lastmod>2020-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2020-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
     <lastmod>2020-03-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -170,26 +185,6 @@
   <url>
     <loc>/publication/response-guided-designs-in-sced-baselines/</loc>
     <lastmod>2020-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/3/</loc>
-    <lastmod>2020-03-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/selective-reporting-with-dependent-effects/</loc>
-    <lastmod>2020-03-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/melissa-a.-rodgers/</loc>
-    <lastmod>2020-03-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/publication-bias/</loc>
-    <lastmod>2020-03-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -315,6 +310,11 @@
   <url>
     <loc>/authors/tom-v.-merluzzi/</loc>
     <lastmod>2019-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/3/</loc>
+    <lastmod>2019-06-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -565,11 +565,6 @@
   <url>
     <loc>/talk/srsm-2018-combining-rve-with-models/</loc>
     <lastmod>2018-07-18T09:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
   </url>
   
   <url>
@@ -1009,6 +1004,11 @@
   
   <url>
     <loc>/software/clubsandwich/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
