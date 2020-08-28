@@ -5,12 +5,27 @@
     <link>/authors/admin/</link>
       <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Fri, 28 Aug 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
       <link>/authors/admin/</link>
     </image>
+    
+    <item>
+      <title>From Longhorn to Badger</title>
+      <link>/from-longhorn-to-badger/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>/from-longhorn-to-badger/</guid>
+      <description>
+
+
+&lt;p&gt;It’s taken me a while to finally get around to updating my website with some personal news. I’ve moved from UT Austin to the &lt;a href=&#34;https://www.wisc.edu/&#34;&gt;UW Madison&lt;/a&gt; &lt;a href=&#34;https://education.wisc.edu/&#34;&gt;School of Education&lt;/a&gt;, where I am now an associate professor in the &lt;a href=&#34;https://edpsych.education.wisc.edu/&#34;&gt;Educational Psychology Department&lt;/a&gt;’s &lt;a href=&#34;https://edpsych.education.wisc.edu/academics/quantitative-methods/&#34;&gt;Quantitative Methods program&lt;/a&gt;. We left Austin at the very end of July, arriving in Madison on August 1st. Our moving truck took a bit longer to arrive, but we’re now more or less installed in our new (or rather old–1950’s era) home. I grew up in Wisconsin (in the Milwaukee area), so this move brings us much closer to my family, who have already come to visit. We’ve also already been enjoying the fantastic bike paths and facilities that Madison has to offer.&lt;/p&gt;
+&lt;p&gt;On a professional level, I’m very much looking forward to the opportunities that the School of Education and Educational Psychology Department present, especially to opportunities for collaboration with new colleagues and students. I’m planning to offer a course on research synthesis and meta-analysis this coming Spring semester—something I’ve never had the opportunity to teach in a semester-long format, actually—and I’m looking forward to offering my own pedagogical perspective on material that I think about constantly in a research context. Gene Glass, who is credited as the originator of the term meta-analysis and who conducted some of the first meta-analyses within the social sciences, &lt;a href=&#34;https://en.wikipedia.org/wiki/Gene_V._Glass#Background&#34;&gt;received his Ph.D. in Educational Psychology from UW Madison in 1965&lt;/a&gt;, so perhaps I’ll be able to channel a bit of his spirit in my course.&lt;/p&gt;
+&lt;p&gt;Even as I’m excited to get started at Madison, I will also very much miss my colleagues at UT Austin, who were so supportive during my pre-tenure phase. Because of COVID, I didn’t really get to say a proper farewell before we skipped town. I am continuing to advise several doctoral students in the Quantitative Methods program though, so we will likely get to connect in video meetings, at least.&lt;/p&gt;
+&lt;p&gt;Moving during the COVID pandemic has presented some challenges (logistical, emotional, and family-related) for me, though I know many others have had to deal with far worse. As we all weather this together, please feel free to leave a comment or drop me a line if you’d like to talk about stats, meta-analysis, R programming, or what-not.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>

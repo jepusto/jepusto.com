@@ -246,7 +246,7 @@
   <meta property="og:description" content="Assistant Professor"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2020-06-27T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2020-08-28T00:00:00&#43;00:00">
   
 
   
@@ -637,6 +637,99 @@
   
 
   
+  
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/clustered-and-interacted/" >A handmade clubSandwich for multi-site trials</a>
+    </h3>
+
+    
+    <div class="article-style">
+      library(tidyverse)data(STAR, package = &quot;AER&quot;)STAR_urban &lt;-STAR %&gt;%filter(# limit to urban/inner city schoolsschoolk %in% c(&quot;urban&quot;,&quot;inner-city&quot;),# limit to complete outcome data!is.na(readk), !is.na(mathk)) %&gt;%droplevels() %&gt;%# collapse control conditionsmutate(stark = fct_collapse(stark, regular = c(&quot;regular&quot;,&quot;regular+aide&quot;))) %&gt;%# calculate inverse-propensity weightgroup_by(schoolidk) %&gt;%mutate(n = n(),nT = sum(stark==&quot;small&quot;),wt = ifelse(stark==&quot;small&quot;, n / nT, n / (n - nT))) %&gt;%select(schoolidk, stark, readk, mathk, wt)STAR_summary &lt;- STAR_urban %&gt;%count(schoolidk)STAR_urban %&gt;%group_by(schoolidk, stark) %&gt;%summarise(n = n(),wt = sum(wt)) %&gt;%mutate(n = sum(n)) %&gt;%spread(stark, wt)## # A tibble: 23 x 4## # Groups: schoolidk [23]## schoolidk n regular small## &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;## 1 2 52 52 52## 2 9 120 120 120## 3 10 51 51 51## 4 14 34 34 34## 5 15 55 55 55## 6 16 105 105 105## 7 18 79 79 79## 8 19 99 99 99## 9 22 129 129 129## 10 26 49 49 49## # .
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2019-03-09
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/clustered-and-interacted/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+    
   
     
       
@@ -1454,99 +1547,6 @@
   
   <span class="middot-divider"></span>
   <a href="/procedural-sensitivities-paper/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/back-from-ies-pi-meeting/" >Back from the IES PI meeting</a>
-    </h3>
-
-    
-    <div class="article-style">
-      I’m just back from the Institute of Education Sciences’ Principle Investigators conference in Washington D.C. It was an envigorating trip for me, and not only because of the opportunity to catch up with colleagues and friends from across the country.
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2018-01-10
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/back-from-ies-pi-meeting/#disqus_thread"></a>
   
 
   
