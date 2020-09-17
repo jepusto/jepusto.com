@@ -5,12 +5,20 @@
     <link>/tags/dependent-effect-sizes/</link>
       <atom:link href="/tags/dependent-effect-sizes/index.xml" rel="self" type="application/rss+xml" />
     <description>dependent effect sizes</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 16 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>dependent effect sizes</title>
       <link>/tags/dependent-effect-sizes/</link>
     </image>
+    
+    <item>
+      <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
+      <link>/publication/rve-meta-analysis-expanding-the-range/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>
