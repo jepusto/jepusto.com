@@ -97,11 +97,11 @@ phone = ""
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = {street = "1082C Education Sciences, 1025 W. Johnson St.", city = "Madison", region = "WI", postcode = "53706", country = "United States", country_code = "US"}
+address = {street = "1082C Education Sciences, 1025 West Johnson St.", city = "Madison", region = "WI", postcode = "53706-1706", country = "United States", country_code = "US"}
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {latitude = "30.282891", longitude = "-97.738795"}
+coordinates = {latitude = "43.072120", longitude = "-89.403424"}
 
 # Directions for visitors to locate you.
 directions = ""
