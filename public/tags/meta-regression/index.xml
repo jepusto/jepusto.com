@@ -5,12 +5,20 @@
     <link>/tags/meta-regression/</link>
       <atom:link href="/tags/meta-regression/index.xml" rel="self" type="application/rss+xml" />
     <description>meta-regression</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 16 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>meta-regression</title>
       <link>/tags/meta-regression/</link>
     </image>
+    
+    <item>
+      <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
+      <link>/publication/rve-meta-analysis-expanding-the-range/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Current practices in meta-regression in psychology, education, and medicine</title>

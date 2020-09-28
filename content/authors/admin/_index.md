@@ -19,13 +19,13 @@ interests:
 - Single case experimental designs
 name: James E. Pustejovsky
 organizations:
-- name: University of Texas at Austin
+- name: University of Wisconsin-Madison
   url: ""
-role: Assistant Professor
+role: Associate Professor
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'mailto:pusto@austin.utexas.edu'
+  link: 'mailto:pustejovsky@wisc.edu'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/jepusto
