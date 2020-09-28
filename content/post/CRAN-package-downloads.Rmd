@@ -77,7 +77,8 @@ downloaded_last_yr <-
   filter(date <= as_date(as_date(to_date) - duration(6, "months"))) %>%
   group_by(package) %>%
   summarise(
-    count = sum(count)
+    count = sum(count),
+    .groups = "drop"
   ) %>%
   filter(count > 0) %>%
   select(package)
@@ -93,7 +94,8 @@ downloads_past_six <-
   semi_join(downloaded_last_yr, by = "package") %>%
   group_by(package) %>%
   summarise(
-    count = sum(count) / 6
+    count = sum(count) / 6,
+    .groups = "drop"
   ) %>%
   mutate(
     package = fct_reorder(factor(package), count),
@@ -119,7 +121,7 @@ I am having a harder time thinking of good comparables for the `scdhlm`, `Single
 
 With that background, here are the average monthly download rates (over the past six months) for each of my four packages, along with `metafor` and `robumeta`:
 
-```{r}
+```{r, message = FALSE}
 library(knitr)
 library(kableExtra)
 
@@ -219,7 +221,8 @@ weekly_downloads <-
   group_by(package, date) %>%
   summarise(
     count = sum(count),
-    days = n()
+    days = n(),
+    .groups = "drop"
   )
 
 weekly_downloads %>%
