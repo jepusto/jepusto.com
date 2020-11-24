@@ -16,7 +16,7 @@ header:
 
 Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you've got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample. 
 
-```{r}
+```{r, eval = FALSE}
 library(dplyr)
 library(fastDummies)
 library(clubSandwich)

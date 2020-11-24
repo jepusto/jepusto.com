@@ -5,12 +5,118 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Fri, 28 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>Centering categorical predictors in meta-regression</title>
+      <link>/centering-categorical-predictors/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/centering-categorical-predictors/</guid>
+      <description>
+
+
+&lt;p&gt;Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you’ve got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(fastDummies)
+library(clubSandwich)
+library(metafor)
+
+tmp &amp;lt;- tempfile(fileext = &amp;quot;.rds&amp;quot;)
+download.file(&amp;quot;https://jepusto.com/data/Tanner-Smith-Lipsey-2015-subset.rds&amp;quot;, tmp)
+
+TSL15 &amp;lt;- 
+  readRDS(file = tmp) %&amp;gt;%
+  # exclude observations missing control variables
+  filter(!is.na(percoll), !is.na(attrition_all), !is.na(permale))
+
+# Shorten dv category labels
+levels(TSL15$dv_cat) &amp;lt;- c(&amp;quot;freq&amp;quot;,&amp;quot;heavy&amp;quot;,&amp;quot;quantity&amp;quot;,&amp;quot;peak&amp;quot;,&amp;quot;BAC&amp;quot;,&amp;quot;combined&amp;quot;)
+
+# Center control variables
+
+TSL15_cent &amp;lt;- 
+  TSL15 %&amp;gt;%
+  mutate(
+    postwks_c = pmin(postwks, 26) - 12,
+    postwks_long = as.numeric(postwks &amp;gt; 26),
+    percoll_c = percoll - 1,
+    permale_c = permale - 0.5,
+    attrition_c = attrition_all - median(attrition_all),
+    study_dv = paste(studyid, dv_cat, sep = &amp;quot;-&amp;quot;),
+    study_ctype = paste(studyid, Ctype, sep = &amp;quot;-&amp;quot;)
+  ) %&amp;gt;%
+  # make dummies
+  dummy_cols(&amp;quot;dv_cat&amp;quot;) %&amp;gt;%
+  group_by(studyid) %&amp;gt;%
+  # group center, group means
+  mutate(across(starts_with(&amp;quot;dv_cat_&amp;quot;), list(gc = ~ .x - mean(.x), gm = ~ mean(.x)))) %&amp;gt;%
+  ungroup() %&amp;gt;%
+  mutate(
+    # center group means
+    across(matches(&amp;quot;dv_cat_.+_gm&amp;quot;), ~ .x - mean(.x)),
+    # add grand means to group-centered
+    across(matches(&amp;quot;dv_cat_.+_gc&amp;quot;), ~ .x + mean(.x), .names = &amp;quot;{.col}g&amp;quot;)
+  )
+
+# constant sampling correlation assumption
+rho &amp;lt;- 0.6
+
+# constant sampling correlation working model
+V_mat &amp;lt;- impute_covariance_matrix(TSL15_cent$V, 
+                                  cluster = TSL15_cent$studyid, 
+                                  r = rho, 
+                                  smooth_vi = TRUE)
+
+# fit random effects working model in metafor
+dv_multilevel &amp;lt;- rma.mv(yi = es,
+                        mods = ~ 0 + dv_cat,
+                        V = V_mat, 
+                        random = ~ 1 | studyid / esid,
+                        data = TSL15_cent, sparse = TRUE)
+dv_multilevel
+
+dv_A &amp;lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+dv_A
+Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+dv_B &amp;lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc)
+dv_B
+Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+
+dv_C &amp;lt;- update(dv_multilevel, 
+               mods = ~ 0 + dv_cat + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+
+dv_C
+Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_equal(1:6))
+Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(1:6), tidy = TRUE)
+
+dv_D &amp;lt;- rma.mv(yi = es,
+               mods = ~ 0 + factor(studyid) + dv_cat,
+               V = V_mat, 
+               random = ~ 1 | esid,
+               data = TSL15_cent, sparse = TRUE)
+Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+coef(dv_A)[2:6]
+coef(dv_B)[2:6]
+coef(dv_C)[1:5] - coef(dv_C)[6]
+coef(dv_D)[118:122]
+coef(dv_C)[2:6] - coef(dv_C)[1]&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>From Longhorn to Badger</title>
@@ -504,6 +610,7 @@ summary(MR_study_fit)&lt;/code&gt;&lt;/pre&gt;
       <description>
 
 
+&lt;p&gt;&lt;strong&gt;UPDATED November 21, 2020&lt;/strong&gt;. &lt;em&gt;Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt; file.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;

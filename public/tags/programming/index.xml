@@ -20,6 +20,7 @@
       <description>
 
 
+&lt;p&gt;&lt;strong&gt;UPDATED November 21, 2020&lt;/strong&gt;. &lt;em&gt;Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt; file.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;
