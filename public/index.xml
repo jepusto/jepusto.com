@@ -5,7 +5,7 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
@@ -51,6 +51,118 @@
 &lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An ANCOVA puzzler</title>
+      <link>/ancova-puzzler/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/ancova-puzzler/</guid>
+      <description>
+
+
+&lt;p&gt;Doing effect size calculations for meta-analysis is a good way to lose your faith in humanity—or at least your faith in researchers’ abilities to do anything like sensible statistical inference. Try it, and you’re surely encounter head-scratchingly weird ways that authors have reported even simple analyses, like basic group comparisons. When you encounter this sort of thing, you have two paths: you can despair, curse, and/or throw things, or you can view the studies as curious little puzzles—brain-teasers, if you will—to keep you awake and prevent you from losing track of those notes you took during your stats courses, back when. Here’s one of those curious little puzzles, which I recently encountered in helping a colleague with a meta-analysis project.&lt;/p&gt;
+&lt;p&gt;A researcher conducts a randomized experiment, assigning participants to each of &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; groups. Each participant is assessed on a variable &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; at pre-test and at post-test (we can assume there’s no attrition). In their study write-up, the researcher reports sample sizes for each group, means and standard deviations for each group at pre-test and at post-test, and &lt;em&gt;adjusted&lt;/em&gt; means at post-test, where the adjustment is done using a basic analysis of covariance, controlling for pre-test scores only. The data layout looks like this:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Group&lt;/th&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Adjusted post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group A&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(n_A\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{x}_{A}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{A0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{y}_{A}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{A1}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_A\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Group B&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(n_B\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{x}_{B}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{B0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{y}_{B}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{B1}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_B\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Note that the write-up does &lt;em&gt;not&lt;/em&gt; provide an estimate of the correlation between the pre-test and the post-test, nor does it report a standard deviation or standard error for the mean change-score between pre-test and post-test within each group. All we have are the summary statistics, plus the adjusted post-test scores. We can assume that the adjustment was done according to the basic ANCOVA model, assuming a common slope across groups as well as homoskedasticity and so on. The model is then
+&lt;span class=&#34;math display&#34;&gt;\[
+y_{ig} = \alpha_g + \beta x_{ig} + e_{ig},
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(g = 1,...,G\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(e_{ig}\)&lt;/span&gt; is an independent error term that is assumed to have constant variance across groups.&lt;/p&gt;
+&lt;div id=&#34;for-realz&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;For realz?&lt;/h3&gt;
+&lt;p&gt;Here’s an example with real data, drawn from Table 2 of &lt;a href=&#34;https://doi.org/10.1080/10573560500455703&#34;&gt;Murawski (2006)&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Group&lt;/th&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Adjusted post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group A&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;td&gt;37.48&lt;/td&gt;
+&lt;td&gt;4.64&lt;/td&gt;
+&lt;td&gt;37.96&lt;/td&gt;
+&lt;td&gt;4.35&lt;/td&gt;
+&lt;td&gt;37.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Group B&lt;/td&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;td&gt;36.85&lt;/td&gt;
+&lt;td&gt;5.18&lt;/td&gt;
+&lt;td&gt;36.46&lt;/td&gt;
+&lt;td&gt;3.86&lt;/td&gt;
+&lt;td&gt;36.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group C&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;37.88&lt;/td&gt;
+&lt;td&gt;3.88&lt;/td&gt;
+&lt;td&gt;37.38&lt;/td&gt;
+&lt;td&gt;4.76&lt;/td&gt;
+&lt;td&gt;36.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That study reported this information for each of several outcomes, with separate analyses for each of two sub-groups (LD and NLD). The text also reports that they used a two-level hierarchical linear model for the ANCOVA adjustment. For simplicity, let’s just ignore the hierarchical linear model aspect and assume that it’s a straight, one-level ANCOVA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-puzzler&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The puzzler&lt;/h3&gt;
+&lt;p&gt;Calculate an estimate of the standardized mean difference between group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; and group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;, along with the sampling variance of the SMD estimate, that adjusts for pre-test differences between groups. Candidates for numerator of the SMD include the adjusted mean difference, &lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_B - \tilde{y}_A\)&lt;/span&gt; or the difference-in-differences, &lt;span class=&#34;math inline&#34;&gt;\(\left(\bar{y}_B - \bar{x}_B\right) - \left(\bar{y}_A - \bar{x}_A\right)\)&lt;/span&gt;. In either case, the tricky bit is finding the sampling variance of this quantity, which involves the pre-post correlation. For the denominator of the SMD, you use the post-test SD, either pooled across just groups &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; or pooled across all &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; groups, assuming a common population variance.&lt;/p&gt;
+&lt;p&gt;Have an idea for how to solve this? Post it in the comments or email it to me. Need the solution because you have a study like this in your meta-analysis? Contact me and I’ll share it with you directly. I’m being coy because I’m teaching meta-analysis next semester, and I feel like this would make a good extra credit problem…&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
