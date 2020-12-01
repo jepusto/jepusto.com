@@ -1,0 +1,113 @@
+---
+title: Centering categorical predictors in meta-regression
+authors:
+- admin
+date: '2020-11-19'
+slug: centering-categorical-predictors
+categories: []
+draft: true
+tags:
+  - meta-analysis
+  - hierarchical models
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p>Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you’ve got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample.</p>
+<pre class="r"><code>library(dplyr)
+library(fastDummies)
+library(clubSandwich)
+library(metafor)
+
+tmp &lt;- tempfile(fileext = &quot;.rds&quot;)
+download.file(&quot;https://jepusto.com/data/Tanner-Smith-Lipsey-2015-subset.rds&quot;, tmp)
+
+TSL15 &lt;- 
+  readRDS(file = tmp) %&gt;%
+  # exclude observations missing control variables
+  filter(!is.na(percoll), !is.na(attrition_all), !is.na(permale))
+
+# Shorten dv category labels
+levels(TSL15$dv_cat) &lt;- c(&quot;freq&quot;,&quot;heavy&quot;,&quot;quantity&quot;,&quot;peak&quot;,&quot;BAC&quot;,&quot;combined&quot;)
+
+# Center control variables
+
+TSL15_cent &lt;- 
+  TSL15 %&gt;%
+  mutate(
+    postwks_c = pmin(postwks, 26) - 12,
+    postwks_long = as.numeric(postwks &gt; 26),
+    percoll_c = percoll - 1,
+    permale_c = permale - 0.5,
+    attrition_c = attrition_all - median(attrition_all),
+    study_dv = paste(studyid, dv_cat, sep = &quot;-&quot;),
+    study_ctype = paste(studyid, Ctype, sep = &quot;-&quot;)
+  ) %&gt;%
+  # make dummies
+  dummy_cols(&quot;dv_cat&quot;) %&gt;%
+  group_by(studyid) %&gt;%
+  # group center, group means
+  mutate(across(starts_with(&quot;dv_cat_&quot;), list(gc = ~ .x - mean(.x), gm = ~ mean(.x)))) %&gt;%
+  ungroup() %&gt;%
+  mutate(
+    # center group means
+    across(matches(&quot;dv_cat_.+_gm&quot;), ~ .x - mean(.x)),
+    # add grand means to group-centered
+    across(matches(&quot;dv_cat_.+_gc&quot;), ~ .x + mean(.x), .names = &quot;{.col}g&quot;)
+  )
+
+# constant sampling correlation assumption
+rho &lt;- 0.6
+
+# constant sampling correlation working model
+V_mat &lt;- impute_covariance_matrix(TSL15_cent$V, 
+                                  cluster = TSL15_cent$studyid, 
+                                  r = rho, 
+                                  smooth_vi = TRUE)
+
+# fit random effects working model in metafor
+dv_multilevel &lt;- rma.mv(yi = es,
+                        mods = ~ 0 + dv_cat,
+                        V = V_mat, 
+                        random = ~ 1 | studyid / esid,
+                        data = TSL15_cent, sparse = TRUE)
+dv_multilevel
+
+dv_A &lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+dv_A
+Wald_test(dv_A, vcov = &quot;CR2&quot;, constraints = constrain_zero(&quot;dv_cat_.+_gc&quot;, reg_ex = TRUE))
+Wald_test(dv_A, vcov = &quot;CR2&quot;, constraints = constrain_pairwise(&quot;dv_cat_.+_gc&quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+dv_B &lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc)
+dv_B
+Wald_test(dv_B, vcov = &quot;CR2&quot;, constraints = constrain_zero(&quot;dv_cat_.+_gc&quot;, reg_ex = TRUE))
+Wald_test(dv_B, vcov = &quot;CR2&quot;, constraints = constrain_pairwise(&quot;dv_cat_.+_gc&quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+
+dv_C &lt;- update(dv_multilevel, 
+               mods = ~ 0 + dv_cat + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+
+dv_C
+Wald_test(dv_C, vcov = &quot;CR2&quot;, constraints = constrain_equal(1:6))
+Wald_test(dv_C, vcov = &quot;CR2&quot;, constraints = constrain_pairwise(1:6), tidy = TRUE)
+
+dv_D &lt;- rma.mv(yi = es,
+               mods = ~ 0 + factor(studyid) + dv_cat,
+               V = V_mat, 
+               random = ~ 1 | esid,
+               data = TSL15_cent, sparse = TRUE)
+Wald_test(dv_D, vcov = &quot;CR2&quot;, constraints = constrain_zero(&quot;dv_cat&quot;, reg_ex = TRUE))
+Wald_test(dv_D, vcov = &quot;CR2&quot;, constraints = constrain_pairwise(&quot;dv_cat&quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+coef(dv_A)[2:6]
+coef(dv_B)[2:6]
+coef(dv_C)[1:5] - coef(dv_C)[6]
+coef(dv_D)[118:122]
+coef(dv_C)[2:6] - coef(dv_C)[1]</code></pre>

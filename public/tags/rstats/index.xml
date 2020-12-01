@@ -20,6 +20,7 @@
       <description>
 
 
+&lt;p&gt;&lt;strong&gt;UPDATED November 21, 2020&lt;/strong&gt;. &lt;em&gt;Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt; file.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;
@@ -182,6 +183,7 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;
       <guid>/package-downloads/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;p&gt;At AERA this past weekend, one of the recurring themes was how software availability (and its usability and default features) influences how people conduct meta-analyses. That got me thinking about the R packages that I’ve developed, how to understand the extent to which people are using them, how they’re being used, and so on. I’ve had badges on my github repos for a while now:&lt;/p&gt;
@@ -195,7 +197,7 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The thing is, the download numbers are rather hard to interpret. Beyond knowing that somebody out there is at least &lt;em&gt;trying&lt;/em&gt; to use the tools I’ve made, it’s pretty hard to gauge whether 300 or 3000 or 3 million downloads a month is a good usage level. In this post, I’ll attempt to put just a little bit of context around these numbers. Emphasis on &lt;em&gt;little bit&lt;/em&gt;, as I’m not all that satisfied with what I’ll show below, but at least it’s something beyond four numbers floating in the air.&lt;/p&gt;
 &lt;div id=&#34;getting-package-download-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Getting package download data&lt;/h3&gt;
-&lt;p&gt;I used the &lt;code&gt;cranlogs&lt;/code&gt; package to get daily download counts of all currently available CRAN packages over the period 2018-04-06 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-06 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.&lt;/p&gt;
+&lt;p&gt;I used the &lt;code&gt;cranlogs&lt;/code&gt; package to get daily download counts of all currently available CRAN packages over the period 2018-04-05 18:00:00 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-05 18:00:00 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 library(lubridate)
 library(cranlogs)
@@ -220,7 +222,8 @@ pkg_downloads &amp;lt;-
   filter(date &amp;lt;= as_date(as_date(to_date) - duration(6, &amp;quot;months&amp;quot;))) %&amp;gt;%
   group_by(package) %&amp;gt;%
   summarise(
-    count = sum(count)
+    count = sum(count),
+    .groups = &amp;quot;drop&amp;quot;
   ) %&amp;gt;%
   filter(count &amp;gt; 0) %&amp;gt;%
   select(package)&lt;/code&gt;&lt;/pre&gt;
@@ -231,7 +234,8 @@ pkg_downloads &amp;lt;-
   semi_join(downloaded_last_yr, by = &amp;quot;package&amp;quot;) %&amp;gt;%
   group_by(package) %&amp;gt;%
   summarise(
-    count = sum(count) / 6
+    count = sum(count) / 6,
+    .groups = &amp;quot;drop&amp;quot;
   ) %&amp;gt;%
   mutate(
     package = fct_reorder(factor(package), count),
@@ -254,13 +258,9 @@ pkg_downloads &amp;lt;-
 &lt;p&gt;I am having a harder time thinking of good comparables for the &lt;code&gt;scdhlm&lt;/code&gt;, &lt;code&gt;SingleCaseES&lt;/code&gt;, and &lt;code&gt;ARPobservation&lt;/code&gt; packages due to their specialized focus. (Ideas? Suggestions? I’m all ears!)&lt;/p&gt;
 &lt;p&gt;With that background, here are the average monthly download rates (over the past six months) for each of my four packages, along with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;robumeta&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(knitr)
-library(kableExtra)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;kableExtra&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
-## 
-##     group_rows&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Pusto_pkgs &amp;lt;- c(&amp;quot;ARPobservation&amp;quot;,&amp;quot;scdhlm&amp;quot;,&amp;quot;SingleCaseES&amp;quot;,&amp;quot;clubSandwich&amp;quot;)
+library(kableExtra)
+
+Pusto_pkgs &amp;lt;- c(&amp;quot;ARPobservation&amp;quot;,&amp;quot;scdhlm&amp;quot;,&amp;quot;SingleCaseES&amp;quot;,&amp;quot;clubSandwich&amp;quot;)
 meta_pkgs &amp;lt;- c(&amp;quot;metafor&amp;quot;,&amp;quot;robumeta&amp;quot;)
 
 focal_downloads &amp;lt;- 
@@ -415,7 +415,8 @@ ggplot(downloads_sample, aes(x = package, y = count)) +
   group_by(package, date) %&amp;gt;%
   summarise(
     count = sum(count),
-    days = n()
+    days = n(),
+    .groups = &amp;quot;drop&amp;quot;
   )
 
 weekly_downloads %&amp;gt;%
@@ -442,11 +443,9 @@ weekly_downloads %&amp;gt;%
   print(style = &amp;quot;textVersion&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;which returns the following:&lt;/p&gt;
 &lt;blockquote&gt;
-
+&lt;p&gt;James Pustejovsky (2020). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
+Corrections. R package version 0.5.0. &lt;a href=&#34;https://CRAN.R-project.org/package=clubSandwich&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=clubSandwich&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;## Warning in citation(package = &#34;clubSandwich&#34;): no date field in DESCRIPTION file     ## of package &#39;clubSandwich&#39;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;James Pustejovsky (2019). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
-Corrections. R package version 0.3.5. &lt;a href=&#34;https://github.com/jepusto/clubSandwich&#34; class=&#34;uri&#34;&gt;https://github.com/jepusto/clubSandwich&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

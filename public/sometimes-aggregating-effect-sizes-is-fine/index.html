@@ -285,7 +285,7 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "University of Texas at Austin",
+    "name": "James E. Pustejovsky",
     "logo": {
       "@type": "ImageObject",
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
@@ -794,9 +794,9 @@ and it’s even possible that some studies may have <em>all</em> of these featur
 <p>These situations create a technical challenge for conducting a meta-analysis.
 Because effect size estimates from the same study are correlated, it’s not usually reasonable to use methods that are premised on each effect size estimate being independent (i.e., univariate methods).
 Instead, the analyst needs to apply methods that take into account the dependencies among estimates coming from the same study.
-It used to be common to use ad hoc approaches for handling dependence, such as averaging the estimates together or selecting one estimate per study and then using univariate methods <span class="citation">(cf. Becker <a href="#ref-Becker2000multivariate" role="doc-biblioref">2000</a>)</span>.
-More sophisticated, multivariate meta-analysis (MVMA) models that directly account for correlations among the effect size estimates had been developed <span class="citation">(Kalaian and Raudenbush <a href="#ref-Kalaian1996multivariate" role="doc-biblioref">1996</a>)</span> but were challenging to implement and so rarely used (at least, that’s my impression).
-More recently, techniques such as multi-level meta-analysis <span class="citation">(MLMA; Van den Noortgate et al. <a href="#ref-VandenNoortgate2013threelevel" role="doc-biblioref">2013</a>, <a href="#ref-VandenNoortgate2015metaanalysis" role="doc-biblioref">2015</a>)</span> and robust variance estimation <span class="citation">(RVE; Hedges, Tipton, and Johnson <a href="#ref-Hedges2010robust" role="doc-biblioref">2010</a>)</span> have emerged, which account for dependencies while using all available effect size estimates and still being feasible to implement.
+It used to be common to use ad hoc approaches for handling dependence, such as averaging the estimates together or selecting one estimate per study and then using univariate methods <span class="citation">(cf. Becker, <a href="#ref-Becker2000multivariate" role="doc-biblioref">2000</a>)</span>.
+More sophisticated, multivariate meta-analysis (MVMA) models that directly account for correlations among the effect size estimates had been developed <span class="citation">(Kalaian &amp; Raudenbush, <a href="#ref-Kalaian1996multivariate" role="doc-biblioref">1996</a>)</span> but were challenging to implement and so rarely used (at least, that’s my impression).
+More recently, techniques such as multi-level meta-analysis <span class="citation">(MLMA; Van den Noortgate et al., <a href="#ref-VandenNoortgate2013threelevel" role="doc-biblioref">2013</a>, <a href="#ref-VandenNoortgate2015metaanalysis" role="doc-biblioref">2015</a>)</span> and robust variance estimation <span class="citation">(RVE; Hedges et al., <a href="#ref-Hedges2010robust" role="doc-biblioref">2010</a>)</span> have emerged, which account for dependencies while using all available effect size estimates and still being feasible to implement.
 These new techniques of MLMA and RVE are starting to be more widely adopted in practice, and it is not implausible that they will become the standard approach in psychological and educational meta-analysis within a few years.</p>
 <p>Given the extent of interest in MLMA and RVE, one might wonder: are the older ad hoc approaches <em>ever</em> reasonable or appropriate?
 I think that some are, under certain circumstances.
@@ -822,7 +822,7 @@ T_{jk} = \mathbf{x}_k \boldsymbol\beta + u_k + e_{jk},
 where <span class="math inline">\(u_k\)</span> is a between-study random effect with variance <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(e_{jk}\)</span> is the sampling error for effect size <span class="math inline">\(j\)</span> from study <span class="math inline">\(k\)</span>, assumed to have known variance <span class="math inline">\(S_{jk}^2\)</span>.
 Errors from the same study are correlated, so <span class="math inline">\(\text{Cov}(e_{ik}, e_{jk}) = \rho_{ijk} S_{ik} S_{jk}\)</span>.
 This is a commonly considered model for dependent effect size estimates.
-In the paper that introduced RVE, <span class="citation">Hedges, Tipton, and Johnson (<a href="#ref-Hedges2010robust" role="doc-biblioref">2010</a>)</span> termed it the “correlated effects” model (implemented in <code>robumeta</code> as <code>model = "CORR"</code>, which is the default).
+In the paper that introduced RVE, <span class="citation">Hedges et al. (<a href="#ref-Hedges2010robust" role="doc-biblioref">2010</a>)</span> termed it the “correlated effects” model (implemented in <code>robumeta</code> as <code>model = "CORR"</code>, which is the default).
 Note that it also satisfies the conditions I outlined above: no within-study random effects, predictors that vary only between study.
 We can fit it using the <code>rma.mv()</code> function in the <code>metafor</code> package, as I will demonstrate below.</p>
 <p>An alternative to this multivariate model would be to first average the effects within each study, then fit a univariate random effects model.
@@ -845,7 +845,7 @@ I’ll offer three, from most practical to most theoretical.
 </div>
 <div id="computational-equivalence" class="section level1">
 <h1>Computational equivalence</h1>
-<p>One good way to check the equivalence of the univariate and multivariate models is to apply both to a dataset. I’ll use the data from a stylized example described in <span class="citation">Tanner-Smith and Tipton (<a href="#ref-TannerSmith2013robust" role="doc-biblioref">2013</a>)</span>, looking at the effects of alcohol abuse interventions on alcohol consumption among adolescents and young adults. (The data are simulated for teaching purposes, so don’t infer anything about real life from the results below!) The data are included in the <code>robumeta</code> package:</p>
+<p>One good way to check the equivalence of the univariate and multivariate models is to apply both to a dataset. I’ll use the data from a stylized example described in <span class="citation">Tanner-Smith &amp; Tipton (<a href="#ref-TannerSmith2013robust" role="doc-biblioref">2013</a>)</span>, looking at the effects of alcohol abuse interventions on alcohol consumption among adolescents and young adults. (The data are simulated for teaching purposes, so don’t infer anything about real life from the results below!) The data are included in the <code>robumeta</code> package:</p>
 <pre class="r"><code>library(tidyverse)
 
 data(corrdat, package = &quot;robumeta&quot;)
@@ -1122,9 +1122,9 @@ microbenchmark(
                  data = corrdat, method = &quot;REML&quot;)
 )</code></pre>
 <pre><code>## Unit: milliseconds
-##   expr     min       lq      mean  median       uq      max neval
-##    uni  8.6496  9.04635  9.658892  9.2733  9.71695  13.3316   100
-##  multi 78.4050 82.76230 87.136962 84.4908 86.62210 186.1949   100</code></pre>
+##   expr     min      lq     mean   median       uq      max neval
+##    uni  8.5638  8.7961 11.13178  8.96360  9.20370 110.2299   100
+##  multi 78.7393 82.2588 85.56066 83.22175 84.71775 182.2056   100</code></pre>
 <p>If the aggregation is done in advance, it is <em>way</em> quicker to fit the univariate model. The short-cut would be useful if we needed to estimate <em>lots</em> of multi-variate meta-regressions (as long as the equivalence conditions hold). For example, if we needed to bootstrap the multivariate model, we could pre-compute the aggregated effects and then just bootstrap the much simpler, much quicker univariate model.</p>
 <p>I suspect that the results I’ve presented here can be further generalized, but this will need a bit of further investigation. For one, there are also equivalences between variance estimators: using the CR2 cluster-robust variance estimator for the multivariate model is equivalent to using the HC2 heteroskedasticity-robust variance estimator for the univariate model with aggregated effects.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>
 For another, the same sort of equivalence relationships hold even if there are additional random effects in the model, so long as the random effects are at the study level or higher levels of aggregation (e.g., lab effects, where labs are nested within studies).
@@ -1134,25 +1134,25 @@ I’ll leave these generalizations as exercises for a future rainy day.</p>
 <h1>References</h1>
 <div id="refs" class="references">
 <div id="ref-Becker2000multivariate">
-<p>Becker, Betsy Jane. 2000. “Multivariate Meta-analysis.” In <em>Handbook of Applied Multivariate Statistics and Mathematical Modeling</em>, edited by Steven D Brown and Howard E. A. Tinsley, 499–525. San Diego, CA: Academic Press. <a href="https://doi.org/10.1016/B978-012691360-6/50018-5">https://doi.org/10.1016/B978-012691360-6/50018-5</a>.</p>
+<p>Becker, B. J. (2000). Multivariate meta-analysis. In S. D. Brown &amp; H. E. A. Tinsley (Eds.), <em>Handbook of applied multivariate statistics and mathematical modeling</em> (pp. 499–525). Academic Press. <a href="https://doi.org/10.1016/B978-012691360-6/50018-5">https://doi.org/10.1016/B978-012691360-6/50018-5</a></p>
 </div>
 <div id="ref-borenstein2009introduction">
-<p>Borenstein, Michael, Larry V. Hedges, Julian P T Higgins, and Hannah R Rothstein. 2009. <em>Introduction to Meta-Analysis</em>. Chichester, UK: John Wiley &amp; Sons, Ltd. <a href="https://doi.org/10.1002/9780470743386">https://doi.org/10.1002/9780470743386</a>.</p>
+<p>Borenstein, M., Hedges, L. V., Higgins, J. P. T., &amp; Rothstein, H. R. (2009). <em>Introduction to Meta-Analysis</em>. John Wiley &amp; Sons, Ltd. <a href="https://doi.org/10.1002/9780470743386">https://doi.org/10.1002/9780470743386</a></p>
 </div>
 <div id="ref-Hedges2010robust">
-<p>Hedges, Larry V., Elizabeth Tipton, and Matthew C Johnson. 2010. “Robust variance estimation in meta-regression with dependent effect size estimates.” <em>Research Synthesis Methods</em> 1 (1): 39–65. <a href="https://doi.org/10.1002/jrsm.5">https://doi.org/10.1002/jrsm.5</a>.</p>
+<p>Hedges, L. V., Tipton, E., &amp; Johnson, M. C. (2010). Robust variance estimation in meta-regression with dependent effect size estimates. <em>Research Synthesis Methods</em>, <em>1</em>(1), 39–65. <a href="https://doi.org/10.1002/jrsm.5">https://doi.org/10.1002/jrsm.5</a></p>
 </div>
 <div id="ref-Kalaian1996multivariate">
-<p>Kalaian, Hripsime a., and Stephen W Raudenbush. 1996. “A multivariate mixed linear model for meta-analysis.” <em>Psychological Methods</em> 1 (3): 227–35. <a href="https://doi.org/10.1037/1082-989X.1.3.227">https://doi.org/10.1037/1082-989X.1.3.227</a>.</p>
+<p>Kalaian, H. a., &amp; Raudenbush, S. W. (1996). A multivariate mixed linear model for meta-analysis. <em>Psychological Methods</em>, <em>1</em>(3), 227–235. <a href="https://doi.org/10.1037/1082-989X.1.3.227">https://doi.org/10.1037/1082-989X.1.3.227</a></p>
 </div>
 <div id="ref-TannerSmith2013robust">
-<p>Tanner-Smith, Emily E, and Elizabeth Tipton. 2013. “Robust variance estimation with dependent effect sizes: Practical considerations including a software tutorial in Stata and SPSS.” <em>Research Synthesis Methods</em> 5 (1): 1–34. <a href="https://doi.org/10.1002/jrsm.1091">https://doi.org/10.1002/jrsm.1091</a>.</p>
+<p>Tanner-Smith, E. E., &amp; Tipton, E. (2013). Robust variance estimation with dependent effect sizes: Practical considerations including a software tutorial in Stata and SPSS. <em>Research Synthesis Methods</em>, <em>5</em>(1), 1–34. <a href="https://doi.org/10.1002/jrsm.1091">https://doi.org/10.1002/jrsm.1091</a></p>
 </div>
 <div id="ref-VandenNoortgate2013threelevel">
-<p>Van den Noortgate, Wim, José Antonio López-López, Fulgencio Marín-Martínez, and Julio Sánchez-Meca. 2013. “Three-level meta-analysis of dependent effect sizes.” <em>Behavior Research Methods</em> 45 (2): 576–94. <a href="https://doi.org/10.3758/s13428-012-0261-6">https://doi.org/10.3758/s13428-012-0261-6</a>.</p>
+<p>Van den Noortgate, W., López-López, J. A., Marín-Martínez, F., &amp; Sánchez-Meca, J. (2013). Three-level meta-analysis of dependent effect sizes. <em>Behavior Research Methods</em>, <em>45</em>(2), 576–594. <a href="https://doi.org/10.3758/s13428-012-0261-6">https://doi.org/10.3758/s13428-012-0261-6</a></p>
 </div>
 <div id="ref-VandenNoortgate2015metaanalysis">
-<p>———. 2015. “Meta-analysis of multiple outcomes: a multilevel approach.” <em>Behavior Research Methods</em> 47 (4): 1274–94. <a href="https://doi.org/10.3758/s13428-014-0527-2">https://doi.org/10.3758/s13428-014-0527-2</a>.</p>
+<p>Van den Noortgate, W., López-López, J. A., Marín-Martínez, F., &amp; Sánchez-Meca, J. (2015). Meta-analysis of multiple outcomes: A multilevel approach. <em>Behavior Research Methods</em>, <em>47</em>(4), 1274–1294. <a href="https://doi.org/10.3758/s13428-014-0527-2">https://doi.org/10.3758/s13428-014-0527-2</a></p>
 </div>
 </div>
 </div>
@@ -1167,9 +1167,9 @@ with sampling variance
 <span class="math display">\[
 V_k = \frac{(J_k - 1)\rho_k + 1}{J} \times S_k^2
 \]</span>
-<span class="citation">(cf. Borenstein et al. <a href="#ref-borenstein2009introduction" role="doc-biblioref">2009</a>, Eq. (24.6), p. 230)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>The same thing holds if we use FML rather than RML estimation—try it for yourself and see!<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>As RVE and MLMA become more wide-spread, I could imagine it happening that a meta-analyst who uses aggregation and a univariate model might get push-back from a reviewer, who uncritically recommends using a “more advanced” method to handle dependence. The results in this post provide a way for the meta-analyst to establish that doing so would be unnecessary.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<span class="citation">(cf. Borenstein et al., <a href="#ref-borenstein2009introduction" role="doc-biblioref">2009</a>, Eq. (24.6), p. 230)</span>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The same thing holds if we use FML rather than RML estimation—try it for yourself and see!<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>As RVE and MLMA become more wide-spread, I could imagine it happening that a meta-analyst who uses aggregation and a univariate model might get push-back from a reviewer, who uncritically recommends using a “more advanced” method to handle dependence. The results in this post provide a way for the meta-analyst to establish that doing so would be unnecessary.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 <li id="fn4"><p>Here’s verification with the computational example from above:</p>
 <pre class="r"><code># multivariate CR2
 coef_test(MV_fit, vcov = &quot;CR2&quot;)</code></pre>
@@ -1183,7 +1183,7 @@ coef_test(uni_fit, vcov = &quot;CR2&quot;, cluster = corrdat_agg$studyid)</code>
 ## 1 intrcpt  0.64656 0.17622   3.67 11.5      0.00342   **
 ## 2 college  0.37027 0.18597   1.99 11.9      0.06985    .
 ## 3   males -0.00763 0.00287  -2.66 14.5      0.01808    *</code></pre>
-<a href="#fnref4" class="footnote-back">↩</a></li>
+<a href="#fnref4" class="footnote-back">↩︎</a></li>
 </ol>
 </div>
 

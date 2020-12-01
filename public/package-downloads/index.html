@@ -285,7 +285,7 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "University of Texas at Austin",
+    "name": "James E. Pustejovsky",
     "logo": {
       "@type": "ImageObject",
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
@@ -787,6 +787,7 @@
     <div class="article-style">
       
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 <p>At AERA this past weekend, one of the recurring themes was how software availability (and its usability and default features) influences how people conduct meta-analyses. That got me thinking about the R packages that I’ve developed, how to understand the extent to which people are using them, how they’re being used, and so on. I’ve had badges on my github repos for a while now:</p>
@@ -800,7 +801,7 @@
 <p>The thing is, the download numbers are rather hard to interpret. Beyond knowing that somebody out there is at least <em>trying</em> to use the tools I’ve made, it’s pretty hard to gauge whether 300 or 3000 or 3 million downloads a month is a good usage level. In this post, I’ll attempt to put just a little bit of context around these numbers. Emphasis on <em>little bit</em>, as I’m not all that satisfied with what I’ll show below, but at least it’s something beyond four numbers floating in the air.</p>
 <div id="getting-package-download-data" class="section level3">
 <h3>Getting package download data</h3>
-<p>I used the <code>cranlogs</code> package to get daily download counts of all currently available CRAN packages over the period 2018-04-06 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-06 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.</p>
+<p>I used the <code>cranlogs</code> package to get daily download counts of all currently available CRAN packages over the period 2018-04-05 18:00:00 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-05 18:00:00 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.</p>
 <pre class="r"><code>library(tidyverse)
 library(lubridate)
 library(cranlogs)
@@ -825,7 +826,8 @@ pkg_downloads &lt;-
   filter(date &lt;= as_date(as_date(to_date) - duration(6, &quot;months&quot;))) %&gt;%
   group_by(package) %&gt;%
   summarise(
-    count = sum(count)
+    count = sum(count),
+    .groups = &quot;drop&quot;
   ) %&gt;%
   filter(count &gt; 0) %&gt;%
   select(package)</code></pre>
@@ -836,7 +838,8 @@ pkg_downloads &lt;-
   semi_join(downloaded_last_yr, by = &quot;package&quot;) %&gt;%
   group_by(package) %&gt;%
   summarise(
-    count = sum(count) / 6
+    count = sum(count) / 6,
+    .groups = &quot;drop&quot;
   ) %&gt;%
   mutate(
     package = fct_reorder(factor(package), count),
@@ -859,13 +862,9 @@ pkg_downloads &lt;-
 <p>I am having a harder time thinking of good comparables for the <code>scdhlm</code>, <code>SingleCaseES</code>, and <code>ARPobservation</code> packages due to their specialized focus. (Ideas? Suggestions? I’m all ears!)</p>
 <p>With that background, here are the average monthly download rates (over the past six months) for each of my four packages, along with <code>metafor</code> and <code>robumeta</code>:</p>
 <pre class="r"><code>library(knitr)
-library(kableExtra)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;kableExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     group_rows</code></pre>
-<pre class="r"><code>Pusto_pkgs &lt;- c(&quot;ARPobservation&quot;,&quot;scdhlm&quot;,&quot;SingleCaseES&quot;,&quot;clubSandwich&quot;)
+library(kableExtra)
+
+Pusto_pkgs &lt;- c(&quot;ARPobservation&quot;,&quot;scdhlm&quot;,&quot;SingleCaseES&quot;,&quot;clubSandwich&quot;)
 meta_pkgs &lt;- c(&quot;metafor&quot;,&quot;robumeta&quot;)
 
 focal_downloads &lt;- 
@@ -1020,7 +1019,8 @@ ggplot(downloads_sample, aes(x = package, y = count)) +
   group_by(package, date) %&gt;%
   summarise(
     count = sum(count),
-    days = n()
+    days = n(),
+    .groups = &quot;drop&quot;
   )
 
 weekly_downloads %&gt;%
@@ -1047,11 +1047,9 @@ weekly_downloads %&gt;%
   print(style = &quot;textVersion&quot;)</code></pre>
 <p>which returns the following:</p>
 <blockquote>
-
+<p>James Pustejovsky (2020). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
+Corrections. R package version 0.5.0. <a href="https://CRAN.R-project.org/package=clubSandwich" class="uri">https://CRAN.R-project.org/package=clubSandwich</a></p>
 </blockquote>
-<p><code>## Warning in citation(package = "clubSandwich"): no date field in DESCRIPTION file     ## of package 'clubSandwich'</code></p>
-<p>James Pustejovsky (2019). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
-Corrections. R package version 0.3.5. <a href="https://github.com/jepusto/clubSandwich" class="uri">https://github.com/jepusto/clubSandwich</a></p>
 </div>
 
     </div>

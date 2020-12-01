@@ -1,0 +1,21 @@
+---
+title: From Longhorn to Badger
+authors:
+- admin
+date: '2020-08-28'
+slug: from-longhorn-to-badger
+categories: []
+tags: []
+featured: no
+header:
+  caption: ''
+  image: ''
+---
+
+It's taken me a while to finally get around to updating my website with some personal news. I've moved from UT Austin to the [UW Madison](https://www.wisc.edu/) [School of Education](https://education.wisc.edu/), where I am now an associate professor in the [Educational Psychology Department](https://edpsych.education.wisc.edu/)'s [Quantitative Methods program](https://edpsych.education.wisc.edu/academics/quantitative-methods/). We left Austin at the very end of July, arriving in Madison on August 1st. Our moving truck took a bit longer to arrive, but we're now more or less installed in our new (or rather old--1950's era) home. I grew up in Wisconsin (in the Milwaukee area), so this move brings us much closer to my family, who have already come to visit. We've also already been enjoying the fantastic bike paths and facilities that Madison has to offer. 
+
+On a professional level, I'm very much looking forward to the opportunities that the School of Education and Educational Psychology Department present, especially to opportunities for collaboration with new colleagues and students. I'm planning to offer a course on research synthesis and meta-analysis this coming Spring semester---something I've never had the opportunity to teach in a semester-long format, actually---and I'm looking forward to offering my own pedagogical perspective on material that I think about constantly in a research context. Gene Glass, who is credited as the originator of the term meta-analysis and who conducted some of the first meta-analyses within the social sciences, [received his Ph.D. in Educational Psychology from UW Madison in 1965](https://en.wikipedia.org/wiki/Gene_V._Glass#Background), so perhaps I'll be able to channel a bit of his spirit in my course. 
+
+Even as I'm excited to get started at Madison, I will also very much miss my colleagues at UT Austin, who were so supportive during my pre-tenure phase. Because of COVID, I didn't really get to say a proper farewell before we skipped town. I am continuing to advise several doctoral students in the Quantitative Methods program though, so we will likely get to connect in video meetings, at least. 
+
+Moving during the COVID pandemic has presented some challenges (logistical, emotional, and family-related) for me, though I know many others have had to deal with far worse. As we all weather this together, please feel free to leave a comment or drop me a line if you'd like to talk about stats, meta-analysis, R programming, or what-not.

@@ -20,6 +20,7 @@
       <description>
 
 
+&lt;p&gt;&lt;strong&gt;UPDATED November 21, 2020&lt;/strong&gt;. &lt;em&gt;Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt; file.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;
@@ -147,10 +148,10 @@ From these parameters, we’ll generate raw data, calculate effect size estimate
 r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = 0.6)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: mvtnorm&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##            ES        SE  N
-## 1  0.02795295 0.3162440 40
-## 2 -0.37019812 0.3190662 40
-## 3  0.15861202 0.3167507 40
-## 4 -0.29438342 0.3180256 40&lt;/code&gt;&lt;/pre&gt;
+## 1 -0.19106514 0.3169863 40
+## 2  0.18427227 0.3169334 40
+## 3  0.25646209 0.3175932 40
+## 4  0.00210429 0.3162279 40&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Or if you’d rather specify the full &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt; matrix yourself:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Psi_k &amp;lt;- 0.6 + diag(0.4, nrow = 4)
 Psi_k&lt;/code&gt;&lt;/pre&gt;
@@ -160,11 +161,11 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 ## [3,]  0.6  0.6  1.0  0.6
 ## [4,]  0.6  0.6  0.6  1.0&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r_SMDs_raw(delta = delta, J = 4, N = 40, Psi = Psi_k)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##            ES        SE  N
-## 1  0.30796886 0.3181948 40
-## 2  0.24528651 0.3174770 40
-## 3  0.24496926 0.3174738 40
-## 4 -0.03142033 0.3162483 40&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##           ES        SE  N
+## 1 -0.1597097 0.3167580 40
+## 2 -0.1717717 0.3168410 40
+## 3 -0.4369032 0.3201744 40
+## 4  0.0657410 0.3163177 40&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;exercises&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Exercises&lt;/h2&gt;
 &lt;p&gt;The function above is serviceable but quite basic. I can think of several additional features that one might like to have for use in research simulations, but I’m feeling both cheeky and lazy at the moment, so I’ll leave them for you, dear reader. Here are some suggested exercises:&lt;/p&gt;
@@ -246,49 +247,50 @@ study_data &amp;lt;-
 
 study_data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       delta J  N       Psi
-## 1 0.2164399 7 34 0.5219260
-## 2 0.1695641 4 54 0.5560842
-## 3 0.2023963 5 50 0.5796910
-## 4 0.1786634 3 42 0.5834660
-## 5 0.2328779 3 36 0.4235426
-## 6 0.1554537 6 48 0.5357454&lt;/code&gt;&lt;/pre&gt;
+## 1 0.1749657 6 56 0.6670410
+## 2 0.1371771 4 52 0.7952095
+## 3 0.1430044 2 46 0.5551301
+## 4 0.1953675 6 46 0.5339670
+## 5 0.1653242 4 42 0.5623903
+## 6 0.1419457 7 40 0.6615825&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once we have the “menu” of study-level characteristics, it’s just a matter of mapping the parameters to the data-generating function. One way to do this is with &lt;code&gt;pmap_df&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(purrr)
 meta_data &amp;lt;- pmap_df(study_data, r_SMDs_raw, .id = &amp;quot;study&amp;quot;)
 meta_data&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    study          ES        SE  N
-## 1      1  0.13424472 0.3434074 34
-## 2      1  0.61637803 0.3515442 34
-## 3      1  0.89283387 0.3606973 34
-## 4      1  0.62649158 0.3518235 34
-## 5      1  0.43596110 0.3472993 34
-## 6      1  0.62143835 0.3516834 34
-## 7      1  0.60034463 0.3511104 34
-## 8      2 -0.01693615 0.2721706 54
-## 9      2  0.10887688 0.2723748 54
-## 10     2 -0.06254183 0.2722346 54
-## 11     2  0.60622010 0.2785817 54
-## 12     3  0.38220860 0.2855201 50
-## 13     3  0.17922070 0.2834336 50
-## 14     3  0.50984042 0.2875894 50
-## 15     3  0.26371265 0.2841204 50
-## 16     3  0.30662621 0.2845687 50
-## 17     4  0.18850878 0.3093255 42
-## 18     4  0.09359422 0.3087841 42
-## 19     4  0.06258202 0.3086860 42
-## 20     5  0.04903932 0.3333864 36
-## 21     5  0.06668237 0.3334314 36
-## 22     5  0.24701327 0.3346766 36
-## 23     6  0.01605121 0.2886800 48
-## 24     6  0.29727147 0.2903341 48
-## 25     6  0.26241278 0.2899686 48
-## 26     6  0.03451125 0.2886976 48
-## 27     6  0.21825135 0.2895705 48
-## 28     6 -0.01595245 0.2886799 48&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    study           ES        SE  N
+## 1      1  0.427048814 0.2704019 56
+## 2      1  0.206502285 0.2679989 56
+## 3      1  0.270244756 0.2685234 56
+## 4      1  0.423149362 0.2703451 56
+## 5      1  0.525878094 0.2720096 56
+## 6      1  0.746186579 0.2767383 56
+## 7      2 -0.005809721 0.2773507 52
+## 8      2 -0.082222645 0.2774719 52
+## 9      2  0.114670949 0.2775871 52
+## 10     2 -0.001432641 0.2773501 52
+## 11     3 -0.031231291 0.2949027 46
+## 12     3  0.302264458 0.2966391 46
+## 13     4  0.085338908 0.2950242 46
+## 14     4 -0.062511255 0.2949592 46
+## 15     4 -0.040178730 0.2949150 46
+## 16     4 -0.082519741 0.2950151 46
+## 17     4  0.207953122 0.2957160 46
+## 18     4 -0.005713721 0.2948845 46
+## 19     5  0.293666394 0.3103483 42
+## 20     5  0.258312309 0.3099551 42
+## 21     5  0.362126706 0.3112512 42
+## 22     5  0.177656049 0.3092452 42
+## 23     6 -0.115158991 0.3165035 40
+## 24     6  0.094349350 0.3164129 40
+## 25     6 -0.052996601 0.3162862 40
+## 26     6 -0.042766762 0.3162658 40
+## 27     6 -0.314584445 0.3182800 40
+## 28     6  0.078519103 0.3163560 40
+## 29     6 -0.103034241 0.3164486 40&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;table(meta_data$study)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
 ## 1 2 3 4 5 6 
-## 7 4 5 3 3 6&lt;/code&gt;&lt;/pre&gt;
+## 6 4 2 6 4 7&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Putting it all together into a function, we have&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;r_meta &amp;lt;- function(K, mu, tau, J_mean, N_mean, rho, nu) {
   require(purrr)
@@ -413,6 +415,7 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;
       <guid>/package-downloads/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;p&gt;At AERA this past weekend, one of the recurring themes was how software availability (and its usability and default features) influences how people conduct meta-analyses. That got me thinking about the R packages that I’ve developed, how to understand the extent to which people are using them, how they’re being used, and so on. I’ve had badges on my github repos for a while now:&lt;/p&gt;
@@ -426,7 +429,7 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The thing is, the download numbers are rather hard to interpret. Beyond knowing that somebody out there is at least &lt;em&gt;trying&lt;/em&gt; to use the tools I’ve made, it’s pretty hard to gauge whether 300 or 3000 or 3 million downloads a month is a good usage level. In this post, I’ll attempt to put just a little bit of context around these numbers. Emphasis on &lt;em&gt;little bit&lt;/em&gt;, as I’m not all that satisfied with what I’ll show below, but at least it’s something beyond four numbers floating in the air.&lt;/p&gt;
 &lt;div id=&#34;getting-package-download-data&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Getting package download data&lt;/h3&gt;
-&lt;p&gt;I used the &lt;code&gt;cranlogs&lt;/code&gt; package to get daily download counts of all currently available CRAN packages over the period 2018-04-06 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-06 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.&lt;/p&gt;
+&lt;p&gt;I used the &lt;code&gt;cranlogs&lt;/code&gt; package to get daily download counts of all currently available CRAN packages over the period 2018-04-05 18:00:00 through 2019-04-06. I then limited the sample to packages that had been downloaded at least once between 2018-04-05 18:00:00 and 2018-10-05. This had the effect of excluding about 1000 packages that were either only recently added to CRAN or that had been discontinued but were still sitting on CRAN.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 library(lubridate)
 library(cranlogs)
@@ -451,7 +454,8 @@ pkg_downloads &amp;lt;-
   filter(date &amp;lt;= as_date(as_date(to_date) - duration(6, &amp;quot;months&amp;quot;))) %&amp;gt;%
   group_by(package) %&amp;gt;%
   summarise(
-    count = sum(count)
+    count = sum(count),
+    .groups = &amp;quot;drop&amp;quot;
   ) %&amp;gt;%
   filter(count &amp;gt; 0) %&amp;gt;%
   select(package)&lt;/code&gt;&lt;/pre&gt;
@@ -462,7 +466,8 @@ pkg_downloads &amp;lt;-
   semi_join(downloaded_last_yr, by = &amp;quot;package&amp;quot;) %&amp;gt;%
   group_by(package) %&amp;gt;%
   summarise(
-    count = sum(count) / 6
+    count = sum(count) / 6,
+    .groups = &amp;quot;drop&amp;quot;
   ) %&amp;gt;%
   mutate(
     package = fct_reorder(factor(package), count),
@@ -485,13 +490,9 @@ pkg_downloads &amp;lt;-
 &lt;p&gt;I am having a harder time thinking of good comparables for the &lt;code&gt;scdhlm&lt;/code&gt;, &lt;code&gt;SingleCaseES&lt;/code&gt;, and &lt;code&gt;ARPobservation&lt;/code&gt; packages due to their specialized focus. (Ideas? Suggestions? I’m all ears!)&lt;/p&gt;
 &lt;p&gt;With that background, here are the average monthly download rates (over the past six months) for each of my four packages, along with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;robumeta&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(knitr)
-library(kableExtra)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;kableExtra&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:
-## 
-##     group_rows&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Pusto_pkgs &amp;lt;- c(&amp;quot;ARPobservation&amp;quot;,&amp;quot;scdhlm&amp;quot;,&amp;quot;SingleCaseES&amp;quot;,&amp;quot;clubSandwich&amp;quot;)
+library(kableExtra)
+
+Pusto_pkgs &amp;lt;- c(&amp;quot;ARPobservation&amp;quot;,&amp;quot;scdhlm&amp;quot;,&amp;quot;SingleCaseES&amp;quot;,&amp;quot;clubSandwich&amp;quot;)
 meta_pkgs &amp;lt;- c(&amp;quot;metafor&amp;quot;,&amp;quot;robumeta&amp;quot;)
 
 focal_downloads &amp;lt;- 
@@ -646,7 +647,8 @@ ggplot(downloads_sample, aes(x = package, y = count)) +
   group_by(package, date) %&amp;gt;%
   summarise(
     count = sum(count),
-    days = n()
+    days = n(),
+    .groups = &amp;quot;drop&amp;quot;
   )
 
 weekly_downloads %&amp;gt;%
@@ -673,11 +675,9 @@ weekly_downloads %&amp;gt;%
   print(style = &amp;quot;textVersion&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;which returns the following:&lt;/p&gt;
 &lt;blockquote&gt;
-
+&lt;p&gt;James Pustejovsky (2020). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
+Corrections. R package version 0.5.0. &lt;a href=&#34;https://CRAN.R-project.org/package=clubSandwich&#34; class=&#34;uri&#34;&gt;https://CRAN.R-project.org/package=clubSandwich&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;## Warning in citation(package = &#34;clubSandwich&#34;): no date field in DESCRIPTION file     ## of package &#39;clubSandwich&#39;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;James Pustejovsky (2019). clubSandwich: Cluster-Robust (Sandwich) Variance Estimators with Small-Sample
-Corrections. R package version 0.3.5. &lt;a href=&#34;https://github.com/jepusto/clubSandwich&#34; class=&#34;uri&#34;&gt;https://github.com/jepusto/clubSandwich&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

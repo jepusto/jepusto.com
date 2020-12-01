@@ -5,7 +5,7 @@
     <link>/publication/</link>
       <atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Wed, 16 Sep 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Publications</title>
@@ -13,18 +13,26 @@
     </image>
     
     <item>
-      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>/publication/response-guided-designs-in-sced-baselines/</link>
-      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/response-guided-designs-in-sced-baselines/</guid>
+      <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
+      <link>/publication/rve-meta-analysis-expanding-the-range/</link>
+      <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/rve-meta-analysis-expanding-the-range/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>
       <link>/publication/selective-reporting-with-dependent-effects/</link>
-      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
       <guid>/publication/selective-reporting-with-dependent-effects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
+      <link>/publication/response-guided-designs-in-sced-baselines/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     

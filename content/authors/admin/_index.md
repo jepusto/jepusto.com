@@ -10,7 +10,7 @@ education:
   - course: BA in Economics
     institution: Boston College
     year: 2003
-email: "pusto@austin.utexas.edu"
+email: "pustejovsky@wisc.edu"
 interests:
 - Meta-analysis
 - Causal inference
@@ -19,13 +19,13 @@ interests:
 - Single case experimental designs
 name: James E. Pustejovsky
 organizations:
-- name: University of Texas at Austin
+- name: University of Wisconsin-Madison
   url: ""
-role: Assistant Professor
+role: Associate Professor
 social:
 - icon: envelope
   icon_pack: fas
-  link: 'mailto:pusto@austin.utexas.edu'
+  link: 'mailto:pustejovsky@wisc.edu'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/jepusto
@@ -40,5 +40,5 @@ user_groups:
 - Principal Investigators
 ---
 
-I am a statistician and assistant professor in the [College of Education](https://education.utexas.edu/) at the [University of Texas at Austin](https://www.utexas.edu/), where I teach in the [Educational Psychology Department](https://education.utexas.edu/departments/educational-psychology) and the [graduate program in Quantitative Methods](https://education.utexas.edu/departments/educational-psychology/graduate-programs/quantitative-methods). My research involves developing statistical methods for problems in education, psychology, and other areas of social science research, with a focus on methods related to research synthesis and meta-analysis. 
+I am a statistician and associate professor in the [School of Education](https://education.wisc.edu/) at the [University of Wisconsin-Madison](https://www.wisc.edu/), where I teach in the [Educational Psychology Department](https://edpsych.education.wisc.edu/) and the [graduate program in Quantitative Methods](https://edpsych.education.wisc.edu/academics/quantitative-methods/). My research involves developing statistical methods for problems in education, psychology, and other areas of social science research, with a focus on methods related to research synthesis and meta-analysis. 
 

@@ -27,7 +27,7 @@
   
     
   
-  <meta name="description" content="About a year ago I added a code-folding feature to my site, following an approach developed by Sébastien Rochette. I recently updated my site to work with the latest version of the Academic theme for Hugo, and it turns out that this broke my code-folding implementation.">
+  <meta name="description" content="UPDATED November 21, 2020. Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open.">
 
   
   <link rel="alternate" hreflang="en-us" href="/code-folding-update/">
@@ -241,13 +241,13 @@
   <meta property="og:site_name" content="James E. Pustejovsky">
   <meta property="og:url" content="/code-folding-update/">
   <meta property="og:title" content="An update on code folding with blogdown &#43; Academic theme | James E. Pustejovsky">
-  <meta property="og:description" content="About a year ago I added a code-folding feature to my site, following an approach developed by Sébastien Rochette. I recently updated my site to work with the latest version of the Academic theme for Hugo, and it turns out that this broke my code-folding implementation."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content="UPDATED November 21, 2020. Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2020-05-03T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-05-03T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2020-11-21T00:00:00&#43;00:00">
   
 
   
@@ -276,7 +276,7 @@
   "headline": "An update on code folding with blogdown + Academic theme",
   
   "datePublished": "2020-05-03T00:00:00Z",
-  "dateModified": "2020-05-03T00:00:00Z",
+  "dateModified": "2020-11-21T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -285,13 +285,13 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "University of Texas at Austin",
+    "name": "James E. Pustejovsky",
     "logo": {
       "@type": "ImageObject",
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "About a year ago I added a code-folding feature to my site, following an approach developed by Sébastien Rochette. I recently updated my site to work with the latest version of the Academic theme for Hugo, and it turns out that this broke my code-folding implementation."
+  "description": "UPDATED November 21, 2020. Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open."
 }
 </script>
 
@@ -728,8 +728,10 @@
     
     
       
+          Last updated on
+      
     
-    2020-05-03
+    2020-11-21
   </span>
   
 
@@ -775,6 +777,7 @@
       
 
 
+<p><strong>UPDATED November 21, 2020</strong>. <em>Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the <a href="https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js"><code>codefolding.js</code></a> file.</em></p>
 <p>About a year ago I added a code-folding feature to my site, following an approach developed by <a href="https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/">Sébastien Rochette</a>. I recently updated my site to work with the latest version of the <a href="https://sourcethemes.com/academic/">Academic theme</a> for Hugo, and it turns out that this broke <a href="/code-folding-with-blogdown-academic/">my code-folding implementation</a>. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:</p>
 <p><img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" /></p>
 <p>In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is <a href="https://sourcethemes.com/academic/updates/v4.8.0/">4.8 (March 2020)</a>. Credit where credit is due:</p>

@@ -3,6 +3,7 @@ title: An update on code folding with blogdown + Academic theme
 authors:
 - admin
 date: '2020-05-03'
+lastmod: '2020-11-21'
 slug: code-folding-update
 number_sections: true
 codefolding_nobutton: true
@@ -14,6 +15,8 @@ header:
   caption: ''
   image: ''
 ---
+
+**UPDATED November 21, 2020**. _Thanks to Allen O'Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the [`codefolding.js`](https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js) file._
 
 About a year ago I added a code-folding feature to my site, following an approach developed by [Sébastien Rochette](https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/). I recently updated my site to work with the latest version of the [Academic theme](https://sourcethemes.com/academic/) for Hugo, and it turns out that this broke [my code-folding implementation](/code-folding-with-blogdown-academic/). It took a bit of putzing and some help from a freelance web developer to fix it, but it's now working again, and I'm again doing my happy robot dance:
 

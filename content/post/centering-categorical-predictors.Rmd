@@ -1,0 +1,115 @@
+---
+title: Centering categorical predictors in meta-regression
+authors:
+- admin
+date: '2020-11-19'
+slug: centering-categorical-predictors
+categories: []
+draft: true
+tags:
+  - meta-analysis
+  - hierarchical models
+header:
+  caption: ''
+  image: ''
+---
+
+Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you've got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample. 
+
+```{r, eval = FALSE}
+library(dplyr)
+library(fastDummies)
+library(clubSandwich)
+library(metafor)
+
+tmp <- tempfile(fileext = ".rds")
+download.file("https://jepusto.com/data/Tanner-Smith-Lipsey-2015-subset.rds", tmp)
+
+TSL15 <- 
+  readRDS(file = tmp) %>%
+  # exclude observations missing control variables
+  filter(!is.na(percoll), !is.na(attrition_all), !is.na(permale))
+
+# Shorten dv category labels
+levels(TSL15$dv_cat) <- c("freq","heavy","quantity","peak","BAC","combined")
+
+# Center control variables
+
+TSL15_cent <- 
+  TSL15 %>%
+  mutate(
+    postwks_c = pmin(postwks, 26) - 12,
+    postwks_long = as.numeric(postwks > 26),
+    percoll_c = percoll - 1,
+    permale_c = permale - 0.5,
+    attrition_c = attrition_all - median(attrition_all),
+    study_dv = paste(studyid, dv_cat, sep = "-"),
+    study_ctype = paste(studyid, Ctype, sep = "-")
+  ) %>%
+  # make dummies
+  dummy_cols("dv_cat") %>%
+  group_by(studyid) %>%
+  # group center, group means
+  mutate(across(starts_with("dv_cat_"), list(gc = ~ .x - mean(.x), gm = ~ mean(.x)))) %>%
+  ungroup() %>%
+  mutate(
+    # center group means
+    across(matches("dv_cat_.+_gm"), ~ .x - mean(.x)),
+    # add grand means to group-centered
+    across(matches("dv_cat_.+_gc"), ~ .x + mean(.x), .names = "{.col}g")
+  )
+
+# constant sampling correlation assumption
+rho <- 0.6
+
+# constant sampling correlation working model
+V_mat <- impute_covariance_matrix(TSL15_cent$V, 
+                                  cluster = TSL15_cent$studyid, 
+                                  r = rho, 
+                                  smooth_vi = TRUE)
+
+# fit random effects working model in metafor
+dv_multilevel <- rma.mv(yi = es,
+                        mods = ~ 0 + dv_cat,
+                        V = V_mat, 
+                        random = ~ 1 | studyid / esid,
+                        data = TSL15_cent, sparse = TRUE)
+dv_multilevel
+
+dv_A <- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+dv_A
+Wald_test(dv_A, vcov = "CR2", constraints = constrain_zero("dv_cat_.+_gc", reg_ex = TRUE))
+Wald_test(dv_A, vcov = "CR2", constraints = constrain_pairwise("dv_cat_.+_gc", reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+dv_B <- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc)
+dv_B
+Wald_test(dv_B, vcov = "CR2", constraints = constrain_zero("dv_cat_.+_gc", reg_ex = TRUE))
+Wald_test(dv_B, vcov = "CR2", constraints = constrain_pairwise("dv_cat_.+_gc", reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+
+dv_C <- update(dv_multilevel, 
+               mods = ~ 0 + dv_cat + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+
+dv_C
+Wald_test(dv_C, vcov = "CR2", constraints = constrain_equal(1:6))
+Wald_test(dv_C, vcov = "CR2", constraints = constrain_pairwise(1:6), tidy = TRUE)
+
+dv_D <- rma.mv(yi = es,
+               mods = ~ 0 + factor(studyid) + dv_cat,
+               V = V_mat, 
+               random = ~ 1 | esid,
+               data = TSL15_cent, sparse = TRUE)
+Wald_test(dv_D, vcov = "CR2", constraints = constrain_zero("dv_cat", reg_ex = TRUE))
+Wald_test(dv_D, vcov = "CR2", constraints = constrain_pairwise("dv_cat", reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+coef(dv_A)[2:6]
+coef(dv_B)[2:6]
+coef(dv_C)[1:5] - coef(dv_C)[6]
+coef(dv_D)[118:122]
+coef(dv_C)[2:6] - coef(dv_C)[1]
+```
+

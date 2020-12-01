@@ -91,7 +91,11 @@ $$
 w_{ij} = \frac{1}{n_j \tau^2 + \omega^2 + (n_j - 1) r_j V_j + V_j}.
 $$
 
+<<<<<<< HEAD
 There are several things worth noting about this expression for the weights. First, suppose that there is little between-study or within-study heterogeneity, so $\tau^2$ and $\omega^2$ are both close to zero. Then the weights are driven by the number of effect sizes within the study ($n_j$), the sampling variance of those effect sizes ($V_j$) and their correlation $r_j$. If $r_j$ is near one, then averaging together a bunch of highly correlated estimates doesn't improve precision much, relative to just using one of the effect sizes. The study-specific average effect estimate will therefore have variance close to $V_j$ (i.e., the variance of a single effect size estimate). If $r_j$ is below one, then averaging yields a more precise estimate than any of the individual effect sizes, and averaging together more effect sizes will yield more precise estimate at the study level. If the assumed correlations are reasonably accurate, the weights used in the multi-variate meta-analysis will appropriately take into account the number of effect sizes within each study and the precision of those effect sizes.
+=======
+There are several things worth noting about this expression for the weights. First, suppose that there is little between-study or within-study heterogeneity, so $\tau^2$ and $\omega^2$ are both close to zero. Then the weights are driven by the number of effect sizes within the study ($n_j$), the sampling variance of those effect sizes ($V_j$) and their correlation $r_j$. If $r_j$ is near one, then averaging together a bunch of highly correlated estimates doesn't improve precision much, relative to just using one of the effect sizes. The study-specific average effect estimate will therefore have variance close to $V_j$ (i.e., the variance of a single effect size estimate). If $r_j$ is below one, then averaging yields a more precise estimate than any of the individual effect sizes, and averaging together more effect sizes will yield more precise estimate at the study level. If the assumed correlations are reasonably accurate, the weights used in the multivariate meta-analysis will appropriately take into account the number of effect sizes within each study and the precision of those effect sizes.
+>>>>>>> origin/master
 
 Second, now suppose that there is no between-study heterogeneity ($\tau^2 = 0$) but there is positive within-study heterogeneity. Larger degrees of within-study heterogeneity will tend to equalize the weights _at the effect size level_, regardless of how effect size estimates are nested within studies. When there is within-study heterogeneity, averaging together a bunch of estimates will yield a more precise estimate of study-specific average effects. Therefore, when $\omega^2$ is larger, studies with more effect sizes will tend to get a relatively larger share of the weight.[^perverse] 
 
@@ -234,7 +238,11 @@ MVMA_no_omega <- rma.mv(yi = effectsize, V = V_mat,
 MVMA_no_omega
 ```
 
+<<<<<<< HEAD
 Re-fitting the model with `rma.mv()` gives an between-study heterogeneity estimate of $\hat\tau = `r round(sqrt(MVMA_no_omega$sigma2),3)`$ and an overall average effect size estimate of $\hat\mu = `r round(as.numeric(MVMA_no_omega$b, 3))`$. Using this estimate, I'll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.
+=======
+Re-fitting the model with `rma.mv()` gives an between-study heterogeneity estimate of $\hat\tau = `r round(sqrt(MVMA_no_omega$sigma2),3)`$ and an overall average effect size estimate of $\hat\mu = `r round(as.numeric(MVMA_no_omega$b), 3)`$. Using this estimate, I'll compute the weights based on the formula and then use those weights to determine the overall average effect size estimate.
+>>>>>>> origin/master
 
 ```{r}
 tau_sq <- MVMA_no_omega$sigma2
@@ -394,8 +402,16 @@ MR_study_fit <- rma(yi = effectsize, vi = V_cond,
                     weights = w_j, data = corrdat_studylevel)
 summary(MR_study_fit)
 ```
+<<<<<<< HEAD
 The meta-regression coefficient estimates are essentially identical to those from the multi-variate meta-regression, although the between-study heterogeneity estimate differs slightly because it is based on maximizing the single-level model, conditional on an estimate of $\omega^2$. 
 
 # And beyond!
 
 In true multi-variate models, the meta-regression specification would typically include indicators for each dimension of the model. More generally, we might have a model that includes predictors varying within study, encoding characteristics of the outcome measures, sub-groups, or treatment conditions corresponding to each effect size estimate. The weights in these model get substantially more complicated, not in the least because the weights _are specific to the predictors_. For instance, in a model with four within-study predictors, a different set of weights is used in estimating the coefficients corresponding to each predictor. As Dr. [Richard Riley](https://twitter.com/Richard_D_Riley) noted on Twitter, relevant work on more complicated models includes [this great paper by Dan Jackson and colleagues](https://doi.org/10.1177/0962280215611702) and [this paper by Riley and colleagues](https://doi.org/10.1177/0962280216688033). The latter paper demonstrates how multivariate models entail partial "borrowing of strength" across dimensions of the effect sizes, which is very helpful for building intuition about how these models work. I would encourage you to check out both papers if you are grappling with understanding how weights work in complex meta-regression models. 
+=======
+The meta-regression coefficient estimates are essentially identical to those from the multivariate meta-regression, although the between-study heterogeneity estimate differs slightly because it is based on maximizing the single-level model, conditional on an estimate of $\omega^2$. 
+
+# And beyond!
+
+In true multivariate models, the meta-regression specification would typically include indicators for each dimension of the model. More generally, we might have a model that includes predictors varying within study, encoding characteristics of the outcome measures, sub-groups, or treatment conditions corresponding to each effect size estimate. The weights in these model get substantially more complicated, not in the least because the weights _are specific to the predictors_. For instance, in a model with four within-study predictors, a different set of weights is used in estimating the coefficients corresponding to each predictor. As Dr. [Richard Riley](https://twitter.com/Richard_D_Riley) noted on Twitter, relevant work on more complicated models includes [this great paper by Dan Jackson and colleagues](https://doi.org/10.1177/0962280215611702) and [this paper by Riley and colleagues](https://doi.org/10.1177/0962280216688033). The latter paper demonstrates how multivariate models entail partial "borrowing of strength" across dimensions of the effect sizes, which is very helpful for building intuition about how these models work. I would encourage you to check out both papers if you are grappling with understanding how weights work in complex meta-regression models. 
+>>>>>>> origin/master

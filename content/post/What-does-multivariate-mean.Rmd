@@ -1,0 +1,108 @@
+---
+title: What do meta-analysts mean by 'multivariate' meta-analysis?
+authors:
+- admin
+date: '2020-06-27'
+number_sections: false
+codefolding_nobutton: false
+disable_codefolding: true
+slug: what-does-multivariate-mean
+bibliography: [meta-references.bib]
+csl: apa.csl
+link-citations: true
+categories: []
+tags:
+  - meta-analysis
+  - multivariate
+  - dependent effect sizes
+header:
+  caption: ''
+  image: ''
+---
+
+If you've ever had class with me or attended one of my presentations, you've probably heard me grouse about how statisticians are mostly awful about naming things.[^mostly] A lot of the terminology in our field is pretty bad and ineloquent. As a leading example, look no further than Rubin and Little's classification of missing data mechanisms as missing completely at random (MCAR), missing at random (MAR), or missing not at random (MNAR). Clear as mud, and the last one sounds like something you'd see on a handmade sign with a picture of someone's pet puppy who wandered off last week. 
+
+[^mostly]: "Mostly" rather than "uniformly" due to exceptions like Brad Efron (a.k.a. Mr. Bootstrap) and Rob Tibshirani (a.k.a. Mr. Lasso).
+
+```{r, echo = FALSE}
+knitr::include_graphics(path = "https://petkey.blob.core.windows.net/resource/images/940000/949000/949340_500W.jpg")
+```
+
+As another example, consider that introductory statistics students always struggle to distinguish between no less than __*three*__ different concepts that are all called "variance": population variance, sample variance, and sampling variance.[^worse] Unless the instructor also took diction training from the Royal Shakespeare Company, it's no wonder that a fair number of students are left confused.
+
+[^worse]: And then consider the square roots of these quantities, respectively: population standard deviation, sample standard deviation, and __*standard error*__. WTF? 
+
+![](/img/Hamlet-z-transform.jpg)
+In this post, I will try to clarify (at least a little bit) another mess of terminology that crops up a lot in my work on meta-analysis: what do we mean when we say a model or method is "multivariate"? In the context of meta-analysis methods, I think there are at least three distinct senses in which this term is used:
+
+* As an umbrella term for models/methods where there is more than one effect size estimate per study,
+* As a description for a class of methods within that broad umbrella, where certain aspects of the model are treated as known, or
+* As a description for a class of models for multivariate effect size estimates, where each effect size estimate from a study falls into one of a set of distinct categories. 
+
+Let me explain what I mean by each of these. 
+
+## Multivariate handwaving
+
+In the context of meta-analysis, the broadest meaning of "multivariate" is any method used for modeling data that includes more than one effect size estimate in some or all of the included studies. Formally, the term would apply to any model appropriate for a set of $k$ studies, where study $j$ includes $n_j$ effect size estimates, and where the effect size estimates would be denoted $T_{ij}$, for $i = 1,...,n_j$ and $j = 1,...,k$. 
+
+As it is used here, "multivariate" is really an umbrella term that could encompass a wide variety of methods and models, including multi-level meta-analysis or meta-regression models, multivariate methods in the narrower senses I will describe subsequently, and even robust variance estimation methods. It would also encompass techniques for handling this sort of data structure that aren't strictly models, such as aggregating effect size estimates to the level of the study or using Harris Cooper's "shifting unit-of-analysis" method [@Cooper1998synthesizing].
+This usage of "multivariate" involves a bit too much hand-waving for my taste (although I've been guilty of using the term this way in the past). I think a better, clearer term for this broad class of methods would be to call them methods for __*meta-analysis of dependent effect sizes*__. 
+
+## Multivariate sampling errors
+
+Another sense in which "multivariate" is used pertains to a certain class of models for dependent effect sizes. In particular, "multivariate meta-analysis" sometimes means a model where the sampling variances and covariances of the effect size estimates are treated as fully known. Say that each effect size estimate $T_{ij}$ has a corresponding true effect size parameter $\theta_{ij}$, so that the sampling error is $e_{ij} = T_{ij} - \theta_{ij}$, or
+$$
+T_{ij} = \theta_{ij} + e_{ij}.
+$$
+Typically, meta-analysis techniques treat the sampling errors as having known variances, $\text{Var}(e_{ij}) = \sigma_{ij}^2$ for known $\sigma_{ij}^2$. 
+Here, a multivariate meta-analysis would go a step further and make assumptions that $\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj} \sigma_{ij}$ for _known_ correlations $\rho_{hij}$, $h,i = 1,...,n_j$ and $j=1,...,k$.
+Typically, the sampling variances and covariances would play into how the model is estimated and how one conducts inference and gets standard errors on things, etc.
+
+@Becker2000multivariate and @Gleser2009stochastically describe a whole slew of different situations where meta-analysts will encounter multiple effect size estimates within a given study, and both provide formulas for the covariances between those effect sizes. 
+In some situations, these covariances can be calculated just based on primary study sample sizes or other information readily available from study reports. 
+In other situations (such as when one calculates [standardized mean differences for each of several outcomes on a common set of participants](/correlations-between-smds/)), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
+With this meaning of the term, multivariate meta-analysis methods are those that both directly model the dependent effects structure and that treat the sampling covariances as known. They are therefore distinct from methods, such as robust variance estimation, that do not rely on knowing the exact variance-covariance structure of the sampling errors.
+In my own work, I find it helpful to be able to draw this distinction, so I rather like this usage of "multivariate." This will surely irritate some statisticians, though, who prefer the third, stricter meaning of the term.
+
+## Strictly multivariate models
+
+A third meaning of multivariate is to denote a class of models for multivariate data, meaning data where each unit is measured on several dimensions or characteristics. In the meta-analysis context, multivariate effect sizes are ones where, for each included study or sample, we have effect sizes describing outcomes (e.g., treatment effects) on one or more dimensions. 
+For example, say that we have a bunch of studies examining some sort of educational intervention, and each study reports effect sizes describing the intervention's impact on a) reading performance, b) social studies achievement, and/or c) language arts achievement. What differentiates this sort of multivariate data from the first, "umbrella" sense of the term is that with strictly multivariate data, no study has more than one effect size within a given dimension. In contrast, meta-analysis of dependent effect sizes deal with data structures that are not necessarily so tidy and organized, such that we might not be able to classify each effect size into one of a finite and exhaustive set of categories. 
+
+When working with strictly multivariate data like this, a multivariate meta-analysis (or meta-regression) model would entail estimating average effects (or regression coefficients) _for each dimension_ rather than aggregating across dimensions. This class of models was discussed extensively in an excellent article by @Jackson2011multivariate.[^readit] With my example of educational intervention studies, we would estimate average impacts on reading performance, social studies achievement, and language arts achievement. Estimating an overall aggregate effect on academic achievement would make little sense here, because we'd be mixing apples, oranges, and kiwis.  
+
+[^readit]: Read this article! It's essential. And it comes with pages and pages of commentary by other statisticans. 
+
+Formally, this sort of data structure and model can be described as follows. As previously, say that we have a set of $k$ studies, where study $j$ has $n_j$ effect sizes, $T_{ij}$, and correspoding sampling variances $\sigma_{ij}^2$, both for $i = 1,...,n_j$ and $j = 1,...k$. Effect size $i$ from study $j$ can be classified into one of $C$ dimensions. Let $d^c_{ij}$ be an indicator for whether effect $i$ falls into dimension $c$, for $c = 1,...,C$. With a strictly multivariate structure, there is never more than one effect per category, so $\sum_{i=1}^{n_j} d^c_{ij} \leq 1$ for each $c = 1,...,C$ and $j = 1,...,k$. A typical multivariate random effects model would then be
+$$
+T_{ij} = \sum_{c=1}^C \left(\mu_c + v_{cj}\right) d^c_{ij} + e_{ij},
+$$
+where $\mu_c$ is the average effect size for category $c$, $v_{cj}$ is a random effect for category $c$ in study $j$, and $e_{ij}$ is the sampling error term. The classic assumption about the random effects is that they are dependent within study, so 
+$$
+\text{Var}(v_{cj}) = \tau^2_c \qquad \text{and} \qquad \text{Cov}(v_{bj}, v_{cj}) = \tau_{bc}
+$$
+for $b,c = 1,...,C$. Typically, these sorts of models would also rely on assumptions about the correlations between the sampling errors, just as with the second meaning of multivariate. Thus, to complete the model, we would have $\text{Cov}(e_{hj}, e_{ij}) = \rho_{hij}\sigma_{hj}\sigma_{ij}$ for known $\rho_{hij}$. In practice, we might want to impose some common structure to the correlations across studies, such as using $\rho_{hij}$'s that depend on the dimensions being correlated but are common across studies. Formally, we would have
+$$
+\rho_{hij} = \sum_{b=1}^C \sum_{c=1}^C d^b_{ij} \ d^c_{ij} \ \rho_{bc}.
+$$
+Of course, even getting this level of detail about correlations between effect sizes might often be pretty challenging. 
+
+In a strictly multivariate meta-regression model, we would also allow the coefficients for each predictor to be specific to each category, so that
+$$
+T_{ij} = \sum_{c=1}^C \left(\mathbf{x}_{ij}\boldsymbol\beta_c + v_{cj}\right) d^c_{ij} + e_{ij},
+$$
+In my example of educational intervention impact studies, say that are interested in whether the effects differ between quasi-experimental studies and true randomized control trials, and whether the effects differ based on the proportion of the sample that was economically disadvantaged. The strictly multivariate model would always involve interacting these predictors with the outcome category. In R's equation notation, the meta-regression specification would be
+```{r, eval=FALSE}
+ES ~ 0 + Cat + Cat:RCT + Cat:disadvantaged_pct
+```
+In contrast, in a generic meta-regression for dependent effect sizes, we might not include all of the interactions, and instead assume that the associations of the predictors were constant across outcome dimensions, as in 
+```{r, eval=FALSE}
+ES ~ 0 + outcome_cat + RCT + college_pct
+```
+In the strict sense of the term, the model without interactions is no longer really a multivariate meta-regression. 
+
+## Remarks
+
+An interesting property of strict multivariate meta-analysis models is that they involve partial pooling---or "borrowing of strength"---across dimensions [@riley_evaluation_2007; @riley_multivariate_2017]. Even though the model has separate coefficients for each dimension, the estimates for a given dimension are influenced by the available effect sizes for _all_ dimensions. For instance, in the meta-analysis of educational intervention studies, the average impact on reading performance outcomes is based in part on the effect size estimates for the social studies and language arts performance. This happens because the model treats all of the dimensions as _correlated_---through the correlated sampling errors and, potentially, through the correlated random effects structure. @copas_role_2018 examine how this works and propose a diagnostic plot to understand how it happens in application. @kirkham_multivariate_2012 also show that the borrowing of strength phenomenon can partially mitigate bias from selective outcome reporting. These concepts could be quite relevant even beyond the "strict" multivariate meta-analysis context in which they have been explored. It strikes me that it would be useful to investigate them in the more general context of meta-analysis with dependent effect sizes---that is, multivariate meta-analysis in the first, broadest sense. 
+
+## References
