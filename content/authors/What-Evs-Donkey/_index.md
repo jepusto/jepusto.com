@@ -1,6 +1,7 @@
 ---
 authors:
 - What-Evs-Donkey
+name: Whatev's Donkey
 bio: 
 education:
   courses:
@@ -14,11 +15,12 @@ education:
 email: "What-evs@donkey.com"
 interests:
 - Robust statistical methods
-name: Whatev's Donkey
+
 organizations:
 - name: National Organic Standards Board
   url: ""
 role: Research Scientist
+
 social:
 - icon: envelope
   icon_pack: fas
@@ -29,7 +31,9 @@ social:
 - icon: google-scholar
   icon_pack: ai
   link: 'https://scholar.google.com/scholar?q=donkey'
+
 superuser: false
+
 user_groups:
 - Alumni
 ---
