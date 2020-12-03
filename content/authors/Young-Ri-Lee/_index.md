@@ -22,9 +22,9 @@ interests:
 - Meta-analysis 
 
 organizations:
-- name: 
+- name: The University of Texas at Austin
   url: ""
-role: 
+role: Graduate student
 
 social:
 - icon: envelope
