@@ -5,12 +5,112 @@
     <link>/tags/hierarchical-models/</link>
       <atom:link href="/tags/hierarchical-models/index.xml" rel="self" type="application/rss+xml" />
     <description>hierarchical models</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>hierarchical models</title>
       <link>/tags/hierarchical-models/</link>
     </image>
+    
+    <item>
+      <title>The Woodbury identity</title>
+      <link>/woodbury-identity/</link>
+      <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/woodbury-identity/</guid>
+      <description>
+
+
+&lt;p&gt;As in many parts of life, statistics is full of little bits of knowledge that are extremely handy if you know them, but which hardly anybody ever bothers to mention. You would think, if something is so useful, perhaps your professors would spend a fair bit of time explaining it to you. But maybe the stuff seems trivial, obvious, or simple to them, so they don’t bother.&lt;/p&gt;
+&lt;p&gt;One example of this is Excel keyboard shortcuts. In a previous life, I was an Excel jockey so I learned all the keyboard shortcuts, such as how to move the cursor to the last cell in a continuous block of entries (&lt;code&gt;ctrl&lt;/code&gt; + an arrow key). Whenever I do this while sharing a screen in a meeting, someone is invariably amazed and wants to know what dark sorcery I’m conjuring. It’s a simple, handy trick—especially if you’re working with a really large dataset with a lot of rows! But it’s also something that there’s no reason to expect anyone to figure out on their own, and that no stats or quant methods professor is going to spend class time demonstrating.&lt;/p&gt;
+&lt;p&gt;Let me explain another, slightly more involved example, involving one of my favorite pieces of matrix algebra. There’s a thing called the Woodbury identity, also known as the Sherman-Morrison-Woodbury identity, that is a little life hack for inverting certain types of matrices. It has a &lt;a href=&#34;https://en.wikipedia.org/wiki/Woodbury_matrix_identity&#34;&gt;Wikipedia page&lt;/a&gt;, which I have visited many times. It is a very handy bit of math, if you happen to be a statistics student working with hierarchical models (such as meta-analytic models). I’ll give a statement of the identity, then explain a bit about the connection to hierarchical models.&lt;/p&gt;
+&lt;div id=&#34;the-woodbury-identity&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Woodbury identity&lt;/h1&gt;
+&lt;p&gt;Say that you’ve got four matrices, an &lt;span class=&#34;math inline&#34;&gt;\(n \times n\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt;, a &lt;span class=&#34;math inline&#34;&gt;\(k \times k\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{C}\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(n \times k\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{U}\)&lt;/span&gt;, and a $k &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}\)&lt;/span&gt;. Assume that &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{C}\)&lt;/span&gt; are invertible. The Woodbury identity tells you how to get the inverse of a certain combination of these matrices:
+&lt;span class=&#34;math display&#34;&gt;\[
+\left(\mathbf{A} + \mathbf{U} \mathbf{C} \mathbf{V}\right)^{-1} = \mathbf{A}^{-1} - \mathbf{A}^{-1} \mathbf{U} \left(\mathbf{C}^{-1} + \mathbf{V} \mathbf{A}^{-1} \mathbf{U} \right)^{-1} \mathbf{V} \mathbf{A}^{-1}.
+\]&lt;/span&gt;
+Admit it, you’re impressed. “Dude! Mind. Blown.” you’re probably saying to yourself right now. Okay, or maybe you’re still a touch skeptical that this little formula is worth knowing. Let me explain the connection to hierarchical models.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;hierarchical-models&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Hierarchical models&lt;/h1&gt;
+&lt;p&gt;Hierarchical linear models are a mainstay of statistical analysis in many, many areas of application, including education research, where we often deal with data collected on individuals (students, teachers) nested within larger aggregate units (like schools). In meta-analysis, these models come up if we’re dealing with samples that have more than relevant outcome, so that we have multiple effect size estimates nested within a given sample or study.
+Suppose we have a hierarchical structure with &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; clusters, where cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; has &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt; individual observations. A quite general way of expressing a hierarchical model for such a data structure is
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{Y}_j = \mathbf{X}_j \boldsymbol\beta + \mathbf{Z}_j \boldsymbol\eta_j + \boldsymbol\epsilon_j,
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;, where, for cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Y}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector of outcomes,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times p\)&lt;/span&gt; design matrix for the fixed effects,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\beta\)&lt;/span&gt; is a &lt;span class=&#34;math inline&#34;&gt;\(p \times 1\)&lt;/span&gt; vector of fixed effect coefficients,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times q\)&lt;/span&gt; design matrix for the random effects,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\eta_j\)&lt;/span&gt; is a &lt;span class=&#34;math inline&#34;&gt;\(q \times 1\)&lt;/span&gt; vector of random effects, and&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\epsilon_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector of level-1 errors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this model, we assume that the random effects have mean zero and unknown variance-covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;, which often assumed to be an unstructured, symmetric and invertible matrix; we assume that the level-1 errors are also mean zero with variance-covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j\)&lt;/span&gt;; and we assume that &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\eta_j\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\epsilon_j\)&lt;/span&gt;. In many instances, we might assume that the entries of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{e}_j\)&lt;/span&gt; are all independent, so &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma\)&lt;/span&gt; will be a multiple of an identity matrix, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)&lt;/span&gt;. In other instances (such as models for longitudinal data), &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma\)&lt;/span&gt; might be a patterned matrix that includes off-diagonal terms, such as an auto-regressive structure.&lt;/p&gt;
+&lt;p&gt;What is the marginal variance of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Y}_j | \mathbf{X}_j\)&lt;/span&gt; in this model? In other words, if we combine the variance due to the random effects and the variance of the level-1 errors, what do we get? We get
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}\left(\mathbf{Y}_j | \mathbf{X}_j \right) = \mathbf{V}_j = \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&amp;#39; + \boldsymbol\Sigma_j,
+\]&lt;/span&gt;
+a matrix that, if you reverse the terms, looks like
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{V}_j = \boldsymbol\Sigma_j + \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&amp;#39;
+\]&lt;/span&gt;
+a simple form of the combination of matrices in the left-hand side of the Woodbury identity. The identity tells you how to invert this matrix.&lt;/p&gt;
+&lt;p&gt;Why would we care about inverting this variance-covariance matrix? One good reason is that the fixed effect coefficients in the hierarchical model are estimated by weighted least squares, where the weight matrices are the inverse of an estimate of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. Thus, to understand how the weights in a hierarchical model work, it’s quite useful to be able to invert &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. Another good (related) reason is that the sampling variance of the fixed effect estimates is approximately
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(\boldsymbol{\hat\beta}) \approx \left(\sum_{j=1}^J \mathbf{X}_j&amp;#39;\mathbf{V}_j^{-1} \mathbf{X}_j \right)^{-1}
+\]&lt;/span&gt;
+(it would be exact if we knew the parameters of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt; with certainty). So if we want to understand the precision of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\hat\beta}\)&lt;/span&gt; or the power of hypothesis involving &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\hat\beta}\)&lt;/span&gt;, then it’s again handy to be able to invert &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Directly applying the identity, we get
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{V}_j^{-1} = \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{Z}_j \left(\mathbf{T}^{-1} + \mathbf{Z}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j \right)^{-1} \mathbf{Z}_j&amp;#39; \boldsymbol\Sigma_j^{-1}
+\]&lt;/span&gt;
+This expression looks like a bit of a mess, I’ll admit, but it can be useful. Things simplify quite a bit of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1}\)&lt;/span&gt; has a form that is easy to invert (like a multiple of an identity matrix) and if the dimension of the random effects &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; is small. Under these conditions, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1}\)&lt;/span&gt; is easy to work with, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}^{-1}\)&lt;/span&gt; is manageable because it has small dimensions, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j\)&lt;/span&gt; becomes manageable because it also has small dimensions (&lt;span class=&#34;math inline&#34;&gt;\(q \times q\)&lt;/span&gt;, in both cases).&lt;/p&gt;
+&lt;div id=&#34;random-intercepts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Random intercepts&lt;/h2&gt;
+&lt;p&gt;As an example, consider a very simple model that includes only random intercepts, so &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j = \mathbf{1}_j\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector with every entry equal to 1, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt; is simply &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;, variance of the random intercepts. For simplicity, let’s also assume that the level-1 errors are independent, so &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1} = \sigma^{-2} \mathbf{I}_j\)&lt;/span&gt;. Applying the Woodbury identity,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\mathbf{V}_j^{-1} &amp;amp;= \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{1}_j \left(\mathbf{T}^{-1} + \mathbf{1}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{1}_j \right)^{-1} \mathbf{1}_j&amp;#39; \boldsymbol\Sigma_j^{-1} \\
+&amp;amp;= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \mathbf{1}_j \left(\tau^{-2} + \sigma^{-2} \mathbf{1}_j&amp;#39;\mathbf{1}_j \right)^{-1} \mathbf{1}_j&amp;#39; \\
+&amp;amp;= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \left(\tau^{-2} + \sigma^{-2} n_j \right)^{-1} \mathbf{1}_j \mathbf{1}_j&amp;#39; \\
+&amp;amp;= \sigma^{-2} \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j&amp;#39;\right).
+\end{aligned}
+\]&lt;/span&gt;
+Try checking this for yourself by carrying through the matrix algebra for &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j \mathbf{V}_j^{-1}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now suppose that the design matrix was also quite simple, consisting of just an intercept term &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j = \mathbf{1}_j\)&lt;/span&gt;, so that &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\beta = \beta\)&lt;/span&gt; is simply a population mean. How precise is the estimate of the population mean from this hierarchical model? Well, the sampling variance of the estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta\)&lt;/span&gt; is approximately
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{Var}(\hat\beta) &amp;amp;\approx \left(\sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{V}_j^{-1} \mathbf{1}_j \right)^{-1} \\
+&amp;amp;= \left(\sigma^{-2}\sum_{j=1}^J \mathbf{1}_j&amp;#39; \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j&amp;#39;\right) \mathbf{1}_j \right)^{-1} \\
+&amp;amp;= \left(\sigma^{-2} \sum_{j=1}^J n_j \left(1 - \frac{n_j \tau^2} {\sigma^2 + n_j \tau^2} \right)  \right)^{-1} \\ 
+&amp;amp;= \left( \sigma^{-2} \sum_{j=1}^J \frac{n_j \sigma^2} {\sigma^2 + n_j \tau^2} \right)^{-1} \\ 
+&amp;amp;= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \\
+&amp;amp;= \left(\sigma^2 + \tau^2\right) \left(\sum_{j=1}^J \frac{n_j} {1 + (n_j - 1) \rho} \right)^{-1},
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)&lt;/span&gt; is the intra-class correlation. Squint at this expression for a bit and you can see how the ICC influences the varince. If &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near zero, then the sampling variance will be close to &lt;span class=&#34;math inline&#34;&gt;\(\left(\sigma^2 + \tau^2\right) / N\)&lt;/span&gt;, which is what you would get if you treated every observation as independent. If &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near 1, then the sampling variance ends up being nearly &lt;span class=&#34;math inline&#34;&gt;\(\left(\sigma^2 + \tau^2\right) / J\)&lt;/span&gt;, which is what you would get if you treated every cluster as a single observation. For intermediate ICCs, the sample size from cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; (in the numerator of the fraction inside the summation) is getting cut down to size accordingly.&lt;/p&gt;
+&lt;p&gt;The estimator of the population mean is a weighted average of the outcomes. Specifically,
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat\beta = \left(\sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{\hat{V}}_j^{-1} \mathbf{1}_j \right)^{-1} \sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{\hat{V}}_j^{-1} \mathbf{Y}_j,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{\hat{V}}_j\)&lt;/span&gt; is an estimator of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. If you carry through the matrix algebra, you’ll find that
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\hat\beta &amp;amp;= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \sum_{j=1}^J \frac{\mathbf{1}_j&amp;#39;\mathbf{Y}_j}{\sigma^2 + n_j \tau^2} \\
+&amp;amp;= \frac{1}{W} \sum_{j=1}^J \sum_{i=1}^{n_j} w_j y_{ij},
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(w_j = \frac{1}{1 + (n_j - 1) \rho}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{W = \sum_{j=1}^J n_j w_j}\)&lt;/span&gt;. From this, we can see that the weight of a given observation depends on the ICC and the size of the cluster. If the ICC is low, then weights will be close to 1. For higher ICCs, observations in larger clusters get proportionately &lt;em&gt;less&lt;/em&gt; weight than observations in smaller clusters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-meta-analysis-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A meta-analysis example&lt;/h2&gt;
+&lt;p&gt;In &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; on multi-variate meta-analysis, I examined how the weights&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Centering categorical predictors in meta-regression</title>

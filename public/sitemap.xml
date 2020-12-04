@@ -19,16 +19,46 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/ancova-puzzler/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/hierarchical-models/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/matrix-algebra/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/woodbury-identity/</loc>
+    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/ancova-puzzler/</loc>
     <lastmod>2020-11-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,17 +68,7 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/meta-analysis/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2020-11-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -58,17 +78,7 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-11-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/centering-categorical-predictors/</loc>
-    <lastmod>2020-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/hierarchical-models/</loc>
     <lastmod>2020-11-19T00:00:00+00:00</lastmod>
   </url>
   
