@@ -4,7 +4,6 @@ subtitle: A life-hack for analyzing hierarchical models
 authors:
 - admin
 date: '2020-12-04'
-draft: true
 slug: Woodbury-identity
 categories: []
 tags:
@@ -17,21 +16,22 @@ header:
 
 
 
-<p>As in many parts of life, statistics is full of little bits of knowledge that are extremely handy if you know them, but which hardly anybody ever bothers to mention. You would think, if something is so useful, perhaps your professors would spend a fair bit of time explaining it to you. But maybe the stuff seems trivial, obvious, or simple to them, so they don’t bother.</p>
-<p>One example of this is Excel keyboard shortcuts. In a previous life, I was an Excel jockey so I learned all the keyboard shortcuts, such as how to move the cursor to the last cell in a continuous block of entries (<code>ctrl</code> + an arrow key). Whenever I do this while sharing a screen in a meeting, someone is invariably amazed and wants to know what dark sorcery I’m conjuring. It’s a simple, handy trick—especially if you’re working with a really large dataset with a lot of rows! But it’s also something that there’s no reason to expect anyone to figure out on their own, and that no stats or quant methods professor is going to spend class time demonstrating.</p>
+<p>As in many parts of life, statistics is full of little bits of knowledge that are useful if you happen to know them, but which hardly anybody ever bothers to mention. You would think, if something is so useful, perhaps your professors would spend a fair bit of time explaining it to you. But maybe the stuff seems trivial, obvious, or simple to them, so they don’t bother.</p>
+<p>One example of this is Excel keyboard shortcuts. In a previous life, I was an Excel jockey so I learned all the keyboard shortcuts, such as how to move the cursor to the last cell in a continuous block of entries (<code>ctrl</code> + an arrow key). Whenever I do this while sharing a screen in a meeting, someone is invariably astounded and wants to know what dark sorcery I’m conjuring. It’s a simple trick, but a useful one—especially if you’re working with a really large dataset with thousands of rows. But it’s also something that there’s no reason to expect anyone to figure out on their own, and that no stats or quant methods professor is going to spend class time demonstrating.</p>
 <p>Let me explain another, slightly more involved example, involving one of my favorite pieces of matrix algebra. There’s a thing called the Woodbury identity, also known as the Sherman-Morrison-Woodbury identity, that is a little life hack for inverting certain types of matrices. It has a <a href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity">Wikipedia page</a>, which I have visited many times. It is a very handy bit of math, if you happen to be a statistics student working with hierarchical models (such as meta-analytic models). I’ll give a statement of the identity, then explain a bit about the connection to hierarchical models.</p>
 <div id="the-woodbury-identity" class="section level1">
 <h1>The Woodbury identity</h1>
-<p>Say that you’ve got four matrices, an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span>, a <span class="math inline">\(k \times k\)</span> matrix <span class="math inline">\(\mathbf{C}\)</span>, an <span class="math inline">\(n \times k\)</span> matrix <span class="math inline">\(\mathbf{U}\)</span>, and a $k <span class="math inline">\(n\)</span> matrix <span class="math inline">\(\mathbf{V}\)</span>. Assume that <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{C}\)</span> are invertible. The Woodbury identity tells you how to get the inverse of a certain combination of these matrices:
+<p>Say that you’ve got four matrices, an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf{A}\)</span>, a <span class="math inline">\(k \times k\)</span> matrix <span class="math inline">\(\mathbf{C}\)</span>, an <span class="math inline">\(n \times k\)</span> matrix <span class="math inline">\(\mathbf{U}\)</span>, and a <span class="math inline">\(k \times n\)</span> matrix <span class="math inline">\(\mathbf{V}\)</span>. Assume that <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{C}\)</span> are invertible. The Woodbury identity tells you how to get the inverse of a certain combination of these matrices:
 <span class="math display">\[
 \left(\mathbf{A} + \mathbf{U} \mathbf{C} \mathbf{V}\right)^{-1} = \mathbf{A}^{-1} - \mathbf{A}^{-1} \mathbf{U} \left(\mathbf{C}^{-1} + \mathbf{V} \mathbf{A}^{-1} \mathbf{U} \right)^{-1} \mathbf{V} \mathbf{A}^{-1}.
 \]</span>
-Admit it, you’re impressed. “Dude! Mind. Blown.” you’re probably saying to yourself right now. Okay, or maybe you’re still a touch skeptical that this little formula is worth knowing. Let me explain the connection to hierarchical models.</p>
+Admit it, you’re impressed. “Dude! Mind. Blown.” you’re probably saying to yourself right now.</p>
+<p>Or perhaps you’re still a touch skeptical that this formula is worth knowing. Let me explain the connection to hierarchical models.</p>
 </div>
 <div id="hierarchical-models" class="section level1">
 <h1>Hierarchical models</h1>
-<p>Hierarchical linear models are a mainstay of statistical analysis in many, many areas of application, including education research, where we often deal with data collected on individuals (students, teachers) nested within larger aggregate units (like schools). In meta-analysis, these models come up if we’re dealing with samples that have more than relevant outcome, so that we have multiple effect size estimates nested within a given sample or study.
-Suppose we have a hierarchical structure with <span class="math inline">\(J\)</span> clusters, where cluster <span class="math inline">\(j\)</span> has <span class="math inline">\(n_j\)</span> individual observations. A quite general way of expressing a hierarchical model for such a data structure is
+<p>Hierarchical linear models are a mainstay of statistical analysis in many, many areas of application, including education research, where we often deal with data collected on individuals (students, teachers) nested within larger aggregate units (like schools). In meta-analysis, these models come up if we’re dealing with samples that have more than one relevant outcome, so that we have multiple effect size estimates nested within a given sample or study.</p>
+<p>Suppose we have a hierarchical structure with <span class="math inline">\(J\)</span> clusters, where cluster <span class="math inline">\(j\)</span> has <span class="math inline">\(n_j\)</span> individual observations. A quite general way of expressing a hierarchical model for such a data structure is
 <span class="math display">\[
 \mathbf{Y}_j = \mathbf{X}_j \boldsymbol\beta + \mathbf{Z}_j \boldsymbol\eta_j + \boldsymbol\epsilon_j,
 \]</span>
@@ -44,7 +44,7 @@ for <span class="math inline">\(j = 1,...,J\)</span>, where, for cluster <span c
 <li><span class="math inline">\(\boldsymbol\eta_j\)</span> is a <span class="math inline">\(q \times 1\)</span> vector of random effects, and</li>
 <li><span class="math inline">\(\boldsymbol\epsilon_j\)</span> is an <span class="math inline">\(n_j \times 1\)</span> vector of level-1 errors.</li>
 </ul>
-<p>In this model, we assume that the random effects have mean zero and unknown variance-covariance matrix <span class="math inline">\(\mathbf{T}\)</span>, which often assumed to be an unstructured, symmetric and invertible matrix; we assume that the level-1 errors are also mean zero with variance-covariance matrix <span class="math inline">\(\boldsymbol\Sigma_j\)</span>; and we assume that <span class="math inline">\(\boldsymbol\eta_j\)</span> is independent of <span class="math inline">\(\boldsymbol\epsilon_j\)</span>. In many instances, we might assume that the entries of <span class="math inline">\(\mathbf{e}_j\)</span> are all independent, so <span class="math inline">\(\boldsymbol\Sigma\)</span> will be a multiple of an identity matrix, <span class="math inline">\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)</span>. In other instances (such as models for longitudinal data), <span class="math inline">\(\boldsymbol\Sigma\)</span> might be a patterned matrix that includes off-diagonal terms, such as an auto-regressive structure.</p>
+<p>In this model, we assume that the random effects have mean zero and unknown variance-covariance matrix <span class="math inline">\(\mathbf{T}\)</span>, often assumed to be an unstructured, symmetric and invertible matrix; we assume that the level-1 errors are also mean zero with variance-covariance matrix <span class="math inline">\(\boldsymbol\Sigma_j\)</span>; and we assume that <span class="math inline">\(\boldsymbol\eta_j\)</span> is independent of <span class="math inline">\(\boldsymbol\epsilon_j\)</span>. In many instances, we might assume that the entries of <span class="math inline">\(\mathbf{e}_j\)</span> are all independent, so <span class="math inline">\(\boldsymbol\Sigma_j\)</span> will be a multiple of an identity matrix, <span class="math inline">\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)</span>. In other instances (such as models for longitudinal data), <span class="math inline">\(\boldsymbol\Sigma\)</span> might be a patterned matrix that includes off-diagonal terms, such as an auto-regressive structure.</p>
 <p>What is the marginal variance of <span class="math inline">\(\mathbf{Y}_j | \mathbf{X}_j\)</span> in this model? In other words, if we combine the variance due to the random effects and the variance of the level-1 errors, what do we get? We get
 <span class="math display">\[
 \text{Var}\left(\mathbf{Y}_j | \mathbf{X}_j \right) = \mathbf{V}_j = \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&#39; + \boldsymbol\Sigma_j,
@@ -53,12 +53,12 @@ a matrix that, if you reverse the terms, looks like
 <span class="math display">\[
 \mathbf{V}_j = \boldsymbol\Sigma_j + \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&#39;
 \]</span>
-a simple form of the combination of matrices in the left-hand side of the Woodbury identity. The identity tells you how to invert this matrix.</p>
-<p>Why would we care about inverting this variance-covariance matrix? One good reason is that the fixed effect coefficients in the hierarchical model are estimated by weighted least squares, where the weight matrices are the inverse of an estimate of <span class="math inline">\(\mathbf{V}_j\)</span>. Thus, to understand how the weights in a hierarchical model work, it’s quite useful to be able to invert <span class="math inline">\(\mathbf{V}_j\)</span>. Another good (related) reason is that the sampling variance of the fixed effect estimates is approximately
+a simple form of the combination of matrices in the left-hand side of the Woodbury identity. Thus, the identity tells us how we can invert this matrix.</p>
+<p>But why would we care about inverting this variance-covariance matrix, you might ask? One good reason is that the fixed effect coefficients in the hierarchical model are estimated by weighted least squares, where the weight matrices are the inverse of an estimate of <span class="math inline">\(\mathbf{V}_j\)</span>. Thus, to understand how the weights in a hierarchical model work, it’s quite useful to be able to invert <span class="math inline">\(\mathbf{V}_j\)</span>. Another good (related) reason is that the sampling variance of the fixed effect estimates is approximately
 <span class="math display">\[
 \text{Var}(\boldsymbol{\hat\beta}) \approx \left(\sum_{j=1}^J \mathbf{X}_j&#39;\mathbf{V}_j^{-1} \mathbf{X}_j \right)^{-1}
 \]</span>
-(it would be exact if we knew the parameters of <span class="math inline">\(\mathbf{V}_j\)</span> with certainty). So if we want to understand the precision of <span class="math inline">\(\boldsymbol{\hat\beta}\)</span> or the power of hypothesis involving <span class="math inline">\(\boldsymbol{\hat\beta}\)</span>, then it’s again handy to be able to invert <span class="math inline">\(\mathbf{V}_j\)</span>.</p>
+(it would be exact if we knew the parameters of <span class="math inline">\(\mathbf{V}_j\)</span> with certainty). So if we want to understand the precision of <span class="math inline">\(\boldsymbol{\hat\beta}\)</span> or the power of a hypothesis test involving <span class="math inline">\(\boldsymbol{\hat\beta}\)</span>, then we we won’t be able to get very far without inverting <span class="math inline">\(\mathbf{V}_j\)</span>.</p>
 <p>Directly applying the identity, we get
 <span class="math display">\[
 \mathbf{V}_j^{-1} = \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{Z}_j \left(\mathbf{T}^{-1} + \mathbf{Z}_j&#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j \right)^{-1} \mathbf{Z}_j&#39; \boldsymbol\Sigma_j^{-1}
@@ -66,7 +66,7 @@ a simple form of the combination of matrices in the left-hand side of the Woodbu
 This expression looks like a bit of a mess, I’ll admit, but it can be useful. Things simplify quite a bit of <span class="math inline">\(\boldsymbol\Sigma_j^{-1}\)</span> has a form that is easy to invert (like a multiple of an identity matrix) and if the dimension of the random effects <span class="math inline">\(q\)</span> is small. Under these conditions, <span class="math inline">\(\boldsymbol\Sigma_j^{-1}\)</span> is easy to work with, <span class="math inline">\(\mathbf{T}^{-1}\)</span> is manageable because it has small dimensions, and <span class="math inline">\(\mathbf{Z}_j&#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j\)</span> becomes manageable because it also has small dimensions (<span class="math inline">\(q \times q\)</span>, in both cases).</p>
 <div id="random-intercepts" class="section level2">
 <h2>Random intercepts</h2>
-<p>As an example, consider a very simple model that includes only random intercepts, so <span class="math inline">\(\mathbf{Z}_j = \mathbf{1}_j\)</span>, an <span class="math inline">\(n_j \times 1\)</span> vector with every entry equal to 1, and <span class="math inline">\(\mathbf{T}\)</span> is simply <span class="math inline">\(\tau^2\)</span>, variance of the random intercepts. For simplicity, let’s also assume that the level-1 errors are independent, so <span class="math inline">\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)</span> and <span class="math inline">\(\boldsymbol\Sigma_j^{-1} = \sigma^{-2} \mathbf{I}_j\)</span>. Applying the Woodbury identity,
+<p>As an example, consider a very simple model that includes only random intercepts, so <span class="math inline">\(\mathbf{Z}_j = \mathbf{1}_j\)</span>, an <span class="math inline">\(n_j \times 1\)</span> vector with every entry equal to 1, and <span class="math inline">\(\mathbf{T}\)</span> is simply <span class="math inline">\(\tau^2\)</span>, the variance of the random intercepts. For simplicity, let’s also assume that the level-1 errors are independent, so <span class="math inline">\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)</span> and <span class="math inline">\(\boldsymbol\Sigma_j^{-1} = \sigma^{-2} \mathbf{I}_j\)</span>. Applying the Woodbury identity,
 <span class="math display">\[
 \begin{aligned}
 \mathbf{V}_j^{-1} &amp;= \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{1}_j \left(\mathbf{T}^{-1} + \mathbf{1}_j&#39;\boldsymbol\Sigma_j^{-1}\mathbf{1}_j \right)^{-1} \mathbf{1}_j&#39; \boldsymbol\Sigma_j^{-1} \\
@@ -75,8 +75,8 @@ This expression looks like a bit of a mess, I’ll admit, but it can be useful. 
 &amp;= \sigma^{-2} \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j&#39;\right).
 \end{aligned}
 \]</span>
-Try checking this for yourself by carrying through the matrix algebra for <span class="math inline">\(\mathbf{V}_j \mathbf{V}_j^{-1}\)</span>.</p>
-<p>Now suppose that the design matrix was also quite simple, consisting of just an intercept term <span class="math inline">\(\mathbf{X}_j = \mathbf{1}_j\)</span>, so that <span class="math inline">\(\boldsymbol\beta = \beta\)</span> is simply a population mean. How precise is the estimate of the population mean from this hierarchical model? Well, the sampling variance of the estimator <span class="math inline">\(\hat\beta\)</span> is approximately
+Try checking this for yourself by carrying through the matrix algebra for <span class="math inline">\(\mathbf{V}_j \mathbf{V}_j^{-1}\)</span>, which should come out equal to <span class="math inline">\(\mathbf{I}_j\)</span>.</p>
+<p>Now suppose that the design matrix is also quite simple, consisting of just an intercept term <span class="math inline">\(\mathbf{X}_j = \mathbf{1}_j\)</span>, so that <span class="math inline">\(\boldsymbol\beta = \beta\)</span> is simply a population mean. How precise is the estimate of the population mean from this hierarchical model? Well, the sampling variance of the estimator <span class="math inline">\(\hat\beta\)</span> is approximately
 <span class="math display">\[
 \begin{aligned}
 \text{Var}(\hat\beta) &amp;\approx \left(\sum_{j=1}^J \mathbf{1}_j&#39;\mathbf{V}_j^{-1} \mathbf{1}_j \right)^{-1} \\
@@ -87,7 +87,7 @@ Try checking this for yourself by carrying through the matrix algebra for <span 
 &amp;= \left(\sigma^2 + \tau^2\right) \left(\sum_{j=1}^J \frac{n_j} {1 + (n_j - 1) \rho} \right)^{-1},
 \end{aligned}
 \]</span>
-where <span class="math inline">\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)</span> is the intra-class correlation. Squint at this expression for a bit and you can see how the ICC influences the varince. If <span class="math inline">\(\rho\)</span> is near zero, then the sampling variance will be close to <span class="math inline">\(\left(\sigma^2 + \tau^2\right) / N\)</span>, which is what you would get if you treated every observation as independent. If <span class="math inline">\(\rho\)</span> is near 1, then the sampling variance ends up being nearly <span class="math inline">\(\left(\sigma^2 + \tau^2\right) / J\)</span>, which is what you would get if you treated every cluster as a single observation. For intermediate ICCs, the sample size from cluster <span class="math inline">\(j\)</span> (in the numerator of the fraction inside the summation) is getting cut down to size accordingly.</p>
+where <span class="math inline">\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)</span> is the intra-class correlation. Squint at this expression for a bit and you can see how the ICC influences the varince. If <span class="math inline">\(\rho\)</span> is near zero, then the sampling variance will be close to <span class="math inline">\(\left(\sigma^2 + \tau^2\right) / N\)</span>, which is what you would get if you treated every observation as independent. If <span class="math inline">\(\rho\)</span> is near 1, then the sampling variance ends up being nearly <span class="math inline">\(\left(\sigma^2 + \tau^2\right) / J\)</span>, which is what you would get if you treated every cluster as a single observation. For intermediate ICCs, the sample size from cluster <span class="math inline">\(j\)</span> (in the numerator of the fraction inside the summation) gets cut down to size accordingly.</p>
 <p>The estimator of the population mean is a weighted average of the outcomes. Specifically,
 <span class="math display">\[
 \hat\beta = \left(\sum_{j=1}^J \mathbf{1}_j&#39;\mathbf{\hat{V}}_j^{-1} \mathbf{1}_j \right)^{-1} \sum_{j=1}^J \mathbf{1}_j&#39;\mathbf{\hat{V}}_j^{-1} \mathbf{Y}_j,
@@ -99,10 +99,44 @@ where <span class="math inline">\(\mathbf{\hat{V}}_j\)</span> is an estimator of
 &amp;= \frac{1}{W} \sum_{j=1}^J \sum_{i=1}^{n_j} w_j y_{ij},
 \end{aligned}
 \]</span>
-where <span class="math inline">\(w_j = \frac{1}{1 + (n_j - 1) \rho}\)</span> and <span class="math inline">\(\displaystyle{W = \sum_{j=1}^J n_j w_j}\)</span>. From this, we can see that the weight of a given observation depends on the ICC and the size of the cluster. If the ICC is low, then weights will be close to 1. For higher ICCs, observations in larger clusters get proportionately <em>less</em> weight than observations in smaller clusters.</p>
+where <span class="math inline">\(w_j = \frac{1}{1 + (n_j - 1) \rho}\)</span> and <span class="math inline">\(\displaystyle{W = \sum_{j=1}^J n_j w_j}\)</span>. From this, we can see that the weight of a given observation depends on the ICC and the size of the cluster. If the ICC is low, then weights will all be close to 1. For higher ICCs, observations in smaller clusters get proportionately <em>more</em> weight than observations in larger clusters.</p>
 </div>
 <div id="a-meta-analysis-example" class="section level2">
 <h2>A meta-analysis example</h2>
-<p>In <a href="/weighting-in-multivariate-meta-analysis/">previous post</a> on multi-variate meta-analysis, I examined how the weights</p>
+<p>In a <a href="/weighting-in-multivariate-meta-analysis/">previous post</a> on multi-variate meta-analysis, I examined how weighting works in some multi-variate meta-analysis models, where you have multiple effect size estimates nested within a study. Letting <span class="math inline">\(T_{ij}\)</span> denote effect size estimate <span class="math inline">\(i\)</span> in study <span class="math inline">\(j\)</span>, for <span class="math inline">\(i = 1,...,n_j\)</span> and <span class="math inline">\(j = 1,...,J\)</span>. The first model I considered in the previous post was
+<span class="math display">\[
+T_{ij} = \mu + \eta_j + \nu_{ij} + e_{ij},
+\]</span>
+where <span class="math inline">\(\text{Var}(\eta_j) = \tau^2\)</span>, <span class="math inline">\(\text{Var}(\nu_{ij}) = \omega^2\)</span>, <span class="math inline">\(\text{Var}(e_{ij}) = V_j\)</span>, treated as known, and <span class="math inline">\(\text{cor}(e_{hj}, e_{ij}) = \rho\)</span> for some specified value of <span class="math inline">\(\rho\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> This model makes the simplifying assumptions that the effect sizes within a given study all have the same sampling variance, <span class="math inline">\(V_j\)</span>, and that there is a single correlation between pairs of outcomes from the same study, that is constant across all pairs of outcomes and across all studies.</p>
+<p>You can write this model in matrix form as
+<span class="math display">\[
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+\]</span>
+where <span class="math inline">\(\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j\)</span> and <span class="math inline">\(\text{Var}(\mathbf{e}_j) = V_j \left[\rho \mathbf{1}_j \mathbf{1}_j&#39; + (1 - \rho) \mathbf{I}_j\right]\)</span>. It follows that
+<span class="math display">\[
+\text{Var}(\mathbf{T}_j) = (\tau^2 + V_j\rho) \mathbf{1}_j \mathbf{1}_j&#39; + [\omega^2 + V_j (1 - \rho)] \mathbf{I}_j.
+\]</span>
+The Woodbury identity comes in handy here again, if we want to examine the weights implied by this model or the sampling variance of the overall average effect size estimator.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I’ll leave it as an exercise to find an expression for the weight assigned to effect size <span class="math inline">\(T_{ij}\)</span> under this model.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> You could also try finding an expression for the variance of the overall average effect size estimator <span class="math inline">\(\hat\mu\)</span>, based on inverse-variance weighting, when the model is correctly specified.</p>
 </div>
+<div id="another-meta-analysis-example" class="section level2">
+<h2>Another meta-analysis example</h2>
+<p>In the <a href="/weighting-in-multivariate-meta-analysis/">previous post</a>, I also covered weighting in a bit more general model, where the sampling variances and correlations are no longer quite so constrained. As before, we have
+<span class="math display">\[
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+\]</span>
+where <span class="math inline">\(\text{Var}(\eta_j) = \tau^2\)</span> and <span class="math inline">\(\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j\)</span>. But now let <span class="math inline">\(\text{Var}(\mathbf{e}_j) = \boldsymbol\Sigma_j\)</span> for some arbitrary, symmetric, invertible matrix <span class="math inline">\(\boldsymbol\Sigma_j\)</span>. The marginal variance of <span class="math inline">\(\mathbf{T}_j\)</span> is therefore
+<span class="math display">\[
+\text{Var}(\mathbf{T}_j) = \tau^2\mathbf{1}_j \mathbf{1}_j&#39; + \omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j.
+\]</span>
+Let <span class="math inline">\(\mathbf{S}_j = \left(\omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j\right)^{-1}\)</span>. Try applying the Woodbury identity to invert <span class="math inline">\(\text{Var}(\mathbf{T}_j)\)</span> in terms of <span class="math inline">\(\tau^2\)</span>, <span class="math inline">\(n_j\)</span>, and <span class="math inline">\(\mathbf{S}_j\)</span>. Then see if you can derive the weight assigned to effect <span class="math inline">\(i\)</span> in study <span class="math inline">\(j\)</span> under this model. See the previous post for the solution.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This model is what we call the “correlated-and-hierarchical effects model” in my paper (with Beth Tipton) on <a href="/publication/rve-meta-analysis-expanding-the-range/">extending working models for robust variance estimation</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Or squint hard at the formula for the variance of <span class="math inline">\(\mathbf{T}_j\)</span>, and you’ll see that it has the same form as the random intercepts model in the previous example. Just replace the <span class="math inline">\(\tau^2\)</span> in that model with <span class="math inline">\(\tau^2 + V_j \rho\)</span> and replace the <span class="math inline">\(\sigma^2\)</span> in that model with <span class="math inline">\(\omega^2 + V_j (1 - \rho)\)</span>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>See the <a href="/weighting-in-multivariate-meta-analysis/">previous post</a> for the answer.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>In the previous post, I expressed the weights in terms of <span class="math inline">\(s_{ij}\)</span>, the sum of the entries in row <span class="math inline">\(i\)</span> of the <span class="math inline">\(\mathbf{S}_j\)</span> matrix. In vector form, <span class="math inline">\(\mathbf{s}_j = \left(s_{1j} \ s_{2j} \ \cdots \ s_{n_j j}\right)&#39; = \mathbf{S}_j \mathbf{1}_j\)</span>.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
