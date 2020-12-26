@@ -1,0 +1,149 @@
+---
+title: The Woodbury identity
+subtitle: A life-hack for analyzing hierarchical models
+authors:
+- admin
+date: '2020-12-04'
+slug: Woodbury-identity
+categories: []
+tags:
+  - hierarchical models
+  - matrix algebra
+header:
+  caption: ''
+  image: ''
+---
+
+As in many parts of life, statistics is full of little bits of knowledge that are useful if you happen to know them, but which hardly anybody ever bothers to mention. You would think, if something is so useful, perhaps your professors would spend a fair bit of time explaining it to you. But maybe the stuff seems trivial, obvious, or simple to them, so they don't bother. 
+
+One example of this is Excel keyboard shortcuts. In a previous life, I was an Excel jockey so I learned all the keyboard shortcuts, such as how to move the cursor to the last cell in a continuous block of entries (`ctrl` + an arrow key). Whenever I do this while sharing a screen in a meeting, someone is invariably astounded and wants to know what dark sorcery I'm conjuring. It's a simple trick, but a useful one---especially if you're working with a really large dataset with thousands of rows. But it's also something that there's no reason to expect anyone to figure out on their own, and that no stats or quant methods professor is going to spend class time demonstrating. 
+
+Let me explain another, slightly more involved example, involving one of my favorite pieces of matrix algebra. There's a thing called the Woodbury identity, also known as the Sherman-Morrison-Woodbury identity, that is a little life hack for inverting certain types of matrices. It has a [Wikipedia page](https://en.wikipedia.org/wiki/Woodbury_matrix_identity), which I have visited many times. It is a very handy bit of math, if you happen to be a statistics student working with hierarchical models (such as meta-analytic models). I'll give a statement of the identity, then explain a bit about the connection to hierarchical models. 
+
+# The Woodbury identity
+
+Say that you've got four matrices, an $n \times n$ matrix $\mathbf{A}$, a $k \times k$ matrix $\mathbf{C}$, an $n \times k$ matrix $\mathbf{U}$, and a $k \times n$ matrix $\mathbf{V}$. Assume that $\mathbf{A}$ and $\mathbf{C}$ are invertible. The Woodbury identity tells you how to get the inverse of a certain combination of these matrices:
+$$
+\left(\mathbf{A} + \mathbf{U} \mathbf{C} \mathbf{V}\right)^{-1} = \mathbf{A}^{-1} - \mathbf{A}^{-1} \mathbf{U} \left(\mathbf{C}^{-1} + \mathbf{V} \mathbf{A}^{-1} \mathbf{U} \right)^{-1} \mathbf{V} \mathbf{A}^{-1}.
+$$
+Admit it, you're impressed. "Dude! Mind. Blown." you're probably saying to yourself right now. 
+
+Or perhaps you're still a touch skeptical that this formula is worth knowing. Let me explain the connection to hierarchical models. 
+
+# Hierarchical models
+
+Hierarchical linear models are a mainstay of statistical analysis in many, many areas of application, including education research, where we often deal with data collected on individuals (students, teachers) nested within larger aggregate units (like schools). In meta-analysis, these models come up if we're dealing with samples that have more than one relevant outcome, so that we have multiple effect size estimates nested within a given sample or study. 
+
+Suppose we have a hierarchical structure with $J$ clusters, where cluster $j$ has $n_j$ individual observations. A quite general way of expressing a hierarchical model for such a data structure is
+$$
+\mathbf{Y}_j = \mathbf{X}_j \boldsymbol\beta + \mathbf{Z}_j \boldsymbol\eta_j + \boldsymbol\epsilon_j,
+$$
+for $j = 1,...,J$, where, for cluster $j$:
+
+- $\mathbf{Y}_j$ is an $n_j \times 1$ vector of outcomes, 
+- $\mathbf{X}_j$ is an $n_j \times p$ design matrix for the fixed effects, 
+- $\boldsymbol\beta$ is a $p \times 1$ vector of fixed effect coefficients,
+- $\mathbf{Z}_j$ is an $n_j \times q$ design matrix for the random effects,
+- $\boldsymbol\eta_j$ is a $q \times 1$ vector of random effects, and
+- $\boldsymbol\epsilon_j$ is an $n_j \times 1$ vector of level-1 errors. 
+
+In this model, we assume that the random effects have mean zero and unknown variance-covariance matrix $\mathbf{T}$, often assumed to be an unstructured, symmetric and invertible matrix; we assume that the level-1 errors are also mean zero with variance-covariance matrix $\boldsymbol\Sigma_j$; and we assume that $\boldsymbol\eta_j$ is independent of $\boldsymbol\epsilon_j$. In many instances, we might assume that the entries of $\mathbf{e}_j$ are all independent, so $\boldsymbol\Sigma_j$ will be a multiple of an identity matrix, $\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j$. In other instances (such as models for longitudinal data), $\boldsymbol\Sigma$ might be a patterned matrix that includes off-diagonal terms, such as an auto-regressive structure. 
+
+What is the marginal variance of $\mathbf{Y}_j | \mathbf{X}_j$ in this model? In other words, if we combine the variance due to the random effects and the variance of the level-1 errors, what do we get? We get
+$$
+\text{Var}\left(\mathbf{Y}_j | \mathbf{X}_j \right) = \mathbf{V}_j = \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j' + \boldsymbol\Sigma_j,
+$$
+a matrix that, if you reverse the terms, looks like
+$$
+\mathbf{V}_j = \boldsymbol\Sigma_j + \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j'
+$$
+a simple form of the combination of matrices in the left-hand side of the Woodbury identity. Thus, the identity tells us how we can invert this matrix. 
+
+But why would we care about inverting this variance-covariance matrix, you might ask? One good reason is that the fixed effect coefficients in the hierarchical model are estimated by weighted least squares, where the weight matrices are the inverse of an estimate of $\mathbf{V}_j$. Thus, to understand how the weights in a hierarchical model work, it's quite useful to be able to invert $\mathbf{V}_j$. Another good (related) reason is that the sampling variance of the fixed effect estimates is approximately
+$$
+\text{Var}(\boldsymbol{\hat\beta}) \approx \left(\sum_{j=1}^J \mathbf{X}_j'\mathbf{V}_j^{-1} \mathbf{X}_j \right)^{-1}
+$$
+(it would be exact if we knew the parameters of $\mathbf{V}_j$ with certainty). So if we want to understand the precision of $\boldsymbol{\hat\beta}$ or the power of a hypothesis test involving $\boldsymbol{\hat\beta}$, then we we won't be able to get very far without inverting $\mathbf{V}_j$.
+
+Directly applying the identity, we get
+$$
+\mathbf{V}_j^{-1} = \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{Z}_j \left(\mathbf{T}^{-1} + \mathbf{Z}_j'\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j \right)^{-1} \mathbf{Z}_j' \boldsymbol\Sigma_j^{-1}
+$$
+This expression looks like a bit of a mess, I'll admit, but it can be useful. Things simplify quite a bit of $\boldsymbol\Sigma_j^{-1}$ has a form that is easy to invert (like a multiple of an identity matrix) and if the dimension of the random effects $q$ is small. Under these conditions, $\boldsymbol\Sigma_j^{-1}$ is easy to work with, $\mathbf{T}^{-1}$ is manageable because it has small dimensions, and $\mathbf{Z}_j'\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j$ becomes manageable because it also has small dimensions ($q \times q$, in both cases).
+
+## Random intercepts
+
+As an example, consider a very simple model that includes only random intercepts, so $\mathbf{Z}_j = \mathbf{1}_j$, an $n_j \times 1$ vector with every entry equal to 1, and $\mathbf{T}$ is simply $\tau^2$, the variance of the random intercepts. For simplicity, let's also assume that the level-1 errors are independent, so $\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j$ and $\boldsymbol\Sigma_j^{-1} = \sigma^{-2} \mathbf{I}_j$. Applying the Woodbury identity, 
+$$
+\begin{aligned}
+\mathbf{V}_j^{-1} &= \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{1}_j \left(\mathbf{T}^{-1} + \mathbf{1}_j'\boldsymbol\Sigma_j^{-1}\mathbf{1}_j \right)^{-1} \mathbf{1}_j' \boldsymbol\Sigma_j^{-1} \\
+&= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \mathbf{1}_j \left(\tau^{-2} + \sigma^{-2} \mathbf{1}_j'\mathbf{1}_j \right)^{-1} \mathbf{1}_j' \\
+&= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \left(\tau^{-2} + \sigma^{-2} n_j \right)^{-1} \mathbf{1}_j \mathbf{1}_j' \\
+&= \sigma^{-2} \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j'\right).
+\end{aligned}
+$$
+Try checking this for yourself by carrying through the matrix algebra for $\mathbf{V}_j \mathbf{V}_j^{-1}$, which should come out equal to $\mathbf{I}_j$.
+
+Now suppose that the design matrix is also quite simple, consisting of just an intercept term $\mathbf{X}_j = \mathbf{1}_j$, so that $\boldsymbol\beta = \beta$ is simply a population mean. How precise is the estimate of the population mean from this hierarchical model? Well, the sampling variance of the estimator $\hat\beta$ is approximately
+$$
+\begin{aligned}
+\text{Var}(\hat\beta) &\approx \left(\sum_{j=1}^J \mathbf{1}_j'\mathbf{V}_j^{-1} \mathbf{1}_j \right)^{-1} \\
+&= \left(\sigma^{-2}\sum_{j=1}^J \mathbf{1}_j' \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j'\right) \mathbf{1}_j \right)^{-1} \\
+&= \left(\sigma^{-2} \sum_{j=1}^J n_j \left(1 - \frac{n_j \tau^2} {\sigma^2 + n_j \tau^2} \right)  \right)^{-1} \\ 
+&= \left( \sigma^{-2} \sum_{j=1}^J \frac{n_j \sigma^2} {\sigma^2 + n_j \tau^2} \right)^{-1} \\ 
+&= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \\
+&= \left(\sigma^2 + \tau^2\right) \left(\sum_{j=1}^J \frac{n_j} {1 + (n_j - 1) \rho} \right)^{-1},
+\end{aligned}
+$$
+where $\rho = \tau^2 / (\tau^2 + \sigma^2)$ is the intra-class correlation. Squint at this expression for a bit and you can see how the ICC influences the varince. If $\rho$ is near zero, then the sampling variance will be close to $\left(\sigma^2 + \tau^2\right) / N$, which is what you would get if you treated every observation as independent. If $\rho$ is near 1, then the sampling variance ends up being nearly $\left(\sigma^2 + \tau^2\right) / J$, which is what you would get if you treated every cluster as a single observation. For intermediate ICCs, the sample size from cluster $j$ (in the numerator of the fraction inside the summation) gets cut down to size accordingly. 
+
+The estimator of the population mean is a weighted average of the outcomes. Specifically,
+$$
+\hat\beta = \left(\sum_{j=1}^J \mathbf{1}_j'\mathbf{\hat{V}}_j^{-1} \mathbf{1}_j \right)^{-1} \sum_{j=1}^J \mathbf{1}_j'\mathbf{\hat{V}}_j^{-1} \mathbf{Y}_j,
+$$
+where $\mathbf{\hat{V}}_j$ is an estimator of $\mathbf{V}_j$. If you carry through the matrix algebra, you'll find that
+$$
+\begin{aligned}
+\hat\beta &= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \sum_{j=1}^J \frac{\mathbf{1}_j'\mathbf{Y}_j}{\sigma^2 + n_j \tau^2} \\
+&= \frac{1}{W} \sum_{j=1}^J \sum_{i=1}^{n_j} w_j y_{ij},
+\end{aligned}
+$$
+where $w_j = \frac{1}{1 + (n_j - 1) \rho}$ and $\displaystyle{W = \sum_{j=1}^J n_j w_j}$. From this, we can see that the weight of a given observation depends on the ICC and the size of the cluster. If the ICC is low, then weights will all be close to 1. For higher ICCs, observations in smaller clusters get proportionately _more_ weight than observations in larger clusters.
+
+## A meta-analysis example
+
+In a [previous post](/weighting-in-multivariate-meta-analysis/) on multi-variate meta-analysis, I examined how weighting works in some multi-variate meta-analysis models, where you have multiple effect size estimates nested within a study. Letting $T_{ij}$ denote effect size estimate $i$ in study $j$, for $i = 1,...,n_j$ and $j = 1,...,J$. The first model I considered in the previous post was 
+$$
+T_{ij} = \mu + \eta_j + \nu_{ij} + e_{ij},
+$$
+where $\text{Var}(\eta_j) = \tau^2$, $\text{Var}(\nu_{ij}) = \omega^2$, $\text{Var}(e_{ij}) = V_j$, treated as known, and $\text{cor}(e_{hj}, e_{ij}) = \rho$ for some specified value of $\rho$.[^RVE] This model makes the simplifying assumptions that the effect sizes within a given study all have the same sampling variance, $V_j$, and that there is a single correlation between pairs of outcomes from the same study, that is constant across all pairs of outcomes and across all studies.
+
+[^RVE]: This model is what we call the "correlated-and-hierarchical effects model" in my paper (with Beth Tipton) on [extending working models for robust variance estimation](/publication/rve-meta-analysis-expanding-the-range/).
+
+You can write this model in matrix form as
+$$
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+$$
+where $\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j$ and $\text{Var}(\mathbf{e}_j) = V_j \left[\rho \mathbf{1}_j \mathbf{1}_j' + (1 - \rho) \mathbf{I}_j\right]$. It follows that 
+$$
+\text{Var}(\mathbf{T}_j) = (\tau^2 + V_j\rho) \mathbf{1}_j \mathbf{1}_j' + [\omega^2 + V_j (1 - \rho)] \mathbf{I}_j.
+$$
+The Woodbury identity comes in handy here again, if we want to examine the weights implied by this model or the sampling variance of the overall average effect size estimator.[^squint] I'll leave it as an exercise to find an expression for the weight assigned to effect size $T_{ij}$ under this model.[^original] You could also try finding an expression for the variance of the overall average effect size estimator $\hat\mu$, based on inverse-variance weighting, when the model is correctly specified.
+
+[^squint]: Or squint hard at the formula for the variance of $\mathbf{T}_j$, and you'll see that it has the same form as the random intercepts model in the previous example. Just replace the $\tau^2$ in that model with $\tau^2 + V_j \rho$ and replace the $\sigma^2$ in that model with $\omega^2 + V_j (1 - \rho)$.
+
+[^original]: See the [previous post](/weighting-in-multivariate-meta-analysis/) for the answer.
+
+## Another meta-analysis example
+
+In the [previous post](/weighting-in-multivariate-meta-analysis/), I also covered weighting in a bit more general model, where the sampling variances and correlations are no longer quite so constrained. As before, we have 
+$$
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+$$
+where $\text{Var}(\eta_j) = \tau^2$ and $\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j$. But now let $\text{Var}(\mathbf{e}_j) = \boldsymbol\Sigma_j$ for some arbitrary, symmetric, invertible matrix $\boldsymbol\Sigma_j$. The marginal variance of $\mathbf{T}_j$ is therefore
+$$
+\text{Var}(\mathbf{T}_j) = \tau^2\mathbf{1}_j \mathbf{1}_j' + \omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j.
+$$
+Let $\mathbf{S}_j = \left(\omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j\right)^{-1}$. Try applying the Woodbury identity to invert  $\text{Var}(\mathbf{T}_j)$ in terms of $\tau^2$, $n_j$, and $\mathbf{S}_j$. Then see if you can derive the weight assigned to effect $i$ in study $j$ under this model. See the previous post for the solution.[^hint] 
+
+[^hint]: In the previous post, I expressed the weights in terms of $s_{ij}$, the sum of the entries in row $i$ of the $\mathbf{S}_j$ matrix. In vector form, $\mathbf{s}_j = \left(s_{1j} \ s_{2j} \ \cdots \ s_{n_j j}\right)' = \mathbf{S}_j \mathbf{1}_j$.

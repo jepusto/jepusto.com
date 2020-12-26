@@ -5,7 +5,7 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
@@ -51,6 +51,253 @@
 &lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Woodbury identity</title>
+      <link>/woodbury-identity/</link>
+      <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/woodbury-identity/</guid>
+      <description>
+
+
+&lt;p&gt;As in many parts of life, statistics is full of little bits of knowledge that are useful if you happen to know them, but which hardly anybody ever bothers to mention. You would think, if something is so useful, perhaps your professors would spend a fair bit of time explaining it to you. But maybe the stuff seems trivial, obvious, or simple to them, so they don’t bother.&lt;/p&gt;
+&lt;p&gt;One example of this is Excel keyboard shortcuts. In a previous life, I was an Excel jockey so I learned all the keyboard shortcuts, such as how to move the cursor to the last cell in a continuous block of entries (&lt;code&gt;ctrl&lt;/code&gt; + an arrow key). Whenever I do this while sharing a screen in a meeting, someone is invariably astounded and wants to know what dark sorcery I’m conjuring. It’s a simple trick, but a useful one—especially if you’re working with a really large dataset with thousands of rows. But it’s also something that there’s no reason to expect anyone to figure out on their own, and that no stats or quant methods professor is going to spend class time demonstrating.&lt;/p&gt;
+&lt;p&gt;Let me explain another, slightly more involved example, involving one of my favorite pieces of matrix algebra. There’s a thing called the Woodbury identity, also known as the Sherman-Morrison-Woodbury identity, that is a little life hack for inverting certain types of matrices. It has a &lt;a href=&#34;https://en.wikipedia.org/wiki/Woodbury_matrix_identity&#34;&gt;Wikipedia page&lt;/a&gt;, which I have visited many times. It is a very handy bit of math, if you happen to be a statistics student working with hierarchical models (such as meta-analytic models). I’ll give a statement of the identity, then explain a bit about the connection to hierarchical models.&lt;/p&gt;
+&lt;div id=&#34;the-woodbury-identity&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Woodbury identity&lt;/h1&gt;
+&lt;p&gt;Say that you’ve got four matrices, an &lt;span class=&#34;math inline&#34;&gt;\(n \times n\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt;, a &lt;span class=&#34;math inline&#34;&gt;\(k \times k\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{C}\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(n \times k\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{U}\)&lt;/span&gt;, and a &lt;span class=&#34;math inline&#34;&gt;\(k \times n\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}\)&lt;/span&gt;. Assume that &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{C}\)&lt;/span&gt; are invertible. The Woodbury identity tells you how to get the inverse of a certain combination of these matrices:
+&lt;span class=&#34;math display&#34;&gt;\[
+\left(\mathbf{A} + \mathbf{U} \mathbf{C} \mathbf{V}\right)^{-1} = \mathbf{A}^{-1} - \mathbf{A}^{-1} \mathbf{U} \left(\mathbf{C}^{-1} + \mathbf{V} \mathbf{A}^{-1} \mathbf{U} \right)^{-1} \mathbf{V} \mathbf{A}^{-1}.
+\]&lt;/span&gt;
+Admit it, you’re impressed. “Dude! Mind. Blown.” you’re probably saying to yourself right now.&lt;/p&gt;
+&lt;p&gt;Or perhaps you’re still a touch skeptical that this formula is worth knowing. Let me explain the connection to hierarchical models.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;hierarchical-models&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Hierarchical models&lt;/h1&gt;
+&lt;p&gt;Hierarchical linear models are a mainstay of statistical analysis in many, many areas of application, including education research, where we often deal with data collected on individuals (students, teachers) nested within larger aggregate units (like schools). In meta-analysis, these models come up if we’re dealing with samples that have more than one relevant outcome, so that we have multiple effect size estimates nested within a given sample or study.&lt;/p&gt;
+&lt;p&gt;Suppose we have a hierarchical structure with &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; clusters, where cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; has &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt; individual observations. A quite general way of expressing a hierarchical model for such a data structure is
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{Y}_j = \mathbf{X}_j \boldsymbol\beta + \mathbf{Z}_j \boldsymbol\eta_j + \boldsymbol\epsilon_j,
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;, where, for cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Y}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector of outcomes,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times p\)&lt;/span&gt; design matrix for the fixed effects,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\beta\)&lt;/span&gt; is a &lt;span class=&#34;math inline&#34;&gt;\(p \times 1\)&lt;/span&gt; vector of fixed effect coefficients,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times q\)&lt;/span&gt; design matrix for the random effects,&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\eta_j\)&lt;/span&gt; is a &lt;span class=&#34;math inline&#34;&gt;\(q \times 1\)&lt;/span&gt; vector of random effects, and&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\epsilon_j\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector of level-1 errors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this model, we assume that the random effects have mean zero and unknown variance-covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;, often assumed to be an unstructured, symmetric and invertible matrix; we assume that the level-1 errors are also mean zero with variance-covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j\)&lt;/span&gt;; and we assume that &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\eta_j\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\epsilon_j\)&lt;/span&gt;. In many instances, we might assume that the entries of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{e}_j\)&lt;/span&gt; are all independent, so &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j\)&lt;/span&gt; will be a multiple of an identity matrix, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)&lt;/span&gt;. In other instances (such as models for longitudinal data), &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma\)&lt;/span&gt; might be a patterned matrix that includes off-diagonal terms, such as an auto-regressive structure.&lt;/p&gt;
+&lt;p&gt;What is the marginal variance of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Y}_j | \mathbf{X}_j\)&lt;/span&gt; in this model? In other words, if we combine the variance due to the random effects and the variance of the level-1 errors, what do we get? We get
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}\left(\mathbf{Y}_j | \mathbf{X}_j \right) = \mathbf{V}_j = \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&amp;#39; + \boldsymbol\Sigma_j,
+\]&lt;/span&gt;
+a matrix that, if you reverse the terms, looks like
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{V}_j = \boldsymbol\Sigma_j + \mathbf{Z}_j \mathbf{T} \mathbf{Z}_j&amp;#39;
+\]&lt;/span&gt;
+a simple form of the combination of matrices in the left-hand side of the Woodbury identity. Thus, the identity tells us how we can invert this matrix.&lt;/p&gt;
+&lt;p&gt;But why would we care about inverting this variance-covariance matrix, you might ask? One good reason is that the fixed effect coefficients in the hierarchical model are estimated by weighted least squares, where the weight matrices are the inverse of an estimate of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. Thus, to understand how the weights in a hierarchical model work, it’s quite useful to be able to invert &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. Another good (related) reason is that the sampling variance of the fixed effect estimates is approximately
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(\boldsymbol{\hat\beta}) \approx \left(\sum_{j=1}^J \mathbf{X}_j&amp;#39;\mathbf{V}_j^{-1} \mathbf{X}_j \right)^{-1}
+\]&lt;/span&gt;
+(it would be exact if we knew the parameters of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt; with certainty). So if we want to understand the precision of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\hat\beta}\)&lt;/span&gt; or the power of a hypothesis test involving &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\hat\beta}\)&lt;/span&gt;, then we we won’t be able to get very far without inverting &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Directly applying the identity, we get
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{V}_j^{-1} = \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{Z}_j \left(\mathbf{T}^{-1} + \mathbf{Z}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j \right)^{-1} \mathbf{Z}_j&amp;#39; \boldsymbol\Sigma_j^{-1}
+\]&lt;/span&gt;
+This expression looks like a bit of a mess, I’ll admit, but it can be useful. Things simplify quite a bit of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1}\)&lt;/span&gt; has a form that is easy to invert (like a multiple of an identity matrix) and if the dimension of the random effects &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; is small. Under these conditions, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1}\)&lt;/span&gt; is easy to work with, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}^{-1}\)&lt;/span&gt; is manageable because it has small dimensions, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{Z}_j\)&lt;/span&gt; becomes manageable because it also has small dimensions (&lt;span class=&#34;math inline&#34;&gt;\(q \times q\)&lt;/span&gt;, in both cases).&lt;/p&gt;
+&lt;div id=&#34;random-intercepts&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Random intercepts&lt;/h2&gt;
+&lt;p&gt;As an example, consider a very simple model that includes only random intercepts, so &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Z}_j = \mathbf{1}_j\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(n_j \times 1\)&lt;/span&gt; vector with every entry equal to 1, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt; is simply &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;, the variance of the random intercepts. For simplicity, let’s also assume that the level-1 errors are independent, so &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j = \sigma^2 \mathbf{I}_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j^{-1} = \sigma^{-2} \mathbf{I}_j\)&lt;/span&gt;. Applying the Woodbury identity,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\mathbf{V}_j^{-1} &amp;amp;= \boldsymbol\Sigma_j^{-1} - \boldsymbol\Sigma_j^{-1} \mathbf{1}_j \left(\mathbf{T}^{-1} + \mathbf{1}_j&amp;#39;\boldsymbol\Sigma_j^{-1}\mathbf{1}_j \right)^{-1} \mathbf{1}_j&amp;#39; \boldsymbol\Sigma_j^{-1} \\
+&amp;amp;= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \mathbf{1}_j \left(\tau^{-2} + \sigma^{-2} \mathbf{1}_j&amp;#39;\mathbf{1}_j \right)^{-1} \mathbf{1}_j&amp;#39; \\
+&amp;amp;= \sigma^{-2} \mathbf{I}_j - \sigma^{-4} \left(\tau^{-2} + \sigma^{-2} n_j \right)^{-1} \mathbf{1}_j \mathbf{1}_j&amp;#39; \\
+&amp;amp;= \sigma^{-2} \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j&amp;#39;\right).
+\end{aligned}
+\]&lt;/span&gt;
+Try checking this for yourself by carrying through the matrix algebra for &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j \mathbf{V}_j^{-1}\)&lt;/span&gt;, which should come out equal to &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{I}_j\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now suppose that the design matrix is also quite simple, consisting of just an intercept term &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j = \mathbf{1}_j\)&lt;/span&gt;, so that &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\beta = \beta\)&lt;/span&gt; is simply a population mean. How precise is the estimate of the population mean from this hierarchical model? Well, the sampling variance of the estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat\beta\)&lt;/span&gt; is approximately
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{Var}(\hat\beta) &amp;amp;\approx \left(\sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{V}_j^{-1} \mathbf{1}_j \right)^{-1} \\
+&amp;amp;= \left(\sigma^{-2}\sum_{j=1}^J \mathbf{1}_j&amp;#39; \left(\mathbf{I}_j - \frac{\tau^2} {\sigma^2 + n_j \tau^2} \mathbf{1}_j \mathbf{1}_j&amp;#39;\right) \mathbf{1}_j \right)^{-1} \\
+&amp;amp;= \left(\sigma^{-2} \sum_{j=1}^J n_j \left(1 - \frac{n_j \tau^2} {\sigma^2 + n_j \tau^2} \right)  \right)^{-1} \\ 
+&amp;amp;= \left( \sigma^{-2} \sum_{j=1}^J \frac{n_j \sigma^2} {\sigma^2 + n_j \tau^2} \right)^{-1} \\ 
+&amp;amp;= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \\
+&amp;amp;= \left(\sigma^2 + \tau^2\right) \left(\sum_{j=1}^J \frac{n_j} {1 + (n_j - 1) \rho} \right)^{-1},
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)&lt;/span&gt; is the intra-class correlation. Squint at this expression for a bit and you can see how the ICC influences the varince. If &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near zero, then the sampling variance will be close to &lt;span class=&#34;math inline&#34;&gt;\(\left(\sigma^2 + \tau^2\right) / N\)&lt;/span&gt;, which is what you would get if you treated every observation as independent. If &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near 1, then the sampling variance ends up being nearly &lt;span class=&#34;math inline&#34;&gt;\(\left(\sigma^2 + \tau^2\right) / J\)&lt;/span&gt;, which is what you would get if you treated every cluster as a single observation. For intermediate ICCs, the sample size from cluster &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; (in the numerator of the fraction inside the summation) gets cut down to size accordingly.&lt;/p&gt;
+&lt;p&gt;The estimator of the population mean is a weighted average of the outcomes. Specifically,
+&lt;span class=&#34;math display&#34;&gt;\[
+\hat\beta = \left(\sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{\hat{V}}_j^{-1} \mathbf{1}_j \right)^{-1} \sum_{j=1}^J \mathbf{1}_j&amp;#39;\mathbf{\hat{V}}_j^{-1} \mathbf{Y}_j,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{\hat{V}}_j\)&lt;/span&gt; is an estimator of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{V}_j\)&lt;/span&gt;. If you carry through the matrix algebra, you’ll find that
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\hat\beta &amp;amp;= \left(\sum_{j=1}^J \frac{n_j} {\sigma^2 + n_j \tau^2} \right)^{-1} \sum_{j=1}^J \frac{\mathbf{1}_j&amp;#39;\mathbf{Y}_j}{\sigma^2 + n_j \tau^2} \\
+&amp;amp;= \frac{1}{W} \sum_{j=1}^J \sum_{i=1}^{n_j} w_j y_{ij},
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(w_j = \frac{1}{1 + (n_j - 1) \rho}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{W = \sum_{j=1}^J n_j w_j}\)&lt;/span&gt;. From this, we can see that the weight of a given observation depends on the ICC and the size of the cluster. If the ICC is low, then weights will all be close to 1. For higher ICCs, observations in smaller clusters get proportionately &lt;em&gt;more&lt;/em&gt; weight than observations in larger clusters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-meta-analysis-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A meta-analysis example&lt;/h2&gt;
+&lt;p&gt;In a &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; on multi-variate meta-analysis, I examined how weighting works in some multi-variate meta-analysis models, where you have multiple effect size estimates nested within a study. Letting &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; denote effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. The first model I considered in the previous post was
+&lt;span class=&#34;math display&#34;&gt;\[
+T_{ij} = \mu + \eta_j + \nu_{ij} + e_{ij},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\eta_j) = \tau^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\nu_{ij}) = \omega^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(e_{ij}) = V_j\)&lt;/span&gt;, treated as known, and &lt;span class=&#34;math inline&#34;&gt;\(\text{cor}(e_{hj}, e_{ij}) = \rho\)&lt;/span&gt; for some specified value of &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; This model makes the simplifying assumptions that the effect sizes within a given study all have the same sampling variance, &lt;span class=&#34;math inline&#34;&gt;\(V_j\)&lt;/span&gt;, and that there is a single correlation between pairs of outcomes from the same study, that is constant across all pairs of outcomes and across all studies.&lt;/p&gt;
+&lt;p&gt;You can write this model in matrix form as
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\mathbf{e}_j) = V_j \left[\rho \mathbf{1}_j \mathbf{1}_j&amp;#39; + (1 - \rho) \mathbf{I}_j\right]\)&lt;/span&gt;. It follows that
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(\mathbf{T}_j) = (\tau^2 + V_j\rho) \mathbf{1}_j \mathbf{1}_j&amp;#39; + [\omega^2 + V_j (1 - \rho)] \mathbf{I}_j.
+\]&lt;/span&gt;
+The Woodbury identity comes in handy here again, if we want to examine the weights implied by this model or the sampling variance of the overall average effect size estimator.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; I’ll leave it as an exercise to find an expression for the weight assigned to effect size &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; under this model.&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; You could also try finding an expression for the variance of the overall average effect size estimator &lt;span class=&#34;math inline&#34;&gt;\(\hat\mu\)&lt;/span&gt;, based on inverse-variance weighting, when the model is correctly specified.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;another-meta-analysis-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Another meta-analysis example&lt;/h2&gt;
+&lt;p&gt;In the &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt;, I also covered weighting in a bit more general model, where the sampling variances and correlations are no longer quite so constrained. As before, we have
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\eta_j) = \tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\boldsymbol\nu_j) = \omega^2 \mathbf{I}_j\)&lt;/span&gt;. But now let &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\mathbf{e}_j) = \boldsymbol\Sigma_j\)&lt;/span&gt; for some arbitrary, symmetric, invertible matrix &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Sigma_j\)&lt;/span&gt;. The marginal variance of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}_j\)&lt;/span&gt; is therefore
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(\mathbf{T}_j) = \tau^2\mathbf{1}_j \mathbf{1}_j&amp;#39; + \omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j.
+\]&lt;/span&gt;
+Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j = \left(\omega^2 \mathbf{I}_j + \boldsymbol\Sigma_j\right)^{-1}\)&lt;/span&gt;. Try applying the Woodbury identity to invert &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\mathbf{T}_j)\)&lt;/span&gt; in terms of &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(n_j\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j\)&lt;/span&gt;. Then see if you can derive the weight assigned to effect &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under this model. See the previous post for the solution.&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;This model is what we call the “correlated-and-hierarchical effects model” in my paper (with Beth Tipton) on &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;extending working models for robust variance estimation&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Or squint hard at the formula for the variance of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}_j\)&lt;/span&gt;, and you’ll see that it has the same form as the random intercepts model in the previous example. Just replace the &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; in that model with &lt;span class=&#34;math inline&#34;&gt;\(\tau^2 + V_j \rho\)&lt;/span&gt; and replace the &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; in that model with &lt;span class=&#34;math inline&#34;&gt;\(\omega^2 + V_j (1 - \rho)\)&lt;/span&gt;.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;See the &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; for the answer.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;In the previous post, I expressed the weights in terms of &lt;span class=&#34;math inline&#34;&gt;\(s_{ij}\)&lt;/span&gt;, the sum of the entries in row &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; of the &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j\)&lt;/span&gt; matrix. In vector form, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{s}_j = \left(s_{1j} \ s_{2j} \ \cdots \ s_{n_j j}\right)&amp;#39; = \mathbf{S}_j \mathbf{1}_j\)&lt;/span&gt;.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An ANCOVA puzzler</title>
+      <link>/ancova-puzzler/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/ancova-puzzler/</guid>
+      <description>
+
+
+&lt;p&gt;Doing effect size calculations for meta-analysis is a good way to lose your faith in humanity—or at least your faith in researchers’ abilities to do anything like sensible statistical inference. Try it, and you’re surely encounter head-scratchingly weird ways that authors have reported even simple analyses, like basic group comparisons. When you encounter this sort of thing, you have two paths: you can despair, curse, and/or throw things, or you can view the studies as curious little puzzles—brain-teasers, if you will—to keep you awake and prevent you from losing track of those notes you took during your stats courses, back when. Here’s one of those curious little puzzles, which I recently encountered in helping a colleague with a meta-analysis project.&lt;/p&gt;
+&lt;p&gt;A researcher conducts a randomized experiment, assigning participants to each of &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; groups. Each participant is assessed on a variable &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; at pre-test and at post-test (we can assume there’s no attrition). In their study write-up, the researcher reports sample sizes for each group, means and standard deviations for each group at pre-test and at post-test, and &lt;em&gt;adjusted&lt;/em&gt; means at post-test, where the adjustment is done using a basic analysis of covariance, controlling for pre-test scores only. The data layout looks like this:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Group&lt;/th&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Adjusted post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group A&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(n_A\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{x}_{A}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{A0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{y}_{A}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{A1}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_A\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Group B&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(n_B\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{x}_{B}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{B0}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bar{y}_{B}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(s_{B1}\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_B\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;\(\vdots\)&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Note that the write-up does &lt;em&gt;not&lt;/em&gt; provide an estimate of the correlation between the pre-test and the post-test, nor does it report a standard deviation or standard error for the mean change-score between pre-test and post-test within each group. All we have are the summary statistics, plus the adjusted post-test scores. We can assume that the adjustment was done according to the basic ANCOVA model, assuming a common slope across groups as well as homoskedasticity and so on. The model is then
+&lt;span class=&#34;math display&#34;&gt;\[
+y_{ig} = \alpha_g + \beta x_{ig} + e_{ig},
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(g = 1,...,G\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(e_{ig}\)&lt;/span&gt; is an independent error term that is assumed to have constant variance across groups.&lt;/p&gt;
+&lt;div id=&#34;for-realz&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;For realz?&lt;/h3&gt;
+&lt;p&gt;Here’s an example with real data, drawn from Table 2 of &lt;a href=&#34;https://doi.org/10.1080/10573560500455703&#34;&gt;Murawski (2006)&lt;/a&gt;:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Group&lt;/th&gt;
+&lt;th&gt;&lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Pre-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Post-test &lt;span class=&#34;math inline&#34;&gt;\(SD\)&lt;/span&gt;&lt;/th&gt;
+&lt;th&gt;Adjusted post-test &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group A&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;td&gt;37.48&lt;/td&gt;
+&lt;td&gt;4.64&lt;/td&gt;
+&lt;td&gt;37.96&lt;/td&gt;
+&lt;td&gt;4.35&lt;/td&gt;
+&lt;td&gt;37.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Group B&lt;/td&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;td&gt;36.85&lt;/td&gt;
+&lt;td&gt;5.18&lt;/td&gt;
+&lt;td&gt;36.46&lt;/td&gt;
+&lt;td&gt;3.86&lt;/td&gt;
+&lt;td&gt;36.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Group C&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;37.88&lt;/td&gt;
+&lt;td&gt;3.88&lt;/td&gt;
+&lt;td&gt;37.38&lt;/td&gt;
+&lt;td&gt;4.76&lt;/td&gt;
+&lt;td&gt;36.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That study reported this information for each of several outcomes, with separate analyses for each of two sub-groups (LD and NLD). The text also reports that they used a two-level hierarchical linear model for the ANCOVA adjustment. For simplicity, let’s just ignore the hierarchical linear model aspect and assume that it’s a straight, one-level ANCOVA.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-puzzler&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The puzzler&lt;/h3&gt;
+&lt;p&gt;Calculate an estimate of the standardized mean difference between group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; and group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;, along with the sampling variance of the SMD estimate, that adjusts for pre-test differences between groups. Candidates for numerator of the SMD include the adjusted mean difference, &lt;span class=&#34;math inline&#34;&gt;\(\tilde{y}_B - \tilde{y}_A\)&lt;/span&gt; or the difference-in-differences, &lt;span class=&#34;math inline&#34;&gt;\(\left(\bar{y}_B - \bar{x}_B\right) - \left(\bar{y}_A - \bar{x}_A\right)\)&lt;/span&gt;. In either case, the tricky bit is finding the sampling variance of this quantity, which involves the pre-post correlation. For the denominator of the SMD, you use the post-test SD, either pooled across just groups &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; or pooled across all &lt;span class=&#34;math inline&#34;&gt;\(G\)&lt;/span&gt; groups, assuming a common population variance.&lt;/p&gt;
+&lt;p&gt;Have an idea for how to solve this? Post it in the comments or email it to me. Need the solution because you have a study like this in your meta-analysis? Contact me and I’ll share it with you directly. I’m being coy because I’m teaching meta-analysis next semester, and I feel like this would make a good extra credit problem…&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     

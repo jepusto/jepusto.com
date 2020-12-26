@@ -1,0 +1,49 @@
+---
+title: An ANCOVA puzzler
+authors:
+- admin
+date: '2020-11-24'
+slug: ancova-puzzler
+categories: []
+tags:
+  - meta-analysis
+  - effect size
+  - standardized mean difference
+header:
+  caption: ''
+  image: ''
+---
+
+Doing effect size calculations for meta-analysis is a good way to lose your faith in humanity---or at least your faith in researchers' abilities to do anything like sensible statistical inference. Try it, and you're surely encounter head-scratchingly weird ways that authors have reported even simple analyses, like basic group comparisons. When you encounter this sort of thing, you have two paths: you can despair, curse, and/or throw things, or you can view the studies as curious little puzzles---brain-teasers, if you will---to keep you awake and prevent you from losing track of those notes you took during your stats courses, back when. Here's one of those curious little puzzles, which I recently encountered in helping a colleague with a meta-analysis project.
+
+A researcher conducts a randomized experiment, assigning participants to each of $G$ groups. Each participant is assessed on a variable $Y$ at pre-test and at post-test (we can assume there's no attrition). In their study write-up, the researcher reports sample sizes for each group, means and standard deviations for each group at pre-test and at post-test, and _adjusted_ means at post-test, where the adjustment is done using a basic analysis of covariance, controlling for pre-test scores only. The data layout looks like this:
+
+| Group | $N$ | Pre-test $M$ | Pre-test $SD$ | Post-test $M$ | Post-test $SD$ | Adjusted post-test $M$    |
+|-------|-----|--------------|---------------|---------------|----------------|---------------------------|
+| Group A | $n_A$    | $\bar{x}_{A}$ | $s_{A0}$ | $\bar{y}_{A}$ | $s_{A1}$       | $\tilde{y}_A$          |
+| Group B | $n_B$    | $\bar{x}_{B}$ | $s_{B0}$ | $\bar{y}_{B}$ | $s_{B1}$       | $\tilde{y}_B$          |
+| $\vdots$    | $\vdots$ | $\vdots$      | $\vdots$ | $\vdots$      | $\vdots$       | $\vdots$           |
+
+Note that the write-up does _not_ provide an estimate of the correlation between the pre-test and the post-test, nor does it report a standard deviation or standard error for the mean change-score between pre-test and post-test within each group. All we have are the summary statistics, plus the adjusted post-test scores. We can assume that the adjustment was done according to the basic ANCOVA model, assuming a common slope across groups as well as homoskedasticity and so on. The model is then
+$$
+y_{ig} = \alpha_g + \beta x_{ig} + e_{ig},
+$$
+for $i = 1,...,n_g$ and $g = 1,...,G$, where $e_{ig}$ is an independent error term that is assumed to have constant variance across groups. 
+
+### For realz?
+
+Here's an example with real data, drawn from Table 2 of [Murawski (2006)](https://doi.org/10.1080/10573560500455703): 
+
+| Group | $N$ | Pre-test $M$ | Pre-test $SD$ | Post-test $M$ | Post-test $SD$ | Adjusted post-test $M$    |
+|-------|-----|--------------|---------------|---------------|----------------|---------------------------|
+| Group A | 25    | 37.48 | 4.64 | 37.96 | 4.35 | 37.84 |
+| Group B | 26    | 36.85 | 5.18 | 36.46 | 3.86 | 36.66 |
+| Group C | 16    | 37.88 | 3.88 | 37.38 | 4.76 | 36.98 |
+
+That study reported this information for each of several outcomes, with separate analyses for each of two sub-groups (LD and NLD). The text also reports that they used a two-level hierarchical linear model for the ANCOVA adjustment. For simplicity, let's just ignore the hierarchical linear model aspect and assume that it's a straight, one-level ANCOVA.
+
+### The puzzler
+
+Calculate an estimate of the standardized mean difference between group $B$ and group $A$, along with the sampling variance of the SMD estimate, that adjusts for pre-test differences between groups. Candidates for numerator of the SMD include the adjusted mean difference, $\tilde{y}_B - \tilde{y}_A$ or the difference-in-differences, $\left(\bar{y}_B - \bar{x}_B\right) - \left(\bar{y}_A - \bar{x}_A\right)$. In either case, the tricky bit is finding the sampling variance of this quantity, which involves the pre-post correlation. For the denominator of the SMD, you use the post-test SD, either pooled across just groups $A$ and $B$ or pooled across all $G$ groups, assuming a common population variance. 
+
+Have an idea for how to solve this? Post it in the comments or email it to me. Need the solution because you have a study like this in your meta-analysis? Contact me and I'll share it with you directly. I'm being coy because I'm teaching meta-analysis next semester, and I feel like this would make a good extra credit problem...
