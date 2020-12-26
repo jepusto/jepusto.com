@@ -158,12 +158,12 @@
   </url>
   
   <url>
-    <loc>/weighting-in-multivariate-meta-analysis/</loc>
+    <loc>/tags/weighting/</loc>
     <lastmod>2020-06-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/weights/</loc>
+    <loc>/weighting-in-multivariate-meta-analysis/</loc>
     <lastmod>2020-06-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -183,12 +183,17 @@
   </url>
   
   <url>
-    <loc>/software/lmeinfo/</loc>
+    <loc>/authors/man-chen/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/man-chen/</loc>
+    <loc>/tags/effect-size/</loc>
+    <lastmod>2020-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/software/lmeinfo/</loc>
     <lastmod>2020-04-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -519,11 +524,6 @@
   
   <url>
     <loc>/tags/sandwiches/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/weighting/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -1008,16 +1008,6 @@
   </url>
   
   <url>
-    <loc>/tags/deep-learning/</loc>
-    <lastmod>2016-04-27T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/demo/</loc>
-    <lastmod>2016-04-27T00:00:00-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/project/example-external-project/</loc>
     <lastmod>2016-04-27T00:00:00-05:00</lastmod>
   </url>
@@ -1263,12 +1253,12 @@
   </url>
   
   <url>
-    <loc>/publication/arp-for-behavioral-observation/</loc>
+    <loc>/authors/christopher-runyon/</loc>
     <lastmod>2014-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/christopher-runyon/</loc>
+    <loc>/publication/arp-for-behavioral-observation/</loc>
     <lastmod>2014-08-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -1485,6 +1475,14 @@
   <url>
     <loc>/talk/issna-2008-question-order-effects/</loc>
     <lastmod>2008-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/what-evs-donkey/</loc>
+  </url>
+  
+  <url>
+    <loc>/authors/young-ri-lee/</loc>
   </url>
   
   <url>
