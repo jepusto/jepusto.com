@@ -5,9 +5,9 @@ name: Whatev's Donkey
 bio: 
 education:
   courses:
-  - course: PhD in Quantitative Methods
+  - course: PhD in Quantitative Methods (anticipated)
     institution: University of Texas at Austin
-    year: 2018
+    year: 202?
   - course: BA in Psychology
     institution: Barnyard College
     year: 2012
@@ -19,7 +19,7 @@ interests:
 organizations:
 - name: National Organic Standards Board
   url: ""
-role: Research Scientist
+role: Lab mascot
 
 social:
 - icon: envelope
@@ -35,9 +35,9 @@ social:
 superuser: false
 
 user_groups:
-- Alumni
+- Mascot
 ---
 
 # W. E. Donkey
 
-Whatev's did his doctoral work on robust statistics at UT Austin. He is currently a research scientist at the [National Organic Standards Board](https://www.ams.usda.gov/rules-regulations/organic/nosb).
+W. E. is our lab mascot. His name is also his philosophy in life: "Whatev's, Donkey!"
