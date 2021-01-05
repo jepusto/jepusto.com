@@ -5,7 +5,7 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020</copyright><lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Fri, 04 Dec 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
@@ -2227,8 +2227,11 @@ and the degrees of freedom reduce to simply &lt;span class=&#34;math inline&#34;
 &lt;div id=&#34;tennessee-star&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Tennessee STAR&lt;/h2&gt;
 &lt;p&gt;Here is a worked example of the calculations (using R of course, because my SAS programming skills atrophied years ago). I’ll use data from the famous Tennessee STAR class size experiment, which was a multi-site trial in which students were randomized to small or regular-sized kindergarten classes within each of several dozen schools. To make the small-sample issues more pronounced, I’ll limit the sample to urban schools and look at impacts of small class-size on reading and math scores at the end of kindergarten. STAR was actually a three-arm trial—the third arm being a regular-sized class but with an additional teacher aide. For simplicity (and following convention), I’ll collapse the teacher-aide condition and the regular-sized class condition into a single arm and also limit the sample to students with complete outcome data on both tests.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-data(STAR, package = &amp;quot;AER&amp;quot;)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;ggplot2&amp;#39; was built under R version 4.0.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;readr&amp;#39; was built under R version 4.0.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(STAR, package = &amp;quot;AER&amp;quot;)
 
 STAR_urban &amp;lt;-
   STAR %&amp;gt;%
@@ -2249,6 +2252,7 @@ STAR_summary &amp;lt;-
 &lt;p&gt;After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.&lt;/p&gt;
 &lt;p&gt;For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;clubSandwich&amp;#39; was built under R version 4.0.3&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
 ##   method    from    
 ##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
@@ -2294,9 +2298,10 @@ school_summaries &amp;lt;-
     n = sum(n_arm),
     p = n_arm[stark==&amp;quot;small&amp;quot;] / n
   ) %&amp;gt;%
-  mutate(w = n * p * (1 - p))
-
-# overall impacts
+  mutate(w = n * p * (1 - p))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` regrouping output by &amp;#39;schoolidk&amp;#39; (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# overall impacts
 
 school_summaries %&amp;gt;%
   gather(&amp;quot;subject&amp;quot;,&amp;quot;impact_j&amp;quot;, readk, mathk) %&amp;gt;%
@@ -2310,6 +2315,7 @@ school_summaries %&amp;gt;%
                     sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
   ) %&amp;gt;%
   knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;

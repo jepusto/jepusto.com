@@ -62,8 +62,11 @@ and the degrees of freedom reduce to simply <span class="math inline">\(df = J -
 <div id="tennessee-star" class="section level2">
 <h2>Tennessee STAR</h2>
 <p>Here is a worked example of the calculations (using R of course, because my SAS programming skills atrophied years ago). I’ll use data from the famous Tennessee STAR class size experiment, which was a multi-site trial in which students were randomized to small or regular-sized kindergarten classes within each of several dozen schools. To make the small-sample issues more pronounced, I’ll limit the sample to urban schools and look at impacts of small class-size on reading and math scores at the end of kindergarten. STAR was actually a three-arm trial—the third arm being a regular-sized class but with an additional teacher aide. For simplicity (and following convention), I’ll collapse the teacher-aide condition and the regular-sized class condition into a single arm and also limit the sample to students with complete outcome data on both tests.</p>
-<pre class="r"><code>library(tidyverse)
-data(STAR, package = &quot;AER&quot;)
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.3</code></pre>
+<pre class="r"><code>data(STAR, package = &quot;AER&quot;)
 
 STAR_urban &lt;-
   STAR %&gt;%
@@ -84,6 +87,7 @@ STAR_summary &lt;-
 <p>After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.</p>
 <p>For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.</p>
 <pre class="r"><code>library(clubSandwich)</code></pre>
+<pre><code>## Warning: package &#39;clubSandwich&#39; was built under R version 4.0.3</code></pre>
 <pre><code>## Registered S3 method overwritten by &#39;clubSandwich&#39;:
 ##   method    from    
 ##   bread.mlm sandwich</code></pre>
@@ -129,9 +133,10 @@ school_summaries &lt;-
     n = sum(n_arm),
     p = n_arm[stark==&quot;small&quot;] / n
   ) %&gt;%
-  mutate(w = n * p * (1 - p))
-
-# overall impacts
+  mutate(w = n * p * (1 - p))</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;schoolidk&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code># overall impacts
 
 school_summaries %&gt;%
   gather(&quot;subject&quot;,&quot;impact_j&quot;, readk, mathk) %&gt;%
@@ -145,6 +150,7 @@ school_summaries %&gt;%
                     sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
   ) %&gt;%
   knitr::kable(digits = 2)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <table>
 <thead>
 <tr class="header">
