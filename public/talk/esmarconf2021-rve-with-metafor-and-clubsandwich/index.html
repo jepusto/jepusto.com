@@ -27,10 +27,10 @@
   
     
   
-  <meta name="description" content="In prevention science and related fields, large meta-analyses are common, and these analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-regression model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models are limited to each describing a single type of dependence. Drawing on flexible tools from multivariate meta-analysis, this paper describes an expanded range of working models, along with accompanying estimation methods, which offer benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-regression estimates. We describe how the methods can be implemented using existing software (the &#39;metafor&#39; and &#39;clubSandwich&#39; packages for R) and illustrate the approach in a meta-analysis of randomized trials examining the effects of brief alcohol interventions for adolescents and young adults.">
+  <meta name="description" content="Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-analysis model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models (available in the robumeta package) are limited to each describing a single type of dependence. We describe a workflow combining two existing packages, metafor and clubSandwich, that can be used to implement an expanded set of working models, offering benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-analytic model estimates.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/publication/rve-meta-analysis-expanding-the-range/">
+  <link rel="alternate" hreflang="en-us" href="/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/">
 
   
 
@@ -61,14 +61,6 @@
     
       
     
-    
-      
-      
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
-        
-      
     
 
     
@@ -220,7 +212,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/publication/rve-meta-analysis-expanding-the-range/">
+  <link rel="canonical" href="/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/">
 
   
   
@@ -230,34 +222,32 @@
   
   
     
+    
   
   
-  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:card" content="summary">
   
   <meta property="twitter:site" content="@jepusto">
   <meta property="twitter:creator" content="@jepusto">
   
   <meta property="og:site_name" content="James E. Pustejovsky">
-  <meta property="og:url" content="/publication/rve-meta-analysis-expanding-the-range/">
-  <meta property="og:title" content="Meta-Analysis with robust variance estimation: Expanding the range of working models | James E. Pustejovsky">
-  <meta property="og:description" content="In prevention science and related fields, large meta-analyses are common, and these analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-regression model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models are limited to each describing a single type of dependence. Drawing on flexible tools from multivariate meta-analysis, this paper describes an expanded range of working models, along with accompanying estimation methods, which offer benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-regression estimates. We describe how the methods can be implemented using existing software (the &#39;metafor&#39; and &#39;clubSandwich&#39; packages for R) and illustrate the approach in a meta-analysis of randomized trials examining the effects of brief alcohol interventions for adolescents and young adults."><meta property="og:image" content="/publication/rve-meta-analysis-expanding-the-range/featured.png">
-  <meta property="twitter:image" content="/publication/rve-meta-analysis-expanding-the-range/featured.png"><meta property="og:locale" content="en-us">
+  <meta property="og:url" content="/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/">
+  <meta property="og:title" content="Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich | James E. Pustejovsky">
+  <meta property="og:description" content="Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-analysis model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models (available in the robumeta package) are limited to each describing a single type of dependence. We describe a workflow combining two existing packages, metafor and clubSandwich, that can be used to implement an expanded set of working models, offering benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-analytic model estimates."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-09-16T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2021-01-21T12:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-09-16T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2021-01-21T09:00:00&#43;00:00">
   
 
   
 
 
+
+  
     
-
-
-
-
-
 
 
 
@@ -265,38 +255,30 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "Event",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/publication/rve-meta-analysis-expanding-the-range/"
+    "@id": "/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/"
   },
-  "headline": "Meta-Analysis with robust variance estimation: Expanding the range of working models",
+  "name": "Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich",
   
-  "image": [
-    "/publication/rve-meta-analysis-expanding-the-range/featured.png"
-  ],
+  "location": {
+    "@type": "Place",
+    "name": "online"
+  },
   
-  "datePublished": "2020-09-16T00:00:00Z",
-  "dateModified": "2020-09-16T00:00:00Z",
   
-  "author": {
+  "startDate": "2021-01-21T09:00:00Z",
+  
+  
+  "performer": {
     "@type": "Person",
     "name": "James E. Pustejovsky"
   },
   
-  "publisher": {
-    "@type": "Organization",
-    "name": "James E. Pustejovsky",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
-    }
-  },
-  "description": "In prevention science and related fields, large meta-analyses are common, and these analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-regression model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models are limited to each describing a single type of dependence. Drawing on flexible tools from multivariate meta-analysis, this paper describes an expanded range of working models, along with accompanying estimation methods, which offer benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-regression estimates. We describe how the methods can be implemented using existing software (the 'metafor' and 'clubSandwich' packages for R) and illustrate the approach in a meta-analysis of randomized trials examining the effects of brief alcohol interventions for adolescents and young adults."
+  "description": "Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-analysis model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models (available in the robumeta package) are limited to each describing a single type of dependence. We describe a workflow combining two existing packages, metafor and clubSandwich, that can be used to implement an expanded set of working models, offering benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-analytic model estimates."
 }
 </script>
-
-  
 
   
 
@@ -310,7 +292,7 @@
 
 
 
-  <title>Meta-Analysis with robust variance estimation: Expanding the range of working models | James E. Pustejovsky</title>
+  <title>Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich | James E. Pustejovsky</title>
 
 </head>
 
@@ -482,7 +464,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link  active" href="/publication/"><span>Publications</span></a>
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
         </li>
 
         
@@ -504,7 +486,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+          <a class="nav-link  active" href="/talk/"><span>Presentations</span></a>
         </li>
 
         
@@ -693,52 +675,27 @@
 
 
 
-
-
-
-
-
-
-
+  
 
   
   
-
-
+  
 <div class="article-container pt-3">
-  <h1>Meta-Analysis with robust variance estimation: Expanding the range of working models</h1>
+  <h1>Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich</h1>
 
   
-  
-  
-
 
   
+    
+
+    
 
 
 <div class="article-metadata">
 
   
   
-  
-  
-  <div>
-    
 
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/elizabeth-tipton/">Elizabeth Tipton</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    September 2020
-  </span>
   
 
   
@@ -747,9 +704,6 @@
 
   
   
-  
-  <span class="middot-divider"></span>
-  <a href="/publication/rve-meta-analysis-expanding-the-range/#disqus_thread"></a>
   
 
   
@@ -757,7 +711,7 @@
 
 </div>
 
-  
+    
 
 
 
@@ -779,40 +733,22 @@
 
 
 
-  
+
+
+
   
     
   
+
+
+
 <a class="btn btn-outline-primary my-1 mr-1" href="https://osf.io/preprints/metaarxiv/vyfcj/" target="_blank" rel="noopener">
-  Preprint
+  PDF
 </a>
 
 
 
 
-  
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1" href="https://osf.io/z27wt/" target="_blank" rel="noopener">
-  Code
-</a>
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1" href="https://osf.io/xpmjk/" target="_blank" rel="noopener">
-  Dataset
-</a>
 
 
 
@@ -841,34 +777,11 @@
 
 
 
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1" href="https://osf.io/nyv4u/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
 
 </div>
 
 
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 576px; max-height: 864px;">
-  <div style="position: relative">
-    <img src="/publication/rve-meta-analysis-expanding-the-range/featured.png" alt="" class="featured-image">
-    <span class="article-header-caption">Decision-tree for selecting a working model for use with RVE meta-regression</span>
-  </div>
+  
 </div>
 
 
@@ -876,23 +789,34 @@
   <div class="article-container">
 
     
-    <h3>Abstract</h3>
-    <p class="pub-abstract">In prevention science and related fields, large meta-analyses are common, and these analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-regression model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models are limited to each describing a single type of dependence. Drawing on flexible tools from multivariate meta-analysis, this paper describes an expanded range of working models, along with accompanying estimation methods, which offer benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-regression estimates. We describe how the methods can be implemented using existing software (the &lsquo;metafor&rsquo; and &lsquo;clubSandwich&rsquo; packages for R) and illustrate the approach in a meta-analysis of randomized trials examining the effects of brief alcohol interventions for adolescents and young adults.</p>
+      <h3>Abstract</h3>
+      <p class="pub-abstract">Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-analysis model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models (available in the robumeta package) are limited to each describing a single type of dependence. We describe a workflow combining two existing packages, metafor and clubSandwich, that can be used to implement an expanded set of working models, offering benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-analytic model estimates.</p>
     
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-12 col-md-3 pub-row-heading">Date</div>
+          <div class="col-12 col-md-9">
+            2021-01-21 9:00 AM
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="d-md-none space-below"></div>
 
     
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
         <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Type</div>
+          <div class="col-12 col-md-3 pub-row-heading">Event</div>
           <div class="col-12 col-md-9">
-            
-            
-            <a href="/publication/#3">
-              Preprint
+            <a href="https://www.eshackathon.org/events/2021-01-ESMAR.html" target="_blank" rel="noopener">
+            Evidence Synthesis and Meta-Analysis in R Conference
             </a>
-            
           </div>
         </div>
       </div>
@@ -902,28 +826,31 @@
     
 
     
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-12 col-md-3 pub-row-heading">Location</div>
+          <div class="col-12 col-md-9">online</div>
+          
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+    <div class="d-md-none space-below"></div>
+    
 
     <div class="space-below"></div>
 
-    <div class="article-style"></div>
+    <div class="article-style">
+      
+    </div>
 
     
 
 
 
 
-
-<div class="article-tags">
-  
-  <a class="badge badge-light" href="/tags/meta-analysis/">meta-analysis</a>
-  
-  <a class="badge badge-light" href="/tags/meta-regression/">meta-regression</a>
-  
-  <a class="badge badge-light" href="/tags/dependent-effect-sizes/">dependent effect sizes</a>
-  
-  <a class="badge badge-light" href="/tags/robust-variance-estimation/">robust variance estimation</a>
-  
-</div>
 
 
 
@@ -938,7 +865,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/publication/rve-meta-analysis-expanding-the-range/&amp;text=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/&amp;text=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -951,7 +878,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/publication/rve-meta-analysis-expanding-the-range/&amp;t=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/&amp;t=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -964,7 +891,7 @@
       
       
       <li>
-        <a href="mailto:?subject=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models&amp;body=/publication/rve-meta-analysis-expanding-the-range/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich&amp;body=/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -977,7 +904,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/publication/rve-meta-analysis-expanding-the-range/&amp;title=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/&amp;title=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -990,7 +917,7 @@
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models%20/publication/rve-meta-analysis-expanding-the-range/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich%20/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1003,7 +930,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/publication/rve-meta-analysis-expanding-the-range/&amp;title=Meta-Analysis%20with%20robust%20variance%20estimation:%20Expanding%20the%20range%20of%20working%20models" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/&amp;title=Synthesis%20of%20dependent%20effect%20sizes:%20Versatile%20models%20through%20metafor%20and%20clubSandwich" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1018,57 +945,12 @@
 
 
 
-<section id="comments">
-  
-    
-<div id="disqus_thread"></div>
-<script>
-  let disqus_config = function () {
-    
-    
-    
-  };
-  (function() {
-    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-      return;
-    }
-    var d = document, s = d.createElement('script'); s.async = true;
-    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-  
-</section>
-
 
 
 
 
 
   
-  
-  <div class="article-widget content-widget-hr">
-    <h3>Related</h3>
-    <ul>
-      
-      <li><a href="/publication/rve-for-meta-regression/">Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</a></li>
-      
-      <li><a href="/publication/selective-reporting-with-dependent-effects/">Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</a></li>
-      
-      <li><a href="/what-does-multivariate-mean/">What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</a></li>
-      
-      <li><a href="/sometimes-aggregating-effect-sizes-is-fine/">Sometimes, aggregating effect sizes is fine</a></li>
-      
-      <li><a href="/publication/current-practices-in-meta-regression/">Current practices in meta-regression in psychology, education, and medicine</a></li>
-      
-    </ul>
-  </div>
   
 
 
@@ -1089,12 +971,6 @@
       
 
       
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
-        
-      
 
     
 
@@ -1105,7 +981,7 @@
 
     
     
-    <script>const code_highlighting = true;</script>
+    <script>const code_highlighting = false;</script>
     
 
     

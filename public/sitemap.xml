@@ -18,6 +18,21 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2021-01-21T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/talk/</loc>
+    <lastmod>2021-01-21T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/</loc>
+    <lastmod>2021-01-21T09:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/authors/admin/</loc>
     <lastmod>2021-01-05T00:00:00+00:00</lastmod>
   </url>
@@ -29,11 +44,6 @@
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2021-01-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -339,11 +349,6 @@
   
   <url>
     <loc>/talk/srsm-2019-generalized-excess-significance-test/</loc>
-    <lastmod>2019-07-22T13:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/talk/</loc>
     <lastmod>2019-07-22T13:30:00+00:00</lastmod>
   </url>
   
