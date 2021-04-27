@@ -1,0 +1,47 @@
+---
+title: Finding the distribution of significant effect sizes
+subtitle: In a study reporting multiple outcomes
+authors:
+- admin
+date: '2021-04-27'
+slug: number-of-significant-effects
+categories: []
+tags:
+  - effect size
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+
+In basic meta-analysis, where each study contributes just a single effect size estimate, there has been a lot of work devoted to developing models for selective reporting. Most of these models formulate the selection process as a function of the statistical significance of the effect size estimate; some also allow for the possibility that the precision of the study's effect influences the probability of selection (i.e., bigger studies are more likely to be reported, regardless of statistical significance). 
+
+A problem that I've been mulling recently is how to think about selective reporting in meta-analyses that include some studies with _multiple_ effect size estimates. This setting is quite a bit more complicated than basic meta-analysis because there are several different ways that selective reporting could happen. It could be that each effect size estimate is selected (or censored) individually, on the basis of its statistical significance. However, it seems just as plausible that the pattern of statistical significance across the full set of results could influence whether _any_ of the results get selected. 
+
+In pondering this stuff, I'm trying to find ways to simplify the space of possibilities or formulate stylized (or "toy") problems that are more tractable. Here is one such problem. I'll write it as a question such as you might find in a problem set from a course on statistical distribution theory.
+
+# The general problem
+
+Consider a study that assesses some effect size across $m$ different outcomes. Let $T_i$ denote the effect size estimate for outcome $i$, let $V_i$ denote the sampling variance of the effect size estimate for outcome $i$, and let $\theta_i$ denote the true effect size parameter for corresponding to outcome $i$. Assume that 
+$$T_i \sim N(\theta_i, V_i),$$
+where $V_i$ is known. Define $A_i$ as an indicator that is equal to one if $T_i$ is statistically significant at level $\alpha$ based on a one-sided test, and otherwise equal to zero. (Equivalently, let $A_i$ be equal to one if the effect is statistically significant at level $2 \alpha$ and in the theoretically expected direction.) Formally, 
+$$A_i = I\left(\frac{T_i}{\sqrt{V_i}} > q_\alpha \right)$$
+where $q_\alpha = \Phi^{-1}(1 - \alpha)$ is the critical value from a standard normal distribution (e.g., $q_{.05} = `r round(qnorm(0.95),3)`$, $q_{.025} = `r round(qnorm(0.975),3)`$). Let $N_A = \sum_{i=1}^m A_i$ denote the total number of statistically significant effect sizes in the study. Our general interest is in the distribution of $N_A$.
+
+## Compound symmetry
+
+In general, the distribution of $N_A$ will depend on the joint distribution of $(T_1,...,T_m)$, so we will need to make some further assumptions regarding that joint distribution in order to make progress here. One simplifying assumption that seems worth considering is that the effect size estimates follow a compound symmetric distribution. Specifically, assume that all of the effect size estimates have equal sampling variance, $V_1 = V_2 = \cdots = V_m = V$, and that there is a constant correlation between every pair of effect size estimates:
+$$\text{Cov}(T_h, T_i) = \rho V$$
+for some correlation $\rho$. Further, assume that the true effect sizes vary based on a compound symmetric distribution where
+$$
+\theta_i \sim N(\mu, \omega^2).
+$$
+All of this implies that the joint distribution of the effect size estimates is compound symmetric:
+$$
+\left(\begin{array}{c} T_1 \\ T_2 \\ \vdots \\ T_m \end{array}\right) \sim N\left[ \mu \mathbf{1}_m, \ \left(\omega^2 + \rho V\right)\mathbf{J}_m + (1 - \rho) V \mathbf{I}_m \right],
+$$
+where $\mathbf{1}_m$ is an $m \times 1$ vector of 1's, $\mathbf{J}_m$ is an $m \times m$ matrix of 1's, and $\mathbf{I}_m$ is an $m \times m$ identity matrix. 
+
+Given the above assumptions, What is the distribution of $N_A$? 
+
+Please write to me if you'd like to discuss the theory or implications of this problem.

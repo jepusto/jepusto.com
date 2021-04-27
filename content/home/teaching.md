@@ -23,6 +23,10 @@ weight = 50
 
 +++
 
+### At UW Madison
+
+- [Meta-analysis](/teaching/Meta-analysis/)
+
 ### At UT Austin
 
 - [Causal Inference](/teaching/Causal-Inference/)
