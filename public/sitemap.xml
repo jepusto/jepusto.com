@@ -19,12 +19,67 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/2/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dependent-effect-sizes/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/elizabeth-tipton/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/meta-analysis/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/rve-meta-analysis-expanding-the-range/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/meta-regression/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/robust-variance-estimation/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-05-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -43,18 +98,58 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
+    <loc>/publication/psychosocial-interventions-for-spiritual-well-being/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/allen-c.-sherman/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/c.-graham-ford/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/cancer/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/crystal-park/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/john-a.-salsman/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/kelly-trevino/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/laurie-e.-mclouth/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/psycho-social-intervention/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/systematic-review/</loc>
+    <lastmod>2021-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -78,27 +173,7 @@
   </url>
   
   <url>
-    <loc>/publication_types/2/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/jennifer-r.-ledford/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/meta-analysis/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
     <lastmod>2021-01-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -109,11 +184,6 @@
   
   <url>
     <loc>/tags/single-case-design/</loc>
-    <lastmod>2021-01-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/systematic-review/</loc>
     <lastmod>2021-01-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -150,36 +220,6 @@
   <url>
     <loc>/centering-categorical-predictors/</loc>
     <lastmod>2020-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/3/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/dependent-effect-sizes/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/elizabeth-tipton/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication/rve-meta-analysis-expanding-the-range/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/meta-regression/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/robust-variance-estimation/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -293,16 +333,6 @@
   </url>
   
   <url>
-    <loc>/tags/cancer/</loc>
-    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/john-a.-salsman/</loc>
-    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/judith-t.-moskowitz/</loc>
     <lastmod>2019-11-19T00:00:00+00:00</lastmod>
   </url>
@@ -319,11 +349,6 @@
   
   <url>
     <loc>/tags/positive-affect/</loc>
-    <lastmod>2019-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/psycho-social-intervention/</loc>
     <lastmod>2019-11-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -438,11 +463,6 @@
   </url>
   
   <url>
-    <loc>/authors/allen-c.-sherman/</loc>
-    <lastmod>2019-04-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/craig-esposito/</loc>
     <lastmod>2019-04-29T00:00:00+00:00</lastmod>
   </url>
@@ -454,11 +474,6 @@
   
   <url>
     <loc>/publication/psychosocial-interventions-meaning-and-purpose/</loc>
-    <lastmod>2019-04-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/kelly-trevino/</loc>
     <lastmod>2019-04-29T00:00:00+00:00</lastmod>
   </url>
   
