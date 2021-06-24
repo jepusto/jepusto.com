@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>James E. Pustejovsky</title>
+    <link>/authors/james-e.-pustejovsky/</link>
+      <atom:link href="/authors/james-e.-pustejovsky/index.xml" rel="self" type="application/rss+xml" />
+    <description>James E. Pustejovsky</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Wed, 23 Jun 2021 12:30:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>James E. Pustejovsky</title>
+      <link>/authors/james-e.-pustejovsky/</link>
+    </image>
+    
+    <item>
+      <title>Statistical frontiers for selective reporting and publication bias</title>
+      <link>/talk/sips-2021-statistical-frontiers-for-selective-reporting/</link>
+      <pubDate>Wed, 23 Jun 2021 12:30:00 +0000</pubDate>
+      <guid>/talk/sips-2021-statistical-frontiers-for-selective-reporting/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
