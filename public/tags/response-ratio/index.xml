@@ -5,12 +5,20 @@
     <link>/tags/response-ratio/</link>
       <atom:link href="/tags/response-ratio/index.xml" rel="self" type="application/rss+xml" />
     <description>response ratio</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Thu, 08 Jul 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>response ratio</title>
       <link>/tags/response-ratio/</link>
     </image>
+    
+    <item>
+      <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
+      <link>/publication/sced-mlma-rve/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/sced-mlma-rve/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>

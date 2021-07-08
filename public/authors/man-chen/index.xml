@@ -5,12 +5,20 @@
     <link>/authors/man-chen/</link>
       <atom:link href="/authors/man-chen/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Fri, 24 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Thu, 08 Jul 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
       <link>/authors/man-chen/</link>
     </image>
+    
+    <item>
+      <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
+      <link>/publication/sced-mlma-rve/</link>
+      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/sced-mlma-rve/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>lmeInfo</title>
