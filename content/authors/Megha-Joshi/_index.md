@@ -7,7 +7,7 @@ education:
   courses:
   - course: PhD in Quantitative Methods
     institution: The University of Texas at Austin
-    year: 2021 (expected)
+    year: 2021
   - course: BA in Psychology and Art History
     institution: Bryn Mawr College
     year: 2014
@@ -21,9 +21,9 @@ interests:
 - Robust variance estimation
 
 organizations:
-- name: The University of Texas at Austin
-  url: ""
-role: Doctoral candidate
+- name: Analyst Institute
+  url: "https://analystinstitute.org/"
+role: Meta-Analysis Data Scientist
 
 
 social:
@@ -43,9 +43,9 @@ social:
 superuser: false
 
 user_groups:
-- Current Advisees
+- Alumni
 ---
 
 # Megha Joshi
 
-Megha is a PhD candidate in the Quantitative Methods program at The University of Texas at Austin. Her research interests include causal inference, meta-analysis, and missing data analysis. She is currently working on her dissertation, examining cluster wild bootstrapping to handle dependent effect sizes in meta-analyses with a small number of studies.
+Megha completed her PhD in the Quantitative Methods program at The University of Texas at Austin. Her dissertation work examined cluster wild bootstrapping to handle dependent effect sizes in meta-analyses with a small number of studies. She now works as a data scientist at the [Analyst Institute](https://analystinstitute.org/), using meta-analysis and statistics to inform campaign strategies for progressive political causes. Her research interests include causal inference, meta-analysis, and missing data analysis. 
