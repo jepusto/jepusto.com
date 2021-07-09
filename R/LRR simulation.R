@@ -26,11 +26,11 @@ calc_LRRs <- function(x, y) {
   LRR1 <- as.numeric(diff(log(M)))
   BC2 <- log(M) + V / (2 * n * M^2)
   LRR2 <- BC2[[2]] - BC2[[1]]
-  BC3 <- log(M) + log(n + (n + 1) * sqrt(1 + ((2 * n + 1) * (n - 1) * V) / (n * (n + 1)^2 * M^2))) - log(2 * n + 1)
+  BC3 <- log(M) + log(n + (n + 1) * sqrt(1 + ((2 * n + 1) * V) / (n * (n + 1) * M^2))) - log(2 * n + 1)
   LRR3 <- BC3[[2]] - BC3[[1]]
   V_LRR <- sum(V / (n * M^2))
   
-  data.frame(LRR1 = LRR1, LRR2 = LRR2, LRR3 = LRR3, V_LRR = V_LRR)
+  data.frame(estimator = paste0("LRR", 1:3), LRR = c(LRR1, LRR2, LRR3), V_LRR = V_LRR)
 }
 
 sim_LRRs <- function(theta, m, n, mu_A, phi, iterations, seed = NULL) {
@@ -51,16 +51,14 @@ sim_LRRs <- function(theta, m, n, mu_A, phi, iterations, seed = NULL) {
     bind_rows()
   
   LRRs_df %>%
+    group_by(estimator) %>%
     summarize(
-      across(c(LRR1, LRR2, LRR3), list(E = mean, V = var, cor = ~ cor(., V_LRR))),
-      E_V = mean(V_LRR),
-    ) %>%
-    pivot_longer(-E_V, names_to = c("estimator", ".value"), names_pattern = "(LRR.)_(.+)") %>%
-    mutate(
-      bias = E - theta,
-      V_RB = E_V / V,
-    ) %>%
-    select(estimator, bias, var = V, cor, V_RB)
+      bias = mean(LRR) - theta,
+      var = var(LRR),
+      rmse = mean((LRR - theta)^2),
+      cov = cov(LRR, V_LRR),
+      V_RB = mean(V_LRR) / var(LRR)
+    )
 }
 
 
@@ -77,9 +75,11 @@ design_factors <- list(
 params <- 
   cross_df(design_factors) %>%
   mutate(
-    iterations = 10000,
+    iterations = 5000,
     seed = round(runif(1) * 2^30) + 1:n()
   )
+
+nrow(params)
 
 library(tictoc)
 library(future)
@@ -96,3 +96,125 @@ res <-
 toc()
 
 saveRDS(res, "R/LRR-simulation-results.rds")
+
+res <- readRDS("R/LRR-simulation-results.rds")
+
+# Bias
+
+res %>%
+  filter(phi == 0) %>%
+  ggplot(aes(theta, bias, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Bias")
+  
+res %>%
+  filter(phi == 0.2) %>%
+  ggplot(aes(theta, bias, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Bias")
+
+res %>%
+  filter(phi == 0.4) %>%
+  ggplot(aes(theta, bias, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Bias")
+
+
+# RMSE
+
+res %>%
+  filter(phi == 0) %>%
+  ggplot(aes(theta, rmse, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "RMSE")
+
+res %>%
+  filter(phi == 0.2) %>%
+  ggplot(aes(theta, rmse, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "RMSE")
+
+res %>%
+  filter(phi == 0.4) %>%
+  ggplot(aes(theta, rmse, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "RMSE")
+
+
+# Variance
+
+res %>%
+  filter(phi == 0) %>%
+  ggplot(aes(theta, var, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Variance")
+
+res %>%
+  filter(phi == 0.2) %>%
+  ggplot(aes(theta, var, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Variance")
+
+res %>%
+  filter(phi == 0.4) %>%
+  ggplot(aes(theta, var, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Variance")
+
+
+# Covariance with V_LRR
+
+res %>%
+  filter(phi == 0) %>%
+  ggplot(aes(theta, cov, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Covariance with V")
+
+res %>%
+  filter(phi == 0.2) %>%
+  ggplot(aes(theta, cov, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Covariance with V")
+
+res %>%
+  filter(phi == 0.4) %>%
+  ggplot(aes(theta, cov, color = estimator, shape = estimator)) + 
+  facet_grid(m ~ n, labeller = "label_both") + 
+  geom_point() + 
+  geom_smooth(method = "loess", formula = y ~ x, se = FALSE) + 
+  theme_minimal() +
+  labs(x = "True LRR", y = "Covariance with V")
+
