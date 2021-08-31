@@ -5,12 +5,28 @@
     <link>/authors/megha-joshi/</link>
       <atom:link href="/authors/megha-joshi/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Tue, 31 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Tue, 20 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
       <link>/authors/megha-joshi/</link>
     </image>
+    
+    <item>
+      <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Examining heterogeneity across schools and student characteristics</title>
+      <link>/publication/transition-to-college-mathematics-year-3/</link>
+      <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/transition-to-college-mathematics-year-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the second year of implementation</title>
+      <link>/publication/transition-to-college-mathematics-year-2/</link>
+      <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/transition-to-college-mathematics-year-2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>simhelpers</title>
@@ -25,6 +41,14 @@
 &lt;a href=&#34;https://github.com/meghapsimatrix/simhelpers&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code and installation instructions on Github&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the first year of implementation</title>
+      <link>/publication/transition-to-college-mathematics-year-1/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/transition-to-college-mathematics-year-1/</guid>
+      <description></description>
     </item>
     
   </channel>
