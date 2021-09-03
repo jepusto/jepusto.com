@@ -21,9 +21,9 @@ interests:
 - Robust variance estimation
 
 organizations:
-- name: Analyst Institute
-  url: "https://analystinstitute.org/"
-role: Meta-Analysis Data Scientist
+- name: American Institutes for Research
+  url: "https://www.air.org/"
+role: Quantitative Researcher
 
 
 social:
@@ -48,4 +48,4 @@ user_groups:
 
 # Megha Joshi
 
-Megha completed her PhD in the Quantitative Methods program at The University of Texas at Austin. Her dissertation work examined cluster wild bootstrapping to handle dependent effect sizes in meta-analyses with a small number of studies. She now works as a data scientist at the [Analyst Institute](https://analystinstitute.org/), using meta-analysis and statistics to inform campaign strategies for progressive political causes. Her research interests include causal inference, meta-analysis, and missing data analysis. 
+Megha completed her PhD in the Quantitative Methods program at The University of Texas at Austin. Her dissertation work examined cluster wild bootstrapping to handle dependent effect sizes in meta-analyses with a small number of studies. She now works as quantitative researcher at the [American Institutes for Research](https://www.air.org/). Her research interests include causal inference, meta-analysis, and missing data analysis. 
