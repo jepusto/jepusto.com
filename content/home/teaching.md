@@ -26,6 +26,7 @@ weight = 50
 ### At UW Madison
 
 - [Meta-analysis](/teaching/Meta-analysis/)
+- [Design & Analysis of Quasi-Experiments](/teaching/Quasi-Experimental/)
 
 ### At UT Austin
 
