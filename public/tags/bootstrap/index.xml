@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>S. Natasha Beretvas | James E. Pustejovsky</title>
-    <link>/authors/s.-natasha-beretvas/</link>
-      <atom:link href="/authors/s.-natasha-beretvas/index.xml" rel="self" type="application/rss+xml" />
-    <description>S. Natasha Beretvas</description>
+    <title>bootstrap | James E. Pustejovsky</title>
+    <link>/tags/bootstrap/</link>
+      <atom:link href="/tags/bootstrap/index.xml" rel="self" type="application/rss+xml" />
+    <description>bootstrap</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Fri, 24 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>S. Natasha Beretvas</title>
-      <link>/authors/s.-natasha-beretvas/</link>
+      <title>bootstrap</title>
+      <link>/tags/bootstrap/</link>
     </image>
     
     <item>
@@ -17,14 +17,6 @@
       <link>/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
       <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
       <guid>/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>/publication/response-guided-designs-in-sced-baselines/</link>
-      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     
