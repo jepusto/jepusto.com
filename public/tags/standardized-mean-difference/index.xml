@@ -32,11 +32,15 @@ where &lt;span class=&#34;math inline&#34;&gt;\(s_p\)&lt;/span&gt; is the sample
 &lt;span class=&#34;math display&#34;&gt;\[
 s_P^2 = \frac{1}{T+1}\sum_{t=0}^T s_t^2.
 \]&lt;/span&gt;
-The question is then, what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(d_t)\)&lt;/span&gt; and what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(d_s, d_t)\)&lt;/span&gt;?&lt;/p&gt;
+The question is then, what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(d_t)\)&lt;/span&gt; and what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(d_s, d_t)\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(s,t = 1,...,T\)&lt;/span&gt;?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;the-results&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;The results&lt;/h1&gt;
-&lt;p&gt;Define the &lt;em&gt;unstandardized&lt;/em&gt; mean difference between time-point &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; and time-point 0 as &lt;span class=&#34;math inline&#34;&gt;\(D_t = \bar{y}_t - \bar{y}_0\)&lt;/span&gt;. Then, from the algebra of variances and covariances, we have &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(D_t) = \frac{1}{n}\left(\sigma_0^2 + \sigma_t^2 - 2 \rho_{t0} \sigma_0 \sigma_t\right)\)&lt;/span&gt; and
+&lt;p&gt;Define the &lt;em&gt;unstandardized&lt;/em&gt; mean difference between time-point &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; and time-point 0 as &lt;span class=&#34;math inline&#34;&gt;\(D_t = \bar{y}_t - \bar{y}_0\)&lt;/span&gt;. Then, from the algebra of variances and covariances, we have
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}(D_t) = \frac{1}{n}\left(\sigma_0^2 + \sigma_t^2 - 2 \rho_{t0} \sigma_0 \sigma_t\right)
+\]&lt;/span&gt;
+and
 &lt;span class=&#34;math display&#34;&gt;\[\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].\]&lt;/span&gt;
 From a &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
 &lt;span class=&#34;math display&#34;&gt;\[
@@ -44,14 +48,17 @@ From a &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;previous post&
 \]&lt;/span&gt;
 Consequently,
 &lt;span class=&#34;math display&#34;&gt;\[
-\text{Var}(s_P^2) = \frac{1}{(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \text{Cov}(s_s^2, s_t^2) = \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
+\begin{aligned}
+\text{Var}(s_P^2) &amp;amp;= \frac{1}{(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \text{Cov}(s_s^2, s_t^2) \\
+&amp;amp;= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
+\end{aligned}
 \]&lt;/span&gt;
 Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
 \]&lt;/span&gt;
-where &lt;span class=&#34;math inline&#34;&gt;\(\nu = \frac{2 \sigma_P^4}{\text{Var}(s_P^2)}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Without imposing further assumptions, and if we have access to the sample correlations between time-points, then a feasible estimator of the sampling variance of &lt;span class=&#34;math inline&#34;&gt;\(d_t\)&lt;/span&gt; is
+where &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\nu = \frac{2 \sigma_P^4}{\text{Var}(s_P^2)}}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Without imposing further assumptions, and assuming that we have access to the sample correlations between time-points, a feasible estimator of the sampling variance of &lt;span class=&#34;math inline&#34;&gt;\(d_t\)&lt;/span&gt; is
 &lt;span class=&#34;math display&#34;&gt;\[
 V_t = \frac{s_0^2 + s_t^2 - 2 r_{t0} s_0 s_t}{n s_P^2} + \frac{d_t^2}{2 \hat\nu},
 \]&lt;/span&gt;
@@ -63,7 +70,7 @@ Similarly, a feasible estimator for the covariance between &lt;span class=&#34;m
 &lt;span class=&#34;math display&#34;&gt;\[
 C_{st} = \frac{s_0^2 + r_{st} s_s s_t - s_0 \left(r_{s0} s_s + r_{t0} s_t\right)}{n s_P^2} + \frac{d_s d_t}{2 \hat\nu}.
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In some cases, it might be reasonable to use further assumptions about distributional structure in order to simplify these approximations. In particular, suppose we assume that the population variance is constant across time-points, &lt;span class=&#34;math inline&#34;&gt;\(\sigma_0 = \sigma_1 = \cdots = \sigma_T = \sigma\)&lt;/span&gt;. In this case, the variances and covariances no longer depend on the scale of the outcome, and we have
+&lt;p&gt;In some cases, it might be reasonable to use further assumptions about distributional structure in order to simplify these approximations. In particular, suppose we assume that the population variances are constant across time-points, &lt;span class=&#34;math inline&#34;&gt;\(\sigma_0 = \sigma_1 = \cdots = \sigma_T\)&lt;/span&gt;. In this case, the variances and covariances no longer depend on the scale of the outcome, and we have
 &lt;span class=&#34;math display&#34;&gt;\[
 \hat\nu = \frac{(n - 1)(T + 1)}{T R + 1}, \qquad \text{where} \qquad R = \frac{2}{T (T + 1)}\sum_{s=0}^{T-1} \sum_{t=s+1}^T r_{st}^2
 \]&lt;/span&gt;
@@ -74,7 +81,7 @@ V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad
 &lt;/div&gt;
 &lt;div id=&#34;extension&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Extension&lt;/h1&gt;
-&lt;p&gt;In some circumstances, one may be dealing with a design that uses &lt;em&gt;over-lapping&lt;/em&gt; but &lt;em&gt;not identical&lt;/em&gt; samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points &lt;span class=&#34;math inline&#34;&gt;\(p &amp;lt; T + 1\)&lt;/span&gt; (say &lt;span class=&#34;math inline&#34;&gt;\(p = 2\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(p = 3\)&lt;/span&gt;), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted &lt;span class=&#34;math inline&#34;&gt;\(n_t\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(t = 0,...,T\)&lt;/span&gt;, as well as the number of observations that were common across any pair of time-points, denoted as &lt;span class=&#34;math inline&#34;&gt;\(n_{st}\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(s,t = 0,...,T\)&lt;/span&gt;. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader to derive &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(d_t)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(d_s, d_t)\)&lt;/span&gt; under such a model.&lt;/p&gt;
+&lt;p&gt;In some contexts, one might encounter a design that uses &lt;em&gt;over-lapping&lt;/em&gt; but &lt;em&gt;not identical&lt;/em&gt; samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points &lt;span class=&#34;math inline&#34;&gt;\(p &amp;lt; T + 1\)&lt;/span&gt; (say &lt;span class=&#34;math inline&#34;&gt;\(p = 2\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(p = 3\)&lt;/span&gt;), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted &lt;span class=&#34;math inline&#34;&gt;\(n_t\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(t = 0,...,T\)&lt;/span&gt;, as well as the number of observations that were common across any pair of time-points, denoted as &lt;span class=&#34;math inline&#34;&gt;\(n_{st}\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(s,t = 0,...,T\)&lt;/span&gt;. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader (a relaxing and fun one!) to derive &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(d_t)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{Cov}(d_s, d_t)\)&lt;/span&gt; under such a model.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
