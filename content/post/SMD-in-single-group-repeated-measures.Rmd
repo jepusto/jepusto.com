@@ -5,7 +5,6 @@ authors:
 date: '2021-10-06'
 slug: SMDs-in-single-group
 categories: []
-draft: true
 tags:
   - effect size
   - standardized mean difference
@@ -71,4 +70,4 @@ $$
 
 # Extension
 
-In some circumstances, one may be dealing with a design that uses _over-lapping_ but _not identical_ samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points $p < T + 1$ (say $p = 2$ or $p = 3$), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted $n_t$ for $t = 0,...,T$, as well as the number of observations that were common across any pair of time-points, denoted as $n_{st}$ for $s,t = 0,...,T$. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader to derive $\text{Var}(d_t)$ and what is $\text{Cov}(d_s, d_t)$ under such a model.
+In some circumstances, one may be dealing with a design that uses _over-lapping_ but _not identical_ samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points $p < T + 1$ (say $p = 2$ or $p = 3$), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted $n_t$ for $t = 0,...,T$, as well as the number of observations that were common across any pair of time-points, denoted as $n_{st}$ for $s,t = 0,...,T$. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader to derive $\text{Var}(d_t)$ and $\text{Cov}(d_s, d_t)$ under such a model.
