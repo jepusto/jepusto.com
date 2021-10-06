@@ -122,6 +122,14 @@ V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad
     </item>
     
     <item>
+      <title>Four things every quantitative social scientist should know about meta-analysis</title>
+      <link>/talk/edpsych-colloquium-2021-four-things/</link>
+      <pubDate>Mon, 27 Sep 2021 10:00:00 +0000</pubDate>
+      <guid>/talk/edpsych-colloquium-2021-four-things/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
       <link>/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
       <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
