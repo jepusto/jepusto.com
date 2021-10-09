@@ -17,6 +17,8 @@ authors:
 links:
 - name: CRAN
   url: https://cran.r-project.org/package=simhelpers
+- name: Website
+  url: https://meghapsimatrix.github.io/simhelpers/
 url_code: "https://github.com/meghapsimatrix/simhelpers"
 url_pdf: ""
 url_slides: ""

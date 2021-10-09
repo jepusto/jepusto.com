@@ -23,6 +23,8 @@ authors:
 links:
 - name: CRAN
   url: https://cran.r-project.org/package=lmeInfo
+- name: Website
+  url: https://jepusto.github.io/lmeInfo/
 
 url_code: "https://github.com/jepusto/lmeInfo"
 url_pdf: ""
