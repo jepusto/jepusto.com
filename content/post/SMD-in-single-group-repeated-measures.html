@@ -1,0 +1,81 @@
+---
+title: Standardized mean differences in single-group, repeated measures designs
+authors:
+- admin
+date: '2021-10-06'
+slug: SMDs-in-single-group
+categories: []
+tags:
+  - effect size
+  - standardized mean difference
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time. Deriving these quantities is a little exercise in normal distribution theory, which I find kind of relaxing sometimes (hey, we all have our coping mechanisms!).</p>
+<div id="the-set-up" class="section level1">
+<h1>The set-up</h1>
+<p>Consider a study in which a single group of <span class="math inline">\(n\)</span> participants was measured at each of <span class="math inline">\(T + 1\)</span> time-points, indexed as <span class="math inline">\(t = 0,...,T\)</span>. At the first time-point, there has not yet been any exposure to an intervention. At the second and subsequent time-points, there is some degree of exposure, and so we are interested in describing change between time point <span class="math inline">\(t &gt; 0\)</span> and time-point 0. For each time-point, we have a sample mean <span class="math inline">\(\bar{y}_t\)</span> and a sample standard deviation <span class="math inline">\(s_{t}\)</span>. For now, assume that there is complete response. Let <span class="math inline">\(\mu_t\)</span> denote the population mean and <span class="math inline">\(\sigma_t\)</span> denote the population standard deviation, both at time <span class="math inline">\(t\)</span>. Let <span class="math inline">\(\rho_{st}\)</span> denote the correlation between outcomes measured at time <span class="math inline">\(s\)</span> and time <span class="math inline">\(t\)</span>, for <span class="math inline">\(s,t = 0,..,T\)</span>, where <span class="math inline">\(\rho_{tt} = 1\)</span>. We might also have sample correlations for each time point, denoted <span class="math inline">\(r_{st}\)</span>. We calculate a standardized mean difference for each time-point <span class="math inline">\(t &gt; 0\)</span> by taking
+<span class="math display">\[
+d_t = \frac{\bar{y}_t - \bar{y}_0}{s_P},
+\]</span>
+where <span class="math inline">\(s_p\)</span> is the sample standard deviation pooled across all time-points:
+<span class="math display">\[
+s_P^2 = \frac{1}{T+1}\sum_{t=0}^T s_t^2.
+\]</span>
+The question is then, what is <span class="math inline">\(\text{Var}(d_t)\)</span> and what is <span class="math inline">\(\text{Cov}(d_s, d_t)\)</span>, for <span class="math inline">\(s,t = 1,...,T\)</span>?</p>
+</div>
+<div id="the-results" class="section level1">
+<h1>The results</h1>
+<p>Define the <em>unstandardized</em> mean difference between time-point <span class="math inline">\(t\)</span> and time-point 0 as <span class="math inline">\(D_t = \bar{y}_t - \bar{y}_0\)</span>. Then, from the algebra of variances and covariances, we have
+<span class="math display">\[
+\text{Var}(D_t) = \frac{1}{n}\left(\sigma_0^2 + \sigma_t^2 - 2 \rho_{t0} \sigma_0 \sigma_t\right)
+\]</span>
+and
+<span class="math display">\[\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].\]</span>
+From a <a href="/distribution-of-sample-variances/">previous post</a> about the distribution of sample variances, we have that
+<span class="math display">\[
+\text{Cov}(s_s^2, s_t^2) = \frac{2 \left(\rho_{st} \sigma_s \sigma_t\right)^2}{n - 1}.
+\]</span>
+Consequently,
+<span class="math display">\[
+\begin{aligned}
+\text{Var}(s_P^2) &amp;= \frac{1}{(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \text{Cov}(s_s^2, s_t^2) \\
+&amp;= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
+\end{aligned}
+\]</span>
+Let <span class="math inline">\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)</span> denote the average population variance across all <span class="math inline">\(T + 1\)</span> time-points, and let <span class="math inline">\(\delta_t\)</span> denote the standardized mean difference parameter at time <span class="math inline">\(t\)</span>. Then, following the <a href="/multivariate-delta-method/">multivariate delta method</a>,
+<span class="math display">\[
+\text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
+\]</span>
+where <span class="math inline">\(\displaystyle{\nu = \frac{2 \sigma_P^4}{\text{Var}(s_P^2)}}\)</span>.</p>
+<p>Without imposing further assumptions, and assuming that we have access to the sample correlations between time-points, a feasible estimator of the sampling variance of <span class="math inline">\(d_t\)</span> is
+<span class="math display">\[
+V_t = \frac{s_0^2 + s_t^2 - 2 r_{t0} s_0 s_t}{n s_P^2} + \frac{d_t^2}{2 \hat\nu},
+\]</span>
+where
+<span class="math display">\[
+\hat\nu = \frac{(n-1) s_p^4}{\frac{1}{(T + 1)^2}\sum_{s=0}^T \sum_{t=0}^T r_{st}^2 s_s^2 s_t^2}.
+\]</span>
+Similarly, a feasible estimator for the covariance between <span class="math inline">\(d_s\)</span> and <span class="math inline">\(d_t\)</span> is
+<span class="math display">\[
+C_{st} = \frac{s_0^2 + r_{st} s_s s_t - s_0 \left(r_{s0} s_s + r_{t0} s_t\right)}{n s_P^2} + \frac{d_s d_t}{2 \hat\nu}.
+\]</span></p>
+<p>In some cases, it might be reasonable to use further assumptions about distributional structure in order to simplify these approximations. In particular, suppose we assume that the population variances are constant across time-points, <span class="math inline">\(\sigma_0 = \sigma_1 = \cdots = \sigma_T\)</span>. In this case, the variances and covariances no longer depend on the scale of the outcome, and we have
+<span class="math display">\[
+\hat\nu = \frac{(n - 1)(T + 1)}{T R + 1}, \qquad \text{where} \qquad R = \frac{2}{T (T + 1)}\sum_{s=0}^{T-1} \sum_{t=s+1}^T r_{st}^2
+\]</span>
+(here, <span class="math inline">\(R\)</span> is the average of the squared correlations between pairs of distinct time-points). Since <span class="math inline">\(R\)</span> will always be less than 1, <span class="math inline">\(\hat\nu\)</span> will always be larger than <span class="math inline">\(n - 1\)</span>. If sample correlations aren’t reported or available, it would seem fairly reasonable to use <span class="math inline">\(\hat\nu = n - 1\)</span>, or to make a rough assumption about the average squared correlation <span class="math inline">\(R\)</span>. With the approximate degrees of freedom <span class="math inline">\(\hat\nu\)</span>, the variances and covariances are then given by
+<span class="math display">\[
+V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad C_{st} = \frac{1 + r_{st} - r_{s0} - r_{t0}}{n} + \frac{d_s d_t}{2 \hat\nu}.
+\]</span></p>
+</div>
+<div id="extension" class="section level1">
+<h1>Extension</h1>
+<p>In some contexts, one might encounter a design that uses <em>over-lapping</em> but <em>not identical</em> samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points <span class="math inline">\(p &lt; T + 1\)</span> (say <span class="math inline">\(p = 2\)</span> or <span class="math inline">\(p = 3\)</span>), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted <span class="math inline">\(n_t\)</span> for <span class="math inline">\(t = 0,...,T\)</span>, as well as the number of observations that were common across any pair of time-points, denoted as <span class="math inline">\(n_{st}\)</span> for <span class="math inline">\(s,t = 0,...,T\)</span>. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader (a relaxing and fun one!) to derive <span class="math inline">\(\text{Var}(d_t)\)</span> and <span class="math inline">\(\text{Cov}(d_s, d_t)\)</span> under such a model.</p>
+</div>

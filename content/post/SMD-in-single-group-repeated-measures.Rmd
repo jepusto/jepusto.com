@@ -1,0 +1,80 @@
+---
+title: Standardized mean differences in single-group, repeated measures designs
+authors:
+- admin
+date: '2021-10-06'
+slug: SMDs-in-single-group
+categories: []
+tags:
+  - effect size
+  - standardized mean difference
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+
+I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time. Deriving these quantities is a little exercise in normal distribution theory, which I find kind of relaxing sometimes (hey, we all have our coping mechanisms!). 
+
+# The set-up
+
+Consider a study in which a single group of $n$ participants was measured at each of $T + 1$ time-points, indexed as $t = 0,...,T$. At the first time-point, there has not yet been any exposure to an intervention. At the second and subsequent time-points, there is some degree of exposure, and so we are interested in describing change between time point $t > 0$ and time-point 0. For each time-point, we have a sample mean $\bar{y}_t$ and a sample standard deviation $s_{t}$. For now, assume that there is complete response. Let $\mu_t$ denote the population mean and $\sigma_t$ denote the population standard deviation, both at time $t$. Let $\rho_{st}$ denote the correlation between outcomes measured at time $s$ and time $t$, for $s,t = 0,..,T$, where $\rho_{tt} = 1$. We might also have sample correlations for each time point, denoted $r_{st}$. We calculate a standardized mean difference for each time-point $t > 0$ by taking
+$$
+d_t = \frac{\bar{y}_t - \bar{y}_0}{s_P},
+$$
+where $s_p$ is the sample standard deviation pooled across all time-points:
+$$
+s_P^2 = \frac{1}{T+1}\sum_{t=0}^T s_t^2.
+$$
+The question is then, what is $\text{Var}(d_t)$ and what is $\text{Cov}(d_s, d_t)$, for $s,t = 1,...,T$?
+
+# The results
+
+Define the _unstandardized_ mean difference between time-point $t$ and time-point 0 as $D_t = \bar{y}_t - \bar{y}_0$. Then, from the algebra of variances and covariances, we have 
+$$
+\text{Var}(D_t) = \frac{1}{n}\left(\sigma_0^2 + \sigma_t^2 - 2 \rho_{t0} \sigma_0 \sigma_t\right)
+$$ 
+and 
+$$\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].$$
+From a [previous post](/distribution-of-sample-variances/) about the distribution of sample variances, we have that 
+$$
+\text{Cov}(s_s^2, s_t^2) = \frac{2 \left(\rho_{st} \sigma_s \sigma_t\right)^2}{n - 1}.
+$$
+Consequently,
+$$
+\begin{aligned}
+\text{Var}(s_P^2) &= \frac{1}{(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \text{Cov}(s_s^2, s_t^2) \\
+&= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
+\end{aligned}
+$$
+Let $\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2$ denote the average population variance across all $T + 1$ time-points, and let $\delta_t$ denote the standardized mean difference parameter at time $t$. Then, following the [multivariate delta method](/multivariate-delta-method/),
+$$
+\text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
+$$
+where $\displaystyle{\nu = \frac{2 \sigma_P^4}{\text{Var}(s_P^2)}}$.
+
+Without imposing further assumptions, and assuming that we have access to the sample correlations between time-points, a feasible estimator of the sampling variance of $d_t$ is
+$$
+V_t = \frac{s_0^2 + s_t^2 - 2 r_{t0} s_0 s_t}{n s_P^2} + \frac{d_t^2}{2 \hat\nu},
+$$
+where 
+$$
+\hat\nu = \frac{(n-1) s_p^4}{\frac{1}{(T + 1)^2}\sum_{s=0}^T \sum_{t=0}^T r_{st}^2 s_s^2 s_t^2}.
+$$
+Similarly, a feasible estimator for the covariance between $d_s$ and $d_t$ is
+$$
+C_{st} = \frac{s_0^2 + r_{st} s_s s_t - s_0 \left(r_{s0} s_s + r_{t0} s_t\right)}{n s_P^2} + \frac{d_s d_t}{2 \hat\nu}.
+$$
+
+In some cases, it might be reasonable to use further assumptions about distributional structure in order to simplify these approximations. In particular, suppose we assume that the population variances are constant across time-points, $\sigma_0 = \sigma_1 = \cdots = \sigma_T$. In this case, the variances and covariances no longer depend on the scale of the outcome, and we have
+$$
+\hat\nu = \frac{(n - 1)(T + 1)}{T R + 1}, \qquad \text{where} \qquad R = \frac{2}{T (T + 1)}\sum_{s=0}^{T-1} \sum_{t=s+1}^T r_{st}^2
+$$
+(here, $R$ is the average of the squared correlations between pairs of distinct time-points). Since $R$ will always be less than 1, $\hat\nu$ will always be larger than $n - 1$. If sample correlations aren't reported or available, it would seem fairly reasonable to use $\hat\nu = n - 1$, or to make a rough assumption about the average squared correlation $R$. With the approximate degrees of freedom $\hat\nu$, the variances and covariances are then given by
+$$
+V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad C_{st} = \frac{1 + r_{st} - r_{s0} - r_{t0}}{n} + \frac{d_s d_t}{2 \hat\nu}.
+$$
+
+# Extension
+
+In some contexts, one might encounter a design that uses _over-lapping_ but _not identical_ samples at each time-point. For instance, in a rotating panel survey, each participant is measured repeatedly for some small number of time-points $p < T + 1$ (say $p = 2$ or $p = 3$), and new participants are added to the sample with each new time-point. The simple repeated measures set-up that I described in this post is an imperfect approximation for such designs. In dealing with such a design, suppose that one knew the total number of observations at each time-point, denoted $n_t$ for $t = 0,...,T$, as well as the number of observations that were common across any pair of time-points, denoted as $n_{st}$ for $s,t = 0,...,T$. Further suppose that the drop-outs and additions are ignorable (missing completely at random), so that any subset of participants defined by a pattern of response or non-response is still representative of the full population. I leave it as an exercise for the reader (a relaxing and fun one!) to derive $\text{Var}(d_t)$ and $\text{Cov}(d_s, d_t)$ under such a model.
