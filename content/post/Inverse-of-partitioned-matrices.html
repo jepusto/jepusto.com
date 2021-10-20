@@ -1,0 +1,41 @@
+---
+title: Inverting partitioned matrices
+authors:
+- admin
+date: '2021-10-20'
+slug: inverting-partitioned-matrices
+categories: []
+tags:
+header:
+  caption: ''
+  image: ''
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>There’s lots of linear algebra out there that’s quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my <a href="/Woodbury-identity/">previous post on the Woodbury identity</a>, I thought I would share my notes on another helpful bit of math about matrices. At some point in high school or college, you might have learned how to invert a small matrix by hand. You might recall the formula for the inverse of a two-by-two matrix:
+<span class="math display">\[
+\left[\begin{array}{cc} a &amp; b \\ c &amp; d\end{array}\right]^{-1} = \frac{1}{ad - bc}\left[\begin{array}{rr} d &amp; -b \\ -c &amp; a\end{array}\right].
+\]</span>
+It turns out that there’s a straight-forward generalization of this formula to matrices of arbitrary size, but that are <em>partitioned</em> into four pieces. The following is based on the presentation from some old notes by Dr. Thomas Minka, <a href="https://tminka.github.io/papers/matrix/">Old and New Matrix Algebra Useful for Statistics</a>. The statement there is quite detailed and general. My version will be for a more specific, simple case, which I’ve found to be common and handy, and that can be presented in a fairly simple form.</p>
+<p>Let <span class="math inline">\(\mathbf{P}\)</span> be a matrix of arbitrary size that is composed of four sub-matrices:
+<span class="math display">\[
+\mathbf{P} = \left[\begin{array}{cc} \mathbf{A} &amp; \mathbf{B} \\ \mathbf{C} &amp; \mathbf{D}\end{array}\right],
+\]</span>
+where <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{D}\)</span> are <span class="math inline">\(a \times a\)</span> and <span class="math inline">\(d \times d\)</span> matrices, both of which are invertible, and where <span class="math inline">\(\mathbf{B}\)</span> and <span class="math inline">\(\mathbf{C}\)</span> are of conformable dimension.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Let <span class="math inline">\(\mathbf{X} = \left(\mathbf{D} - \mathbf{C}\mathbf{A}^{-1} \mathbf{B}\right)^{-1}\)</span>, a <span class="math inline">\(d \times d\)</span> matrix. Then
+<span class="math display">\[
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1} &amp; - \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \\ - \mathbf{X} \mathbf{C} \mathbf{A}^{-1} &amp; \mathbf{X}\end{array}\right].
+\]</span>
+This representation is particularly helpful if <span class="math inline">\(d &lt; a\)</span>, because in this case <span class="math inline">\(\mathbf{X}\)</span> is of lower dimension and so simpler (in a sense) than <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</p>
+<p>Another equivalency is more helpful when <span class="math inline">\(d &gt; a\)</span>. Here, take <span class="math inline">\(\mathbf{W} = \left(\mathbf{A} - \mathbf{B}\mathbf{D}^{-1} \mathbf{C}\right)^{-1}\)</span>, an <span class="math inline">\(a \times a\)</span> matrix (and so of lower dimension than <span class="math inline">\(\mathbf{D}\)</span>). Then
+<span class="math display">\[
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{W} &amp; - \mathbf{W} \mathbf{B} \mathbf{D}^{-1} \\ - \mathbf{D}^{-1} \mathbf{C} \mathbf{W} &amp; \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\end{array}\right].
+\]</span>
+Of course, this is just two ways of writing the same thing. You can see this by applying <a href="/Woodbury-identity/">everyone’s favorite matrix identity</a> to find that <span class="math inline">\(\mathbf{W} = \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{X} = \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\)</span>. It is an interesting little algebraic exercise to show that <span class="math inline">\(\mathbf{W} \mathbf{B} \mathbf{D}^{-1} = \mathbf{A}^{-1} \mathbf{B} \mathbf{X}\)</span> and that <span class="math inline">\(\mathbf{D}^{-1} \mathbf{C} \mathbf{W} = \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)</span>.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://tminka.github.io/papers/matrix/">Minka’s notes</a> on partitioned matrices treat a more general case, in which <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{D}\)</span> need not be square matrices, nor must they be invertible.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

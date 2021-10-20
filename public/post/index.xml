@@ -5,12 +5,49 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Wed, 06 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>Inverting partitioned matrices</title>
+      <link>/inverting-partitioned-matrices/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>/inverting-partitioned-matrices/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;There’s lots of linear algebra out there that’s quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my &lt;a href=&#34;/Woodbury-identity/&#34;&gt;previous post on the Woodbury identity&lt;/a&gt;, I thought I would share my notes on another helpful bit of math about matrices. At some point in high school or college, you might have learned how to invert a small matrix by hand. You might recall the formula for the inverse of a two-by-two matrix:
+&lt;span class=&#34;math display&#34;&gt;\[
+\left[\begin{array}{cc} a &amp;amp; b \\ c &amp;amp; d\end{array}\right]^{-1} = \frac{1}{ad - bc}\left[\begin{array}{rr} d &amp;amp; -b \\ -c &amp;amp; a\end{array}\right].
+\]&lt;/span&gt;
+It turns out that there’s a straight-forward generalization of this formula to matrices of arbitrary size, but that are &lt;em&gt;partitioned&lt;/em&gt; into four pieces. The following is based on the presentation from some old notes by Dr. Thomas Minka, &lt;a href=&#34;https://tminka.github.io/papers/matrix/&#34;&gt;Old and New Matrix Algebra Useful for Statistics&lt;/a&gt;. The statement there is quite detailed and general. My version will be for a more specific, simple case, which I’ve found to be common and handy, and that can be presented in a fairly simple form.&lt;/p&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{P}\)&lt;/span&gt; be a matrix of arbitrary size that is composed of four sub-matrices:
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{P} = \left[\begin{array}{cc} \mathbf{A} &amp;amp; \mathbf{B} \\ \mathbf{C} &amp;amp; \mathbf{D}\end{array}\right],
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{D}\)&lt;/span&gt; are &lt;span class=&#34;math inline&#34;&gt;\(a \times a\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(d \times d\)&lt;/span&gt; matrices, both of which are invertible, and where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{B}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{C}\)&lt;/span&gt; are of conformable dimension.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X} = \left(\mathbf{D} - \mathbf{C}\mathbf{A}^{-1} \mathbf{B}\right)^{-1}\)&lt;/span&gt;, a &lt;span class=&#34;math inline&#34;&gt;\(d \times d\)&lt;/span&gt; matrix. Then
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1} &amp;amp; - \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \\ - \mathbf{X} \mathbf{C} \mathbf{A}^{-1} &amp;amp; \mathbf{X}\end{array}\right].
+\]&lt;/span&gt;
+This representation is particularly helpful if &lt;span class=&#34;math inline&#34;&gt;\(d &amp;lt; a\)&lt;/span&gt;, because in this case &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; is of lower dimension and so simpler (in a sense) than &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}^{-1}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Another equivalency is more helpful when &lt;span class=&#34;math inline&#34;&gt;\(d &amp;gt; a\)&lt;/span&gt;. Here, take &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{W} = \left(\mathbf{A} - \mathbf{B}\mathbf{D}^{-1} \mathbf{C}\right)^{-1}\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(a \times a\)&lt;/span&gt; matrix (and so of lower dimension than &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{D}\)&lt;/span&gt;). Then
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{W} &amp;amp; - \mathbf{W} \mathbf{B} \mathbf{D}^{-1} \\ - \mathbf{D}^{-1} \mathbf{C} \mathbf{W} &amp;amp; \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\end{array}\right].
+\]&lt;/span&gt;
+Of course, this is just two ways of writing the same thing. You can see this by applying &lt;a href=&#34;/Woodbury-identity/&#34;&gt;everyone’s favorite matrix identity&lt;/a&gt; to find that &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{W} = \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X} = \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\)&lt;/span&gt;. It is an interesting little algebraic exercise to show that &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{W} \mathbf{B} \mathbf{D}^{-1} = \mathbf{A}^{-1} \mathbf{B} \mathbf{X}\)&lt;/span&gt; and that &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{D}^{-1} \mathbf{C} \mathbf{W} = \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://tminka.github.io/papers/matrix/&#34;&gt;Minka’s notes&lt;/a&gt; on partitioned matrices treat a more general case, in which &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{A}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{D}\)&lt;/span&gt; need not be square matrices, nor must they be invertible.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Standardized mean differences in single-group, repeated measures designs</title>

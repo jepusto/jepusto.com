@@ -1,0 +1,36 @@
+---
+title: Inverting partitioned matrices
+authors:
+- admin
+date: '2021-10-20'
+slug: inverting-partitioned-matrices
+categories: []
+tags:
+header:
+  caption: ''
+  image: ''
+---
+
+There's lots of linear algebra out there that's quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my [previous post on the Woodbury identity](/Woodbury-identity/), I thought I would share my notes on another helpful bit of math about matrices. At some point in high school or college, you might have learned how to invert a small matrix by hand. You might recall the formula for the inverse of a two-by-two matrix:
+$$
+\left[\begin{array}{cc} a & b \\ c & d\end{array}\right]^{-1} = \frac{1}{ad - bc}\left[\begin{array}{rr} d & -b \\ -c & a\end{array}\right].
+$$
+It turns out that there's a straight-forward generalization of this formula to matrices of arbitrary size, but that are _partitioned_ into four pieces. The following is based on the presentation from some old notes by Dr. Thomas Minka, [Old and New Matrix Algebra Useful for Statistics](https://tminka.github.io/papers/matrix/). The statement there is quite detailed and general. My version will be for a more specific, simple case, which I've found to be common and handy, and that can be presented in a fairly simple form.
+
+Let $\mathbf{P}$ be a matrix of arbitrary size that is composed of four sub-matrices:
+$$
+\mathbf{P} = \left[\begin{array}{cc} \mathbf{A} & \mathbf{B} \\ \mathbf{C} & \mathbf{D}\end{array}\right],
+$$
+where $\mathbf{A}$ and $\mathbf{D}$ are $a \times a$ and $d \times d$ matrices, both of which are invertible, and where $\mathbf{B}$ and $\mathbf{C}$ are of conformable dimension.[^general] Let $\mathbf{X} = \left(\mathbf{D} - \mathbf{C}\mathbf{A}^{-1} \mathbf{B}\right)^{-1}$, a $d \times d$ matrix. Then 
+$$
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1} & - \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \\ - \mathbf{X} \mathbf{C} \mathbf{A}^{-1} & \mathbf{X}\end{array}\right].
+$$
+This representation is particularly helpful if $d < a$, because in this case $\mathbf{X}$ is of lower dimension and so simpler (in a sense) than $\mathbf{A}^{-1}$. 
+
+Another equivalency is more helpful when $d > a$. Here, take $\mathbf{W} = \left(\mathbf{A} - \mathbf{B}\mathbf{D}^{-1} \mathbf{C}\right)^{-1}$, an $a \times a$ matrix (and so of lower dimension than $\mathbf{D}$). Then
+$$
+\mathbf{P}^{-1} = \left[\begin{array}{cc} \mathbf{W} & - \mathbf{W} \mathbf{B} \mathbf{D}^{-1} \\ - \mathbf{D}^{-1} \mathbf{C} \mathbf{W} & \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\end{array}\right].
+$$
+Of course, this is just two ways of writing the same thing. You can see this by applying [everyone's favorite matrix identity](/Woodbury-identity/) to find that $\mathbf{W} = \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1}$ and $\mathbf{X} = \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}$. It is an interesting little algebraic exercise to show that $\mathbf{W} \mathbf{B} \mathbf{D}^{-1} = \mathbf{A}^{-1} \mathbf{B} \mathbf{X}$ and that $\mathbf{D}^{-1} \mathbf{C} \mathbf{W} = \mathbf{X} \mathbf{C} \mathbf{A}^{-1}$. 
+
+[^general]: [Minka's notes](https://tminka.github.io/papers/matrix/) on partitioned matrices treat a more general case, in which $\mathbf{A}$ and $\mathbf{D}$ need not be square matrices, nor must they be invertible. 
