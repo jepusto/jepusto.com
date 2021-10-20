@@ -20,6 +20,8 @@ authors:
 links:
 - name: CRAN
   url: https://cran.r-project.org/package=SingleCaseES
+- name: Website
+  url: https://jepusto.github.io/SingleCaseES/
 url_code: "https://github.com/jepusto/SingleCaseES"
 url_pdf: ""
 url_slides: ""

@@ -18,6 +18,8 @@ authors:
 links:
 - name: CRAN
   url: https://cran.r-project.org/package=scdhlm
+- name: Website
+  url: https://jepusto.github.io/scdhlm/
 url_code: "https://github.com/jepusto/scdhlm"
 url_pdf: ""
 url_slides: ""
