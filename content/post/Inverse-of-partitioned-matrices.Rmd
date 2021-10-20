@@ -33,4 +33,6 @@ $$
 $$
 Of course, this is just two ways of writing the same thing. You can see this by applying [everyone's favorite matrix identity](/Woodbury-identity/) to find that $\mathbf{W} = \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1}$ and $\mathbf{X} = \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}$. It is an interesting little algebraic exercise to show that $\mathbf{W} \mathbf{B} \mathbf{D}^{-1} = \mathbf{A}^{-1} \mathbf{B} \mathbf{X}$ and that $\mathbf{D}^{-1} \mathbf{C} \mathbf{W} = \mathbf{X} \mathbf{C} \mathbf{A}^{-1}$. 
 
+These representations of $\mathbf{P}^{-1}$ are useful for a variety of statistical problems. To give just one example, they lead to a very direct proof of the [Frisch-Waugh-Lovell theorem](https://en.wikipedia.org/wiki/Frisch%E2%80%93Waugh%E2%80%93Lovell_theorem), including under more general conditions than are usually stated. 
+
 [^general]: [Minka's notes](https://tminka.github.io/papers/matrix/) on partitioned matrices treat a more general case, in which $\mathbf{A}$ and $\mathbf{D}$ need not be square matrices, nor must they be invertible. 
