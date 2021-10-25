@@ -1,0 +1,1508 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="I spend more time than I probably should discussing meta-analysis problems on the R-SIG-meta-analysis listserv. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/mean-variance-relationships-and-smds/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/mean-variance-relationships-and-smds/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="/mean-variance-relationships-and-smds/">
+  <meta property="og:title" content="Implications of mean-variance relationships for standardized mean differences | James E. Pustejovsky">
+  <meta property="og:description" content="I spend more time than I probably should discussing meta-analysis problems on the R-SIG-meta-analysis listserv. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-10-25T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-10-25T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/mean-variance-relationships-and-smds/"
+  },
+  "headline": "Implications of mean-variance relationships for standardized mean differences",
+  
+  "datePublished": "2021-10-25T00:00:00Z",
+  "dateModified": "2021-10-25T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "James E. Pustejovsky",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "I spend more time than I probably should discussing meta-analysis problems on the R-SIG-meta-analysis listserv. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>Implications of mean-variance relationships for standardized mean differences | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>Students</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Implications of mean-variance relationships for standardized mean differences</h1>
+
+  
+
+  
+    
+
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
+</div>
+
+
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2021-10-25
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/mean-variance-relationships-and-smds/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>I spend more time than I probably should discussing meta-analysis problems on the <a href="https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis">R-SIG-meta-analysis listserv</a>. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.</p>
+<p>Recently, a <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003318.html">question came up</a> on the listserv about whether it was reasonable to use the standardized mean difference metric for synthesizing studies where the outcomes are measured as proportions. Luke Martinez wrote:</p>
+<blockquote>
+<p>I’m doing a meta-analysis where the papers report only “mean” and “sd” of some form of proportion and/or “mean” and “sd” of corresponding raw frequencies. (For context, the papers ask students to read, find, and correct the wrong words in a text.) … My question is given that all these studies only report “mean” and “sd”, can I simply use a SMD effect size?</p>
+</blockquote>
+<p>I think this is an interesting question because, while the <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003320.html">SMD could work perfectly fine</a> as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it’s a situation where one has to make a choice about the effect size metric, and where the most common metric (SMDs) might not be the right answer. As <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003331.html">I wrote in reply</a>:</p>
+<blockquote>
+<p>I would suggest that you could also consider other effect measures besides the SMD. For example, the response ratio is also a scale-free metric that could work with the proportion outcomes that you’ve described, and would also be appropriate for raw frequency counts as long as the total number possible is the same for the groups being compared within a given study.</p>
+<p>Whether the response ratio would be more appropriate than the SMD is hard to gauge. One would need to know more about how the proportions were assessed and how the assessment procedures varied from study to study. For instance, did some studies use passages with many possible errors to be corrected while other studies used passages with just a few errors? Did the difficulty of the passages differ from study to study? Were there very low or very high mean proportions in any studies? Does there seem to be a relationship between the means and the variances of the proportions of a given group?</p>
+</blockquote>
+<p>In a <a href="https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003361.html">follow-up</a>, I elaborated on some potential problems with using the SMD:</p>
+<blockquote>
+<ul>
+<li><p>Variation in the number of possible errors (and perhaps also in the length of the time provided for the test?) suggests that the measures from different studies may have varying degrees of reliability. Varying reliability introduces heterogeneity in the SMD (because the denominator is inflated or shrunk by the degree of reliability).</p></li>
+<li><p>A relationship between the M and SD of the proportions for a given group suggests that the distribution of the individual-level outcomes might also exhibit mean-variance relationships. (I say “suggests” rather than implies because there’s an ecological inference here, i.e., assuming something about individual-level variation on the basis of group-level variation.) If this supposition is reasonable, then that introduces a further potential source of heterogeneity in the SMDs (study-to-study variation in the M for the reference group influences the SD of the reference group, thereby inflating or shrinking the SMDs).</p></li>
+</ul>
+</blockquote>
+<p>And I suggested a possible work-flow for examining the choice of effect size metric:</p>
+<blockquote>
+<p>Here’s how I might proceed if I were conducting
+this analysis:</p>
+<ol style="list-style-type: decimal">
+<li>Calculate <em>both</em> SMDs and log-transformed response ratios for the full set of studies.</li>
+<li>Examine the distribution of effect size estimates for each metric (using histograms or funnel plots). If one of the distributions is skewed or has extreme outliers, take that as an indication that the metric might not be appropriate.</li>
+<li>Fit meta-analytic models to summarize the distribution of effect sizes in each metric, using a model that appropriately describes the dependence structure of the estimates. Calculate I-squared statistics, give preference to the metric with lower I-squared.</li>
+<li>If (2) and (3) don’t lead to a clearly preferable metric, then choose between SMD and RR based on whichever will make the synthesis results easier to explain to people.</li>
+<li>(Optional/extra credit) Whichever metric you choose, repeat your main analyses using the other metric and stuff all those results in supplementary materials, to satisfy any inveterate statistical curmudgeons who might review/read your synthesis.</li>
+</ol>
+</blockquote>
+<p>(When I referred to “inveterate statistical curmudgeons”, I mostly had myself in mind.)</p>
+<p>In this post, I want to provide a bit more detail regarding why I think mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric, relative to alternatives. The concern is actually broader than meta-analyses of outcomes measured as proportions, so I’ll start with a different case and then return to a situation similar to the one described in the original question.</p>
+<div id="mean-variance-relationships-can-induce-heterogeneity" class="section level2">
+<h2>Mean-variance relationships can induce heterogeneity</h2>
+<p>The standardized mean difference parameter for a given study can be defined as:
+<span class="math display">\[
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}}, 
+\]</span>
+where <span class="math inline">\(\mu_{Ai}\)</span> and <span class="math inline">\(\mu_{Bi}\)</span> are the (population) mean outcomes in group <span class="math inline">\(A\)</span> and group <span class="math inline">\(B\)</span> of study <span class="math inline">\(i\)</span> and <span class="math inline">\(\sigma_{Ai}\)</span> is the (population) standard deviation in group <span class="math inline">\(A\)</span> of study <span class="math inline">\(i\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
+The ideal case for using the SMD metric is when the outcomes in different studies are linearly equatable, so that the outcome scale in one study can be directly translated into the outcome scale of another study. However, if outcomes exhibit mean-variance relationships, linearly equatability seems rather implausible, and we might expect that SMDs will display heterogeneity across studies as a result.</p>
+<p>Let me lay out an example of a situation where the outcomes exhibit mean-variance relationships and where, as a consequence, the SMD metric becomes heterogeneous. Suppose that we have <span class="math inline">\(k\)</span> studies, each involving a two-group comparison, with groups of equal size. In study <span class="math inline">\(i\)</span>, the outcomes in group <span class="math inline">\(A\)</span> follow a poisson distribution with mean <span class="math inline">\(\mu_{Ai}\)</span>, so that the variance of the outcomes in group <span class="math inline">\(A\)</span> is also <span class="math inline">\(\mu_{Ai}\)</span>, for <span class="math inline">\(i = 1,...,k\)</span>. The outcomes in group <span class="math inline">\(B\)</span> follow a poisson distribution with mean <span class="math inline">\(\mu_{Bi}\)</span>, so the variance is also <span class="math inline">\(\mu_{Bi}\)</span>. Now, suppose that there is a fixed, proportional relationship between <span class="math inline">\(\mu_{Bi}\)</span> and <span class="math inline">\(\mu_{Ai}\)</span>,
+so that <span class="math inline">\(\mu_{Bi} = \lambda \mu_{Ai}\)</span> for some <span class="math inline">\(\lambda &gt; 0\)</span>. In other words, the treatment contrast is <em>constant</em> on the scale of the response ratio.
+However, the means in group <span class="math inline">\(A\)</span> vary from study to study. To make things concrete, let’s assume that the means in group <span class="math inline">\(A\)</span> follow a gamma distribution with shape parameter <span class="math inline">\(\alpha\)</span> and rate parameter <span class="math inline">\(\beta\)</span>:
+<span class="math display">\[
+\mu_{Ai} \sim \Gamma(\alpha, \beta).
+\]</span>
+What does this model imply about the distribution of standardized mean differences across this set of studies?</p>
+<p>Under this model, the SMD parameter for study <span class="math inline">\(i\)</span> is:
+<span class="math display">\[
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sqrt{\mu_{Ai}}} = (\lambda - 1) \times \sqrt{\mu_{Ai}}.
+\]</span>
+The first term in the above expression is a constant that only
+depend on the size of the response ratio, but the second term is random because we have assumed that the group <span class="math inline">\(A\)</span> means vary from study to study. It will therefore create heterogeneity in the SMD parameters—the greater the variance of the <span class="math inline">\(\mu_{Ai}\)</span>’s, the greater the heterogeneity in <span class="math inline">\(\delta_i\)</span>. Specifically, under the above assumptions, the effect size parameters follow a <a href="https://en.wikipedia.org/wiki/Nakagami_distribution">Nakagami distribution</a>:
+<span class="math display">\[
+\delta_i \sim \text{Nakagami}\left(m = \alpha, \Omega = \frac{(\lambda - 1)^2 \alpha}{\beta}\right)
+\]</span>
+Thus, even though we have a model where there is an underlying fixed relationship between <span class="math inline">\(\mu_{Ai}\)</span> and <span class="math inline">\(\mu_{Bi}\)</span>, using the SMD metric for synthesis will lead to a situation with heterogeneous effects (even if all of the studies had large sample sizes and so effect sizes in individual studies are precisely estimated).</p>
+</div>
+<div id="an-example-with-proportions" class="section level2">
+<h2>An example with proportions</h2>
+<p>This sort of behavior is not restricted to the poisson-gamma model I sketched above. The key features of that example are a) the assumption that the outcomes have a strong mean-variance relationship and b) the assumption that the <span class="math inline">\(\mu_{Ai}\)</span>’s are heterogeneous across studies. If both of these hold, then the resulting SMDs will also be heterogeneous. I’ll now describe a similar model, but where the outcomes within each study are proportions.</p>
+<p>As before, suppose that we have <span class="math inline">\(k\)</span> studies, each involving a two-group comparison, with groups of equal size. In study <span class="math inline">\(i\)</span>, the outcomes in group <span class="math inline">\(A\)</span> follow a binomial distribution with mean proportion <span class="math inline">\(\pi_{Ai}\)</span> and <span class="math inline">\(T_i\)</span> trials, so that the variance of the outcomes in group <span class="math inline">\(A\)</span> is <span class="math inline">\(\pi_{Ai}\left(1 - \pi_{Ai}\right) T_i\)</span>, for <span class="math inline">\(i = 1,...,k\)</span>. The outcomes in group <span class="math inline">\(B\)</span> also follow a binomial distribution, this one with mean proportion <span class="math inline">\(\pi_{Bi}\)</span> and <span class="math inline">\(T_i\)</span> trials, so the variance is <span class="math inline">\(\pi_{Bi}\left(1 - \pi_{Bi}\right) T_i\)</span>. Next, to induce variation in the group-<span class="math inline">\(A\)</span> means, let’s assume that the mean proportions follow a beta distribution:
+<span class="math display">\[
+\pi_{Ai} \sim \text{Beta}(\alpha, \beta).
+\]</span></p>
+<p>Finally, suppose that <span class="math inline">\(\pi_{Bi} = \lambda_i \mu_{Ai}\)</span> for some <span class="math inline">\(\lambda_i &gt; 0\)</span>.</p>
+<p>Under these assumptions, the SMD parameter for study <span class="math inline">\(i\)</span> is:
+<span class="math display">\[
+\delta_i = \frac{\pi_{Bi}T_i - \pi_{Ai} T_i}{\sqrt{\pi_{Ai} (1 - \pi_{Ai}) T_i}} = (\lambda_i - 1) \times \sqrt{T_i} \times \sqrt{\frac{\pi_{Ai}}{1 - \pi_{Ai}}}.
+\]</span>
+From the above expression, it can be seen that there are three potential sources of variation in <span class="math inline">\(\delta_i\)</span>: variation in the study-specific response ratio <span class="math inline">\(\lambda_i\)</span>, variation in the group-<span class="math inline">\(A\)</span> proportions <span class="math inline">\(\pi_{Ai}\)</span>, and variation in the number of trials <span class="math inline">\(T_i\)</span>. The total heterogeneity in <span class="math inline">\(\delta_i\)</span> will depend on all three, as well as on the co-variation between <span class="math inline">\(\lambda_i\)</span>, <span class="math inline">\(\pi_{Ai}\)</span>, and <span class="math inline">\(T_i\)</span>.</p>
+<p>To make this concrete, let me simulate some meta-analytic data that follows the above model. To do so, I’ll need to make some additional distributional assumptions<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<ol style="list-style-type: decimal">
+<li>that <span class="math inline">\(\lambda_i\)</span> is log-normally distributed such that <span class="math inline">\(\ln \lambda_i \sim N(\ln \Lambda, \tau^2)\)</span>;</li>
+<li>that the number of trials is uniformly distributed on the integers between <span class="math inline">\(t_{min}\)</span> and <span class="math inline">\(t_{max}\)</span>;</li>
+<li>that <span class="math inline">\(N_i\)</span>, the number of observations per group in study <span class="math inline">\(i\)</span>, is uniformly distributed on the integers between <span class="math inline">\(n_{min}\)</span> and <span class="math inline">\(n_{max}\)</span>; and</li>
+<li>that <span class="math inline">\(\pi_{Ai}\)</span>, <span class="math inline">\(\lambda_i\)</span>, <span class="math inline">\(T_i\)</span>, and <span class="math inline">\(N_i\)</span> are mutually independent.</li>
+</ol>
+<p>Here’s a function that generates study-specific parameter values and sample proportions:</p>
+<pre class="r"><code>sim_binom_summary &lt;- function(pi_i, T_i, n_i) {
+  y &lt;- rbinom(n_i, size = T_i, prob = pi_i) / T_i
+  data.frame(M = mean(y), SD = sd(y))
+}
+
+sim_props &lt;- function(
+  k, # number of studies
+  alpha, beta, # parameters of pi_Ai distribution,
+  Lambda, tau, # parameters of lambda_i distribution
+  t_min, t_max, # parameters of T_i distribution
+  n_min, n_max # parameters of the sample size distribution
+) {
+  
+  # simulate parameters
+  pi_Ai &lt;- rbeta(k, shape1 = alpha, shape2 = beta)
+  lambda_i &lt;- exp(rnorm(k, mean = log(Lambda), sd = tau))
+  pi_Bi &lt;- lambda_i * pi_Ai
+  T_i &lt;- sample(t_min:t_max, size = k, replace = TRUE)
+  delta_i &lt;- (pi_Bi - pi_Ai) * T_i / sqrt(pi_Ai * (1 - pi_Ai) * T_i)
+  n_i &lt;- sample(n_min:n_max, size = k, replace = TRUE)
+  
+  # simulate data
+  stats_A &lt;- purrr::pmap_dfr(list(pi_i = pi_Ai, T_i = T_i, n_i = n_i),
+                             sim_binom_summary) 
+                             
+  stats_B &lt;- purrr::pmap_dfr(list(pi_i = pi_Bi, T_i = T_i, n_i = n_i),
+                             sim_binom_summary)
+  
+  # compile
+  res &lt;- data.frame(
+    pi_Ai = pi_Ai, pi_Bi = pi_Bi, 
+    lambda_i = lambda_i, T_i = T_i, 
+    delta_i = delta_i, n_i = n_i,
+    mA = stats_A$M, sdA = stats_A$SD,
+    mB = stats_B$M, sdB = stats_B$SD
+  )
+
+  # effect size calculations
+  res &lt;- metafor::escalc(
+    data = res, measure = &quot;ROM&quot;, var.names = c(&quot;lRR&quot;, &quot;V_lRR&quot;),
+    m1i = mB, m2i = mA, 
+    sd1i = sdB, sd2i = sdA,
+    n1i = n_i, n2i = n_i
+  )
+  res &lt;- metafor::escalc(
+    data = res, measure = &quot;SMD&quot;, var.names = c(&quot;d&quot;, &quot;V_d&quot;),
+    m1i = mB, m2i = mA, 
+    sd1i = sdB, sd2i = sdA,
+    n1i = n_i, n2i = n_i
+  )
+  
+  res
+}
+
+set.seed(20211024)
+dat &lt;- sim_props(k = 60, alpha = 12, beta = 4, 
+                 Lambda = 0.7, tau = .05,
+                 t_min = 5, t_max = 18,
+                 n_min = 10, n_max = 40)
+
+head(dat)</code></pre>
+<pre><code>##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
+## 1 0.7584480 0.5836965 0.7695933  11 -1.3540950  24 0.7500000 0.1080650 
+## 2 0.7359047 0.4950740 0.6727420  16 -2.1851474  24 0.7786458 0.1222235 
+## 3 0.7132014 0.4773027 0.6692398  12 -1.8068471  10 0.7333333 0.1097134 
+## 4 0.6223653 0.4627406 0.7435193   9 -0.9877857  30 0.6666667 0.1399386 
+## 5 0.5916619 0.4205407 0.7107787   6 -0.8527716  28 0.5833333 0.2103299 
+## 6 0.7266748 0.5014601 0.6900751   9 -1.5160305  35 0.7619048 0.1209466 
+##          mB       sdB     lRR  V_lRR       d    V_d 
+## 1 0.6174242 0.1285066 -0.1945 0.0027 -1.0983 0.0959 
+## 2 0.5260417 0.1275776 -0.3922 0.0035 -1.9888 0.1245 
+## 3 0.3583333 0.1622089 -0.7161 0.0227 -2.5934 0.3681 
+## 4 0.4555556 0.1943213 -0.3808 0.0075 -1.2306 0.0793 
+## 5 0.4583333 0.2060055 -0.2412 0.0119 -0.5921 0.0746 
+## 6 0.4920635 0.1793349 -0.4372 0.0045 -1.7447 0.0789</code></pre>
+<p>For the specified parameter values, there is only a small amount of true heterogeneity in the log of the response ratios (the blue density). Of course, there is further heterogeneity in the log response ratio estimates (the green density) due to sampling error:</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(dat) + 
+  geom_density(aes(log(lambda_i), ..scaled..), fill = &quot;blue&quot;, alpha = 0.5) + 
+  geom_density(aes(lRR, ..scaled..), fill = &quot;green&quot;, alpha = 0.2) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png" width="576" />
+A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:</p>
+<pre class="r"><code>library(metafor)
+rma(yi = lRR, vi = V_lRR, data = dat)</code></pre>
+<pre><code>## 
+## Random-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.0028 (SE = 0.0013)
+## tau (square root of estimated tau^2 value):      0.0529
+## I^2 (total heterogeneity / total variability):   42.01%
+## H^2 (total variability / sampling variability):  1.72
+## 
+## Test for Heterogeneity:
+## Q(df = 59) = 100.6304, p-val = 0.0006
+## 
+## Model Results:
+## 
+## estimate      se      zval    pval    ci.lb    ci.ub 
+##  -0.3498  0.0111  -31.5751  &lt;.0001  -0.3715  -0.3281  *** 
+## 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Contrast this with what we get from using the standardized mean difference metric. The distributions of true effect sizes (blue) and of effect size estimates (light purple) have large spread as well as strong left skew:</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(dat) + 
+  geom_density(aes(delta_i, ..scaled..), fill = &quot;blue&quot;, alpha = 0.2) + 
+  geom_density(aes(d, ..scaled..), fill = &quot;purple&quot;, alpha = 0.5) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png" width="576" />
+A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated <span class="math inline">\(\tau\)</span> and in <span class="math inline">\(I^2\)</span>, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:</p>
+<pre class="r"><code>rma(yi = d, vi = V_d, data = dat)</code></pre>
+<pre><code>## 
+## Random-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.2838 (SE = 0.0743)
+## tau (square root of estimated tau^2 value):      0.5327
+## I^2 (total heterogeneity / total variability):   72.61%
+## H^2 (total variability / sampling variability):  3.65
+## 
+## Test for Heterogeneity:
+## Q(df = 59) = 203.0513, p-val &lt; .0001
+## 
+## Model Results:
+## 
+## estimate      se      zval    pval    ci.lb    ci.ub 
+##  -1.5967  0.0824  -19.3771  &lt;.0001  -1.7582  -1.4352  *** 
+## 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="diagnostics" class="section level2">
+<h2>Diagnostics</h2>
+<p>The code above more-or-less implements the workflow I suggested for deciding between the standardized mean difference or response ratio metric (for proportions, we could also add further comparisons with log odds ratios and with raw differences in proportions). But is there further diagnostic information in the data, that could provide a better sense of what is going on? I think there are a few things that might be helpful to consider.</p>
+<p>First, the issues I’m concerned with here will arise when there are mean-variance relationships in the outcomes. To get at that, we can simply plot the means and SDs of each group. In the code below, I re-structure the data so that there is one row per group per study. I then plot the SD versus the mean of each group:</p>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+
+long_summary_stats &lt;- 
+  dat %&gt;%
+  select(n_i, T_i, mA, sdA, mB, sdB) %&gt;%
+  pivot_longer(cols = c(mA, sdA, mB, sdB), 
+               names_to = c(&quot;.value&quot;,&quot;group&quot;),
+               names_pattern = &quot;(m|sd)(A|B)&quot;)
+
+ggplot(long_summary_stats,
+       aes(m, sd, color = group)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  expand_limits(y = 0) + 
+  theme_minimal() + 
+  theme(legend.position = c(0.1, 0.9))</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png" width="480" />
+The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given <span class="math inline">\(T_i\)</span>:</p>
+<pre class="r"><code>long_summary_stats %&gt;%
+  mutate(
+    sd_scaled = sd * sqrt(T_i)
+  ) %&gt;%
+  ggplot(aes(m, sd_scaled, color = group)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_function(fun = function(x) sqrt(x * (1 - x)),
+                color = &quot;black&quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  expand_limits(y = 0) + 
+  theme_minimal() + 
+  theme(legend.position = c(0.1, 0.9))</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png" width="480" />
+From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).</p>
+<p>Second, since the outcomes in each group are all proportions, we can simply plot the mean in group <span class="math inline">\(B\)</span> versus the mean in group <span class="math inline">\(A\)</span>:</p>
+<pre class="r"><code>ggplot(dat, aes(mA, mB)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &quot;green&quot;) + 
+  geom_smooth(method = &quot;lm&quot;, formula = y ~ x) + 
+  coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png" width="480" />
+This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).</p>
+<p>Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-<span class="math inline">\(A\)</span> means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows <span class="math inline">\(d_i\)</span> versus <span class="math inline">\(\sqrt{T_i}\)</span>).</p>
+<pre class="r"><code>library(patchwork)
+mA_d_plot &lt;- 
+  ggplot(dat, aes(mA, d)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &quot;green&quot;) + 
+  geom_smooth(method = &quot;lm&quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  theme_minimal()
+
+Ti_d_plot &lt;- 
+  ggplot(dat, aes(sqrt(T_i), d)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &quot;green&quot;) + 
+  geom_smooth(method = &quot;lm&quot;) + 
+  theme_minimal()
+
+mA_d_plot + Ti_d_plot</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png" width="100%" /></p>
+<p>This impression is also born out by a meta-regression that includes the group-<span class="math inline">\(A\)</span> means and <span class="math inline">\(\sqrt{T_i}\)</span> as moderators:</p>
+<pre class="r"><code>rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)</code></pre>
+<pre><code>## 
+## Mixed-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of residual heterogeneity):     0.0238 (SE = 0.0238)
+## tau (square root of estimated tau^2 value):             0.1544
+## I^2 (residual heterogeneity / unaccounted variability): 18.12%
+## H^2 (unaccounted variability / sampling variability):   1.22
+## R^2 (amount of heterogeneity accounted for):            91.60%
+## 
+## Test for Residual Heterogeneity:
+## QE(df = 57) = 68.9706, p-val = 0.1330
+## 
+## Test of Moderators (coefficients 2:3):
+## QM(df = 2) = 110.9125, p-val &lt; .0001
+## 
+## Model Results:
+## 
+##            estimate      se     zval    pval    ci.lb    ci.ub 
+## intrcpt      2.5225  0.3964   6.3632  &lt;.0001   1.7455   3.2995  *** 
+## mA          -2.8326  0.4336  -6.5321  &lt;.0001  -3.6825  -1.9827  *** 
+## sqrt(T_i)   -0.6109  0.0756  -8.0855  &lt;.0001  -0.7590  -0.4628  *** 
+## 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here are the same plots as above, but using the log of the response ratio as the effect size metric:</p>
+<pre class="r"><code>mA_lRR_plot &lt;- 
+  ggplot(dat, aes(mA, lRR)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &quot;green&quot;) + 
+  geom_smooth(method = &quot;lm&quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  theme_minimal()
+
+Ti_lRR_plot &lt;- 
+  ggplot(dat, aes(sqrt(T_i), lRR)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &quot;green&quot;) + 
+  geom_smooth(method = &quot;lm&quot;) + 
+  theme_minimal()
+
+mA_lRR_plot + Ti_lRR_plot</code></pre>
+<p><img src="/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png" width="100%" /></p>
+<p>In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-<span class="math inline">\(A\)</span> means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and <span class="math inline">\(\sqrt{T_i}\)</span>, which is a bit surprising, although the strength of the relationship is much weaker than with the standardized mean differences. Meta-regression analysis supports these interpretations:</p>
+<pre class="r"><code>rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)</code></pre>
+<pre><code>## 
+## Mixed-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of residual heterogeneity):     0.0019 (SE = 0.0011)
+## tau (square root of estimated tau^2 value):             0.0439
+## I^2 (residual heterogeneity / unaccounted variability): 32.87%
+## H^2 (unaccounted variability / sampling variability):   1.49
+## R^2 (amount of heterogeneity accounted for):            31.30%
+## 
+## Test for Residual Heterogeneity:
+## QE(df = 57) = 84.4977, p-val = 0.0105
+## 
+## Test of Moderators (coefficients 2:3):
+## QM(df = 2) = 10.6344, p-val = 0.0049
+## 
+## Model Results:
+## 
+##            estimate      se     zval    pval    ci.lb    ci.ub 
+## intrcpt     -0.2362  0.0950  -2.4864  0.0129  -0.4224  -0.0500   * 
+## mA           0.1061  0.0948   1.1196  0.2629  -0.0796   0.2918     
+## sqrt(T_i)   -0.0553  0.0179  -3.0852  0.0020  -0.0904  -0.0202  ** 
+## 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they’ve uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Thus, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, <em>annoying</em>. If we wanted to examine other more theoretically interesting moderators, we’d have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable—simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that’s not the right model? Since we know the true data-generating process here, we can see that the linear, additive model <em>would not</em> be correct. But in practice, when we don’t know the true process, this would be much murkier.</p>
+<p>The general principle that I’m suggesting here is that effect sizes should ideally be on a metric that is <em>independent</em> of arbitrary methodological factors because this should <em>reduce</em> overall heterogeneity and <em>simplify</em> the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations, or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I’m not yet sure about. It seems like a useful avenue for further methodological work.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Yes, there are other ways to define the SMD. Yes, usually we use the standard deviation pooled across both groups. I’m going to use the standard deviation in group <span class="math inline">\(A\)</span> alone because it simplifies some of the mathy bits. Please feel free to work through the case with a pooled SD for yourself.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>One of the vexing things about simulations is that you often end up needing to specify a bunch of assumptions about auxiliary quantities, beyond those of the model you’re actually interested in investigating.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/standardized-mean-difference/">standardized mean difference</a>
+  
+  <a class="badge badge-light" href="/tags/response-ratio/">response ratio</a>
+  
+  <a class="badge badge-light" href="/tags/distribution-theory/">distribution theory</a>
+  
+  <a class="badge badge-light" href="/tags/meta-analysis/">meta-analysis</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/mean-variance-relationships-and-smds/&amp;text=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/mean-variance-relationships-and-smds/&amp;t=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences&amp;body=/mean-variance-relationships-and-smds/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/mean-variance-relationships-and-smds/&amp;title=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences%20/mean-variance-relationships-and-smds/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/mean-variance-relationships-and-smds/&amp;title=Implications%20of%20mean-variance%20relationships%20for%20standardized%20mean%20differences" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/publication/sced-mlma-rve/">Multi-level meta-analysis of single-case experimental designs using robust variance estimation</a></li>
+      
+      <li><a href="/simulating-correlated-smds/">Simulating correlated standardized mean differences for meta-analysis</a></li>
+      
+      <li><a href="/alternative-formulas-for-the-smd/">Alternative formulas for the standardized mean difference</a></li>
+      
+      <li><a href="/correlations-between-smds/">Correlations between standardized mean differences</a></li>
+      
+      <li><a href="/smds-in-single-group/">Standardized mean differences in single-group, repeated measures designs</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4dd9b94a466daca7ed2f06b98847fa44.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+  
+  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "show");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
+
+
+  <p class="powered-by">
+    © 2021 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

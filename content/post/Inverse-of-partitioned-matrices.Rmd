@@ -6,6 +6,7 @@ date: '2021-10-20'
 slug: inverting-partitioned-matrices
 categories: []
 tags:
+  - matrix algebra
 header:
   caption: ''
   image: ''

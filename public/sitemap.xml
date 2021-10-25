@@ -19,12 +19,52 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/distribution-theory/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/mean-variance-relationships-and-smds/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/meta-analysis/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/response-ratio/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/standardized-mean-difference/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,12 +73,7 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+    <loc>/tags/matrix-algebra/</loc>
     <lastmod>2021-10-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,22 +123,7 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2021-10-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/distribution-theory/</loc>
-    <lastmod>2021-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/effect-size/</loc>
-    <lastmod>2021-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/standardized-mean-difference/</loc>
     <lastmod>2021-10-06T00:00:00+00:00</lastmod>
   </url>
   
@@ -134,11 +154,6 @@
   
   <url>
     <loc>/publication/cluster-wild-bootstrap-for-meta-analysis/</loc>
-    <lastmod>2021-09-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/meta-analysis/</loc>
     <lastmod>2021-09-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -174,11 +189,6 @@
   
   <url>
     <loc>/tags/non-overlap-measures/</loc>
-    <lastmod>2021-07-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/response-ratio/</loc>
     <lastmod>2021-07-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -334,11 +344,6 @@
   
   <url>
     <loc>/tags/hierarchical-models/</loc>
-    <lastmod>2020-12-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/matrix-algebra/</loc>
     <lastmod>2020-12-04T00:00:00+00:00</lastmod>
   </url>
   

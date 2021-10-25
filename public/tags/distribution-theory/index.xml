@@ -5,12 +5,379 @@
     <link>/tags/distribution-theory/</link>
       <atom:link href="/tags/distribution-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>distribution theory</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Wed, 06 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Mon, 25 Oct 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>distribution theory</title>
       <link>/tags/distribution-theory/</link>
     </image>
+    
+    <item>
+      <title>Implications of mean-variance relationships for standardized mean differences</title>
+      <link>/mean-variance-relationships-and-smds/</link>
+      <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>/mean-variance-relationships-and-smds/</guid>
+      <description>
+
+
+&lt;p&gt;I spend more time than I probably should discussing meta-analysis problems on the &lt;a href=&#34;https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis&#34;&gt;R-SIG-meta-analysis listserv&lt;/a&gt;. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.&lt;/p&gt;
+&lt;p&gt;Recently, a &lt;a href=&#34;https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003318.html&#34;&gt;question came up&lt;/a&gt; on the listserv about whether it was reasonable to use the standardized mean difference metric for synthesizing studies where the outcomes are measured as proportions. Luke Martinez wrote:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I’m doing a meta-analysis where the papers report only “mean” and “sd” of some form of proportion and/or “mean” and “sd” of corresponding raw frequencies. (For context, the papers ask students to read, find, and correct the wrong words in a text.) … My question is given that all these studies only report “mean” and “sd”, can I simply use a SMD effect size?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think this is an interesting question because, while the &lt;a href=&#34;https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003320.html&#34;&gt;SMD could work perfectly fine&lt;/a&gt; as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it’s a situation where one has to make a choice about the effect size metric, and where the most common metric (SMDs) might not be the right answer. As &lt;a href=&#34;https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003331.html&#34;&gt;I wrote in reply&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I would suggest that you could also consider other effect measures besides the SMD. For example, the response ratio is also a scale-free metric that could work with the proportion outcomes that you’ve described, and would also be appropriate for raw frequency counts as long as the total number possible is the same for the groups being compared within a given study.&lt;/p&gt;
+&lt;p&gt;Whether the response ratio would be more appropriate than the SMD is hard to gauge. One would need to know more about how the proportions were assessed and how the assessment procedures varied from study to study. For instance, did some studies use passages with many possible errors to be corrected while other studies used passages with just a few errors? Did the difficulty of the passages differ from study to study? Were there very low or very high mean proportions in any studies? Does there seem to be a relationship between the means and the variances of the proportions of a given group?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In a &lt;a href=&#34;https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003361.html&#34;&gt;follow-up&lt;/a&gt;, I elaborated on some potential problems with using the SMD:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Variation in the number of possible errors (and perhaps also in the length of the time provided for the test?) suggests that the measures from different studies may have varying degrees of reliability. Varying reliability introduces heterogeneity in the SMD (because the denominator is inflated or shrunk by the degree of reliability).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A relationship between the M and SD of the proportions for a given group suggests that the distribution of the individual-level outcomes might also exhibit mean-variance relationships. (I say “suggests” rather than implies because there’s an ecological inference here, i.e., assuming something about individual-level variation on the basis of group-level variation.) If this supposition is reasonable, then that introduces a further potential source of heterogeneity in the SMDs (study-to-study variation in the M for the reference group influences the SD of the reference group, thereby inflating or shrinking the SMDs).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;And I suggested a possible work-flow for examining the choice of effect size metric:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here’s how I might proceed if I were conducting
+this analysis:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Calculate &lt;em&gt;both&lt;/em&gt; SMDs and log-transformed response ratios for the full set of studies.&lt;/li&gt;
+&lt;li&gt;Examine the distribution of effect size estimates for each metric (using histograms or funnel plots). If one of the distributions is skewed or has extreme outliers, take that as an indication that the metric might not be appropriate.&lt;/li&gt;
+&lt;li&gt;Fit meta-analytic models to summarize the distribution of effect sizes in each metric, using a model that appropriately describes the dependence structure of the estimates. Calculate I-squared statistics, give preference to the metric with lower I-squared.&lt;/li&gt;
+&lt;li&gt;If (2) and (3) don’t lead to a clearly preferable metric, then choose between SMD and RR based on whichever will make the synthesis results easier to explain to people.&lt;/li&gt;
+&lt;li&gt;(Optional/extra credit) Whichever metric you choose, repeat your main analyses using the other metric and stuff all those results in supplementary materials, to satisfy any inveterate statistical curmudgeons who might review/read your synthesis.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(When I referred to “inveterate statistical curmudgeons”, I mostly had myself in mind.)&lt;/p&gt;
+&lt;p&gt;In this post, I want to provide a bit more detail regarding why I think mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric, relative to alternatives. The concern is actually broader than meta-analyses of outcomes measured as proportions, so I’ll start with a different case and then return to a situation similar to the one described in the original question.&lt;/p&gt;
+&lt;div id=&#34;mean-variance-relationships-can-induce-heterogeneity&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Mean-variance relationships can induce heterogeneity&lt;/h2&gt;
+&lt;p&gt;The standardized mean difference parameter for a given study can be defined as:
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}}, 
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt; are the (population) mean outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; and group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_{Ai}\)&lt;/span&gt; is the (population) standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;
+The ideal case for using the SMD metric is when the outcomes in different studies are linearly equatable, so that the outcome scale in one study can be directly translated into the outcome scale of another study. However, if outcomes exhibit mean-variance relationships, linearly equatability seems rather implausible, and we might expect that SMDs will display heterogeneity across studies as a result.&lt;/p&gt;
+&lt;p&gt;Let me lay out an example of a situation where the outcomes exhibit mean-variance relationships and where, as a consequence, the SMD metric becomes heterogeneous. Suppose that we have &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; studies, each involving a two-group comparison, with groups of equal size. In study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, the outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; follow a poisson distribution with mean &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt;, so that the variance of the outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; is also &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k\)&lt;/span&gt;. The outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; follow a poisson distribution with mean &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt;, so the variance is also &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt;. Now, suppose that there is a fixed, proportional relationship between &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt;,
+so that &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi} = \lambda \mu_{Ai}\)&lt;/span&gt; for some &lt;span class=&#34;math inline&#34;&gt;\(\lambda &amp;gt; 0\)&lt;/span&gt;. In other words, the treatment contrast is &lt;em&gt;constant&lt;/em&gt; on the scale of the response ratio.
+However, the means in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; vary from study to study. To make things concrete, let’s assume that the means in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; follow a gamma distribution with shape parameter &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; and rate parameter &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;:
+&lt;span class=&#34;math display&#34;&gt;\[
+\mu_{Ai} \sim \Gamma(\alpha, \beta).
+\]&lt;/span&gt;
+What does this model imply about the distribution of standardized mean differences across this set of studies?&lt;/p&gt;
+&lt;p&gt;Under this model, the SMD parameter for study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; is:
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sqrt{\mu_{Ai}}} = (\lambda - 1) \times \sqrt{\mu_{Ai}}.
+\]&lt;/span&gt;
+The first term in the above expression is a constant that only
+depend on the size of the response ratio, but the second term is random because we have assumed that the group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means vary from study to study. It will therefore create heterogeneity in the SMD parameters—the greater the variance of the &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt;’s, the greater the heterogeneity in &lt;span class=&#34;math inline&#34;&gt;\(\delta_i\)&lt;/span&gt;. Specifically, under the above assumptions, the effect size parameters follow a &lt;a href=&#34;https://en.wikipedia.org/wiki/Nakagami_distribution&#34;&gt;Nakagami distribution&lt;/a&gt;:
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_i \sim \text{Nakagami}\left(m = \alpha, \Omega = \frac{(\lambda - 1)^2 \alpha}{\beta}\right)
+\]&lt;/span&gt;
+Thus, even though we have a model where there is an underlying fixed relationship between &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt;, using the SMD metric for synthesis will lead to a situation with heterogeneous effects (even if all of the studies had large sample sizes and so effect sizes in individual studies are precisely estimated).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;an-example-with-proportions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;An example with proportions&lt;/h2&gt;
+&lt;p&gt;This sort of behavior is not restricted to the poisson-gamma model I sketched above. The key features of that example are a) the assumption that the outcomes have a strong mean-variance relationship and b) the assumption that the &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt;’s are heterogeneous across studies. If both of these hold, then the resulting SMDs will also be heterogeneous. I’ll now describe a similar model, but where the outcomes within each study are proportions.&lt;/p&gt;
+&lt;p&gt;As before, suppose that we have &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; studies, each involving a two-group comparison, with groups of equal size. In study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, the outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; follow a binomial distribution with mean proportion &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Ai}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt; trials, so that the variance of the outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Ai}\left(1 - \pi_{Ai}\right) T_i\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k\)&lt;/span&gt;. The outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; also follow a binomial distribution, this one with mean proportion &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Bi}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt; trials, so the variance is &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Bi}\left(1 - \pi_{Bi}\right) T_i\)&lt;/span&gt;. Next, to induce variation in the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, let’s assume that the mean proportions follow a beta distribution:
+&lt;span class=&#34;math display&#34;&gt;\[
+\pi_{Ai} \sim \text{Beta}(\alpha, \beta).
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, suppose that &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Bi} = \lambda_i \mu_{Ai}\)&lt;/span&gt; for some &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i &amp;gt; 0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Under these assumptions, the SMD parameter for study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; is:
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_i = \frac{\pi_{Bi}T_i - \pi_{Ai} T_i}{\sqrt{\pi_{Ai} (1 - \pi_{Ai}) T_i}} = (\lambda_i - 1) \times \sqrt{T_i} \times \sqrt{\frac{\pi_{Ai}}{1 - \pi_{Ai}}}.
+\]&lt;/span&gt;
+From the above expression, it can be seen that there are three potential sources of variation in &lt;span class=&#34;math inline&#34;&gt;\(\delta_i\)&lt;/span&gt;: variation in the study-specific response ratio &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i\)&lt;/span&gt;, variation in the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; proportions &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Ai}\)&lt;/span&gt;, and variation in the number of trials &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;. The total heterogeneity in &lt;span class=&#34;math inline&#34;&gt;\(\delta_i\)&lt;/span&gt; will depend on all three, as well as on the co-variation between &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Ai}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;To make this concrete, let me simulate some meta-analytic data that follows the above model. To do so, I’ll need to make some additional distributional assumptions&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;that &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i\)&lt;/span&gt; is log-normally distributed such that &lt;span class=&#34;math inline&#34;&gt;\(\ln \lambda_i \sim N(\ln \Lambda, \tau^2)\)&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;that the number of trials is uniformly distributed on the integers between &lt;span class=&#34;math inline&#34;&gt;\(t_{min}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(t_{max}\)&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;that &lt;span class=&#34;math inline&#34;&gt;\(N_i\)&lt;/span&gt;, the number of observations per group in study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, is uniformly distributed on the integers between &lt;span class=&#34;math inline&#34;&gt;\(n_{min}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n_{max}\)&lt;/span&gt;; and&lt;/li&gt;
+&lt;li&gt;that &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Ai}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(N_i\)&lt;/span&gt; are mutually independent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here’s a function that generates study-specific parameter values and sample proportions:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sim_binom_summary &amp;lt;- function(pi_i, T_i, n_i) {
+  y &amp;lt;- rbinom(n_i, size = T_i, prob = pi_i) / T_i
+  data.frame(M = mean(y), SD = sd(y))
+}
+
+sim_props &amp;lt;- function(
+  k, # number of studies
+  alpha, beta, # parameters of pi_Ai distribution,
+  Lambda, tau, # parameters of lambda_i distribution
+  t_min, t_max, # parameters of T_i distribution
+  n_min, n_max # parameters of the sample size distribution
+) {
+  
+  # simulate parameters
+  pi_Ai &amp;lt;- rbeta(k, shape1 = alpha, shape2 = beta)
+  lambda_i &amp;lt;- exp(rnorm(k, mean = log(Lambda), sd = tau))
+  pi_Bi &amp;lt;- lambda_i * pi_Ai
+  T_i &amp;lt;- sample(t_min:t_max, size = k, replace = TRUE)
+  delta_i &amp;lt;- (pi_Bi - pi_Ai) * T_i / sqrt(pi_Ai * (1 - pi_Ai) * T_i)
+  n_i &amp;lt;- sample(n_min:n_max, size = k, replace = TRUE)
+  
+  # simulate data
+  stats_A &amp;lt;- purrr::pmap_dfr(list(pi_i = pi_Ai, T_i = T_i, n_i = n_i),
+                             sim_binom_summary) 
+                             
+  stats_B &amp;lt;- purrr::pmap_dfr(list(pi_i = pi_Bi, T_i = T_i, n_i = n_i),
+                             sim_binom_summary)
+  
+  # compile
+  res &amp;lt;- data.frame(
+    pi_Ai = pi_Ai, pi_Bi = pi_Bi, 
+    lambda_i = lambda_i, T_i = T_i, 
+    delta_i = delta_i, n_i = n_i,
+    mA = stats_A$M, sdA = stats_A$SD,
+    mB = stats_B$M, sdB = stats_B$SD
+  )
+
+  # effect size calculations
+  res &amp;lt;- metafor::escalc(
+    data = res, measure = &amp;quot;ROM&amp;quot;, var.names = c(&amp;quot;lRR&amp;quot;, &amp;quot;V_lRR&amp;quot;),
+    m1i = mB, m2i = mA, 
+    sd1i = sdB, sd2i = sdA,
+    n1i = n_i, n2i = n_i
+  )
+  res &amp;lt;- metafor::escalc(
+    data = res, measure = &amp;quot;SMD&amp;quot;, var.names = c(&amp;quot;d&amp;quot;, &amp;quot;V_d&amp;quot;),
+    m1i = mB, m2i = mA, 
+    sd1i = sdB, sd2i = sdA,
+    n1i = n_i, n2i = n_i
+  )
+  
+  res
+}
+
+set.seed(20211024)
+dat &amp;lt;- sim_props(k = 60, alpha = 12, beta = 4, 
+                 Lambda = 0.7, tau = .05,
+                 t_min = 5, t_max = 18,
+                 n_min = 10, n_max = 40)
+
+head(dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
+## 1 0.7584480 0.5836965 0.7695933  11 -1.3540950  24 0.7500000 0.1080650 
+## 2 0.7359047 0.4950740 0.6727420  16 -2.1851474  24 0.7786458 0.1222235 
+## 3 0.7132014 0.4773027 0.6692398  12 -1.8068471  10 0.7333333 0.1097134 
+## 4 0.6223653 0.4627406 0.7435193   9 -0.9877857  30 0.6666667 0.1399386 
+## 5 0.5916619 0.4205407 0.7107787   6 -0.8527716  28 0.5833333 0.2103299 
+## 6 0.7266748 0.5014601 0.6900751   9 -1.5160305  35 0.7619048 0.1209466 
+##          mB       sdB     lRR  V_lRR       d    V_d 
+## 1 0.6174242 0.1285066 -0.1945 0.0027 -1.0983 0.0959 
+## 2 0.5260417 0.1275776 -0.3922 0.0035 -1.9888 0.1245 
+## 3 0.3583333 0.1622089 -0.7161 0.0227 -2.5934 0.3681 
+## 4 0.4555556 0.1943213 -0.3808 0.0075 -1.2306 0.0793 
+## 5 0.4583333 0.2060055 -0.2412 0.0119 -0.5921 0.0746 
+## 6 0.4920635 0.1793349 -0.4372 0.0045 -1.7447 0.0789&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For the specified parameter values, there is only a small amount of true heterogeneity in the log of the response ratios (the blue density). Of course, there is further heterogeneity in the log response ratio estimates (the green density) due to sampling error:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+ggplot(dat) + 
+  geom_density(aes(log(lambda_i), ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.5) + 
+  geom_density(aes(lRR, ..scaled..), fill = &amp;quot;green&amp;quot;, alpha = 0.2) + 
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
+rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Random-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.0028 (SE = 0.0013)
+## tau (square root of estimated tau^2 value):      0.0529
+## I^2 (total heterogeneity / total variability):   42.01%
+## H^2 (total variability / sampling variability):  1.72
+## 
+## Test for Heterogeneity:
+## Q(df = 59) = 100.6304, p-val = 0.0006
+## 
+## Model Results:
+## 
+## estimate      se      zval    pval    ci.lb    ci.ub 
+##  -0.3498  0.0111  -31.5751  &amp;lt;.0001  -0.3715  -0.3281  *** 
+## 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Contrast this with what we get from using the standardized mean difference metric. The distributions of true effect sizes (blue) and of effect size estimates (light purple) have large spread as well as strong left skew:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+ggplot(dat) + 
+  geom_density(aes(delta_i, ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.2) + 
+  geom_density(aes(d, ..scaled..), fill = &amp;quot;purple&amp;quot;, alpha = 0.5) + 
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and in &lt;span class=&#34;math inline&#34;&gt;\(I^2\)&lt;/span&gt;, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(yi = d, vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Random-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of total heterogeneity): 0.2838 (SE = 0.0743)
+## tau (square root of estimated tau^2 value):      0.5327
+## I^2 (total heterogeneity / total variability):   72.61%
+## H^2 (total variability / sampling variability):  3.65
+## 
+## Test for Heterogeneity:
+## Q(df = 59) = 203.0513, p-val &amp;lt; .0001
+## 
+## Model Results:
+## 
+## estimate      se      zval    pval    ci.lb    ci.ub 
+##  -1.5967  0.0824  -19.3771  &amp;lt;.0001  -1.7582  -1.4352  *** 
+## 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;diagnostics&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Diagnostics&lt;/h2&gt;
+&lt;p&gt;The code above more-or-less implements the workflow I suggested for deciding between the standardized mean difference or response ratio metric (for proportions, we could also add further comparisons with log odds ratios and with raw differences in proportions). But is there further diagnostic information in the data, that could provide a better sense of what is going on? I think there are a few things that might be helpful to consider.&lt;/p&gt;
+&lt;p&gt;First, the issues I’m concerned with here will arise when there are mean-variance relationships in the outcomes. To get at that, we can simply plot the means and SDs of each group. In the code below, I re-structure the data so that there is one row per group per study. I then plot the SD versus the mean of each group:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+
+long_summary_stats &amp;lt;- 
+  dat %&amp;gt;%
+  select(n_i, T_i, mA, sdA, mB, sdB) %&amp;gt;%
+  pivot_longer(cols = c(mA, sdA, mB, sdB), 
+               names_to = c(&amp;quot;.value&amp;quot;,&amp;quot;group&amp;quot;),
+               names_pattern = &amp;quot;(m|sd)(A|B)&amp;quot;)
+
+ggplot(long_summary_stats,
+       aes(m, sd, color = group)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  expand_limits(y = 0) + 
+  theme_minimal() + 
+  theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
+The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;long_summary_stats %&amp;gt;%
+  mutate(
+    sd_scaled = sd * sqrt(T_i)
+  ) %&amp;gt;%
+  ggplot(aes(m, sd_scaled, color = group)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_function(fun = function(x) sqrt(x * (1 - x)),
+                color = &amp;quot;black&amp;quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  expand_limits(y = 0) + 
+  theme_minimal() + 
+  theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
+From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).&lt;/p&gt;
+&lt;p&gt;Second, since the outcomes in each group are all proportions, we can simply plot the mean in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; versus the mean in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(dat, aes(mA, mB)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &amp;quot;green&amp;quot;) + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x) + 
+  coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).&lt;/p&gt;
+&lt;p&gt;Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows &lt;span class=&#34;math inline&#34;&gt;\(d_i\)&lt;/span&gt; versus &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
+mA_d_plot &amp;lt;- 
+  ggplot(dat, aes(mA, d)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &amp;quot;green&amp;quot;) + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  theme_minimal()
+
+Ti_d_plot &amp;lt;- 
+  ggplot(dat, aes(sqrt(T_i), d)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &amp;quot;green&amp;quot;) + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;) + 
+  theme_minimal()
+
+mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This impression is also born out by a meta-regression that includes the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt; as moderators:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Mixed-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of residual heterogeneity):     0.0238 (SE = 0.0238)
+## tau (square root of estimated tau^2 value):             0.1544
+## I^2 (residual heterogeneity / unaccounted variability): 18.12%
+## H^2 (unaccounted variability / sampling variability):   1.22
+## R^2 (amount of heterogeneity accounted for):            91.60%
+## 
+## Test for Residual Heterogeneity:
+## QE(df = 57) = 68.9706, p-val = 0.1330
+## 
+## Test of Moderators (coefficients 2:3):
+## QM(df = 2) = 110.9125, p-val &amp;lt; .0001
+## 
+## Model Results:
+## 
+##            estimate      se     zval    pval    ci.lb    ci.ub 
+## intrcpt      2.5225  0.3964   6.3632  &amp;lt;.0001   1.7455   3.2995  *** 
+## mA          -2.8326  0.4336  -6.5321  &amp;lt;.0001  -3.6825  -1.9827  *** 
+## sqrt(T_i)   -0.6109  0.0756  -8.0855  &amp;lt;.0001  -0.7590  -0.4628  *** 
+## 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here are the same plots as above, but using the log of the response ratio as the effect size metric:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mA_lRR_plot &amp;lt;- 
+  ggplot(dat, aes(mA, lRR)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &amp;quot;green&amp;quot;) + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;) + 
+  scale_x_continuous(limits = c(0, 1), expand = c(0,0)) + 
+  theme_minimal()
+
+Ti_lRR_plot &amp;lt;- 
+  ggplot(dat, aes(sqrt(T_i), lRR)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, color = &amp;quot;green&amp;quot;) + 
+  geom_smooth(method = &amp;quot;lm&amp;quot;) + 
+  theme_minimal()
+
+mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;, which is a bit surprising, although the strength of the relationship is much weaker than with the standardized mean differences. Meta-regression analysis supports these interpretations:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Mixed-Effects Model (k = 60; tau^2 estimator: REML)
+## 
+## tau^2 (estimated amount of residual heterogeneity):     0.0019 (SE = 0.0011)
+## tau (square root of estimated tau^2 value):             0.0439
+## I^2 (residual heterogeneity / unaccounted variability): 32.87%
+## H^2 (unaccounted variability / sampling variability):   1.49
+## R^2 (amount of heterogeneity accounted for):            31.30%
+## 
+## Test for Residual Heterogeneity:
+## QE(df = 57) = 84.4977, p-val = 0.0105
+## 
+## Test of Moderators (coefficients 2:3):
+## QM(df = 2) = 10.6344, p-val = 0.0049
+## 
+## Model Results:
+## 
+##            estimate      se     zval    pval    ci.lb    ci.ub 
+## intrcpt     -0.2362  0.0950  -2.4864  0.0129  -0.4224  -0.0500   * 
+## mA           0.1061  0.0948   1.1196  0.2629  -0.0796   0.2918     
+## sqrt(T_i)   -0.0553  0.0179  -3.0852  0.0020  -0.0904  -0.0202  ** 
+## 
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they’ve uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Thus, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, &lt;em&gt;annoying&lt;/em&gt;. If we wanted to examine other more theoretically interesting moderators, we’d have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable—simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that’s not the right model? Since we know the true data-generating process here, we can see that the linear, additive model &lt;em&gt;would not&lt;/em&gt; be correct. But in practice, when we don’t know the true process, this would be much murkier.&lt;/p&gt;
+&lt;p&gt;The general principle that I’m suggesting here is that effect sizes should ideally be on a metric that is &lt;em&gt;independent&lt;/em&gt; of arbitrary methodological factors because this should &lt;em&gt;reduce&lt;/em&gt; overall heterogeneity and &lt;em&gt;simplify&lt;/em&gt; the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations, or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I’m not yet sure about. It seems like a useful avenue for further methodological work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Yes, there are other ways to define the SMD. Yes, usually we use the standard deviation pooled across both groups. I’m going to use the standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; alone because it simplifies some of the mathy bits. Please feel free to work through the case with a pooled SD for yourself.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;One of the vexing things about simulations is that you often end up needing to specify a bunch of assumptions about auxiliary quantities, beyond those of the model you’re actually interested in investigating.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Standardized mean differences in single-group, repeated measures designs</title>
