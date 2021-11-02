@@ -2,8 +2,7 @@
 title: Implications of mean-variance relationships for standardized mean differences
 authors:
 - admin
-date: '2021-10-25'
-draft: true
+date: '2021-11-02'
 slug: mean-variance-relationships-and-SMDs
 categories: []
 tags:
@@ -20,13 +19,13 @@ header:
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
 ```
 
-I spend more time than I probably should discussing meta-analysis problems on the [R-SIG-meta-analysis listserv](https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis). The questions that folks pose there are often quite interesting---especially when they're motivated by issues that they encounter while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.
+I spend more time than I probably should discussing meta-analysis problems on the [R-SIG-meta-analysis listserv](https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis). The questions that folks pose there are often quite interesting---especially when they're motivated by issues that they're wrestling with while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.
 
 Recently, a [question came up](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003318.html) on the listserv about whether it was reasonable to use the standardized mean difference metric for synthesizing studies where the outcomes are measured as proportions. Luke Martinez wrote:
 
 > I'm doing a meta-analysis where the papers report only "mean" and "sd" of some form of proportion and/or "mean" and "sd" of corresponding raw frequencies. (For context, the papers ask students to read, find, and correct the wrong words in a text.) ... My question is given that all these studies only report "mean" and "sd", can I simply use a SMD effect size?
 
-I think this is an interesting question because, while the [SMD could work perfectly fine](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003320.html) as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it's a situation where one has to make a choice about the effect size metric, and where the most common metric (SMDs) might not be the right answer. As [I wrote in reply](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003331.html): 
+I think this is an interesting question because, while the [SMD could work perfectly fine](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-September/003320.html) as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it's a situation where one has to make a choice about the effect size metric, and where the most common metric (the SMD) might not be the right answer. As [I wrote in reply](https://stat.ethz.ch/pipermail/r-sig-meta-analysis/2021-October/003331.html): 
 
 > I would suggest that you could also consider other effect measures besides the SMD. For example, the response ratio is also a scale-free metric that could work with the proportion outcomes that you've described, and would also be appropriate for raw frequency counts as long as the total number possible is the same for the groups being compared within a given study.
 > 
@@ -51,7 +50,7 @@ this analysis:
 
 (When I referred to "inveterate statistical curmudgeons", I mostly had myself in mind.)
 
-In this post, I want to provide a bit more detail regarding why I think  mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric, relative to alternatives. The concern is actually broader than meta-analyses of outcomes measured as proportions, so I'll start with a different case and then return to a situation similar to the one described in the original question. 
+In this post, I want to provide a bit more detail regarding why I think  mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric compared to alternatives. The concern is actually broader than meta-analyses of outcomes measured as proportions, so I'll start with a different case and then return to a situation similar to the one described in the original question. 
 
 ## Mean-variance relationships can induce heterogeneity
 
@@ -202,7 +201,7 @@ rma(yi = d, vi = V_d, data = dat)
 ```
 ## Diagnostics
 
-The code above more-or-less implements the workflow I suggested for deciding between the standardized mean difference or response ratio metric (for proportions, we could also add further comparisons with log odds ratios and with raw differences in proportions). But is there further diagnostic information in the data, that could provide a better sense of what is going on? I think there are a few things that might be helpful to consider.
+The code above more-or-less implements the workflow I suggested for deciding between the standardized mean difference or response ratio metric (for proportions, we could also add further comparisons with log odds ratios and with raw differences in proportions). But is there further diagnostic information in the data that could provide a better sense of what is going on? I think there are a few things that might be helpful to consider.
 
 First, the issues I'm concerned with here will arise when there are mean-variance relationships in the outcomes. To get at that, we can simply plot the means and SDs of each group. In the code below, I re-structure the data so that there is one row per group per study. I then plot the SD versus the mean of each group:
 
@@ -305,12 +304,12 @@ Ti_lRR_plot <-
 mA_lRR_plot + Ti_lRR_plot
 ```
 
-In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-$A$ means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and $\sqrt{T_i}$, which is a bit surprising, although the strength of the relationship is much weaker than with the standardized mean differences. Meta-regression analysis supports these interpretations:
+In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-$A$ means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and $\sqrt{T_i}$, which is a bit surprising, although the strength of the relationship is much weaker than what we saw with the standardized mean differences. Meta-regression analysis supports these interpretations:
 
 ```{r}
 rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)
 ```
 
-Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they've uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Thus, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, _annoying_. If we wanted to examine other more theoretically interesting moderators, we'd have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable---simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that's not the right model? Since we know the true data-generating process here, we can see that the linear, additive model _would not_ be correct. But in practice, when we don't know the true process, this would be much murkier.
+Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they've uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Considered in this light, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, _annoying_. If we wanted to examine other more theoretically interesting moderators, we'd have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them all in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable. Simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that's not the right model? Since we know the true data-generating process here, we can see that the linear, additive model _would not_ be correct. But in practice, when we don't know the true process, this would be much murkier.
 
-The general principle that I'm suggesting here is that effect sizes should ideally be on a metric that is _independent_ of arbitrary methodological factors because this should _reduce_ overall heterogeneity and _simplify_ the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations, or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I'm not yet sure about. It seems like a useful avenue for further methodological work.
+The general principle that I'm suggesting here is that effect sizes should ideally be on a metric that is _independent_ of arbitrary methodological factors because this should _reduce_ overall heterogeneity and _simplify_ the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I'm not yet sure about. It seems like a useful avenue for further methodological work.
