@@ -60,6 +60,7 @@
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
       <guid>/mean-variance-relationships-and-smds/</guid>
       <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I spend more time than I probably should discussing meta-analysis problems on the &lt;a href=&#34;https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis&#34;&gt;R-SIG-meta-analysis listserv&lt;/a&gt;. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they’re wrestling with while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.&lt;/p&gt;
@@ -126,7 +127,7 @@ Thus, even though we have a model where there is an underlying fixed relationshi
 &lt;span class=&#34;math display&#34;&gt;\[
 \pi_{Ai} \sim \text{Beta}(\alpha, \beta).
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, suppose that &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Bi} = \lambda_i \mu_{Ai}\)&lt;/span&gt; for some &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i &amp;gt; 0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Finally, suppose that &lt;span class=&#34;math inline&#34;&gt;\(\pi_{Bi} = \lambda_i \pi_{Ai}\)&lt;/span&gt; for some &lt;span class=&#34;math inline&#34;&gt;\(\lambda_i &amp;gt; 0\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Under these assumptions, the SMD parameter for study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; is:
 &lt;span class=&#34;math display&#34;&gt;\[
 \delta_i = \frac{\pi_{Bi}T_i - \pi_{Ai} T_i}{\sqrt{\pi_{Ai} (1 - \pi_{Ai}) T_i}} = (\lambda_i - 1) \times \sqrt{T_i} \times \sqrt{\frac{\pi_{Ai}}{1 - \pi_{Ai}}}.

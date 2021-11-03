@@ -91,7 +91,7 @@ $$
 \pi_{Ai} \sim \text{Beta}(\alpha, \beta).
 $$
 
-Finally, suppose that $\pi_{Bi} = \lambda_i \mu_{Ai}$ for some $\lambda_i > 0$. 
+Finally, suppose that $\pi_{Bi} = \lambda_i \pi_{Ai}$ for some $\lambda_i > 0$. 
 
 Under these assumptions, the SMD parameter for study $i$ is:
 $$
