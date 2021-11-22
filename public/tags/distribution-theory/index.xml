@@ -5,12 +5,176 @@
     <link>/tags/distribution-theory/</link>
       <atom:link href="/tags/distribution-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>distribution theory</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Tue, 02 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Sat, 20 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>distribution theory</title>
       <link>/tags/distribution-theory/</link>
     </image>
+    
+    <item>
+      <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
+      <link>/variance-components-with-misspecified-correlation/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>/variance-components-with-misspecified-correlation/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
+&lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I still wonder about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
+&lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; the possibility of correlation between effect size estimates, or equivalently, assumes that the correlation is zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
+&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
+&lt;div id=&#34;the-correlated-and-hierarchical-effects-che-model&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The correlated-and-hierarchical effects (CHE) model&lt;/h1&gt;
+&lt;p&gt;Consider a meta-analytic dataset with effect size estimates &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k_j\)&lt;/span&gt; indexes effect size estimates within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; indexes studies, for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. Say that effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_{ij}\)&lt;/span&gt;, and there is some sampling correlation between effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, denoted &lt;span class=&#34;math inline&#34;&gt;\(\phi_{hij}\)&lt;/span&gt;.
+The correlated-and-hierarchical effects (or CHE) model describes the distribution of effect sizes using random effects to capture between-study heterogeneity (as in the basic random effects model) and within-study heterogeneity in true effect sizes. In hierarchical notation, the model is
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{align}
+T_{ij} &amp;amp;= \theta_j + \nu_{ij} + e_{ij} \\
+\theta_j &amp;amp;= \mu + \eta_j
+\end{align}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\Var(e_{ij}) = \sigma^2_{ij}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\Var(\nu_{ij}) = \omega^2\)&lt;/span&gt; is the within-study variance, and &lt;span class=&#34;math inline&#34;&gt;\(\Var(\eta_j) = \tau^2\)&lt;/span&gt; is the between-study variance.
+To simplify things, let us also assume that the effect size estimates from a given study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; all have equal sampling variance, so &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_{1j} = \sigma^2_{2j} = \cdots = \sigma^2_{k_jj} = \sigma^2_j\)&lt;/span&gt;, and that there is a common correlation between any pair of effect size estimates from the same study, so &lt;span class=&#34;math inline&#34;&gt;\(\Cov(e_{hj}, e_{ij}) = \phi \sigma^2_j\)&lt;/span&gt; for some correlation &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Typically, the analyst would estimate this working model using restricted maximum likelihood (REML) estimation to obtain estimates of the variance components &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt;, after specifying a value of &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;. With an adequately large sample of studies, the REML estimators should be close-to-unbiased and accurate. But what if the assumed correlation is wrong? Let’s suppose that the analyst estimates (via REML) the CHE working model but uses the assumption that there is a common correlation between effect size estimates of &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, which is not necessarily equal to the true correlation &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;. What are the consequences for estimating &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mis-specified-reml&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Mis-specified REML&lt;/h1&gt;
+&lt;p&gt;To figure out what’s going on here, we need to know something about how REML estimators behave under mis-specified models. For starters, I’ll work with a more general case than the CHE model described above. Suppose that we have a vector of multi-variate normal outcomes &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}_j\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;, explained by a set of covariates &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j\)&lt;/span&gt;, and with true variance-covariance matrix &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Phi_j\)&lt;/span&gt;:
+&lt;span class=&#34;math display&#34;&gt;\[
+\mathbf{T}_j \ \sim \ N\left( \mathbf{X}_j \beta, \boldsymbol\Phi_j \right)
+\]&lt;/span&gt;
+However, suppose that we posit a variance structure &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega_j(\boldsymbol\theta)\)&lt;/span&gt;, which is a function of a &lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;-dimensional variance component parameter &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt;, and where &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Phi_j\)&lt;/span&gt; is not necessarily conformable to &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega_j(\boldsymbol\theta)\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; denote the full vector of outcomes and the full (stacked) predictor matrix for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Phi\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega\)&lt;/span&gt; denote the corresponding block-diagonal variance-covariance matrices.&lt;/p&gt;
+&lt;p&gt;We estimate &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; by REML, which maximizes the log likelihood
+&lt;span class=&#34;math display&#34;&gt;\[
+2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&amp;#39;\mathbf{Q}\mathbf{T},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Q} = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)&lt;/span&gt;. Equivalently, the REML estimators solve the score equations
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = 0, \qquad \text{for} \qquad q = 1,...,v.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Under mis-specification, the REML estimators converge (as &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. Equivalently, they converge to the values that solve
+&lt;span class=&#34;math display&#34;&gt;\[
+\E\left[\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q}\right] = 0, \qquad \text{for} \qquad q = 1,...,v,
+\]&lt;/span&gt;
+where the expectation is taken under the true data-generating process. For the restricted log-likelihood given above,
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = -\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right] +   \mathbf{T}&amp;#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\dot\Omega}_q = \partial \boldsymbol\Omega / \partial \theta_q\)&lt;/span&gt; and the dependence of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega\)&lt;/span&gt; on &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; is suppressed. Furthermore, the final term in the above is a quadratic form in &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;, with expectation given by
+&lt;span class=&#34;math display&#34;&gt;\[
+\E\left(\mathbf{T}&amp;#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T}\right) = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right).
+\]&lt;/span&gt;
+Therefore, the REML estimator of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; converges to values that satisfy the equalities
+&lt;span class=&#34;math display&#34;&gt;\[
+0 = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right) - \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right]
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(q = 1,...,v\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;back-to-che&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Back to CHE&lt;/h1&gt;
+&lt;p&gt;Let me now jump back to the special case of the CHE model for a meta-analysis with no predictors. Let &lt;span class=&#34;math inline&#34;&gt;\(\tau_*^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega_*^2\)&lt;/span&gt; denote the variance components in the true data-generating process. Let &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; denote the asymptotic limits of the REML estimators under the mis-specified model. In this model, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}_j = \mathbf{1}_j\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\boldsymbol\Phi_j &amp;amp;= \left(\tau_*^2 + \phi \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&amp;#39; + \left(\omega_*^2 + (1 - \phi) \sigma_j^2\right) \mathbf{I}_j \\
+\boldsymbol\Omega_j &amp;amp;= \left(\tilde\tau^2 + \rho \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&amp;#39; + \left(\tilde\omega^2 + (1 - \rho) \sigma_j^2\right) \mathbf{I}_j \\
+\boldsymbol\Omega_j^{-1} &amp;amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&amp;#39; \right] \\
+\left[\boldsymbol{\dot\Omega}_{\tau^2}\right]_j &amp;amp;= \mathbf{1}_j \mathbf{1}_j&amp;#39; \\
+\left[\boldsymbol{\dot\Omega}_{\omega^2}\right]_j &amp;amp;= \mathbf{I}_j.
+\end{aligned}
+\]&lt;/span&gt;
+Let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)&lt;/span&gt;. Then we have that
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2}\right) &amp;amp;= \sum_{j=1}^J \mathbf{1}_j&amp;#39;\boldsymbol\Omega^{-1}\mathbf{1}_j = \tilde{W} \\
+\text{tr}\left(\boldsymbol\Omega^{-1}  \boldsymbol{\dot\Omega}_{\omega^2}\right) &amp;amp;= \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) \\
+\text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2 \\
+\text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\omega^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\end{aligned}
+\]&lt;/span&gt;
+Finally, letting &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)&lt;/span&gt;, the quadratic forms can be written as
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\tau^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \sum_{j=1}^J \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j - \frac{2}{\tilde{W}} \sum_{j=1}^J \mathbf{1}_j&amp;#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left[\sum_{j=1}^J \left( \mathbf{1}_j&amp;#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right)^2\right]\left(\sum_{j=1}^J \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right) \\
+&amp;amp;= \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right)
+\end{aligned}
+\]&lt;/span&gt;
+and
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\omega^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \text{tr}\left(\mathbf{Q} \boldsymbol\Phi \mathbf{Q}\right) \\
+&amp;amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1}\right) - \frac{2}{W} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} + \frac{1}{W^2} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} \\
+&amp;amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega_j^{-1} \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1}\right) - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j^3} \mathbf{1}_j&amp;#39; \boldsymbol\Phi_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j^2}\mathbf{1}_j&amp;#39; \boldsymbol\Phi_j \mathbf{1}_j \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j} \right) \\
+&amp;amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right] - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right).
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It follows that the REML estimators converge to the values &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; that solve
+&lt;span class=&#34;math display&#34;&gt;\[
+0 = \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right) - \tilde{W} + \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2
+\]&lt;/span&gt;
+and
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+0 &amp;amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right]  \\
+&amp;amp; \qquad \qquad \qquad - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right) - \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\end{aligned}
+\]&lt;/span&gt;
+These are complicated non-linear equations but they can be solved numerically.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;CHE_score &amp;lt;- function(x, tausq, omegasq, phi, rho, k_j, sigmasq_j) {
+  trs_j &amp;lt;- x[1] + rho * sigmasq_j
+  ors_j &amp;lt;- x[2] + (1 - rho) * sigmasq_j
+  w_j &amp;lt;- k_j / (k_j * trs_j + ors_j)
+  W &amp;lt;- sum(w_j)
+  
+  tausq_ps_j &amp;lt;- tausq + phi * sigmasq_j
+  omegasq_ps_j &amp;lt;- omegasq + (1 - phi) * sigmasq_j
+  wj_star &amp;lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
+
+  Quad_tausq &amp;lt;- sum(wj^2 / wj_star) - 2 * sum(wj^3 / wj_star) / W + sum(wj^2) * sum(wj^2 / wj_star) / W^2
+  score_tausq &amp;lt;- Quad_tausq - W + sum(wj^2) / W
+  
+  Quad_omegasq_a &amp;lt;- (k_j / wj_star 
+                     + (k_j - 1) * omegasq_ps_j 
+                     - trs_j * k_j * wj / wj_star
+                     - trs_j * ors_j * wj^2 / wj_star) / ors_j^2
+
+  Quad_omegasq_b &amp;lt;- 2 * sum(wj^3 / (k_j * wj_star)) / W
+
+  Quad_omegasq_c &amp;lt;- sum(wj^2 / k_j) * sum(wj^2 / wj_star) / W^2
+
+  Quad_omegasq &amp;lt;- Quad_omegasq_a - Quad_omegasq_b + Quad_omegasq_c
+  
+  score_omegasq_b &amp;lt;- sum(w_j * (1 + (k_j - 1) * trs_j / ors_j))
+  
+  score_omegasq_c &amp;lt;- sum(wj^2/ k_j) / W
+  
+  score_omegasq &amp;lt;- Quad_omegasq - score_omegasq_b + score_omegasq_c
+  
+  c(tausq = score_tausq, omegasq = score_omegasq)
+}
+
+find_tausq_omegasq &amp;lt;- function(tausq, omegasq, phi, rho, k_j, sigmasq_j) {
+  require(rootSolve)
+  
+  multiroot(CHE_score, start = c(tausq, omegasq), 
+            tausq = tausq, omegasq = omegasq, 
+            phi = phi, rho = rho, 
+            k_j = k_j, sigmasq_j = sigmasq_j)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Completely balanced designs&lt;/h2&gt;
+&lt;p&gt;The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that &lt;span class=&#34;math inline&#34;&gt;\(k_1 = k_2 = \cdots = k_J\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Implications of mean-variance relationships for standardized mean differences</title>

@@ -1,0 +1,1294 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
+In a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity).">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/variance-components-with-misspecified-correlation/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/variance-components-with-misspecified-correlation/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="/variance-components-with-misspecified-correlation/">
+  <meta property="og:title" content="Variance component estimates in meta-analysis with mis-specified sampling correlation | James E. Pustejovsky">
+  <meta property="og:description" content="\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
+In a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity)."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-11-20T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-11-20T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/variance-components-with-misspecified-correlation/"
+  },
+  "headline": "Variance component estimates in meta-analysis with mis-specified sampling correlation",
+  
+  "datePublished": "2021-11-20T00:00:00Z",
+  "dateModified": "2021-11-20T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "James E. Pustejovsky",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\\[\r\\def\\Pr{{\\text{Pr}}}\r\\def\\E{{\\text{E}}}\r\\def\\Var{{\\text{Var}}}\r\\def\\Cov{{\\text{Cov}}}\r\\]\nIn a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity)."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>Variance component estimates in meta-analysis with mis-specified sampling correlation | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>Students</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Variance component estimates in meta-analysis with mis-specified sampling correlation</h1>
+
+  
+
+  
+    
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2021-11-20
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/variance-components-with-misspecified-correlation/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\]</span></p>
+<p>In a recent paper with Beth Tipton, we proposed <a href="/publication/rve-meta-analysis-expanding-the-range/">new working models</a> for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.</p>
+<p>In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I still wonder about the extent to which these assumptions about the correlation structure matter for anything.</p>
+<p>There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA <em>ignores</em> the possibility of correlation between effect size estimates, or equivalently, assumes that the correlation is zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.</p>
+<p>In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in <a href="/weighting-in-multivariate-meta-analysis/">my previous post on weights in multivariate meta-analysis</a>, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.</p>
+<div id="the-correlated-and-hierarchical-effects-che-model" class="section level1">
+<h1>The correlated-and-hierarchical effects (CHE) model</h1>
+<p>Consider a meta-analytic dataset with effect size estimates <span class="math inline">\(T_{ij}\)</span>, where <span class="math inline">\(i = 1,...,k_j\)</span> indexes effect size estimates within study <span class="math inline">\(j\)</span> and <span class="math inline">\(j\)</span> indexes studies, for <span class="math inline">\(j = 1,...,J\)</span>. Say that effect size estimate <span class="math inline">\(T_{ij}\)</span> has sampling variance <span class="math inline">\(\sigma^2_{ij}\)</span>, and there is some sampling correlation between effect sizes <span class="math inline">\(h\)</span> and <span class="math inline">\(i\)</span> within study <span class="math inline">\(j\)</span>, denoted <span class="math inline">\(\phi_{hij}\)</span>.
+The correlated-and-hierarchical effects (or CHE) model describes the distribution of effect sizes using random effects to capture between-study heterogeneity (as in the basic random effects model) and within-study heterogeneity in true effect sizes. In hierarchical notation, the model is
+<span class="math display">\[
+\begin{align}
+T_{ij} &amp;= \theta_j + \nu_{ij} + e_{ij} \\
+\theta_j &amp;= \mu + \eta_j
+\end{align}
+\]</span>
+where <span class="math inline">\(\Var(e_{ij}) = \sigma^2_{ij}\)</span>, <span class="math inline">\(\Var(\nu_{ij}) = \omega^2\)</span> is the within-study variance, and <span class="math inline">\(\Var(\eta_j) = \tau^2\)</span> is the between-study variance.
+To simplify things, let us also assume that the effect size estimates from a given study <span class="math inline">\(j\)</span> all have equal sampling variance, so <span class="math inline">\(\sigma^2_{1j} = \sigma^2_{2j} = \cdots = \sigma^2_{k_jj} = \sigma^2_j\)</span>, and that there is a common correlation between any pair of effect size estimates from the same study, so <span class="math inline">\(\Cov(e_{hj}, e_{ij}) = \phi \sigma^2_j\)</span> for some correlation <span class="math inline">\(\phi\)</span>.</p>
+<p>Typically, the analyst would estimate this working model using restricted maximum likelihood (REML) estimation to obtain estimates of the variance components <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span>, after specifying a value of <span class="math inline">\(\phi\)</span>. With an adequately large sample of studies, the REML estimators should be close-to-unbiased and accurate. But what if the assumed correlation is wrong? Let’s suppose that the analyst estimates (via REML) the CHE working model but uses the assumption that there is a common correlation between effect size estimates of <span class="math inline">\(\rho\)</span>, which is not necessarily equal to the true correlation <span class="math inline">\(\phi\)</span>. What are the consequences for estimating <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span>?</p>
+</div>
+<div id="mis-specified-reml" class="section level1">
+<h1>Mis-specified REML</h1>
+<p>To figure out what’s going on here, we need to know something about how REML estimators behave under mis-specified models. For starters, I’ll work with a more general case than the CHE model described above. Suppose that we have a vector of multi-variate normal outcomes <span class="math inline">\(\mathbf{T}_j\)</span> for <span class="math inline">\(j = 1,...,J\)</span>, explained by a set of covariates <span class="math inline">\(\mathbf{X}_j\)</span>, and with true variance-covariance matrix <span class="math inline">\(\boldsymbol\Phi_j\)</span>:
+<span class="math display">\[
+\mathbf{T}_j \ \sim \ N\left( \mathbf{X}_j \beta, \boldsymbol\Phi_j \right)
+\]</span>
+However, suppose that we posit a variance structure <span class="math inline">\(\boldsymbol\Omega_j(\boldsymbol\theta)\)</span>, which is a function of a <span class="math inline">\(v\)</span>-dimensional variance component parameter <span class="math inline">\(\boldsymbol\theta\)</span>, and where <span class="math inline">\(\boldsymbol\Phi_j\)</span> is not necessarily conformable to <span class="math inline">\(\boldsymbol\Omega_j(\boldsymbol\theta)\)</span>. Let <span class="math inline">\(\mathbf{T}\)</span> and <span class="math inline">\(\mathbf{X}\)</span> denote the full vector of outcomes and the full (stacked) predictor matrix for <span class="math inline">\(j = 1,...,J\)</span>, and let <span class="math inline">\(\boldsymbol\Phi\)</span> and <span class="math inline">\(\boldsymbol\Omega\)</span> denote the corresponding block-diagonal variance-covariance matrices.</p>
+<p>We estimate <span class="math inline">\(\boldsymbol\theta\)</span> by REML, which maximizes the log likelihood
+<span class="math display">\[
+2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&#39;\mathbf{Q}\mathbf{T},
+\]</span>
+where <span class="math inline">\(\mathbf{Q} = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)</span>. Equivalently, the REML estimators solve the score equations
+<span class="math display">\[
+\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = 0, \qquad \text{for} \qquad q = 1,...,v.
+\]</span></p>
+<p>Under mis-specification, the REML estimators converge (as <span class="math inline">\(J\)</span> increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. Equivalently, they converge to the values that solve
+<span class="math display">\[
+\E\left[\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q}\right] = 0, \qquad \text{for} \qquad q = 1,...,v,
+\]</span>
+where the expectation is taken under the true data-generating process. For the restricted log-likelihood given above,
+<span class="math display">\[
+\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = -\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right] +   \mathbf{T}&#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T},
+\]</span>
+where <span class="math inline">\(\boldsymbol{\dot\Omega}_q = \partial \boldsymbol\Omega / \partial \theta_q\)</span> and the dependence of <span class="math inline">\(\boldsymbol\Omega\)</span> on <span class="math inline">\(\boldsymbol\theta\)</span> is suppressed. Furthermore, the final term in the above is a quadratic form in <span class="math inline">\(\mathbf{T}\)</span>, with expectation given by
+<span class="math display">\[
+\E\left(\mathbf{T}&#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T}\right) = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right).
+\]</span>
+Therefore, the REML estimator of <span class="math inline">\(\boldsymbol\theta\)</span> converges to values that satisfy the equalities
+<span class="math display">\[
+0 = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right) - \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right]
+\]</span>
+for <span class="math inline">\(q = 1,...,v\)</span>.</p>
+</div>
+<div id="back-to-che" class="section level1">
+<h1>Back to CHE</h1>
+<p>Let me now jump back to the special case of the CHE model for a meta-analysis with no predictors. Let <span class="math inline">\(\tau_*^2\)</span> and <span class="math inline">\(\omega_*^2\)</span> denote the variance components in the true data-generating process. Let <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> denote the asymptotic limits of the REML estimators under the mis-specified model. In this model, <span class="math inline">\(\mathbf{X}_j = \mathbf{1}_j\)</span>,
+<span class="math display">\[
+\begin{aligned}
+\boldsymbol\Phi_j &amp;= \left(\tau_*^2 + \phi \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&#39; + \left(\omega_*^2 + (1 - \phi) \sigma_j^2\right) \mathbf{I}_j \\
+\boldsymbol\Omega_j &amp;= \left(\tilde\tau^2 + \rho \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&#39; + \left(\tilde\omega^2 + (1 - \rho) \sigma_j^2\right) \mathbf{I}_j \\
+\boldsymbol\Omega_j^{-1} &amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&#39; \right] \\
+\left[\boldsymbol{\dot\Omega}_{\tau^2}\right]_j &amp;= \mathbf{1}_j \mathbf{1}_j&#39; \\
+\left[\boldsymbol{\dot\Omega}_{\omega^2}\right]_j &amp;= \mathbf{I}_j.
+\end{aligned}
+\]</span>
+Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> and <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Then we have that
+<span class="math display">\[
+\begin{aligned}
+\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2}\right) &amp;= \sum_{j=1}^J \mathbf{1}_j&#39;\boldsymbol\Omega^{-1}\mathbf{1}_j = \tilde{W} \\
+\text{tr}\left(\boldsymbol\Omega^{-1}  \boldsymbol{\dot\Omega}_{\omega^2}\right) &amp;= \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) \\
+\text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2 \\
+\text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\omega^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\end{aligned}
+\]</span>
+Finally, letting <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span>, the quadratic forms can be written as
+<span class="math display">\[
+\begin{aligned}
+\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\tau^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;= \sum_{j=1}^J \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j - \frac{2}{\tilde{W}} \sum_{j=1}^J \mathbf{1}_j&#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left[\sum_{j=1}^J \left( \mathbf{1}_j&#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right)^2\right]\left(\sum_{j=1}^J \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right) \\
+&amp;= \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right)
+\end{aligned}
+\]</span>
+and
+<span class="math display">\[
+\begin{aligned}
+\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\omega^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;= \text{tr}\left(\mathbf{Q} \boldsymbol\Phi \mathbf{Q}\right) \\
+&amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1}\right) - \frac{2}{W} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} + \frac{1}{W^2} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} \\
+&amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega_j^{-1} \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1}\right) - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j^3} \mathbf{1}_j&#39; \boldsymbol\Phi_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j^2}\mathbf{1}_j&#39; \boldsymbol\Phi_j \mathbf{1}_j \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j} \right) \\
+&amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right] - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right).
+\end{aligned}
+\]</span></p>
+<p>It follows that the REML estimators converge to the values <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> that solve
+<span class="math display">\[
+0 = \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right) - \tilde{W} + \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2
+\]</span>
+and
+<span class="math display">\[
+\begin{aligned}
+0 &amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right]  \\
+&amp; \qquad \qquad \qquad - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right) - \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\end{aligned}
+\]</span>
+These are complicated non-linear equations but they can be solved numerically.</p>
+<pre class="r"><code>CHE_score &lt;- function(x, tausq, omegasq, phi, rho, k_j, sigmasq_j) {
+  trs_j &lt;- x[1] + rho * sigmasq_j
+  ors_j &lt;- x[2] + (1 - rho) * sigmasq_j
+  w_j &lt;- k_j / (k_j * trs_j + ors_j)
+  W &lt;- sum(w_j)
+  
+  tausq_ps_j &lt;- tausq + phi * sigmasq_j
+  omegasq_ps_j &lt;- omegasq + (1 - phi) * sigmasq_j
+  wj_star &lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
+
+  Quad_tausq &lt;- sum(wj^2 / wj_star) - 2 * sum(wj^3 / wj_star) / W + sum(wj^2) * sum(wj^2 / wj_star) / W^2
+  score_tausq &lt;- Quad_tausq - W + sum(wj^2) / W
+  
+  Quad_omegasq_a &lt;- (k_j / wj_star 
+                     + (k_j - 1) * omegasq_ps_j 
+                     - trs_j * k_j * wj / wj_star
+                     - trs_j * ors_j * wj^2 / wj_star) / ors_j^2
+
+  Quad_omegasq_b &lt;- 2 * sum(wj^3 / (k_j * wj_star)) / W
+
+  Quad_omegasq_c &lt;- sum(wj^2 / k_j) * sum(wj^2 / wj_star) / W^2
+
+  Quad_omegasq &lt;- Quad_omegasq_a - Quad_omegasq_b + Quad_omegasq_c
+  
+  score_omegasq_b &lt;- sum(w_j * (1 + (k_j - 1) * trs_j / ors_j))
+  
+  score_omegasq_c &lt;- sum(wj^2/ k_j) / W
+  
+  score_omegasq &lt;- Quad_omegasq - score_omegasq_b + score_omegasq_c
+  
+  c(tausq = score_tausq, omegasq = score_omegasq)
+}
+
+find_tausq_omegasq &lt;- function(tausq, omegasq, phi, rho, k_j, sigmasq_j) {
+  require(rootSolve)
+  
+  multiroot(CHE_score, start = c(tausq, omegasq), 
+            tausq = tausq, omegasq = omegasq, 
+            phi = phi, rho = rho, 
+            k_j = k_j, sigmasq_j = sigmasq_j)
+}</code></pre>
+<div id="completely-balanced-designs" class="section level2">
+<h2>Completely balanced designs</h2>
+<p>The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that <span class="math inline">\(k_1 = k_2 = \cdots = k_J\)</span> and <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)</span>.</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/meta-analysis/">meta-analysis</a>
+  
+  <a class="badge badge-light" href="/tags/dependent-effect-sizes/">dependent effect sizes</a>
+  
+  <a class="badge badge-light" href="/tags/distribution-theory/">distribution theory</a>
+  
+  <a class="badge badge-light" href="/tags/hierarchical-models/">hierarchical models</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/variance-components-with-misspecified-correlation/&amp;text=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/variance-components-with-misspecified-correlation/&amp;t=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation&amp;body=/variance-components-with-misspecified-correlation/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/variance-components-with-misspecified-correlation/&amp;title=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation%20/variance-components-with-misspecified-correlation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/variance-components-with-misspecified-correlation/&amp;title=Variance%20component%20estimates%20in%20meta-analysis%20with%20mis-specified%20sampling%20correlation" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/mean-variance-relationships-and-smds/">Implications of mean-variance relationships for standardized mean differences</a></li>
+      
+      <li><a href="/publication/rve-meta-analysis-expanding-the-range/">Meta-Analysis with robust variance estimation: Expanding the range of working models</a></li>
+      
+      <li><a href="/publication/selective-reporting-with-dependent-effects/">Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</a></li>
+      
+      <li><a href="/centering-categorical-predictors/">Centering categorical predictors in meta-regression</a></li>
+      
+      <li><a href="/what-does-multivariate-mean/">What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.4dd9b94a466daca7ed2f06b98847fa44.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+  
+  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "show");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
+
+
+  <p class="powered-by">
+    © 2021 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
