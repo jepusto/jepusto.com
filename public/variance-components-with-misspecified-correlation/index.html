@@ -707,6 +707,19 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
 
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
+</div>
+
+
+
     
 
 
@@ -811,29 +824,20 @@ To simplify things, let us also assume that the effect size estimates from a giv
 However, suppose that we posit a variance structure <span class="math inline">\(\boldsymbol\Omega_j(\boldsymbol\theta)\)</span>, which is a function of a <span class="math inline">\(v\)</span>-dimensional variance component parameter <span class="math inline">\(\boldsymbol\theta\)</span>, and where <span class="math inline">\(\boldsymbol\Phi_j\)</span> is not necessarily conformable to <span class="math inline">\(\boldsymbol\Omega_j(\boldsymbol\theta)\)</span>. Let <span class="math inline">\(\mathbf{T}\)</span> and <span class="math inline">\(\mathbf{X}\)</span> denote the full vector of outcomes and the full (stacked) predictor matrix for <span class="math inline">\(j = 1,...,J\)</span>, and let <span class="math inline">\(\boldsymbol\Phi\)</span> and <span class="math inline">\(\boldsymbol\Omega\)</span> denote the corresponding block-diagonal variance-covariance matrices.</p>
 <p>We estimate <span class="math inline">\(\boldsymbol\theta\)</span> by REML, which maximizes the log likelihood
 <span class="math display">\[
-2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&#39;\mathbf{Q}\mathbf{T},
+2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&#39;\mathbf{Q}(\boldsymbol\theta)\mathbf{T},
 \]</span>
-where <span class="math inline">\(\mathbf{Q} = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)</span>. Equivalently, the REML estimators solve the score equations
+where <span class="math inline">\(\mathbf{Q}(\boldsymbol\theta) = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)</span>. Equivalently, the REML estimators solve the score equations
 <span class="math display">\[
 \frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = 0, \qquad \text{for} \qquad q = 1,...,v.
 \]</span></p>
-<p>Under mis-specification, the REML estimators converge (as <span class="math inline">\(J\)</span> increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. Equivalently, they converge to the values that solve
+<p>Under mis-specification, the REML estimators converge (as <span class="math inline">\(J\)</span> increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. For the restricted likelihood, the Kullback-Liebler divergence is given by
 <span class="math display">\[
-\E\left[\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q}\right] = 0, \qquad \text{for} \qquad q = 1,...,v,
+\begin{aligned}
+\mathcal{KL}(\theta, \theta_0) &amp;= \E\left[l_R(\theta_0) - l_R(\theta)\right] \\
+&amp;= c + \log \left| \boldsymbol\Omega(\boldsymbol\theta) \right| + \log \left| \mathbf{X}&#39;\boldsymbol\Omega^{-1}(\boldsymbol\theta) \mathbf{X} \right| + \text{tr}\left(\mathbf{Q}(\boldsymbol\theta) \boldsymbol\Phi\right),
+\end{aligned}
 \]</span>
-where the expectation is taken under the true data-generating process. For the restricted log-likelihood given above,
-<span class="math display">\[
-\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = -\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right] +   \mathbf{T}&#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T},
-\]</span>
-where <span class="math inline">\(\boldsymbol{\dot\Omega}_q = \partial \boldsymbol\Omega / \partial \theta_q\)</span> and the dependence of <span class="math inline">\(\boldsymbol\Omega\)</span> on <span class="math inline">\(\boldsymbol\theta\)</span> is suppressed. Furthermore, the final term in the above is a quadratic form in <span class="math inline">\(\mathbf{T}\)</span>, with expectation given by
-<span class="math display">\[
-\E\left(\mathbf{T}&#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T}\right) = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right).
-\]</span>
-Therefore, the REML estimator of <span class="math inline">\(\boldsymbol\theta\)</span> converges to values that satisfy the equalities
-<span class="math display">\[
-0 = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right) - \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right]
-\]</span>
-for <span class="math inline">\(q = 1,...,v\)</span>.</p>
+where the expectation in the first line is taken with respect to the true data-generating process and where <span class="math inline">\(c\)</span> (in the second line) is a constant that does not depend on <span class="math inline">\(\boldsymbol\theta\)</span>.</p>
 </div>
 <div id="back-to-che" class="section level1">
 <h1>Back to CHE</h1>
@@ -842,89 +846,95 @@ for <span class="math inline">\(q = 1,...,v\)</span>.</p>
 \begin{aligned}
 \boldsymbol\Phi_j &amp;= \left(\tau_*^2 + \phi \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&#39; + \left(\omega_*^2 + (1 - \phi) \sigma_j^2\right) \mathbf{I}_j \\
 \boldsymbol\Omega_j &amp;= \left(\tilde\tau^2 + \rho \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&#39; + \left(\tilde\omega^2 + (1 - \rho) \sigma_j^2\right) \mathbf{I}_j \\
-\boldsymbol\Omega_j^{-1} &amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&#39; \right] \\
-\left[\boldsymbol{\dot\Omega}_{\tau^2}\right]_j &amp;= \mathbf{1}_j \mathbf{1}_j&#39; \\
-\left[\boldsymbol{\dot\Omega}_{\omega^2}\right]_j &amp;= \mathbf{I}_j.
+\boldsymbol\Omega_j^{-1} &amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&#39; \right].
 \end{aligned}
 \]</span>
-Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> and <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Then we have that
+Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> denote the weight assigned to study <span class="math inline">\(j\)</span> under the mis-specified model, with the total weight denoted as <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Similarly, let <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span> denote the weight that <em>should</em> be assigned to study <span class="math inline">\(j\)</span> under the true model, with total <span class="math inline">\(\displaystyle{W^* = \sum_{j=1}^J w^*_j}\)</span>. Then we have that
 <span class="math display">\[
 \begin{aligned}
-\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2}\right) &amp;= \sum_{j=1}^J \mathbf{1}_j&#39;\boldsymbol\Omega^{-1}\mathbf{1}_j = \tilde{W} \\
-\text{tr}\left(\boldsymbol\Omega^{-1}  \boldsymbol{\dot\Omega}_{\omega^2}\right) &amp;= \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) \\
-\text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2 \\
-\text{tr}\left[\left(\mathbf{X}&#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\omega^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
-\end{aligned}
-\]</span>
-Finally, letting <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span>, the quadratic forms can be written as
-<span class="math display">\[
-\begin{aligned}
-\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\tau^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;= \sum_{j=1}^J \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j - \frac{2}{\tilde{W}} \sum_{j=1}^J \mathbf{1}_j&#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left[\sum_{j=1}^J \left( \mathbf{1}_j&#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right)^2\right]\left(\sum_{j=1}^J \mathbf{1}_j&#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right) \\
-&amp;= \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right)
+\text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}&#39;\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}&#39;\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
+&amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j\right) - \frac{1}{\tilde{W}}\sum_{j=1}^J \mathbf{1}_j&#39;\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1} \mathbf{1}_j \\
+&amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
 \end{aligned}
 \]</span>
 and
 <span class="math display">\[
-\begin{aligned}
-\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\omega^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;= \text{tr}\left(\mathbf{Q} \boldsymbol\Phi \mathbf{Q}\right) \\
-&amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1}\right) - \frac{2}{W} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} + \frac{1}{W^2} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1} \mathbf{1}&#39; \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} \\
-&amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega_j^{-1} \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1}\right) - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j^3} \mathbf{1}_j&#39; \boldsymbol\Phi_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j^2}\mathbf{1}_j&#39; \boldsymbol\Phi_j \mathbf{1}_j \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j} \right) \\
-&amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right] - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right).
-\end{aligned}
-\]</span></p>
-<p>It follows that the REML estimators converge to the values <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> that solve
-<span class="math display">\[
-0 = \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right) - \tilde{W} + \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2
+\log \left| \boldsymbol\Omega \right| = \sum_{j=1}^J\log \left| \boldsymbol\Omega_j \right| = \sum_{j=1}^J\left[ \left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \log \left(\frac{\tilde{w}_j}{k_j}\right)\right]
 \]</span>
 and
 <span class="math display">\[
+\log \left|\mathbf{1}&#39;\boldsymbol\Omega^{-1} \mathbf{1}\right| = \log \left(\tilde{W}\right),
+\]</span>
+It follows that the REML estimators converge to the values <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> that minimize
+<span class="math display">\[
 \begin{aligned}
-0 &amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right]  \\
-&amp; \qquad \qquad \qquad - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right) - \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right]- \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+&amp; \qquad \qquad + \sum_{j=1}^J\left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{k_j}\right) + \log(\tilde{W})
 \end{aligned}
 \]</span>
-These are complicated non-linear equations but they can be solved numerically.</p>
-<pre class="r"><code>CHE_score &lt;- function(x, tausq, omegasq, phi, rho, k_j, sigmasq_j) {
-  trs_j &lt;- x[1] + rho * sigmasq_j
-  ors_j &lt;- x[2] + (1 - rho) * sigmasq_j
+This is a complicated non-linear objective function, but it can be minimized numerically using standard techniques.</p>
+<p>Here are some heatmaps of the function for <span class="math inline">\(\tau = 0.2\)</span>, <span class="math inline">\(\omega = 0.1\)</span>, <span class="math inline">\(\phi = 0.4\)</span>, and some simulated values for <span class="math inline">\(k_j\)</span> and <span class="math inline">\(\sigma_j^2\)</span>, for three different assumed correlations:</p>
+<pre class="r"><code>library(tidyverse)
+set.seed(20211124)
+
+CHE_KL &lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
+  
+  trs_j &lt;- t^2 + rho * sigmasq_j
+  ors_j &lt;- o^2 + (1 - rho) * sigmasq_j
   w_j &lt;- k_j / (k_j * trs_j + ors_j)
   W &lt;- sum(w_j)
   
-  tausq_ps_j &lt;- tausq + phi * sigmasq_j
-  omegasq_ps_j &lt;- omegasq + (1 - phi) * sigmasq_j
+  tausq_ps_j &lt;- tau^2 + phi * sigmasq_j
+  omegasq_ps_j &lt;- omega^2 + (1 - phi) * sigmasq_j
   wj_star &lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
-
-  Quad_tausq &lt;- sum(wj^2 / wj_star) - 2 * sum(wj^3 / wj_star) / W + sum(wj^2) * sum(wj^2 / wj_star) / W^2
-  score_tausq &lt;- Quad_tausq - W + sum(wj^2) / W
   
-  Quad_omegasq_a &lt;- (k_j / wj_star 
-                     + (k_j - 1) * omegasq_ps_j 
-                     - trs_j * k_j * wj / wj_star
-                     - trs_j * ors_j * wj^2 / wj_star) / ors_j^2
-
-  Quad_omegasq_b &lt;- 2 * sum(wj^3 / (k_j * wj_star)) / W
-
-  Quad_omegasq_c &lt;- sum(wj^2 / k_j) * sum(wj^2 / wj_star) / W^2
-
-  Quad_omegasq &lt;- Quad_omegasq_a - Quad_omegasq_b + Quad_omegasq_c
+  A1 &lt;- sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j)
+  A2 &lt;- sum(w_j^2 / wj_star) / W
+  B &lt;- sum((k_j - 1) * log(ors_j) - log(w_j / k_j))
+  C &lt;- log(W)
   
-  score_omegasq_b &lt;- sum(w_j * (1 + (k_j - 1) * trs_j / ors_j))
+  A1 - A2 + B + C
   
-  score_omegasq_c &lt;- sum(wj^2/ k_j) / W
-  
-  score_omegasq &lt;- Quad_omegasq - score_omegasq_b + score_omegasq_c
-  
-  c(tausq = score_tausq, omegasq = score_omegasq)
 }
 
-find_tausq_omegasq &lt;- function(tausq, omegasq, phi, rho, k_j, sigmasq_j) {
-  require(rootSolve)
-  
-  multiroot(CHE_score, start = c(tausq, omegasq), 
-            tausq = tausq, omegasq = omegasq, 
-            phi = phi, rho = rho, 
-            k_j = k_j, sigmasq_j = sigmasq_j)
-}</code></pre>
+tau &lt;- 0.2
+omega &lt;- 0.1
+phi &lt;- 0.4
+J &lt;- 20
+k_j &lt;- 1 + rpois(J, 5)
+sigmasq_j &lt;- 4 / pmax(rgamma(J, 3, scale = 30), 20)
+
+
+KL_dat &lt;- 
+  cross_df(list(t = seq(0,0.4,0.01),
+                o = seq(0,0.2,0.005),
+                rho = c(0, 0.4, 0.8))) %&gt;%
+  mutate(
+    KL = pmap_dbl(., .f = CHE_KL, 
+                       tau = tau, omega = omega,
+                       phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
+    rho = paste(&quot;rho ==&quot;, rho)
+  ) %&gt;%
+  group_by(rho)
+
+KL_min &lt;- 
+  KL_dat %&gt;%
+  filter(KL == min(KL))
+
+KL_dat %&gt;%
+  mutate(KL = -pmin(0.25, (KL - min(KL)) / (max(KL) - min(KL)))) %&gt;%
+ggplot() + 
+  facet_wrap(~ rho, scales = &quot;free&quot;, labeller = &quot;label_parsed&quot;) + 
+  geom_contour_filled(aes(x = t, y = o, z = KL), bins = 30) + 
+  geom_point(x = tau, y = omega, color = &quot;white&quot;, size = 2) + 
+  geom_point(data = KL_min, aes(x = t, y = o), color = &quot;red&quot;, size = 2) + 
+  theme_minimal() + 
+  labs(x = expression(tau), y = expression(omega)) + 
+  scale_x_continuous(expand = c(0,0)) + 
+  scale_y_continuous(expand = c(0,0)) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png" width="960" /></p>
+<p>The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where <span class="math inline">\(\rho = 0.4\)</span> corresponds to the true sampling correlation, the function is minimized at the true values of <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span>. In the left-hand plot, assuming <span class="math inline">\(\rho = 0.0\)</span> leads to an upwardly biased value of <span class="math inline">\(\tau\)</span> and a downwardly biased value of <span class="math inline">\(\omega\)</span>. In the right-hand plot, assuming <span class="math inline">\(\rho = 0.8\)</span> leads to a smaller value of <span class="math inline">\(\tau\)</span> and a larger value of <span class="math inline">\(\omega\)</span>.</p>
 <div id="completely-balanced-designs" class="section level2">
 <h2>Completely balanced designs</h2>
 <p>The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that <span class="math inline">\(k_1 = k_2 = \cdots = k_J\)</span> and <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)</span>.</p>
@@ -1235,7 +1245,7 @@ find_tausq_omegasq &lt;- function(tausq, omegasq, phi, rho, k_j, sigmasq_j) {
    
   <script>
   $(document).ready(function () {
-    window.initializeCodeFolding("show" === "show");
+    window.initializeCodeFolding("show" === "hide");
   });
   </script>
   <script src="/js/codefolding.js"></script>

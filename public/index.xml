@@ -96,29 +96,20 @@ To simplify things, let us also assume that the effect size estimates from a giv
 However, suppose that we posit a variance structure &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega_j(\boldsymbol\theta)\)&lt;/span&gt;, which is a function of a &lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;-dimensional variance component parameter &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt;, and where &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Phi_j\)&lt;/span&gt; is not necessarily conformable to &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega_j(\boldsymbol\theta)\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{X}\)&lt;/span&gt; denote the full vector of outcomes and the full (stacked) predictor matrix for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Phi\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega\)&lt;/span&gt; denote the corresponding block-diagonal variance-covariance matrices.&lt;/p&gt;
 &lt;p&gt;We estimate &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; by REML, which maximizes the log likelihood
 &lt;span class=&#34;math display&#34;&gt;\[
-2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&amp;#39;\mathbf{Q}\mathbf{T},
+2 l_R(\boldsymbol\theta) = c -\log \left|\boldsymbol\Omega_j(\boldsymbol\theta)\right| - \log \left|\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right| - \mathbf{T}&amp;#39;\mathbf{Q}(\boldsymbol\theta)\mathbf{T},
 \]&lt;/span&gt;
-where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Q} = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)&lt;/span&gt;. Equivalently, the REML estimators solve the score equations
+where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Q}(\boldsymbol\theta) = \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) - \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X} \left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1}_j(\boldsymbol\theta) \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39;\boldsymbol\Omega^{-1}_j(\boldsymbol\theta)\)&lt;/span&gt;. Equivalently, the REML estimators solve the score equations
 &lt;span class=&#34;math display&#34;&gt;\[
 \frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = 0, \qquad \text{for} \qquad q = 1,...,v.
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Under mis-specification, the REML estimators converge (as &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. Equivalently, they converge to the values that solve
+&lt;p&gt;Under mis-specification, the REML estimators converge (as &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. For the restricted likelihood, the Kullback-Liebler divergence is given by
 &lt;span class=&#34;math display&#34;&gt;\[
-\E\left[\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q}\right] = 0, \qquad \text{for} \qquad q = 1,...,v,
+\begin{aligned}
+\mathcal{KL}(\theta, \theta_0) &amp;amp;= \E\left[l_R(\theta_0) - l_R(\theta)\right] \\
+&amp;amp;= c + \log \left| \boldsymbol\Omega(\boldsymbol\theta) \right| + \log \left| \mathbf{X}&amp;#39;\boldsymbol\Omega^{-1}(\boldsymbol\theta) \mathbf{X} \right| + \text{tr}\left(\mathbf{Q}(\boldsymbol\theta) \boldsymbol\Phi\right),
+\end{aligned}
 \]&lt;/span&gt;
-where the expectation is taken under the true data-generating process. For the restricted log-likelihood given above,
-&lt;span class=&#34;math display&#34;&gt;\[
-\frac{\partial l_R(\boldsymbol\theta)}{\partial \theta_q} = -\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right] +   \mathbf{T}&amp;#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T},
-\]&lt;/span&gt;
-where &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol{\dot\Omega}_q = \partial \boldsymbol\Omega / \partial \theta_q\)&lt;/span&gt; and the dependence of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\Omega\)&lt;/span&gt; on &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; is suppressed. Furthermore, the final term in the above is a quadratic form in &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;, with expectation given by
-&lt;span class=&#34;math display&#34;&gt;\[
-\E\left(\mathbf{T}&amp;#39;\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q}\mathbf{T}\right) = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right).
-\]&lt;/span&gt;
-Therefore, the REML estimator of &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt; converges to values that satisfy the equalities
-&lt;span class=&#34;math display&#34;&gt;\[
-0 = \text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_q\mathbf{Q} \boldsymbol\Phi\right) - \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q\right) + \text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_q \boldsymbol\Omega^{-1} \mathbf{X}\right]
-\]&lt;/span&gt;
-for &lt;span class=&#34;math inline&#34;&gt;\(q = 1,...,v\)&lt;/span&gt;.&lt;/p&gt;
+where the expectation in the first line is taken with respect to the true data-generating process and where &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt; (in the second line) is a constant that does not depend on &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;back-to-che&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Back to CHE&lt;/h1&gt;
@@ -127,89 +118,95 @@ for &lt;span class=&#34;math inline&#34;&gt;\(q = 1,...,v\)&lt;/span&gt;.&lt;/p&
 \begin{aligned}
 \boldsymbol\Phi_j &amp;amp;= \left(\tau_*^2 + \phi \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&amp;#39; + \left(\omega_*^2 + (1 - \phi) \sigma_j^2\right) \mathbf{I}_j \\
 \boldsymbol\Omega_j &amp;amp;= \left(\tilde\tau^2 + \rho \sigma_j^2\right) \mathbf{1}_j \mathbf{1}_j&amp;#39; + \left(\tilde\omega^2 + (1 - \rho) \sigma_j^2\right) \mathbf{I}_j \\
-\boldsymbol\Omega_j^{-1} &amp;amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&amp;#39; \right] \\
-\left[\boldsymbol{\dot\Omega}_{\tau^2}\right]_j &amp;amp;= \mathbf{1}_j \mathbf{1}_j&amp;#39; \\
-\left[\boldsymbol{\dot\Omega}_{\omega^2}\right]_j &amp;amp;= \mathbf{I}_j.
+\boldsymbol\Omega_j^{-1} &amp;amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&amp;#39; \right].
 \end{aligned}
 \]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)&lt;/span&gt;. Then we have that
+Let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)&lt;/span&gt; denote the weight assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the mis-specified model, with the total weight denoted as &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)&lt;/span&gt;. Similarly, let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)&lt;/span&gt; denote the weight that &lt;em&gt;should&lt;/em&gt; be assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the true model, with total &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{W^* = \sum_{j=1}^J w^*_j}\)&lt;/span&gt;. Then we have that
 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-\text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2}\right) &amp;amp;= \sum_{j=1}^J \mathbf{1}_j&amp;#39;\boldsymbol\Omega^{-1}\mathbf{1}_j = \tilde{W} \\
-\text{tr}\left(\boldsymbol\Omega^{-1}  \boldsymbol{\dot\Omega}_{\omega^2}\right) &amp;amp;= \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) \\
-\text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\tau^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2 \\
-\text{tr}\left[\left(\mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \mathbf{X}\right)^{-1} \mathbf{X}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol{\dot\Omega}_{\omega^2} \boldsymbol\Omega^{-1} \mathbf{X}\right] &amp;amp;= \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
-\end{aligned}
-\]&lt;/span&gt;
-Finally, letting &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)&lt;/span&gt;, the quadratic forms can be written as
-&lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\tau^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \sum_{j=1}^J \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j - \frac{2}{\tilde{W}} \sum_{j=1}^J \mathbf{1}_j&amp;#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left[\sum_{j=1}^J \left( \mathbf{1}_j&amp;#39;  \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right)^2\right]\left(\sum_{j=1}^J \mathbf{1}_j&amp;#39; \boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \mathbf{1}_j \right) \\
-&amp;amp;= \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right)
+\text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}&amp;#39;\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}&amp;#39;\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
+&amp;amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j\right) - \frac{1}{\tilde{W}}\sum_{j=1}^J \mathbf{1}_j&amp;#39;\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1} \mathbf{1}_j \\
+&amp;amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
 \end{aligned}
 \]&lt;/span&gt;
 and
 &lt;span class=&#34;math display&#34;&gt;\[
-\begin{aligned}
-\text{tr}\left(\mathbf{Q}\boldsymbol{\dot\Omega}_{\omega^2}\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \text{tr}\left(\mathbf{Q} \boldsymbol\Phi \mathbf{Q}\right) \\
-&amp;amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1}\right) - \frac{2}{W} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} + \frac{1}{W^2} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1} \mathbf{1}&amp;#39; \boldsymbol\Omega^{-1} \boldsymbol\Omega^{-1} \mathbf{1} \\
-&amp;amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega_j^{-1} \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1}\right) - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j^3} \mathbf{1}_j&amp;#39; \boldsymbol\Phi_j \mathbf{1}_j + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j^2}\mathbf{1}_j&amp;#39; \boldsymbol\Phi_j \mathbf{1}_j \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j} \right) \\
-&amp;amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right] - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right).
-\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;It follows that the REML estimators converge to the values &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; that solve
-&lt;span class=&#34;math display&#34;&gt;\[
-0 = \sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{w^*_j} + \frac{1}{\tilde{W}^2}\left(\sum_{j=1}^J \tilde{w}_j^2 \right)\left(\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j}\right) - \tilde{W} + \frac{1}{\tilde{W}} \sum_{j=1}^J \tilde{w}_j^2
+\log \left| \boldsymbol\Omega \right| = \sum_{j=1}^J\log \left| \boldsymbol\Omega_j \right| = \sum_{j=1}^J\left[ \left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \log \left(\frac{\tilde{w}_j}{k_j}\right)\right]
 \]&lt;/span&gt;
 and
 &lt;span class=&#34;math display&#34;&gt;\[
+\log \left|\mathbf{1}&amp;#39;\boldsymbol\Omega^{-1} \mathbf{1}\right| = \log \left(\tilde{W}\right),
+\]&lt;/span&gt;
+It follows that the REML estimators converge to the values &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; that minimize
+&lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-0 &amp;amp;= \sum_{j=1}^J \frac{1}{\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]^2}\left[\frac{k_j}{w^*_j} + (k_j - 1)\left[\omega_*^2 + (1 - \phi)\sigma_j^2\right] - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\tilde{w}_j k_j}{w^*_j} - \frac{\left(\tilde\tau^2 + \rho \sigma_j^2\right)\left[\tilde\omega^2 + (1 - \rho)\sigma_j^2 \right]\tilde{w}_j^2}{w^*_j} \right]  \\
-&amp;amp; \qquad \qquad \qquad - \frac{2}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^3}{k_j w^*_j} + \frac{1}{\tilde{W}^2} \left(\sum_{j=1}^J \frac{\tilde{w}^2}{w^*_j}\right) \left(\sum_{j=1}^J \frac{\tilde{w}^2_j}{k_j} \right) - \sum_{j=1}^J \tilde{w}_j \left(1 + \frac{(k_j - 1)(\tilde\tau^2 + \rho \sigma_j^2)}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \frac{1}{\tilde{W}} \sum_{j=1}^J \frac{\tilde{w}_j^2}{k_j}.
+\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right]- \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+&amp;amp; \qquad \qquad + \sum_{j=1}^J\left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{k_j}\right) + \log(\tilde{W})
 \end{aligned}
 \]&lt;/span&gt;
-These are complicated non-linear equations but they can be solved numerically.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;CHE_score &amp;lt;- function(x, tausq, omegasq, phi, rho, k_j, sigmasq_j) {
-  trs_j &amp;lt;- x[1] + rho * sigmasq_j
-  ors_j &amp;lt;- x[2] + (1 - rho) * sigmasq_j
+This is a complicated non-linear objective function, but it can be minimized numerically using standard techniques.&lt;/p&gt;
+&lt;p&gt;Here are some heatmaps of the function for &lt;span class=&#34;math inline&#34;&gt;\(\tau = 0.2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\omega = 0.1\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi = 0.4\)&lt;/span&gt;, and some simulated values for &lt;span class=&#34;math inline&#34;&gt;\(k_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j^2\)&lt;/span&gt;, for three different assumed correlations:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+set.seed(20211124)
+
+CHE_KL &amp;lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
+  
+  trs_j &amp;lt;- t^2 + rho * sigmasq_j
+  ors_j &amp;lt;- o^2 + (1 - rho) * sigmasq_j
   w_j &amp;lt;- k_j / (k_j * trs_j + ors_j)
   W &amp;lt;- sum(w_j)
   
-  tausq_ps_j &amp;lt;- tausq + phi * sigmasq_j
-  omegasq_ps_j &amp;lt;- omegasq + (1 - phi) * sigmasq_j
+  tausq_ps_j &amp;lt;- tau^2 + phi * sigmasq_j
+  omegasq_ps_j &amp;lt;- omega^2 + (1 - phi) * sigmasq_j
   wj_star &amp;lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
-
-  Quad_tausq &amp;lt;- sum(wj^2 / wj_star) - 2 * sum(wj^3 / wj_star) / W + sum(wj^2) * sum(wj^2 / wj_star) / W^2
-  score_tausq &amp;lt;- Quad_tausq - W + sum(wj^2) / W
   
-  Quad_omegasq_a &amp;lt;- (k_j / wj_star 
-                     + (k_j - 1) * omegasq_ps_j 
-                     - trs_j * k_j * wj / wj_star
-                     - trs_j * ors_j * wj^2 / wj_star) / ors_j^2
-
-  Quad_omegasq_b &amp;lt;- 2 * sum(wj^3 / (k_j * wj_star)) / W
-
-  Quad_omegasq_c &amp;lt;- sum(wj^2 / k_j) * sum(wj^2 / wj_star) / W^2
-
-  Quad_omegasq &amp;lt;- Quad_omegasq_a - Quad_omegasq_b + Quad_omegasq_c
+  A1 &amp;lt;- sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j)
+  A2 &amp;lt;- sum(w_j^2 / wj_star) / W
+  B &amp;lt;- sum((k_j - 1) * log(ors_j) - log(w_j / k_j))
+  C &amp;lt;- log(W)
   
-  score_omegasq_b &amp;lt;- sum(w_j * (1 + (k_j - 1) * trs_j / ors_j))
+  A1 - A2 + B + C
   
-  score_omegasq_c &amp;lt;- sum(wj^2/ k_j) / W
-  
-  score_omegasq &amp;lt;- Quad_omegasq - score_omegasq_b + score_omegasq_c
-  
-  c(tausq = score_tausq, omegasq = score_omegasq)
 }
 
-find_tausq_omegasq &amp;lt;- function(tausq, omegasq, phi, rho, k_j, sigmasq_j) {
-  require(rootSolve)
-  
-  multiroot(CHE_score, start = c(tausq, omegasq), 
-            tausq = tausq, omegasq = omegasq, 
-            phi = phi, rho = rho, 
-            k_j = k_j, sigmasq_j = sigmasq_j)
-}&lt;/code&gt;&lt;/pre&gt;
+tau &amp;lt;- 0.2
+omega &amp;lt;- 0.1
+phi &amp;lt;- 0.4
+J &amp;lt;- 20
+k_j &amp;lt;- 1 + rpois(J, 5)
+sigmasq_j &amp;lt;- 4 / pmax(rgamma(J, 3, scale = 30), 20)
+
+
+KL_dat &amp;lt;- 
+  cross_df(list(t = seq(0,0.4,0.01),
+                o = seq(0,0.2,0.005),
+                rho = c(0, 0.4, 0.8))) %&amp;gt;%
+  mutate(
+    KL = pmap_dbl(., .f = CHE_KL, 
+                       tau = tau, omega = omega,
+                       phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
+    rho = paste(&amp;quot;rho ==&amp;quot;, rho)
+  ) %&amp;gt;%
+  group_by(rho)
+
+KL_min &amp;lt;- 
+  KL_dat %&amp;gt;%
+  filter(KL == min(KL))
+
+KL_dat %&amp;gt;%
+  mutate(KL = -pmin(0.25, (KL - min(KL)) / (max(KL) - min(KL)))) %&amp;gt;%
+ggplot() + 
+  facet_wrap(~ rho, scales = &amp;quot;free&amp;quot;, labeller = &amp;quot;label_parsed&amp;quot;) + 
+  geom_contour_filled(aes(x = t, y = o, z = KL), bins = 30) + 
+  geom_point(x = tau, y = omega, color = &amp;quot;white&amp;quot;, size = 2) + 
+  geom_point(data = KL_min, aes(x = t, y = o), color = &amp;quot;red&amp;quot;, size = 2) + 
+  theme_minimal() + 
+  labs(x = expression(tau), y = expression(omega)) + 
+  scale_x_continuous(expand = c(0,0)) + 
+  scale_y_continuous(expand = c(0,0)) + 
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.4\)&lt;/span&gt; corresponds to the true sampling correlation, the function is minimized at the true values of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the left-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.0\)&lt;/span&gt; leads to an upwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a downwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the right-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.8\)&lt;/span&gt; leads to a smaller value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a larger value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;.&lt;/p&gt;
 &lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Completely balanced designs&lt;/h2&gt;
 &lt;p&gt;The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that &lt;span class=&#34;math inline&#34;&gt;\(k_1 = k_2 = \cdots = k_J\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)&lt;/span&gt;.&lt;/p&gt;
