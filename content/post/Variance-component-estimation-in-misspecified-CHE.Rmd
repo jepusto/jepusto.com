@@ -84,9 +84,7 @@ $$
 \boldsymbol\Omega_j^{-1} &= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j' \right].
 \end{aligned}
 $$
-Let $\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}$ denote the weight assigned to study $j$ under the mis-specified model, with the total weight denoted as $\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}$. Similarly, let $\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}$ denote the weight that _should_ be assigned to study $j$ under the true model. 
-
-Then we have that
+Let $\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}$ denote the weight assigned to study $j$ under the mis-specified model, with the total weight denoted as $\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}$. Similarly, let $\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}$ denote the weight that _should_ be assigned to study $j$ under the true model, with total $\displaystyle{W^* = \sum_{j=1}^J w^*_j}$. Then we have that
 $$
 \begin{aligned}
 \text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}'\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}'\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
@@ -95,11 +93,11 @@ $$
 \end{aligned}
 $$
 $$
-\log \left| \mathbf{1}'\boldsymbol\Phi \mathbf{1} \left(\mathbf{1}'\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \right| = \log \left(W^*\right) - \log \left(\tilde{W}\right),
+\log \left| \mathbf{1}'\boldsymbol\Phi \mathbf{1} \left(\mathbf{1}'\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \right| = \log \left(\frac{W^*}{\tilde{W}}\right),
 $$
 and
 $$
-\log \left| \boldsymbol\Phi \boldsymbol\Omega^{-1} \right| &= \sum_{j=1}^J\log \left| \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \right| = \sum_{j=1}^J\left[ \left(k_j - 1\right) \log\left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \log \left(\frac{\tilde{w}_j}{w^*_j}\right)\right].
+\log \left| \boldsymbol\Phi \boldsymbol\Omega^{-1} \right| = \sum_{j=1}^J\log \left| \boldsymbol\Phi_j \boldsymbol\Omega^{-1}_j \right| = \sum_{j=1}^J\left[ \left(k_j - 1\right) \log\left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \log \left(\frac{\tilde{w}_j}{w^*_j}\right)\right].
 $$
 It follows that the REML estimators converge to the values $\tilde\tau^2$ and $\tilde\omega^2$ that minimize 
 $$
@@ -107,73 +105,68 @@ $$
 \mathcal{I}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} - \sum_{j=1}^J \left(k_j - 1\right) \log\left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{w^*_j}\right) - \log \left(\frac{W^*}{\tilde{W}}\right)
 \end{aligned}
 $$
-This is a complicated non-linear objective function, but it can be minimized numerically using standard techniques.
+This is a complicated non-linear objective function, but it can be minimized numerically using standard techniques. Here's the function:
 
 ```{r}
 
-CHE_score <- function(x, tausq, omegasq, phi, rho, k_j, sigmasq_j) {
-  trs_j <- exp(x[1]) + rho * sigmasq_j
-  ors_j <- exp(x[2]) + (1 - rho) * sigmasq_j
+CHE_KL <- function(t, o, tausq, omegasq, phi, rho, k_j, sigmasq_j, all = FALSE) {
+  
+  trs_j <- t + rho * sigmasq_j
+  ors_j <- o + (1 - rho) * sigmasq_j
   w_j <- k_j / (k_j * trs_j + ors_j)
   W <- sum(w_j)
   
   tausq_ps_j <- tausq + phi * sigmasq_j
   omegasq_ps_j <- omegasq + (1 - phi) * sigmasq_j
   wj_star <- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
-
-  Quad_tausq <- sum(w_j^2 / wj_star) - 2 * sum(w_j^3 / wj_star) / W + sum(w_j^2) * sum(w_j^2 / wj_star) / W^2
-  score_tausq <- Quad_tausq - W + sum(w_j^2) / W
   
-  Quad_omegasq_a <- sum((k_j / wj_star 
-                         + (k_j - 1) * omegasq_ps_j 
-                         - trs_j * k_j * w_j / wj_star
-                         - trs_j * ors_j * w_j^2 / wj_star) / ors_j^2)
-
-  Quad_omegasq_b <- 2 * sum(w_j^3 / (k_j * wj_star)) / W
-
-  Quad_omegasq_c <- sum(w_j^2 / k_j) * sum(w_j^2 / wj_star) / W^2
-
-  Quad_omegasq <- Quad_omegasq_a - Quad_omegasq_b + Quad_omegasq_c
+  A <- 
+    sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j) -
+    sum(w_j^2 / wj_star) / W
   
-  score_omegasq_b <- sum(w_j * (1 + (k_j - 1) * trs_j / ors_j))
+  B <- sum((k_j - 1) * log(omegasq_ps_j / ors_j) + log(w_j / wj_star))
   
-  score_omegasq_c <- sum(w_j^2/ k_j) / W
+  C <- log(sum(wj_star) / W)
   
-  score_omegasq <- Quad_omegasq - score_omegasq_b + score_omegasq_c
-  
-  c(tau_sq = score_tausq, omega_sq = score_omegasq)
-}
-
-find_tausq_omegasq <- function(tau, omega, phi, rho, k_j, sigmasq_j, full = FALSE) {
-  require(rootSolve)
-  
-  res <- multiroot(CHE_score, start = log(c(tau^2, omega^2)), 
-                   tausq = tau^2, omegasq = omega^2, 
-                   phi = phi, rho = rho, 
-                   k_j = k_j, sigmasq_j = sigmasq_j)
-  
-  names(res$root) <- c("tau","omega")
-  res$root <- sqrt(exp(res$root))
-  if (full) return(res)
-  
-  exp(res$root)
+  if (all) return(c(A = A, B = B, C = C)) else return(A - B - C)
   
 }
 
-J <- 100
+```
+
+Here is a plot of the function for $\tau = 0.1$, $\omega = 0.05$, $\phi = 0.4$, $\rho = 0.8$, and some simulated values for $k_j$ and $\sigma_j^2$:
+
+```{r}
+library(tidyverse)
+tausq <- 0.1^2
+omegasq <- 0.05^2
+phi <- 0.4
+rho <- 0.4
+J <- 20
 k_j <- 1 + rpois(J, 3)
 sigmasq_j <- 4 / pmax(rgamma(J, 2, scale = 30), 20)
 
-CHE_score(log(c(0.2^2, 0.02^2)), 
-          tausq = 0.1^2, omegasq = 0.05^2, 
-          phi = 0.4, rho = 0.8, 
-          k_j = k_j, sigmasq_j = sigmasq_j)
+
+KL_dat <- 
+  cross_df(list(t = seq(0,0.6,0.01),
+                o = seq(0,0.6,0.01))) %>%
+  mutate(KL = map2_dbl(.x = t^2, .y = o^2, .f = CHE_KL, 
+                       tausq = tausq, omegasq = omegasq,
+                       phi = phi, rho = rho, 
+                       k_j = k_j, sigmasq_j = sigmasq_j))
 
 
-find_tausq_omegasq(tau = 0.1, omega = 0.05, 
-                   phi = 0.6, rho = 0.5, 
-                   k_j = k_j, sigmasq_j = sigmasq_j, full = TRUE)
+ggplot(KL_dat, aes(x = t, y = o, fill = KL)) + 
+  geom_tile() + 
+  scale_fill_gradient() + 
+  theme_minimal() + 
+  theme(legend.position = "none")
 
+ggplot(KL_dat) + 
+  geom_tile(aes(x = t, y = o, fill = KL)) + 
+  geom_contour(aes(x = t, y = o, z = KL)) + 
+  scale_fill_gradient2() + 
+  theme_minimal()
 ```
 
 

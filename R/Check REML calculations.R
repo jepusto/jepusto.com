@@ -9,6 +9,9 @@ sigmasq_j <- 4 / pmax(rgamma(J, 2, scale = 30), 20)
 sID <- rep(LETTERS[1:J], k_j)
 sigmasq_ij <- rep(sigmasq_j, k_j)
 
+wj_star <- k_j / (k_j * tausq + k_j * phi * sigmasq_j + omegasq + (1 - phi) * sigmasq_j)
+W_star <- sum(wj_star)
+
 make_omega_mat <- function(sID, sigmasq_ij, tausq, omegasq, rho = 0) {
   tausq_mat <- tapply(sigmasq_ij, sID, 
                       function(x) matrix(tausq, nrow = length(x), ncol = length(x)), 
@@ -33,8 +36,68 @@ W_tilde <- sum(wj_tilde)
 
 Omega_mat <- make_omega_mat(sID = sID, sigmasq_ij = sigmasq_ij, 
                             tausq = tausq_t, omegasq = omegasq_t, rho = rho)
-
 Omega_inv <- lapply(Omega_mat, function(x) chol2inv(chol(x)))
+Omega_inv_big <- bldiag(Omega_inv)
+Omega_inv_1 <- rowSums(Omega_inv_big)
+Qmat <- Omega_inv_big - tcrossprod(Omega_inv_1) / W_tilde
+Phi_big <- bldiag(Phi_mat)
+
+CHE_KL <- function(t, o, tausq, omegasq, phi, rho, k_j, sigmasq_j, all = FALSE) {
+  trs_j <- t + rho * sigmasq_j
+  ors_j <- o + (1 - rho) * sigmasq_j
+  w_j <- k_j / (k_j * trs_j + ors_j)
+  W <- sum(w_j)
+  
+  tausq_ps_j <- tausq + phi * sigmasq_j
+  omegasq_ps_j <- omegasq + (1 - phi) * sigmasq_j
+  wj_star <- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
+  
+  A <- 
+    sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j) -
+    sum(w_j^2 / wj_star) / W
+  
+  B <- sum((k_j - 1) * log(omegasq_ps_j / ors_j) + log(w_j / wj_star))
+  
+  C <- log(sum(wj_star) / W)
+  
+  if (all) return(c(A = A, B = B, C = C)) else return(A - B - C)
+  
+}
+
+KL_res <- 
+  CHE_KL(t = tausq_t, o = omegasq_t, 
+         tausq = tausq, omegasq = omegasq, 
+         phi = phi, rho = rho, 
+         k_j = k_j, sigmasq_j = sigmasq_j, 
+         all = TRUE)
+KL_res
+
+sum(diag(Omega_inv_big %*% Phi_big))
+sum(
+  k_j * (tausq + omegasq + sigmasq_j - (tausq_t + rho * sigmasq_j) * wj_tilde / wj_star) / (omegasq_t + (1 - rho) * sigmasq_j)
+)
+
+sum(Omega_inv_big %*% Phi_big %*% Omega_inv_big) / sum(Omega_inv_big)
+sum(wj_tilde^2 / wj_star) / W_tilde
+
+sum(diag(Qmat %*% Phi_big))
+sum(
+  k_j * (tausq + omegasq + sigmasq_j - (tausq_t + rho * sigmasq_j) * wj_tilde / wj_star) / (omegasq_t + (1 - rho) * sigmasq_j)
+) - sum(wj_tilde^2 / wj_star) / W_tilde
+KL_res[["A"]]
+
+determinant(Phi_big %*% Omega_inv_big, logarithm = TRUE)$modulus
+sum(
+  (k_j - 1) * log((omegasq + (1 - phi) * sigmasq_j) / (omegasq_t + (1 - rho) * sigmasq_j)) 
+  + log(wj_tilde / wj_star)
+)
+KL_res[["B"]]
+
+log(W_star / W_tilde)
+KL_res[["C"]]
+
+# Derivatives
+
 sapply(Omega_inv, sum)
 all.equal(sapply(Omega_inv, sum), wj_tilde, check.attributes = FALSE)
 
@@ -56,10 +119,6 @@ wj_tilde^2 / k_j
 all.equal(sapply(Omega_inv, function(a) sum(a %*% a)), wj_tilde^2 / k_j, check.attributes = FALSE)
 
 wj_star <- k_j / (k_j * tausq + k_j * phi * sigmasq_j + omegasq + (1 - phi) * sigmasq_j)
-Omega_inv_big <- bldiag(Omega_inv)
-Omega_inv_1 <- rowSums(Omega_inv_big)
-Qmat <- Omega_inv_big - tcrossprod(Omega_inv_1) / W_tilde
-Phi_big <- bldiag(Phi_mat)
 QJQPhi <- Qmat %*% bldiag(Jmat) %*% Qmat %*% Phi_big
 sum(diag(QJQPhi))
 
