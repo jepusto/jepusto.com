@@ -76,6 +76,9 @@ sum(diag(Omega_inv_big %*% Phi_big))
 sum(
   k_j * (tausq + omegasq + sigmasq_j - (tausq_t + rho * sigmasq_j) * wj_tilde / wj_star) / (omegasq_t + (1 - rho) * sigmasq_j)
 )
+sum(
+  (k_j - 1) * (omegasq + (1 - phi) * sigmasq_j) / (omegasq_t + (1 - rho) * sigmasq_j) + wj_tilde / wj_star
+)
 
 sum(Omega_inv_big %*% Phi_big %*% Omega_inv_big) / sum(Omega_inv_big)
 sum(wj_tilde^2 / wj_star) / W_tilde
