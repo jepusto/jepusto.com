@@ -798,7 +798,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 \]</span></p>
 <p>In a recent paper with Beth Tipton, we proposed <a href="/publication/rve-meta-analysis-expanding-the-range/">new working models</a> for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.</p>
 <p>In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.</p>
-<p>There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA <em>ignores</em> any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlation is zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.</p>
+<p>There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA <em>ignores</em> any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.</p>
 <p>In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in <a href="/weighting-in-multivariate-meta-analysis/">my previous post on weights in multivariate meta-analysis</a>, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.</p>
 <div id="the-correlated-and-hierarchical-effects-che-model" class="section level1">
 <h1>The correlated-and-hierarchical effects (CHE) model</h1>
@@ -832,7 +832,7 @@ where <span class="math inline">\(\mathbf{Q}(\boldsymbol\theta) = \boldsymbol\Om
 <p>Under mis-specification, the REML estimators converge (as <span class="math inline">\(J\)</span> increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. For the restricted likelihood, the Kullback-Liebler divergence is given by
 <span class="math display">\[
 \begin{aligned}
-\mathcal{KL}(\theta, \theta_0) &amp;= \E\left[l_R(\theta_0) - l_R(\theta)\right] \\
+\mathcal{KL}(\theta, \theta_0) &amp;= \E\left[l_R(\boldsymbol\Phi) - l_R(\boldsymbol\theta)\right] \\
 &amp;= c + \log \left| \boldsymbol\Omega(\boldsymbol\theta) \right| + \log \left| \mathbf{X}&#39;\boldsymbol\Omega^{-1}(\boldsymbol\theta) \mathbf{X} \right| + \text{tr}\left(\mathbf{Q}(\boldsymbol\theta) \boldsymbol\Phi\right),
 \end{aligned}
 \]</span>
@@ -848,12 +848,13 @@ where the expectation in the first line is taken with respect to the true data-g
 \boldsymbol\Omega_j^{-1} &amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&#39; \right].
 \end{aligned}
 \]</span>
-Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> denote the weight assigned to study <span class="math inline">\(j\)</span> under the mis-specified model, with the total weight denoted as <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Similarly, let <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span> denote the weight that <em>should</em> be assigned to study <span class="math inline">\(j\)</span> under the true model, with total <span class="math inline">\(\displaystyle{W^* = \sum_{j=1}^J w^*_j}\)</span>. Then we have that
+Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> denote the weight assigned to study <span class="math inline">\(j\)</span> under the mis-specified model, with the total weight denoted as <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Similarly, let <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span> denote the weight that <em>should</em> be assigned to study <span class="math inline">\(j\)</span> under the true model. Then we have that
 <span class="math display">\[
 \begin{aligned}
 \text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}&#39;\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}&#39;\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
 &amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j\right) - \frac{1}{\tilde{W}}\sum_{j=1}^J \mathbf{1}_j&#39;\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1} \mathbf{1}_j \\
-&amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
+&amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+&amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
 \end{aligned}
 \]</span>
 and
@@ -867,7 +868,7 @@ and
 It follows that the REML estimators converge to the values <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> that minimize
 <span class="math display">\[
 \begin{aligned}
-\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right]- \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
 &amp; \qquad \qquad + \sum_{j=1}^J\left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{k_j}\right) + \log(\tilde{W})
 \end{aligned}
 \]</span>
@@ -887,12 +888,13 @@ CHE_KL &lt;- function(to, tau, omega, phi, rho, k_j, sigmasq_j) {
   omegasq_ps_j &lt;- omega^2 + (1 - phi) * sigmasq_j
   wj_star &lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
   
-  A1 &lt;- sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j)
-  A2 &lt;- sum(w_j^2 / wj_star) / W
+  A1 &lt;- sum((k_j - 1) * omegasq_ps_j / ors_j)
+  A2 &lt;- sum(w_j / wj_star)
+  A3 &lt;- sum(w_j^2 / wj_star) / W
   B &lt;- sum((k_j - 1) * log(ors_j) - log(w_j / k_j))
   C &lt;- log(W)
   
-  A1 - A2 + B + C
+  A1 + A2 - A3 + B + C
   
 }
 
@@ -1016,7 +1018,7 @@ opt_params %&gt;%
 <div id="implications" class="section level1">
 <h1>Implications</h1>
 <p>This post was mostly just to satisfy my own curiosity about how variance components behave in the MLMA and, more broadly, under mis-specified correlated-and-hierarchical effects meta-analysis models. I don’t think the bias formulas have much practical utility because, if you’re concerned about bias due to mis-specified sampling correlations, the first thing to do is try and develop better assumptions about the sampling correlation structure. Still, I think this analysis might be helpful for purposes of gauging how far off from the true your variance component estimates might be. In further work along these lines, it might be useful to examine the consequences of the biased variance component estimates for the efficiency of overall average effect size estimates based on mis-specified CHE models and the accuracy of model-based standard errors and confidence intervals under mis-specification. It would also be important to verify that these approximations provide accurate predictions for the bias of variance component estimates in realistic meta-analytic data (especially with a small or moderate number of studies).</p>
-<p>Another implication of this investigation is that <em>imbalance</em> in the data structure seems to matter. When all studies have an equal number of effect sizes and are equally precise, then everything is simpler and more robust to mistaken assumptions about sampling correlation. Variance component estimation matters more for meta-analytic data in which some studies are more precise or contribute more effect size estimates than others. Further investigations—including simulation studies—of methods for handling dependent effect sizes need to examine conditions with imbalanced data in order to draw defensible, generalizable conclusions about the robustness or utility of particular methods.</p>
+<p>Another implication of this investigation is that <em>imbalance</em> in the data structure seems to matter. When all studies have an equal number of effect sizes and are equally precise, then everything is simpler and more robust to mistaken assumptions about sampling correlation. Variance component estimation matters more for meta-analytic data in which some studies are more precise or contribute more effect size estimates than others. Therefore, further investigations—including simulation studies—of methods for handling dependent effect sizes really need to examine conditions with imbalanced data in order to draw defensible, generalizable conclusions about the robustness or utility of particular methods.</p>
 </div>
 <div class="footnotes">
 <hr />
