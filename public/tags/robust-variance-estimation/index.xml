@@ -5,12 +5,164 @@
     <link>/tags/robust-variance-estimation/</link>
       <atom:link href="/tags/robust-variance-estimation/index.xml" rel="self" type="application/rss+xml" />
     <description>robust variance estimation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Thu, 14 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>robust variance estimation</title>
       <link>/tags/robust-variance-estimation/</link>
     </image>
+    
+    <item>
+      <title>Power approximations for meta-analysis of dependent effect sizes</title>
+      <link>/publication/power-approximations-for-dependent-effects/</link>
+      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/publication/power-approximations-for-dependent-effects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meta-analysis with robust variance estimation and multiply imputed covariates</title>
+      <link>/rve-meta-analysis-with-mi/</link>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>/rve-meta-analysis-with-mi/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.1.5     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metadat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metadat&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metafor&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: Matrix&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;Matrix&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:tidyr&amp;#39;:
+## 
+##     expand, pack, unpack&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Loading the &amp;#39;metafor&amp;#39; package (version 3.0-2). For an
+## introduction to the package please type: help(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;metafor&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:metadat&amp;#39;:
+## 
+##     dat.hackshaw1998, dat.ishak2007, dat.konstantopoulos2011,
+##     dat.lim2014, dat.maire2019, dat.moura2021, dat.raudenbush1985,
+##     dat.riley2003&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
+##   method    from    
+##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mice)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mice&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mice&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     cbind, rbind&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mitools)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mitools&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create missingness
+
+set.seed(20211222)
+
+dat_miss &amp;lt;- 
+  dat.assink2016 %&amp;gt;%
+  group_by(study) %&amp;gt;%
+  mutate(
+    pubstatus = if_else(rbinom(1L, 1L, 0.15) == 1L, NA_integer_, unique(pubstatus)),
+    pubstatus = factor(pubstatus, levels = 0:1, labels = c(&amp;quot;unpublished&amp;quot;,&amp;quot;published&amp;quot;)),
+    deltype = if_else(rbinom(n(), 1L, prob = plogis(-2.5 - 0.1 * year)) == 1L, NA_character_, deltype),
+    deltype = factor(deltype)
+  )
+
+# Impute missing values 20 times
+
+predMatrix &amp;lt;- make.predictorMatrix(dat_miss)
+predMatrix[,c(&amp;quot;study&amp;quot;,&amp;quot;esid&amp;quot;,&amp;quot;id&amp;quot;)] &amp;lt;- 0 # don&amp;#39;t use study or esid or id for imputing
+
+impMethod &amp;lt;- make.method(dat_miss)
+impMethod&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     study      esid        id        yi        vi pubstatus      year   deltype 
+##        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;  &amp;quot;logreg&amp;quot;        &amp;quot;&amp;quot; &amp;quot;polyreg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imp &amp;lt;- mice(dat_miss, m = 20, print = FALSE,
+            predictorMatrix = predMatrix, 
+            method=impMethod, seed = 20211222)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Number of logged events: 70&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit SCE+ model
+fits &amp;lt;- with(imp, rma.mv(
+  yi = yi, 
+  V = impute_covariance_matrix(vi = vi, cluster = study, r = 0.6, subgroup = deltype),
+  mods = ~ pubstatus + deltype + year,
+  random = list(~ deltype | study, ~ deltype | id),
+  struct = c(&amp;quot;DIAG&amp;quot;,&amp;quot;DIAG&amp;quot;)
+))
+
+# Get coefficients
+coefs &amp;lt;- map(fits$analyses, coef)
+
+# Get CR2 variance-covariance matrices
+vcovs &amp;lt;- map(fits$analyses, vcovCR, type = &amp;quot;CR2&amp;quot;)
+
+# Get denominator df from complete-data F-tests
+q &amp;lt;- 2
+dfs &amp;lt;- 
+  map_dfr(fits$analyses, Wald_test, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(3:4), test = &amp;quot;HTZ&amp;quot;) %&amp;gt;%
+  mutate(
+    eta = df_denom + (q - 1)
+  )
+eta &amp;lt;- mean(dfs$eta)
+
+# Combine imputed results
+res &amp;lt;- MIcombine(results = coefs, variances = vcovs)
+res$coefficients&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            intrcpt pubstatuspublished       deltypeovert      deltypecovert 
+##         0.89897557        -0.55770641        -0.38101335        -0.46723794 
+##               year 
+##        -0.02576823&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;res$variance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         intrcpt pubstatuspublished deltypeovert deltypecovert
+## intrcpt             0.074539988       -0.083961053 -0.058577507  0.0010493986
+## pubstatuspublished -0.083961053        0.103264126  0.067143252 -0.0032322609
+## deltypeovert       -0.058577507        0.067143252  0.106429071 -0.0108120033
+## deltypecovert       0.001049399       -0.003232261 -0.010812003  0.0321118999
+## year                0.002758525       -0.004318211 -0.003867039  0.0002642098
+##                             year
+## intrcpt             0.0027585250
+## pubstatuspublished -0.0043182112
+## deltypeovert       -0.0038670392
+## deltypecovert       0.0002642098
+## year                0.0004815795&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Calculate manual HTZ test using averaged eta 
+Cmat &amp;lt;- constrain_zero(3:4, coefs = res$coefficients)
+Q &amp;lt;- t(Cmat %*% res$coefficients) %*% solve(Cmat %*% res$variance %*% t(Cmat)) %*% (Cmat %*% res$coefficients)
+Fstat &amp;lt;- (eta - q + 1) / (eta * q) * as.numeric(Q)
+p_val &amp;lt;- pf(Fstat, df1 = q, df2 = eta - q + 1, lower.tail = FALSE)
+data.frame(Fstat = Fstat, df_num = q, df_denom = eta - q + 1, p_val = p_val)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      Fstat df_num df_denom     p_val
+## 1 3.003453      2 1.663534 0.2804675&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
