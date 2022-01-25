@@ -18,6 +18,8 @@ authors:
 links:
 - name: CRAN
   url: https://cran.r-project.org/package=clubSandwich
+- name: Website
+  url: https://jepusto.github.io/clubSandwich/
 url_code: "https://github.com/jepusto/clubSandwich"
 url_pdf: ""
 url_slides: ""
