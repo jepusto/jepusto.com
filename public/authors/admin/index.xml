@@ -5,7 +5,7 @@
     <link>/authors/admin/</link>
       <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2021</copyright><lastBuildDate>Sat, 20 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
@@ -13,12 +13,163 @@
     </image>
     
     <item>
+      <title>Power approximations for meta-analysis of dependent effect sizes</title>
+      <link>/publication/power-approximations-for-dependent-effects/</link>
+      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/publication/power-approximations-for-dependent-effects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meta-analysis with robust variance estimation and multiply imputed covariates</title>
+      <link>/rve-meta-analysis-with-mi/</link>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>/rve-meta-analysis-with-mi/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.1.5     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metadat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metadat&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metafor&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: Matrix&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;Matrix&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:tidyr&amp;#39;:
+## 
+##     expand, pack, unpack&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Loading the &amp;#39;metafor&amp;#39; package (version 3.0-2). For an
+## introduction to the package please type: help(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;metafor&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:metadat&amp;#39;:
+## 
+##     dat.hackshaw1998, dat.ishak2007, dat.konstantopoulos2011,
+##     dat.lim2014, dat.maire2019, dat.moura2021, dat.raudenbush1985,
+##     dat.riley2003&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
+##   method    from    
+##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mice)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mice&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mice&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     cbind, rbind&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mitools)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mitools&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create missingness
+
+set.seed(20211222)
+
+dat_miss &amp;lt;- 
+  dat.assink2016 %&amp;gt;%
+  group_by(study) %&amp;gt;%
+  mutate(
+    pubstatus = if_else(rbinom(1L, 1L, 0.15) == 1L, NA_integer_, unique(pubstatus)),
+    pubstatus = factor(pubstatus, levels = 0:1, labels = c(&amp;quot;unpublished&amp;quot;,&amp;quot;published&amp;quot;)),
+    deltype = if_else(rbinom(n(), 1L, prob = plogis(-2.5 - 0.1 * year)) == 1L, NA_character_, deltype),
+    deltype = factor(deltype)
+  )
+
+# Impute missing values 20 times
+
+predMatrix &amp;lt;- make.predictorMatrix(dat_miss)
+predMatrix[,c(&amp;quot;study&amp;quot;,&amp;quot;esid&amp;quot;,&amp;quot;id&amp;quot;)] &amp;lt;- 0 # don&amp;#39;t use study or esid or id for imputing
+
+impMethod &amp;lt;- make.method(dat_miss)
+impMethod&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     study      esid        id        yi        vi pubstatus      year   deltype 
+##        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;  &amp;quot;logreg&amp;quot;        &amp;quot;&amp;quot; &amp;quot;polyreg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imp &amp;lt;- mice(dat_miss, m = 20, print = FALSE,
+            predictorMatrix = predMatrix, 
+            method=impMethod, seed = 20211222)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Number of logged events: 70&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit SCE+ model
+fits &amp;lt;- with(imp, rma.mv(
+  yi = yi, 
+  V = impute_covariance_matrix(vi = vi, cluster = study, r = 0.6, subgroup = deltype),
+  mods = ~ pubstatus + deltype + year,
+  random = list(~ deltype | study, ~ deltype | id),
+  struct = c(&amp;quot;DIAG&amp;quot;,&amp;quot;DIAG&amp;quot;)
+))
+
+# Get coefficients
+coefs &amp;lt;- map(fits$analyses, coef)
+
+# Get CR2 variance-covariance matrices
+vcovs &amp;lt;- map(fits$analyses, vcovCR, type = &amp;quot;CR2&amp;quot;)
+
+# Get denominator df from complete-data F-tests
+q &amp;lt;- 2
+dfs &amp;lt;- 
+  map_dfr(fits$analyses, Wald_test, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(3:4), test = &amp;quot;HTZ&amp;quot;) %&amp;gt;%
+  mutate(
+    eta = df_denom + (q - 1)
+  )
+eta &amp;lt;- mean(dfs$eta)
+
+# Combine imputed results
+res &amp;lt;- MIcombine(results = coefs, variances = vcovs)
+res$coefficients&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            intrcpt pubstatuspublished       deltypeovert      deltypecovert 
+##         0.89897557        -0.55770641        -0.38101335        -0.46723794 
+##               year 
+##        -0.02576823&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;res$variance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         intrcpt pubstatuspublished deltypeovert deltypecovert
+## intrcpt             0.074539988       -0.083961053 -0.058577507  0.0010493986
+## pubstatuspublished -0.083961053        0.103264126  0.067143252 -0.0032322609
+## deltypeovert       -0.058577507        0.067143252  0.106429071 -0.0108120033
+## deltypecovert       0.001049399       -0.003232261 -0.010812003  0.0321118999
+## year                0.002758525       -0.004318211 -0.003867039  0.0002642098
+##                             year
+## intrcpt             0.0027585250
+## pubstatuspublished -0.0043182112
+## deltypeovert       -0.0038670392
+## deltypecovert       0.0002642098
+## year                0.0004815795&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Calculate manual HTZ test using averaged eta 
+Cmat &amp;lt;- constrain_zero(3:4, coefs = res$coefficients)
+Q &amp;lt;- t(Cmat %*% res$coefficients) %*% solve(Cmat %*% res$variance %*% t(Cmat)) %*% (Cmat %*% res$coefficients)
+Fstat &amp;lt;- (eta - q + 1) / (eta * q) * as.numeric(Q)
+p_val &amp;lt;- pf(Fstat, df1 = q, df2 = eta - q + 1, lower.tail = FALSE)
+data.frame(Fstat = Fstat, df_num = q, df_denom = eta - q + 1, p_val = p_val)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      Fstat df_num df_denom     p_val
+## 1 3.003453      2 1.663534 0.2804675&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
       <link>/variance-components-with-misspecified-correlation/</link>
-      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
       <guid>/variance-components-with-misspecified-correlation/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -28,8 +179,8 @@
 \def\Cov{{\text{Cov}}}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
-&lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I still wonder about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
-&lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; the possibility of correlation between effect size estimates, or equivalently, assumes that the correlation is zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
+&lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
+&lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
 &lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
 &lt;div id=&#34;the-correlated-and-hierarchical-effects-che-model&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;The correlated-and-hierarchical effects (CHE) model&lt;/h1&gt;
@@ -63,7 +214,7 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{Q}(\boldsymbol\theta) = 
 &lt;p&gt;Under mis-specification, the REML estimators converge (as &lt;span class=&#34;math inline&#34;&gt;\(J\)&lt;/span&gt; increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. For the restricted likelihood, the Kullback-Liebler divergence is given by
 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-\mathcal{KL}(\theta, \theta_0) &amp;amp;= \E\left[l_R(\theta_0) - l_R(\theta)\right] \\
+\mathcal{KL}(\theta, \theta_0) &amp;amp;= \E\left[l_R(\boldsymbol\Phi) - l_R(\boldsymbol\theta)\right] \\
 &amp;amp;= c + \log \left| \boldsymbol\Omega(\boldsymbol\theta) \right| + \log \left| \mathbf{X}&amp;#39;\boldsymbol\Omega^{-1}(\boldsymbol\theta) \mathbf{X} \right| + \text{tr}\left(\mathbf{Q}(\boldsymbol\theta) \boldsymbol\Phi\right),
 \end{aligned}
 \]&lt;/span&gt;
@@ -79,12 +230,13 @@ where the expectation in the first line is taken with respect to the true data-g
 \boldsymbol\Omega_j^{-1} &amp;amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&amp;#39; \right].
 \end{aligned}
 \]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)&lt;/span&gt; denote the weight assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the mis-specified model, with the total weight denoted as &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)&lt;/span&gt;. Similarly, let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)&lt;/span&gt; denote the weight that &lt;em&gt;should&lt;/em&gt; be assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the true model, with total &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{W^* = \sum_{j=1}^J w^*_j}\)&lt;/span&gt;. Then we have that
+Let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)&lt;/span&gt; denote the weight assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the mis-specified model, with the total weight denoted as &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)&lt;/span&gt;. Similarly, let &lt;span class=&#34;math inline&#34;&gt;\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)&lt;/span&gt; denote the weight that &lt;em&gt;should&lt;/em&gt; be assigned to study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under the true model. Then we have that
 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
 \text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &amp;amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}&amp;#39;\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}&amp;#39;\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
 &amp;amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j\right) - \frac{1}{\tilde{W}}\sum_{j=1}^J \mathbf{1}_j&amp;#39;\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1} \mathbf{1}_j \\
-&amp;amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
+&amp;amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+&amp;amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
 \end{aligned}
 \]&lt;/span&gt;
 and
@@ -98,7 +250,7 @@ and
 It follows that the REML estimators converge to the values &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; that minimize
 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right]- \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
 &amp;amp; \qquad \qquad + \sum_{j=1}^J\left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{k_j}\right) + \log(\tilde{W})
 \end{aligned}
 \]&lt;/span&gt;
@@ -107,10 +259,10 @@ This is a complicated non-linear objective function, but it can be minimized num
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 set.seed(20211124)
 
-CHE_KL &amp;lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
+CHE_KL &amp;lt;- function(to, tau, omega, phi, rho, k_j, sigmasq_j) {
   
-  trs_j &amp;lt;- t^2 + rho * sigmasq_j
-  ors_j &amp;lt;- o^2 + (1 - rho) * sigmasq_j
+  trs_j &amp;lt;- to[1]^2 + rho * sigmasq_j
+  ors_j &amp;lt;- to[2]^2 + (1 - rho) * sigmasq_j
   w_j &amp;lt;- k_j / (k_j * trs_j + ors_j)
   W &amp;lt;- sum(w_j)
   
@@ -118,12 +270,13 @@ CHE_KL &amp;lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
   omegasq_ps_j &amp;lt;- omega^2 + (1 - phi) * sigmasq_j
   wj_star &amp;lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
   
-  A1 &amp;lt;- sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j)
-  A2 &amp;lt;- sum(w_j^2 / wj_star) / W
+  A1 &amp;lt;- sum((k_j - 1) * omegasq_ps_j / ors_j)
+  A2 &amp;lt;- sum(w_j / wj_star)
+  A3 &amp;lt;- sum(w_j^2 / wj_star) / W
   B &amp;lt;- sum((k_j - 1) * log(ors_j) - log(w_j / k_j))
   C &amp;lt;- log(W)
   
-  A1 - A2 + B + C
+  A1 + A2 - A3 + B + C
   
 }
 
@@ -140,9 +293,10 @@ KL_dat &amp;lt;-
                 o = seq(0,0.2,0.005),
                 rho = c(0, 0.4, 0.8))) %&amp;gt;%
   mutate(
-    KL = pmap_dbl(., .f = CHE_KL, 
-                       tau = tau, omega = omega,
-                       phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
+    to = map2(.x = t, .y = o, ~ c(.x, .y)),
+    KL = map2_dbl(.x = to, .y = rho, .f = CHE_KL, 
+                  tau = tau, omega = omega,
+                  phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
     rho = paste(&amp;quot;rho ==&amp;quot;, rho)
   ) %&amp;gt;%
   group_by(rho)
@@ -167,8 +321,92 @@ ggplot() +
 &lt;p&gt;The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.4\)&lt;/span&gt; corresponds to the true sampling correlation, the function is minimized at the true values of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the left-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.0\)&lt;/span&gt; leads to an upwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a downwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the right-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.8\)&lt;/span&gt; leads to a smaller value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a larger value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;.&lt;/p&gt;
 &lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Completely balanced designs&lt;/h2&gt;
-&lt;p&gt;The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that &lt;span class=&#34;math inline&#34;&gt;\(k_1 = k_2 = \cdots = k_J\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Things simplify considerably in the special case that the sample of studies is completely balanced, such that &lt;span class=&#34;math inline&#34;&gt;\(k_1 = k_2 = \cdots = k_J\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)&lt;/span&gt;. In such a design, the log-likelihood depends on &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt; only through the quantities &lt;span class=&#34;math inline&#34;&gt;\(a = \tau^2 + \rho \sigma^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(b = \omega^2 + (1 - \rho) \sigma^2\)&lt;/span&gt;. It follows that
+&lt;span class=&#34;math display&#34;&gt;\[
+l_R\left(\tau^2, \omega^2, \phi\right) = l_R\left(\tilde\tau^2, \tilde\omega^2, \rho\right)
+\]&lt;/span&gt;
+so long as
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\tau^2 + \phi \sigma^2 &amp;amp;= \tilde\tau^2 + \rho \sigma^2 \\
+\omega^2 + (1 - \phi)\sigma^2 &amp;amp;= \tilde\omega^2 + (1 - \rho) \sigma^2.
+\end{aligned}
+\]&lt;/span&gt;
+If we assume that &lt;span class=&#34;math inline&#34;&gt;\((\rho - \phi)\sigma^2 &amp;lt; \tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\((\phi - \rho)\sigma^2 &amp;lt; \omega^2\)&lt;/span&gt;, then we can set
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\tilde\tau^2 &amp;amp;= \tau^2 - \left(\rho - \phi\right) \sigma^2 \\
+\tilde\omega^2 &amp;amp;= \omega^2 + \left(\rho - \phi\right) \sigma^2
+\end{aligned}
+\]&lt;/span&gt;
+and achieve the exact same likelihood.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Because the Kullback-Liebler divergence is minimized at the log likelihood of the true parameter values, setting &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; equal to the above quantities will also minimize the K-L divergence.&lt;/p&gt;
+&lt;p&gt;The relationships here are fairly intuitive, I think. When &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is an over-estimate of the true correlation &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, then the between-study variance will be under-estimated and the within-study variance will be over-estimated, each to an extent that depends on a) the difference between &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; and b) the size of the (average) sampling variance. When &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is an under-estimate of the true correlation &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, then the between-study variance will be over-estimated and the within-study variance will be under-estimated, each to an extent that depends on the same components. It’s also rather intriguing to see that the total variance (the sum of &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt;) is totally invariant to &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; and will be preserved no matter what assumption we make regarding the sample correlation.&lt;/p&gt;
+&lt;p&gt;In practice, of course, it’s pretty unlikely to have a meta-analytic dataset that is completely balanced. Still, the formulas for this completely balanced case might nonetheless be useful as heuristics for the direction of the biases in the parameter estimates—perhaps even as rough guides for the magnitude of bias that could be expected.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;finding-tildetau2-and-tildeomega2-in-imbalanced-designs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Finding &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; in imbalanced designs&lt;/h2&gt;
+&lt;p&gt;In imbalanced designs, we can find &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau^2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega^2\)&lt;/span&gt; by direct minimization of &lt;span class=&#34;math inline&#34;&gt;\(\mathcal{KL}\)&lt;/span&gt;, given design information &lt;span class=&#34;math inline&#34;&gt;\(k_1,...,k_J\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_1^2,...,\sigma_J^2\)&lt;/span&gt;; true parameter values &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;; and assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;. The plot below depicts how &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt;, and the total SD &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{\tilde\tau^2 + \tilde\omega^2}\)&lt;/span&gt; change as a function of the assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, for various levels of true correlation &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, when the design is imbalanced. As previously, I use &lt;span class=&#34;math inline&#34;&gt;\(\tau = 0.2\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega = 0.1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;find_tau_omega &amp;lt;- function(tau, omega, phi, rho, k_j, sigmasq_j) {
+
+  res &amp;lt;- optim(par = c(tau + 0.001, omega + 0.001), fn = CHE_KL, 
+                tau = tau, omega = omega, phi = phi, rho = rho,
+                k_j = k_j, sigmasq_j = sigmasq_j,
+                lower = c(0,0), method = &amp;quot;L-BFGS-B&amp;quot;)
+
+  data.frame(tau_tilde = res$par[1], omega_tilde = res$par[2])
+}
+
+sigmasq_bar &amp;lt;- mean(sigmasq_j)
+
+opt_params &amp;lt;- 
+  cross_df(list(tau = tau,
+                omega = omega,
+                phi = seq(0.2,0.8,0.2),
+                rho = seq(0,0.95,0.05))) %&amp;gt;%
+  mutate(
+    res = pmap(., .f = find_tau_omega, k_j = k_j, sigmasq_j = sigmasq_j),
+  ) %&amp;gt;%
+  unnest(res) %&amp;gt;%
+  mutate(
+    total_tilde = sqrt(tau_tilde^2 + omega_tilde^2),
+    tau_pred = sqrt(pmax(0,tau^2 + (phi - rho) * sigmasq_bar)),
+    omega_pred = sqrt(pmax(0, omega^2 - (phi - rho) * sigmasq_bar)),
+    total_pred = sqrt(tau_pred^2+ omega_pred^2),
+    phi_lab = paste(&amp;quot;phi ==&amp;quot;, phi)
+  )
+
+opt_params %&amp;gt;% 
+  pivot_longer(c(ends_with(&amp;quot;_tilde&amp;quot;), ends_with(&amp;quot;_pred&amp;quot;)),
+               names_to = &amp;quot;q&amp;quot;, values_to = &amp;quot;p&amp;quot;) %&amp;gt;%
+  separate(q, into = c(&amp;quot;param&amp;quot;,&amp;quot;type&amp;quot;)) %&amp;gt;%
+  mutate(
+    type = recode(type, tilde = &amp;quot;exact&amp;quot;, pred = &amp;quot;balanced&amp;quot;),
+    type = factor(type, levels = c(&amp;quot;exact&amp;quot;,&amp;quot;balanced&amp;quot;)),
+    param = factor(param, levels = c(&amp;quot;tau&amp;quot;,&amp;quot;omega&amp;quot;,&amp;quot;total&amp;quot;),
+                   labels = c(&amp;quot;tau&amp;quot;,&amp;quot;omega&amp;quot;,&amp;quot;sqrt(tau^2 + omega^2)&amp;quot;))
+  ) %&amp;gt;%
+  ggplot(aes(rho, p, color = type, linetype = type)) + 
+  geom_hline(yintercept = 0) + 
+  geom_line() + 
+  scale_color_brewer(type = &amp;quot;qual&amp;quot;, palette = 2) + 
+  facet_grid(param ~ phi_lab, labeller = &amp;quot;label_parsed&amp;quot;) + 
+  theme_minimal() + 
+  labs(x = expression(rho), y = &amp;quot;Parameter&amp;quot;, color = &amp;quot;&amp;quot;, linetype = &amp;quot;&amp;quot;) +
+  theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The top row of the figure shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt;, the middle row shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt;, and the bottom row shows the total SD, for varying levels of assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;. The solid green lines represent the values that actually minimize the KL divergence. The dashed orange lines correspond to the minimizing values assuming complete balance (and using the average value of the &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j^2\)&lt;/span&gt;’s to evaluate the bias). The “balanced” approximations are fairly close—close enough to use as heuristics, at least—although they’re not perfect. In particular, the balanced approximation becomes discrepant from the real minimizing values when &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt; gets closer to zero. It’s also notable that the total variance is nearly constant (except when one or the other variance component is zero) and the balanced approximation is quite close to the real minimizing values.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;implications&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Implications&lt;/h1&gt;
+&lt;p&gt;This post was mostly just to satisfy my own curiosity about how variance components behave in the MLMA and, more broadly, under mis-specified correlated-and-hierarchical effects meta-analysis models. I don’t think the bias formulas have much practical utility because, if you’re concerned about bias due to mis-specified sampling correlations, the first thing to do is try and develop better assumptions about the sampling correlation structure. Still, I think this analysis might be helpful for purposes of gauging how far off from the true your variance component estimates might be. In further work along these lines, it might be useful to examine the consequences of the biased variance component estimates for the efficiency of overall average effect size estimates based on mis-specified CHE models and the accuracy of model-based standard errors and confidence intervals under mis-specification. It would also be important to verify that these approximations provide accurate predictions for the bias of variance component estimates in realistic meta-analytic data (especially with a small or moderate number of studies).&lt;/p&gt;
+&lt;p&gt;Another implication of this investigation is that &lt;em&gt;imbalance&lt;/em&gt; in the data structure seems to matter. When all studies have an equal number of effect sizes and are equally precise, then everything is simpler and more robust to mistaken assumptions about sampling correlation. Variance component estimation matters more for meta-analytic data in which some studies are more precise or contribute more effect size estimates than others. Therefore, further investigations—including simulation studies—of methods for handling dependent effect sizes really need to examine conditions with imbalanced data in order to draw defensible, generalizable conclusions about the robustness or utility of particular methods.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Consequently, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; is not identifiable (in the statistical sense) in the completely balanced design.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 </description>
     </item>

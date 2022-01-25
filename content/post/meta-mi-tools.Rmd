@@ -1,0 +1,96 @@
+---
+title: Meta-analysis with robust variance estimation and multiply imputed covariates
+authors:
+- admin
+date: '2021-12-22'
+codefolding_show: 'hide'
+slug: RVE-meta-analysis-with-MI
+draft: true
+categories: []
+tags:
+  - meta-analysis
+  - robust variance estimation
+  - missing data
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+$$
+
+```{r}
+library(tidyverse)
+library(metadat)
+library(metafor)
+library(clubSandwich)
+library(mice)
+library(mitools)
+
+# Create missingness
+
+set.seed(20211222)
+
+dat_miss <- 
+  dat.assink2016 %>%
+  group_by(study) %>%
+  mutate(
+    pubstatus = if_else(rbinom(1L, 1L, 0.15) == 1L, NA_integer_, unique(pubstatus)),
+    pubstatus = factor(pubstatus, levels = 0:1, labels = c("unpublished","published")),
+    deltype = if_else(rbinom(n(), 1L, prob = plogis(-2.5 - 0.1 * year)) == 1L, NA_character_, deltype),
+    deltype = factor(deltype)
+  )
+
+# Impute missing values 20 times
+
+predMatrix <- make.predictorMatrix(dat_miss)
+predMatrix[,c("study","esid","id")] <- 0 # don't use study or esid or id for imputing
+
+impMethod <- make.method(dat_miss)
+impMethod
+
+imp <- mice(dat_miss, m = 20, print = FALSE,
+            predictorMatrix = predMatrix, 
+            method=impMethod, seed = 20211222)
+
+# Fit SCE+ model
+fits <- with(imp, rma.mv(
+  yi = yi, 
+  V = impute_covariance_matrix(vi = vi, cluster = study, r = 0.6, subgroup = deltype),
+  mods = ~ pubstatus + deltype + year,
+  random = list(~ deltype | study, ~ deltype | id),
+  struct = c("DIAG","DIAG")
+))
+
+# Get coefficients
+coefs <- map(fits$analyses, coef)
+
+# Get CR2 variance-covariance matrices
+vcovs <- map(fits$analyses, vcovCR, type = "CR2")
+
+# Get denominator df from complete-data F-tests
+q <- 2
+dfs <- 
+  map_dfr(fits$analyses, Wald_test, vcov = "CR2", constraints = constrain_zero(3:4), test = "HTZ") %>%
+  mutate(
+    eta = df_denom + (q - 1)
+  )
+eta <- mean(dfs$eta)
+
+# Combine imputed results
+res <- MIcombine(results = coefs, variances = vcovs)
+res$coefficients
+res$variance
+
+# Calculate manual HTZ test using averaged eta 
+Cmat <- constrain_zero(3:4, coefs = res$coefficients)
+Q <- t(Cmat %*% res$coefficients) %*% solve(Cmat %*% res$variance %*% t(Cmat)) %*% (Cmat %*% res$coefficients)
+Fstat <- (eta - q + 1) / (eta * q) * as.numeric(Q)
+p_val <- pf(Fstat, df1 = q, df2 = eta - q + 1, lower.tail = FALSE)
+data.frame(Fstat = Fstat, df_num = q, df_denom = eta - q + 1, p_val = p_val)
+```
+

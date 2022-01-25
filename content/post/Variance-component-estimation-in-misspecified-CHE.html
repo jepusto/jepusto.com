@@ -2,8 +2,7 @@
 title: Variance component estimates in meta-analysis with mis-specified sampling correlation
 authors:
 - admin
-date: '2021-11-20'
-draft: true
+date: '2021-11-28'
 number_sections: true
 codefolding_show: 'hide'
 slug: variance-components-with-misspecified-correlation
@@ -18,7 +17,6 @@ header:
   image: ''
 ---
 
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p><span class="math display">\[
@@ -28,8 +26,8 @@ header:
 \def\Cov{{\text{Cov}}}
 \]</span></p>
 <p>In a recent paper with Beth Tipton, we proposed <a href="/publication/rve-meta-analysis-expanding-the-range/">new working models</a> for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.</p>
-<p>In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I still wonder about the extent to which these assumptions about the correlation structure matter for anything.</p>
-<p>There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA <em>ignores</em> the possibility of correlation between effect size estimates, or equivalently, assumes that the correlation is zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.</p>
+<p>In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.</p>
+<p>There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA <em>ignores</em> any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.</p>
 <p>In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in <a href="/weighting-in-multivariate-meta-analysis/">my previous post on weights in multivariate meta-analysis</a>, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.</p>
 <div id="the-correlated-and-hierarchical-effects-che-model" class="section level1">
 <h1>The correlated-and-hierarchical effects (CHE) model</h1>
@@ -63,7 +61,7 @@ where <span class="math inline">\(\mathbf{Q}(\boldsymbol\theta) = \boldsymbol\Om
 <p>Under mis-specification, the REML estimators converge (as <span class="math inline">\(J\)</span> increases) to the values that minimize the Kullback-Liebler divergence between the posited model and the true data-generating process. For the restricted likelihood, the Kullback-Liebler divergence is given by
 <span class="math display">\[
 \begin{aligned}
-\mathcal{KL}(\theta, \theta_0) &amp;= \E\left[l_R(\theta_0) - l_R(\theta)\right] \\
+\mathcal{KL}(\theta, \theta_0) &amp;= \E\left[l_R(\boldsymbol\Phi) - l_R(\boldsymbol\theta)\right] \\
 &amp;= c + \log \left| \boldsymbol\Omega(\boldsymbol\theta) \right| + \log \left| \mathbf{X}&#39;\boldsymbol\Omega^{-1}(\boldsymbol\theta) \mathbf{X} \right| + \text{tr}\left(\mathbf{Q}(\boldsymbol\theta) \boldsymbol\Phi\right),
 \end{aligned}
 \]</span>
@@ -79,12 +77,13 @@ where the expectation in the first line is taken with respect to the true data-g
 \boldsymbol\Omega_j^{-1} &amp;= \frac{1}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\mathbf{I}_j - \frac{\tilde\tau^2 + \rho \sigma_j^2}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2} \mathbf{1}_j \mathbf{1}_j&#39; \right].
 \end{aligned}
 \]</span>
-Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> denote the weight assigned to study <span class="math inline">\(j\)</span> under the mis-specified model, with the total weight denoted as <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Similarly, let <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span> denote the weight that <em>should</em> be assigned to study <span class="math inline">\(j\)</span> under the true model, with total <span class="math inline">\(\displaystyle{W^* = \sum_{j=1}^J w^*_j}\)</span>. Then we have that
+Let <span class="math inline">\(\displaystyle{\tilde{w}_j = \frac{k_j}{k_j \tilde\tau^2 + k_j \rho \sigma_j^2 + \tilde\omega^2 + (1 - \rho)\sigma_j^2}}\)</span> denote the weight assigned to study <span class="math inline">\(j\)</span> under the mis-specified model, with the total weight denoted as <span class="math inline">\(\displaystyle{\tilde{W} = \sum_{j=1}^J \tilde{w}_j}\)</span>. Similarly, let <span class="math inline">\(\displaystyle{w^*_j = \frac{k_j}{k_j \tau_*^2 + k_j \phi \sigma_j^2 + \omega_*^2 + (1 - \phi)\sigma_j^2}}\)</span> denote the weight that <em>should</em> be assigned to study <span class="math inline">\(j\)</span> under the true model. Then we have that
 <span class="math display">\[
 \begin{aligned}
 \text{tr}\left(\mathbf{Q} \boldsymbol\Phi\right) &amp;= \text{tr}\left(\boldsymbol\Omega^{-1} \boldsymbol\Phi\right) - \text{tr}\left[\left(\mathbf{1}&#39;\boldsymbol\Omega^{-1} \mathbf{1}\right)^{-1} \mathbf{1}&#39;\boldsymbol\Omega^{-1} \boldsymbol\Phi \boldsymbol\Omega^{-1} \mathbf{1}\right] \\
 &amp;= \sum_{j=1}^J \text{tr}\left(\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j\right) - \frac{1}{\tilde{W}}\sum_{j=1}^J \mathbf{1}_j&#39;\boldsymbol\Omega^{-1}_j \boldsymbol\Phi_j \boldsymbol\Omega_j^{-1} \mathbf{1}_j \\
-&amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
+&amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right] - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+&amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j},
 \end{aligned}
 \]</span>
 and
@@ -98,7 +97,7 @@ and
 It follows that the REML estimators converge to the values <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> that minimize
 <span class="math display">\[
 \begin{aligned}
-\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;= \sum_{j=1}^J \frac{k_j}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\left[\tau_*^2 + \omega_*^2 + \sigma_j^2 - \left(\tilde\tau^2 + \rho \sigma_j^2\right) \frac{\tilde{w}_j}{w^*_j}\right]- \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
+\mathcal{KL}\left(\tilde\tau^2, \tilde\omega^2, \rho, \tau_*^2, \omega_*^2, \phi\right) &amp;= \sum_{j=1}^J (k_j - 1) \left(\frac{\omega_*^2 + (1 - \phi)\sigma_j^2}{\tilde\omega^2 + (1 - \rho)\sigma_j^2}\right) + \sum_{j=1}^J \frac{\tilde{w}_j}{w_j^*} - \frac{1}{\tilde{W}}\sum_{j=1}^J \frac{\tilde{w}_j^2}{w^*_j} \\
 &amp; \qquad \qquad + \sum_{j=1}^J\left(k_j - 1\right) \log\left(\tilde\omega^2 + (1 - \rho)\sigma_j^2\right) - \sum_{j=1}^J \log \left(\frac{\tilde{w}_j}{k_j}\right) + \log(\tilde{W})
 \end{aligned}
 \]</span>
@@ -107,10 +106,10 @@ This is a complicated non-linear objective function, but it can be minimized num
 <pre class="r"><code>library(tidyverse)
 set.seed(20211124)
 
-CHE_KL &lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
+CHE_KL &lt;- function(to, tau, omega, phi, rho, k_j, sigmasq_j) {
   
-  trs_j &lt;- t^2 + rho * sigmasq_j
-  ors_j &lt;- o^2 + (1 - rho) * sigmasq_j
+  trs_j &lt;- to[1]^2 + rho * sigmasq_j
+  ors_j &lt;- to[2]^2 + (1 - rho) * sigmasq_j
   w_j &lt;- k_j / (k_j * trs_j + ors_j)
   W &lt;- sum(w_j)
   
@@ -118,12 +117,13 @@ CHE_KL &lt;- function(t, o, tau, omega, phi, rho, k_j, sigmasq_j) {
   omegasq_ps_j &lt;- omega^2 + (1 - phi) * sigmasq_j
   wj_star &lt;- k_j / (k_j * tausq_ps_j + omegasq_ps_j)
   
-  A1 &lt;- sum(k_j * (tausq_ps_j + omegasq_ps_j - trs_j * w_j / wj_star) / ors_j)
-  A2 &lt;- sum(w_j^2 / wj_star) / W
+  A1 &lt;- sum((k_j - 1) * omegasq_ps_j / ors_j)
+  A2 &lt;- sum(w_j / wj_star)
+  A3 &lt;- sum(w_j^2 / wj_star) / W
   B &lt;- sum((k_j - 1) * log(ors_j) - log(w_j / k_j))
   C &lt;- log(W)
   
-  A1 - A2 + B + C
+  A1 + A2 - A3 + B + C
   
 }
 
@@ -140,9 +140,10 @@ KL_dat &lt;-
                 o = seq(0,0.2,0.005),
                 rho = c(0, 0.4, 0.8))) %&gt;%
   mutate(
-    KL = pmap_dbl(., .f = CHE_KL, 
-                       tau = tau, omega = omega,
-                       phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
+    to = map2(.x = t, .y = o, ~ c(.x, .y)),
+    KL = map2_dbl(.x = to, .y = rho, .f = CHE_KL, 
+                  tau = tau, omega = omega,
+                  phi = phi, k_j = k_j, sigmasq_j = sigmasq_j),
     rho = paste(&quot;rho ==&quot;, rho)
   ) %&gt;%
   group_by(rho)
@@ -167,6 +168,90 @@ ggplot() +
 <p>The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where <span class="math inline">\(\rho = 0.4\)</span> corresponds to the true sampling correlation, the function is minimized at the true values of <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\omega\)</span>. In the left-hand plot, assuming <span class="math inline">\(\rho = 0.0\)</span> leads to an upwardly biased value of <span class="math inline">\(\tau\)</span> and a downwardly biased value of <span class="math inline">\(\omega\)</span>. In the right-hand plot, assuming <span class="math inline">\(\rho = 0.8\)</span> leads to a smaller value of <span class="math inline">\(\tau\)</span> and a larger value of <span class="math inline">\(\omega\)</span>.</p>
 <div id="completely-balanced-designs" class="section level2">
 <h2>Completely balanced designs</h2>
-<p>The equalities simplify a bit in the special case that the sample of studies is completely balanced, such that <span class="math inline">\(k_1 = k_2 = \cdots = k_J\)</span> and <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)</span>.</p>
+<p>Things simplify considerably in the special case that the sample of studies is completely balanced, such that <span class="math inline">\(k_1 = k_2 = \cdots = k_J\)</span> and <span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_J^2\)</span>. In such a design, the log-likelihood depends on <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span> only through the quantities <span class="math inline">\(a = \tau^2 + \rho \sigma^2\)</span> and <span class="math inline">\(b = \omega^2 + (1 - \rho) \sigma^2\)</span>. It follows that
+<span class="math display">\[
+l_R\left(\tau^2, \omega^2, \phi\right) = l_R\left(\tilde\tau^2, \tilde\omega^2, \rho\right)
+\]</span>
+so long as
+<span class="math display">\[
+\begin{aligned}
+\tau^2 + \phi \sigma^2 &amp;= \tilde\tau^2 + \rho \sigma^2 \\
+\omega^2 + (1 - \phi)\sigma^2 &amp;= \tilde\omega^2 + (1 - \rho) \sigma^2.
+\end{aligned}
+\]</span>
+If we assume that <span class="math inline">\((\rho - \phi)\sigma^2 &lt; \tau^2\)</span> and <span class="math inline">\((\phi - \rho)\sigma^2 &lt; \omega^2\)</span>, then we can set
+<span class="math display">\[
+\begin{aligned}
+\tilde\tau^2 &amp;= \tau^2 - \left(\rho - \phi\right) \sigma^2 \\
+\tilde\omega^2 &amp;= \omega^2 + \left(\rho - \phi\right) \sigma^2
+\end{aligned}
+\]</span>
+and achieve the exact same likelihood.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Because the Kullback-Liebler divergence is minimized at the log likelihood of the true parameter values, setting <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> equal to the above quantities will also minimize the K-L divergence.</p>
+<p>The relationships here are fairly intuitive, I think. When <span class="math inline">\(\rho\)</span> is an over-estimate of the true correlation <span class="math inline">\(\phi\)</span>, then the between-study variance will be under-estimated and the within-study variance will be over-estimated, each to an extent that depends on a) the difference between <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\phi\)</span> and b) the size of the (average) sampling variance. When <span class="math inline">\(\rho\)</span> is an under-estimate of the true correlation <span class="math inline">\(\phi\)</span>, then the between-study variance will be over-estimated and the within-study variance will be under-estimated, each to an extent that depends on the same components. It’s also rather intriguing to see that the total variance (the sum of <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span>) is totally invariant to <span class="math inline">\(\rho\)</span> and will be preserved no matter what assumption we make regarding the sample correlation.</p>
+<p>In practice, of course, it’s pretty unlikely to have a meta-analytic dataset that is completely balanced. Still, the formulas for this completely balanced case might nonetheless be useful as heuristics for the direction of the biases in the parameter estimates—perhaps even as rough guides for the magnitude of bias that could be expected.</p>
 </div>
+<div id="finding-tildetau2-and-tildeomega2-in-imbalanced-designs" class="section level2">
+<h2>Finding <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> in imbalanced designs</h2>
+<p>In imbalanced designs, we can find <span class="math inline">\(\tilde\tau^2\)</span> and <span class="math inline">\(\tilde\omega^2\)</span> by direct minimization of <span class="math inline">\(\mathcal{KL}\)</span>, given design information <span class="math inline">\(k_1,...,k_J\)</span> and <span class="math inline">\(\sigma_1^2,...,\sigma_J^2\)</span>; true parameter values <span class="math inline">\(\tau^2\)</span>, <span class="math inline">\(\omega^2\)</span>, <span class="math inline">\(\phi\)</span>; and assumed correlation <span class="math inline">\(\rho\)</span>. The plot below depicts how <span class="math inline">\(\tilde\tau\)</span>, <span class="math inline">\(\tilde\omega\)</span>, and the total SD <span class="math inline">\(\sqrt{\tilde\tau^2 + \tilde\omega^2}\)</span> change as a function of the assumed correlation <span class="math inline">\(\rho\)</span>, for various levels of true correlation <span class="math inline">\(\phi\)</span>, when the design is imbalanced. As previously, I use <span class="math inline">\(\tau = 0.2\)</span> and <span class="math inline">\(\omega = 0.1\)</span>.</p>
+<pre class="r"><code>find_tau_omega &lt;- function(tau, omega, phi, rho, k_j, sigmasq_j) {
+
+  res &lt;- optim(par = c(tau + 0.001, omega + 0.001), fn = CHE_KL, 
+                tau = tau, omega = omega, phi = phi, rho = rho,
+                k_j = k_j, sigmasq_j = sigmasq_j,
+                lower = c(0,0), method = &quot;L-BFGS-B&quot;)
+
+  data.frame(tau_tilde = res$par[1], omega_tilde = res$par[2])
+}
+
+sigmasq_bar &lt;- mean(sigmasq_j)
+
+opt_params &lt;- 
+  cross_df(list(tau = tau,
+                omega = omega,
+                phi = seq(0.2,0.8,0.2),
+                rho = seq(0,0.95,0.05))) %&gt;%
+  mutate(
+    res = pmap(., .f = find_tau_omega, k_j = k_j, sigmasq_j = sigmasq_j),
+  ) %&gt;%
+  unnest(res) %&gt;%
+  mutate(
+    total_tilde = sqrt(tau_tilde^2 + omega_tilde^2),
+    tau_pred = sqrt(pmax(0,tau^2 + (phi - rho) * sigmasq_bar)),
+    omega_pred = sqrt(pmax(0, omega^2 - (phi - rho) * sigmasq_bar)),
+    total_pred = sqrt(tau_pred^2+ omega_pred^2),
+    phi_lab = paste(&quot;phi ==&quot;, phi)
+  )
+
+opt_params %&gt;% 
+  pivot_longer(c(ends_with(&quot;_tilde&quot;), ends_with(&quot;_pred&quot;)),
+               names_to = &quot;q&quot;, values_to = &quot;p&quot;) %&gt;%
+  separate(q, into = c(&quot;param&quot;,&quot;type&quot;)) %&gt;%
+  mutate(
+    type = recode(type, tilde = &quot;exact&quot;, pred = &quot;balanced&quot;),
+    type = factor(type, levels = c(&quot;exact&quot;,&quot;balanced&quot;)),
+    param = factor(param, levels = c(&quot;tau&quot;,&quot;omega&quot;,&quot;total&quot;),
+                   labels = c(&quot;tau&quot;,&quot;omega&quot;,&quot;sqrt(tau^2 + omega^2)&quot;))
+  ) %&gt;%
+  ggplot(aes(rho, p, color = type, linetype = type)) + 
+  geom_hline(yintercept = 0) + 
+  geom_line() + 
+  scale_color_brewer(type = &quot;qual&quot;, palette = 2) + 
+  facet_grid(param ~ phi_lab, labeller = &quot;label_parsed&quot;) + 
+  theme_minimal() + 
+  labs(x = expression(rho), y = &quot;Parameter&quot;, color = &quot;&quot;, linetype = &quot;&quot;) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<p><img src="/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+<p>The top row of the figure shows <span class="math inline">\(\tilde\tau\)</span>, the middle row shows <span class="math inline">\(\tilde\omega\)</span>, and the bottom row shows the total SD, for varying levels of assumed correlation <span class="math inline">\(\rho\)</span>. The solid green lines represent the values that actually minimize the KL divergence. The dashed orange lines correspond to the minimizing values assuming complete balance (and using the average value of the <span class="math inline">\(\sigma_j^2\)</span>’s to evaluate the bias). The “balanced” approximations are fairly close—close enough to use as heuristics, at least—although they’re not perfect. In particular, the balanced approximation becomes discrepant from the real minimizing values when <span class="math inline">\(\tilde\tau\)</span> or <span class="math inline">\(\tilde\omega\)</span> gets closer to zero. It’s also notable that the total variance is nearly constant (except when one or the other variance component is zero) and the balanced approximation is quite close to the real minimizing values.</p>
+</div>
+</div>
+<div id="implications" class="section level1">
+<h1>Implications</h1>
+<p>This post was mostly just to satisfy my own curiosity about how variance components behave in the MLMA and, more broadly, under mis-specified correlated-and-hierarchical effects meta-analysis models. I don’t think the bias formulas have much practical utility because, if you’re concerned about bias due to mis-specified sampling correlations, the first thing to do is try and develop better assumptions about the sampling correlation structure. Still, I think this analysis might be helpful for purposes of gauging how far off from the true your variance component estimates might be. In further work along these lines, it might be useful to examine the consequences of the biased variance component estimates for the efficiency of overall average effect size estimates based on mis-specified CHE models and the accuracy of model-based standard errors and confidence intervals under mis-specification. It would also be important to verify that these approximations provide accurate predictions for the bias of variance component estimates in realistic meta-analytic data (especially with a small or moderate number of studies).</p>
+<p>Another implication of this investigation is that <em>imbalance</em> in the data structure seems to matter. When all studies have an equal number of effect sizes and are equally precise, then everything is simpler and more robust to mistaken assumptions about sampling correlation. Variance component estimation matters more for meta-analytic data in which some studies are more precise or contribute more effect size estimates than others. Therefore, further investigations—including simulation studies—of methods for handling dependent effect sizes really need to examine conditions with imbalanced data in order to draw defensible, generalizable conclusions about the robustness or utility of particular methods.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Consequently, <span class="math inline">\(\phi\)</span> is not identifiable (in the statistical sense) in the completely balanced design.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
