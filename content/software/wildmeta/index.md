@@ -3,6 +3,7 @@ date: "2016-04-27T00:00:00Z"
 external_link: ""
 header:
   image: "headers/bootstrap-F.png"
+  caption: "Bootstrap distribution of Naive F statistics under the null hypothesis."
 image: 
   preview_only: true
   focal_point: Smart
