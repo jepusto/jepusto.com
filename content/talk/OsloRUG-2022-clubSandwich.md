@@ -1,5 +1,5 @@
 ---
-publishDate: 2022-02-03T12:00:00  # Schedule page publish date.
+publishDate: 2022-02-03T11:00:00  # Schedule page publish date.
 title: "Easy, cluster-robust standard errors with the clubSandwich package"
 date: 2022-02-03T10:00:00
 event: "Oslo R User Group Meetup"
