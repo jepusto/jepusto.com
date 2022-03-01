@@ -19,6 +19,8 @@ tags:
 slides: 
 summary: 
 links:
+- name: Journal
+  url:  https://doi.org/10.1002/jrsm.1554
 - name: Supplementary materials
   url: https://github.com/meghapsimatrix/CWB_analyses
 - name: R package
@@ -30,5 +32,5 @@ url_poster: ""
 url_project: ""
 url_slides: ""
 url_source: ""
-url_video: ""
+url_video: "https://www.youtube.com/watch?v=WzT301yAtdE"
 ---
