@@ -13,7 +13,7 @@ tags:
 - behavioral observation
 - alternating renewal process
 - simulation
-- R
+- Rstats
 
 title: ARPobservation
 authors:
