@@ -41,6 +41,8 @@ tags:
 slides: 
 summary: 
 links:
+- name: Journal
+  url: https://doi.org/10.1007/s40489-022-00326-6
 url_preprint: "https://edarxiv.org/yx5au/"
 url_code: "https://osf.io/r5tjd/"
 url_dataset: "https://osf.io/b5ydr/"
