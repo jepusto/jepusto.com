@@ -1,0 +1,146 @@
+---
+title: Corrigendum to Pustejovsky and Tipton (2018)
+subtitle: Theorem 2 is incorrect as stated
+authors:
+- admin
+date: '2022-09-27'
+codefolding_show: 'show'
+slug: Pusto-Tipton-2018-Theorem-2
+bibliography: [RVE-references.bib]
+csl: apa.csl
+link-citations: true
+draft: true
+categories: []
+tags:
+  - robust variance estimation
+  - econometrics
+  - matrix algebra
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+In my [2018 paper with Beth Tipton](/publication/rve-in-fixed-effects-models/), published in the _Journal of Business and Economic Statistics_, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. Thanks to a careful reader, we were recently alerted to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated. We are currently working on issuing a correction for the published version of the paper. In the interim, I will detail the problem with Theorem 2 in this post. I'll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.
+
+### A fixed effects model
+
+For data that can be grouped into $m$ clusters of observations, we considered the model
+$$
+\bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, (\#eq:regression)
+$$
+where $\bm{y}_i$ is an $n_i \times 1$ vector of responses for cluster $i$, $\bm{R}_i$ is an $n_i \times r$ matrix of focal predictors, $\bm{S}_i$ is an $n_i \times s$ matrix of additional covariates that vary across multiple clusters, and $\bm{T}_i$ is an $n_i \times t$ matrix encoding cluster-specific fixed effects, all for $i = 1,...,m$. The cluster-specific fixed effects satisfy $\bm{T}_h \bm{T}_i' = \bm{0}$ for $h \neq i$. Interest centers on inference for the coefficients on the focal predictors $\bs\beta$. 
+
+We consider estimation of Model \@ref(eq:regression) by weighted least squares (WLS), possibly under a working model for the distribution of $\bs\epsilon_i$. Let $\bm{W}_1,...,\bm{W}_m$ be a set of symmetric weight matrices used for WLS estimation. Sometimes, these weight matrices may be diagonal, consisting of sampling weights for each observation. Other times, the weight matrices may involve off-diagonal terms as well. Consider a working model $\Var\left(\bs\epsilon_i | \bm{R}_i, \bm{S}_i, \bm{T}_i\right) = \sigma^2 \bs\Phi_i$ where $\bs\Phi_i$ is a symmetric $n_i \times n_i$ matrix that may be a function of a low-dimensional, estimable parameter. Based on this working model, the weight matrices might be taken as $\bm{W}_i = \bs{\hat\Phi}_i^{-1}$, where $\bs{\hat\Phi}_i$ is an estimate of $\bs\Phi_i$. 
+
+### The CR2 variance estimator 
+
+In the paper, we provide a generalization of the bias-reduced linearization estimator introduced by @McCaffrey2001generalizations and @Bell2002bias that can be applied to Model \@ref(eq:regression). The variance estimator is effectively a generalization of the HC2 correction for heteroskedasticity-robust standard errors, but that works for models with within-cluster dependence and cluster-specific fixed effects, and so we refer to it the "CR2" estimator. 
+
+In order to define the CR2 variance estimator and explain the issue with Theorem 2, I'll need to lay down a bit more notation. Let $N = \sum_{i=1}^m n_i$. Let $\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]$ and $\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]$ and let $\bm{R}$, $\bm{S}$, $\bm{T}$, $\bm{U}$, and $\bm{X}$ denote the stacked versions of the cluster-specific matrices (i.e., $\bm{R} = \left[\bm{R}_1' \ \bm{R}_2' \ \cdots \ \bm{R}_m'\right]'$, etc.). Let $\bm{W} = \bigoplus_{i=1}^m \bm{W}_i$ and $\bs\Phi = \bigoplus_{i=1}^m \bs\Phi_i$. For a generic matrix $\bm{Z}$, let $\bm{M}_{Z} = \left(\bm{Z}'\bm{W}\bm{Z}\right)^{-1}$ and $\bm{H}_{\bm{Z}} = \bm{Z} \bm{M}_{\bm{Z}}\bm{Z}'\bm{W}$. Let $\bm{C}_i$ be the $n_i \times N$ matrix that selects the rows of cluster $i$ from the full set of observations, such that $\bm{X}_i = \bm{C}_i \bm{X}$, etc. These operators provide an easy way to define absorbed versions of the predictors. Specifically, let $\bm{\ddot{S}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{S}$ be the covariates after absorbing (i.e., partialling out) the cluster-specific effects, let $\bm{\ddot{U}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{U}$ be an absorbed version of the focal predictors and the covariates, and let $\bm{\ddot{R}} = \left(\bm{I} - \bm{H}_{\bm{\ddot{S}}}\right)\left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{R}$ be the focal predictors after absorbing the covariates and the cluster-specific fixed effects. 
+
+The CR2 variance estimator has the form 
+$$
+\bm{V}^{CR2} = \bm{M}_{\bm{\ddot{R}}} \left(\sum_{i=1}^m \bm{\ddot{R}}_i' \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i' \bm{A}_i \bm{W}_i \bm{\ddot{R}}_i \right) \bm{M}_{\bm{\ddot{R}}},
+$$
+where $\bm{\ddot{R}}_i = \bm{C}_i \bm{\ddot{R}}$ is the cluster-specific matrix of absorbed focal predictors, $\bm{e}_i$ is the vector of weighted least squares residuals from cluster $i$, and $\bm{A}_1,...,\bm{A}_m$ are a set of adjustment matrices that correct the bias of the residual cross-products. 
+The adjustment matrices are calculated as follows. Let $\bm{D}_i$ be the upper-right Cholesky factorization of $\bm{\Phi}_i$ and define the matrices 
+$$
+\bm{B}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{X}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{X}}\right)'\bm{C}_i' \bm{D}_i'
+(#eq:B-matrix)
+$$
+for $i = 1,...,m$. The adjustment matrices are then calculated as
+$$
+\bm{A}_i = \bm{D}_i' \bm{B}_i^{+1/2} \bm{D}_i,
+(#eq:A-matrix)
+$$
+where $\bm{B}_i^{+1/2}$ is the symmetric square root of the Moore-Penrose inverse of $\bm{B}_i$. 
+Theorem 1 in the paper shows that, if the working model $\bs\Phi$ is correctly specified and some conditions on the rank of $\bm{U}$ are satisfied, then the CR2 estimator is exactly unbiased for the sampling variance of the weighted least squares estimator of $\bs\beta$. 
+
+### Theorem 2
+
+The adjustment matrices given in \@ref(eq:A-matrix) can be expensive to compute directly because the $\bm{B}_i$ matrices involve computing a "residualized" version of the $N \times N$ matrix $\bs\Phi$ involving the full set of predictors $\bm{X}$---including the cluster-specific fixed effects $\bm{T}_1,...,\bm{T}_m$. Theorem 2 considered whether one can take a computational short cut by omitting the cluster-specific fixed effects from the calculation of the $\bm{B}_i$ matrices. Specifically, define the modified matrices
+$$
+\bm{\tilde{B}}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right)'\bm{C}_i' \bm{D}_i'
+(#eq:B-modified)
+$$
+and 
+$$
+\bm{\tilde{A}}_i = \bm{D}_i' \bm{\tilde{B}}_i^{+1/2} \bm{D}_i,
+(#eq:A-modified).
+$$
+Theorem 2 claims that if the weight matrices are inverse of the working model, such that $\bm{W}_i = \bs\Phi_i^{-1}$ for $i = 1,...,m$, then $\bm{\tilde{B}}_i^{+1/2} = \bm{B}_i^{+1/2}$ and hence $\bm{\tilde{A}}_i = \bm{A}_i$. The implication is that the cluster-specific fixed effects can be ignored when calculating the adjustment matrices. However, the claimed equivalence does not actually hold. 
+
+Here is a simple numerical example that contradicts the assertion of Theorem 2. I first create a predictor matrix consisting of 4 clusters, a single focal predictor, and cluster-specific fixed effects.
+```{r}
+set.seed(20220914)                      
+m <- 4                                             # number of clusters
+ni <- 2 + rpois(m, 3)                              # cluster sizes
+N <- sum(ni)                                       # total sample size
+id <- factor(rep(LETTERS[1:m], ni))                # cluster ID
+R <- rnorm(N)                                      # focal predictor
+dat <- data.frame(R, id)                           # create raw data frame
+X <- model.matrix(~ R + id + 0, data = dat)        # full predictor matrix
+Ui <- tapply(R, id, \(x) x - mean(x))              # absorbed version of R
+U <- unsplit(Ui, id)
+```
+
+Consider a model estimated by ordinary least squares, where the assumed working model is homoskedastic and independent errors, so $\bs\Phi_i = \bm{I}_i$, an $n_i \times n_i$ identity matrix (with no parameters to estimate). In this case, the adjustment matrices simplify considerably, to 
+$$
+\bm{A}_i = \left(\bm{I}_i - \bm{X}_i \bm{M}_{X} \bm{X}_i' \right)^{+1/2} \qquad \text{and} \qquad \bm{\tilde{A}}_i = \left(\bm{I}_i - \bm{\ddot{U}}_i \bm{M}_{\ddot{U}} \bm{\ddot{U}}_i' \right)^{+1/2}.
+$$
+I calculate these directly as follows:
+```{r}
+matrix_power <- function(x, p) {
+  eig <- eigen(x, symmetric = TRUE)
+  val_p <- with(eig, ifelse(values > 10^-12, values^p, 0))
+  with(eig, vectors %*% (val_p * t(vectors)))
+}
+
+MX <- solve(crossprod(X))
+B <- 
+  by(X, id, as.matrix) |>
+  lapply(\(x) diag(nrow(x)) - x %*% MX %*% t(x))
+A <- lapply(B, matrix_power, p = -1/2)
+  
+MU <- 1 / crossprod(U)
+Btilde <- lapply(Ui, \(x) diag(length(x)) - x %*% MU %*% t(x))
+Atilde <- lapply(Btilde, matrix_power, p = -1/2)
+```
+Here are adjustment matrices based on the full predictor matrix $\bm{X}$:
+```{r}
+print(A, digits = 3)
+```
+Compare the above with the adjustment matrices based on the absorbed predictors only:
+```{r}
+print(Atilde, digits = 3)
+```
+The matrices differ:
+```{r}
+all.equal(A, Atilde)
+```
+Thus, Theorem 2 is incorrect as stated. I have yet to identify
+
+### Further thoughts
+
+For this particular model specification, it is interesting to note that $\bm{\tilde{A}}_i = \bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i'$. Because $\bm{\ddot{U}}_i' \bm{T}_i = \bm{0}$, it follows that 
+$$
+\bm{\ddot{U}}_i' \bm{\tilde{A}}_i = \bm{\ddot{U}}_i' \left(\bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i' \right) = \bm{\ddot{U}}_i' \bm{A}_i.
+$$
+This holds in the numerical example:
+```{r}
+UiAtilde <- mapply(\(u, a) t(u) %*% a, u = Ui, a = Atilde, SIMPLIFY = FALSE)
+UiA <- mapply(\(u, a) t(u) %*% a, u = Ui, a = A, SIMPLIFY = FALSE)
+all.equal(UiAtilde, UiA)
+```
+Thus, although the exact statement of Theorem 2 is incorrect, the substantive implication actually still holds. For this particular example, computing the CR2 variance estimator using the short-cut adjustment matrices $\bm{\tilde{A}}_1,...,\bm{\tilde{A}}_m$ is equivalent to computing the CR2 variance estimator using the full model adjustment matrices $\bm{A}_1,...,\bm{A}_m$. However, I have not yet been able to work out the general conditions under which this equivalence holds. It may require stricter conditions than those assumed in Theorem 2. 
+
+
+### References
