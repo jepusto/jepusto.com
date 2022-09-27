@@ -80,9 +80,9 @@ Theorem 2 claims that if the weight matrices are inverse of the working model, s
 
 Here is a simple numerical example that contradicts the assertion of Theorem 2. I first create a predictor matrix consisting of 4 clusters, a single focal predictor, and cluster-specific fixed effects.
 ```{r}
-set.seed(20220914)                      
+set.seed(20220926)
 m <- 4                                             # number of clusters
-ni <- 2 + rpois(m, 3)                              # cluster sizes
+ni <- 2 + rpois(m, 3.5)                            # cluster sizes
 N <- sum(ni)                                       # total sample size
 id <- factor(rep(LETTERS[1:m], ni))                # cluster ID
 R <- rnorm(N)                                      # focal predictor
@@ -126,7 +126,7 @@ The matrices differ:
 ```{r}
 all.equal(A, Atilde)
 ```
-Thus, Theorem 2 is incorrect as stated. I have yet to identify
+Thus, Theorem 2 is incorrect as stated. (I have yet to identify the mis-step in the proof as given in the supplementary materials of the paper.)
 
 ### Further thoughts
 
