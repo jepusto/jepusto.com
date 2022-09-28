@@ -3,13 +3,12 @@ title: Corrigendum to Pustejovsky and Tipton (2018)
 subtitle: Theorem 2 is incorrect as stated
 authors:
 - admin
-date: '2022-09-27'
+date: '2022-09-28'
 codefolding_show: 'show'
 slug: Pusto-Tipton-2018-Theorem-2
 bibliography: [RVE-references.bib]
 csl: apa.csl
 link-citations: true
-draft: true
 categories: []
 tags:
   - robust variance estimation
@@ -30,7 +29,7 @@ header:
 \def\bm{\mathbf}
 \def\bs{\boldsymbol}
 \]</span>
-In my <a href="/publication/rve-in-fixed-effects-models/">2018 paper with Beth Tipton</a>, published in the <em>Journal of Business and Economic Statistics</em>, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. Thanks to a careful reader, we were recently alerted to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated. We are currently working on issuing a correction for the published version of the paper. In the interim, I will detail the problem with Theorem 2 in this post. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.</p>
+In my <a href="/publication/rve-in-fixed-effects-models/">2018 paper with Beth Tipton</a>, published in the <em>Journal of Business and Economic Statistics</em>, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader, <a href="https://eeecon.uibk.ac.at/~pfaffermayr/">Dr. Michael Pfaffermayr</a>, recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.</p>
 <div id="a-fixed-effects-model" class="section level3">
 <h3>A fixed effects model</h3>
 <p>For data that can be grouped into <span class="math inline">\(m\)</span> clusters of observations, we considered the model
@@ -38,13 +37,13 @@ In my <a href="/publication/rve-in-fixed-effects-models/">2018 paper with Beth T
 \bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, \tag{1}
 \]</span>
 where <span class="math inline">\(\bm{y}_i\)</span> is an <span class="math inline">\(n_i \times 1\)</span> vector of responses for cluster <span class="math inline">\(i\)</span>, <span class="math inline">\(\bm{R}_i\)</span> is an <span class="math inline">\(n_i \times r\)</span> matrix of focal predictors, <span class="math inline">\(\bm{S}_i\)</span> is an <span class="math inline">\(n_i \times s\)</span> matrix of additional covariates that vary across multiple clusters, and <span class="math inline">\(\bm{T}_i\)</span> is an <span class="math inline">\(n_i \times t\)</span> matrix encoding cluster-specific fixed effects, all for <span class="math inline">\(i = 1,...,m\)</span>. The cluster-specific fixed effects satisfy <span class="math inline">\(\bm{T}_h \bm{T}_i&#39; = \bm{0}\)</span> for <span class="math inline">\(h \neq i\)</span>. Interest centers on inference for the coefficients on the focal predictors <span class="math inline">\(\bs\beta\)</span>.</p>
-<p>We consider estimation of Model <a href="#eq:regression">(1)</a> by weighted least squares (WLS), possibly under a working model for the distribution of <span class="math inline">\(\bs\epsilon_i\)</span>. Let <span class="math inline">\(\bm{W}_1,...,\bm{W}_m\)</span> be a set of symmetric weight matrices used for WLS estimation. Sometimes, these weight matrices may be diagonal, consisting of sampling weights for each observation. Other times, the weight matrices may involve off-diagonal terms as well. Consider a working model <span class="math inline">\(\Var\left(\bs\epsilon_i | \bm{R}_i, \bm{S}_i, \bm{T}_i\right) = \sigma^2 \bs\Phi_i\)</span> where <span class="math inline">\(\bs\Phi_i\)</span> is a symmetric <span class="math inline">\(n_i \times n_i\)</span> matrix that may be a function of a low-dimensional, estimable parameter. Based on this working model, the weight matrices might be taken as <span class="math inline">\(\bm{W}_i = \bs{\hat\Phi}_i^{-1}\)</span>, where <span class="math inline">\(\bs{\hat\Phi}_i\)</span> is an estimate of <span class="math inline">\(\bs\Phi_i\)</span>.</p>
+<p>We considered estimation of Model <a href="#eq:regression">(1)</a> by weighted least squares (WLS), possibly under a working model for the distribution of <span class="math inline">\(\bs\epsilon_i\)</span>. Let <span class="math inline">\(\bm{W}_1,...,\bm{W}_m\)</span> be a set of symmetric weight matrices used for WLS estimation. Sometimes, these weight matrices may be diagonal, consisting of sampling weights for each observation. Other times, the weight matrices may involve off-diagonal terms as well. Consider a working model <span class="math inline">\(\Var\left(\bs\epsilon_i | \bm{R}_i, \bm{S}_i, \bm{T}_i\right) = \sigma^2 \bs\Phi_i\)</span> where <span class="math inline">\(\bs\Phi_i\)</span> is a symmetric <span class="math inline">\(n_i \times n_i\)</span> matrix that may be a function of a low-dimensional, estimable parameter. Based on this working model, the weight matrices might be taken as <span class="math inline">\(\bm{W}_i = \bs{\hat\Phi}_i^{-1}\)</span>, where <span class="math inline">\(\bs{\hat\Phi}_i\)</span> is an estimate of <span class="math inline">\(\bs\Phi_i\)</span>.</p>
 </div>
 <div id="the-cr2-variance-estimator" class="section level3">
 <h3>The CR2 variance estimator</h3>
 <p>In the paper, we provide a generalization of the bias-reduced linearization estimator introduced by <span class="citation">McCaffrey et al. (<a href="#ref-McCaffrey2001generalizations" role="doc-biblioref">2001</a>)</span> and <span class="citation">Bell &amp; McCaffrey (<a href="#ref-Bell2002bias" role="doc-biblioref">2002</a>)</span> that can be applied to Model <a href="#eq:regression">(1)</a>. The variance estimator is effectively a generalization of the HC2 correction for heteroskedasticity-robust standard errors, but that works for models with within-cluster dependence and cluster-specific fixed effects, and so we refer to it the “CR2” estimator.</p>
-<p>In order to define the CR2 variance estimator and explain the issue with Theorem 2, I’ll need to lay down a bit more notation. Let <span class="math inline">\(N = \sum_{i=1}^m n_i\)</span>. Let <span class="math inline">\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)</span> and <span class="math inline">\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)</span> and let <span class="math inline">\(\bm{R}\)</span>, <span class="math inline">\(\bm{S}\)</span>, <span class="math inline">\(\bm{T}\)</span>, <span class="math inline">\(\bm{U}\)</span>, and <span class="math inline">\(\bm{X}\)</span> denote the stacked versions of the cluster-specific matrices (i.e., <span class="math inline">\(\bm{R} = \left[\bm{R}_1&#39; \ \bm{R}_2&#39; \ \cdots \ \bm{R}_m&#39;\right]&#39;\)</span>, etc.). Let <span class="math inline">\(\bm{W} = \bigoplus_{i=1}^m \bm{W}_i\)</span> and <span class="math inline">\(\bs\Phi = \bigoplus_{i=1}^m \bs\Phi_i\)</span>. For a generic matrix <span class="math inline">\(\bm{Z}\)</span>, let <span class="math inline">\(\bm{M}_{Z} = \left(\bm{Z}&#39;\bm{W}\bm{Z}\right)^{-1}\)</span> and <span class="math inline">\(\bm{H}_{\bm{Z}} = \bm{Z} \bm{M}_{\bm{Z}}\bm{Z}&#39;\bm{W}\)</span>. Let <span class="math inline">\(\bm{C}_i\)</span> be the <span class="math inline">\(n_i \times N\)</span> matrix that selects the rows of cluster <span class="math inline">\(i\)</span> from the full set of observations, such that <span class="math inline">\(\bm{X}_i = \bm{C}_i \bm{X}\)</span>, etc. These operators provide an easy way to define absorbed versions of the predictors. Specifically, let <span class="math inline">\(\bm{\ddot{S}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{S}\)</span> be the covariates after absorbing (i.e., partialling out) the cluster-specific effects, let <span class="math inline">\(\bm{\ddot{U}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{U}\)</span> be an absorbed version of the focal predictors and the covariates, and let <span class="math inline">\(\bm{\ddot{R}} = \left(\bm{I} - \bm{H}_{\bm{\ddot{S}}}\right)\left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{R}\)</span> be the focal predictors after absorbing the covariates and the cluster-specific fixed effects.</p>
-<p>The CR2 variance estimator has the form
+<p>In order to define the CR2 variance estimator and explain the issue with Theorem 2, I’ll need to lay down a bit more notation. Let <span class="math inline">\(N = \sum_{i=1}^m n_i\)</span> be the total sample size. Let <span class="math inline">\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)</span> be the set of predictors that vary across clusters and <span class="math inline">\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)</span> be the full set of predictors. Let <span class="math inline">\(\bm{R}\)</span>, <span class="math inline">\(\bm{S}\)</span>, <span class="math inline">\(\bm{T}\)</span>, <span class="math inline">\(\bm{U}\)</span>, and <span class="math inline">\(\bm{X}\)</span> denote the stacked versions of the cluster-specific matrices (i.e., <span class="math inline">\(\bm{R} = \left[\bm{R}_1&#39; \ \bm{R}_2&#39; \ \cdots \ \bm{R}_m&#39;\right]&#39;\)</span>, etc.). Let <span class="math inline">\(\bm{W} = \bigoplus_{i=1}^m \bm{W}_i\)</span> and <span class="math inline">\(\bs\Phi = \bigoplus_{i=1}^m \bs\Phi_i\)</span>. For a generic matrix <span class="math inline">\(\bm{Z}\)</span>, let <span class="math inline">\(\bm{M}_{Z} = \left(\bm{Z}&#39;\bm{W}\bm{Z}\right)^{-1}\)</span> and <span class="math inline">\(\bm{H}_{\bm{Z}} = \bm{Z} \bm{M}_{\bm{Z}}\bm{Z}&#39;\bm{W}\)</span>. Let <span class="math inline">\(\bm{C}_i\)</span> be the <span class="math inline">\(n_i \times N\)</span> matrix that selects the rows of cluster <span class="math inline">\(i\)</span> from the full set of observations, such that <span class="math inline">\(\bm{X}_i = \bm{C}_i \bm{X}\)</span>. These operators provide an easy way to define absorbed versions of the predictors. Specifically, let <span class="math inline">\(\bm{\ddot{S}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{S}\)</span> be the covariates after absorbing (i.e., partialling out) the cluster-specific effects, let <span class="math inline">\(\bm{\ddot{U}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{U}\)</span> be an absorbed version of the focal predictors and the covariates, and let <span class="math inline">\(\bm{\ddot{R}} = \left(\bm{I} - \bm{H}_{\bm{\ddot{S}}}\right)\left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{R}\)</span> be the focal predictors after absorbing the covariates and the cluster-specific fixed effects.</p>
+<p>With this notation established, the CR2 variance estimator has the form
 <span class="math display">\[
 \bm{V}^{CR2} = \bm{M}_{\bm{\ddot{R}}} \left(\sum_{i=1}^m \bm{\ddot{R}}_i&#39; \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i&#39; \bm{A}_i \bm{W}_i \bm{\ddot{R}}_i \right) \bm{M}_{\bm{\ddot{R}}},
 \]</span>
@@ -60,7 +59,7 @@ for <span class="math inline">\(i = 1,...,m\)</span>. The adjustment matrices ar
 \tag{3}
 \]</span>
 where <span class="math inline">\(\bm{B}_i^{+1/2}\)</span> is the symmetric square root of the Moore-Penrose inverse of <span class="math inline">\(\bm{B}_i\)</span>.
-Theorem 1 in the paper shows that, if the working model <span class="math inline">\(\bs\Phi\)</span> is correctly specified and some conditions on the rank of <span class="math inline">\(\bm{U}\)</span> are satisfied, then the CR2 estimator is exactly unbiased for the sampling variance of the weighted least squares estimator of <span class="math inline">\(\bs\beta\)</span>.</p>
+Theorem 1 in the paper shows that, if the working model <span class="math inline">\(\bs\Phi\)</span> is correctly specified and some conditions on the rank of <span class="math inline">\(\bm{U}\)</span> are satisfied, then the CR2 estimator is exactly unbiased for the sampling variance of the weighted least squares estimator of <span class="math inline">\(\bs\beta\)</span>. Across multiple simulation studies, it’s been observed that the CR2 estimator also works well and outperforms alternative sandwich estimators even when the working model is not correctly specified.</p>
 </div>
 <div id="theorem-2" class="section level3">
 <h3>Theorem 2</h3>
@@ -76,9 +75,9 @@ and
 \]</span>
 Theorem 2 claims that if the weight matrices are inverse of the working model, such that <span class="math inline">\(\bm{W}_i = \bs\Phi_i^{-1}\)</span> for <span class="math inline">\(i = 1,...,m\)</span>, then <span class="math inline">\(\bm{\tilde{B}}_i^{+1/2} = \bm{B}_i^{+1/2}\)</span> and hence <span class="math inline">\(\bm{\tilde{A}}_i = \bm{A}_i\)</span>. The implication is that the cluster-specific fixed effects can be ignored when calculating the adjustment matrices. However, the claimed equivalence does not actually hold.</p>
 <p>Here is a simple numerical example that contradicts the assertion of Theorem 2. I first create a predictor matrix consisting of 4 clusters, a single focal predictor, and cluster-specific fixed effects.</p>
-<pre class="r"><code>set.seed(20220914)                      
+<pre class="r"><code>set.seed(20220926)
 m &lt;- 4                                             # number of clusters
-ni &lt;- 2 + rpois(m, 3)                              # cluster sizes
+ni &lt;- 2 + rpois(m, 3.5)                            # cluster sizes
 N &lt;- sum(ni)                                       # total sample size
 id &lt;- factor(rep(LETTERS[1:m], ni))                # cluster ID
 R &lt;- rnorm(N)                                      # focal predictor
@@ -106,70 +105,72 @@ A &lt;- lapply(B, matrix_power, p = -1/2)
 MU &lt;- 1 / crossprod(U)
 Btilde &lt;- lapply(Ui, \(x) diag(length(x)) - x %*% MU %*% t(x))
 Atilde &lt;- lapply(Btilde, matrix_power, p = -1/2)</code></pre>
-<p>Here are adjustment matrices based on the full predictor matrix <span class="math inline">\(\bm{X}\)</span>:</p>
+<p>Here are the adjustment matrices based on the full predictor matrix <span class="math inline">\(\bm{X}\)</span>:</p>
 <pre class="r"><code>print(A, digits = 3)</code></pre>
 <pre><code>## $A
-##        [,1]    [,2]    [,3]   [,4]    [,5]    [,6]
-## [1,]  0.839 -0.1374 -0.1527 -0.157 -0.1875 -0.2042
-## [2,] -0.137  0.9944 -0.0898 -0.112 -0.2815 -0.3733
-## [3,] -0.153 -0.0898  0.8700 -0.141 -0.2215 -0.2653
-## [4,] -0.157 -0.1123 -0.1407  0.852 -0.2054 -0.2364
-## [5,] -0.188 -0.2815 -0.2215 -0.205  0.9152 -0.0193
-## [6,] -0.204 -0.3733 -0.2653 -0.236 -0.0193  1.0985
+##        [,1]   [,2]   [,3]   [,4]   [,5]
+## [1,]  0.853 -0.198 -0.207 -0.191 -0.257
+## [2,] -0.198  0.800 -0.200 -0.200 -0.202
+## [3,] -0.207 -0.200  0.801 -0.201 -0.192
+## [4,] -0.191 -0.200 -0.201  0.802 -0.210
+## [5,] -0.257 -0.202 -0.192 -0.210  0.860
 ## 
 ## $B
-##        [,1]   [,2]   [,3]   [,4]
-## [1,]  0.822 -0.286 -0.230 -0.307
-## [2,] -0.286  0.768 -0.260 -0.222
-## [3,] -0.230 -0.260  0.756 -0.266
-## [4,] -0.307 -0.222 -0.266  0.795
+##        [,1]   [,2]   [,3]
+## [1,]  0.668 -0.338 -0.330
+## [2,] -0.338  0.683 -0.345
+## [3,] -0.330 -0.345  0.675
 ## 
 ## $C
-##        [,1]   [,2]   [,3]
-## [1,]  0.674 -0.343 -0.331
-## [2,] -0.343  0.679 -0.337
-## [3,] -0.331 -0.337  0.667
+##        [,1]   [,2]   [,3]   [,4]   [,5]   [,6]
+## [1,]  0.873 -0.206 -0.163 -0.105 -0.233 -0.166
+## [2,] -0.206  0.873 -0.171 -0.229 -0.100 -0.167
+## [3,] -0.163 -0.171  0.834 -0.160 -0.173 -0.167
+## [4,] -0.105 -0.229 -0.160  0.931 -0.271 -0.166
+## [5,] -0.233 -0.100 -0.173 -0.271  0.946 -0.168
+## [6,] -0.166 -0.167 -0.167 -0.166 -0.168  0.833
 ## 
 ## $D
 ##        [,1]   [,2]   [,3]
-## [1,]  0.693 -0.368 -0.324
-## [2,] -0.368  0.714 -0.345
-## [3,] -0.324 -0.345  0.670</code></pre>
+## [1,]  0.797 -0.342 -0.455
+## [2,] -0.342  0.667 -0.325
+## [3,] -0.455 -0.325  0.780</code></pre>
 <p>Compare the above with the adjustment matrices based on the absorbed predictors only:</p>
 <pre class="r"><code>print(Atilde, digits = 3)</code></pre>
 <pre><code>## $A
-##          [,1]    [,2]    [,3]     [,4]    [,5]    [,6]
-## [1,]  1.00530  0.0292  0.0139  0.00986 -0.0208 -0.0375
-## [2,]  0.02923  1.1611  0.0769  0.05432 -0.1148 -0.2067
-## [3,]  0.01394  0.0769  1.0367  0.02592 -0.0548 -0.0986
-## [4,]  0.00986  0.0543  0.0259  1.01832 -0.0387 -0.0697
-## [5,] -0.02083 -0.1148 -0.0548 -0.03872  1.0819  0.1473
-## [6,] -0.03750 -0.2067 -0.0986 -0.06969  0.1473  1.2652
+##          [,1]      [,2]     [,3]      [,4]     [,5]
+## [1,]  1.05313  0.001860 -0.00742  0.008995 -0.05657
+## [2,]  0.00186  1.000065 -0.00026  0.000315 -0.00198
+## [3,] -0.00742 -0.000260  1.00104 -0.001257  0.00790
+## [4,]  0.00900  0.000315 -0.00126  1.001523 -0.00958
+## [5,] -0.05657 -0.001980  0.00790 -0.009576  1.06022
 ## 
 ## $B
-##         [,1]    [,2]    [,3]    [,4]
-## [1,]  1.0722 -0.0357  0.0205 -0.0569
-## [2,] -0.0357  1.0177 -0.0101  0.0282
-## [3,]  0.0205 -0.0101  1.0058 -0.0161
-## [4,] -0.0569  0.0282 -0.0161  1.0448
+##          [,1]     [,2]     [,3]
+## [1,]  1.00139 -0.00478  0.00339
+## [2,] -0.00478  1.01642 -0.01163
+## [3,]  0.00339 -0.01163  1.00824
 ## 
 ## $C
-##          [,1]     [,2]     [,3]
-## [1,]  1.00690 -0.00926  0.00237
-## [2,] -0.00926  1.01244 -0.00318
-## [3,]  0.00237 -0.00318  1.00081
+##           [,1]      [,2]      [,3]      [,4]     [,5]      [,6]
+## [1,]  1.039180 -0.039378  4.00e-03  0.061921 -0.06632  5.94e-04
+## [2,] -0.039378  1.039577 -4.02e-03 -0.062234  0.06665 -5.97e-04
+## [3,]  0.003999 -0.004019  1.00e+00  0.006320 -0.00677  6.07e-05
+## [4,]  0.061921 -0.062234  6.32e-03  1.097861 -0.10481  9.39e-04
+## [5,] -0.066317  0.066651 -6.77e-03 -0.104808  1.11225 -1.01e-03
+## [6,]  0.000594 -0.000597  6.07e-05  0.000939 -0.00101  1.00e+00
 ## 
 ## $D
-##          [,1]    [,2]     [,3]
-## [1,]  1.02605 -0.0349  0.00889
-## [2,] -0.03494  1.0469 -0.01192
-## [3,]  0.00889 -0.0119  1.00303</code></pre>
+##          [,1]     [,2]    [,3]
+## [1,]  1.13078 -0.00914 -0.1216
+## [2,] -0.00914  1.00064  0.0085
+## [3,] -0.12165  0.00850  1.1131</code></pre>
 <p>The matrices differ:</p>
 <pre class="r"><code>all.equal(A, Atilde)</code></pre>
-<pre><code>## [1] &quot;Component \&quot;A\&quot;: Mean relative difference: 0.538754&quot; 
-## [2] &quot;Component \&quot;B\&quot;: Mean relative difference: 0.6368388&quot;
-## [3] &quot;Component \&quot;C\&quot;: Mean relative difference: 0.7425209&quot;
-## [4] &quot;Component \&quot;D\&quot;: Mean relative difference: 0.7225609&quot;</code></pre>
+<pre><code>## [1] &quot;Component \&quot;A\&quot;: Mean relative difference: 0.6073885&quot;
+## [2] &quot;Component \&quot;B\&quot;: Mean relative difference: 0.7403564&quot;
+## [3] &quot;Component \&quot;C\&quot;: Mean relative difference: 0.5671847&quot;
+## [4] &quot;Component \&quot;D\&quot;: Mean relative difference: 0.6682793&quot;</code></pre>
 <p>Thus, Theorem 2 is incorrect as stated. (I have yet to identify the mis-step in the proof as given in the supplementary materials of the paper.)</p>
 </div>
 <div id="further-thoughts" class="section level3">
