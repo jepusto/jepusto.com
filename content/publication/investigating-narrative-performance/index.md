@@ -1,13 +1,13 @@
 ---
-date: "2022-01-11T00:00:00"
+date: "2022-09-30T00:00:00"
 publication_types:
-- "3"
+- "2"
 authors:
 - Katherine L. Winters
 - Javier Jasso
 - admin
 - Courtney Byrd
-publishDate: "2022-01-11T00:00:00"
+publishDate: "2022-09-30T00:00:00"
 title: "Investigating narrative performance in children with developmental language disorder: A systematic review and meta-analysis"
 abstract: "__Purpose__: Speech-language pathologists (SLPs) typically examine narrative performance when completing a comprehensive language assessment. However, there is significant variability in the methodologies used to evaluate narration. The primary aims of this systematic review and meta-analysis were to a) investigate how narrative assessment type (e.g., macrostructure, microstructure, internal state language) differentiates typically developing (TD) children from children with developmental language disorder (DLD), or, TD–DLD group differences, b) identify specific narrative assessment measures (e.g., number of different words) that result in greater TD–DLD differences, and, c) evaluate participant and sample characteristics (e.g., DLD inclusionary criteria) that may uniquely influence performance differences.
 
@@ -16,7 +16,7 @@ __Method__: Three electronic databases (PsychInfo, ERIC, and PubMed) and ASHAWir
 __Results__: Searches identified eligible studies published between 1987 and 2019. An overall meta-analysis using 382 effect sizes obtained across 37 studies showed that children with DLD had decreased narrative performance relative to TD peers, with summary estimates ranging from -0.850, 95% CI [-1.016, -0.685] to -0.794, 95% CI [-0.963, -0.624], depending on the correlation assumed. Across all models, effect size estimates showed significant heterogeneity both between and within studies, even after accounting for effect size-, sample-, and study-level predictors. Grammatical accuracy (microstructure) and story grammar (macrostructure) yielded the most consistent evidence of significant TD–DLD group differences across statistical models.
 
 __Conclusions__: Present findings suggest some narrative assessment measures may yield significantly different performance between children with and without DLD. However, researchers need to be consistent in their inclusionary criteria, their description of sample characteristics, and in their reporting of the correlations of measures, in order to determine which assessment measures are more likely to yield group differences."
-featured: true
+featured: false
 image: 
   caption: "Forest Plot of TD-DLD Group Differences in Narrative Performance (Standardized Mean Difference, 95% CI)"
 projects: []
@@ -30,6 +30,8 @@ tags:
 slides: 
 summary: 
 links:
+- name: Journal
+  url: https://doi.org/10.1044/2022_JSLHR-22-00017
 - name: Supplementary materials
   url: https://osf.io/dgz7m/
 url_preprint: "https://psyarxiv.com/bcky8/"
