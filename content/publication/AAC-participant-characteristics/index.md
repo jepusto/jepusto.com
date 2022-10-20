@@ -30,6 +30,8 @@ tags:
 slides: 
 summary: 
 links:
+  - name: Journal
+    url: https://doi.org/10.1080/07434618.2022.2116355
 url_preprint: "https://edarxiv.org/6sgba/"
 url_code: "https://osf.io/gpdb7/"
 url_dataset: "https://osf.io/b5ydr/"
