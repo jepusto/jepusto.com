@@ -23,7 +23,7 @@ links:
   url: http://doi.org/10.1080/07350015.2016.1247004
 - name: R package
   url: https://CRAN.R-project.org/package=clubSandwich
-url_preprint: "https://arxiv.org/abs/1601.01981v1"
+url_preprint: "https://arxiv.org/abs/1601.01981"
 url_code: ""
 url_dataset: ""
 url_pdf: 
