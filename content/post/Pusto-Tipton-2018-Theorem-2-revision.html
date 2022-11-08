@@ -1,0 +1,97 @@
+---
+title: Corrigendum to Pustejovsky and Tipton (2018), redux
+subtitle: A revised version of Theorem 2
+authors:
+- admin
+date: '2022-11-07'
+codefolding_show: 'show'
+slug: Pusto-Tipton-2018-Theorem-2-redux
+bibliography: [RVE-references.bib]
+csl: apa.csl
+link-citations: true
+categories: []
+tags:
+  - robust variance estimation
+  - econometrics
+  - matrix algebra
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span>
+In my <a href="/publication/rve-in-fixed-effects-models/">2018 paper with Beth Tipton</a>, published in the <em>Journal of Business and Economic Statistics</em>, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. As explained in <a href="/pusto-tipton-2018-theorem-2/">my previous post</a>, we were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I’ll give the revised theorem, following the notation and setup of <a href="/pusto-tipton-2018-theorem-2/">the previous post</a> (so better read that first, or what follows won’t make much sense!).</p>
+<div id="theorem-2-revised" class="section level3">
+<h3>Theorem 2, revised</h3>
+<p>Consider the model
+<span class="math display" id="eq:regression">\[
+\bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, \tag{1}
+\]</span>
+where <span class="math inline">\(\bm{y}_i\)</span> is an <span class="math inline">\(n_i \times 1\)</span> vector of responses for cluster <span class="math inline">\(i\)</span>, <span class="math inline">\(\bm{R}_i\)</span> is an <span class="math inline">\(n_i \times r\)</span> matrix of focal predictors, <span class="math inline">\(\bm{S}_i\)</span> is an <span class="math inline">\(n_i \times s\)</span> matrix of additional covariates that vary across multiple clusters, and <span class="math inline">\(\bm{T}_i\)</span> is an <span class="math inline">\(n_i \times t\)</span> matrix encoding cluster-specific fixed effects, all for <span class="math inline">\(i = 1,...,m\)</span>. Let <span class="math inline">\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)</span> be the set of predictors that vary across clusters and <span class="math inline">\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)</span> be the full set of predictors. Let <span class="math inline">\(\bm{\ddot{U}}_i = \left(\bm{I} - \bm{T}_i \bm{M}_{\bm{T}}\bm{T}_i&#39;\right) \bm{U}_i\)</span> be an absorbed version of the focal predictors and the covariates. The cluster-robust variance estimator for the coefficients of <span class="math inline">\(\bm{U}_i\)</span> is
+<span class="math display" id="eq:CRVE">\[
+\bm{V}^{CR2} = \bm{M}_{\bm{\ddot{U}}} \left(\sum_{i=1}^m \bm{\ddot{U}}_i&#39; \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i&#39; \bm{A}_i \bm{W}_i \bm{\ddot{U}}_i \right) \bm{M}_{\bm{\ddot{U}}},
+\tag{2}
+\]</span>
+where <span class="math inline">\(\bm{A}_1,...,\bm{A}_m\)</span> are the CR2 adjustment matrices.</p>
+<p>If we assume a working model in which <span class="math inline">\(\bs\Psi_i = \sigma^2 \bm{I}_i\)</span> for <span class="math inline">\(i = 1,...,m\)</span> and estimate the model by ordinary least squares, then the CR2 adjustment matrices have a fairly simple form:
+<span class="math display" id="eq:A-matrix">\[
+\bm{A}_i = \left(\bm{I}_i - \bm{X}_i \bm{M_X} \bm{X}_i&#39;\right)^{+1/2},
+\tag{3}
+\]</span>
+where <span class="math inline">\(B^{+1/2}\)</span> is the symmetric square root of the Moore-Penrose inverse of <span class="math inline">\(\bm{B}\)</span>. However, this form is computationally expensive because it involves the full set of predictors, <span class="math inline">\(\bm{X}_i\)</span>, including the cluster-specific fixed effects <span class="math inline">\(\bm{T}_i\)</span>. If the model is estimated after absorbing the cluster-specific fixed effects, then it would be convenient to use the adjustment matrices based on the absorbed predictors only,
+<span class="math display" id="eq:A-tilde">\[
+\bm{\tilde{A}}_i = \left(\bm{I}_i - \bm{\ddot{U}}_i \bm{M_\ddot{U}} \bm{\ddot{U}}_i&#39;\right)^{+1/2}.
+\tag{4}
+\]</span>
+The original version of Theorem 2 asserted that <span class="math inline">\(\bm{A}_i = \bm{\tilde{A}}_i\)</span>, which is not actually the case. However, for ordinary least squares with the independent, homoskedastic working model, we can show that <span class="math inline">\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)</span>. Thus, it doesn’t matter whether we use <span class="math inline">\(\bm{A}_i\)</span> or <span class="math inline">\(\bm{\tilde{A}}_i\)</span> to calculate the cluster-robust variance estimator. We’ll get the same result either way, but <span class="math inline">\(\bm{\tilde{A}}_i\)</span> is bit easier to compute.</p>
+<p>Here’s a formal statement of Theorem 2:</p>
+<blockquote>
+<p>Let <span class="math inline">\(\bm{L}_i = \left(\bm{\ddot{U}}&#39;\bm{\ddot{U}} - \bm{\ddot{U}}_i&#39;\bm{\ddot{U}}_i\right)\)</span> and assume that <span class="math inline">\(\bm{L}_1,...,\bm{L}_m\)</span> have full rank <span class="math inline">\(r + s\)</span>. If <span class="math inline">\(\bm{W}_i = \bm{I}_i\)</span> and <span class="math inline">\(\bs\Phi_i = \bm{I}_i\)</span> for <span class="math inline">\(i = 1,...,m\)</span>, then <span class="math inline">\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)</span>, where <span class="math inline">\(\bm{A}_i\)</span> and <span class="math inline">\(\tilde{\bm{A}}_i\)</span> are as defined in <a href="#eq:A-matrix">(3)</a> and <a href="#eq:A-tilde">(4)</a>, respectively.</p>
+</blockquote>
+</div>
+<div id="proof" class="section level3">
+<h3>Proof</h3>
+<p>We can prove this revised Theorem 2 by showing how <span class="math inline">\(\bm{A}_i\)</span> can be constructed in terms of <span class="math inline">\(\bm{\tilde{A}}_i\)</span> and <span class="math inline">\(\bm{T}_i\)</span>. First, because <span class="math inline">\(\bm{T}_i&#39;\bm{T}_k = \bm{0}\)</span> for any <span class="math inline">\(i \neq k\)</span>, it follows that <span class="math inline">\(\bm{T}_i \bm{M_T} \bm{T}_i&#39;\)</span> is idempotent, i.e.,
+<span class="math display">\[
+\bm{T}_i \bm{M_T} \bm{T}_i&#39; \bm{T}_i \bm{M_T} \bm{T}_i&#39; = \bm{T}_i \bm{M_T} \bm{T}_i&#39;.
+\]</span></p>
+<p>Next, denote the thin QR decomposition of <span class="math inline">\(\bm{\ddot{U}}_i\)</span> as <span class="math inline">\(\bm{Q}_i \bm{R}_i\)</span>, where <span class="math inline">\(\bm{Q}_i\)</span> is semi-orthogonal <span class="math inline">\((\bm{Q}_i&#39;\bm{Q}_i = \bm{I})\)</span> and <span class="math inline">\(\bm{R}_i\)</span> has the same rank as <span class="math inline">\(\bm{\ddot{U}}_i\)</span>. Next, let <span class="math inline">\(\bm{\tilde{B}}_i = \bm{I}_i - \bm{\ddot{U}}_i \bm{M_\ddot{U}} \bm{\ddot{U}}_i&#39;\)</span> and observe that this can be written as
+<span class="math display">\[
+\tilde{\bm{B}}_i = \bm{I}_i - \bm{Q}_i \bm{Q}_i&#39; + \bm{Q}_i \left(\bm{I} - \bm{R}_i \bm{M}_{\bm{\ddot{U}}} \bm{R}_i&#39;\right)\bm{Q}_i&#39;.
+\]</span>
+It can then be seen that
+<span class="math display">\[
+\bm{\tilde{A}}_i = \tilde{\bm{B}}_i^{+1/2} = \bm{I}_i - \bm{Q}_i \bm{Q}_i&#39; + \bm{Q}_i \left(\bm{I} - \bm{R}_i \bm{M}_{\bm{\ddot{U}}} \bm{R}_i&#39;\right)^{+1/2} \bm{Q}_i&#39;.
+\]</span>
+It follows that <span class="math inline">\(\bm{\tilde{A}}_i \bm{T}_i = \bm{T}_i\)</span> because <span class="math inline">\(\bm{Q}_i&#39;\bm{T}_i = \bm{0}\)</span>. Further, <span class="math inline">\(\bm{\tilde{B}}_i \bm{T}_i = \bm{T}_i\)</span> as well.</p>
+<p>Now, let <span class="math inline">\(\bm{B}_i = \left(\bm{I}_i - \bm{X}_i \bm{M_X} \bm{X}_i&#39;\right)\)</span> and observe that this can be written as
+<span class="math display">\[
+\bm{B}_i = \bm{I}_i - \bm{\ddot{U}}_i \bm{M_{\ddot{U}}}\bm{\ddot{U}}_i&#39; - \bm{T}_i \bm{M_T}\bm{T}_i&#39; = \bm{\tilde{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;
+\]</span>
+because <span class="math inline">\(\bm{\ddot{U}}_i&#39;\bm{T}_i = \bm{0}\)</span>.</p>
+<p>We then construct the full adjustment matrix <span class="math inline">\(\bm{A}_i\)</span> as
+<span class="math display" id="eq:A-constructed">\[
+\bm{A}_i = \tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;.
+\tag{5}
+\]</span>
+Showing that <span class="math inline">\(\bm{B}_i \bm{A}_i \bm{B}_i \bm{A}_i = \bm{B}_i\)</span> will suffice to verify that <span class="math inline">\(\bm{A}_i\)</span> is the symmetric square root of the Moore-Penrose inverse of <span class="math inline">\(\bm{B}_i\)</span>. Because <span class="math inline">\(\bm{T}_i \bm{M_T} \bm{T}_i&#39;\)</span> is idempotent, <span class="math inline">\(\bm{\tilde{B}}_i \bm{T}_i = \bm{T}_i\)</span>, and <span class="math inline">\(\bm{\tilde{A}}_i \bm{T}_i = \bm{T}_i\)</span>, we have
+<span class="math display">\[
+\begin{aligned}
+\bm{B}_i \bm{A}_i \bm{B}_i \bm{A}_i &amp;= \left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \left(\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right)\left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \left(\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \\
+&amp;= \left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right)\left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \\
+&amp;= \left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \\
+&amp;= \left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&#39;\right) \\
+&amp;= \bm{B}_i.
+\end{aligned}
+\]</span></p>
+<p>From the representation of <span class="math inline">\(\bm{A}_i\)</span> in <a href="#eq:A-constructed">(5)</a>, it is clear that <span class="math inline">\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i - \bm{T}_i \bm{M_T} \bm{T}_i&#39; \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)</span>.</p>
+</div>
