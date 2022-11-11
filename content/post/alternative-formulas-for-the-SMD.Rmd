@@ -135,7 +135,7 @@ $$
 In this design,
 
 $$
-\frac{se_b}{s_p} = \frac{2(1 - r)}{n},
+\frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 $$
 
 where $r$ is the sample correlation between the pre- and post-tests. The remaining question is what to use for $\nu$. Borenstein (2009) uses $\nu = n - 1$. My previous post [on the sampling covariance of sample variances](/distribution-of-sample-variances/) gave the result that $\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)$, which would instead suggest using 
@@ -151,7 +151,7 @@ This formula will tend to give slightly larger degrees of freedom, but probably 
 Suppose that a study involves taking pre-test and post-test measurements on two groups of participants, with sample sizes $n_T$ and $n_C$ respectively. One way to analyze this design is via ANCOVA using the pre-test measure as the covariate, so that the treatment effect estimate is the difference in adjusted post-test means. In this design, the scaled standard error will be approximately
 
 $$
-\frac{se_b}{S} = \frac{(n_C + n_T)(1 - r^2)}{n_C n_T},
+\frac{se_b}{S} = \sqrt{\frac{(n_C + n_T)(1 - r^2)}{n_C n_T}},
 $$
 
 where $r$ is the pooled, within-group sample correlation between the pre-test and the post-test measures (this approximation assumes that the pre-test SMD between groups is relatively small). Alternately, if $se_b$ is provided then the scaled standard error could be calculated directly.
@@ -171,7 +171,7 @@ $$
 which has sampling variance $\text{Var}(b) = 2(1 - \rho)\sigma^2\left(n_C + n_T \right) / (n_C n_T)$, where $\rho$ is the correlation between the pre-test and the post-test measures. Thus, the scaled standard error is
 
 $$
-\frac{se_b}{S} = \frac{2(1 - r)(n_C + n_T)}{n_C n_T}.
+\frac{se_b}{S} = \sqrt{\frac{2(1 - r)(n_C + n_T)}{n_C n_T}}.
 $$
 
 As with ANCOVA, there are several potential options for calculating the denominator of $d$:
@@ -237,7 +237,7 @@ $$
 The scaled standard error of $\bar{\bar{y}}_T - \bar{\bar{y}}_C$ is 
 
 $$
-se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
+se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}.
 $$
 
 The appendix of the article demonstrates that $\text{E}\left(S_{total}^2\right) = \tau^2 + \sigma^2$ and 
