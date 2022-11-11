@@ -151,7 +151,7 @@ This formula will tend to give slightly larger degrees of freedom, but probably 
 Suppose that a study involves taking pre-test and post-test measurements on two groups of participants, with sample sizes $n_T$ and $n_C$ respectively. One way to analyze this design is via ANCOVA using the pre-test measure as the covariate, so that the treatment effect estimate is the difference in adjusted post-test means. In this design, the scaled standard error will be approximately
 
 $$
-\frac{se_b}{S} = \sqrt{\frac{(n_C + n_T)(1 - r^2)}{n_C n_T}},
+\frac{se_b}{S} = \sqrt{ \frac{(n_C + n_T)(1 - r^2)}{n_C n_T} },
 $$
 
 where $r$ is the pooled, within-group sample correlation between the pre-test and the post-test measures (this approximation assumes that the pre-test SMD between groups is relatively small). Alternately, if $se_b$ is provided then the scaled standard error could be calculated directly.
