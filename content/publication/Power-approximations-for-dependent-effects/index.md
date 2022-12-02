@@ -28,7 +28,7 @@ links:
 - name: Supplementary materials
   url: https://osf.io/q84dv/
 - name: R package
-  url: https://github.com/MikkelVembye/POMADE
+  url: https://mikkelvembye.github.io/POMADE/
 url_preprint: "https://osf.io/preprints/metaarxiv/6tp9y/"
 url_code: "https://osf.io/yhkq4/"
 url_dataset: ""

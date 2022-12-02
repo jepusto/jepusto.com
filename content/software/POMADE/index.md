@@ -2,8 +2,8 @@
 date: "2022-12-02T00:00:00Z"
 external_link: ""
 header:
-  image: "headers/bootstrap-F.png"
-  caption: "Bootstrap distribution of Naive F statistics under the null hypothesis."
+  image: "headers/MDES-MADE.png"
+  caption: "Minimum detectable effect sizes based on the correlated-and-hierarchical effects working model with robust variance estimation."
 image: 
   preview_only: true
   focal_point: Smart
