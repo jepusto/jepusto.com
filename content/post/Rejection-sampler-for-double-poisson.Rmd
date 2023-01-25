@@ -1,0 +1,96 @@
+---
+title: Rejection sampler for Efron's double Poisson distribution
+authors:
+- admin
+date: '2023-01-25'
+codefolding_show: 'show'
+slug: rejection-sampler-double-poisson
+categories: []
+draft: true
+tags:
+  - simulation
+  - distribution-theory
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002), but it's turning out to be a bit tricky. The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's more challenging is that also we need to also write a Stan function to generate random samples from the double-Poisson, so that we can generate posterior predictive checks.[^gamlls] In this post, I'll look at how to approach this problem using a rejection sampler. 
+
+[^gamlls]: The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) does include a sampler for the double-Poisson distribution. It appears to be implemented using the standard inversion method, by applying the double-Poisson quantile function to a random sample from a uniform distribution.
+
+To implement a rejection sampler, we need to find a distribution 1) from which it is easy to draw random samples and 2) that approximates the double-Poisson. Specifically, we need to find a density $g(x)$ and a constant $k$ that satisfies the following criterion, with $f(x)$ denoting the double-Poisson density:
+$$
+k \geq \sup_x \frac{f(x)}{g(x)},
+$$
+with $x$ ranging over the non-negative integers. Equivalently, we seek
+$$
+\ln k \geq \sup_x \ d(x), \quad \text{where} \quad d(x) = \ln f(x) - \ln g(x).
+$$
+
+[Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\theta$:
+$$
+f(x | \mu, \theta) = \frac{\theta^{1/2} e^{-\theta \mu}}{c(\mu,\theta)} \left(\frac{e^{-x} x^x}{x!}\right) \left(\frac{e \mu}{x}\right)^{\theta x},
+$$
+where $c(\mu,\theta)$ is a scaling constant to ensure that the density sums to one, which is closely approximated by 
+$$
+c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\mu \theta}\right).
+$$
+Ignoring the scaling constant, we have
+$$
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - (1 - \theta - \theta \ln \mu) x + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+$$
+where $x \ln (x)$ is evaluated as 0.
+
+Finding an approximating distribution is tricky because the double-Poisson admits both over-dispersion (where $\Var(X) > \E(X)$) and under-dispersion (where $\Var(X) < \E(X)$). In contrast, many other readily available distributions such as the negative binomial only allow for over-dispersion relative to the Poisson. 
+
+# Over-dispersion 
+
+Let us consider using a negative binomial distribution for $g(x)$, for the case where the double-Poisson is over-dispersed with $\theta < 1$. The negative binomial density is
+$$
+g(x | p, r) = {{x + r - 1}\choose{x}} (1 - p)^x p^r
+$$
+with log density
+$$
+\ln g(x | p, r) = \ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right) - \ln \left(x!\right) + x \ln(1 - p) + r \ln (p).
+$$
+The difference function is thus
+$$
+\begin{aligned}
+d(x) &= \ln f(x | \mu, \theta) - \ln g(x | p, r) \\
+&= \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
+& \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
+& \qquad \qquad + (1 - \theta) x \ln(x) - \left[\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right)\right]
+\end{aligned}
+$$
+Now, observe that 
+$$
+\begin{aligned}
+\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right) &= \sum_{a = 1}^x \ln(a + r - 1) \\
+&\geq \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right]
+\end{aligned}
+$$
+due to the concavity of $\ln(x)$. It follows that 
+$$
+\begin{aligned}
+d(x) &\leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
+& \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
+& \qquad \qquad + (1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right].
+\end{aligned}
+$$
+Thus, if we can choose $p$ such that $(1 - \theta - \theta \ln \mu + \ln p) \geq 0$ and $r$ such that 
+$$
+(1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right] \leq 0
+$$
+then we will be left with 
+$$
+d(x) \leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p).
+$$
