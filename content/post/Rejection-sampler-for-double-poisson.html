@@ -420,32 +420,47 @@ g(x | p, r) = {{x + r - 1}\choose{x}} (1 - p)^x p^r
 \]</span> The difference function is thus <span class="math display">\[
 \begin{aligned}
 d(x) &amp;= \ln f(x | \mu, \theta) - \ln g(x | p, r) \\
-&amp;= \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
-&amp; \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
+&amp;= \frac{1}{2} \ln \theta - \theta \mu - r \ln p \\
+&amp; \qquad + \left[\theta \ln \mu - (1 - \theta) - \ln (1 - p)\right]
+x \\
 &amp; \qquad \qquad + (1 - \theta) x \ln(x) - \left[\ln \left((x + r -
-1)!\right) - \ln \left((r - 1)!\right)\right]
+1)!\right) - \ln \left((r - 1)!\right)\right] \\
+&amp; = (1 - \theta) x \ln(x) + b x - \ln \Gamma(x + r - 1) + c
 \end{aligned}
-\]</span> Now, observe that <span class="math display">\[
+\]</span> where <span class="math inline">\(b = \theta \ln \mu - (1 -
+\theta) - \ln (1 - p)\)</span> and <span class="math inline">\(c =
+\frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r -
+1)\)</span>. The first derivative of <span class="math inline">\(d(x)\)</span> with respect to <span class="math inline">\(x\)</span> is then <span class="math display">\[
+d&#39;(x) = (1 - \theta) \ln x - \psi_0(x + r - 1) + \theta \ln \mu -
+\ln(1 - p),
+\]</span> where <span class="math inline">\(\psi_0()\)</span> is the <a href="https://en.wikipedia.org/wiki/Digamma_function">digamma
+function</a>.</p>
+<p>Let’s assume that we want <span class="math inline">\(d&#39;(\mu) =
+0\)</span>. This implies that <span class="math display">\[
+\ln(1 - p) = \ln \mu - \psi_0(\mu + r - 1)
+\]</span> and thus <span class="math display">\[
+\ln p = \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right]
+\]</span> We can then write <span class="math display">\[
 \begin{aligned}
-\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right) &amp;= \sum_{a
-= 1}^x \ln(a + r - 1) \\
-&amp;\geq \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right]
+d(\mu) &amp;= (1 - \theta) \mu \ln \mu + b \mu - \ln \Gamma(\mu + r - 1)
++ c \\
+&amp;= (1 - \theta) \mu \ln \mu + \theta \mu \ln \mu - \mu (1 - \theta)
+- \mu\ln (1 - p) - \ln \Gamma(\mu + r - 1) + \frac{1}{2} \ln \theta -
+\theta \mu - r \ln p + \ln \Gamma(r - 1) \\
+&amp;= \mu \ln \mu - \mu - \mu \ln(1 - p) - \ln \Gamma(\mu + r - 1) +
+\frac{1}{2} \ln \theta - r \ln p + \ln \Gamma(r - 1) \\
+&amp;= \mu \psi_0(\mu + r - 1) - r \ln\left[1 - \mu \exp \psi_0(\mu + r
+- 1)\right] - \ln \Gamma(\mu + r - 1) + \ln \Gamma(r - 1)  - \mu +
+\frac{1}{2} \ln \theta.
 \end{aligned}
-\]</span> due to the concavity of <span class="math inline">\(\ln(x)\)</span>. It follows that <span class="math display">\[
-\begin{aligned}
-d(x) &amp;\leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
-&amp; \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
-&amp; \qquad \qquad + (1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x
-+ r - 1) + \ln(r - 1)\right].
-\end{aligned}
-\]</span> Thus, if we can choose <span class="math inline">\(p\)</span>
-such that <span class="math inline">\((1 - \theta - \theta \ln \mu + \ln
-p) \geq 0\)</span> and <span class="math inline">\(r\)</span> such that
+\]</span> Now, we would like to find a value of <span class="math inline">\(r\)</span> so that the approximating distribution
+is as similar as possible to <span class="math inline">\(f(x)\)</span>.
+One way to approach this is to minimize <span class="math inline">\(d(\mu)\)</span> with respect to <span class="math inline">\(r\)</span>. Let’s therefore look at the derivative
 <span class="math display">\[
-(1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r -
-1)\right] \leq 0
-\]</span> then we will be left with <span class="math display">\[
-d(x) \leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p).
+\frac{\partial}{\partial r} d(\mu) = \mu \psi_1(\mu + r -
+1)\left(\frac{1 - (\mu - r)\exp \psi_0(\mu + r - 1)}{1 - \mu \exp
+\psi_0(\mu + r - 1)}\right) - \ln\left[1 - \mu \exp \psi_0(\mu + r -
+1)\right] - \psi_0(\mu + r - 1) + \psi_0(r - 1).
 \]</span></p>
 </div>
 <div class="footnotes footnotes-end-of-document">

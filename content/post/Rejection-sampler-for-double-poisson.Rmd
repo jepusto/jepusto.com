@@ -66,31 +66,36 @@ The difference function is thus
 $$
 \begin{aligned}
 d(x) &= \ln f(x | \mu, \theta) - \ln g(x | p, r) \\
-&= \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
-& \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
-& \qquad \qquad + (1 - \theta) x \ln(x) - \left[\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right)\right]
+&= \frac{1}{2} \ln \theta - \theta \mu - r \ln p \\
+& \qquad + \left[\theta \ln \mu - (1 - \theta) - \ln (1 - p)\right] x \\
+& \qquad \qquad + (1 - \theta) x \ln(x) - \left[\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right)\right] \\
+& = (1 - \theta) x \ln(x) + b x - \ln \Gamma(x + r - 1) + c
 \end{aligned}
 $$
-Now, observe that 
+where $b = \theta \ln \mu - (1 - \theta) - \ln (1 - p)$ and $c = \frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r - 1)$. The first derivative of $d(x)$ with respect to $x$ is then
+$$
+d'(x) = (1 - \theta) \ln x - \psi_0(x + r - 1) + \theta \ln \mu - \ln(1 - p),
+$$
+where $\psi_0()$ is the [digamma function](https://en.wikipedia.org/wiki/Digamma_function). 
+
+Let's assume that we want $d'(\mu) = 0$. This implies that 
+$$
+\ln(1 - p) = \ln \mu - \psi_0(\mu + r - 1)
+$$
+and thus
+$$
+\ln p = \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right]
+$$
+We can then write 
 $$
 \begin{aligned}
-\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right) &= \sum_{a = 1}^x \ln(a + r - 1) \\
-&\geq \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right]
+d(\mu) &= (1 - \theta) \mu \ln \mu + b \mu - \ln \Gamma(\mu + r - 1) + c \\
+&= (1 - \theta) \mu \ln \mu + \theta \mu \ln \mu - \mu (1 - \theta) - \mu\ln (1 - p) - \ln \Gamma(\mu + r - 1) + \frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r - 1) \\
+&= \mu \ln \mu - \mu - \mu \ln(1 - p) - \ln \Gamma(\mu + r - 1) + \frac{1}{2} \ln \theta - r \ln p + \ln \Gamma(r - 1) \\
+&= \mu \psi_0(\mu + r - 1) - r \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right] - \ln \Gamma(\mu + r - 1) + \ln \Gamma(r - 1)  - \mu + \frac{1}{2} \ln \theta.
 \end{aligned}
 $$
-due to the concavity of $\ln(x)$. It follows that 
+Now, we would like to find a value of $r$ so that the approximating distribution is as similar as possible to $f(x)$. One way to approach this is to minimize $d(\mu)$ with respect to $r$. Let's therefore look at the derivative
 $$
-\begin{aligned}
-d(x) &\leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p) \\
-& \qquad - (1 - \theta - \theta \ln \mu + \ln p) x \\
-& \qquad \qquad + (1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right].
-\end{aligned}
-$$
-Thus, if we can choose $p$ such that $(1 - \theta - \theta \ln \mu + \ln p) \geq 0$ and $r$ such that 
-$$
-(1 - \theta) x \ln(x) - \frac{1}{2} x \left[\ln(x + r - 1) + \ln(r - 1)\right] \leq 0
-$$
-then we will be left with 
-$$
-d(x) \leq \frac{1}{2} \ln \theta - \theta \mu - r \ln (p).
+\frac{\partial}{\partial r} d(\mu) = \mu \psi_1(\mu + r - 1)\left(\frac{1 - (\mu - r)\exp \psi_0(\mu + r - 1)}{1 - \mu \exp \psi_0(\mu + r - 1)}\right) - \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right] - \psi_0(\mu + r - 1) + \psi_0(r - 1).
 $$
