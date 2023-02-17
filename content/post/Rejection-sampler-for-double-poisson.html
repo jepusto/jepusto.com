@@ -378,10 +378,10 @@ from which it is easy to draw random samples and 2) that approximates
 the double-Poisson. Specifically, we need to find a density <span class="math inline">\(g(x)\)</span> and a constant <span class="math inline">\(k\)</span> that satisfies the following criterion,
 with <span class="math inline">\(f(x)\)</span> denoting the
 double-Poisson density: <span class="math display">\[
-k \geq \sup_x \frac{f(x)}{g(x)},
+\sup_x \frac{f(x)}{g(x)} \leq k,
 \]</span> with <span class="math inline">\(x\)</span> ranging over the
 non-negative integers. Equivalently, we seek <span class="math display">\[
-\ln k \geq \sup_x \ d(x), \quad \text{where} \quad d(x) = \ln f(x) - \ln
+\sup_x \ d(x) \leq \ln k, \quad \text{where} \quad d(x) = \ln f(x) - \ln
 g(x).
 \]</span></p>
 <p><a href="https://doi.org/10.2307/2289002">Efron (1986)</a> gives the
@@ -396,9 +396,9 @@ scaling constant to ensure that the density sums to one, which is
 closely approximated by <span class="math display">\[
 c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 +
 \frac{1}{\mu \theta}\right).
-\]</span> Ignoring the scaling constant, we have <span class="math display">\[
-\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - (1 -
-\theta - \theta \ln \mu) x + (1 - \theta) x \ln(x) - \ln
+\]</span> We then have <span class="math display">\[
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - c(\mu,
+\theta) - (1 - \theta - \theta \ln \mu) x + (1 - \theta) x \ln(x) - \ln
 \left(x!\right),
 \]</span> where <span class="math inline">\(x \ln (x)\)</span> is
 evaluated as 0.</p>

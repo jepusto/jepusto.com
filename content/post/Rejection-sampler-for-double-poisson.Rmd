@@ -29,11 +29,11 @@ For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit 
 
 To implement a rejection sampler, we need to find a distribution 1) from which it is easy to draw random samples and 2) that approximates the double-Poisson. Specifically, we need to find a density $g(x)$ and a constant $k$ that satisfies the following criterion, with $f(x)$ denoting the double-Poisson density:
 $$
-k \geq \sup_x \frac{f(x)}{g(x)},
+\sup_x \frac{f(x)}{g(x)} \leq k,
 $$
 with $x$ ranging over the non-negative integers. Equivalently, we seek
 $$
-\ln k \geq \sup_x \ d(x), \quad \text{where} \quad d(x) = \ln f(x) - \ln g(x).
+\sup_x \ d(x) \leq \ln k, \quad \text{where} \quad d(x) = \ln f(x) - \ln g(x).
 $$
 
 [Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\theta$:
@@ -44,9 +44,9 @@ where $c(\mu,\theta)$ is a scaling constant to ensure that the density sums to o
 $$
 c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\mu \theta}\right).
 $$
-Ignoring the scaling constant, we have
+We then have
 $$
-\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - (1 - \theta - \theta \ln \mu) x + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - c(\mu, \theta) - (1 - \theta - \theta \ln \mu) x + (1 - \theta) x \ln(x) - \ln \left(x!\right),
 $$
 where $x \ln (x)$ is evaluated as 0.
 

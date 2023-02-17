@@ -1,0 +1,27 @@
+---
+title: $d_z$ makes me dizzy because of measurement error
+authors:
+- admin
+date: '2023-02-17'
+codefolding_show: 'show'
+slug: dizzy-for-d-z
+categories: []
+draft: true
+tags:
+  - effect size
+  - standardized mean difference
+  - design-comparable SMD
+  - measurement-error
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
