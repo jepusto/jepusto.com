@@ -1,0 +1,75 @@
+---
+title: Cohen's $d_z$ makes me dizzy because of measurement error 
+authors:
+- admin
+date: '2023-02-18'
+codefolding_show: 'show'
+slug: dizzy-for-d-z
+categories: []
+draft: true
+tags:
+  - distribution-theory
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cov{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+Meta-analyses in education, psychology, and related fields rely heavily of Cohen's $d$, or the standardized mean difference effect size, for describing the magnitude (and direction) of intervention effects. In these fields, Cohen's $d$ is so pervasive that its application is nearly automatic (knee-jerk?) and analysts rarely question its utility or consider alternatives. At the same time, using Cohen's $d$ is challenging because the standardized mean difference metric does not have a singular definition. Instead, its definition depends on the choice of the standardizing variance used in the denominator. 
+
+For basic between-group designs, the only variances in the model are the within-group variances, so the choice is limited to a) the population variance, assuming it is homogeneous, b) the variance of one group, or c) the average of the variances in each group. In most applications, homogeneity is assumed (often without much reflection), version (a) of Cohen's $d$ is calculated, and the meta-analyst goes along their merry way. For sake of succinctness, I'll call this effect size $d_{b}$, with $b$ indicating the basic between-group comparison.
+
+For within-group or repeated measures designs, the set of choices is more involved and includes a) standardizing by the across-participant variance in one condition (or both conditions, assuming homogeneity) or b) standardizing by the variance of the difference scores. The former approach is sometimes called $d_{av}$ (or `measure = "SMCR"`, the "stanardized mean change using raw score standardization" in `metafor::escalc`), the latter is called $d_z$ (or `measure = "SMCC"`, the "stanardized mean change using change score standardization" in `metafor::escalc`). $d_{av}$ has the advantage that it uses the same standardizing variance as the $d$ from a basic between-group design, and so results from both types of designs are, in principle, on the same metric. 
+
+In the context of meta-analysis, the comparability of $d_b$ and $d_{av}$ is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with $d_b$ may be less of a priority and one might consider using $d_z$ for synthesis. In this context, $d_z$ might be attractive for pragmatic reasons because the only pieces of information needed to calculate it are the total sample size and the $t$ statistic (or $p$-value) from the comparison between conditions. In contrast, calculating $d_{av}$ also requires the between-participant standard deviations from one or both groups, which primary studies which might not always report. 
+
+In this post, I'm going to consider how measurement error in the outcomes influences the interpretation of $d_{av}$ and $d_z$. 
+
+# A basic model
+
+Suppose we have a within-group design involving two conditions, where participants are assessed on $K$ trials under each condition. Let $Y_{ijk}$ denote the outcome from trial $k$ for participant $j$ under condition $i$, for $i = 1,2$, $j = 1,...,N$, and $k = 1,...,K$. A basic model for this set-up is 
+$$
+Y_{ijk} = \mu_i + u_{ij} + e_{ijk}
+$$
+where $u_{1j}$ and $u_{2j}$ are participant-specific errors in the true scores under each condition and $e_{ijk}$ are measurement errors. For simplicity, I will assume that the true-score variance is equal across conditions, with $\Var(u_{ij}) = \sigma^2$ for $i = 1,2$, that the true scores are correlated across conditions, $\cor(u_{1j}, u_{2j}) = \rho$, and that measurement errors are uncorrelated and have homogeneous variance across conditions, with $\Var(e_{ijk}) = \psi^2$. Let $\phi = \sigma^2 / (\sigma^2 + \psi^2)$ denote the reliability (intra-class correlation) of a single observed score. Note that we can write $\psi^2$ in terms of the reliability and true-score variance as
+$$
+\psi^2 = \sigma^2 \times \frac{1 - \phi}{\phi}.
+$$
+
+Under this model, there are several different standardized mean difference metrics that we could consider. Since measurement reliability might vary from study to study, it would make sense to define the metric in terms of true score variances alone, as
+$$
+\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma}
+$$
+or in terms of the variance of the difference in true scores, as 
+$$
+\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2(1 - \rho)}}.
+$$
+However, we don't directly observe the true scores, and we can't estimate their variance unless we have information about score reliabilities. Thus, meta-analysts will usually calculate effect sizes in terms of _observed_ scores that include measurement error. Suppose that the analysis is conducted by taking the average of the $K$ trials for each participant under each condition, $\bar{Y}_{ij} = \frac{1}{K} \sum_{k=1}^K Y_{ijk}$, and conducting the analysis using these mean scores. The variance of the mean scores is 
+$$
+\Var(\bar{Y}_{ij}) = \sigma^2 \left(1 + \frac{1 - \phi}{\phi K}\right), 
+$$
+so we can define the observed-score standardized mean difference using raw score standardization (whew, say that six times fast!) as
+$$
+\tilde\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma \sqrt{1 + \frac{1 - \phi}{\phi K}}} = \frac{1}{\sqrt{1 + \frac{1 - \phi}{\phi K}}} \times \delta_{av}.
+$$
+From this expression, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one. 
+
+Similarly, the variance of the observed difference scores is
+$$
+\Var(\bar{Y}_{2j} - \bar{Y}_{1j}) =2 \sigma^2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right), 
+$$
+so we can define the observed-score standardized mean difference using change score standardization as
+$$
+\tilde\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)}} = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}} \times \delta_z.
+$$
+Again, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one. However, unlike with $d_{av}$, the attenuation factor here depends on $\rho$ in addition to $\phi$ and $K$. 
+
+# Meta-analysis

@@ -27,13 +27,13 @@ For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit 
 
 [^gamlls]: The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) does include a sampler for the double-Poisson distribution. It appears to be implemented using the standard inversion method, by applying the double-Poisson quantile function to a random sample from a uniform distribution.
 
-To implement a rejection sampler, we need to find a distribution 1) from which it is easy to draw random samples and 2) that approximates the double-Poisson. Specifically, we need to find a density $g(x)$ and a constant $k$ that satisfies the following criterion, with $f(x)$ denoting the double-Poisson density:
+To implement a rejection sampler, we need to find a distribution 1) from which it is easy to draw random samples and 2) that approximates the double-Poisson. Specifically, we need to find a density $g(x)$ and a constant $M$ that satisfies the following criterion, with $f(x)$ denoting the double-Poisson density:
 $$
-k \geq \sup_x \frac{f(x)}{g(x)},
+M \geq \sup_x \frac{f(x)}{g(x)},
 $$
 with $x$ ranging over the non-negative integers. Equivalently, we seek
 $$
-\ln k \geq \sup_x \ d(x), \quad \text{where} \quad d(x) = \ln f(x) - \ln g(x).
+\ln M \geq \sup_x \ d(x), \quad \text{where} \quad d(x) = \ln f(x) - \ln g(x).
 $$
 
 [Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\theta$:
@@ -69,33 +69,108 @@ d(x) &= \ln f(x | \mu, \theta) - \ln g(x | p, r) \\
 &= \frac{1}{2} \ln \theta - \theta \mu - r \ln p \\
 & \qquad + \left[\theta \ln \mu - (1 - \theta) - \ln (1 - p)\right] x \\
 & \qquad \qquad + (1 - \theta) x \ln(x) - \left[\ln \left((x + r - 1)!\right) - \ln \left((r - 1)!\right)\right] \\
-& = (1 - \theta) x \ln(x) + b x - \ln \Gamma(x + r - 1) + c
+& = (1 - \theta) x \ln(x) \\
+& \qquad + \left[\theta \ln \mu - (1 - \theta) - \ln (1 - p)\right] x \\
+& \qquad \qquad - \ln \Gamma(x + r - 1) \\
+& \qquad \qquad \qquad + \frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r - 1).
 \end{aligned}
 $$
-where $b = \theta \ln \mu - (1 - \theta) - \ln (1 - p)$ and $c = \frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r - 1)$. The first derivative of $d(x)$ with respect to $x$ is then
+The first derivative of $d(x)$ with respect to $p$ is then
 $$
-d'(x) = (1 - \theta) \ln x - \psi_0(x + r - 1) + \theta \ln \mu - \ln(1 - p),
+\frac{\partial}{\partial p}d(x) = \frac{x}{1 - p} - \frac{r}{p},
 $$
-where $\psi_0()$ is the [digamma function](https://en.wikipedia.org/wiki/Digamma_function). 
-
-Let's assume that we want $d'(\mu) = 0$. This implies that 
-$$
-\ln(1 - p) = \ln \mu - \psi_0(\mu + r - 1)
-$$
-and thus
-$$
-\ln p = \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right]
-$$
-We can then write 
+which implies that $d(x)$ is minimized when $p = \frac{r}{r + x}$. Thus, we can write $d(x)$ in terms of $\mu$, $\theta$, and $r$ as
 $$
 \begin{aligned}
-d(\mu) &= (1 - \theta) \mu \ln \mu + b \mu - \ln \Gamma(\mu + r - 1) + c \\
-&= (1 - \theta) \mu \ln \mu + \theta \mu \ln \mu - \mu (1 - \theta) - \mu\ln (1 - p) - \ln \Gamma(\mu + r - 1) + \frac{1}{2} \ln \theta - \theta \mu - r \ln p + \ln \Gamma(r - 1) \\
-&= \mu \ln \mu - \mu - \mu \ln(1 - p) - \ln \Gamma(\mu + r - 1) + \frac{1}{2} \ln \theta - r \ln p + \ln \Gamma(r - 1) \\
-&= \mu \psi_0(\mu + r - 1) - r \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right] - \ln \Gamma(\mu + r - 1) + \ln \Gamma(r - 1)  - \mu + \frac{1}{2} \ln \theta.
+d(x) &= -\theta x \ln(x) + \left[\theta \ln \mu + \theta - 1\right] x \\
+& \qquad + (x + r) \ln(x + r) - \ln \Gamma(x + r - 1) \\
+& \qquad \qquad + \frac{1}{2} \ln \theta - \theta \mu - r \ln r + \ln \Gamma(r - 1).
 \end{aligned}
 $$
-Now, we would like to find a value of $r$ so that the approximating distribution is as similar as possible to $f(x)$. One way to approach this is to minimize $d(\mu)$ with respect to $r$. Let's therefore look at the derivative
+Now, it can be shown that 
 $$
-\frac{\partial}{\partial r} d(\mu) = \mu \psi_1(\mu + r - 1)\left(\frac{1 - (\mu - r)\exp \psi_0(\mu + r - 1)}{1 - \mu \exp \psi_0(\mu + r - 1)}\right) - \ln\left[1 - \mu \exp \psi_0(\mu + r - 1)\right] - \psi_0(\mu + r - 1) + \psi_0(r - 1).
+\begin{aligned}
+\ln \Gamma(x + r - 1) &\geq (x + r) \ln (x + r) - (x + r - 1) - \ln(x + r) - \ln(x + r - 1) \\
+&\geq (x + r) \ln (x + r) - (x + r - 1) - 2\ln(x + r) 
+\end{aligned}
 $$
+by which it follows that 
+$$
+\begin{aligned}
+d(x) \leq \tilde{d}(x) &= -\theta x \ln(x) + \left[\theta \ln \mu + \theta - 1\right] x \\
+& \qquad + (x + r) \ln(x + r) -  (x + r) \ln (x + r) + (x + r - 1) + 2 \ln(x + r) \\
+& \qquad \qquad + \frac{1}{2} \ln \theta - \theta \mu - r \ln r + \ln \Gamma(r - 1) \\
+&= \theta x -\theta x \left[\ln(x) - \ln \mu\right] + 2\ln(x + r) \\
+& \qquad \qquad + r - 1 + \frac{1}{2} \ln \theta - \theta \mu - r \ln r + \ln \Gamma(r - 1).
+\end{aligned}
+$$
+The derivative of $\tilde{d}(x)$ with respect to $x$ is
+$$
+\tilde{d}'(x) = \frac{2}{x + r} - \theta \ln\left(\frac{x}{\mu}\right).
+$$
+Let $x^*$ denote the maximizing value of $\tilde{d}(x)$, so that $\tilde{d}'(x^*) = 0$. It follows that
+$$
+\frac{2}{x^* + r} = \theta \ln\left(\frac{x^*}{\mu}\right).
+$$
+Therefore, $x^* \in \left(\mu, \mu \exp\left(\frac{2}{\theta(\mu + r)}\right)\right)$.
+
+Substituting into $\tilde{d}(x^*)$ and re-arranging a bit gives
+$$
+\begin{aligned}
+\tilde{d}(x^*) &= x^* \theta \ln \mu -\theta x^* \left[\ln(x^*) - 1\right] + 2 \ln(x^* + r) \\
+& \qquad \qquad + \frac{1}{2} \ln \theta - \theta \mu - 1 - r \left(\ln r - 1\right) + \ln \Gamma(r - 1).
+\end{aligned}
+$$
+We seek a value of $r$ that minimizes the discrepancy at $x^*$. Taking the derivative with respect to $r$ (and treating $x^*$ as an implicit function of $r$),
+$$
+\begin{aligned}
+\frac{\partial}{\partial r} \tilde{d}(x^*) &= - \theta \ln\left(\frac{x^*}{\mu}\right)\left(\frac{\partial x^*}{\partial r}\right) + \frac{2}{x^* + r}\left(\frac{\partial x^*}{\partial r} + 1\right) + \psi(r - 1) - \ln(r) \\
+&= \left[\frac{2}{x^* + r} - \theta \ln\left(\frac{x^*}{\mu}\right)\right] \frac{\partial x^*}{\partial r} + \frac{2}{x^* + r} + \psi(r - 1) - \ln(r) \\
+&= \frac{2}{x^* + r} + \psi(r - 1) - \ln(r)
+\end{aligned}
+$$
+
+where $\psi()$ is the [digamma function](https://en.wikipedia.org/wiki/Digamma_function). Thus, take $r*$ and $x^*$ to be the solution to $\frac{2}{x^* + r} + \psi(r^* - 1) - \ln(r^*) = 0$ and set $p^* = \frac{x^*}{x^* + r^*}$. Set $M = \exp \tilde{d}(x^*)$. Since 
+$$
+\ln M = \tilde{d}(x^*) \geq \sup_x d(x),
+$$
+we can use $M$ and g(x; p^*, r^*)$ for rejection sampling.
+
+Here is R code to calculate $r^*$, $x^*$, and $p^*$:
+```{r}
+library(ggplot2)
+
+x_star <- function(r, mu, theta) {
+  upper <- mu * exp(2 / (theta * (mu + r)))
+  x_root <- uniroot(\(x) 2 / (x + r) - theta * log(x / mu), lower = mu, upper = upper)
+  x_root$root
+}
+
+d_tilde <- function(x, r, mu, theta) {
+  theta * (log(mu) + 1) * x - theta * x * log(x) + 2 * log(x + r) + 
+    log(theta) / 2 - theta * mu - r * log(r) + r - 1 + lgamma(r - 1)
+}
+
+d_tilde_min <- function(x, mu, theta) {
+  if (length(x) > 1L) {
+    res <- sapply(x, d_tilde_min, mu = mu, theta = theta)
+    return(res)
+  }
+  lower <- uniroot(\(r) 2 / (mu + r) + digamma(r - 1) - log(r), interval = c(1 + 1e-10, 200))
+  upper <- uniroot(\(r) 2 / r + digamma(r - 1) - log(r), interval = c(1 + 1e-10, 200))
+  r <- uniroot(\(r) 2 / (x_star(r, mu, theta) + r) + digamma(r - 1) - log(r), 
+               interval = c(lower$root, upper$root))
+  x_min <- x_star(x, mu, theta)
+  d_tilde(x = x_min, r = x, mu = mu, theta = theta)
+}
+
+
+ggplot() +
+  xlim(1.00001, 30) +
+  ylim(0, 4) + 
+  geom_function(fun = d_tilde_min, 
+                args = list(mu = 5, theta = 0.9), 
+                color = "red")
+
+```
+
