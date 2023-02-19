@@ -1,0 +1,255 @@
+---
+title: Cohen's $d_z$ makes me dizzy because of measurement error
+authors:
+  - admin
+date: '2023-02-17'
+codefolding_show: 'hide'
+slug: dizzy-for-d-z
+categories: []
+draft: true
+tags:
+  - effect size
+  - standardized mean difference
+  - design-comparable SMD
+  - measurement-error
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<p>Meta-analyses in education, psychology, and related fields rely heavily of Cohen’s <span class="math inline">\(d\)</span>, or the standardized mean difference effect size, for describing the magnitude (and direction) of intervention effects. In these fields, Cohen’s <span class="math inline">\(d\)</span> is so pervasive that its application is nearly automatic (knee-jerk?) and analysts rarely question its utility or consider alternatives. At the same time, using Cohen’s <span class="math inline">\(d\)</span> is challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator.</p>
+<p>For basic between-group designs, the only variances in the model are the within-group variances, so the choice is limited to a) the population variance, assuming it is homogeneous across groups, b) the variance of one group, or c) the average of the variances in each group. In most applications, homogeneity is assumed (often without much reflection), version (a) of Cohen’s <span class="math inline">\(d\)</span> is calculated, and the meta-analyst can go along their merry way. For sake of succinctness, I’ll call this effect size <span class="math inline">\(d_{b}\)</span>, with <span class="math inline">\(b\)</span> indicating the basic between-group comparison.</p>
+<p>For within-group or repeated measures designs, the set of choices is more involved and includes a) standardizing by the across-participant variance in one condition (or both conditions, assuming homogeneity) or b) standardizing by the variance of the difference scores. The former approach is sometimes called <span class="math inline">\(d_{av}\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, the latter is called <span class="math inline">\(d_z\)</span><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The <span class="math inline">\(d_{av}\)</span> metric uses the same standardizing variance as the <span class="math inline">\(d\)</span> from a basic between-group design, and so results from both types of designs are, in principle, on the same metric.</p>
+<p>In the context of meta-analysis, the comparability of <span class="math inline">\(d_b\)</span> and <span class="math inline">\(d_{av}\)</span> is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with <span class="math inline">\(d_b\)</span> may be less of a priority and one might consider using <span class="math inline">\(d_z\)</span> for synthesis. Purely on a pragmatic level, <span class="math inline">\(d_z\)</span> might be attractive here because the only pieces of information needed to calculate it are the total sample size and the <span class="math inline">\(t\)</span> statistic (or <span class="math inline">\(p\)</span>-value) from the comparison between conditions. In contrast, calculating <span class="math inline">\(d_{av}\)</span> also requires the between-participant standard deviations from one or both groups, which primary studies which might not always report.</p>
+<p>In this post, I’m going to consider how measurement error in the outcomes influences the interpretation of <span class="math inline">\(d_{av}\)</span> and <span class="math inline">\(d_z\)</span>.</p>
+<div id="a-within-group-design-with-measurement-error" class="section level1">
+<h1>A within-group design with measurement error</h1>
+<p>Suppose we have a within-group design involving two conditions, where participants are assessed on <span class="math inline">\(K\)</span> trials under each condition. Let <span class="math inline">\(Y_{ijk}\)</span> denote the outcome from trial <span class="math inline">\(k\)</span> for participant <span class="math inline">\(j\)</span> under condition <span class="math inline">\(i\)</span>, for <span class="math inline">\(i = 1,2\)</span>, <span class="math inline">\(j = 1,...,N\)</span>, and <span class="math inline">\(k = 1,...,K\)</span>. A basic model for this set-up is
+<span class="math display">\[
+Y_{ijk} = \mu_i + u_{ij} + e_{ijk}
+\]</span>
+where <span class="math inline">\(u_{1j}\)</span> and <span class="math inline">\(u_{2j}\)</span> are participant-specific errors in the true scores under each condition and <span class="math inline">\(e_{ijk}\)</span> are measurement errors. For simplicity, I will assume that the true-score variance is equal across conditions, with <span class="math inline">\(\Var(u_{ij}) = \sigma^2\)</span> for <span class="math inline">\(i = 1,2\)</span>, that the true scores are correlated across conditions, <span class="math inline">\(\cor(u_{1j}, u_{2j}) = \rho\)</span>, and that measurement errors are uncorrelated and have homogeneous variance across conditions, with <span class="math inline">\(\Var(e_{ijk}) = \psi^2\)</span>. Let <span class="math inline">\(\phi = \sigma^2 / (\sigma^2 + \psi^2)\)</span> denote the reliability (intra-class correlation) of a single observed score. Note that we can write <span class="math inline">\(\psi^2\)</span> in terms of the reliability and true-score variance as
+<span class="math display">\[
+\psi^2 = \sigma^2 \times \frac{1 - \phi}{\phi}.
+\]</span></p>
+<p>Under this model, there are several different standardized mean difference metrics that we could consider. Since measurement reliability might vary from study to study, it would make sense to define the metric in terms of true score variances alone, as
+<span class="math display">\[
+\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma}
+\]</span>
+or in terms of the variance of the difference in true scores, as
+<span class="math display">\[
+\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2(1 - \rho)}}.
+\]</span>
+However, we don’t directly observe the true scores, and we can’t estimate their variance unless we have information about score reliabilities. Thus, meta-analysts will usually calculate effect sizes in terms of <em>observed</em> scores that include measurement error.</p>
+<p>Suppose that the analysis is conducted by taking the average of the <span class="math inline">\(K\)</span> trials for each participant under each condition, <span class="math inline">\(\bar{Y}_{ij} = \frac{1}{K} \sum_{k=1}^K Y_{ijk}\)</span>, and conducting the analysis using these mean scores. The variance of the mean scores is
+<span class="math display">\[
+\Var(\bar{Y}_{ij}) = \sigma^2 \left(1 + \frac{1 - \phi}{\phi K}\right),
+\]</span>
+so we can define the observed-score standardized mean difference using raw score standardization as
+<span class="math display">\[
+\tilde\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma \sqrt{1 + \frac{1 - \phi}{\phi K}}} = \frac{1}{\sqrt{1 + \frac{1 - \phi}{\phi K}}} \times \delta_{av}.
+\]</span>
+From this expression, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one.</p>
+<p>Similarly, the variance of the observed difference scores is
+<span class="math display">\[
+\Var(\bar{Y}_{2j} - \bar{Y}_{1j}) =2 \sigma^2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right),
+\]</span>
+so we can define the observed-score standardized mean difference using change score standardization as
+<span class="math display">\[
+\tilde\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)}} = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}} \times \delta_z.
+\]</span>
+Again, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one. However, unlike with <span class="math inline">\(d_{av}\)</span>, the attenuation factor here depends on <span class="math inline">\(\rho\)</span> in addition to <span class="math inline">\(\phi\)</span> and <span class="math inline">\(K\)</span>.</p>
+</div>
+<div id="meta-analysis" class="section level1">
+<h1>Meta-analysis</h1>
+<p>The relationships between the true-score effect sizes and the analogous observed score effect sizes starts to be a problem when we consider a meta-analysis that includes multiple studies. Primary studies will often use different instruments and procedures for measuring outcomes (necessitating the use of some standardized effect size), and those differences in instruments and procedures might come along with differences in score reliability as well as variation in the number of trials collected per condition (and plenty of other things, such as sample size, participant characteristics, etc.). Procedural heterogeneity like this creates two challenges for meta-analysis: bias in average effect sizes and extra heterogeneity in the distribution of effect sizes. Both make findings from a meta-analysis more difficult to interpret.</p>
+<p>To illustrate, let’s now imagine that the parameters of the within-group study design, <span class="math inline">\(\delta_{av}\)</span> or <span class="math inline">\(\delta_z\)</span>, <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are random variables, drawn from the distribution of parameters across a population of hypothetical studies.</p>
+<div id="a-model-for-delta_av" class="section level2">
+<h2>A model for <span class="math inline">\(\delta_{av}\)</span></h2>
+<p>Let’s first consider <span class="math inline">\(\delta_{av}\)</span> and assume that it follows a random effects model, with
+<span class="math display">\[
+\delta_{av} \sim N\left(\mu, \tau^2\right).
+\]</span>
+Let’s also assume that the remaining parameters <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are independent of <span class="math inline">\(\delta_{av}\)</span>. These parameters determine the attenuation factor <span class="math inline">\(A_{av} = \left(1 + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)</span>, which relates the observed-score effect size parameter to the true score effect size parameter.</p>
+<p>The bias of <span class="math inline">\(\tilde\delta_{av}\)</span> is therefore
+<span class="math display">\[
+\E\left(\tilde\delta_{av}\right) = \E\left(A_{av}\delta_{av}\right) = \E(A_{av}) \times \mu.
+\]</span>
+Thus, under my admittedly simplistic assumptions, a meta-analysis of observed score Cohen’s <span class="math inline">\(d_{av}\)</span> estimates will be biased (downward) for the overall average effect in the true-score distribution. That’s bad, of course.</p>
+<p>On top of bias, variability in <span class="math inline">\(A_{av}\)</span> will also induce additional heterogeneity in the distribution of observed score effect sizes. To measure this additional heterogeneity, I will look at the coefficient of variation in <span class="math inline">\(\tilde\delta_{av}\)</span> so that the consequences for heterogeneity are separate from the consequences for bias. Under the assumption that <span class="math inline">\(A_{av}\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>,
+<span class="math display">\[
+\frac{\sqrt{\Var(\tilde\delta_{av})}}{\E(\tilde\delta_{av})} = \frac{\sqrt{(\mu^2 + 2 \tau^2) \Var(A_{av}) + \tau^2 \left[\E(A_{av})\right]^2}}{\E\left(A_{av} \right) \times \mu } = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_{av})}{\left[\E\left(A_{av} \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]</span>
+Thus, the coefficient of variation for <span class="math inline">\(\tilde\delta_{av}\)</span> is amplified by a factor that depends on the squared coefficient of variation in <span class="math inline">\(A_{av}\)</span>. Under the same model,
+<span class="math inline">\(\tilde\delta_z = A_z \times \delta_{av}\)</span>, where <span class="math inline">\(A_z = \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)</span>, and so <span class="math inline">\(\E(\tilde\delta_z) = \E(A_z) \times \mu\)</span> and
+<span class="math display">\[
+\frac{\sqrt{\Var(\tilde\delta_z)}}{\E(\tilde\delta_z)} = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_z)}{\left[\E\left(A_z \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]</span></p>
+<p>To see what’s going on here, let’s consider some specific distributions for these measurement factors. First, let’s assume:</p>
+<ul>
+<li><span class="math inline">\(\rho \sim B(14, 6)\)</span>, so that <span class="math inline">\(\E(\rho) = .7\)</span> and <span class="math inline">\(\Var(\rho) = 0.1^2\)</span>;</li>
+<li><span class="math inline">\(\phi \sim B(3, 5)\)</span>, so that <span class="math inline">\(\E(\rho) = .0.375\)</span> and <span class="math inline">\(\Var(\rho) = 0.161^2\)</span>;</li>
+<li><span class="math inline">\(K \sim 1 + Pois(9)\)</span>, so <span class="math inline">\(\E(K) = 10\)</span> and <span class="math inline">\(\Var(K) = 3^2\)</span>; and</li>
+<li><span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are mutually independent and independent of <span class="math inline">\(\delta_{av}\)</span>.</li>
+</ul>
+<p>Below I simulate 50000 samples from these distributions and calculate <span class="math inline">\(A_{av}\)</span> and <span class="math inline">\(A_z\)</span>.</p>
+<pre class="r"><code>R &lt;- 50000
+rho &lt;- rbeta(R, 14, 6)
+phi &lt;- rbeta(R, 3, 5)
+K &lt;- 1 + rpois(R, 9)
+A_av &lt;- 1 / sqrt(1 + (1 - phi) / (phi * K))
+A_z &lt;- 1 / sqrt(2 * (1 - rho + (1 - phi) / (phi * K)))</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(patchwork)
+
+density_plot &lt;- function(x, lab, col, limits) {
+  ggplot(data.frame(x), aes(x)) + 
+    xlim(limits) +
+    geom_density(alpha = 0.4, fill = col) + 
+    scale_y_continuous(labels = NULL) +
+    theme_minimal() + 
+    labs(x = lab, y = NULL)
+}
+
+p_A_av &lt;- density_plot(A_av, expression(A[av]),&quot;blue&quot;, c(0.2,1))
+p_A_z &lt;- density_plot(A_z, expression(A[z]), &quot;purple&quot;, c(0, 3))
+p_A_av + p_A_z</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
+<p>The distribution of <span class="math inline">\(A_{av}\)</span> is mostly concentrated around the mean of <span class="math inline">\(E(A_{av}) = 0.898\)</span>, with a squared coefficient of variation of <span class="math inline">\(CV^2(A_{av}) = 0.007\)</span>. In contrast, the distribution of <span class="math inline">\(A_{av}\)</span> has a mean very close to one, <span class="math inline">\(E(A_z) = 1.005\)</span> but a squared coefficient of variation of <span class="math inline">\(CV^2(A_z) = 0.044\)</span>, about 6 times larger! Thus, variation in measurement procedure induces much more extra heterogeneity into the distribution of <span class="math inline">\(\tilde\delta_z\)</span> than into <span class="math inline">\(\tilde\delta_{av}\)</span>.</p>
+<p>Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose <span class="math inline">\(K\)</span> to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is <span class="math inline">\(A_{av}^2\)</span>, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for <span class="math inline">\(A_{av}\)</span>. Let’s suppose that researchers always ensure <span class="math inline">\(A_{av} \geq 0.8\)</span> so that reliability is always at least <span class="math inline">\(0.64\)</span>. This leads to the following distributions for <span class="math inline">\(A_{av}\)</span> and <span class="math inline">\(A_z\)</span>:</p>
+<pre class="r"><code>A_av_trunc &lt;- A_av[A_av &gt;= 0.8]
+A_z_trunc &lt;- A_z[A_av &gt;= 0.8]
+p_A_av_trunc &lt;- density_plot(A_av_trunc, expression(A[av]),&quot;blue&quot;, c(0.2, 1))
+p_A_z_trunc &lt;- density_plot(A_z_trunc, expression(A[z]), &quot;purple&quot;, c(0, 3))
+p_A_av_trunc + p_A_z_trunc</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png" width="960" />
+The distribution of <span class="math inline">\(A_{av}\)</span> loses its left tail, so that its mean is <span class="math inline">\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)</span> and its squared coefficient of variation is reduced to <span class="math inline">\(CV^2(A_{av} | A_{av} \geq 0.8) = 0.002\)</span>. The distribution of <span class="math inline">\(A_{av}\)</span> now has a mean of <span class="math inline">\(E(A_z | A_{av} \geq 0.8) = 1.044\)</span> and a squared coefficient of variation of <span class="math inline">\(CV^2(A_z | A_{av} \geq 0.8) = 0.03\)</span>, about 12 times larger than the squared coefficient of variation of <span class="math inline">\(A_{av}\)</span>.</p>
+<p>Under both of these scenarios, the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is substantially more sensitive to heterogeneity of measurement procedures than is <span class="math inline">\(\tilde\delta_{av}\)</span>. The implication is that <span class="math inline">\(\tilde\delta_{av}\)</span> should be preferred over <span class="math inline">\(\tilde\delta_z\)</span> as a metric for meta-analyis.</p>
+</div>
+<div id="a-model-for-delta_z" class="section level2">
+<h2>A model for <span class="math inline">\(\delta_z\)</span></h2>
+<p>Now, one might object to the above analysis because there’s a sense that it assumes that <span class="math inline">\(\delta_{av}\)</span> is the right answer. After all, the underlying effect size model is specified in terms of <span class="math inline">\(\delta_{av}\)</span>, and the design parameters—including <span class="math inline">\(\rho\)</span> in particular—are treated as noise, uncorrelated with <span class="math inline">\(\delta_{av}\)</span>. What happens to the observed-score metrics <span class="math inline">\(\tilde\delta_z\)</span> and <span class="math inline">\(\tilde\delta_{av}\)</span> if we instead start with a model specified in terms of <span class="math inline">\(\delta_z\)</span>? Let’s see.</p>
+<p>Assume that
+<span class="math display">\[
+\delta_z \sim N(\alpha, \omega^2)
+\]</span>
+and that the remaining parameters <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are independent of <span class="math inline">\(\delta_{av}\)</span>. Then the observed-score standardized mean difference using change score standardization can be written as <span class="math inline">\(\tilde\delta_z = B_z \times \delta_z\)</span>, where
+<span class="math display">\[
+B_z = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}}
+\]</span>
+and the observed-score standardized mean difference using raw score standardization can be written as <span class="math inline">\(\tilde\delta_{av} = B_{av} \times \delta_z\)</span>, where
+<span class="math display">\[
+B_{av} = \frac{\sqrt{2}(1 - \rho)}{\sqrt{1 - \rho + \frac{1 - \phi}{\phi K}}}.
+\]</span>
+The plots below show the distribution of <span class="math inline">\(B_z\)</span> and <span class="math inline">\(B_{av}\)</span> under the same scenarios considered above. First, the scenario where observed-score reliability is not controlled:</p>
+<pre class="r"><code>B_z &lt;- sqrt((1 - rho) / (1 - rho + (1 - phi) / (phi * K)))
+B_av &lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
+
+p_B_av &lt;- density_plot(B_av, expression(B[av]),&quot;green&quot;, c(0,1.5))
+p_B_z &lt;- density_plot(B_z, expression(B[z]), &quot;yellow&quot;, c(0, 1))
+p_B_av + p_B_z</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png" width="960" />
+Second, the scenario where observed-score reliability is at least 0.64:</p>
+<pre class="r"><code>B_z_trunc &lt;- B_z[A_av &gt;= 0.8]
+B_av_trunc &lt;- B_av[A_av &gt;= 0.8]
+
+p_B_av_trunc &lt;- density_plot(B_av, expression(B[av]),&quot;green&quot;, c(0,1.5))
+p_B_z_trunc &lt;- density_plot(B_z, expression(B[z]), &quot;yellow&quot;, c(0, 1))
+p_B_av_trunc + p_B_z_trunc</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-6-1.png" width="960" />
+The table below reports the squared coefficients of variation for each of these multiplicative factors I have considered.</p>
+<pre class="r"><code>library(dplyr)
+dat &lt;- tibble(A_av, A_z, B_av, B_z)
+
+random_rel &lt;- 
+  dat |&gt;
+  summarise(
+    across(everything(), ~ var(.) / mean(.)^2),
+    reliability = &quot;random&quot;
+  )
+
+controlled_rel &lt;-
+  dat |&gt;
+  filter(A_av &gt;= 0.8) |&gt;
+  summarise(
+    across(everything(), ~ var(.) / mean(.)^2),
+    reliability = &quot;at least 0.64&quot;
+  )
+
+CVs &lt;- 
+  bind_rows(random_rel, controlled_rel) |&gt;
+  mutate(
+    A_ratio = A_z / A_av,
+    B_ratio = B_av / B_z
+  ) |&gt;
+  select(reliability, A_av, A_z, A_ratio, B_av, B_z, B_ratio)
+
+knitr::kable(
+  CVs, 
+  digits = c(0,4,4,1,4,4,1),
+  title = &quot;Squared coefficients of variation&quot;,
+  col.names = c(&quot;Reliability&quot;,&quot;$A_{av}$&quot;,&quot;$A_z$&quot;,&quot;$A_z /A_{av}$&quot;, &quot;$B_{av}$&quot;,&quot;$B_z$&quot;, &quot;$B_{av} / B_z$&quot;),
+  escape = TRUE
+)</code></pre>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="9%" />
+<col width="18%" />
+<col width="12%" />
+<col width="9%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Reliability</th>
+<th align="right"><span class="math inline">\(A_{av}\)</span></th>
+<th align="right"><span class="math inline">\(A_z\)</span></th>
+<th align="right"><span class="math inline">\(A_z /A_{av}\)</span></th>
+<th align="right"><span class="math inline">\(B_{av}\)</span></th>
+<th align="right"><span class="math inline">\(B_z\)</span></th>
+<th align="right"><span class="math inline">\(B_{av} / B_z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">random</td>
+<td align="right">0.0073</td>
+<td align="right">0.0438</td>
+<td align="right">6.0</td>
+<td align="right">0.0817</td>
+<td align="right">0.0331</td>
+<td align="right">2.5</td>
+</tr>
+<tr class="even">
+<td align="left">at least 0.64</td>
+<td align="right">0.0025</td>
+<td align="right">0.0300</td>
+<td align="right">12.2</td>
+<td align="right">0.0663</td>
+<td align="right">0.0189</td>
+<td align="right">3.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCR"</code>, the “stanardized mean change using raw score standardization” in <code>metafor::escalc</code>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>This version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCC"</code>, the “stanardized mean change using change score standardization” in <code>metafor::escalc</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
