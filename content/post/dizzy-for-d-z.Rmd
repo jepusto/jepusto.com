@@ -29,10 +29,10 @@ $$
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
-Meta-analyses in education, psychology, and related fields rely heavily of Cohen's $d$, or the standardized mean difference effect size, for describing the magnitude (and direction) of intervention effects. In these fields, Cohen's $d$ is so pervasive that its application is nearly automatic (knee-jerk?) and analysts rarely question its utility or consider alternatives. Despite this, Cohen's $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator. 
+Meta-analyses in education, psychology, and related fields rely heavily of Cohen's $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen's $d$ is so pervasive that its use is nearly automatic and analysts rarely question its utility or consider alternatives. Despite this, Cohen's $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator. 
 
-Perhaps because use of Cohen's $d$ is so under-scrutinized in practice, methodologists have spent many an afternoon blogging about this problem, including excellent discussions from [Jan Vanhove](https://janhove.github.io/reporting/2015/02/05/standardised-vs-unstandardised-es) (with [a sequel](https://janhove.github.io/design/2015/03/16/standardised-es-revisited)), [Jake Westfall](http://jakewestfall.org/blog/index.php/2016/03/25/five-different-cohens-d-statistics-for-within-subject-designs/), [Uri Simonsohn](http://datacolada.org/33), and [Pierre Dragicevic](https://transparentstatistics.org/2018/07/05/meanings-effect-size/), more formal discussions by [Thom Baguley](https://www.floppybunny.org/robin/web/virtualclassroom/stats/basics/articles/effect_size/effect_size_baguley_2009.pdf), and some very interesting work on alternative conceptualizations by [Tony Ades and colleagues](https://doi.org/10.1002/jrsm.1130). 
-I can promise, dear reader, that the present blog post will not be nearly as cogent as these contributions---this is more about getting my own thoughts straight than making clear recommendations---and so _caveat lector_ applies. 
+Perhaps because use of Cohen's $d$ is so under-scrutinized in practice, methodologists have spent many an afternoon blogging about this problem. For general discussions about issues with how to define Cohen's $d$, see excellent posts from [Jan Vanhove](https://janhove.github.io/reporting/2015/02/05/standardised-vs-unstandardised-es) (with [a sequel](https://janhove.github.io/design/2015/03/16/standardised-es-revisited)), [Jake Westfall](http://jakewestfall.org/blog/index.php/2016/03/25/five-different-cohens-d-statistics-for-within-subject-designs/), [Uri Simonsohn](http://datacolada.org/33), and [Pierre Dragicevic](https://transparentstatistics.org/2018/07/05/meanings-effect-size/); a more formal discussion by [Thom Baguley](https://www.floppybunny.org/robin/web/virtualclassroom/stats/basics/articles/effect_size/effect_size_baguley_2009.pdf); and some very interesting work on alternative conceptualizations by [Tony Ades and colleagues](https://doi.org/10.1002/jrsm.1130). 
+I can promise, dear reader, that the present blog post will not be nearly as cogent as these contributions---this is more about getting my own thoughts straight than making any recommendations---and so _caveat lector_ applies. 
 
 In this post, I'm going to mull over how measurement error and design decisions influence the metric definition of Cohen's $d$ in simple within-group experimental designs. The distorting effects of measurement error has long been a source of concern within psychometric meta-analysis, a perspective associated with the work of [Frank Schmidt and Jack Hunter](https://methods.sagepub.com/book/methods-of-meta-analysis-3e), and measurement-error corrections are well developed and often applied in meta-analyses of correlations. Basic measurement-error corrections have also been described for Cohen's $d$ from between-group designs (see recent work by [Brenton Wiernik and Jeff Dahlke](https://psyarxiv.com/9mpbn/)). However, I have literally never seen a meta-analytic application that applied these corrections and I have thus far been unable to locate work on such corrections specifically for effect sizes in within-group designs.[^comment] So, time to muck about...
 
@@ -48,7 +48,7 @@ For within-group or repeated measures designs, the set of choices is more involv
  
 [^SMCC]: This version of $d$ corresponds to `measure = "SMCC"`, the "stanardized mean change using change score standardization" in `metafor::escalc`.
  
-In the context of meta-analysis, the comparability of $d_b$ and $d_{av}$ is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with $d_b$ may be less of a priority and one might consider using $d_z$ for synthesis. Purely on a pragmatic level, $d_z$ might be attractive here because the only pieces of information needed to calculate it are the total sample size and the $t$ statistic (or $p$-value) from the comparison between conditions. In contrast, calculating $d_{av}$ also requires the between-participant standard deviations from one or both groups, which primary studies which might not always report.
+In the context of meta-analysis, the comparability of $d_b$ and $d_{av}$ is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with $d_b$ may be less of a priority and one could consider using $d_z$ for synthesis. Purely on a pragmatic level, $d_z$ might be attractive here because the only pieces of information needed to calculate it are the total sample size and the $t$ statistic (or $p$-value) from the comparison between conditions. In contrast, calculating $d_{av}$ also requires the between-participant standard deviations from one or both groups, which primary studies which might not always report.
 
 Going in to this exercise, I had the notion that measurement error would affect $d_z$ to a greater degree than $d_{av}$, since $d_z$ involves difference scores and difference scores get hit by measurement error twice. Does this intuition hold up? Let me try to formalize things a bit.
 
@@ -98,7 +98,7 @@ Again, we can see that measurement error attenuates the true-score effect size b
 
 # Meta-analysis
 
-The relationships between the true-score effect sizes and the analogous observed score effect sizes starts to be a problem when we consider a meta-analysis that includes multiple studies. Primary studies will often use different instruments and procedures for measuring outcomes (necessitating the use of some standardized effect size), and those differences in instruments and procedures might come along with differences in score reliability as well as variation in the number of trials collected per condition (and plenty of other things, such as sample size, participant characteristics, etc.). Procedural heterogeneity like this creates two potential challenges for meta-analysis: bias in average effect sizes and extra heterogeneity in the distribution of effect sizes. Both could make findings from a meta-analysis more difficult to interpret. 
+The relationships between the true-score effect sizes and the analogous observed score effect sizes starts to be a problem when we consider a meta-analysis that includes multiple studies. Primary studies will often use different instruments and procedures for measuring outcomes (necessitating the use of some standardized effect size), and those differences in instruments and procedures might come along with differences in score reliability as well as variation in the number of trials collected per condition (and plenty of other things, such as sample size, participant characteristics, etc.). Procedural heterogeneity like this creates two potential challenges for meta-analysis: bias in average effect sizes and extra heterogeneity in the distribution of effect sizes. Both could make findings from a meta-analysis more difficult to interpret, although I will argue that extra heterogeneity is more concerning than bias.
 
 To illustrate, let's now imagine that the parameters of the within-group study design, $\delta_{av}$ or $\delta_z$, $\rho$, $\phi$, and $K$ are random variables, drawn from the distribution of parameters across a population of hypothetical studies. 
 
@@ -114,9 +114,11 @@ The bias of $\tilde\delta_{av}$ is therefore
 $$
 \E\left(\tilde\delta_{av}\right) = \E\left(A_{av}\delta_{av}\right) = \E(A_{av}) \times \mu.
 $$
-Thus, under my very simplistic assumptions, a meta-analysis of observed score Cohen's $d_{av}$ estimates will be biased (downward) for the overall average effect in the true-score distribution. You might find that undesirable, of course. On the other hand, bias might not be as a big a problem as it first seems. If all of the observed-score effect sizes are biased to an extent that's unrelated to the true effects, then bias just stretches or compresses the scale of measurement, but doesn't necessarily lead to interpretive problems. It's like if you had a ruler that is half an inch too short, and you're trying to compare the heights of different objects. As long as you use the same ruler, then you will still be able to determine which objects are bigger and which are smaller, and by how much, even if the measurements are off in an absolute sense.
+Thus, under my very simplistic assumptions, a meta-analysis of observed score Cohen's $d_{av}$ estimates will be biased (downward) for the overall average effect in the true-score distribution. 
 
-Apart from bias, however, variability in $A_{av}$ will also induce _additional heterogeneity_ in the distribution of observed score effect sizes, and this is indeed a problem. To measure this additional heterogeneity, I will look at the coefficient of variation in $\tilde\delta_{av}$ in order to separate the consequences for heterogeneity from the consequences for bias. Under the assumption that $A_{av}$ is independent of $\delta_{av}$, 
+You might find that the downward bias in $\tilde\delta_{av}$ is undesirable. On the other hand, bias might not be as a big a problem as it first seems. If all of the observed-score effect sizes are biased to a degree that is unrelated to the true effects, then bias just stretches or compresses the scale of measurement, but doesn't necessarily lead to interpretive problems. It's like if you had a ruler that is half an inch too short, and you're trying to compare the heights of different objects. As long as you use the same ruler, then you will still be able to determine which objects are bigger and which are smaller, and by how much, even if the measurements are off in an absolute sense.
+
+Apart from bias, however, variability in $A_{av}$ will also induce _additional heterogeneity_ in the distribution of observed score effect sizes. This is a clear problem because it creates additional uncertainty, making it harder to draw inferences about the distribution of effects, predict new effect sizes, and identify substantively interesting moderators. To measure this additional heterogeneity, I will look at the coefficient of variation in $\tilde\delta_{av}$ in order to separate the consequences for heterogeneity from the consequences for bias. Under the assumption that $A_{av}$ is independent of $\delta_{av}$, 
 $$
 \frac{\sqrt{\Var(\tilde\delta_{av})}}{\E(\tilde\delta_{av})} = \frac{\sqrt{(\mu^2 + 2 \tau^2) \Var(A_{av}) + \tau^2 \left[\E(A_{av})\right]^2}}{\E\left(A_{av} \right) \times \mu } = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_{av})}{\left[\E\left(A_{av} \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
 $$
@@ -135,16 +137,15 @@ To see what's going on here, let's consider some specific distributions for thes
 
 Below I simulate 50000 samples from these distributions and calculate $A_{av}$ and $A_z$. 
 
-```{r}
+```{r, fig.width = 10, fig.height = 3}
+
 R <- 50000
 rho <- rbeta(R, 14, 6)
 phi <- rbeta(R, 3, 5)
 K <- 1 + rpois(R, 9)
 A_av <- 1 / sqrt(1 + (1 - phi) / (phi * K))
 A_z <- 1 / sqrt(2 * (1 - rho + (1 - phi) / (phi * K)))
-```
 
-```{r, fig.width = 10, fig.height = 3}
 library(ggplot2)
 library(patchwork)
 
@@ -162,7 +163,7 @@ p_A_z <- density_plot(A_z, expression(A[z]), "purple", c(0, 3))
 p_A_av + p_A_z
 ```
 
-The distribution of $A_{av}$ is mostly concentrated around the mean of $E(A_{av}) = `r round(mean(A_av), 3)`$, with a squared coefficient of variation of $CV^2(A_{av}) = `r round(CV_A_av <- var(A_av) / mean(A_av)^2, 3)`$. In contrast, the distribution of $A_{av}$ has a mean very close to one, $E(A_z) = `r round(mean(A_z), 3)`$ but a squared coefficient of variation of $CV^2(A_z) = `r round(CV_A_z <- var(A_z) / mean(A_z)^2, 3)`$, about `r round(CV_A_z / CV_A_av)` times larger! Thus, variation in measurement procedure induces much more extra heterogeneity into the distribution of $\tilde\delta_z$ than into $\tilde\delta_{av}$. 
+The distribution of $A_{av}$ is mostly concentrated around the mean of $E(A_{av}) = `r round(mean(A_av), 3)`$, with a coefficient of variation of $CV(A_{av}) = `r round(CV_A_av <- sd(A_av) / mean(A_av), 3)`$. In contrast, the distribution of $A_{av}$ has a mean very close to one, $E(A_z) = `r round(mean(A_z), 3)`$ but a coefficient of variation of $CV(A_z) = `r round(CV_A_z <- sd(A_z) / mean(A_z), 3)`$, about `r round(CV_A_z / CV_A_av, 1)` times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of $\tilde\delta_z$ than into $\tilde\delta_{av}$. 
 
 Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose $K$ to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is $A_{av}^2$, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for $A_{av}$. Let's suppose that researchers always ensure $A_{av} \geq 0.8$ so that reliability is always at least $0.64$. This leads to the following distributions for $A_{av}$ and $A_z$:
 ```{r, fig.width = 10, fig.height = 3}
@@ -172,15 +173,14 @@ p_A_av_trunc <- density_plot(A_av_trunc, expression(A[av]),"blue", c(0.2, 1))
 p_A_z_trunc <- density_plot(A_z_trunc, expression(A[z]), "purple", c(0, 3))
 p_A_av_trunc + p_A_z_trunc
 ```
-The distribution of $A_{av}$ loses its left tail, so that its mean is $E(A_{av}|A_{av} \geq 0.8) = `r round(mean(A_av_trunc), 3)`$ and its squared coefficient of variation is reduced to $CV^2(A_{av} | A_{av} \geq 0.8) = `r round(CV_A_av_trunc <- var(A_av_trunc) / mean(A_av_trunc)^2, 3)`$. The distribution of $A_{av}$ now has a mean of $E(A_z | A_{av} \geq 0.8) = `r round(mean(A_z_trunc), 3)`$ and a squared coefficient of variation of $CV^2(A_z | A_{av} \geq 0.8) = `r round(CV_A_z_trunc <- var(A_z_trunc) / mean(A_z_trunc)^2, 3)`$, about `r round(CV_A_z_trunc / CV_A_av_trunc)` times larger than the squared coefficient of variation of $A_{av}$. 
+The distribution of $A_{av}$ loses its left tail, so that its mean is $E(A_{av}|A_{av} \geq 0.8) = `r round(mean(A_av_trunc), 3)`$ and its coefficient of variation is reduced to $CV(A_{av} | A_{av} \geq 0.8) = `r round(CV_A_av_trunc <- sd(A_av_trunc) / mean(A_av_trunc), 3)`$. The distribution of $A_{av}$ now has a mean of $E(A_z | A_{av} \geq 0.8) = `r round(mean(A_z_trunc), 3)`$ and a coefficient of variation of $CV(A_z | A_{av} \geq 0.8) = `r round(CV_A_z_trunc <- sd(A_z_trunc) / mean(A_z_trunc), 3)`$, about `r round(CV_A_z_trunc / CV_A_av_trunc, 1)` times larger than the squared coefficient of variation of $A_{av}$. 
 
-Under both of these scenarios, the observed-score $\tilde\delta_z$ is substantially more sensitive to heterogeneity of measurement procedures than is $\tilde\delta_{av}$. Based on this model and hypothetical example, it seems clear $\tilde\delta_{av}$ should be preferred over $\tilde\delta_z$ as a metric for meta-analyis.
+Under both of these scenarios, the observed-score $\tilde\delta_z$ is substantially more sensitive to heterogeneity of measurement procedures than is $\tilde\delta_{av}$. Based on this model and hypothetical example, it seems clear $\tilde\delta_{av}$ should be preferred over $\tilde\delta_z$ as a metric for meta-analyis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there's a sense that we have assumed that $\delta_{av}$ is the right answer. After all, the underlying effect size model is specified in terms of $\delta_{av}$, and the design parameters---including $\rho$ in particular---are treated as noise, uncorrelated with $\delta_{av}$. 
+What happens to the observed-score metrics $\tilde\delta_z$ and $\tilde\delta_{av}$ if we instead start with a model specified in terms of $\delta_z$? 
 
 ## A model for $\delta_z$
 
-Now, one might object to the above analysis because there's a sense that it assumes that $\delta_{av}$ is the right answer. After all, the underlying effect size model is specified in terms of $\delta_{av}$, and the design parameters---including $\rho$ in particular---are treated as noise, uncorrelated with $\delta_{av}$. What happens to the observed-score metrics $\tilde\delta_z$ and $\tilde\delta_{av}$ if we instead start with a model specified in terms of $\delta_z$? Let's see.
-
-Assume that 
+Let's now see how this works if we treat $\delta_z$ as the correct metric and assume that the design parameters are independent of $\delta_z$. Assume that 
 $$
 \delta_z \sim N(\alpha, \omega^2)
 $$
@@ -210,7 +210,7 @@ p_B_av_trunc <- density_plot(B_av, expression(B[av]),"green", c(0,1.5))
 p_B_z_trunc <- density_plot(B_z, expression(B[z]), "yellow", c(0, 1))
 p_B_av_trunc + p_B_z_trunc
 ```
-The table below reports the squared coefficients of variation for each of these multiplicative factors I have considered.
+The table below reports the coefficients of variation for each of these multiplicative factors I have considered.
 ```{r}
 library(dplyr)
 dat <- tibble(A_av, A_z, B_av, B_z)
@@ -218,7 +218,7 @@ dat <- tibble(A_av, A_z, B_av, B_z)
 random_rel <- 
   dat |>
   summarise(
-    across(everything(), ~ var(.) / mean(.)^2),
+    across(everything(), ~ sd(.) / mean(.)),
     reliability = "random"
   )
 
@@ -226,7 +226,7 @@ controlled_rel <-
   dat |>
   filter(A_av >= 0.8) |>
   summarise(
-    across(everything(), ~ var(.) / mean(.)^2),
+    across(everything(), ~ sd(.) / mean(.)),
     reliability = "at least 0.64"
   )
 
@@ -234,16 +234,52 @@ CVs <-
   bind_rows(random_rel, controlled_rel) |>
   mutate(
     A_ratio = A_z / A_av,
-    B_ratio = B_av / B_z
+    B_ratio = B_z / B_av
   ) |>
   select(reliability, A_av, A_z, A_ratio, B_av, B_z, B_ratio)
 
 knitr::kable(
   CVs, 
-  digits = c(0,4,4,1,4,4,1),
-  title = "Squared coefficients of variation",
-  col.names = c("Reliability","$A_{av}$","$A_z$","$A_z /A_{av}$", "$B_{av}$","$B_z$", "$B_{av} / B_z$"),
+  digits = c(0,3,3,1,3,3,2),
+  caption = "Coefficients of variation",
+  col.names = c("Reliability","$A_{av}$","$A_z$","$A_z /A_{av}$", "$B_{av}$","$B_z$", "$B_{z} / B_{av}$"),
   escape = TRUE
 )
+```
+
+## Consequences for heterogeneity
+
+```{r, fig.width = 7, fig.height = 3.5}
+library(tidyr)
+library(stringr)
+
+CV_obs <- 
+  CVs |>
+  select(-A_ratio, -B_ratio) |>
+  pivot_longer(-reliability, names_to = "metric", values_to = "het") |>
+  expand_grid(tau_mu = seq(0,1,0.02)) |>
+  mutate(
+    reliability = recode(reliability, 'at least 0.64' = "Reliability of at least 0.64", 'random' = "Random reliability"),
+    metric = paste0(str_replace(metric, "\\_","\\["),"]"),
+    CV = sqrt((1 + 2 * tau_mu^2) * het^2 + tau_mu^2)
+  )
+
+CV_obs_labs <-
+  CV_obs %>%
+  filter(tau_mu == 0)
+
+ggplot(CV_obs, aes(tau_mu, CV, color = metric)) + 
+  facet_wrap(vars(reliability)) +
+  scale_x_continuous(expand = expansion(c(0.1,0),0), breaks = seq(0.2, 1, 0.2)) + 
+  scale_y_continuous(expand = expansion(0,0), breaks = seq(0, 1, 0.2)) + 
+  geom_vline(xintercept = 0) + 
+  geom_hline(yintercept = 0) + 
+  geom_abline(slope = 1, linetype = "dashed") + 
+  geom_text(data = CV_obs_labs, aes(x = tau_mu, y = CV, color = metric, label = metric)) + 
+  geom_line() + 
+  theme_minimal() + 
+  labs(x = expression(tau / mu), y = "Coefficient of variation for observed score ES") + 
+  theme(legend.position = "none")
+
 ```
 
