@@ -1,5 +1,5 @@
 ---
-title: Cohen's $d_z$ makes me dizzy because of measurement error
+title: Cohen's $d_z$ makes me dizzy when considering measurement error
 authors:
   - admin
 date: '2023-02-17'
