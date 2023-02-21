@@ -6,7 +6,6 @@ date: '2023-02-17'
 codefolding_show: 'hide'
 slug: dizzy-for-d-z
 categories: []
-draft: true
 tags:
   - effect size
   - standardized mean difference
@@ -137,7 +136,7 @@ p_A_av &lt;- density_plot(A_av, expression(A[av]),&quot;blue&quot;, c(0.2,1))
 p_A_z &lt;- density_plot(A_z, expression(A[z]), &quot;purple&quot;, c(0, 3))
 p_A_av + p_A_z</code></pre>
 <p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
-<p>The distribution of <span class="math inline">\(A_{av}\)</span> is mostly concentrated around the mean of <span class="math inline">\(E(A_{av}) = 0.898\)</span>, with a coefficient of variation of <span class="math inline">\(CV(A_{av}) = 0.085\)</span>. In contrast, the distribution of <span class="math inline">\(A_{av}\)</span> has a mean very close to one, <span class="math inline">\(E(A_z) = 1.005\)</span> but a coefficient of variation of <span class="math inline">\(CV(A_z) = 0.208\)</span>, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of <span class="math inline">\(\tilde\delta_z\)</span> than into <span class="math inline">\(\tilde\delta_{av}\)</span>.</p>
+<p>The distribution of <span class="math inline">\(A_{av}\)</span> is mostly concentrated around the mean of <span class="math inline">\(E(A_{av}) = 0.898\)</span>, with a coefficient of variation of <span class="math inline">\(CV(A_{av}) = 0.085\)</span>. In contrast, the distribution of <span class="math inline">\(A_{av}\)</span> has a mean very close to one, <span class="math inline">\(E(A_z) = 1.006\)</span> but a coefficient of variation of <span class="math inline">\(CV(A_z) = 0.209\)</span>, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of <span class="math inline">\(\tilde\delta_z\)</span> than into <span class="math inline">\(\tilde\delta_{av}\)</span>.</p>
 <p>Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose <span class="math inline">\(K\)</span> to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is <span class="math inline">\(A_{av}^2\)</span>, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for <span class="math inline">\(A_{av}\)</span>. Let’s suppose that researchers always ensure <span class="math inline">\(A_{av} \geq 0.8\)</span> so that reliability is always at least <span class="math inline">\(0.64\)</span>. This leads to the following distributions for <span class="math inline">\(A_{av}\)</span> and <span class="math inline">\(A_z\)</span>:</p>
 <pre class="r"><code>A_av_trunc &lt;- A_av[A_av &gt;= 0.8]
 A_z_trunc &lt;- A_z[A_av &gt;= 0.8]
@@ -145,8 +144,8 @@ p_A_av_trunc &lt;- density_plot(A_av_trunc, expression(A[av]),&quot;blue&quot;, 
 p_A_z_trunc &lt;- density_plot(A_z_trunc, expression(A[z]), &quot;purple&quot;, c(0, 3))
 p_A_av_trunc + p_A_z_trunc</code></pre>
 <p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png" width="960" />
-The distribution of <span class="math inline">\(A_{av}\)</span> loses its left tail, so that its mean is <span class="math inline">\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)</span> and its coefficient of variation is reduced to <span class="math inline">\(CV(A_{av} | A_{av} \geq 0.8) = 0.049\)</span>. The distribution of <span class="math inline">\(A_{av}\)</span> now has a mean of <span class="math inline">\(E(A_z | A_{av} \geq 0.8) = 1.043\)</span> and a coefficient of variation of <span class="math inline">\(CV(A_z | A_{av} \geq 0.8) = 0.173\)</span>, about 3.5 times larger than the squared coefficient of variation of <span class="math inline">\(A_{av}\)</span>.</p>
-<p>Under both of these scenarios, the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is substantially more sensitive to heterogeneity of measurement procedures than is <span class="math inline">\(\tilde\delta_{av}\)</span>. Based on this model and hypothetical example, it seems clear <span class="math inline">\(\tilde\delta_{av}\)</span> should be preferred over <span class="math inline">\(\tilde\delta_z\)</span> as a metric for meta-analyis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that <span class="math inline">\(\delta_{av}\)</span> is the right answer. After all, the underlying effect size model is specified in terms of <span class="math inline">\(\delta_{av}\)</span>, and the design parameters—including <span class="math inline">\(\rho\)</span> in particular—are treated as noise, uncorrelated with <span class="math inline">\(\delta_{av}\)</span>.
+The distribution of <span class="math inline">\(A_{av}\)</span> loses its left tail, so that its mean is <span class="math inline">\(E(A_{av}|A_{av} \geq 0.8) = 0.918\)</span> and its coefficient of variation is reduced to <span class="math inline">\(CV(A_{av} | A_{av} \geq 0.8) = 0.049\)</span>. The distribution of <span class="math inline">\(A_{av}\)</span> now has a mean of <span class="math inline">\(E(A_z | A_{av} \geq 0.8) = 1.045\)</span> and a coefficient of variation of <span class="math inline">\(CV(A_z | A_{av} \geq 0.8) = 0.173\)</span>, about 3.5 times larger than the squared coefficient of variation of <span class="math inline">\(A_{av}\)</span>.</p>
+<p>Under both of these scenarios, the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is substantially more sensitive to heterogeneity of measurement procedures than is <span class="math inline">\(\tilde\delta_{av}\)</span>. Based on this model and hypothetical example, it seems clear <span class="math inline">\(\tilde\delta_{av}\)</span> should be preferred over <span class="math inline">\(\tilde\delta_z\)</span> as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that <span class="math inline">\(\delta_{av}\)</span> is the right answer. After all, the underlying effect size model is specified in terms of <span class="math inline">\(\delta_{av}\)</span>, and the design parameters—including <span class="math inline">\(\rho\)</span> in particular—are treated as noise, uncorrelated with <span class="math inline">\(\delta_{av}\)</span>.
 What happens to the observed-score metrics <span class="math inline">\(\tilde\delta_z\)</span> and <span class="math inline">\(\tilde\delta_{av}\)</span> if we instead start with a model specified in terms of <span class="math inline">\(\delta_z\)</span>?</p>
 </div>
 <div id="a-model-for-delta_z" class="section level2">
@@ -239,10 +238,10 @@ knitr::kable(
 <tr class="odd">
 <td align="left">random</td>
 <td align="right">0.085</td>
-<td align="right">0.208</td>
+<td align="right">0.209</td>
 <td align="right">2.5</td>
 <td align="right">0.285</td>
-<td align="right">0.181</td>
+<td align="right">0.182</td>
 <td align="right">0.64</td>
 </tr>
 <tr class="even">
@@ -256,9 +255,11 @@ knitr::kable(
 </tr>
 </tbody>
 </table>
+<p>The tables are now more or less turned. Under both reliability scenarios, <span class="math inline">\(B_z\)</span> has a lower coefficient of variation than <span class="math inline">\(B_{av}\)</span>, indicating that <span class="math inline">\(\tilde\delta_z\)</span> is less affected by measurement procedure variation than is <span class="math inline">\(\tilde\delta_{av}\)</span>. However, <span class="math inline">\(\tilde\delta_z\)</span> is still affected in absolute terms, with a coefficient of variation that is about 79% of the coefficient of variation for <span class="math inline">\(A_z\)</span>. Of course, <span class="math inline">\(\tilde\delta_{av}\)</span> is quite strongly affected under this model, with a coefficient of variation of 0.257.</p>
 </div>
 <div id="consequences-for-heterogeneity" class="section level2">
 <h2>Consequences for heterogeneity</h2>
+<p>To make these results a bit more concrete, it’s useful to consider a specific numerical scenario. The figure below plots the CVs of observed-score effect size parameters as a function of the CVs of the true effect size distribution.</p>
 <pre class="r"><code>library(tidyr)
 library(stringr)
 
@@ -273,6 +274,15 @@ CV_obs &lt;-
     CV = sqrt((1 + 2 * tau_mu^2) * het^2 + tau_mu^2)
   )
 
+CV_ex &lt;- CV_obs |&gt;
+  filter(tau_mu == 0.5, reliability == &quot;Reliability of at least 0.64&quot;) |&gt;
+  select(metric, CV) |&gt;
+  mutate(
+    CV = round(CV, 3),
+    metric = str_replace(str_sub(metric, 1, -2), &quot;\\[&quot;, &quot;_&quot;)
+  ) |&gt;
+  pivot_wider(names_from = metric, values_from = CV)
+
 CV_obs_labs &lt;-
   CV_obs %&gt;%
   filter(tau_mu == 0)
@@ -284,19 +294,31 @@ ggplot(CV_obs, aes(tau_mu, CV, color = metric)) +
   geom_vline(xintercept = 0) + 
   geom_hline(yintercept = 0) + 
   geom_abline(slope = 1, linetype = &quot;dashed&quot;) + 
-  geom_text(data = CV_obs_labs, aes(x = tau_mu, y = CV, color = metric, label = metric)) + 
+  geom_text(
+    data = CV_obs_labs, 
+    aes(x = tau_mu, y = CV, color = metric, label = metric),
+    nudge_x = -0.05,
+    parse = TRUE
+  ) + 
   geom_line() + 
   theme_minimal() + 
   labs(x = expression(tau / mu), y = &quot;Coefficient of variation for observed score ES&quot;) + 
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and <span class="math inline">\(\tau / \mu = 0.5\)</span>, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on <span class="math inline">\(\delta_{av}\)</span>, the observed-score <span class="math inline">\(\tilde\delta_{av}\)</span> is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is 0.543. Under the effect size model based on <span class="math inline">\(\delta_{av}\)</span>, the observed-score <span class="math inline">\(\tilde\delta_{av}\)</span> is strongly affected by measurement heterogeneity, with a CV of 0.591; in comparison, the CV of the observed-score <span class="math inline">\(\tilde\delta_z\)</span> of 0.527. Under both models, these increase in CV are effectively constant for larger values of <span class="math inline">\(\tau / \mu\)</span>.</p>
 </div>
+</div>
+<div id="so-whats-your-point" class="section level1">
+<h1>So what’s your point?</h1>
+<p>Unfortunately, this particular rabbit hole doesn’t seem to lead to many clear take-aways. For the scenario that I looked at here, the preferred choice of effect size metric is apparently driven by what assumptions we find more plausible. If we think the more plausible model is the one in which <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>, then <span class="math inline">\(\tilde\delta_{av}\)</span> is less strongly affected by measurement variation and therefore preferred. However, if we think the more plausible model is the one in which <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_z\)</span>, then <span class="math inline">\(\tilde\delta_z\)</span> is less strongly affected by measurement variation and therefore preferred. One caveat to the latter scenario is that the measurement error attenuation in <span class="math inline">\(\tilde\delta_z\)</span> is still a complicated mess, depending on both the true score correlation <span class="math inline">\(\rho\)</span> and the reliability <span class="math inline">\(\phi\)</span>. This would make it pretty hard to implement some sort of correction for attenuation. In contrast, the attenuation in <span class="math inline">\(\tilde\delta_{av}\)</span> depends only on <span class="math inline">\(\phi\)</span>, which might mean that a correction for attenuation is more feasible.</p>
+<p>So, how could one decide which meta-analytic model is more plausible in a given application? On a conceptual level, I would argue that the model for <span class="math inline">\(\delta_{av}\)</span> would tend to be more plausible in meta-analyses where there is more operational variation in the interventions examined. I would expect that syntheses that include many different versions of an intervention construct would tend to have a wider range of correlations between true scores (i.e., more variable correlations between potential outcomes), even holding the outcome measurement procedures constant. This doesn’t necessarily justify the assumption that <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>, but it does make it seem rather implausible that <span class="math inline">\(\delta_z\)</span> would be independent of <span class="math inline">\(\rho\)</span>.</p>
+<p>On a more practical level, it seems like there are a few empirical things that a meta-analyst could do to inform a choice between a model for <span class="math inline">\(\delta_{av}\)</span> and one for <span class="math inline">\(\delta_z\)</span>. Pragmatically, one could calculate both effect size metrics and just see which one exhibits more heterogeneity. All else equal, it seems reasonable to prefer the metric that has less heterogeneity. One could also try to gather data on the correlation between observed scores, on the reliability of the observed scores, and on the number of trials used in each study. With this information, one could construct measurement-related predictors and use them in a meta-regression to explain variation in the observed effect size estimates. Alternately, one could use the formulas given above to implement attenuation corrections for the effect sizes and see if this leads to reduced heterogeneity. How well would any of these approaches actually work? This would take some further, more careful and systematic investigation.</p>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>I would <em>love</em> to be corrected on both of these points. Please drop a comment or email me with suggested reading.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCR"</code>, the “stanardized mean change using raw score standardization” in <code>metafor::escalc</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>This version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCC"</code>, the “stanardized mean change using change score standardization” in <code>metafor::escalc</code>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCR"</code>, the “standardized mean change using raw score standardization” in <code>metafor::escalc</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>This version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCC"</code>, the “standardized mean change using change score standardization” in <code>metafor::escalc</code>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

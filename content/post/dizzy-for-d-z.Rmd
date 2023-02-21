@@ -6,7 +6,6 @@ date: '2023-02-17'
 codefolding_show: 'hide'
 slug: dizzy-for-d-z
 categories: []
-draft: true
 tags:
   - effect size
   - standardized mean difference
@@ -44,9 +43,9 @@ In basic between-group designs, the only variances in the model are the within-g
 
 For within-group or repeated measures designs, the set of choices is more involved and includes a) standardizing by the across-participant variance in one condition (or both conditions, assuming homogeneity) or b) standardizing by the variance of the difference scores. The former approach is sometimes called $d_{av}$[^SMCR], the latter is called $d_z$[^SMCC]. The $d_{av}$ metric uses the same standardizing variance as the $d$ from a basic between-group design, and so results from both types of designs are, in principle, on the same metric. 
 
-[^SMCR]: When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of $d$ corresponds to `measure = "SMCR"`, the "stanardized mean change using raw score standardization" in `metafor::escalc`.
+[^SMCR]: When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of $d$ corresponds to `measure = "SMCR"`, the "standardized mean change using raw score standardization" in `metafor::escalc`.
  
-[^SMCC]: This version of $d$ corresponds to `measure = "SMCC"`, the "stanardized mean change using change score standardization" in `metafor::escalc`.
+[^SMCC]: This version of $d$ corresponds to `measure = "SMCC"`, the "standardized mean change using change score standardization" in `metafor::escalc`.
  
 In the context of meta-analysis, the comparability of $d_b$ and $d_{av}$ is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with $d_b$ may be less of a priority and one could consider using $d_z$ for synthesis. Purely on a pragmatic level, $d_z$ might be attractive here because the only pieces of information needed to calculate it are the total sample size and the $t$ statistic (or $p$-value) from the comparison between conditions. In contrast, calculating $d_{av}$ also requires the between-participant standard deviations from one or both groups, which primary studies which might not always report.
 
@@ -175,7 +174,7 @@ p_A_av_trunc + p_A_z_trunc
 ```
 The distribution of $A_{av}$ loses its left tail, so that its mean is $E(A_{av}|A_{av} \geq 0.8) = `r round(mean(A_av_trunc), 3)`$ and its coefficient of variation is reduced to $CV(A_{av} | A_{av} \geq 0.8) = `r round(CV_A_av_trunc <- sd(A_av_trunc) / mean(A_av_trunc), 3)`$. The distribution of $A_{av}$ now has a mean of $E(A_z | A_{av} \geq 0.8) = `r round(mean(A_z_trunc), 3)`$ and a coefficient of variation of $CV(A_z | A_{av} \geq 0.8) = `r round(CV_A_z_trunc <- sd(A_z_trunc) / mean(A_z_trunc), 3)`$, about `r round(CV_A_z_trunc / CV_A_av_trunc, 1)` times larger than the squared coefficient of variation of $A_{av}$. 
 
-Under both of these scenarios, the observed-score $\tilde\delta_z$ is substantially more sensitive to heterogeneity of measurement procedures than is $\tilde\delta_{av}$. Based on this model and hypothetical example, it seems clear $\tilde\delta_{av}$ should be preferred over $\tilde\delta_z$ as a metric for meta-analyis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there's a sense that we have assumed that $\delta_{av}$ is the right answer. After all, the underlying effect size model is specified in terms of $\delta_{av}$, and the design parameters---including $\rho$ in particular---are treated as noise, uncorrelated with $\delta_{av}$. 
+Under both of these scenarios, the observed-score $\tilde\delta_z$ is substantially more sensitive to heterogeneity of measurement procedures than is $\tilde\delta_{av}$. Based on this model and hypothetical example, it seems clear $\tilde\delta_{av}$ should be preferred over $\tilde\delta_z$ as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there's a sense that we have assumed that $\delta_{av}$ is the right answer. After all, the underlying effect size model is specified in terms of $\delta_{av}$, and the design parameters---including $\rho$ in particular---are treated as noise, uncorrelated with $\delta_{av}$. 
 What happens to the observed-score metrics $\tilde\delta_z$ and $\tilde\delta_{av}$ if we instead start with a model specified in terms of $\delta_z$? 
 
 ## A model for $\delta_z$
@@ -247,7 +246,11 @@ knitr::kable(
 )
 ```
 
+The tables are now more or less turned. Under both reliability scenarios, $B_z$ has a lower coefficient of variation than $B_{av}$, indicating that $\tilde\delta_z$ is less affected by measurement procedure variation than is $\tilde\delta_{av}$. However, $\tilde\delta_z$ is still affected in absolute terms, with a coefficient of variation that is about `r round(100 * controlled_rel$B_z / controlled_rel$A_z)`% of the coefficient of variation for $A_z$. Of course, $\tilde\delta_{av}$ is quite strongly affected under this model, with a coefficient of variation of `r round(controlled_rel$B_av, 3)`.
+
 ## Consequences for heterogeneity
+
+To make these results a bit more concrete, it's useful to consider a specific numerical scenario. The figure below plots the CVs of observed-score effect size parameters as a function of the CVs of the true effect size distribution. 
 
 ```{r, fig.width = 7, fig.height = 3.5}
 library(tidyr)
@@ -264,6 +267,15 @@ CV_obs <-
     CV = sqrt((1 + 2 * tau_mu^2) * het^2 + tau_mu^2)
   )
 
+CV_ex <- CV_obs |>
+  filter(tau_mu == 0.5, reliability == "Reliability of at least 0.64") |>
+  select(metric, CV) |>
+  mutate(
+    CV = round(CV, 3),
+    metric = str_replace(str_sub(metric, 1, -2), "\\[", "_")
+  ) |>
+  pivot_wider(names_from = metric, values_from = CV)
+
 CV_obs_labs <-
   CV_obs %>%
   filter(tau_mu == 0)
@@ -275,11 +287,24 @@ ggplot(CV_obs, aes(tau_mu, CV, color = metric)) +
   geom_vline(xintercept = 0) + 
   geom_hline(yintercept = 0) + 
   geom_abline(slope = 1, linetype = "dashed") + 
-  geom_text(data = CV_obs_labs, aes(x = tau_mu, y = CV, color = metric, label = metric)) + 
+  geom_text(
+    data = CV_obs_labs, 
+    aes(x = tau_mu, y = CV, color = metric, label = metric),
+    nudge_x = -0.05,
+    parse = TRUE
+  ) + 
   geom_line() + 
   theme_minimal() + 
   labs(x = expression(tau / mu), y = "Coefficient of variation for observed score ES") + 
   theme(legend.position = "none")
 
 ```
+Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and $\tau / \mu = 0.5$, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on $\delta_{av}$, the observed-score $\tilde\delta_{av}$ is hardly affected by measurement heterogeneity at all, with a CV of `r CV_ex$A_av` but the CV of the observed-score $\tilde\delta_z$ is `r CV_ex$A_z`. Under the effect size model based on $\delta_{av}$, the observed-score $\tilde\delta_{av}$ is strongly affected by measurement heterogeneity, with a CV of `r CV_ex$B_av`; in comparison, the CV of the observed-score $\tilde\delta_z$ of `r CV_ex$B_z`. Under both models, these increase in CV are effectively constant for larger values of $\tau / \mu$. 
 
+# So what's your point?
+
+Unfortunately, this particular rabbit hole doesn't seem to lead to many clear take-aways. For the scenario that I looked at here, the preferred choice of effect size metric is apparently driven by what assumptions we find more plausible. If we think the more plausible model is the one in which $\rho$ is independent of $\delta_{av}$, then $\tilde\delta_{av}$ is less strongly affected by measurement variation and therefore preferred. However, if we think the more plausible model is the one in which $\rho$ is independent of $\delta_z$, then $\tilde\delta_z$ is less strongly affected by measurement variation and therefore preferred. One caveat to the latter scenario is that the measurement error attenuation in $\tilde\delta_z$ is still a complicated mess, depending on both the true score correlation $\rho$ and the reliability $\phi$. This would make it pretty hard to implement some sort of correction for attenuation. In contrast, the attenuation in $\tilde\delta_{av}$ depends only on $\phi$, which might mean that a correction for attenuation is more feasible. 
+
+So, how could one decide which meta-analytic model is more plausible in a given application? On a conceptual level, I would argue that the model for $\delta_{av}$ would tend to be more plausible in meta-analyses where there is more operational variation in the interventions examined. I would expect that syntheses that include many different versions of an intervention construct would tend to have a wider range of correlations between true scores (i.e., more variable correlations between potential outcomes), even holding the outcome measurement procedures constant. This doesn't necessarily justify the assumption that $\rho$ is independent of $\delta_{av}$, but it does make it seem rather implausible that $\delta_z$ would be independent of $\rho$. 
+
+On a more practical level, it seems like there are a few empirical things that a meta-analyst could do to inform a choice between a model for $\delta_{av}$ and one for $\delta_z$. Pragmatically, one could calculate both effect size metrics and just see which one exhibits more heterogeneity. All else equal, it seems reasonable to prefer the metric that has less heterogeneity. One could also try to gather data on the correlation between observed scores, on the reliability of the observed scores, and on the number of trials used in each study. With this information, one could construct measurement-related predictors and use them in a meta-regression to explain variation in the observed effect size estimates. Alternately, one could use the formulas given above to implement attenuation corrections for the effect sizes and see if this leads to reduced heterogeneity. How well would any of these approaches actually work? This would take some further, more careful and systematic investigation.
