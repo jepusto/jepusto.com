@@ -21,6 +21,8 @@ summary:
 links:
 - name: Journal
   url: http://doi.org/10.1080/07350015.2016.1247004
+- name: Correction
+  url: https://doi.org/10.1080/07350015.2023.2174123
 - name: R package
   url: https://CRAN.R-project.org/package=clubSandwich
 url_preprint: "https://arxiv.org/abs/1601.01981"

@@ -27,6 +27,8 @@ $$
 \def\bm{\mathbf}
 \def\bs{\boldsymbol}
 $$
+__UPDATE, March 8, 2023: The correction to our paper has now been published at *Journal of Business and Economic Statistics*. It is available at__ https://doi.org/10.1080/07350015.2023.2174123.
+
 In my [2018 paper with Beth Tipton](/publication/rve-in-fixed-effects-models/), published in the _Journal of Business and Economic Statistics_, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. As explained in [my previous post](/pusto-tipton-2018-theorem-2/), we were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I'll give the revised theorem, following the notation and setup of [the previous post](/pusto-tipton-2018-theorem-2/) (so better read that first, or what follows won't make much sense!).
 
 ### Theorem 2, revised
