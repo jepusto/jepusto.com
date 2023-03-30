@@ -4,6 +4,7 @@ authors:
 - admin
 - Megha Joshi
 date: '2023-03-30'
+summary: "In this post, we will sketch out what we think is a promising and pragmatic method for examining selective reporting while also accounting for effect size dependency. The method is to use a cluster-level bootstrap, which involves re-sampling clusters of observations to approximate the sampling distribution of an estimator. To illustrate this technique, we will demonstrate how to bootstrap a Vevea-Hedges selection model."
 codefolding_show: 'show'
 slug: cluster-bootstrap-selection-model
 bibliography: [selection-references.bib]
