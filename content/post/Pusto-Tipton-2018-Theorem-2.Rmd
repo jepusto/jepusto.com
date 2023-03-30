@@ -1,6 +1,7 @@
 ---
 title: Corrigendum to Pustejovsky and Tipton (2018)
 subtitle: Theorem 2 is incorrect as stated
+summary: "In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I'll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated."
 authors:
 - admin
 date: '2022-09-28'

@@ -1,5 +1,6 @@
 ---
 title: Implications of mean-variance relationships for standardized mean differences
+summary: "A question came up on the R-SIG-meta-analysis listserv about whether it was reasonable to use the standardized mean difference metric for synthesizing studies where the outcomes are measured as proportions. I think this is an interesting question because, while the SMD could work perfectly fine as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it's a situation where one has to make a choice about the effect size metric, and where the most common metric (the SMD) might not be the right answer. In this post, I want to provide a bit more detail regarding why I think mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric compared to alternatives."
 authors:
 - admin
 date: '2021-11-02'

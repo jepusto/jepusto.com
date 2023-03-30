@@ -1,5 +1,6 @@
 ---
 title: Inverting partitioned matrices
+summary: "There's lots of linear algebra out there that's quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my previous post on the Woodbury identity, I thought I would share my notes on another helpful bit of math about matrices. At some point in high school or college, you might have learned how to invert a small matrix by hand. It turns out that there's a straight-forward generalization of this formula to matrices of arbitrary size, but that are _partitioned_ into four pieces."
 authors:
 - admin
 date: '2021-10-20'
@@ -34,7 +35,7 @@ This representation is particularly helpful if <span class="math inline">\(d &lt
 \]</span>
 Of course, this is just two ways of writing the same thing. You can see this by applying <a href="/Woodbury-identity/">everyone’s favorite matrix identity</a> to find that <span class="math inline">\(\mathbf{W} = \mathbf{A}^{-1} + \mathbf{A}^{-1} \mathbf{B} \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{X} = \mathbf{D}^{-1} + \mathbf{D}^{-1} \mathbf{C} \mathbf{W} \mathbf{B} \mathbf{D}^{-1}\)</span>. It is an interesting little algebraic exercise to show that <span class="math inline">\(\mathbf{W} \mathbf{B} \mathbf{D}^{-1} = \mathbf{A}^{-1} \mathbf{B} \mathbf{X}\)</span> and that <span class="math inline">\(\mathbf{D}^{-1} \mathbf{C} \mathbf{W} = \mathbf{X} \mathbf{C} \mathbf{A}^{-1}\)</span>.</p>
 <p>These representations of <span class="math inline">\(\mathbf{P}^{-1}\)</span> are useful for a variety of statistical problems. To give just one example, they lead to a very direct proof of the <a href="https://en.wikipedia.org/wiki/Frisch%E2%80%93Waugh%E2%80%93Lovell_theorem">Frisch-Waugh-Lovell theorem</a>, including under more general conditions than are usually stated.</p>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p><a href="https://tminka.github.io/papers/matrix/">Minka’s notes</a> on partitioned matrices treat a more general case, in which <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{D}\)</span> need not be square matrices, nor must they be invertible.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>

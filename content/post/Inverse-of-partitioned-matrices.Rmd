@@ -1,5 +1,6 @@
 ---
 title: Inverting partitioned matrices
+summary: "There's lots of linear algebra out there that's quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my previous post on the Woodbury identity, I thought I would share my notes on another helpful bit of math about matrices. At some point in high school or college, you might have learned how to invert a small matrix by hand. It turns out that there's a straight-forward generalization of this formula to matrices of arbitrary size, but that are _partitioned_ into four pieces."
 authors:
 - admin
 date: '2021-10-20'

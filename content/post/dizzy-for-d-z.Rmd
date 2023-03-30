@@ -2,6 +2,7 @@
 title: Cohen's $d_z$ makes me dizzy when considering measurement error
 authors:
   - admin
+summary: "Meta-analyses in education, psychology, and related fields rely heavily of Cohen's $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen's $d$ is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen's $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator."
 date: '2023-02-17'
 codefolding_show: 'hide'
 slug: dizzy-for-d-z
