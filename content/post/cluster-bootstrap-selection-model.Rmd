@@ -1,0 +1,459 @@
+---
+title: "Cluster-Bootstrapping a meta-analytic selection model"
+authors:
+- admin
+- Megha Joshi
+date: '2023-03-30'
+codefolding_show: 'show'
+slug: cluster-bootstrap-selection-model
+bibliography: [selection-references.bib]
+csl: apa.csl
+link-citations: true
+categories: []
+tags:
+  - bootstrap
+  - dependent effect sizes
+  - meta-analysis
+  - publication bias
+  - programming
+  - Rstats
+header:
+  caption: ''
+  image: ''
+---
+
+```{r setup, include=FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DT)
+library(kableExtra)
+```
+
+```{css, echo = FALSE}
+.greybox {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 1em;
+  background: lightgrey;
+  border: 2px solid darkgrey;
+  border-radius: 1px;
+  font-size: 0.75em;
+}
+```
+
+:::: {.greybox} 
+The research reported here was supported, in whole or in part, by the Institute of Education Sciences, U.S. Department of Education, through grant R305D220026 to the American Institutes for Research. The opinions expressed are those of the authors and do not represent the views of the Institute or the U.S. Department of Education.
+::::
+
+<br>
+Selective reporting of study results is a big concern for meta-analysts. By selective reporting, we mean the phenomenon where affirmative findings---that is, statistically significant findings in the theoretically expected direction---are more likely to be reported and more likely to be available for a systematic review compared to non-affirmative findings. Selective reporting arises due to biases in the publication process, on the part of journals, editors, and reviewers, as well as strategic decisions on part of the authors [@rothstein2006publication; @sutton2009publication]. Research synthesists worry about selective reporting because it can distort the evidence base available for meta-analysis, almost like a fun-house mirror distorts your appearance, leading to inflation of average effect size estimates and biased estimates of heterogeneity.
+
+If you read the meta-analysis methods literature, you will find scores of tools available to investigate and adjust for the biases created by selective reporting. Well known and widely used methods include:
+
+-   graphical representations like funnel plots and contour-enhanced funnel plots [@sterne2001funnel; @Sterne2011recommendations];
+-   tests for selective reporting (or at least funnel plot asymmetry) like Egger's regression [@egger1997bias] or Begg and Mazumdar's rank correlation test [@begg1994operating];
+-   bias-adjustment methods like PET-PEESE [@stanley2008metaregression; @stanley2014metaregression], Trim-and-Fill [@duval2000nonparametric], and selection models [@hedges2005selection]; 
+-   p-value diagnostics like p-curve [@simonsohn2014pcurve], p-uniform [@VanAssen2015meta; @vanaert2016conducting], and the test of excess significance [@ioannidis2007exploratory]; and
+-   sensitivity analyses based on various forms of selection models [@vevea2005publication; @Copas2001sensitivity; @mathur2020sensitivity].
+
+However, nearly all of the statistical methods here have the limitation that they are premised on observing independent effect sizes. That presents a problem for meta-analyses in education, psychology, and other social science fields, where it is very common to have meta-analyses involving *dependent* effect sizes.
+
+Dependent effects occur in meta-analyses of group comparisons when primary studies report effects for multiple correlated measures of an outcome, at multiple points in time, or for multiple treatment groups compared to the same control group [@Becker2000multivariate]. Dependent effects are also common in meta-analyses of correlational effect sizes, where primary studies report more than one relevant correlation coefficient based on the same sample of participants. Methods such as multi-level meta-analysis [@VandenNoortgate2013threelevel] and robust variance estimation [@Hedges2010robust] are available to accommodate dependent effects when summarizing findings across studies or investigating moderators of effect size using meta-regression, but these techniques have yet to be extended to methods for testing or correcting bias due to selective reporting. Consequently, it's pretty common to see research synthesis papers that use very sophisticated models for part of the analysis, but then use kludgey, awkward, or hacky approaches when it comes time to investigating selective reporting [@rodgers2020evaluating].
+
+Along with [a group of our colleagues](https://www.air.org/mosaic) from the American Institutes for Research, we are currently working on a project to develop better methods for investigating selective reporting issues in meta-analyses of dependent effect sizes. 
+In this post, we will share an early peek under the hood at one little piece of what we're studying, by sketching out what we think is a promising and pragmatic method for examining selective reporting while *also* accounting for effect size dependency. The method is to use a cluster-level bootstrap, which involves re-sampling clusters of observations (i.e., the set of multiple effect size estimates reported within a given primary study) to approximate the sampling distribution of an estimator [@boos2003introduction; @cameron2008bootstrap]. To illustrate this technique, we will demonstrate how to bootstrap a Vevea-Hedges selection model.
+
+Selection models comprise a large class of models that have two parts: a model describing the evidence-generation process and a model describing the process by which evidence is reported [@hedges2005selection]. Vevea-Hedges selection models [@hedges1992modeling; @vevea1995general; @Hedges1996estimating] involve a random effects meta-regression model for the evidence-generation process and a step function for the reporting process. With a step function, we assume that the probability that an effect size estimate is observed depends on the range in which its p-value falls. For instance, effects with $.01 < p \leq .05$ might have some probability $\lambda_1$ of being reported, effects with $.05 < p \leq .10$ might have some other probability $\lambda_2$, and effects with $.10 < p$ might have some other probability $\lambda_3$.[^relative] Because the Vevea-Hedges model and other selection models separate the data-generation process into these two distinct stages, their parameters have clear interpretations and they can be used to generate bias-adjusted estimates of the distribution of effect sizes and to test for selective reporting issues. The only problem is that available implementations of selection models do not account for effect size dependency---but that's where cluster bootstrapping could potentially help.
+
+[^relative]: Technically, these parameters $\lambda_1,\lambda_2,\lambda_3$ are not absolute probabilities but instead _relative_ risks of being reported, compared to a reference range of $p$-values. In the above example, they would be defined relative to the probability of being reported for an effect size estimate with $p \leq .01$. 
+
+## Disclaimer
+
+To be clear, this post is based on work in progress. The cluster-bootstrap selection model that we're going to demonstrate is an *experimental* and *exploratory* technique. We're currently studying its properties and performance using Monte Carlo simulations, but we don't have formal results to share yet. In the spirit of open and collaborative science, we wrote this post to demonstrate our approach to coding the method, in case others would like to experiment with the technique. Given that there are so few methods available for investigating selective reporting in meta-analyses with dependent effect sizes, we think this method is worth playing with and investigating further, and we would be happy to have others try it out as well. But, if you do so, please treat the results as tentative until we learn more about when the methods work well enough to trust the results.
+
+## An Example
+
+For demonstrating this method, we will use data from a recent meta-analysis by Lehmann and colleagues [-@lehmann2018metaanalysis] that examined the effects of the color red on attractiveness judgments. The data is available via the [`metadat`](https://wviechtb.github.io/metadat/reference/dat.lehmann2018.html) package [@metadat]. The dataset includes 81 effect sizes from 41 unique studies. You can browse the data for yourself here:
+
+```{r, warning = FALSE, message = FALSE}
+library(metadat)   # for the example dataset
+library(tidyverse) # for tidying
+library(janitor)   # for tidying variable names
+library(metafor)   # for meta-analysis
+library(boot)      # for bootstrapping
+library(tictoc)    # for keeping time
+
+lehmann_dat <- 
+  dat.lehmann2018 %>%
+  clean_names() %>%
+  mutate(study = str_split_fixed(short_title, pattern = "-", n = 2)[, 1]) %>%
+  arrange(study) %>%
+  select(study, presentation = stimuli_presentation, yi, vi, everything())
+```
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+lehmann_dat %>% 
+  kable(digits=2) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    font_size = 10
+  ) %>%
+  scroll_box(width = "100%", height = "300px", fixed_thead = TRUE) 
+```
+
+### Preliminary Analysis
+
+As a little warm-up exercise, here is a basic random effects meta-analysis of these data, fit via the [metafor](https://wviechtb.github.io/metafor/) package [@Viechtbauer2010conducting]. We use cluster-robust standard errors to account for effect size dependency.
+
+```{r}
+
+# Estimate random effects model
+RE_mod <- rma.uni(yi, vi = vi, data = lehmann_dat, method = "ML")
+
+# Calculate cluster-robust standard errors
+RE_robust <- robust(RE_mod, cluster = study, clubSandwich = TRUE)
+RE_robust
+```
+
+The random effects model indicates an average effect size of about `r round(RE_mod$beta, 2)` standard deviations and substantial heterogeneity, with $\hat\tau = `r round(sqrt(RE_mod$tau2), 2)`$. The cluster-robust standard error is about `r round(100 * (RE_robust$se / RE_mod$se - 1))`% bigger than the model-based standard error (not shown) because the latter does not account for dependent effect sizes.
+
+Here is a contour-enhanced funnel plot of the data:
+
+```{r, fig.width = 8, fig.height = 5, out.width = "90%", fig.retina = 2}
+funnel(RE_mod, refline = 0, level=c(90, 95, 99), shade=c("white", "gray55", "gray75"))
+```
+
+The funnel plot shows some asymmetry, suggesting that there is reason to be concerned about selective reporting bias in these data.
+
+### A Selection Model
+
+For starters, we will fit a very simple selection model, with a single step in the probability of reporting at $\alpha = .025$. This is what's come to be called the *three-parameter selection model* [@mcshane2016adjusting]. The step is defined in terms of a one-sided p-value, so $\alpha = .025$ corresponds to the point where an effect size estimate in the theoretically expected direction would have a regular, two-sided p-value of .05, right at the mystical threshold of statistical significance. We fit the model using `metafor`'s [`selmodel()`](https://wviechtb.github.io/metafor/reference/selmodel.html) function:
+
+```{r}
+RE_sel <- selmodel(RE_mod, type = "stepfun", steps = .025)
+RE_sel
+```
+
+The selection parameter represents the probability that an effect size estimate that is not in the theoretically expected direction or not statistically significant at the conventional level would be included in the synthesis, relative to the probability that an affirmative, statistically significant effect size estimate would be included. In this example, the probability of selection is estimated as `r round(RE_sel$delta[2], 2)`, meaning only about `r round(RE_sel$delta[2] * 100)`% of the non-significant results that we would expect were generated are actually reported. Adjusting for this selection bias, the model estimates an overall average effect size of `r round(RE_sel$beta, 2)` SD---smaller than the unadjusted random effects estimate---with heterogeneity of $\hat\tau = `r round(sqrt(RE_sel$tau2), 2)`$.
+
+The problem with this analysis is that the selection model is set up under the assumption that the effect size estimates are all independent. As a result, the reported standard errors are probably smaller than they should be and the confidence intervals are narrower than they should be. We'll use cluster bootstrapping to get standard errors and confidence intervals that should better account for effect size dependency.
+
+## Cluster Bootstrapping a Selection Model
+
+In R, the [`boot`](https://cran.r-project.org/web/packages/boot/boot.pdf) package provides tools for running a variety of different bootstrap techniques and obtaining confidence intervals based on bootstrap distributions [@boot]. It's been around for ages and has some very nice features, but it requires a bit of trickery to use it for cluster bootstrapping. The main challenge is that the package functionality is set up under the assumption that every row of the dataset should be treated as an independent observation. To make it work for cluster bootstrapping, we will need a function to fit the selection model, which takes in a dataset with one row per cluster and returns a vector of parameter estimates. The function also has to have an index argument which is a vector of row indexes used to create the bootstrap sample. Here is a skeleton for such a function:
+
+```{r, eval = FALSE}
+fit_selmodel <- function(
+    dat,   # dataset with one row per cluster
+    index, # vector of indexes used to create the bootstrap sample
+    ...    # any further arguments
+) { 
+  
+  # take subset of data
+  boot_dat <- dat[index,]
+  
+  # fit selection model
+  
+  # compile parameter estimates into a vector
+  
+}
+```
+
+### Clustering and unclustering
+
+The Lehmann dataset has one row per effect size, sometimes with multiple rows per study, so we need to modify the data to have one row per study. There are at least two ways to accomplish this. One option is to create a dataset consisting only of study-level IDs, then merge it back on to the full data to get the effect-size level data:
+
+```{r}
+# Make a dataset of study IDs
+cluster_IDs <- data.frame(study = unique(lehmann_dat$study))
+
+glimpse(cluster_IDs)
+
+# Merge with full data
+full_dat <- merge(cluster_IDs, lehmann_dat, by = "study")
+
+full_dat %>% select(study, yi, vi) %>% glimpse()
+
+```
+
+Another option is to use the [`dplyr::nest_by()`](https://dplyr.tidyverse.org/reference/nest_by.html) function to nest the data by cluster [@tidyverse]. Then, we can use [`tidyr::unnest()`](https://tidyr.tidyverse.org/reference/unnest.html) to recover the effect size level data [@tidyverse]. Like so:
+
+```{r}
+# Nest the data for each study
+lehmann_nested <- nest_by(lehmann_dat, study, .key = "data")
+
+glimpse(lehmann_nested)
+
+# Recover the full dataset
+full_dat <-
+  lehmann_nested %>%
+  unnest(data)
+
+full_dat %>% select(study, yi, vi) %>% glimpse()
+```
+
+We will follow the latter strategy for the remainder of our example. 
+
+With this nest-and-unnest approach, we can fill in a little bit more of our function skeleton:
+
+```{r, eval = FALSE}
+fit_selmodel <- function(
+    dat,   # dataset with one row per cluster
+    index, # vector of indexes used to create the bootstrap sample
+    ...    # any further arguments
+) { 
+  
+  # take subset of data
+  boot_dat_cluster <- dat[index, ]
+  
+  # expand to one row per effect size
+  boot_dat <- tidyr::unnest(boot_dat_cluster, data)
+  
+  # fit selection model
+  
+  # compile parameter estimates into a vector
+  
+}
+```
+
+### Selection model function
+
+Next, we need to complete the function by writing code to fit the selection model. This is a little bit involved because of the way the `metafor` package implements the Vevea-Hedges selection model. We first need to fit a regular random effects model using [`metafor::rma.uni()`](https://wviechtb.github.io/metafor/reference/rma.uni.html), then pass the result to the [`metafor::selmodel()`](https://wviechtb.github.io/metafor/reference/selmodel.html) function to fit a selection model, and then pull out the parameter estimates as a vector. To make the code clearer, we will move this step out into its own function:
+
+```{r}
+run_sel_model <- function(dat, steps = .025) {
+  
+  # initial random effects model
+  RE_mod <- metafor::rma.uni(
+      yi = yi, vi = vi, data = dat, method = "ML"
+  )
+  
+  # fit selection model
+  res <- metafor::selmodel(
+    RE_mod, type = "stepfun", steps = steps,
+    skiphes = TRUE, # turn off SE calculation
+    skiphet = TRUE # turn off heterogeneity test
+  )
+  
+  # compile parameter estimates into a vector
+  c(beta = res$beta[,1], tau = sqrt(res$tau2), delta = res$delta[-1])
+  
+}
+
+```
+
+Note the use of `skiphes` and `skiphet` arguments in the `selmodel()` call, which skip the calculation of standard errors and skip the calculation of the test for heterogeneity. We don't need the standard errors here because we're going to use bootstrapping instead, and we're not interested in the heterogeneity test. Turning off these calculations saves computational time.
+
+A further complication with fitting a selection model is that the parameter estimates are obtained by maximum likelihood, using an iterative optimization algorithm that sometimes fails to converge. To handle non-convergence, we will pass our function through [`purrr::possibly()`](https://purrr.tidyverse.org/reference/possibly.html) so that errors are suppressed, rather than causing everything to grind to a halt [@tidyverse]. We set the `otherwise` argument so that non-convergent results are returned as `NA` values:
+
+```{r}
+run_sel_model <- purrr::possibly(run_sel_model, otherwise = rep(NA_real_, 3))
+```
+
+### A first bootstrap
+
+Here is the completed fitting function called `fit_selmodel()`:
+
+```{r}
+fit_selmodel <- function(dat, 
+                         index = 1:nrow(dat), 
+                         steps = 0.025) {
+  
+  # take subset of data
+  boot_dat_cluster <- dat[index, ]
+  
+  # expand to one row per effect size
+  boot_dat <- tidyr::unnest(boot_dat_cluster, data)
+  
+  # fit selection model, return vector
+  run_sel_model(boot_dat, steps = steps)
+  
+}
+```
+
+First, we take a subset of the data based on the index argument. This generates a bootstrap sample from the original data based on re-sampled clusters. We then use [`tidyr::unnest()`](https://tidyr.tidyverse.org/reference/unnest.html) to get the effect size level data for those re-sampled clusters. We then re-fit the model using our `run_sel_model()` function.
+
+Now let's apply our function to the Lehmann dataset. We will first need to create a nested version of the dataset, with one row per study:
+
+```{r}
+lehmann_nested <- nest_by(lehmann_dat, study, .key = "data")
+```
+
+Now we can fit the selection model using `fit_sel_model()`:
+
+```{r}
+fit_selmodel(lehmann_nested)
+```
+
+The results reproduce what we saw earlier when we estimated the three parameter selection model.
+
+Now we can bootstrap using the [`boot::boot()`](https://cran.r-project.org/web/packages/boot/boot.pdf) function. The inputs to `boot()` are the nested dataset, the function to fit the selection model, and then any additional arguments passed to `fit_selmodel()`---here we include an argument for `steps`---and finally, the number of bootstrap replications:
+
+```{r, cache = TRUE, warning = FALSE}
+
+# Generate bootstrap
+set.seed(20230321)
+
+tic()
+
+boots <- boot(
+  data = lehmann_nested,            # nested dataset
+  statistic = fit_selmodel,         # function for fitting selection model
+  steps = .025,                     # further arguments to the fitting function
+  R = 1999                          # number of bootstraps
+)
+
+time_seq <- toc()
+```
+
+This code takes a while to run, but we can speed it up with parallel processing.
+
+### Parallel processing
+
+The `boot` package has some handy parallel processing features, but they can be a bit finicky to use here because of how R manages environments across multiple processes. With the above code, we can't simply turn on parallel processing because the worker processes won't know where to find the `run_sel_model()` function that gets called inside `fit_selmodel()`. To fix this, we include the `run_sel_model()` function *inside* our fitting function, as follows:
+
+```{r}
+fit_selmodel <- function(dat, 
+                         index = 1:nrow(dat), 
+                         steps = 0.025) {
+  
+  # take subset of data
+  boot_dat_cluster <- dat[index, ]
+  
+  # expand to one row per effect size
+  boot_dat <- tidyr::unnest(boot_dat_cluster, data)
+  
+  # build run_selmodel
+  run_sel_model <- function(dat, steps = .025) {
+  
+    # initial random effects model
+    RE_mod <- metafor::rma.uni(
+      yi = yi, vi = vi, data = dat, method = "ML"
+    )
+    
+    # fit selection model
+    res <- metafor::selmodel(
+      RE_mod, type = "stepfun", steps = steps,
+      skiphes = TRUE, # turn off SE calculation
+      skiphet = TRUE # turn off heterogeneity test
+    )
+    
+    # compile parameter estimates into a vector
+    c(beta = res$beta[,1], tau = sqrt(res$tau2), delta = res$delta[-1])
+    
+  }
+  
+  p <- 2L + length(steps)  # calculate total number of model parameters
+  
+  # error handling for run_sel_model
+  run_sel_model <- purrr::possibly(run_sel_model, otherwise = rep(NA_real_, p))
+  
+  # fit selection model, return vector of parameter estimates
+  run_sel_model(boot_dat, steps = steps)
+  
+}
+```
+
+Now we can call `boot()` with options for parallel processing. The machine we used to compile this post has `r parallel::detectCores()` cores. We will use half of the available cores for parallel processing. The configuration of parallel processing will depend on your operating system (different options are available for Mac), so you may need to adapt this code a bit.
+
+```{r, cache = TRUE}
+ncpus <- parallel::detectCores() / 2
+
+# Generate bootstrap
+set.seed(20230321)
+
+tic()
+
+boots <- boot(
+  data = lehmann_nested,
+  statistic = fit_selmodel, steps = .025,
+  R = 1999,
+  parallel = "snow", ncpus = ncpus # parallel processing options
+)
+
+time_par <- toc()
+```
+
+```{r, echo = FALSE}
+elapsed_seq <- time_seq$toc - time_seq$tic
+elapsed_par <- time_par$toc - time_par$tic
+gain <- elapsed_seq / elapsed_par
+```
+
+Parallel processing is really helpful here. We get 2000 bootstraps in `r round(elapsed_par)` seconds, `r round(gain, 1)` times faster than sequential processing.
+
+### Standard Errors
+
+The standard deviations of the bootstrapped parameter estimates can be interpreted as standard errors for the parameter estimates that take into account the dependence structure of the effect size estimates. Here is a table comparing the cluster-bootstrapped standard errors to the model-based standard errors generated by `selmodel()`:
+
+```{r}
+est <- boots$t0 # original parameter estimates
+
+# calculate bootstrap SEs
+boot_SE <- apply(boots$t, 2, sd, na.rm = TRUE)  
+
+# calculate model-based SEs
+model_SE <- with(RE_sel, c(se, se.tau2 / (2 * sqrt(tau2)), se.delta[-1]))
+
+# make a table
+res <- tibble(
+  Parameter = names(est),
+  Est = est,
+  `SE(bootstrap)` = boot_SE,
+  `SE(model)` = model_SE,
+  `SE(bootstrap) / SE(model)` = boot_SE / model_SE
+)
+```
+
+```{r, echo = FALSE}
+res |>
+  kable(digits = 3) |>
+  kable_styling(bootstrap_options = c("striped","condensed"), full_width = FALSE)
+```
+
+The standard errors based on cluster bootstrapping are all substantially larger than the model-based standard errors, which don't account for dependence.
+
+### Confidence Intervals
+
+For reporting results from this sort of analysis, it is useful to provide confidence intervals along with the model parameter estimates and standard errors. These can be calculated using the [`boot::boot_ci()`](https://cran.r-project.org/web/packages/boot/boot.pdf) function. This function provides several different types of confidence intervals; for illustration, we will stick with simple percentile confidence intervals, which are calculated by taking percentiles of the bootstrap distribution of each parameter estimate. To use the function, we'll specify the type of confidence interval and the index of the parameter we want. An index of 1 is for the overall average effect size:
+
+```{r}
+boot.ci(boots, type = "perc", index = 1) # For overall average ES
+```
+
+Here is the confidence interval for between-study heterogeneity:
+
+```{r}
+boot.ci(boots, type = "perc", index = 2) # For heterogeneity
+```
+
+And for the selection weight:
+
+```{r}
+boot.ci(boots, type = "perc", index = 3) # For selection weight
+```
+
+```{r, echo = FALSE}
+lambda_CI <- boot.ci(boots, type = "perc", index = 3)
+```
+
+Percentile confidence intervals can be asymmetric, and here the confidence interval for the selection weight parameter is notably asymmetric. The end-points of the confidence interval range from `r round(lambda_CI$percent[4], 3)` (which represents very strong selective reporting, with only `r round(100 * lambda_CI$percent[4])`% of non-significant results reported) to `r round(lambda_CI$percent[5], 3)` (which represents very strong selection *against* affirmative results).[^CI-comparison] So, overall we can't really draw any strong conclusions about the strength of selective reporting.
+
+[^CI-comparison]: Compare this to the model-based confidence interval of $[`r round(RE_sel$ci.lb.delta[2], 3)`, `r round(RE_sel$ci.ub.delta[2], 3)`]$.
+
+## Conclusion
+
+In this post, we've demonstrated how to code a cluster-level bootstrap for a three parameter version of the Vevea-Hedges selection model. We think this cluster-bootstrapping technique is interesting and promising because it can be applied with a very broad swath of models and methods to investigate selective reporting. For instance, the code we've demonstrated could be modified by: 
+
+- using a meta-regression model instead of just a summary meta-analysis;
+- using a different form of selection function such as the beta-weight model proposed by Citkowicz and Vevea [-@Citkowicz2017parsimonious] or a more elaborate step function with multiple steps; or
+- using a step function model applied across subsets of effect sizes, as in @Coburn2015publication.
+
+The [metafor](https://wviechtb.github.io/metafor/) package implements an expansive set of selection models with the [`selmodel`](https://wviechtb.github.io/metafor/reference/selmodel.html) function, so one could really just swap specifications in and out. In principle, the cluster-level bootstrap could also be used in combination with other forms of selective reporting analysis such as PET-PEESE [although with such regression adjustments, cluster-robust variance estimation is also an option, see @rodgers2020evaluating] or Copas-style sensitivity analyses [@Copas2001sensitivity]. 
+
+We are currently studying the performance of bootstrapping a three parameter selection model in some big Monte Carlo simulations. Based on some very preliminary results, it looks like the cluster bootstrapped selection model provides confidence intervals with reasonable coverage levels. We have more to do before we share these results, so again we want to emphasize that what we have demonstrated in this post is *experimental* and *exploratory*.
+
+Further questions we need to investigate are how things work if we include covariates in the selection model, whether there are better variations of the bootstrap than what we have demonstrated here [e.g., the fractionally weighted bootstrapping, @xu2020applications], and the limits of this method in terms of the number of studies needed for adequate performance. If things pan out, we also plan to turn the workflow we've demonstrated here into some more user-friendly functions, perhaps as part of the [wildmeta](https://meghapsimatrix.github.io/wildmeta/index.html) package.
+
+## References
