@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Determining the Timing of Phase Changes</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="James E. Pustejovsky" />
+    <meta name="date" content="2023-05-18" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/xaringanExtra-extra-styles-0.2.6/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Determining the Timing of Phase Changes
+]
+.subtitle[
+## Fixed Phase Lengths
+]
+.author[
+### James E. Pustejovsky
+]
+.institute[
+### University of Wisconsin - Madison
+]
+.date[
+### May 18, 2023
+]
+
+---
+
+
+
+
+
+
+# A birthday party analogy
+
+.fl.w-20[
+&lt;img src="PBC-cupcake.jpg" width="80%" /&gt;
+
+]
+
+.fr.w-80.f3[
+Randomized phase changes = &lt;br&gt;peanut butter chocolate cupcake
+]
+
+
+???
+
+Jennifer and Tim asked me to talk about the approach of using a priori fixed phase lengths, but I'm not going to mount much of an argument in favor. Instead, I'd like to offer some perspective from statistics-land and meta-analysis land on the different approaches that are on the table. I think my argument boils down to choosing what flavor of cupcakes to have for your birthday party (just imagine that you're six or eight years old). 
+
+- 🧁 Randomized = peanut butter chocolate cupcake
+    
+    - Theoretically very enticing
+    
+    - High risk that at least one friend will be allergic
+
+--
+
+.fl.w-20[
+&lt;img src="carrot-cake-cupcake.jpg" width="75%" /&gt;
+
+]
+.fr.w-60.f3[
+&lt;br&gt;
+Response-guided phase changes = &lt;br&gt;carrot cake cupcake
+]
+
+???
+
+- 🧁 Response-guided design = carrot cake cupcake
+    
+    - Classic flavor combo
+    
+    - But what's actually in that recipe besides carrots? Pineapple? Pecans? Raisins? You might not actually be able to tell until you bit into it. 
+
+--
+
+.fl.w-100[
+.fl.w-50[
+&lt;img src="grocery-cupcake.jpeg" width="80%" /&gt;
+]
+.fl.w-50.f3[
+&lt;br&gt;
+&lt;br&gt;
+Fixed phase changes = &lt;br&gt;yellow cake cupcake
+]
+]
+
+???
+
+- 🧁 Fixed design = yellow cake cupcake
+    
+    - From the grocery store bakery, buy them by the four-pack.
+    
+    - The main thing it's got going is that nobody has especially strong feelings about it. By the end of the party, they're all gonna get eaten. 
+
+---
+
+# Design Criteria
+
+.f3[
+
+How do these approaches compare in terms of 
+
+- Theoretical support (statistical theory)
+
+- Procedural reproducibility
+
+- Feasibility &amp; pragmatic considerations
+
+]
+
+???
+
+So let me try to offer some support for my half-baked analogy. I'd like to take a few minutes to think about how these three approach compare in terms of three criteria. First, the extent to which there is any statistical theory that supports the use of an approach. This is my main focus because, hey, I'm a statistician.
+
+Second, I'll also comment a little bit procedural reproducibility. 
+
+And third, we should also think about feasibility and pragmatic considerations. I'll have less to say here but I want to keep it on the table because I know y'all have a lot of experience to draw on in thinking about this criterion.
+
+--
+
+.f3.bg-washed-green.b--dark-green.ba.bw2.br3.shadow-5.ph4.mt5[
+&gt; The best rule of thumb for evaluating a procedure description as technological is probably to ask whether a typically trained reader could replicate that procedure well enough to produce the same results, given only a reading of the description
+
+.tr[
+— [Baer, Wolf, and Risley (1968)](#bib-Baer1968some)
+]]
+
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+$$
+???
+
+This second criterion of procedural reproducibility is very important for statisticians, but of course we're not the only ones who care about it. You can look to Baer, Wolf, and Risley and find guidance about what reproducibility involves--they write....
+
+Of course, they were talking about reproducibility of intervention procedures, but I think it extends naturally to the behavior of conducting single-case research studies. 
+
+---
+class: inverse, middle, center
+
+# Randomized phase changes
+
+&lt;img src="PBC-cupcake.jpg" width="40%" /&gt;
+
+???
+So, let's look at these three criteria, first for randomized phase changes. Tom has laid out a lot of considerations relevant for the single-case context, but before I comment on that, I think it's interesting to think about another context where randomization is used, which is between-group randomized clinical trials. 
+
+---
+
+# Randomized between-group designs: Theory
+
+.f3[
+- Clear target of estimation and inference: the __Sample Average Treatment Effect__:
+
+    `$$SATE = \left(\substack{\text{Average outcome if} \\ \text{everybody gets B}}\right) - \left(\substack{\text{Average outcome if} \\ \text{everybody gets A}}\right)$$`
+]
+
+???
+
+Use of randomization for between-group designs has a lot going for it. First off, there's a clear target of estimation and inference. RCTs help us learn about sample average treatment effects, as in the average outcome if everybody participating in the study were to get treatment B, compared to the average outcome if everybdoy were to get A. So there's a clear and intuitive definition of the quantity we're trying to learn about. 
+--
+
+.f3[
+- Deep formal statistical theory based on randomization
+
+    😎 Hypothesis testing
+    
+    😎 Effect estimation
+]
+
+???
+
+And, there's a deep--and honestly really beautiful--formal statistical theory that flows from use of randomization, that's been developed over the past 100 years. The randomized allocation of participants to conditions gives us a basis for doing hypothesis testing, estimating effects, and assessing the uncertainty in those effect estimates, without making many strong assumptions about parametric distributions or sampling from a hypothetical population. So we can do very defensible statistics, and using randomization is sufficient justification for the assumptions involved.
+
+--
+
+.f3[
+- Extensive methodology for handling common problems
+
+    - Interference between units
+    
+    - Attrition
+    
+    - Non-compliance
+]
+
+???
+
+Furthermore, along with that pristine theory, there's also extensive methodology for addressing the common problems that crop up in randomized experiments---especially in experiments in social settings---such as interference between units, attrition, and non-compliance. So the theory covers both hypothesis testing and estimation, and it's very robust to the concerns that come up in practice.
+
+---
+
+# Randomized single-case designs: Theory
+
+.fl.w-20[
+&lt;img src="Randomization-tests.jpg" width="100%" /&gt;
+
+]
+
+.f3.fl.w-80[
+- Formal randomization-based theory for hypothesis testing ([Edgington and Onghena, 2007](#bib-Edgington2007randomization))
+
+.f4[
+- But constrained to tests of __sharp null hypothesis__:
+    
+    `$$H_0: \text{Intervention has no effect on outcomes whatsoever}$$`
+    
+    `$$H_A: \text{Intervention alters at least one outcome at some time-point}$$`
+]
+
+]
+
+???
+What about use of randomized phase changes in single-case designs?
+
+Well, it's not quite as deep and not quite as robust. There is a formal randomization-based theory for hypothesis testing, developed extensively by Eugene Edgington and Patrick Onghena, as well as Joel Levin and John Ferron. 
+
+One thing that doesn't always get conveyed about this theory, though, is that it's about testing a very particular sort of null hypothesis, what statisticians call the sharp null. The sharp null is the hypothesis that the intervention has no effect on the outcomes whatsoever. Nada. Zip. Zilch. Zero. And the complement of that, the alternative hypothesis is that the intervention alters at least one outcome at some point in time. 
+--
+
+.fl.w-80[
+![](Randomized ABAB design.gif)&lt;!-- --&gt;
+]
+
+???
+
+Here's a representation of that sharp null hypothesis. It's the assumption that, if the null hypothesis true, then the outcomes that we observe are exactly the same as what we would observe under different patterns of phase changes. We can introduce treatment and remove treatment and reintroduce treatment at any point we like, and it makes absolutely no difference at all.
+
+So, when we use randomized phase changes and conduct a randomization test, the null hypothesis we're testing is this very specific thing, the sharp null. 
+
+---
+
+# Randomized single-case designs: Theory
+
+.f3[
+🤔 Effect estimation
+
+- Confidence intervals based on randomization distribution ([Michiels, Heyvaert, Meulders et al., 2017](#bib-michiels2017confidence))
+]
+
+???
+
+Besides hypothesis testing, what about estimating effects? In contrast to randomized group designs, there's much less theory here. There is some work by Patrick and his student Bart Michiels on constructing confidence intervals on the basis of randomization, but it's limited to pretty simple forms of effects. 
+
+--
+
+.f3[
+- Estimation based on randomization distribution requires a __*completely specified response function*__
+
+    - How do *all past treatment assignments* affect current outcome?
+    
+.center[
+&lt;img src="DAG.png" width="80%" /&gt;
+]
+
+]
+
+???
+
+Beyond that, there's not much work out there, and the prospect of developing statistical theory based on randomization are...kind of daunting. Because we're talking about designs involving repeated measures on a participant, we need to completely specify the form of the response function. In other words, we need to have a very specific theory about how the full pattern of all past treatment assignments might influence the current outcome. If you're in a context where there's carryover, or where intervention takes time to reach full potency, this gets pretty hard to do.
+
+---
+
+# Randomized phase changes
+
+.f2[
+
+- 😎 Hypothesis testing
+
+- 🤔 Effect estimation
+
+]
+
+???
+
+So where do we end up with randomized phase changes? We're cool with hypothesis testing, maybe still pondering effect estimation. 
+--
+
+.f3[
+- .f2[🤔 Reproducibility]
+
+    - Reproducible in theory
+    
+    - R package [SCRT](https://cran.r-project.org/package=SCRT), web app [SCDA](https://ppw.kuleuven.be/mesrg/software-and-apps/shiny-scda)
+    
+    - How well do researchers implement randomized designs?
+]
+
+???
+
+What about procedural reproducibility? Well, randomized phase changes should in theory be fully reproducible because using them requires enumerating (or simulating) every possible pattern of phase changes. There's also some nice tools available, like the SCRT R package and SCDA web app, to facilitate use of randomized designs, but I do wonder about how well researchers actually apply this approach.
+
+--
+
+.f3[
+- .f2[🤷 Pragmatic considerations]
+
+    - Sometimes fairly feasible, sometimes not
+]
+
+???
+
+I also wonder about the pragmatic considerations. It seems to me that randomization is fairly feasible in some contexts, especially for alternating treatment designs, but in other contexts, it's a much heavier lift to organize. 
+
+---
+class: inverse, middle, center
+
+# Response-guided phase changes
+
+&lt;img src="carrot-cake-cupcake.jpg" width="40%" /&gt;
+
+???
+
+Okay, well what about response-guided phase changes?
+
+---
+
+# Response-guided designs: Theory
+
+.f3[
+
+😟 Response-guided design can distort conventional hypothesis tests ([Allison, Franklin, and Heshka, 1992](#bib-Allison1992reflections); [Ferron, Foster-Johnson, and Kromrey, 2003](#bib-ferron2003Functioning))
+
+  - 🤓 Masked Visual Analysis provides a theory for hypothesis testing ([Ferron and Jones, 2006](#bib-Ferron2006tests))
+
+
+]
+
+???
+
+No surprise, there's not really any statistical theory in support of response-guided design, instead, there's some methodological research suggesting that response-guided design is a problem for statistical analysis of single-case designs. There's some work by John Ferron and others that suggests that response-guided practices can distort the performance of conventional hypothesis testing procedures, which I think motivated John's interest in developing masked visual analysis. Masked visual analysis provides a way to do a valid, statistically justified hypothesis test while also incorporating response-guided decisions into a design. But it does require some additional planning and procedural features, so I wasn't sure whether to treat it as a separate approach to phase change decisions. Outside of masked visual analysis, though, response-guided designs might be creating a hurdle for doing hypothesis testing.
+
+--
+
+.f3[
+😟 Estimation
+]
+
+.f3[
+- [Joo, Ferron, Beretvas et al. (2018)](#bib-joo2018impact) found little impact of response-guided decisions on estimates from multi-level models
+
+- [Swan, Pustejovsky, and Beretvas (2020)](#bib-swan2020impact) found that response-guided decisions lead to under-estimation of baseline variance
+
+]
+
+???
+
+Similarly, there's some work that response-guided designs might also create problems for estimation. The evidence here is a bit mixed. There's a paper by Joo and colleagues indicating it might not be much of an issue for estimating mean differences in simple multi-level models. 
+
+But, Danny Swan's work has also demonstrated that different forms of response-guided design can create problems for estimation of basic features of an outcome like the degree of variation. 
+
+---
+
+## [Swan, Pustejovsky, and Beretvas (2020)](#bib-swan2020impact)
+
+#### Relative bias of baseline variance for stable, Poisson-distributed baselines
+
+.center[
+&lt;img src="Swan-response-guided.png" width="75%" /&gt;
+]
+
+???
+
+Here's an illustration from Danny's paper on this. He looked at a bunch of different ways of operationalizing a response-guided phase change decision, simulated them along with different types of outcome distributions, and tracked the bias in estimates of the baseline variability. The upshot is that many forms of response-guided phase changes lead to data patterns that under-state variability, which can be a problem for effect estimation if the effect size metric involves the variability, and also a problem for assessing the real extent of uncertainty in an effect estimate.
+
+---
+
+# Response-guided phase changes
+
+.f2[
+
+- 😟 / 🤓 Hypothesis testing
+    
+- 😟 Effect estimation
+
+]
+
+???
+
+So, we're worried about response-guided designs in terms of statistical theory, both for hypothesis testing and effect estimation, unless we're nerding out with masked visual analysis.
+
+One of the other take-aways from Danny's work is that we are also concerned about the procedural reproducibility of response-guided phase changes. 
+
+--
+
+.f3[
+
+- .f2[😱 Reproducibility]
+
+    - Various operationally defined criteria have been described ([Gast and Spriggs, 2010](#bib-Gast2010visual); [Kazdin, 2011](#bib-Kazdin2011single); [Ferron, Joo, and Levin, 2017](#bib-ferron2017Monte))
+    
+    - But not clear what researchers actually do in practice
+]
+
+???
+
+There are more-or-less, precise operationally defined criteria for response-guided decision making that have been described in textbooks by Gast and Spriggs, and Kazdin, and some of John's work. However, speaking for my own experience it's really not clear what researchers actually do in practice. There's a lot of room for improvement in transparency and specificity. 
+
+--
+
+.f3[
+- .f2[😁 Feasibility and pragmatic considerations]
+
+    - Although stringent criteria might create scheduling challenges
+]
+
+???
+
+Finally, it's really on my third criteria of feasibility and pragmatics where response-guided phase changes starts to look more appealing. The response-guided decisions researchers need to make seem like they tend to be amenable to the sort of flexibility that's needed to work in schools and other settings, although if you're using very stringent operational criteria for establishing stability, there may be some tension between this approach and things like scheduling constraints. 
+
+---
+class: inverse, middle, center
+
+# Fixed phase changes
+
+&lt;img src="grocery-cupcake.jpeg" width="60%" /&gt;
+
+???
+
+Finally, on to the approach that I was supposed to be talking about, using fixed, pre-specified phase lengths.
+
+---
+
+# Fixed-phase length designs: Theory
+
+.f3[
+
+🤷 No particular supporting statistical theory 
+
+]
+
+???
+
+Here, similar to response-guided designs, there's really not any particular statistical theory that supports this approach. But let me offer a sort of backwards justification. Pretend for the moment that we're interested in doing conventional, parametric statistical inference or estimation with our results. Then using fixed phase lengths at least doesn't muck up that plan. 
+
+--
+
+.f3[
+
+- Conventional (parametric) statistical inference / estimation approaches __assume that the phase lengths are fixed (constant)__.
+    
+    - Standard error of a sample mean is holding `\(n\)` fixed: 
+    
+    `$$SE(\bar{y}) = \frac{S }{\sqrt{n}}$$`
+
+    - Standard error of regression coefficient is estimated while holding the predictors fixed:
+    
+    `$$SE\left(\hat\beta\right) = \sqrt{\widehat{\Var}\left(\left.\hat\beta \ \right|\  \mathbf{X}\right)}$$` 
+
+]
+
+???
+
+It doesn't muck things up because conventional statistical analyses are actually based on an assumption that phase lengths are fixed, constant quantities. If we were just trying to do something simple, like estimate the mean of a phase, well the stats-101 textbook formula the standard error of the mean is the sample standard deviation divided by the square root of the number of observations. That formula presumes that the number of observations is a fixed quantity, not random as it would be in a response-guided design or randomized design. 
+
+Similarly, if you're doing some sort of regression analysis of the outcome Y on predictors X, the standard error of the regression coefficient treats X as fixed. 
+
+---
+
+# Fixed-phase length designs: Theory
+
+.f3[
+Conventional statistical analysis assumes phases are fixed and imagines that the _outcomes_ would change across replications of the study.
+]
+
+.center[
+&lt;img src="Fixed ABAB design.gif" width="80%" /&gt;
+]
+
+???
+
+Here's a visual representation of that notation. A conventional statistical analysis of an ABAB design is imagining that the phase lengths are fixed, but that if the whole study were to be replicated, that we'd get a different set of outcomes, following some parametric distribution. We're imagining that the phases are fixed and the outcomes change, in contrast to the randomization inference, where it's the other way around.
+
+--
+
+.f3[
+- Using fixed phase lengths therefore aligns with conventional statistical analysis.
+
+    - Less likely to mess up a statistical analysis than with response-guided phase changes.
+
+    - Power analysis can be used to determine phase lengths needed to achieve desired precision.
+]
+
+???
+
+So, using fixed phase lengths at least aligns with the conventional sort of statistical analysis you might want to do. It's less likely to mess up your analysis than would be the case if you used a response-guided approach. Plus, you could do things like a power analysis to determine how long the phases need to be to achieve some level of power or precision.
+
+---
+
+# Fixed-phase length designs
+
+.f2[
+
+- 🤷 Hypothesis testing
+    
+- 🤷 Effect estimation
+
+]
+
+--
+
+.pull-left.f3[
+- .f2[😀 Reproducibility]
+
+    - Easy to describe procedures
+    
+]
+
+.pull-right[
+&lt;img src="KISS.png" width="501" /&gt;
+]
+
+
+--
+
+.f3[
+
+- .f2[😀 Feasibility / pragmatic considerations]
+
+    - Phase changes can be planned under scheduling constraints
+
+]
+
+---
+
+# My ratings
+
+.f3[
+
+| Criterion  | Randomized | Response-guided | Fixed phase length |
+| :--------- | :--------: | :-------------: | :----------------: |
+| Statistical theory: Hypothesis testing | .f2[😎] | .f2[😟] | .f2[🤷] |
+| Statistical theory: &lt;br&gt;Effect estimation | .f2[🤔] | .f2[😟] | .f2[🤷] |
+| Reproducibility | .f2[🤔] | .f2[😨] | .f2[😀] |
+| Feasibility &amp; pragmatic considerations | .f2[🤷] | .f2[😀] | .f2[😀] |
+]
+
+---
+
+# Research priorities
+
+.f3[
+- Procedural reproducibility and transparency are core principles. They need to be prioritized with any approach to phase change decisions.
+]
+
+.f3[
+
+- Trade-offs between:
+
+    - Using __statistical analysis__, gathering evidence about __magnitude__ of effects
+    
+    - Using __visual analysis__, making __binary decisions__ (presence/absence) about functional relations
+    
+]
+
+
+---
+
+## References 
+
+.f6[
+
+&lt;a name=bib-Allison1992reflections&gt;&lt;/a&gt;[Allison, D. B., R. D.
+Franklin, and S. Heshka](#cite-Allison1992reflections) (1992).
+"Reflections on Visual Inspection, Response Guided Experimentation,
+and Type I Error Rate in Single-Case Designs". In: _The Journal of
+Experimental Education_ 61.1, pp. 45-51. DOI:
+[10.1080/00220973.1992.9943848](https://doi.org/10.1080%2F00220973.1992.9943848).
+
+&lt;a name=bib-Baer1968some&gt;&lt;/a&gt;[Baer, D. M., M. M. Wolf, and T. R.
+Risley](#cite-Baer1968some) (1968). "Some Current Dimensions of
+Applied Behavior Analysis." In: _Journal of applied behavior
+analysis_ 1.1, pp. 91-7.
+
+&lt;a name=bib-Edgington2007randomization&gt;&lt;/a&gt;[Edgington, E. and P.
+Onghena](#cite-Edgington2007randomization) (2007). _Randomization
+Tests_. Boca Raton, FL: Chapman &amp; Hall.
+
+&lt;a name=bib-Ferron2006tests&gt;&lt;/a&gt;[Ferron, J. M. and P. K.
+Jones](#cite-Ferron2006tests) (2006). "Tests for the Visual Analysis
+of Response-Guided Multiple-Baseline Data". In: _The Journal of
+Experimental Education_ 75.1, pp. 66-81. DOI:
+[10.3200/JEXE.75.1.66-81](https://doi.org/10.3200%2FJEXE.75.1.66-81).
+
+&lt;a name=bib-ferron2017Monte&gt;&lt;/a&gt;[Ferron, J. M., S. Joo, and J. R.
+Levin](#cite-ferron2017Monte) (2017). "A Monte Carlo Evaluation of
+Masked Visual Analysis in Response-Guided versus Fixed-Criteria
+Multiple-Baseline Designs". In: _Journal of Applied Behavior
+Analysis_ 50.4, pp. 701-716. DOI:
+[10.1002/jaba.410](https://doi.org/10.1002%2Fjaba.410).
+
+&lt;a name=bib-ferron2003Functioning&gt;&lt;/a&gt;[Ferron, J., L.
+Foster-Johnson, and J. D. Kromrey](#cite-ferron2003Functioning)
+(2003). "The Functioning of Single-Case Randomization Tests With and
+Without Random Assignment". In: _The Journal of Experimental
+Education_ 71.3, pp. 267-288. DOI:
+[10.1080/00220970309602066](https://doi.org/10.1080%2F00220970309602066).
+
+&lt;a name=bib-fisher1935Design&gt;&lt;/a&gt;[Fisher, R.
+A.](#cite-fisher1935Design) (1935). _The Design of Experiments_.
+Edinburgh: Oliver and Boyd.
+
+&lt;a name=bib-fisher1947development&gt;&lt;/a&gt;[Fisher, R.
+A.](#cite-fisher1947development) (1947). "Development of the theory
+of experimental design". In: _Proceedings of the International
+Statistical Conferences_. Vol. 3. Poznan. , pp. 434-439.
+
+&lt;a name=bib-Gast2010visual&gt;&lt;/a&gt;[Gast, D. L. and A. D.
+Spriggs](#cite-Gast2010visual) (2010). "Visual Analysis of Graphic
+Data". In: _Single Subject Research Methodology in Behavioral
+Sciences_. Ed. by D. L. Gast. New York, NY: Routledge. Chap. 9, pp.
+199-233.
+
+&lt;a name=bib-hill1952Clinical&gt;&lt;/a&gt;[Hill, A.
+B.](#cite-hill1952Clinical) (1952). "The Clinical Trial". In: _New
+England Journal of Medicine_ 247.4, pp. 113-119. DOI:
+[10.1056/NEJM195207242470401](https://doi.org/10.1056%2FNEJM195207242470401).
+
+]
+
+---
+
+## References 
+
+.f6[
+
+&lt;a name=bib-joo2018impact&gt;&lt;/a&gt;[Joo, S., J. M. Ferron, S. N.
+Beretvas, et al.](#cite-joo2018impact) (2018). "The Impact of
+Response-Guided Baseline Phase Extensions on Treatment Effect
+Estimates". In: _Research in Developmental Disabilities_ 79, pp.
+77-87. ISSN: 08914222. DOI:
+[10.1016/j.ridd.2017.12.018](https://doi.org/10.1016%2Fj.ridd.2017.12.018).
+
+&lt;a name=bib-Kazdin2011single&gt;&lt;/a&gt;[Kazdin, A.
+E.](#cite-Kazdin2011single) (2011). _Single-Case Research Designs:
+Methods for Clinical and Applied Settings_. New York, NY: Oxford
+University Press.
+
+&lt;a name=bib-michiels2017confidence&gt;&lt;/a&gt;[Michiels, B., M. Heyvaert,
+A. Meulders, et al.](#cite-michiels2017confidence) (2017).
+"Confidence Intervals for Single-Case Effect Size Measures Based on
+Randomization Test Inversion". In: _Behavior Research Methods_ 49.1,
+pp. 363-381. DOI:
+[10.3758/s13428-016-0714-4](https://doi.org/10.3758%2Fs13428-016-0714-4).
+
+&lt;a name=bib-swan2020impact&gt;&lt;/a&gt;[Swan, D. M., J. E. Pustejovsky, and
+S. N. Beretvas](#cite-swan2020impact) (2020). "The Impact of
+Response-Guided Designs on Count Outcomes in Single-Case
+Experimental Design Baselines". In: _Evidence-Based Communication
+Assessment and Intervention_, pp. 1-26. DOI:
+[10.1080/17489539.2020.1739048](https://doi.org/10.1080%2F17489539.2020.1739048).
+
+]
+
+---
+
+# Randomized between-group designs
+
+.fl.w-20[
+&lt;img src="Fisher.jpg" width="80%" /&gt;
+.f5[R.A. Fisher]
+]
+.fl.w-80[
+&gt; The purpose of randomisation ... is to guarantee the validity of the test of significance, this test being based on an estimate of error made possible by replication ([Fisher, 1935](#bib-fisher1935Design)).
+
+&gt; The theory of estimation presupposes a process of random sampling. All our conclusions within that theory rest on this basis; without it our tests of significance would be worthless ([Fisher, 1947](#bib-fisher1947development)). 
+]
+
+
+--
+.fl.w-100[
+.fl.w-70[
+&gt; _Sure, but you don't have to be a such a jerk about it!_ 
+
+.tr[
+— Neyman (probably at some point?)
+] 
+]
+
+.center.fl.w-30[
+&lt;img src="Neyman-old.jpg" width="70%" /&gt;
+
+.f5[Jerzy Neyman]
+]
+]
+
+---
+
+# Randomized between-group designs
+
+.w-100[
+.fl.w-20[
+&lt;img src="Hill.jpg" width="503" /&gt;
+
+.f5[A. Bradford Hill]
+]
+.fl.w-80[
+&gt; [Randomized allocation to treatment] ensures that neither our personal idiosyncrasies (our likes or dislikes consciously or unwittingly applied) nor our lack of balanced judgement has entered into the construction of the different treatment groups—the allocation has been outside our control and the groups are therefore unbiased ([Hill, 1952](#bib-hill1952Clinical)). 
+]
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

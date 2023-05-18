@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+
+body { font-family: 'Lato', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif; font-size: 150%;}
+h1, h2, h3, h4 { font-family: 'Yanone Kaffeesatz'; }
+.remark-code, .remark-inline-code { font-family: 'Inconsolata', 'Lucida Console', Monaco, monospace; }
+
+.title-slide {
+  background-image: url("Cupcakes.jpg"); 
+  background-size: cover;
+  background-position: top;
+}
+
+.title-slide {
+  background-color: #9b0000;
+}
+
+
+.title-slide h1, .title-side h2, .title-slide h3 {
+  color: #f7f7f7;
+}
+
+.inverse {
+  background-color: #9b0000;
+}
+
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #f7f7f7;
+}
+
+h1, h2, h3 {
+  color: 	#9b0000;
+}
+.myred {
+  color: 	#9b0000;
+}
+
+div.my-header {
+    background-color: #F77A00;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffb76b), color-stop(0%,#ffa73d), color-stop(0%,#ffffff), color-stop(10%,#ffffff), color-stop(25%,#F77A00), color-stop(100%,#F77A00));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 30px;
+    width: 100%;
+    text-align: left;
+}
+
+.remark-code {
+  font-size: 100%;
+}
+.bigger .remark-code {
+  font-size: 200% !important;
+}
+.smaller .remark-code {
+  font-size: 75% !important;
+}
+
+.small { font-size: 80% }
+.large { font-size: 120% }
