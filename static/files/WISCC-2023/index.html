@@ -398,7 +398,7 @@ One of the other take-aways from Danny's work is that we are also concerned abou
 
 .f3[
 
-- .f2[😱 Reproducibility]
+- .f2[😨 Reproducibility]
 
     - Various operationally defined criteria have been described ([Gast and Spriggs, 2010](#bib-Gast2010visual); [Kazdin, 2011](#bib-Kazdin2011single); [Ferron, Joo, and Levin, 2017](#bib-ferron2017Monte))
     
@@ -444,7 +444,7 @@ Finally, on to the approach that I was supposed to be talking about, using fixed
 
 ???
 
-Here, similar to response-guided designs, there's really not any particular statistical theory that supports this approach. But let me offer a sort of backwards justification. Pretend for the moment that we're interested in doing conventional, parametric statistical inference or estimation with our results. Then using fixed phase lengths at least doesn't muck up that plan. 
+Here, similar to response-guided designs, there's really not any particular statistical theory that supports this approach. But let me offer a sort of backwards justification. Pretend for the moment that we're interested in doing conventional, parametric statistical inference or estimation with our results. 
 
 --
 
@@ -464,7 +464,7 @@ Here, similar to response-guided designs, there's really not any particular stat
 
 ???
 
-It doesn't muck things up because conventional statistical analyses are actually based on an assumption that phase lengths are fixed, constant quantities. If we were just trying to do something simple, like estimate the mean of a phase, well the stats-101 textbook formula the standard error of the mean is the sample standard deviation divided by the square root of the number of observations. That formula presumes that the number of observations is a fixed quantity, not random as it would be in a response-guided design or randomized design. 
+Conventional statistical analyses are actually based on an assumption that phase lengths are fixed, constant quantities. If we were just trying to do something simple, like estimate the mean of a phase, well the stats-101 textbook formula the standard error of the mean is the sample standard deviation divided by the square root of the number of observations. That formula presumes that the number of observations is a fixed quantity, not random as it would be in a response-guided design or randomized design. 
 
 Similarly, if you're doing some sort of regression analysis of the outcome Y on predictors X, the standard error of the regression coefficient treats X as fixed. 
 
@@ -510,6 +510,9 @@ So, using fixed phase lengths at least aligns with the conventional sort of stat
 
 ]
 
+???
+
+Okay so in terms of theory, fixed phase lengths are -meh- seems fine?
 --
 
 .pull-left.f3[
@@ -522,7 +525,9 @@ So, using fixed phase lengths at least aligns with the conventional sort of stat
 .pull-right[
 &lt;img src="KISS.png" width="501" /&gt;
 ]
+???
 
+Fixed phase lengths also seems pretty nice in terms of reproducibility. It seems straight-forward to describe your plan, so this is nice following the keep-it-simple-stupid principle.
 
 --
 
@@ -533,6 +538,10 @@ So, using fixed phase lengths at least aligns with the conventional sort of stat
     - Phase changes can be planned under scheduling constraints
 
 ]
+
+???
+
+Fixed phase changes also seem pretty good in terms of feasibility and pragmatic considerations. It seems like it would be amenable to working out a design if you've got to deal with scheduling constraints. 
 
 ---
 
@@ -547,6 +556,10 @@ So, using fixed phase lengths at least aligns with the conventional sort of stat
 | Reproducibility | .f2[🤔] | .f2[😨] | .f2[😀] |
 | Feasibility &amp; pragmatic considerations | .f2[🤷] | .f2[😀] | .f2[😀] |
 ]
+
+???
+
+Looking across these different approaches, here's how my rating stack up. I'd be very interested to get your emoji ratings on this so perhaps we can talk during the discussion time. 
 
 ---
 
@@ -565,6 +578,14 @@ So, using fixed phase lengths at least aligns with the conventional sort of stat
     - Using __visual analysis__, making __binary decisions__ (presence/absence) about functional relations
     
 ]
+
+???
+
+Where does this leave us? I think it's a matter of priorities. One principle that cuts across all three procedures, is the need for procedural reproducibility. I think we need to prioritize this, and especially push on it for response-guided designs.
+
+Beyond that, I want to just recognize that there's trade-offs between the approaches, trade-offs between using statistical analysis and focusing on gathering evidence about the magnitude of effects, versus using visual analysis and making binary decisions about functional relations. 
+
+With that, I will pass it over to Wendy and I look forward to discussion with y'all.
 
 
 ---
