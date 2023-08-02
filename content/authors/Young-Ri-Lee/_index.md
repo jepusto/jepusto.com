@@ -7,7 +7,7 @@ education:
   courses:
   - course: PhD in Quantitative Methods
     institution: University of Texas at Austin
-    year: 2022 (expected)
+    year: 2023
   - course: MA in Educational Measurement and Statistics
     institution: Korea University
     year: 2017
@@ -22,9 +22,9 @@ interests:
 - Meta-analysis 
 
 organizations:
-- name: The University of Texas at Austin
-  url: ""
-role: Graduate student
+- name: Urban Education Institute at the University of Chicago
+  url: "https://uei.uchicago.edu/"
+role: Postdoctoral Scholar
 
 social:
 - icon: envelope
@@ -37,9 +37,9 @@ social:
 superuser: false
 
 user_groups:
-- Current Advisees
+- Alumni
 ---
 
 # Young Ri Lee
 
-Young Ri is a doctoral student in the Quantitative Methods program at The University of Texas at Austin. Her research interests include Hierarchical Linear Modeling (HLM), Robust Variance Estimation methods (RVE), and meta-analysis. She is currently an assistant statistician in the SMARTER group and assistant data analyst in UT's Gender Equity Council.
+Young Ri completed her PhD in the Quantitative Methods program at The University of Texas at Austin. She is currently a postdoctoral scholar in Developmental and Learning Sciences at the Urban Education Institute of the University of Chicago. Her research interests include Hierarchical Linear Modeling (HLM), Robust Variance Estimation methods (RVE), and meta-analysis. 
