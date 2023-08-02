@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elizabeth Tipton | James E. Pustejovsky</title>
-    <link>/authors/elizabeth-tipton/</link>
-      <atom:link href="/authors/elizabeth-tipton/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/authors/elizabeth-tipton/</link>
+      <atom:link href="https://www.jepusto.com/authors/elizabeth-tipton/index.xml" rel="self" type="application/rss+xml" />
     <description>Elizabeth Tipton</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Fri, 07 May 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Elizabeth Tipton</title>
-      <link>/authors/elizabeth-tipton/</link>
+      <link>https://www.jepusto.com/authors/elizabeth-tipton/</link>
     </image>
     
     <item>
       <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
-      <link>/publication/rve-meta-analysis-expanding-the-range/</link>
-      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <link>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Current practices in meta-regression in psychology, education, and medicine</title>
-      <link>/publication/current-practices-in-meta-regression/</link>
+      <link>https://www.jepusto.com/publication/current-practices-in-meta-regression/</link>
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/current-practices-in-meta-regression/</guid>
+      <guid>https://www.jepusto.com/publication/current-practices-in-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A history of meta-regression: Technical, conceptual, and practical developments between 1974 and 2018</title>
-      <link>/publication/history-of-meta-regression/</link>
+      <link>https://www.jepusto.com/publication/history-of-meta-regression/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/history-of-meta-regression/</guid>
+      <guid>https://www.jepusto.com/publication/history-of-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models</title>
-      <link>/publication/rve-in-fixed-effects-models/</link>
+      <link>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</link>
       <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-in-fixed-effects-models/</guid>
+      <guid>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</title>
-      <link>/publication/rve-for-meta-regression/</link>
+      <link>https://www.jepusto.com/publication/rve-for-meta-regression/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-for-meta-regression/</guid>
+      <guid>https://www.jepusto.com/publication/rve-for-meta-regression/</guid>
       <description></description>
     </item>
     

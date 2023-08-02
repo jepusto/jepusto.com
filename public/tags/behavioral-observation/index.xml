@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>behavioral observation | James E. Pustejovsky</title>
-    <link>/tags/behavioral-observation/</link>
-      <atom:link href="/tags/behavioral-observation/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/behavioral-observation/</link>
+      <atom:link href="https://www.jepusto.com/tags/behavioral-observation/index.xml" rel="self" type="application/rss+xml" />
     <description>behavioral observation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>behavioral observation</title>
-      <link>/tags/behavioral-observation/</link>
+      <link>https://www.jepusto.com/tags/behavioral-observation/</link>
     </image>
     
     <item>
       <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
-      <link>/publication/measurement-procedures-and-baseline-outcomes/</link>
+      <link>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-procedures-and-baseline-outcomes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Easily simulate thousands of single-case designs</title>
-      <link>/easily-simulate-thousands-of-single-case-designs/</link>
+      <link>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/easily-simulate-thousands-of-single-case-designs/</guid>
+      <guid>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</guid>
       <description>
 
 
 &lt;p&gt;Earlier this month, I taught at the &lt;a href=&#34;https://scdinstitute2018.com/&#34;&gt;Summer Research Training Institute on Single-Case Intervention Design and Analysis workshop&lt;/a&gt;, sponsored by the Institute of Education Sciences’ National Center for Special Education Research.
 While I was there, I shared &lt;a href=&#34;https://jepusto.shinyapps.io/ARPsimulator/&#34;&gt;a web-app for simulating data from a single-case design&lt;/a&gt;.
-This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
+This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;https://www.jepusto.com/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
 It provides an easy way to simulate “mock” data from a single-case design where the dependent variable is measured using systematic direct observation of behavior.
 The simulated data can be viewed in the form of a graph or downloaded as a csv file.
 And it’s quite fast—simulating 1000’s of mock single-case designs takes only a few seconds.
@@ -52,20 +52,20 @@ The initial baseline and treatment phases will be 7 sessions long.
 At baseline, the child engages in inappropriate play at a rate of about 0.8 per minute.
 You anticipate that the intervention could reduce inappropriate play by as much as 90% from baseline.
 Enter all of these details and assumptions into the simulator, and it will generate a graph like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Hit the “Simulate!” button again and you might get something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Or one of these:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of the above graphs were generated from the same hypothetical model—the variation in the clarity and strength of the functional relation is due to random error alone.
 The simulator can also produce graphs that show multiple realizations of the data-generating process. Here’s one with five replications:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And here’s the same figure, but with trend lines added:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The trend lines represent the overall average level of the dependent variable during each session, across infinitely replications of the study.
 The variability around the trend line provides a sense of the extent of random error in the measurements of the dependent variable.&lt;/p&gt;
 &lt;p&gt;I think it’s a rather interesting exercise to try and draw inferences based on visual inspection of randomly generated graphs like this—particularly because it forces you to grapple with random measurement error in a way that using only real data (or only hand-drawn mock data) doesn’t allow.
@@ -106,15 +106,15 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>ARPobservation</title>
-      <link>/software/arpobservation/</link>
+      <link>https://www.jepusto.com/software/arpobservation/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/arpobservation/</guid>
+      <guid>https://www.jepusto.com/software/arpobservation/</guid>
       <description>&lt;p&gt;An R package for simulating different methods of recording data based on direct observation of behavior, where behavior is modeled by an alternating renewal process.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://cran.r-project.org/package=ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://www.jepusto.com/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -125,42 +125,42 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/publication/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>/publication/four-methods-for-pir/</link>
+      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/four-methods-for-pir/</guid>
+      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Four methods for analyzing PIR data</title>
-      <link>/four-methods-for-analyzing-pir-data/</link>
+      <link>https://www.jepusto.com/four-methods-for-analyzing-pir-data/</link>
       <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
-      <guid>/four-methods-for-analyzing-pir-data/</guid>
+      <guid>https://www.jepusto.com/four-methods-for-analyzing-pir-data/</guid>
       <description>
 
 
-&lt;p&gt;My article with Daniel Swan, “Four methods for analyzing partial interval recording data, with application to single-case research” has been accepted for publication in Multivariate Behavioral Research. In an extension of my earlier paper on &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;measurement-comparable effect sizes&lt;/a&gt; for single-case studies, this article provides some approaches to estimating effect sizes from single-case studies that use partial interval or whole interval recording to measure behavioral outcomes. The full abstract is below. &lt;a href=&#34;/files/4-PIR-methods-MBR.pdf&#34;&gt;Preprint&lt;/a&gt; and &lt;a href=&#34;/files/4-PIR-Methods-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. R functions that implement the proposed methods are available in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Daniel Swan, “Four methods for analyzing partial interval recording data, with application to single-case research” has been accepted for publication in Multivariate Behavioral Research. In an extension of my earlier paper on &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;measurement-comparable effect sizes&lt;/a&gt; for single-case studies, this article provides some approaches to estimating effect sizes from single-case studies that use partial interval or whole interval recording to measure behavioral outcomes. The full abstract is below. &lt;a href=&#34;https://www.jepusto.com/files/4-PIR-methods-MBR.pdf&#34;&gt;Preprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/4-PIR-Methods-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. R functions that implement the proposed methods are available in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Partial interval recording is a procedure for collecting measurements during direct observation of behavior. It is used in several areas of educational and psychological research, particularly in connection with single-case research. Measurements collected using partial interval recording suffer from construct invalidity because they are not readily interpretable in terms of the underlying characteristics of the behavior. Using an alternating renewal process model for the behavior under observation, we demonstrate that ignoring the construct invalidity of PIR data can produce misleading inferences, such as inferring that an intervention reduces the prevalence of an undesirable behavior when in fact it has the opposite effect. We then propose four different methods for analyzing PIR summary measurements, each of which can be used to draw inferences about interpretable behavioral parameters. We demonstrate the methods by applying them to data from two single-case studies of problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>New article: Alternating renewal process models for behavioral observation</title>
-      <link>/new-article-alternating-renewal-process-models-for-behavioral-observation/</link>
+      <link>https://www.jepusto.com/new-article-alternating-renewal-process-models-for-behavioral-observation/</link>
       <pubDate>Thu, 16 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/new-article-alternating-renewal-process-models-for-behavioral-observation/</guid>
+      <guid>https://www.jepusto.com/new-article-alternating-renewal-process-models-for-behavioral-observation/</guid>
       <description>
 
 
-&lt;p&gt;My article with Chris Runyon, titled “Alternating renewal process models for behavioral observation: Simulation methods, software , and validity illustrations” has been published in Behavioral Disorders. The abstract is below. &lt;a href=&#34;/files/Pustejovsky-Runyon-2015.pdf&#34;&gt;Postprint available here&lt;/a&gt;. All of the examples in the paper are available in the R package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Chris Runyon, titled “Alternating renewal process models for behavioral observation: Simulation methods, software , and validity illustrations” has been published in Behavioral Disorders. The abstract is below. &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Runyon-2015.pdf&#34;&gt;Postprint available here&lt;/a&gt;. All of the examples in the paper are available in the R package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Direct observation recording procedures produce reductive summary measurements of an underlying stream of behavior. Previous methodological studies of these recording procedures have employed simulation methods for generating random behavior streams, many of which amount to special cases of a statistical model known as the alternating renewal process. This paper describes the alternating renewal process model in its general form, demonstrates how it provides an organizing framework for most past simulation research on direct observation procedures, and introduces a freely available software package that implements the model. The software can be used to simulate behavior streams as well as data from many common recording procedures, including continuous recording, momentary time sampling, event counting, and interval recording procedures. Several examples illustrate how the software can be used to study the validity and reliability of direct observation data and to develop measurement strategies during the planning phases of empirical studies.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -169,14 +169,14 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>Wanted: PIR data</title>
-      <link>/wanted-pir-data/</link>
+      <link>https://www.jepusto.com/wanted-pir-data/</link>
       <pubDate>Wed, 03 Sep 2014 00:00:00 +0000</pubDate>
-      <guid>/wanted-pir-data/</guid>
+      <guid>https://www.jepusto.com/wanted-pir-data/</guid>
       <description>
 
 
-&lt;p&gt;Partial interval recording (PIR) is one method for recording data during systematic direct observation of a behavior. While a convenient method, PIR has the key drawback that it &lt;a href=&#34;/PIR-overestimates-prevalence&#34;&gt;systematically over-states&lt;/a&gt; the prevalence of the behavior under observation. When used in single-case research to measure changes in behavior resulting from intervention, the systematic bias in PIR data can lead to deceptive results, such as inferring that an intervention reduces the prevalence of a problem behavior when in fact the opposite is true.&lt;/p&gt;
-&lt;p&gt;With my student Daniel Swan, I am currently working on developing methods for analyzing partial interval recording data that take its systematic bias into account. Some of these methods can be used with session-level summary PIR measurements (i.e., the percentage of intervals with the behavior), which are easily extracted from published single-case graphs. &lt;a href=&#34;/files/4-PIR-methods-AERA-version-20140312.pdf&#34;&gt;See here&lt;/a&gt; for the paper describing these methods.&lt;/p&gt;
+&lt;p&gt;Partial interval recording (PIR) is one method for recording data during systematic direct observation of a behavior. While a convenient method, PIR has the key drawback that it &lt;a href=&#34;https://www.jepusto.com/PIR-overestimates-prevalence&#34;&gt;systematically over-states&lt;/a&gt; the prevalence of the behavior under observation. When used in single-case research to measure changes in behavior resulting from intervention, the systematic bias in PIR data can lead to deceptive results, such as inferring that an intervention reduces the prevalence of a problem behavior when in fact the opposite is true.&lt;/p&gt;
+&lt;p&gt;With my student Daniel Swan, I am currently working on developing methods for analyzing partial interval recording data that take its systematic bias into account. Some of these methods can be used with session-level summary PIR measurements (i.e., the percentage of intervals with the behavior), which are easily extracted from published single-case graphs. &lt;a href=&#34;https://www.jepusto.com/files/4-PIR-methods-AERA-version-20140312.pdf&#34;&gt;See here&lt;/a&gt; for the paper describing these methods.&lt;/p&gt;
 &lt;p&gt;We are now turning our attention to methods that use the finer-grained, interval-by-interval PIR data to obtain better estimates of the prevalence and incidence (frequency per unit time) of the behavior. For instance, if the observer uses 15 s partial interval recording, with 5 s for recording, for a 20 min session, this is a total of 60 intervals, for each of which the presence or absence of the behavior is recorded. The methods we’re working on make use of the full set of 60 ordered data points from the session. The general idea our work is similar to the post-hoc correction techniques proposed by Suen &amp;amp; Ary (1986), but we think we can greatly improve on their proposal.&lt;/p&gt;
 &lt;p&gt;To fully validate the methods we are developing, we need to test them out on real-world data. If you, dear reader, have access to PIR data and would be willing to share it with us, I would love to hear from you. We are looking specifically for:&lt;/p&gt;
 &lt;ul&gt;
@@ -184,27 +184,27 @@ If you, dear reader, would be interested in helping to pursue any of these direc
 &lt;li&gt;Alternately, continuously-recorded behavioral observation data (e.g., as collected through MOOSES, the Direct Assessment Tracking Application, or ProCoderDV) that we could then convert into PIR data.&lt;/li&gt;
 &lt;li&gt;Along with either type of behavioral observation data, a brief (or lengthier) description of the participant(s) whose behavior was measured and the context in which the measurements were collected.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;We can work with data in whatever format you might be willing to provide–whether that means photo-copied, paper observation forms, an Excel workbook, or a bunch of ProCoderDV data files. In return for sharing data, we will share with you the examples that we develop based on the data, which could also provide a basis for further collaboration. If you are interested in seeing your data analyzed and helping to advance this methodological work, please &lt;a href=&#34;/index.html#contact&#34;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We can work with data in whatever format you might be willing to provide–whether that means photo-copied, paper observation forms, an Excel workbook, or a bunch of ProCoderDV data files. In return for sharing data, we will share with you the examples that we develop based on the data, which could also provide a basis for further collaboration. If you are interested in seeing your data analyzed and helping to advance this methodological work, please &lt;a href=&#34;https://www.jepusto.com/index.html#contact&#34;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Alternating renewal process models for behavioral observation: Simulation methods and validity implications</title>
-      <link>/publication/arp-for-behavioral-observation/</link>
+      <link>https://www.jepusto.com/publication/arp-for-behavioral-observation/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/arp-for-behavioral-observation/</guid>
+      <guid>https://www.jepusto.com/publication/arp-for-behavioral-observation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ARPobservation now on CRAN</title>
-      <link>/arpobservation-now-on-cran/</link>
+      <link>https://www.jepusto.com/arpobservation-now-on-cran/</link>
       <pubDate>Sat, 31 May 2014 00:00:00 +0000</pubDate>
-      <guid>/arpobservation-now-on-cran/</guid>
+      <guid>https://www.jepusto.com/arpobservation-now-on-cran/</guid>
       <description>
 
 
-&lt;p&gt;Version 1.0 of the &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation package&lt;/a&gt; is now available on the Comprehensive R Archive Network. This makes it &lt;a href=&#34;/getting-started-with-ARPobservation&#34;&gt;even easier to install&lt;/a&gt;. Here’s the package description:&lt;/p&gt;
+&lt;p&gt;Version 1.0 of the &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation package&lt;/a&gt; is now available on the Comprehensive R Archive Network. This makes it &lt;a href=&#34;https://www.jepusto.com/getting-started-with-ARPobservation&#34;&gt;even easier to install&lt;/a&gt;. Here’s the package description:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ARPobservation: Tools for simulating different methods of observing behavior based on alternating renewal processes&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;ARPobservation provides a set of tools for simulating data based on direct observation of behavior. It works by first simulating a behavior stream based on an alternating renewal process, given specified distributions of event durations and interim times. Different procedures for recording data can then be applied to the simulated behavior stream. Currently, functions are provided for the following recording methods: continuous duration recording, event counting, momentary time sampling, partial interval recording, and whole interval recording.&lt;/em&gt;&lt;/p&gt;
 </description>
@@ -212,22 +212,22 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>New article: Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/measurement-comparable-effect-sizes/</guid>
       <description>
 
 
-&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
+&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Single-case research comprises a set of designs and methods for evaluating the effects of interventions, practices, or programs on individual cases, through comparison of outcomes measured at different points in time. Although there has long been interest in meta-analytic technique for synthesizing single-case research, there has been little scrutiny of whether proposed effect sizes remain on a directly comparable metric when outcomes are measured using different operational procedures. Much of single-case research focuses on behavioral outcomes in free-operant contexts, which may be measured using a variety of different direct observation procedures. This article describes a suite of effect sizes for quantifying changes in free-operant behavior, motivated by an alternating renewal process model that allows measurement comparability to be established in precise terms. These effect size metrics have the advantage of comporting with how direct observation data are actually collected and summarized. Effect size estimators are proposed that are applicable when the behavior being measured remains stable within a given treatment condition. The methods are illustrated by two examples, including a re-analysis of a systematic review of the effects of choice-making opportunities on problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>To what extent does partial interval recording over-estimate prevalence?</title>
-      <link>/pir-overestimates-prevalence/</link>
+      <link>https://www.jepusto.com/pir-overestimates-prevalence/</link>
       <pubDate>Sat, 26 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/pir-overestimates-prevalence/</guid>
+      <guid>https://www.jepusto.com/pir-overestimates-prevalence/</guid>
       <description>
 
 
@@ -262,7 +262,7 @@ CDR &amp;lt;- continuous_duration_recording(BS)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = phi, y = CDR, geom = &amp;quot;point&amp;quot;) + geom_smooth(method = &amp;quot;loess&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/CDR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/CDR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue line is nearly identical to the line &lt;code&gt;y = x&lt;/code&gt;, meaning that the average of CDR data is equal to prevalence. Good news–the software appears to be working correctly!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;partial-interval-recording&#34; class=&#34;section level2&#34;&gt;
@@ -274,7 +274,7 @@ qplot(x = phi, y = PIR, geom = &amp;quot;point&amp;quot;, ylim = c(-0.02,1.02)) 
   geom_smooth(method = &amp;quot;loess&amp;quot;, se = FALSE) + 
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue line indicates the average value of PIR data across the simulations for a given value of prevalence. The dashed line indicates &lt;code&gt;y = x&lt;/code&gt;, so clearly PIR data over-estimates prevalence.&lt;/p&gt;
 &lt;p&gt;Previous studies in the Applied Behavior Analysis literature have taken a slightly different approach to thinking about over-estimation. Rather than comparing PIR data to the prevalence parameter &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, PIR data is instead compared to the &lt;em&gt;sample&lt;/em&gt; value of prevalence, which is equivalent to the CDR proportion. Following this logic, I apply the PIR and CDR procedures to the same simulated behavior streams, then plot PIR versus CDR.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;obs_data &amp;lt;- reported_observations(BS, data_types = c(&amp;quot;C&amp;quot;,&amp;quot;P&amp;quot;), interval_length = 20, rest_length = 5)
@@ -283,7 +283,7 @@ qplot(x = CDR, y = PIR, data = obs_data, geom = &amp;quot;point&amp;quot;, ylim 
   geom_smooth(method = &amp;quot;loess&amp;quot;, se = FALSE) + 
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_CDR-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_CDR-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue fitted line is slightly different than with the other approach, but the general conclusion is the same: PIR data over-estimates prevalence.&lt;/p&gt;
 &lt;p&gt;But by how much? That’s actually a tricky question to answer, because the extent of the bias depends on a bunch of factors:&lt;/p&gt;
 &lt;ul&gt;
@@ -303,7 +303,7 @@ qplot(x = CDR, y = PIR, data = obs_data, geom = &amp;quot;smooth&amp;quot;, meth
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;
 ## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_length-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_length-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The red line indicates that the longer interval time leads to a larger degree of over-estimation. (For clarity, I’ve removed the points in the scatter-plot.)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;interim-time-distribution&#34; class=&#34;section level4&#34;&gt;
@@ -321,7 +321,7 @@ obs_data &amp;lt;- rbind(obs_exp, obs_gam)
 qplot(x = C, y = P, color = F_lambda, 
       data = obs_data, geom = &amp;quot;smooth&amp;quot;, method = &amp;quot;loess&amp;quot;, se = FALSE, ylim = c(-0.02, 1.02))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_interim_dist-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_interim_dist-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The gamma(3) interim time distribution leads to a slightly larger positive bias.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -330,9 +330,9 @@ qplot(x = C, y = P, color = F_lambda,
     
     <item>
       <title>ARPobservation: Basic use</title>
-      <link>/arpobservation-basic-use/</link>
+      <link>https://www.jepusto.com/arpobservation-basic-use/</link>
       <pubDate>Fri, 25 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/arpobservation-basic-use/</guid>
+      <guid>https://www.jepusto.com/arpobservation-basic-use/</guid>
       <description>
 
 
@@ -423,7 +423,7 @@ c(mean = mean(CDR), var = var(CDR))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##        mean         var 
 ## 0.250140703 0.009567949&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hist(CDR)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/ARPobservation-basic-use_files/figure-html/CDR_hist-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/ARPobservation-basic-use_files/figure-html/CDR_hist-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another well-known recording procedure is &lt;strong&gt;partial interval recording&lt;/strong&gt; (PIR), which involves dividing the observation session into short intervals, then scoring each interval according to whether or not the behavior occurs at any point during the interval. The function &lt;code&gt;interval_recording&lt;/code&gt; applies partial interval recording (or the closely related procedure of whole interval recording) to a set of simulated behavior streams. Suppose that the observer uses 20 s intervals, back-to-back for 300 s, for a total of 15 intervals. This procedure can be applied to the simulated behavior streams using&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;interval_recording(BS10, interval_length = 20, summarize = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
@@ -486,9 +486,9 @@ c(mean = mean(CDR), var = var(CDR))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Getting started with ARPobservation</title>
-      <link>/getting-started-with-arpobservation/</link>
+      <link>https://www.jepusto.com/getting-started-with-arpobservation/</link>
       <pubDate>Thu, 24 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/getting-started-with-arpobservation/</guid>
+      <guid>https://www.jepusto.com/getting-started-with-arpobservation/</guid>
       <description>
 
 
@@ -508,9 +508,9 @@ library(ARPobservation)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Current projects</title>
-      <link>/current-projects/</link>
+      <link>https://www.jepusto.com/current-projects/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>/current-projects/</guid>
+      <guid>https://www.jepusto.com/current-projects/</guid>
       <description>
 
 
@@ -527,9 +527,9 @@ library(ARPobservation)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>/publication/operationally-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>

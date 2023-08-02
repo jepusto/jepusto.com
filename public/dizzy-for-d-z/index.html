@@ -1,0 +1,1447 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Meta-analyses in education, psychology, and related fields rely heavily of Cohen&#39;s $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen&#39;s $d$ is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen&#39;s $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/dizzy-for-d-z/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://www.jepusto.com/dizzy-for-d-z/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="https://www.jepusto.com/dizzy-for-d-z/">
+  <meta property="og:title" content="Cohen&#39;s $d_z$ makes me dizzy when considering measurement error | James E. Pustejovsky">
+  <meta property="og:description" content="Meta-analyses in education, psychology, and related fields rely heavily of Cohen&#39;s $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen&#39;s $d$ is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen&#39;s $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator."><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2023-02-17T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2023-02-17T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.jepusto.com/dizzy-for-d-z/"
+  },
+  "headline": "Cohen's $d_z$ makes me dizzy when considering measurement error",
+  
+  "datePublished": "2023-02-17T00:00:00Z",
+  "dateModified": "2023-02-17T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "James E. Pustejovsky",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Meta-analyses in education, psychology, and related fields rely heavily of Cohen's $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen's $d$ is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen's $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>Students</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</h1>
+
+  
+
+  
+    
+
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
+</div>
+
+
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-02-17
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/dizzy-for-d-z/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<p>Meta-analyses in education, psychology, and related fields rely heavily of Cohen’s <span class="math inline">\(d\)</span>, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen’s <span class="math inline">\(d\)</span> is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen’s <span class="math inline">\(d\)</span> is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>In this post, I’m going to mull over how measurement error and design decisions influence the metric definition of Cohen’s <span class="math inline">\(d\)</span> in basic within-group experimental designs. The distorting effects of measurement error has long been a source of concern within psychometric meta-analysis, a perspective associated with the work of <a href="https://methods.sagepub.com/book/methods-of-meta-analysis-3e">Frank Schmidt and Jack Hunter</a>, and measurement-error corrections are well developed and often applied in meta-analyses of correlations. Straight-forward measurement-error corrections have also been described for Cohen’s <span class="math inline">\(d\)</span> from between-group designs (see recent work by <a href="https://psyarxiv.com/9mpbn/">Brenton Wiernik and Jeff Dahlke</a>). However, I have literally never seen a meta-analytic application that applied these corrections and I have thus far been unable to locate work on such corrections specifically for effect sizes in within-group designs.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> So, time to muck about…</p>
+<div id="effect-size-definitions-in-within-group-designs" class="section level2">
+<h2>Effect size definitions in within-group designs</h2>
+<p>In basic between-group designs, the only variances in the model are the within-group variances, so the choice of standardizing variance is limited to a) the singular population variance, assuming it is homogeneous across groups, b) the variance of one group, or c) the average of the variances in each group. In most applications, homogeneity is assumed (often without much reflection), version (a) of Cohen’s <span class="math inline">\(d\)</span> is estimated, and the meta-analyst can go along their merry way. For sake of succinctness, I’ll call this effect size <span class="math inline">\(d_{b}\)</span>, where the <span class="math inline">\(b\)</span> indicates the usual version for basic between-group designs.</p>
+<p>For within-group or repeated measures designs, the set of choices is more involved and includes a) standardizing by the across-participant variance in one condition (or both conditions, assuming homogeneity) or b) standardizing by the variance of the difference scores. The former approach is sometimes called <span class="math inline">\(d_{av}\)</span><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, the latter is called <span class="math inline">\(d_z\)</span><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. The <span class="math inline">\(d_{av}\)</span> metric uses the same standardizing variance as the <span class="math inline">\(d\)</span> from a basic between-group design, and so results from both types of designs are, in principle, on the same scale.</p>
+<p>In the context of meta-analysis, the comparability of <span class="math inline">\(d_b\)</span> and <span class="math inline">\(d_{av}\)</span> is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with <span class="math inline">\(d_b\)</span> may be less of a priority and one could consider using <span class="math inline">\(d_z\)</span> for synthesis. Purely on a pragmatic level, using <span class="math inline">\(d_z\)</span> might be attractive because the only pieces of information needed to calculate it are the total sample size and the <span class="math inline">\(t\)</span> statistic (or <span class="math inline">\(p\)</span>-value) from the comparison between conditions. In contrast, calculating <span class="math inline">\(d_{av}\)</span> also requires the between-participant standard deviations from one or both groups, which primary studies might not always report.</p>
+<p>Going in to this exercise, I had the notion that measurement error would affect <span class="math inline">\(d_z\)</span> to a greater degree than <span class="math inline">\(d_{av}\)</span> because <span class="math inline">\(d_z\)</span> involves difference scores and difference scores get hit by measurement error twice. Does this intuition hold up? Let me try to formalize things a bit.</p>
+</div>
+<div id="a-within-group-design-with-measurement-error" class="section level2">
+<h2>A within-group design with measurement error</h2>
+<p>Suppose we have a within-group design involving two conditions, where participants are assessed on <span class="math inline">\(K\)</span> trials under each condition. Let <span class="math inline">\(Y_{ijk}\)</span> denote the outcome from trial <span class="math inline">\(k\)</span> for participant <span class="math inline">\(j\)</span> under condition <span class="math inline">\(i\)</span>, for <span class="math inline">\(i = 1,2\)</span>, <span class="math inline">\(j = 1,...,N\)</span>, and <span class="math inline">\(k = 1,...,K\)</span>. A basic model for this set-up is
+<span class="math display">\[
+Y_{ijk} = \mu_i + u_{ij} + e_{ijk}
+\]</span>
+where <span class="math inline">\(u_{1j}\)</span> and <span class="math inline">\(u_{2j}\)</span> are participant-specific errors in the true scores under each condition and the <span class="math inline">\(e_{ijk}\)</span>’s are measurement errors. For simplicity, I will assume that:</p>
+<ul>
+<li>the true-score variance is equal across conditions, with <span class="math inline">\(\Var(u_{ij}) = \sigma^2\)</span> for <span class="math inline">\(i = 1,2\)</span>,</li>
+<li>the true scores are correlated across conditions, <span class="math inline">\(\cor(u_{1j}, u_{2j}) = \rho\)</span>, and</li>
+<li>measurement errors are uncorrelated and have homogeneous variance across conditions, with <span class="math inline">\(\Var(e_{ijk}) = \psi^2\)</span>.</li>
+</ul>
+<p>Let <span class="math inline">\(\phi = \sigma^2 / (\sigma^2 + \psi^2)\)</span> denote the reliability (intra-class correlation) of a single observed score. Note that we can write <span class="math inline">\(\psi^2\)</span> in terms of the reliability and true-score variance as <span class="math inline">\(\psi^2 = \sigma^2 \times \frac{1 - \phi}{\phi}\)</span>.</p>
+<p>Under this model, there are several different standardized mean difference metrics that we could consider. Since measurement reliability might vary from study to study, it would make sense to define the metric in terms of true score variances alone, as
+<span class="math display">\[
+\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma}
+\]</span>
+or in terms of the variance of the difference in true scores, as
+<span class="math display">\[
+\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2(1 - \rho)}}.
+\]</span>
+However, we don’t directly observe the true scores, and we can’t estimate their variance unless we have information about score reliabilities. Thus, meta-analysts will usually need to calculate effect sizes in terms of <em>observed</em> scores that include measurement error.</p>
+<p>Suppose that the analysis is conducted by taking the average of the <span class="math inline">\(K\)</span> trials for each participant under each condition, <span class="math inline">\(\bar{Y}_{ij} = \frac{1}{K} \sum_{k=1}^K Y_{ijk}\)</span>, and conducting the analysis using these mean scores. The variance of the mean scores is
+<span class="math display">\[
+\Var(\bar{Y}_{ij}) = \sigma^2 \left(1 + \frac{1 - \phi}{\phi K}\right),
+\]</span>
+so we can define the observed-score standardized mean difference using raw score standardization as
+<span class="math display">\[
+\tilde\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma \sqrt{1 + \frac{1 - \phi}{\phi K}}} = \frac{1}{\sqrt{1 + \frac{1 - \phi}{\phi K}}} \times \delta_{av}.
+\]</span>
+From this expression, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one.</p>
+<p>Similarly, the variance of the observed difference scores is
+<span class="math display">\[
+\Var(\bar{Y}_{2j} - \bar{Y}_{1j}) =2 \sigma^2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right),
+\]</span>
+so we can define the observed-score standardized mean difference using change score standardization as
+<span class="math display">\[
+\tilde\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)}} = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}} \times \delta_z.
+\]</span>
+Again, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one. However, unlike with <span class="math inline">\(d_{av}\)</span>, the attenuation factor here depends on <span class="math inline">\(\rho\)</span> in addition to <span class="math inline">\(\phi\)</span> and <span class="math inline">\(K\)</span>. This additional term in the correction factor is one indication that <span class="math inline">\(d_z\)</span> might be less desirable for meta-analysis. Correcting <span class="math inline">\(d_z\)</span> for the distortion from measurement error would require estimates of both the true-score correlation and the reliability of the scores, whereas correcting <span class="math inline">\(d_{av}\)</span> would require only the latter.</p>
+</div>
+<div id="meta-analysis" class="section level2">
+<h2>Meta-analysis</h2>
+<p>The relationships between the true-score effect sizes and the analogous observed score effect sizes starts to be a problem when we consider a meta-analysis of multiple primary studies. Primary studies will often use different instruments and procedures for measuring outcomes (necessitating the use of some standardized effect size), and those differences in instruments and procedures might come along with differences in score reliability as well as variation in the number of trials collected per condition (and plenty of other things, such as sample size, participant characteristics, etc.). Procedural heterogeneity like this creates two potential challenges for meta-analysis: bias in average effect sizes and extra heterogeneity in the distribution of effect sizes. Both could make findings from a meta-analysis more difficult to interpret, although I will argue that extra heterogeneity is more concerning than bias.</p>
+<p>To illustrate, let’s now imagine that the parameters of the within-group study design, <span class="math inline">\(\delta_{av}\)</span> or <span class="math inline">\(\delta_z\)</span>, <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are random variables, drawn from the distribution of parameters across a population of hypothetical studies.</p>
+<div id="a-model-for-delta_av" class="section level3">
+<h3>A model for <span class="math inline">\(\delta_{av}\)</span></h3>
+<p>Let’s first consider <span class="math inline">\(\delta_{av}\)</span> and assume that it follows a random effects model, with
+<span class="math display">\[
+\delta_{av} \sim N\left(\mu, \tau^2\right).
+\]</span>
+Let’s also assume that the remaining parameters <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are independent of <span class="math inline">\(\delta_{av}\)</span>. These parameters determine the attenuation factor <span class="math inline">\(A_{av} = \left(1 + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)</span>, which relates the observed-score effect size parameter to the true score effect size parameter.</p>
+<p>The bias of <span class="math inline">\(\tilde\delta_{av}\)</span> is therefore
+<span class="math display">\[
+\E\left(\tilde\delta_{av}\right) = \E\left(A_{av}\delta_{av}\right) = \E(A_{av}) \times \mu.
+\]</span>
+Thus, under my very simplistic assumptions, a meta-analysis of observed score Cohen’s <span class="math inline">\(d_{av}\)</span> estimates will be biased (downward) for the overall average effect in the true-score distribution.</p>
+<p>You might find that the downward bias in <span class="math inline">\(\tilde\delta_{av}\)</span> is undesirable. On the other hand, bias might not be as a big a problem as it first seems. If all of the observed-score effect sizes are biased to a degree that is unrelated to the true effects, then bias just stretches or compresses the scale of measurement, but doesn’t necessarily lead to interpretive problems. Imagine you have a ruler that is half an inch too short, and you’re trying to compare the heights of different objects. As long as you use the same ruler, then you will still be able to determine which objects are bigger and which are smaller, and by how much, even if the measurements are off in an absolute sense.</p>
+<p>Apart from bias, however, variability in <span class="math inline">\(A_{av}\)</span> will also induce <em>additional heterogeneity</em> in the distribution of observed score effect sizes. This is a clear problem because it creates additional uncertainty, making it harder to draw inferences about the distribution of effects, predict new effect sizes, or identify substantively interesting moderators. To measure this additional heterogeneity and keep its consequences separate from the consequences for bias, I will look at the coefficient of variation in <span class="math inline">\(\tilde\delta_{av}\)</span>. Under the assumption that <span class="math inline">\(A_{av}\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>,
+<span class="math display">\[
+\frac{\sqrt{\Var(\tilde\delta_{av})}}{\E(\tilde\delta_{av})} = \frac{\sqrt{(\mu^2 + 2 \tau^2) \Var(A_{av}) + \tau^2 \left[\E(A_{av})\right]^2}}{\E\left(A_{av} \right) \times \mu } = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_{av})}{\left[\E\left(A_{av} \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]</span>
+Thus, the coefficient of variation for <span class="math inline">\(\tilde\delta_{av}\)</span> is amplified by a factor that depends on the squared coefficient of variation of <span class="math inline">\(A_{av}\)</span>. Under the same model,
+<span class="math inline">\(\tilde\delta_z = A_z \times \delta_{av}\)</span>, where <span class="math inline">\(A_z = \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)</span>, and so <span class="math inline">\(\E(\tilde\delta_z) = \E(A_z) \times \mu\)</span> and
+<span class="math display">\[
+\frac{\sqrt{\Var(\tilde\delta_z)}}{\E(\tilde\delta_z)} = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_z)}{\left[\E\left(A_z \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]</span></p>
+<p>To see what’s going on here, let’s consider some specific distributions for these measurement factors. First, let’s assume:</p>
+<ul>
+<li><span class="math inline">\(\rho \sim B(14, 6)\)</span>, so that <span class="math inline">\(\E(\rho) = .7\)</span> and <span class="math inline">\(\Var(\rho) = 0.1^2\)</span>;</li>
+<li><span class="math inline">\(\phi \sim B(3, 5)\)</span>, so that <span class="math inline">\(\E(\rho) = .0.375\)</span> and <span class="math inline">\(\Var(\rho) = 0.161^2\)</span>;</li>
+<li><span class="math inline">\(K \sim 1 + Pois(9)\)</span>, so <span class="math inline">\(\E(K) = 10\)</span> and <span class="math inline">\(\Var(K) = 3^2\)</span>; and</li>
+<li><span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are mutually independent and independent of <span class="math inline">\(\delta_{av}\)</span>.</li>
+</ul>
+<p>Below I simulate 50000 samples from these distributions and calculate <span class="math inline">\(A_{av}\)</span> and <span class="math inline">\(A_z\)</span>.</p>
+<pre class="r"><code>R &lt;- 50000
+rho &lt;- rbeta(R, 14, 6)
+phi &lt;- rbeta(R, 3, 5)
+K &lt;- 1 + rpois(R, 9)
+A_av &lt;- 1 / sqrt(1 + (1 - phi) / (phi * K))
+A_z &lt;- 1 / sqrt(2 * (1 - rho + (1 - phi) / (phi * K)))
+
+library(ggplot2)
+library(patchwork)
+
+density_plot &lt;- function(x, lab, col, limits) {
+  ggplot(data.frame(x), aes(x)) + 
+    xlim(limits) +
+    geom_density(alpha = 0.4, fill = col) + 
+    scale_y_continuous(labels = NULL) +
+    theme_minimal() + 
+    labs(x = lab, y = NULL)
+}
+
+p_A_av &lt;- density_plot(A_av, expression(A[av]),&quot;blue&quot;, c(0.2,1))
+p_A_z &lt;- density_plot(A_z, expression(A[z]), &quot;purple&quot;, c(0, 3))
+p_A_av + p_A_z</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+<p>The distribution of <span class="math inline">\(A_{av}\)</span> is mostly concentrated around the mean of <span class="math inline">\(E(A_{av}) = 0.898\)</span>, with a coefficient of variation of <span class="math inline">\(CV(A_{av}) = 0.085\)</span>. In contrast, the distribution of <span class="math inline">\(A_{av}\)</span> has a mean very close to one, <span class="math inline">\(E(A_z) = 1.005\)</span> but a coefficient of variation of <span class="math inline">\(CV(A_z) = 0.209\)</span>, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of <span class="math inline">\(\tilde\delta_z\)</span> than into <span class="math inline">\(\tilde\delta_{av}\)</span>.</p>
+<p>Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose <span class="math inline">\(K\)</span> to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is <span class="math inline">\(A_{av}^2\)</span>, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for <span class="math inline">\(A_{av}\)</span>. Let’s suppose that researchers always ensure <span class="math inline">\(A_{av} \geq 0.8\)</span> so that reliability is always at least <span class="math inline">\(0.64\)</span>. This leads to the following distributions for <span class="math inline">\(A_{av}\)</span> and <span class="math inline">\(A_z\)</span>:</p>
+<pre class="r"><code>A_av_trunc &lt;- A_av[A_av &gt;= 0.8]
+A_z_trunc &lt;- A_z[A_av &gt;= 0.8]
+p_A_av_trunc &lt;- density_plot(A_av_trunc, expression(A[av]),&quot;blue&quot;, c(0.2, 1))
+p_A_z_trunc &lt;- density_plot(A_z_trunc, expression(A[z]), &quot;purple&quot;, c(0, 3))
+p_A_av_trunc + p_A_z_trunc</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png" width="960" />
+The distribution of <span class="math inline">\(A_{av}\)</span> loses its left tail, so that its mean is <span class="math inline">\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)</span> and its coefficient of variation is reduced to <span class="math inline">\(CV(A_{av} | A_{av} \geq 0.8) = 0.05\)</span>. The distribution of <span class="math inline">\(A_{av}\)</span> now has a mean of <span class="math inline">\(E(A_z | A_{av} \geq 0.8) = 1.044\)</span> and a coefficient of variation of <span class="math inline">\(CV(A_z | A_{av} \geq 0.8) = 0.174\)</span>, about 3.5 times larger than the squared coefficient of variation of <span class="math inline">\(A_{av}\)</span>.</p>
+<p>Under both of these scenarios, the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is substantially more sensitive to procedural heterogeneity than is <span class="math inline">\(\tilde\delta_{av}\)</span>. Based on this model and hypothetical example, it seems clear <span class="math inline">\(\tilde\delta_{av}\)</span> should be preferred over <span class="math inline">\(\tilde\delta_z\)</span> as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that <span class="math inline">\(\delta_{av}\)</span> is the right answer. After all, the underlying effect size model is specified in terms of <span class="math inline">\(\delta_{av}\)</span>, and the design parameters—including <span class="math inline">\(\rho\)</span> in particular—are treated as noise, uncorrelated with <span class="math inline">\(\delta_{av}\)</span>.
+What happens to the observed-score metrics <span class="math inline">\(\tilde\delta_z\)</span> and <span class="math inline">\(\tilde\delta_{av}\)</span> if we instead start with a model specified in terms of <span class="math inline">\(\delta_z\)</span>?</p>
+</div>
+<div id="a-model-for-delta_z" class="section level3">
+<h3>A model for <span class="math inline">\(\delta_z\)</span></h3>
+<p>Let’s now see how this works if we treat <span class="math inline">\(\delta_z\)</span> as the correct metric and assume that the design parameters are independent of <span class="math inline">\(\delta_z\)</span>. Assume that
+<span class="math display">\[
+\delta_z \sim N(\alpha, \omega^2)
+\]</span>
+and that the remaining parameters <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\phi\)</span>, and <span class="math inline">\(K\)</span> are independent of <span class="math inline">\(\delta_{av}\)</span>. Then the observed-score standardized mean difference using change score standardization can be written as <span class="math inline">\(\tilde\delta_z = B_z \times \delta_z\)</span>, where
+<span class="math display">\[
+B_z = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}}
+\]</span>
+and the observed-score standardized mean difference using raw score standardization can be written as <span class="math inline">\(\tilde\delta_{av} = B_{av} \times \delta_z\)</span>, where
+<span class="math display">\[
+B_{av} = \frac{\sqrt{2}(1 - \rho)}{\sqrt{1 - \rho + \frac{1 - \phi}{\phi K}}}.
+\]</span>
+The plots below show the distribution of <span class="math inline">\(B_z\)</span> and <span class="math inline">\(B_{av}\)</span> under the same scenarios considered above. First, the scenario where observed-score reliability is not controlled:</p>
+<pre class="r"><code>B_z &lt;- sqrt((1 - rho) / (1 - rho + (1 - phi) / (phi * K)))
+B_av &lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
+
+p_B_av &lt;- density_plot(B_av, expression(B[av]),&quot;green&quot;, c(0,1.5))
+p_B_z &lt;- density_plot(B_z, expression(B[z]), &quot;yellow&quot;, c(0, 1))
+p_B_av + p_B_z</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png" width="960" />
+Second, the scenario where observed-score reliability is at least 0.64:</p>
+<pre class="r"><code>B_z_trunc &lt;- B_z[A_av &gt;= 0.8]
+B_av_trunc &lt;- B_av[A_av &gt;= 0.8]
+
+p_B_av_trunc &lt;- density_plot(B_av, expression(B[av]),&quot;green&quot;, c(0,1.5))
+p_B_z_trunc &lt;- density_plot(B_z, expression(B[z]), &quot;yellow&quot;, c(0, 1))
+p_B_av_trunc + p_B_z_trunc</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png" width="960" />
+The table below reports the coefficients of variation for each of the multiplicative factors I have considered.</p>
+<pre class="r"><code>library(dplyr)
+dat &lt;- tibble(A_av, A_z, B_av, B_z)
+
+random_rel &lt;- 
+  dat |&gt;
+  summarise(
+    across(everything(), ~ sd(.) / mean(.)),
+    reliability = &quot;random&quot;
+  )
+
+controlled_rel &lt;-
+  dat |&gt;
+  filter(A_av &gt;= 0.8) |&gt;
+  summarise(
+    across(everything(), ~ sd(.) / mean(.)),
+    reliability = &quot;at least 0.64&quot;
+  )
+
+CVs &lt;- 
+  bind_rows(random_rel, controlled_rel) |&gt;
+  mutate(
+    A_ratio = A_z / A_av,
+    B_ratio = B_z / B_av
+  ) |&gt;
+  select(reliability, A_av, A_z, A_ratio, B_av, B_z, B_ratio)
+
+knitr::kable(
+  CVs, 
+  digits = c(0,3,3,1,3,3,2),
+  caption = &quot;Coefficients of variation&quot;,
+  col.names = c(&quot;Reliability&quot;,&quot;$A_{av}$&quot;,&quot;$A_z$&quot;,&quot;$A_z /A_{av}$&quot;, &quot;$B_{av}$&quot;,&quot;$B_z$&quot;, &quot;$B_{z} / B_{av}$&quot;),
+  escape = TRUE
+)</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-6">Table 1: </span>Coefficients of variation</caption>
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="8%" />
+<col width="18%" />
+<col width="12%" />
+<col width="8%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Reliability</th>
+<th align="right"><span class="math inline">\(A_{av}\)</span></th>
+<th align="right"><span class="math inline">\(A_z\)</span></th>
+<th align="right"><span class="math inline">\(A_z /A_{av}\)</span></th>
+<th align="right"><span class="math inline">\(B_{av}\)</span></th>
+<th align="right"><span class="math inline">\(B_z\)</span></th>
+<th align="right"><span class="math inline">\(B_{z} / B_{av}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">random</td>
+<td align="right">0.085</td>
+<td align="right">0.209</td>
+<td align="right">2.5</td>
+<td align="right">0.286</td>
+<td align="right">0.182</td>
+<td align="right">0.64</td>
+</tr>
+<tr class="even">
+<td align="left">at least 0.64</td>
+<td align="right">0.050</td>
+<td align="right">0.174</td>
+<td align="right">3.5</td>
+<td align="right">0.258</td>
+<td align="right">0.138</td>
+<td align="right">0.53</td>
+</tr>
+</tbody>
+</table>
+<p>The tables are now more or less turned. Under both reliability scenarios, <span class="math inline">\(B_z\)</span> has a lower coefficient of variation than <span class="math inline">\(B_{av}\)</span>, indicating that <span class="math inline">\(\tilde\delta_z\)</span> is less affected by procedural heterogeneity than is <span class="math inline">\(\tilde\delta_{av}\)</span>. However, <span class="math inline">\(\tilde\delta_z\)</span> is still affected in absolute terms, considering that the coefficient of variation for <span class="math inline">\(B_z\)</span> is about 79% of the coefficient of variation for <span class="math inline">\(A_z\)</span>. Of course, <span class="math inline">\(\tilde\delta_{av}\)</span> is quite strongly affected under this model, with a coefficient of variation of 0.258.</p>
+</div>
+<div id="consequences-for-heterogeneity" class="section level3">
+<h3>Consequences for heterogeneity</h3>
+<p>To make these results a bit more concrete, it’s useful to consider think in terms of heterogeneity of the observed score effect sizes. The figure below plots the CVs of observed-score effect size parameters as a function of the CVs of the true effect size distribution.</p>
+<pre class="r"><code>library(tidyr)
+library(stringr)
+
+CV_obs &lt;- 
+  CVs |&gt;
+  select(-A_ratio, -B_ratio) |&gt;
+  pivot_longer(-reliability, names_to = &quot;metric&quot;, values_to = &quot;het&quot;) |&gt;
+  expand_grid(tau_mu = seq(0,1,0.02)) |&gt;
+  mutate(
+    reliability = recode(reliability, &#39;at least 0.64&#39; = &quot;Reliability of at least 0.64&quot;, &#39;random&#39; = &quot;Random reliability&quot;),
+    metric = paste0(str_replace(metric, &quot;\\_&quot;,&quot;\\[&quot;),&quot;]&quot;),
+    CV = sqrt((1 + 2 * tau_mu^2) * het^2 + tau_mu^2)
+  )
+
+CV_ex &lt;- CV_obs |&gt;
+  filter(tau_mu == 0.5, reliability == &quot;Reliability of at least 0.64&quot;) |&gt;
+  select(metric, CV) |&gt;
+  mutate(
+    CV = round(CV, 3),
+    metric = str_replace(str_sub(metric, 1, -2), &quot;\\[&quot;, &quot;_&quot;)
+  ) |&gt;
+  pivot_wider(names_from = metric, values_from = CV)
+
+CV_obs_labs &lt;-
+  CV_obs %&gt;%
+  filter(tau_mu == 0)
+
+ggplot(CV_obs, aes(tau_mu, CV, color = metric)) + 
+  facet_wrap(vars(reliability)) +
+  scale_x_continuous(expand = expansion(c(0.1,0),0), breaks = seq(0.2, 1, 0.2)) + 
+  scale_y_continuous(expand = expansion(0,0), breaks = seq(0, 1, 0.2)) + 
+  geom_vline(xintercept = 0) + 
+  geom_hline(yintercept = 0) + 
+  geom_abline(slope = 1, linetype = &quot;dashed&quot;) + 
+  geom_text(
+    data = CV_obs_labs, 
+    aes(x = tau_mu, y = CV, color = metric, label = metric),
+    nudge_x = -0.05,
+    parse = TRUE
+  ) + 
+  geom_line() + 
+  theme_minimal() + 
+  labs(x = expression(tau / mu), y = &quot;Coefficient of variation for observed score ES&quot;) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and <span class="math inline">\(\tau / \mu = 0.5\)</span>, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on <span class="math inline">\(\delta_{av}\)</span>, the observed-score <span class="math inline">\(\tilde\delta_{av}\)</span> is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score <span class="math inline">\(\tilde\delta_z\)</span> is 0.543. Under the effect size model based on <span class="math inline">\(\delta_{av}\)</span>, the observed-score <span class="math inline">\(\tilde\delta_{av}\)</span> is strongly affected by measurement heterogeneity, with a CV of 0.592; in comparison, the CV of the observed-score <span class="math inline">\(\tilde\delta_z\)</span> of 0.528. Under both models, these increases in CV are effectively constant for larger values of <span class="math inline">\(\tau / \mu\)</span>.</p>
+</div>
+</div>
+<div id="so-whats-your-point" class="section level2">
+<h2>So what’s your point?</h2>
+<p>Unfortunately, this particular trip down a rabbit hole doesn’t seem to yield many clear take-aways. For the scenario that I looked at here, the preferred choice of effect size metric is apparently driven by what assumptions we find more plausible. If we think the more plausible model is the one in which <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>, then <span class="math inline">\(\tilde\delta_{av}\)</span> is less strongly affected by measurement variation and therefore preferred. Further, the attenuation in <span class="math inline">\(\tilde\delta_{av}\)</span> depends only on <span class="math inline">\(\phi\)</span>, which might mean that a correction for attenuation is more feasible. However, if we think the more plausible model is the one in which <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_z\)</span>, then <span class="math inline">\(\tilde\delta_z\)</span> is less strongly affected by measurement variation and therefore preferred.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> In the latter model, one caveat is that the measurement error attenuation in <span class="math inline">\(\tilde\delta_z\)</span> is still a complicated mess, depending on both the true score correlation <span class="math inline">\(\rho\)</span> and the reliability <span class="math inline">\(\phi\)</span>. This would make it pretty hard to implement some sort of correction for attenuation.</p>
+<p>So, how could one decide which meta-analytic model is more plausible in a given application? On a conceptual level, I would argue that the model for <span class="math inline">\(\delta_{av}\)</span> would tend to be more plausible in meta-analyses where there is more operational variation in the interventions examined. I would venture that syntheses that include many different versions of an intervention would tend to have a wider range of correlations between true scores (i.e., more heterogeneous correlations between potential outcomes), even holding the outcome measurement procedures constant. This doesn’t necessarily justify the assumption that <span class="math inline">\(\rho\)</span> is independent of <span class="math inline">\(\delta_{av}\)</span>, but it does make it seem rather implausible that <span class="math inline">\(\delta_z\)</span> would be independent of <span class="math inline">\(\rho\)</span>.</p>
+<p>On a more practical level, it seems like there are a few empirical things that a meta-analyst could do to inform a choice between a model for <span class="math inline">\(\delta_{av}\)</span> and one for <span class="math inline">\(\delta_z\)</span>. Pragmatically, one could calculate both effect size metrics and just see which one exhibits more heterogeneity. All else equal, it seems reasonable to prefer the metric that has less heterogeneity. One could also try to gather data on the correlation between observed scores, on the reliability of the observed scores, and on the number of trials used in each study. With this information, one could construct measurement-related predictors and use them in a meta-regression to explain variation in the observed effect size estimates. Alternately, one could use the formulas given above to implement attenuation corrections for the effect sizes and see if this leads to reduced heterogeneity. How well would any of these approaches actually work? Answering that question would take some further, more careful and systematic investigation.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Perhaps because use of Cohen’s <span class="math inline">\(d\)</span> is so under-scrutinized in practice, methodologists have spent many an afternoon blogging about this problem. For general discussions about issues with how to define Cohen’s <span class="math inline">\(d\)</span>, see excellent posts from <a href="https://janhove.github.io/reporting/2015/02/05/standardised-vs-unstandardised-es">Jan Vanhove</a> (with <a href="https://janhove.github.io/design/2015/03/16/standardised-es-revisited">a sequel</a>), <a href="http://jakewestfall.org/blog/index.php/2016/03/25/five-different-cohens-d-statistics-for-within-subject-designs/">Jake Westfall</a>, <a href="http://datacolada.org/33">Uri Simonsohn</a>, and <a href="https://transparentstatistics.org/2018/07/05/meanings-effect-size/">Pierre Dragicevic</a>; a more formal discussion by <a href="https://www.floppybunny.org/robin/web/virtualclassroom/stats/basics/articles/effect_size/effect_size_baguley_2009.pdf">Thom Baguley</a>; and some very interesting work on alternative conceptualizations by <a href="https://doi.org/10.1002/jrsm.1130">Tony Ades and colleagues</a>.
+I can promise, dear reader, that the present blog post will not be nearly as cogent as these contributions—this is more about getting my own thoughts straight than making any recommendations—and so <em>caveat lector</em> applies.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>I would <em>love</em> to be corrected on both of these points. Please drop a comment or email me with suggested reading.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCR"</code>, the “standardized mean change using raw score standardization” in <code>metafor::escalc</code>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>This version of <span class="math inline">\(d\)</span> corresponds to <code>measure = "SMCC"</code>, the “standardized mean change using change score standardization” in <code>metafor::escalc</code>.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>And of course, these two models are not the only alternatives—one could look at intermediate scenarios where <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\phi\)</span> are more or less strongly correlated with the true score effect sizes.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/effect-size/">effect size</a>
+  
+  <a class="badge badge-light" href="/tags/standardized-mean-difference/">standardized mean difference</a>
+  
+  <a class="badge badge-light" href="/tags/design-comparable-smd/">design-comparable SMD</a>
+  
+  <a class="badge badge-light" href="/tags/measurement-error/">measurement-error</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.jepusto.com/dizzy-for-d-z/&amp;text=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.jepusto.com/dizzy-for-d-z/&amp;t=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error&amp;body=https://www.jepusto.com/dizzy-for-d-z/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.jepusto.com/dizzy-for-d-z/&amp;title=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error%20https://www.jepusto.com/dizzy-for-d-z/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.jepusto.com/dizzy-for-d-z/&amp;title=Cohen&amp;#39;s%20$d_z$%20makes%20me%20dizzy%20when%20considering%20measurement%20error" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/smds-in-single-group/">Standardized mean differences in single-group, repeated measures designs</a></li>
+      
+      <li><a href="/ancova-puzzler/">An ANCOVA puzzler</a></li>
+      
+      <li><a href="/simulating-correlated-smds/">Simulating correlated standardized mean differences for meta-analysis</a></li>
+      
+      <li><a href="/publication/bcsmd-examination-of-two-methods/">Between-case standardized effect size analysis of single case design: Examination of the two methods</a></li>
+      
+      <li><a href="/publication/fabi-meta-analysis/">Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.107281da73526e9b05dade8a9cfe7f27.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  
+  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "hide");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
+
+
+  <p class="powered-by">
+    © 2023 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

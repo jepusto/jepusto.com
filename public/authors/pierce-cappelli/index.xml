@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pierce Cappelli | James E. Pustejovsky</title>
+    <link>https://www.jepusto.com/authors/pierce-cappelli/</link>
+      <atom:link href="https://www.jepusto.com/authors/pierce-cappelli/index.xml" rel="self" type="application/rss+xml" />
+    <description>Pierce Cappelli</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Pierce Cappelli</title>
+      <link>https://www.jepusto.com/authors/pierce-cappelli/</link>
+    </image>
+    
+    <item>
+      <title>wildmeta</title>
+      <link>https://www.jepusto.com/software/wildmeta/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/software/wildmeta/</guid>
+      <description>&lt;p&gt;An R package for conducting hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in 
+&lt;a href=&#34;https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -30,7 +30,7 @@
   <meta name="description" content="The standardized mean difference (SMD) is surely one of the best known and most widely used effect size metrics used in meta-analysis. In generic terms, the SMD parameter is defined as the difference in population means between two groups (often this difference represents the effect of some intervention), scaled by the population standard deviation of the outcome metric.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/alternative-formulas-for-the-smd/">
+  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/alternative-formulas-for-the-smd/">
 
   
 
@@ -220,7 +220,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/alternative-formulas-for-the-smd/">
+  <link rel="canonical" href="https://www.jepusto.com/alternative-formulas-for-the-smd/">
 
   
   
@@ -239,10 +239,10 @@
   <meta property="twitter:creator" content="@jepusto">
   
   <meta property="og:site_name" content="James E. Pustejovsky">
-  <meta property="og:url" content="/alternative-formulas-for-the-smd/">
+  <meta property="og:url" content="https://www.jepusto.com/alternative-formulas-for-the-smd/">
   <meta property="og:title" content="Alternative formulas for the standardized mean difference | James E. Pustejovsky">
-  <meta property="og:description" content="The standardized mean difference (SMD) is surely one of the best known and most widely used effect size metrics used in meta-analysis. In generic terms, the SMD parameter is defined as the difference in population means between two groups (often this difference represents the effect of some intervention), scaled by the population standard deviation of the outcome metric."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="The standardized mean difference (SMD) is surely one of the best known and most widely used effect size metrics used in meta-analysis. In generic terms, the SMD parameter is defined as the difference in population means between two groups (often this difference represents the effect of some intervention), scaled by the population standard deviation of the outcome metric."><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2016-06-03T00:00:00&#43;00:00">
@@ -271,7 +271,7 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/alternative-formulas-for-the-smd/"
+    "@id": "https://www.jepusto.com/alternative-formulas-for-the-smd/"
   },
   "headline": "Alternative formulas for the standardized mean difference",
   
@@ -288,7 +288,7 @@
     "name": "James E. Pustejovsky",
     "logo": {
       "@type": "ImageObject",
-      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+      "url": "https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
   "description": "The standardized mean difference (SMD) is surely one of the best known and most widely used effect size metrics used in meta-analysis. In generic terms, the SMD parameter is defined as the difference in population means between two groups (often this difference represents the effect of some intervention), scaled by the population standard deviation of the outcome metric."
@@ -859,11 +859,11 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 \]</span></p>
 <p>In this design,</p>
 <p><span class="math display">\[
-\frac{se_b}{s_p} = \frac{2(1 - r)}{n},
+\frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 \]</span></p>
 <p>where <span class="math inline">\(r\)</span> is the sample correlation between the pre- and post-tests. The remaining question is what to use for <span class="math inline">\(\nu\)</span>. Borenstein (2009) uses <span class="math inline">\(\nu = n - 1\)</span>. My previous post <a href="/distribution-of-sample-variances/">on the sampling covariance of sample variances</a> gave the result that <span class="math inline">\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)</span>, which would instead suggest using</p>
 <p><span class="math display">\[
-\nu = \frac{2 (n - 1)}{1 + r^2}. 
+\nu = \frac{2 (n - 1)}{1 + r^2}.
 \]</span></p>
 <p>This formula will tend to give slightly larger degrees of freedom, but probably won’t be that discrepant from Borenstein’s approach except in quite small samples. It would be interesting to investigate which approach is better in small samples (i.e., leading to less biased estimates of the SMD and more accurate estimates of sampling variance, and by how much), although its possible than neither is all that good because the variance estimator itself is based on a large-sample approximation.</p>
 </div>
@@ -871,7 +871,7 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 <h4>Two group, pre-test post-test design: ANCOVA estimation</h4>
 <p>Suppose that a study involves taking pre-test and post-test measurements on two groups of participants, with sample sizes <span class="math inline">\(n_T\)</span> and <span class="math inline">\(n_C\)</span> respectively. One way to analyze this design is via ANCOVA using the pre-test measure as the covariate, so that the treatment effect estimate is the difference in adjusted post-test means. In this design, the scaled standard error will be approximately</p>
 <p><span class="math display">\[
-\frac{se_b}{S} = \frac{(n_C + n_T)(1 - r^2)}{n_C n_T},
+\frac{se_b}{S} = \sqrt{ \frac{(n_C + n_T)(1 - r^2)}{n_C n_T} },
 \]</span></p>
 <p>where <span class="math inline">\(r\)</span> is the pooled, within-group sample correlation between the pre-test and the post-test measures (this approximation assumes that the pre-test SMD between groups is relatively small). Alternately, if <span class="math inline">\(se_b\)</span> is provided then the scaled standard error could be calculated directly.</p>
 <p>Borenstein (2009) suggests calculating <span class="math inline">\(d\)</span> as the difference in adjusted means, scaled by the pooled sample variances on the post-test measures. The post-test pooled sample variance will have the same degrees of freedom as in the two-sample t-test case: <span class="math inline">\(\nu = n_C + n_T - 2\)</span>. (Borenstein instead uses <span class="math inline">\(\nu = n_C + n_T - 2 - q\)</span>, where <span class="math inline">\(q\)</span> is the number of covariates in the analysis, but this won’t usually make much difference unless the total sample size is quite small.)</p>
@@ -885,7 +885,7 @@ b = \left(\bar{y}_{T1} - \bar{y}_{T0}\right) - \left(\bar{y}_{C1} - \bar{y}_{C0}
 \]</span></p>
 <p>which has sampling variance <span class="math inline">\(\text{Var}(b) = 2(1 - \rho)\sigma^2\left(n_C + n_T \right) / (n_C n_T)\)</span>, where <span class="math inline">\(\rho\)</span> is the correlation between the pre-test and the post-test measures. Thus, the scaled standard error is</p>
 <p><span class="math display">\[
-\frac{se_b}{S} = \frac{2(1 - r)(n_C + n_T)}{n_C n_T}.
+\frac{se_b}{S} = \sqrt{\frac{2(1 - r)(n_C + n_T)}{n_C n_T}}.
 \]</span></p>
 <p>As with ANCOVA, there are several potential options for calculating the denominator of <span class="math inline">\(d\)</span>:</p>
 <ul>
@@ -925,15 +925,15 @@ S_{model}^2 = \mathbf{r}&#39;\boldsymbol\omega,
 <p><a href="http://doi.org/10.3102/1076998606298043">Hedges (2007)</a> addresses estimation of standardized mean differences for cluster-randomized trials, in which the units of measurement are nested within higher-level clusters that comprise the units of randomization. Such designs involve two variance components (within- and between-cluster variance), and thus there are three potential approaches to scaling the treatment effect: standardize by the total variance (i.e., the sum of the within- and between-cluster components), standardize by the within-cluster variance, or standardize by the between-cluster variance. Furthermore, some of the effect sizes can be estimated in several different ways, each with a different sampling variance. <a href="http://doi.org/10.3102/1076998606298043">Hedges (2007)</a> gives sampling variance estimates for each estimator of each effect size, but they all follow the same general formula as given above. (The appendix of the article actually gives the same formula as above, but using a more abstract formulation.)</p>
 <p>For example, suppose the target SMD parameter uses the total variance and that we have data from a two-level, two-arm cluster randomized trial with <span class="math inline">\(M\)</span> clusters, <span class="math inline">\(n\)</span> observations per cluster, and total sample sizes in each arm of <span class="math inline">\(N_T\)</span> and <span class="math inline">\(N_C\)</span>, respectively. Let <span class="math inline">\(\tau^2\)</span> be the between-cluster variance, <span class="math inline">\(\sigma^2\)</span> be the within-cluster variance, and <span class="math inline">\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)</span>. The target parameter is <span class="math inline">\(\delta = \left(\mu_T - \mu_C\right) / \left(\tau^2 + \sigma^2\right)\)</span>. The article assumes that the treatment effect will be estimated by the difference in grand means, <span class="math inline">\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)</span>. Letting <span class="math inline">\(S_B^2\)</span> be the pooled sample variance of the cluster means within each arm and <span class="math inline">\(S_W^2\)</span> be the pooled within-cluster sample variance, the total variance is estimated as</p>
 <p><span class="math display">\[
-S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2. 
+S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2.
 \]</span></p>
 <p>An estimate of the SMD is then</p>
 <p><span class="math display">\[
-d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}. 
+d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}.
 \]</span></p>
 <p>The scaled standard error of <span class="math inline">\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)</span> is</p>
 <p><span class="math display">\[
-se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
+se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}.
 \]</span></p>
 <p>The appendix of the article demonstrates that <span class="math inline">\(\text{E}\left(S_{total}^2\right) = \tau^2 + \sigma^2\)</span> and</p>
 <p><span class="math display">\[
@@ -1000,7 +1000,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/alternative-formulas-for-the-smd/&amp;text=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://www.jepusto.com/alternative-formulas-for-the-smd/&amp;text=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1013,7 +1013,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/alternative-formulas-for-the-smd/&amp;t=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://www.jepusto.com/alternative-formulas-for-the-smd/&amp;t=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1026,7 +1026,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="mailto:?subject=Alternative%20formulas%20for%20the%20standardized%20mean%20difference&amp;body=/alternative-formulas-for-the-smd/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Alternative%20formulas%20for%20the%20standardized%20mean%20difference&amp;body=https://www.jepusto.com/alternative-formulas-for-the-smd/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1039,7 +1039,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/alternative-formulas-for-the-smd/&amp;title=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.jepusto.com/alternative-formulas-for-the-smd/&amp;title=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1052,7 +1052,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=Alternative%20formulas%20for%20the%20standardized%20mean%20difference%20/alternative-formulas-for-the-smd/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Alternative%20formulas%20for%20the%20standardized%20mean%20difference%20https://www.jepusto.com/alternative-formulas-for-the-smd/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1065,7 +1065,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/alternative-formulas-for-the-smd/&amp;title=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://www.jepusto.com/alternative-formulas-for-the-smd/&amp;title=Alternative%20formulas%20for%20the%20standardized%20mean%20difference" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1242,7 +1242,7 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
     
     
     
-    <script src="/js/academic.min.4dd9b94a466daca7ed2f06b98847fa44.js"></script>
+    <script src="/js/academic.min.107281da73526e9b05dade8a9cfe7f27.js"></script>
 
     
 
@@ -1256,23 +1256,13 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
   <div class="container">
     <footer class="site-footer">
   
-  <p class="powered-by">
-    
-      <a href="/privacy/">Privacy Policy</a>
-    
-    
-       &middot; 
-      <a href="/terms/">Terms</a>
-    
-  </p>
-  
   
   
   
 
 
   <p class="powered-by">
-    © 2022 &middot; 
+    © 2023 &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

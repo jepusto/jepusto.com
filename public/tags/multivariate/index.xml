@@ -2,28 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>multivariate | James E. Pustejovsky</title>
-    <link>/tags/multivariate/</link>
-      <atom:link href="/tags/multivariate/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/multivariate/</link>
+      <atom:link href="https://www.jepusto.com/tags/multivariate/index.xml" rel="self" type="application/rss+xml" />
     <description>multivariate</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sat, 27 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>multivariate</title>
-      <link>/tags/multivariate/</link>
+      <link>https://www.jepusto.com/tags/multivariate/</link>
     </image>
     
     <item>
+      <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
+      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</title>
-      <link>/what-does-multivariate-mean/</link>
+      <link>https://www.jepusto.com/what-does-multivariate-mean/</link>
       <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/what-does-multivariate-mean/</guid>
+      <guid>https://www.jepusto.com/what-does-multivariate-mean/</guid>
       <description>
 
 
 &lt;p&gt;If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; A lot of the terminology in our field is pretty bad and ineloquent. As a leading example, look no further than Rubin and Little’s classification of missing data mechanisms as missing completely at random (MCAR), missing at random (MAR), or missing not at random (MNAR). Clear as mud, and the last one sounds like something you’d see on a handmade sign with a picture of someone’s pet puppy who wandered off last week.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://petkey.blob.core.windows.net/resource/images/940000/949000/949340_500W.jpg&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;As another example, consider that introductory statistics students always struggle to distinguish between no less than &lt;strong&gt;&lt;em&gt;three&lt;/em&gt;&lt;/strong&gt; different concepts that are all called “variance”: population variance, sample variance, and sampling variance.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; Unless the instructor also took diction training from the Royal Shakespeare Company, it’s no wonder that a fair number of students are left confused.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Hamlet-z-transform.jpg&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Hamlet-z-transform.jpg&#34; /&gt;
 In this post, I will try to clarify (at least a little bit) another mess of terminology that crops up a lot in my work on meta-analysis: what do we mean when we say a model or method is “multivariate”? In the context of meta-analysis methods, I think there are at least three distinct senses in which this term is used:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;As an umbrella term for models/methods where there is more than one effect size estimate per study,&lt;/li&gt;
@@ -48,7 +56,7 @@ Here, a multivariate meta-analysis would go a step further and make assumptions 
 Typically, the sampling variances and covariances would play into how the model is estimated and how one conducts inference and gets standard errors on things, etc.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;citation&#34;&gt;Becker (&lt;a href=&#34;#ref-Becker2000multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2000&lt;/a&gt;)&lt;/span&gt; and &lt;span class=&#34;citation&#34;&gt;Gleser &amp;amp; Olkin (&lt;a href=&#34;#ref-Gleser2009stochastically&#34; role=&#34;doc-biblioref&#34;&gt;2009&lt;/a&gt;)&lt;/span&gt; describe a whole slew of different situations where meta-analysts will encounter multiple effect size estimates within a given study, and both provide formulas for the covariances between those effect sizes.
 In some situations, these covariances can be calculated just based on primary study sample sizes or other information readily available from study reports.
-In other situations (such as when one calculates &lt;a href=&#34;/correlations-between-smds/&#34;&gt;standardized mean differences for each of several outcomes on a common set of participants&lt;/a&gt;), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
+In other situations (such as when one calculates &lt;a href=&#34;https://www.jepusto.com/correlations-between-smds/&#34;&gt;standardized mean differences for each of several outcomes on a common set of participants&lt;/a&gt;), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
 With this meaning of the term, multivariate meta-analysis methods are those that both directly model the dependent effects structure and that treat the sampling covariances as known. They are therefore distinct from methods, such as robust variance estimation, that do not rely on knowing the exact variance-covariance structure of the sampling errors.
 In my own work, I find it helpful to be able to draw this distinction, so I rather like this usage of “multivariate.” This will surely irritate some statisticians, though, who prefer the third, stricter meaning of the term.&lt;/p&gt;
 &lt;/div&gt;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>David A. Klingbeil | James E. Pustejovsky</title>
+    <link>https://www.jepusto.com/authors/david-a.-klingbeil/</link>
+      <atom:link href="https://www.jepusto.com/authors/david-a.-klingbeil/index.xml" rel="self" type="application/rss+xml" />
+    <description>David A. Klingbeil</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>David A. Klingbeil</title>
+      <link>https://www.jepusto.com/authors/david-a.-klingbeil/</link>
+    </image>
+    
+    <item>
+      <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
+      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

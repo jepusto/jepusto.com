@@ -1,6 +1,6 @@
 ---
 authors:
-- megha
+- Megha Joshi
 name: Megha Joshi
 bio: 
 education:

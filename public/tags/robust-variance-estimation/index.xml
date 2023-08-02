@@ -2,29 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>robust variance estimation | James E. Pustejovsky</title>
-    <link>/tags/robust-variance-estimation/</link>
-      <atom:link href="/tags/robust-variance-estimation/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/robust-variance-estimation/</link>
+      <atom:link href="https://www.jepusto.com/tags/robust-variance-estimation/index.xml" rel="self" type="application/rss+xml" />
     <description>robust variance estimation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>robust variance estimation</title>
-      <link>/tags/robust-variance-estimation/</link>
+      <link>https://www.jepusto.com/tags/robust-variance-estimation/</link>
     </image>
     
     <item>
-      <title>Power approximations for meta-analysis of dependent effect sizes</title>
-      <link>/publication/power-approximations-for-dependent-effects/</link>
-      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/publication/power-approximations-for-dependent-effects/</guid>
+      <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
+      <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Meta-analysis with robust variance estimation and multiply imputed covariates</title>
-      <link>/rve-meta-analysis-with-mi/</link>
-      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
-      <guid>/rve-meta-analysis-with-mi/</guid>
+      <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
+      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>POMADE</title>
+      <link>https://www.jepusto.com/software/pomade/</link>
+      <pubDate>Fri, 02 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/software/pomade/</guid>
+      <description>&lt;p&gt;An R package for computing power levels, minimum detectable effect sizes, and minimum required sample sizes for the test of the overall average effect size in meta-analysis of dependent effect sizes. The package also includes functions for creating plots of power analysis results.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Corrigendum to Pustejovsky and Tipton (2018), redux</title>
+      <link>https://www.jepusto.com/pusto-tipton-2018-theorem-2-redux/</link>
+      <pubDate>Mon, 07 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/pusto-tipton-2018-theorem-2-redux/</guid>
       <description>
 
 
@@ -33,334 +50,315 @@
 \def\E{{\text{E}}}
 \def\Var{{\text{Var}}}
 \def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;
+&lt;strong&gt;UPDATE, March 8, 2023: The correction to our paper has now been published at &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;. It is available at&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.1080/07350015.2023.2174123&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1080/07350015.2023.2174123&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In my &lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. As explained in &lt;a href=&#34;https://www.jepusto.com/pusto-tipton-2018-theorem-2/&#34;&gt;my previous post&lt;/a&gt;, we were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I’ll give the revised theorem, following the notation and setup of &lt;a href=&#34;https://www.jepusto.com/pusto-tipton-2018-theorem-2/&#34;&gt;the previous post&lt;/a&gt; (so better read that first, or what follows won’t make much sense!).&lt;/p&gt;
+&lt;div id=&#34;theorem-2-revised&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Theorem 2, revised&lt;/h3&gt;
+&lt;p&gt;Consider the model
+&lt;span class=&#34;math display&#34; id=&#34;eq:regression&#34;&gt;\[
+\bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, \tag{1}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{y}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times 1\)&lt;/span&gt; vector of responses for cluster &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{R}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times r\)&lt;/span&gt; matrix of focal predictors, &lt;span class=&#34;math inline&#34;&gt;\(\bm{S}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times s\)&lt;/span&gt; matrix of additional covariates that vary across multiple clusters, and &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times t\)&lt;/span&gt; matrix encoding cluster-specific fixed effects, all for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)&lt;/span&gt; be the set of predictors that vary across clusters and &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)&lt;/span&gt; be the full set of predictors. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}}_i = \left(\bm{I} - \bm{T}_i \bm{M}_{\bm{T}}\bm{T}_i&amp;#39;\right) \bm{U}_i\)&lt;/span&gt; be an absorbed version of the focal predictors and the covariates. The cluster-robust variance estimator for the coefficients of &lt;span class=&#34;math inline&#34;&gt;\(\bm{U}_i\)&lt;/span&gt; is
+&lt;span class=&#34;math display&#34; id=&#34;eq:CRVE&#34;&gt;\[
+\bm{V}^{CR2} = \bm{M}_{\bm{\ddot{U}}} \left(\sum_{i=1}^m \bm{\ddot{U}}_i&amp;#39; \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i&amp;#39; \bm{A}_i \bm{W}_i \bm{\ddot{U}}_i \right) \bm{M}_{\bm{\ddot{U}}},
+\tag{2}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_1,...,\bm{A}_m\)&lt;/span&gt; are the CR2 adjustment matrices.&lt;/p&gt;
+&lt;p&gt;If we assume a working model in which &lt;span class=&#34;math inline&#34;&gt;\(\bs\Psi_i = \sigma^2 \bm{I}_i\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt; and estimate the model by ordinary least squares, then the CR2 adjustment matrices have a fairly simple form:
+&lt;span class=&#34;math display&#34; id=&#34;eq:A-matrix&#34;&gt;\[
+\bm{A}_i = \left(\bm{I}_i - \bm{X}_i \bm{M_X} \bm{X}_i&amp;#39;\right)^{+1/2},
+\tag{3}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(B^{+1/2}\)&lt;/span&gt; is the symmetric square root of the Moore-Penrose inverse of &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}\)&lt;/span&gt;. However, this form is computationally expensive because it involves the full set of predictors, &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}_i\)&lt;/span&gt;, including the cluster-specific fixed effects &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i\)&lt;/span&gt;. If the model is estimated after absorbing the cluster-specific fixed effects, then it would be convenient to use the adjustment matrices based on the absorbed predictors only,
+&lt;span class=&#34;math display&#34; id=&#34;eq:A-tilde&#34;&gt;\[
+\bm{\tilde{A}}_i = \left(\bm{I}_i - \bm{\ddot{U}}_i \bm{M_\ddot{U}} \bm{\ddot{U}}_i&amp;#39;\right)^{+1/2}.
+\tag{4}
+\]&lt;/span&gt;
+The original version of Theorem 2 asserted that &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i = \bm{\tilde{A}}_i\)&lt;/span&gt;, which is not actually the case. However, for ordinary least squares with the independent, homoskedastic working model, we can show that &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)&lt;/span&gt;. Thus, it doesn’t matter whether we use &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i\)&lt;/span&gt; to calculate the cluster-robust variance estimator. We’ll get the same result either way, but &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i\)&lt;/span&gt; is bit easier to compute.&lt;/p&gt;
+&lt;p&gt;Here’s a formal statement of Theorem 2:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{L}_i = \left(\bm{\ddot{U}}&amp;#39;\bm{\ddot{U}} - \bm{\ddot{U}}_i&amp;#39;\bm{\ddot{U}}_i\right)\)&lt;/span&gt; and assume that &lt;span class=&#34;math inline&#34;&gt;\(\bm{L}_1,...,\bm{L}_m\)&lt;/span&gt; have full rank &lt;span class=&#34;math inline&#34;&gt;\(r + s\)&lt;/span&gt;. If &lt;span class=&#34;math inline&#34;&gt;\(\bm{W}_i = \bm{I}_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi_i = \bm{I}_i\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde{\bm{A}}_i\)&lt;/span&gt; are as defined in &lt;a href=&#34;#eq:A-matrix&#34;&gt;(3)&lt;/a&gt; and &lt;a href=&#34;#eq:A-tilde&#34;&gt;(4)&lt;/a&gt;, respectively.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Proof&lt;/h3&gt;
+&lt;p&gt;We can prove this revised Theorem 2 by showing how &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; can be constructed in terms of &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i\)&lt;/span&gt;. First, because &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i&amp;#39;\bm{T}_k = \bm{0}\)&lt;/span&gt; for any &lt;span class=&#34;math inline&#34;&gt;\(i \neq k\)&lt;/span&gt;, it follows that &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i \bm{M_T} \bm{T}_i&amp;#39;\)&lt;/span&gt; is idempotent, i.e.,
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{T}_i \bm{M_T} \bm{T}_i&amp;#39; \bm{T}_i \bm{M_T} \bm{T}_i&amp;#39; = \bm{T}_i \bm{M_T} \bm{T}_i&amp;#39;.
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.1.5     v dplyr   1.0.5
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metadat)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metadat&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metafor&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: Matrix&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;Matrix&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:tidyr&amp;#39;:
-## 
-##     expand, pack, unpack&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Loading the &amp;#39;metafor&amp;#39; package (version 3.0-2). For an
-## introduction to the package please type: help(metafor)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;metafor&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:metadat&amp;#39;:
-## 
-##     dat.hackshaw1998, dat.ishak2007, dat.konstantopoulos2011,
-##     dat.lim2014, dat.maire2019, dat.moura2021, dat.raudenbush1985,
-##     dat.riley2003&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
-##   method    from    
-##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mice)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mice&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;mice&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
-## 
-##     filter&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
-## 
-##     cbind, rbind&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mitools)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mitools&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create missingness
-
-set.seed(20211222)
-
-dat_miss &amp;lt;- 
-  dat.assink2016 %&amp;gt;%
-  group_by(study) %&amp;gt;%
-  mutate(
-    pubstatus = if_else(rbinom(1L, 1L, 0.15) == 1L, NA_integer_, unique(pubstatus)),
-    pubstatus = factor(pubstatus, levels = 0:1, labels = c(&amp;quot;unpublished&amp;quot;,&amp;quot;published&amp;quot;)),
-    deltype = if_else(rbinom(n(), 1L, prob = plogis(-2.5 - 0.1 * year)) == 1L, NA_character_, deltype),
-    deltype = factor(deltype)
-  )
-
-# Impute missing values 20 times
-
-predMatrix &amp;lt;- make.predictorMatrix(dat_miss)
-predMatrix[,c(&amp;quot;study&amp;quot;,&amp;quot;esid&amp;quot;,&amp;quot;id&amp;quot;)] &amp;lt;- 0 # don&amp;#39;t use study or esid or id for imputing
-
-impMethod &amp;lt;- make.method(dat_miss)
-impMethod&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##     study      esid        id        yi        vi pubstatus      year   deltype 
-##        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;  &amp;quot;logreg&amp;quot;        &amp;quot;&amp;quot; &amp;quot;polyreg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imp &amp;lt;- mice(dat_miss, m = 20, print = FALSE,
-            predictorMatrix = predMatrix, 
-            method=impMethod, seed = 20211222)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: Number of logged events: 70&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit SCE+ model
-fits &amp;lt;- with(imp, rma.mv(
-  yi = yi, 
-  V = impute_covariance_matrix(vi = vi, cluster = study, r = 0.6, subgroup = deltype),
-  mods = ~ pubstatus + deltype + year,
-  random = list(~ deltype | study, ~ deltype | id),
-  struct = c(&amp;quot;DIAG&amp;quot;,&amp;quot;DIAG&amp;quot;)
-))
-
-# Get coefficients
-coefs &amp;lt;- map(fits$analyses, coef)
-
-# Get CR2 variance-covariance matrices
-vcovs &amp;lt;- map(fits$analyses, vcovCR, type = &amp;quot;CR2&amp;quot;)
-
-# Get denominator df from complete-data F-tests
-q &amp;lt;- 2
-dfs &amp;lt;- 
-  map_dfr(fits$analyses, Wald_test, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(3:4), test = &amp;quot;HTZ&amp;quot;) %&amp;gt;%
-  mutate(
-    eta = df_denom + (q - 1)
-  )
-eta &amp;lt;- mean(dfs$eta)
-
-# Combine imputed results
-res &amp;lt;- MIcombine(results = coefs, variances = vcovs)
-res$coefficients&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##            intrcpt pubstatuspublished       deltypeovert      deltypecovert 
-##         0.89897557        -0.55770641        -0.38101335        -0.46723794 
-##               year 
-##        -0.02576823&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;res$variance&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##                         intrcpt pubstatuspublished deltypeovert deltypecovert
-## intrcpt             0.074539988       -0.083961053 -0.058577507  0.0010493986
-## pubstatuspublished -0.083961053        0.103264126  0.067143252 -0.0032322609
-## deltypeovert       -0.058577507        0.067143252  0.106429071 -0.0108120033
-## deltypecovert       0.001049399       -0.003232261 -0.010812003  0.0321118999
-## year                0.002758525       -0.004318211 -0.003867039  0.0002642098
-##                             year
-## intrcpt             0.0027585250
-## pubstatuspublished -0.0043182112
-## deltypeovert       -0.0038670392
-## deltypecovert       0.0002642098
-## year                0.0004815795&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Calculate manual HTZ test using averaged eta 
-Cmat &amp;lt;- constrain_zero(3:4, coefs = res$coefficients)
-Q &amp;lt;- t(Cmat %*% res$coefficients) %*% solve(Cmat %*% res$variance %*% t(Cmat)) %*% (Cmat %*% res$coefficients)
-Fstat &amp;lt;- (eta - q + 1) / (eta * q) * as.numeric(Q)
-p_val &amp;lt;- pf(Fstat, df1 = q, df2 = eta - q + 1, lower.tail = FALSE)
-data.frame(Fstat = Fstat, df_num = q, df_denom = eta - q + 1, p_val = p_val)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##      Fstat df_num df_denom     p_val
-## 1 3.003453      2 1.663534 0.2804675&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, denote the thin QR decomposition of &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}}_i\)&lt;/span&gt; as &lt;span class=&#34;math inline&#34;&gt;\(\bm{Q}_i \bm{R}_i\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bm{Q}_i\)&lt;/span&gt; is semi-orthogonal &lt;span class=&#34;math inline&#34;&gt;\((\bm{Q}_i&amp;#39;\bm{Q}_i = \bm{I})\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bm{R}_i\)&lt;/span&gt; has the same rank as &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}}_i\)&lt;/span&gt;. Next, let &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{B}}_i = \bm{I}_i - \bm{\ddot{U}}_i \bm{M_\ddot{U}} \bm{\ddot{U}}_i&amp;#39;\)&lt;/span&gt; and observe that this can be written as
+&lt;span class=&#34;math display&#34;&gt;\[
+\tilde{\bm{B}}_i = \bm{I}_i - \bm{Q}_i \bm{Q}_i&amp;#39; + \bm{Q}_i \left(\bm{I} - \bm{R}_i \bm{M}_{\bm{\ddot{U}}} \bm{R}_i&amp;#39;\right)\bm{Q}_i&amp;#39;.
+\]&lt;/span&gt;
+It can then be seen that
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{\tilde{A}}_i = \tilde{\bm{B}}_i^{+1/2} = \bm{I}_i - \bm{Q}_i \bm{Q}_i&amp;#39; + \bm{Q}_i \left(\bm{I} - \bm{R}_i \bm{M}_{\bm{\ddot{U}}} \bm{R}_i&amp;#39;\right)^{+1/2} \bm{Q}_i&amp;#39;.
+\]&lt;/span&gt;
+It follows that &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i \bm{T}_i = \bm{T}_i\)&lt;/span&gt; because &lt;span class=&#34;math inline&#34;&gt;\(\bm{Q}_i&amp;#39;\bm{T}_i = \bm{0}\)&lt;/span&gt;. Further, &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{B}}_i \bm{T}_i = \bm{T}_i\)&lt;/span&gt; as well.&lt;/p&gt;
+&lt;p&gt;Now, let &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i = \left(\bm{I}_i - \bm{X}_i \bm{M_X} \bm{X}_i&amp;#39;\right)\)&lt;/span&gt; and observe that this can be written as
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{B}_i = \bm{I}_i - \bm{\ddot{U}}_i \bm{M_{\ddot{U}}}\bm{\ddot{U}}_i&amp;#39; - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39; = \bm{\tilde{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;
+\]&lt;/span&gt;
+because &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}}_i&amp;#39;\bm{T}_i = \bm{0}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We then construct the full adjustment matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; as
+&lt;span class=&#34;math display&#34; id=&#34;eq:A-constructed&#34;&gt;\[
+\bm{A}_i = \tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;.
+\tag{5}
+\]&lt;/span&gt;
+Showing that &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i \bm{A}_i \bm{B}_i \bm{A}_i = \bm{B}_i\)&lt;/span&gt; will suffice to verify that &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; is the symmetric square root of the Moore-Penrose inverse of &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i\)&lt;/span&gt;. Because &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i \bm{M_T} \bm{T}_i&amp;#39;\)&lt;/span&gt; is idempotent, &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{B}}_i \bm{T}_i = \bm{T}_i\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i \bm{T}_i = \bm{T}_i\)&lt;/span&gt;, we have
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\bm{B}_i \bm{A}_i \bm{B}_i \bm{A}_i &amp;amp;= \left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \left(\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right)\left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \left(\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \\
+&amp;amp;= \left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right)\left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \\
+&amp;amp;= \left(\tilde{\bm{B}}_i\tilde{\bm{A}}_i\tilde{\bm{B}}_i\tilde{\bm{A}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \\
+&amp;amp;= \left(\tilde{\bm{B}}_i - \bm{T}_i \bm{M_T}\bm{T}_i&amp;#39;\right) \\
+&amp;amp;= \bm{B}_i.
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;From the representation of &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i\)&lt;/span&gt; in &lt;a href=&#34;#eq:A-constructed&#34;&gt;(5)&lt;/a&gt;, it is clear that &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_i \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i - \bm{T}_i \bm{M_T} \bm{T}_i&amp;#39; \bm{\ddot{U}}_i = \bm{\tilde{A}}_i \bm{\ddot{U}}_i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
     <item>
-      <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>/publication/competing-approaches-for-cross-classified-data/</link>
-      <pubDate>Thu, 14 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/competing-approaches-for-cross-classified-data/</guid>
+      <title>Power approximations for overall average effects in meta-analysis of dependent effect sizes</title>
+      <link>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</link>
+      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
-      <link>/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
-      <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
+      <title>Investigating narrative performance in children with developmental language disorder: A systematic review and meta-analysis</title>
+      <link>https://www.jepusto.com/publication/investigating-narrative-performance/</link>
+      <pubDate>Fri, 30 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/investigating-narrative-performance/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Corrigendum to Pustejovsky and Tipton (2018)</title>
+      <link>https://www.jepusto.com/pusto-tipton-2018-theorem-2/</link>
+      <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/pusto-tipton-2018-theorem-2/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;
+In my &lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader, &lt;a href=&#34;https://eeecon.uibk.ac.at/~pfaffermayr/&#34;&gt;Dr. Michael Pfaffermayr&lt;/a&gt;, recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.&lt;/p&gt;
+&lt;div id=&#34;a-fixed-effects-model&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A fixed effects model&lt;/h3&gt;
+&lt;p&gt;For data that can be grouped into &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; clusters of observations, we considered the model
+&lt;span class=&#34;math display&#34; id=&#34;eq:regression&#34;&gt;\[
+\bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, \tag{1}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{y}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times 1\)&lt;/span&gt; vector of responses for cluster &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{R}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times r\)&lt;/span&gt; matrix of focal predictors, &lt;span class=&#34;math inline&#34;&gt;\(\bm{S}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times s\)&lt;/span&gt; matrix of additional covariates that vary across multiple clusters, and &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_i\)&lt;/span&gt; is an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times t\)&lt;/span&gt; matrix encoding cluster-specific fixed effects, all for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt;. The cluster-specific fixed effects satisfy &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_h \bm{T}_i&amp;#39; = \bm{0}\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(h \neq i\)&lt;/span&gt;. Interest centers on inference for the coefficients on the focal predictors &lt;span class=&#34;math inline&#34;&gt;\(\bs\beta\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;We considered estimation of Model &lt;a href=&#34;#eq:regression&#34;&gt;(1)&lt;/a&gt; by weighted least squares (WLS), possibly under a working model for the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\bs\epsilon_i\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{W}_1,...,\bm{W}_m\)&lt;/span&gt; be a set of symmetric weight matrices used for WLS estimation. Sometimes, these weight matrices may be diagonal, consisting of sampling weights for each observation. Other times, the weight matrices may involve off-diagonal terms as well. Consider a working model &lt;span class=&#34;math inline&#34;&gt;\(\Var\left(\bs\epsilon_i | \bm{R}_i, \bm{S}_i, \bm{T}_i\right) = \sigma^2 \bs\Phi_i\)&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi_i\)&lt;/span&gt; is a symmetric &lt;span class=&#34;math inline&#34;&gt;\(n_i \times n_i\)&lt;/span&gt; matrix that may be a function of a low-dimensional, estimable parameter. Based on this working model, the weight matrices might be taken as &lt;span class=&#34;math inline&#34;&gt;\(\bm{W}_i = \bs{\hat\Phi}_i^{-1}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bs{\hat\Phi}_i\)&lt;/span&gt; is an estimate of &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi_i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-cr2-variance-estimator&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The CR2 variance estimator&lt;/h3&gt;
+&lt;p&gt;In the paper, we provide a generalization of the bias-reduced linearization estimator introduced by &lt;span class=&#34;citation&#34;&gt;McCaffrey et al. (&lt;a href=&#34;#ref-McCaffrey2001generalizations&#34; role=&#34;doc-biblioref&#34;&gt;2001&lt;/a&gt;)&lt;/span&gt; and &lt;span class=&#34;citation&#34;&gt;Bell &amp;amp; McCaffrey (&lt;a href=&#34;#ref-Bell2002bias&#34; role=&#34;doc-biblioref&#34;&gt;2002&lt;/a&gt;)&lt;/span&gt; that can be applied to Model &lt;a href=&#34;#eq:regression&#34;&gt;(1)&lt;/a&gt;. The variance estimator is effectively a generalization of the HC2 correction for heteroskedasticity-robust standard errors, but that works for models with within-cluster dependence and cluster-specific fixed effects, and so we refer to it the “CR2” estimator.&lt;/p&gt;
+&lt;p&gt;In order to define the CR2 variance estimator and explain the issue with Theorem 2, I’ll need to lay down a bit more notation. Let &lt;span class=&#34;math inline&#34;&gt;\(N = \sum_{i=1}^m n_i\)&lt;/span&gt; be the total sample size. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)&lt;/span&gt; be the set of predictors that vary across clusters and &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)&lt;/span&gt; be the full set of predictors. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{R}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{S}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{U}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}\)&lt;/span&gt; denote the stacked versions of the cluster-specific matrices (i.e., &lt;span class=&#34;math inline&#34;&gt;\(\bm{R} = \left[\bm{R}_1&amp;#39; \ \bm{R}_2&amp;#39; \ \cdots \ \bm{R}_m&amp;#39;\right]&amp;#39;\)&lt;/span&gt;, etc.). Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{W} = \bigoplus_{i=1}^m \bm{W}_i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi = \bigoplus_{i=1}^m \bs\Phi_i\)&lt;/span&gt;. For a generic matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{Z}\)&lt;/span&gt;, let &lt;span class=&#34;math inline&#34;&gt;\(\bm{M}_{Z} = \left(\bm{Z}&amp;#39;\bm{W}\bm{Z}\right)^{-1}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bm{H}_{\bm{Z}} = \bm{Z} \bm{M}_{\bm{Z}}\bm{Z}&amp;#39;\bm{W}\)&lt;/span&gt;. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{C}_i\)&lt;/span&gt; be the &lt;span class=&#34;math inline&#34;&gt;\(n_i \times N\)&lt;/span&gt; matrix that selects the rows of cluster &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; from the full set of observations, such that &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}_i = \bm{C}_i \bm{X}\)&lt;/span&gt;. These operators provide an easy way to define absorbed versions of the predictors. Specifically, let &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{S}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{S}\)&lt;/span&gt; be the covariates after absorbing (i.e., partialling out) the cluster-specific effects, let &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{U}\)&lt;/span&gt; be an absorbed version of the focal predictors and the covariates, and let &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{R}} = \left(\bm{I} - \bm{H}_{\bm{\ddot{S}}}\right)\left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{R}\)&lt;/span&gt; be the focal predictors after absorbing the covariates and the cluster-specific fixed effects.&lt;/p&gt;
+&lt;p&gt;With this notation established, the CR2 variance estimator has the form
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{V}^{CR2} = \bm{M}_{\bm{\ddot{R}}} \left(\sum_{i=1}^m \bm{\ddot{R}}_i&amp;#39; \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i&amp;#39; \bm{A}_i \bm{W}_i \bm{\ddot{R}}_i \right) \bm{M}_{\bm{\ddot{R}}},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{R}}_i = \bm{C}_i \bm{\ddot{R}}\)&lt;/span&gt; is the cluster-specific matrix of absorbed focal predictors, &lt;span class=&#34;math inline&#34;&gt;\(\bm{e}_i\)&lt;/span&gt; is the vector of weighted least squares residuals from cluster &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_1,...,\bm{A}_m\)&lt;/span&gt; are a set of adjustment matrices that correct the bias of the residual cross-products.
+The adjustment matrices are calculated as follows. Let &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}_i\)&lt;/span&gt; be the upper-right Cholesky factorization of &lt;span class=&#34;math inline&#34;&gt;\(\bm{\Phi}_i\)&lt;/span&gt; and define the matrices
+&lt;span class=&#34;math display&#34; id=&#34;eq:B-matrix&#34;&gt;\[
+\bm{B}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{X}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{X}}\right)&amp;#39;\bm{C}_i&amp;#39; \bm{D}_i&amp;#39;
+\tag{2}
+\]&lt;/span&gt;
+for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt;. The adjustment matrices are then calculated as
+&lt;span class=&#34;math display&#34; id=&#34;eq:A-matrix&#34;&gt;\[
+\bm{A}_i = \bm{D}_i&amp;#39; \bm{B}_i^{+1/2} \bm{D}_i,
+\tag{3}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i^{+1/2}\)&lt;/span&gt; is the symmetric square root of the Moore-Penrose inverse of &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i\)&lt;/span&gt;.
+Theorem 1 in the paper shows that, if the working model &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi\)&lt;/span&gt; is correctly specified and some conditions on the rank of &lt;span class=&#34;math inline&#34;&gt;\(\bm{U}\)&lt;/span&gt; are satisfied, then the CR2 estimator is exactly unbiased for the sampling variance of the weighted least squares estimator of &lt;span class=&#34;math inline&#34;&gt;\(\bs\beta\)&lt;/span&gt;. Across multiple simulation studies, it’s been observed that the CR2 estimator also works well and outperforms alternative sandwich estimators even when the working model is not correctly specified.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;theorem-2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Theorem 2&lt;/h3&gt;
+&lt;p&gt;The adjustment matrices given in &lt;a href=&#34;#eq:A-matrix&#34;&gt;(3)&lt;/a&gt; can be expensive to compute directly because the &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i\)&lt;/span&gt; matrices involve computing a “residualized” version of the &lt;span class=&#34;math inline&#34;&gt;\(N \times N\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi\)&lt;/span&gt; involving the full set of predictors &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}\)&lt;/span&gt;—including the cluster-specific fixed effects &lt;span class=&#34;math inline&#34;&gt;\(\bm{T}_1,...,\bm{T}_m\)&lt;/span&gt;. Theorem 2 considered whether one can take a computational short cut by omitting the cluster-specific fixed effects from the calculation of the &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i\)&lt;/span&gt; matrices. Specifically, define the modified matrices
+&lt;span class=&#34;math display&#34; id=&#34;eq:B-modified&#34;&gt;\[
+\bm{\tilde{B}}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right)&amp;#39;\bm{C}_i&amp;#39; \bm{D}_i&amp;#39;
+\tag{4}
+\]&lt;/span&gt;
+and
+&lt;span class=&#34;math display&#34; id=&#34;eq:A-modified&#34;&gt;\[
+\bm{\tilde{A}}_i = \bm{D}_i&amp;#39; \bm{\tilde{B}}_i^{+1/2} \bm{D}_i,
+\tag{5}.
+\]&lt;/span&gt;
+Theorem 2 claims that if the weight matrices are inverse of the working model, such that &lt;span class=&#34;math inline&#34;&gt;\(\bm{W}_i = \bs\Phi_i^{-1}\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,m\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{B}}_i^{+1/2} = \bm{B}_i^{+1/2}\)&lt;/span&gt; and hence &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i = \bm{A}_i\)&lt;/span&gt;. The implication is that the cluster-specific fixed effects can be ignored when calculating the adjustment matrices. However, the claimed equivalence does not actually hold.&lt;/p&gt;
+&lt;p&gt;Here is a simple numerical example that contradicts the assertion of Theorem 2. I first create a predictor matrix consisting of 4 clusters, a single focal predictor, and cluster-specific fixed effects.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(20220926)
+m &amp;lt;- 4                                             # number of clusters
+ni &amp;lt;- 2 + rpois(m, 3.5)                            # cluster sizes
+N &amp;lt;- sum(ni)                                       # total sample size
+id &amp;lt;- factor(rep(LETTERS[1:m], ni))                # cluster ID
+R &amp;lt;- rnorm(N)                                      # focal predictor
+dat &amp;lt;- data.frame(R, id)                           # create raw data frame
+X &amp;lt;- model.matrix(~ R + id + 0, data = dat)        # full predictor matrix
+Ui &amp;lt;- tapply(R, id, \(x) x - mean(x))              # absorbed version of R
+U &amp;lt;- unsplit(Ui, id)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Consider a model estimated by ordinary least squares, where the assumed working model is homoskedastic and independent errors, so &lt;span class=&#34;math inline&#34;&gt;\(\bs\Phi_i = \bm{I}_i\)&lt;/span&gt;, an &lt;span class=&#34;math inline&#34;&gt;\(n_i \times n_i\)&lt;/span&gt; identity matrix (with no parameters to estimate). In this case, the adjustment matrices simplify considerably, to
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{A}_i = \left(\bm{I}_i - \bm{X}_i \bm{M}_{X} \bm{X}_i&amp;#39; \right)^{+1/2} \qquad \text{and} \qquad \bm{\tilde{A}}_i = \left(\bm{I}_i - \bm{\ddot{U}}_i \bm{M}_{\ddot{U}} \bm{\ddot{U}}_i&amp;#39; \right)^{+1/2}.
+\]&lt;/span&gt;
+I calculate these directly as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;matrix_power &amp;lt;- function(x, p) {
+  eig &amp;lt;- eigen(x, symmetric = TRUE)
+  val_p &amp;lt;- with(eig, ifelse(values &amp;gt; 10^-12, values^p, 0))
+  with(eig, vectors %*% (val_p * t(vectors)))
+}
+
+MX &amp;lt;- solve(crossprod(X))
+B &amp;lt;- 
+  by(X, id, as.matrix) |&amp;gt;
+  lapply(\(x) diag(nrow(x)) - x %*% MX %*% t(x))
+A &amp;lt;- lapply(B, matrix_power, p = -1/2)
+  
+MU &amp;lt;- 1 / crossprod(U)
+Btilde &amp;lt;- lapply(Ui, \(x) diag(length(x)) - x %*% MU %*% t(x))
+Atilde &amp;lt;- lapply(Btilde, matrix_power, p = -1/2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here are the adjustment matrices based on the full predictor matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{X}\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(A, digits = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $A
+##        [,1]   [,2]   [,3]   [,4]   [,5]
+## [1,]  0.853 -0.198 -0.207 -0.191 -0.257
+## [2,] -0.198  0.800 -0.200 -0.200 -0.202
+## [3,] -0.207 -0.200  0.801 -0.201 -0.192
+## [4,] -0.191 -0.200 -0.201  0.802 -0.210
+## [5,] -0.257 -0.202 -0.192 -0.210  0.860
+## 
+## $B
+##        [,1]   [,2]   [,3]
+## [1,]  0.668 -0.338 -0.330
+## [2,] -0.338  0.683 -0.345
+## [3,] -0.330 -0.345  0.675
+## 
+## $C
+##        [,1]   [,2]   [,3]   [,4]   [,5]   [,6]
+## [1,]  0.873 -0.206 -0.163 -0.105 -0.233 -0.166
+## [2,] -0.206  0.873 -0.171 -0.229 -0.100 -0.167
+## [3,] -0.163 -0.171  0.834 -0.160 -0.173 -0.167
+## [4,] -0.105 -0.229 -0.160  0.931 -0.271 -0.166
+## [5,] -0.233 -0.100 -0.173 -0.271  0.946 -0.168
+## [6,] -0.166 -0.167 -0.167 -0.166 -0.168  0.833
+## 
+## $D
+##        [,1]   [,2]   [,3]
+## [1,]  0.797 -0.342 -0.455
+## [2,] -0.342  0.667 -0.325
+## [3,] -0.455 -0.325  0.780&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Compare the above with the adjustment matrices based on the absorbed predictors only:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(Atilde, digits = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $A
+##          [,1]      [,2]     [,3]      [,4]     [,5]
+## [1,]  1.05313  0.001860 -0.00742  0.008995 -0.05657
+## [2,]  0.00186  1.000065 -0.00026  0.000315 -0.00198
+## [3,] -0.00742 -0.000260  1.00104 -0.001257  0.00790
+## [4,]  0.00900  0.000315 -0.00126  1.001523 -0.00958
+## [5,] -0.05657 -0.001980  0.00790 -0.009576  1.06022
+## 
+## $B
+##          [,1]     [,2]     [,3]
+## [1,]  1.00139 -0.00478  0.00339
+## [2,] -0.00478  1.01642 -0.01163
+## [3,]  0.00339 -0.01163  1.00824
+## 
+## $C
+##           [,1]      [,2]      [,3]      [,4]     [,5]      [,6]
+## [1,]  1.039180 -0.039378  4.00e-03  0.061921 -0.06632  5.94e-04
+## [2,] -0.039378  1.039577 -4.02e-03 -0.062234  0.06665 -5.97e-04
+## [3,]  0.003999 -0.004019  1.00e+00  0.006320 -0.00677  6.07e-05
+## [4,]  0.061921 -0.062234  6.32e-03  1.097861 -0.10481  9.39e-04
+## [5,] -0.066317  0.066651 -6.77e-03 -0.104808  1.11225 -1.01e-03
+## [6,]  0.000594 -0.000597  6.07e-05  0.000939 -0.00101  1.00e+00
+## 
+## $D
+##          [,1]     [,2]    [,3]
+## [1,]  1.13078 -0.00914 -0.1216
+## [2,] -0.00914  1.00064  0.0085
+## [3,] -0.12165  0.00850  1.1131&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The matrices differ:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;all.equal(A, Atilde)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Component \&amp;quot;A\&amp;quot;: Mean relative difference: 0.6073885&amp;quot;
+## [2] &amp;quot;Component \&amp;quot;B\&amp;quot;: Mean relative difference: 0.7403564&amp;quot;
+## [3] &amp;quot;Component \&amp;quot;C\&amp;quot;: Mean relative difference: 0.5671847&amp;quot;
+## [4] &amp;quot;Component \&amp;quot;D\&amp;quot;: Mean relative difference: 0.6682793&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thus, Theorem 2 is incorrect as stated. (I have yet to identify the mis-step in the proof as given in the supplementary materials of the paper.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-thoughts&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Further thoughts&lt;/h3&gt;
+&lt;p&gt;For this particular model specification, it is interesting to note that &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_i = \bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i&amp;#39;\)&lt;/span&gt;. Because &lt;span class=&#34;math inline&#34;&gt;\(\bm{\ddot{U}}_i&amp;#39; \bm{T}_i = \bm{0}\)&lt;/span&gt;, it follows that
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{\ddot{U}}_i&amp;#39; \bm{\tilde{A}}_i = \bm{\ddot{U}}_i&amp;#39; \left(\bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i&amp;#39; \right) = \bm{\ddot{U}}_i&amp;#39; \bm{A}_i.
+\]&lt;/span&gt;
+This holds in the numerical example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;UiAtilde &amp;lt;- mapply(\(u, a) t(u) %*% a, u = Ui, a = Atilde, SIMPLIFY = FALSE)
+UiA &amp;lt;- mapply(\(u, a) t(u) %*% a, u = Ui, a = A, SIMPLIFY = FALSE)
+all.equal(UiAtilde, UiA)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Thus, although the exact statement of Theorem 2 is incorrect, the substantive implication actually still holds. For this particular example, computing the CR2 variance estimator using the short-cut adjustment matrices &lt;span class=&#34;math inline&#34;&gt;\(\bm{\tilde{A}}_1,...,\bm{\tilde{A}}_m\)&lt;/span&gt; is equivalent to computing the CR2 variance estimator using the full model adjustment matrices &lt;span class=&#34;math inline&#34;&gt;\(\bm{A}_1,...,\bm{A}_m\)&lt;/span&gt;. However, I have not yet been able to work out the general conditions under which this equivalence holds. It may require stricter conditions than those assumed in Theorem 2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level3 unnumbered&#34;&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body hanging-indent&#34; line-spacing=&#34;2&#34;&gt;
+&lt;div id=&#34;ref-Bell2002bias&#34; class=&#34;csl-entry&#34;&gt;
+Bell, R. M., &amp;amp; McCaffrey, D. F. (2002). &lt;span class=&#34;nocase&#34;&gt;Bias reduction in standard errors for linear regression with multi-stage samples&lt;/span&gt;. &lt;em&gt;Survey Methodology&lt;/em&gt;, &lt;em&gt;28&lt;/em&gt;(2), 169–181.
+&lt;/div&gt;
+&lt;div id=&#34;ref-McCaffrey2001generalizations&#34; class=&#34;csl-entry&#34;&gt;
+McCaffrey, D. F., Bell, R. M., &amp;amp; Botts, C. H. (2001). &lt;span class=&#34;nocase&#34;&gt;Generalizations of biased reduced linearization&lt;/span&gt;. &lt;em&gt;Proceedings of the Annual Meeting of the American Statistical Association&lt;/em&gt;.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>/publication/sced-mlma-rve/</link>
-      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/sced-mlma-rve/</guid>
+      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
-      <link>/publication/rve-meta-analysis-expanding-the-range/</link>
-      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <link>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
+      <link>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
+      <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A handmade clubSandwich for multi-site trials</title>
-      <link>/clustered-and-interacted/</link>
+      <link>https://www.jepusto.com/handmade-clubsandwich/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/clustered-and-interacted/</guid>
+      <guid>https://www.jepusto.com/handmade-clubsandwich/</guid>
       <description>
 
 
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-data(STAR, package = &amp;quot;AER&amp;quot;)
-
-STAR_urban &amp;lt;-
-  STAR %&amp;gt;%
-  filter(
-    # limit to urban/inner city schools
-    schoolk %in% c(&amp;quot;urban&amp;quot;,&amp;quot;inner-city&amp;quot;),
-    # limit to complete outcome data
-    !is.na(readk), !is.na(mathk)
-  ) %&amp;gt;%
-  droplevels() %&amp;gt;%
-  # collapse control conditions
-  mutate(
-    stark = fct_collapse(stark, regular = c(&amp;quot;regular&amp;quot;,&amp;quot;regular+aide&amp;quot;))
-  ) %&amp;gt;%
-  # calculate inverse-propensity weight
-  group_by(schoolidk) %&amp;gt;%
-  mutate(
-    n = n(),
-    nT = sum(stark==&amp;quot;small&amp;quot;),
-    wt = ifelse(stark==&amp;quot;small&amp;quot;, n / nT, n / (n - nT))
-  ) %&amp;gt;%
-  select(schoolidk, stark, readk, mathk, wt)
-
-STAR_summary &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  count(schoolidk)
-
-STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    n = n(),
-    wt = sum(wt)
-  ) %&amp;gt;%
-  mutate(n = sum(n)) %&amp;gt;%
-  spread(stark, wt)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 4
-## # Groups:   schoolidk [23]
-##    schoolidk     n regular small
-##    &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-##  1 2            52      52    52
-##  2 9           120     120   120
-##  3 10           51      51    51
-##  4 14           34      34    34
-##  5 15           55      55    55
-##  6 16          105     105   105
-##  7 18           79      79    79
-##  8 19           99      99    99
-##  9 22          129     129   129
-## 10 26           49      49    49
-## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.&lt;/p&gt;
-&lt;p&gt;For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
-##   method    from    
-##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;STAR_wt &amp;lt;- lm(cbind(readk, mathk) ~ 0 + schoolidk + stark, weights = wt, data = STAR_urban)
-
-# conventional SEs
-CR0 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR0&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            test = &amp;quot;z&amp;quot;,
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-CR0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat p-val (z) Sig.
-## 1 readk:starksmall     6.21 3.13   1.98    0.0473    *
-## 2 mathk:starksmall    12.47 5.58   2.23    0.0254    *&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# clubSandwich SEs
-CR2 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR2&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-
-CR2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat d.f. p-val (Satt) Sig.
-## 1 readk:starksmall     6.21 2.70    2.3   19       0.0332    *
-## 2 mathk:starksmall    12.47 4.79    2.6   19       0.0174    *&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now I’ll do it “by hand”—or rather, with a bit of &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# summary statistics by site
-
-school_summaries &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    # means by arm and site
-    readk = mean(readk),
-    mathk = mean(mathk),
-    n_arm = n()
-  ) %&amp;gt;%
-  summarise(
-    # impact estimates by site
-    readk = diff(readk),
-    mathk = diff(mathk),
-    n = sum(n_arm),
-    p = n_arm[stark==&amp;quot;small&amp;quot;] / n
-  ) %&amp;gt;%
-  mutate(
-    w = n
-  )
-
-# overall impacts
-
-school_summaries %&amp;gt;%
-  gather(&amp;quot;subject&amp;quot;,&amp;quot;impact_j&amp;quot;, readk, mathk) %&amp;gt;%
-  group_by(subject) %&amp;gt;%
-  summarise(
-    impact = weighted.mean(impact_j, w = w),
-    SE_CR0 = sqrt(sum(w^2 * (impact_j - impact)^2) / sum(w)^2),
-    SE_CR2 = sqrt(sum(w^2 * (impact_j - impact)^2 / (1 - w / sum(w))) / sum(w)^2),
-    df_CR2 = 1 / (sum(w^2 / (sum(w) - w)^2) - 
-                    2 * sum(w^3 / (sum(w) - w)^2) / sum(w) + 
-                    sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
-  ) %&amp;gt;%
-  knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;subject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;impact&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR0&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;df_CR2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;mathk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12.47&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.58&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.76&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;readk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6.21&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.13&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.23&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The CR0 and CR2 standard errors match the results from &lt;code&gt;coef_test&lt;/code&gt;, as do the Satterthwaite degrees of freedom. Note that the degrees of freedom are equal to 19 in this case, a bit less than &lt;span class=&#34;math inline&#34;&gt;\(J - 1 = 22\)&lt;/span&gt; due to variation in the weight assigned to each school.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A handmade clubSandwich for multi-site trials</title>
-      <link>/handmade-clubsandwich/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/handmade-clubsandwich/</guid>
-      <description>
-
-
-&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
+&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;https://www.jepusto.com/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;https://www.jepusto.com/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
 &lt;p&gt;The short answer is “no.”&lt;/p&gt;
 &lt;p&gt;The moderately longer answer is “not unless we can find funding to pay someone who knows how to program properly in SAS.” However, for the specific model that my colleague was interested in, it turns out that the small-sample corrections implemented in clubSandwich can be expressed in closed form, and they’re simple enough that they could easily be hand-calculated. I’ll sketch out the calculations in the remainder of this post.&lt;/p&gt;
 &lt;div id=&#34;a-multi-site-trial&#34; class=&#34;section level2&#34;&gt;
@@ -532,47 +530,47 @@ school_summaries %&amp;gt;%
     
     <item>
       <title>Small sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models</title>
-      <link>/publication/rve-in-fixed-effects-models/</link>
+      <link>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</link>
       <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-in-fixed-effects-models/</guid>
+      <guid>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>clubSandwich at the Austin R User Group Meetup</title>
-      <link>/clubsandwich-at-rug/</link>
+      <link>https://www.jepusto.com/clubsandwich-at-rug/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/clubsandwich-at-rug/</guid>
+      <guid>https://www.jepusto.com/clubsandwich-at-rug/</guid>
       <description>
 
 
-&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
+&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;https://www.jepusto.com/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/beeonaposy&#34;&gt;Caitlin Hudon&lt;/a&gt;: &lt;a href=&#34;https://www.slideshare.net/CaitlinGarrett1/getting-plugged-into-data-science-87767332&#34;&gt;Getting Plugged into Data Science&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/clairemcwhite&#34;&gt;Claire McWhite&lt;/a&gt;: &lt;a href=&#34;https://speakerdeck.com/clairemcwhite/a-quick-intro-to-networks&#34;&gt;A quick intro to networks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/NathanielRaley&#34;&gt;Nathaniel Woodward&lt;/a&gt;: &lt;a href=&#34;http://goo.gl/vJs8kD&#34;&gt;Blogdown Demo!&lt;/a&gt; (link includes his slides and a demo screencast)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;https://www.jepusto.com/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>/publication/using-response-ratios/</link>
+      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/using-response-ratios/</guid>
+      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Imputing covariance matrices for meta-analysis of correlated effects</title>
-      <link>/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
+      <link>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
       <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
       <description>
 
 
-&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
+&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;https://www.jepusto.com/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
 &lt;p&gt;Several solutions to this conundrum have been proposed in the meta-analysis methodology literature. One possible strategy is to just impute a correlation based on subject-matter knowledge (or at least feigned expertise), and assume that this correlation is constant across studies. This analysis could be supplemented with sensitivity analyses to examine the extent to which the parameter estimates and inferences are sensitive to alternative assumptions about the inter-correlation of effects within studies. A related strategy, described by &lt;a href=&#34;https://dx.doi.org/10.1002/sim.5679&#34;&gt;Wei and Higgins (2013)&lt;/a&gt;, is to meta-analyze any available correlation estimates and then use the results to impute correlations for any studies with missing correlations.&lt;/p&gt;
 &lt;p&gt;Both of these approaches require the meta-analyst to calculate block-diagonal sampling covariance matrices for the effect size estimates, which can be a bit unwieldy. I often use the impute-the-correlation strategy in my meta-analysis work and have written a helper function to compute covariance matrices, given known sampling variances and imputed correlations for each study. In the interest of not repeating myself, I’ve added the function to the latest version of my clubSandwich package. In this post, I’ll explain the function and demonstrate how to use it for conducting meta-analysis of correlated effect size estimates.&lt;/p&gt;
 &lt;div id=&#34;an-r-function-for-block-diagonal-covariance-matrices&#34; class=&#34;section level2&#34;&gt;
@@ -891,14 +889,14 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>clubSandwich</title>
-      <link>/software/clubsandwich/</link>
+      <link>https://www.jepusto.com/software/clubsandwich/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/clubsandwich/</guid>
+      <guid>https://www.jepusto.com/software/clubsandwich/</guid>
       <description>&lt;p&gt;R and Stata packages for calculating cluster-robust variance estimators (i.e., sandwich estimators) with small-sample corrections, including the bias-reduced linearization estimator of 
 &lt;a href=&#34;http://www.statcan.gc.ca/pub/12-001-x/2002002/article/9058-eng.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bell and McCaffrey (2002)&lt;/a&gt; and extensions proposed in 
 &lt;a href=&#34;http://psycnet.apa.org/record/2014-14616-001&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipton (2015)&lt;/a&gt;, 
-&lt;a href=&#34;/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
-&lt;a href=&#34;/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
+&lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=clubSandwich&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -913,18 +911,28 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>wildmeta</title>
+      <link>https://www.jepusto.com/software/wildmeta/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/software/wildmeta/</guid>
+      <description>&lt;p&gt;An R package for conducting hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in 
+&lt;a href=&#34;https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</title>
-      <link>/publication/rve-for-meta-regression/</link>
+      <link>https://www.jepusto.com/publication/rve-for-meta-regression/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/rve-for-meta-regression/</guid>
+      <guid>https://www.jepusto.com/publication/rve-for-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The clubSandwich package for meta-analysis with RVE</title>
-      <link>/clubsandwich-for-rve-meta-analysis/</link>
+      <link>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</link>
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
-      <guid>/clubsandwich-for-rve-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</guid>
       <description>
 
 
@@ -1090,13 +1098,13 @@ summary(m3_metafor)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Meta-sandwich with extra mustard</title>
-      <link>/robust-meta-analysis-3/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-3/</link>
       <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-3/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-3/</guid>
       <description>
 
 
-&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
+&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
 You can find her forthcoming paper on the adjustments &lt;a href=&#34;http://dx.doi.org/10.1037/met0000011&#34;&gt;here&lt;/a&gt;.
 My understanding is that these small-sample corrections are important because the uncorrected sandwich estimators can lead to under-statement of uncertainty and inflated type I error rates when a given meta-regression coefficient is estimated from only a small or moderately sized sample of independent studies (or clusters of studies).
 Moreover, it can be difficult to determine exactly when you have a large enough sample to trust the uncorrected sandwiches.&lt;/p&gt;
@@ -1213,13 +1221,13 @@ coef(WOLS)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Another meta-sandwich</title>
-      <link>/robust-meta-analysis-2/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-2/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-2/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-2/</guid>
       <description>
 
 
-&lt;p&gt;In &lt;a href=&#34;/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
+&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
 Here’s another example, replicating some more of the calculations from &lt;a href=&#34;http://doi.org/10.1002/jrsm.1091&#34;&gt;Tanner-Smith &amp;amp; Tipton (2013)&lt;/a&gt;.
 (&lt;a href=&#34;https://gist.github.com/jepusto/11147304&#34;&gt;See here&lt;/a&gt; for the complete code.)&lt;/p&gt;
 &lt;p&gt;As a starting point, here are the results produced by the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
@@ -1335,9 +1343,9 @@ cbind(rho = rho_sens, sigma2 = round(sigma2_sens, 4))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A meta-sandwich</title>
-      <link>/robust-meta-analysis-1/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-1/</link>
       <pubDate>Mon, 21 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-1/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-1/</guid>
       <description>
 
 
@@ -1495,9 +1503,9 @@ small-sample corrections to the cluster-robust estimators, based on the bias-red
     
     <item>
       <title>Another project idea: Meta-analytic methods for correlational data</title>
-      <link>/another-project-idea/</link>
+      <link>https://www.jepusto.com/another-project-idea/</link>
       <pubDate>Fri, 13 Sep 2013 00:00:00 +0000</pubDate>
-      <guid>/another-project-idea/</guid>
+      <guid>https://www.jepusto.com/another-project-idea/</guid>
       <description>
 
 

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jeffrey C. Valentine | James E. Pustejovsky</title>
-    <link>/authors/jeffrey-c.-valentine/</link>
-      <atom:link href="/authors/jeffrey-c.-valentine/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/authors/jeffrey-c.-valentine/</link>
+      <atom:link href="https://www.jepusto.com/authors/jeffrey-c.-valentine/index.xml" rel="self" type="application/rss+xml" />
     <description>Jeffrey C. Valentine</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Mon, 19 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Mon, 19 Dec 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Jeffrey C. Valentine</title>
-      <link>/authors/jeffrey-c.-valentine/</link>
+      <link>https://www.jepusto.com/authors/jeffrey-c.-valentine/</link>
     </image>
     
     <item>
       <title>Between-case standardized mean difference effect sizes for single-case designs: A primer and tutorial using the scdhlm web application</title>
-      <link>/publication/bc-smd-primer-and-tutorial/</link>
+      <link>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/bc-smd-primer-and-tutorial/</guid>
+      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</guid>
       <description></description>
     </item>
     

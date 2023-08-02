@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Daniel M. Swan | James E. Pustejovsky</title>
-    <link>/authors/daniel-m.-swan/</link>
-      <atom:link href="/authors/daniel-m.-swan/index.xml" rel="self" type="application/rss+xml" />
-    <description>Daniel M. Swan</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <title>James E. Pustejovsky</title>
+    <link>https://www.jepusto.com/authors/daniel-m.-swan/</link>
+      <atom:link href="https://www.jepusto.com/authors/daniel-m.-swan/index.xml" rel="self" type="application/rss+xml" />
+    <description>James E. Pustejovsky</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Daniel M. Swan</title>
-      <link>/authors/daniel-m.-swan/</link>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>James E. Pustejovsky</title>
+      <link>https://www.jepusto.com/authors/daniel-m.-swan/</link>
     </image>
     
     <item>
       <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>/publication/response-guided-designs-in-sced-baselines/</link>
+      <link>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</link>
       <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/response-guided-designs-in-sced-baselines/</guid>
+      <guid>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
-      <link>/publication/measurement-procedures-and-baseline-outcomes/</link>
+      <link>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-procedures-and-baseline-outcomes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>/publication/gradual-effects-model/</link>
+      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/gradual-effects-model/</guid>
+      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SingleCaseES</title>
-      <link>/software/singlecasees/</link>
+      <link>https://www.jepusto.com/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/singlecasees/</guid>
+      <guid>https://www.jepusto.com/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -57,9 +57,9 @@
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>/publication/four-methods-for-pir/</link>
+      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/four-methods-for-pir/</guid>
+      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     

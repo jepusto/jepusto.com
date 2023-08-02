@@ -2,23 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>response ratio | James E. Pustejovsky</title>
-    <link>/tags/response-ratio/</link>
-      <atom:link href="/tags/response-ratio/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/response-ratio/</link>
+      <atom:link href="https://www.jepusto.com/tags/response-ratio/index.xml" rel="self" type="application/rss+xml" />
     <description>response ratio</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Tue, 02 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 29 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>response ratio</title>
-      <link>/tags/response-ratio/</link>
+      <link>https://www.jepusto.com/tags/response-ratio/</link>
     </image>
     
     <item>
+      <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
+      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Implications of mean-variance relationships for standardized mean differences</title>
-      <link>/mean-variance-relationships-and-smds/</link>
+      <link>https://www.jepusto.com/mean-variance-relationships-and-smds/</link>
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>/mean-variance-relationships-and-smds/</guid>
+      <guid>https://www.jepusto.com/mean-variance-relationships-and-smds/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I spend more time than I probably should discussing meta-analysis problems on the &lt;a href=&#34;https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis&#34;&gt;R-SIG-meta-analysis listserv&lt;/a&gt;. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they’re wrestling with while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.&lt;/p&gt;
@@ -56,7 +63,7 @@ this analysis:&lt;/p&gt;
 &lt;h2&gt;Mean-variance relationships can induce heterogeneity&lt;/h2&gt;
 &lt;p&gt;The standardized mean difference parameter for a given study can be defined as:
 &lt;span class=&#34;math display&#34;&gt;\[
-\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}}, 
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}},
 \]&lt;/span&gt;
 where &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt; are the (population) mean outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; and group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_{Ai}\)&lt;/span&gt; is the (population) standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;
 The ideal case for using the SMD metric is when the outcomes in different studies are linearly equatable, so that the outcome scale in one study can be directly translated into the outcome scale of another study. However, if outcomes exhibit mean-variance relationships, linearly equatability seems rather implausible, and we might expect that SMDs will display heterogeneity across studies as a result.&lt;/p&gt;
@@ -160,7 +167,8 @@ dat &amp;lt;- sim_props(k = 60, alpha = 12, beta = 4,
                  n_min = 10, n_max = 40)
 
 head(dat)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
+&lt;pre&gt;&lt;code&gt;## 
+##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
 ## 1 0.7584480 0.5836965 0.7695933  11 -1.3540950  24 0.7500000 0.1080650 
 ## 2 0.7359047 0.4950740 0.6727420  16 -2.1851474  24 0.7786458 0.1222235 
 ## 3 0.7132014 0.4773027 0.6692398  12 -1.8068471  10 0.7333333 0.1097134 
@@ -180,7 +188,7 @@ ggplot(dat) +
   geom_density(aes(log(lambda_i), ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.5) + 
   geom_density(aes(lRR, ..scaled..), fill = &amp;quot;green&amp;quot;, alpha = 0.2) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
@@ -197,7 +205,7 @@ rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-## estimate      se      zval    pval    ci.lb    ci.ub 
+## estimate      se      zval    pval    ci.lb    ci.ub      
 ##  -0.3498  0.0111  -31.5751  &amp;lt;.0001  -0.3715  -0.3281  *** 
 ## 
 ## ---
@@ -208,7 +216,7 @@ ggplot(dat) +
   geom_density(aes(delta_i, ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.2) + 
   geom_density(aes(d, ..scaled..), fill = &amp;quot;purple&amp;quot;, alpha = 0.5) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and in &lt;span class=&#34;math inline&#34;&gt;\(I^2\)&lt;/span&gt;, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(yi = d, vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -224,7 +232,7 @@ A random effects meta-analysis of the standardized mean differences shows a grea
 ## 
 ## Model Results:
 ## 
-## estimate      se      zval    pval    ci.lb    ci.ub 
+## estimate      se      zval    pval    ci.lb    ci.ub      
 ##  -1.5967  0.0824  -19.3771  &amp;lt;.0001  -1.7582  -1.4352  *** 
 ## 
 ## ---
@@ -252,7 +260,7 @@ ggplot(long_summary_stats,
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
 The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;long_summary_stats %&amp;gt;%
   mutate(
@@ -267,7 +275,7 @@ The plot above does suggest a mean-variance relationship, though it’s a bit me
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
 From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).&lt;/p&gt;
 &lt;p&gt;Second, since the outcomes in each group are all proportions, we can simply plot the mean in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; versus the mean in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(dat, aes(mA, mB)) + 
@@ -276,7 +284,7 @@ From the above, it does appear that there could be a relationship between the sc
   geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x) + 
   coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
 This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).&lt;/p&gt;
 &lt;p&gt;Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows &lt;span class=&#34;math inline&#34;&gt;\(d_i\)&lt;/span&gt; versus &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
@@ -296,7 +304,7 @@ Ti_d_plot &amp;lt;-
   theme_minimal()
 
 mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This impression is also born out by a meta-regression that includes the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt; as moderators:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -316,7 +324,7 @@ mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-##            estimate      se     zval    pval    ci.lb    ci.ub 
+##            estimate      se     zval    pval    ci.lb    ci.ub      
 ## intrcpt      2.5225  0.3964   6.3632  &amp;lt;.0001   1.7455   3.2995  *** 
 ## mA          -2.8326  0.4336  -6.5321  &amp;lt;.0001  -3.6825  -1.9827  *** 
 ## sqrt(T_i)   -0.6109  0.0756  -8.0855  &amp;lt;.0001  -0.7590  -0.4628  *** 
@@ -340,7 +348,7 @@ Ti_lRR_plot &amp;lt;-
   theme_minimal()
 
 mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;, which is a bit surprising, although the strength of the relationship is much weaker than what we saw with the standardized mean differences. Meta-regression analysis supports these interpretations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -360,7 +368,7 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-##            estimate      se     zval    pval    ci.lb    ci.ub 
+##            estimate      se     zval    pval    ci.lb    ci.ub     
 ## intrcpt     -0.2362  0.0950  -2.4864  0.0129  -0.4224  -0.0500   * 
 ## mA           0.1061  0.0948   1.1196  0.2629  -0.0796   0.2918     
 ## sqrt(T_i)   -0.0553  0.0179  -3.0852  0.0020  -0.0904  -0.0202  ** 
@@ -370,7 +378,7 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they’ve uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Considered in this light, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, &lt;em&gt;annoying&lt;/em&gt;. If we wanted to examine other more theoretically interesting moderators, we’d have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them all in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable. Simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that’s not the right model? Since we know the true data-generating process here, we can see that the linear, additive model &lt;em&gt;would not&lt;/em&gt; be correct. But in practice, when we don’t know the true process, this would be much murkier.&lt;/p&gt;
 &lt;p&gt;The general principle that I’m suggesting here is that effect sizes should ideally be on a metric that is &lt;em&gt;independent&lt;/em&gt; of arbitrary methodological factors because this should &lt;em&gt;reduce&lt;/em&gt; overall heterogeneity and &lt;em&gt;simplify&lt;/em&gt; the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I’m not yet sure about. It seems like a useful avenue for further methodological work.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
+&lt;div class=&#34;footnotes footnotes-end-of-document&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Yes, there are other ways to define the SMD. Yes, usually we use the standard deviation pooled across both groups. I’m going to use the standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; alone because it simplifies some of the mathy bits. Please feel free to work through the case with a pooled SD for yourself.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -381,42 +389,34 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>/publication/sced-mlma-rve/</link>
-      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/sced-mlma-rve/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>
-      <link>/publication/stay-play-talk-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/stay-play-talk-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>/publication/gradual-effects-model/</link>
+      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/gradual-effects-model/</guid>
+      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: Using response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-response-ratios-paper/</link>
+      <link>https://www.jepusto.com/using-response-ratios-paper/</link>
       <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/using-response-ratios-paper/</guid>
+      <guid>https://www.jepusto.com/using-response-ratios-paper/</guid>
       <description>
 
 
@@ -435,25 +435,25 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Single-case synthesis tools II: Comparing overlap measures and parametric effect sizes for synthesizing antecedent sensory-based interventions</title>
-      <link>/publication/scd-synthesis-tools-ii/</link>
+      <link>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/scd-synthesis-tools-ii/</guid>
+      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>/publication/using-response-ratios/</link>
+      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/using-response-ratios/</guid>
+      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: procedural sensitivities of effect size measures for SCDs</title>
-      <link>/procedural-sensitivities-paper/</link>
+      <link>https://www.jepusto.com/procedural-sensitivities-paper/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/procedural-sensitivities-paper/</guid>
+      <guid>https://www.jepusto.com/procedural-sensitivities-paper/</guid>
       <description>
 
 
@@ -461,7 +461,7 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;A wide variety of effect size indices have been proposed for quantifying the magnitude of treatment effects in single-case designs. Commonly used measures include parametric indices such as the standardized mean difference, as well as non-overlap measures such as the percentage of non-overlapping data, improvement rate difference, and non-overlap of all pairs. Currently, little is known about the properties of these indices when applied to behavioral data collected by systematic direct observation, even though systematic direct observation is the most common method for outcome measurement in single-case research. This study uses Monte Carlo simulation to investigate the properties of several widely used single-case effect size measures when applied to systematic direct observation data. Results indicate that the magnitude of the non-overlap measures and of the standardized mean difference can be strongly influenced by procedural details of the study’s design, which is a significant limitation to using these indices as effect sizes for meta-analysis of single-case designs. A less widely used parametric index, the log-response ratio, has the advantage of being insensitive to sample size and observation session length, although its magnitude is influenced by the use of partial interval recording.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
+&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;https://www.jepusto.com/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
 &lt;p&gt;Here’s the complete time-line of submissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;August 5, 2015: submitted to journal #1 (special education)&lt;/li&gt;
@@ -488,41 +488,41 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>New working paper: Using log response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-log-response-ratios/</link>
+      <link>https://www.jepusto.com/using-log-response-ratios/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/using-log-response-ratios/</guid>
+      <guid>https://www.jepusto.com/using-log-response-ratios/</guid>
       <description>
 
 
-&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
+&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>/publication/fabi-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/fabi-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research synthesis and meta-analysis of single-case designs</title>
-      <link>/publication/meta-analysis-of-scd/</link>
+      <link>https://www.jepusto.com/publication/meta-analysis-of-scd/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/meta-analysis-of-scd/</guid>
+      <guid>https://www.jepusto.com/publication/meta-analysis-of-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New working paper: Procedural sensitivities of SCD effect sizes</title>
-      <link>/scd-effect-size-sensitivities/</link>
+      <link>https://www.jepusto.com/scd-effect-size-sensitivities/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/scd-effect-size-sensitivities/</guid>
+      <guid>https://www.jepusto.com/scd-effect-size-sensitivities/</guid>
       <description>
 
 
-&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
+&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
 &lt;p&gt;The paper itself is available on the Open Science Framework (&lt;a href=&#34;https://osf.io/pxn24/&#34;&gt;here&lt;/a&gt;), as are the &lt;a href=&#34;https://osf.io/hkzsm/&#34;&gt;supplementary materials&lt;/a&gt; and &lt;a href=&#34;https://osf.io/j4gvt/&#34;&gt;Source code&lt;/a&gt;. I also created interaction versions of the graphics from the main paper and the supplementary materials, which can be viewed in &lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-size-sensitivities/&#34;&gt;this shiny app&lt;/a&gt;. I would welcome any comments, questions, or feedback that readers may have.&lt;/p&gt;
 &lt;div id=&#34;abstract&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Abstract&lt;/h3&gt;
@@ -533,9 +533,9 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>SingleCaseES</title>
-      <link>/software/singlecasees/</link>
+      <link>https://www.jepusto.com/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/singlecasees/</guid>
+      <guid>https://www.jepusto.com/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -552,38 +552,38 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/publication/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>/publication/four-methods-for-pir/</link>
+      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/four-methods-for-pir/</guid>
+      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/measurement-comparable-effect-sizes/</guid>
       <description>
 
 
-&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
+&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Single-case research comprises a set of designs and methods for evaluating the effects of interventions, practices, or programs on individual cases, through comparison of outcomes measured at different points in time. Although there has long been interest in meta-analytic technique for synthesizing single-case research, there has been little scrutiny of whether proposed effect sizes remain on a directly comparable metric when outcomes are measured using different operational procedures. Much of single-case research focuses on behavioral outcomes in free-operant contexts, which may be measured using a variety of different direct observation procedures. This article describes a suite of effect sizes for quantifying changes in free-operant behavior, motivated by an alternating renewal process model that allows measurement comparability to be established in precise terms. These effect size metrics have the advantage of comporting with how direct observation data are actually collected and summarized. Effect size estimators are proposed that are applicable when the behavior being measured remains stable within a given treatment condition. The methods are illustrated by two examples, including a re-analysis of a systematic review of the effects of choice-making opportunities on problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>/publication/operationally-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>

@@ -2,21 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hierarchical models | James E. Pustejovsky</title>
-    <link>/tags/hierarchical-models/</link>
-      <atom:link href="/tags/hierarchical-models/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/hierarchical-models/</link>
+      <atom:link href="https://www.jepusto.com/tags/hierarchical-models/index.xml" rel="self" type="application/rss+xml" />
     <description>hierarchical models</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>hierarchical models</title>
-      <link>/tags/hierarchical-models/</link>
+      <link>https://www.jepusto.com/tags/hierarchical-models/</link>
     </image>
     
     <item>
+      <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
+      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
-      <link>/variance-components-with-misspecified-correlation/</link>
+      <link>https://www.jepusto.com/variance-components-with-misspecified-correlation/</link>
       <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>/variance-components-with-misspecified-correlation/</guid>
+      <guid>https://www.jepusto.com/variance-components-with-misspecified-correlation/</guid>
       <description>
 
 
@@ -26,10 +34,10 @@
 \def\Var{{\text{Var}}}
 \def\Cov{{\text{Cov}}}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
+&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
 &lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
 &lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
-&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
+&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
 &lt;div id=&#34;the-correlated-and-hierarchical-effects-che-model&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;The correlated-and-hierarchical effects (CHE) model&lt;/h1&gt;
 &lt;p&gt;Consider a meta-analytic dataset with effect size estimates &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k_j\)&lt;/span&gt; indexes effect size estimates within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; indexes studies, for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. Say that effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_{ij}\)&lt;/span&gt;, and there is some sampling correlation between effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, denoted &lt;span class=&#34;math inline&#34;&gt;\(\phi_{hij}\)&lt;/span&gt;.
@@ -165,7 +173,7 @@ ggplot() +
   scale_x_continuous(expand = c(0,0)) + 
   scale_y_continuous(expand = c(0,0)) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.4\)&lt;/span&gt; corresponds to the true sampling correlation, the function is minimized at the true values of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the left-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.0\)&lt;/span&gt; leads to an upwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a downwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the right-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.8\)&lt;/span&gt; leads to a smaller value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a larger value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;.&lt;/p&gt;
 &lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Completely balanced designs&lt;/h2&gt;
@@ -241,7 +249,7 @@ opt_params %&amp;gt;%
   theme_minimal() + 
   labs(x = expression(rho), y = &amp;quot;Parameter&amp;quot;, color = &amp;quot;&amp;quot;, linetype = &amp;quot;&amp;quot;) +
   theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The top row of the figure shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt;, the middle row shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt;, and the bottom row shows the total SD, for varying levels of assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;. The solid green lines represent the values that actually minimize the KL divergence. The dashed orange lines correspond to the minimizing values assuming complete balance (and using the average value of the &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j^2\)&lt;/span&gt;’s to evaluate the bias). The “balanced” approximations are fairly close—close enough to use as heuristics, at least—although they’re not perfect. In particular, the balanced approximation becomes discrepant from the real minimizing values when &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt; gets closer to zero. It’s also notable that the total variance is nearly constant (except when one or the other variance component is zero) and the balanced approximation is quite close to the real minimizing values.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -261,9 +269,9 @@ opt_params %&amp;gt;%
     
     <item>
       <title>The Woodbury identity</title>
-      <link>/woodbury-identity/</link>
+      <link>https://www.jepusto.com/woodbury-identity/</link>
       <pubDate>Fri, 04 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/woodbury-identity/</guid>
+      <guid>https://www.jepusto.com/woodbury-identity/</guid>
       <description>
 
 
@@ -354,7 +362,7 @@ where &lt;span class=&#34;math inline&#34;&gt;\(w_j = \frac{1}{1 + (n_j - 1) \rh
 &lt;/div&gt;
 &lt;div id=&#34;a-meta-analysis-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;A meta-analysis example&lt;/h2&gt;
-&lt;p&gt;In a &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; on multi-variate meta-analysis, I examined how weighting works in some multi-variate meta-analysis models, where you have multiple effect size estimates nested within a study. Letting &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; denote effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. The first model I considered in the previous post was
+&lt;p&gt;In a &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; on multi-variate meta-analysis, I examined how weighting works in some multi-variate meta-analysis models, where you have multiple effect size estimates nested within a study. Letting &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; denote effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. The first model I considered in the previous post was
 &lt;span class=&#34;math display&#34;&gt;\[
 T_{ij} = \mu + \eta_j + \nu_{ij} + e_{ij},
 \]&lt;/span&gt;
@@ -371,7 +379,7 @@ The Woodbury identity comes in handy here again, if we want to examine the weigh
 &lt;/div&gt;
 &lt;div id=&#34;another-meta-analysis-example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Another meta-analysis example&lt;/h2&gt;
-&lt;p&gt;In the &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt;, I also covered weighting in a bit more general model, where the sampling variances and correlations are no longer quite so constrained. As before, we have
+&lt;p&gt;In the &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt;, I also covered weighting in a bit more general model, where the sampling variances and correlations are no longer quite so constrained. As before, we have
 &lt;span class=&#34;math display&#34;&gt;\[
 \mathbf{T}_j = \mu \mathbf{1}_j + \eta_j \mathbf{1}_j + \boldsymbol\nu_j + \mathbf{e}_j,
 \]&lt;/span&gt;
@@ -385,9 +393,9 @@ Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j = \left(\omega^2 \mat
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;This model is what we call the “correlated-and-hierarchical effects model” in my paper (with Beth Tipton) on &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;extending working models for robust variance estimation&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;This model is what we call the “correlated-and-hierarchical effects model” in my paper (with Beth Tipton) on &lt;a href=&#34;https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;extending working models for robust variance estimation&lt;/a&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Or squint hard at the formula for the variance of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}_j\)&lt;/span&gt;, and you’ll see that it has the same form as the random intercepts model in the previous example. Just replace the &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; in that model with &lt;span class=&#34;math inline&#34;&gt;\(\tau^2 + V_j \rho\)&lt;/span&gt; and replace the &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; in that model with &lt;span class=&#34;math inline&#34;&gt;\(\omega^2 + V_j (1 - \rho)\)&lt;/span&gt;.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;See the &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; for the answer.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;See the &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;previous post&lt;/a&gt; for the answer.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;In the previous post, I expressed the weights in terms of &lt;span class=&#34;math inline&#34;&gt;\(s_{ij}\)&lt;/span&gt;, the sum of the entries in row &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; of the &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j\)&lt;/span&gt; matrix. In vector form, &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{s}_j = \left(s_{1j} \ s_{2j} \ \cdots \ s_{n_j j}\right)&amp;#39; = \mathbf{S}_j \mathbf{1}_j\)&lt;/span&gt;.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -395,118 +403,12 @@ Let &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{S}_j = \left(\omega^2 \mat
     </item>
     
     <item>
-      <title>Centering categorical predictors in meta-regression</title>
-      <link>/centering-categorical-predictors/</link>
-      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/centering-categorical-predictors/</guid>
-      <description>
-
-
-&lt;p&gt;Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you’ve got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-library(fastDummies)
-library(clubSandwich)
-library(metafor)
-
-tmp &amp;lt;- tempfile(fileext = &amp;quot;.rds&amp;quot;)
-download.file(&amp;quot;https://jepusto.com/data/Tanner-Smith-Lipsey-2015-subset.rds&amp;quot;, tmp)
-
-TSL15 &amp;lt;- 
-  readRDS(file = tmp) %&amp;gt;%
-  # exclude observations missing control variables
-  filter(!is.na(percoll), !is.na(attrition_all), !is.na(permale))
-
-# Shorten dv category labels
-levels(TSL15$dv_cat) &amp;lt;- c(&amp;quot;freq&amp;quot;,&amp;quot;heavy&amp;quot;,&amp;quot;quantity&amp;quot;,&amp;quot;peak&amp;quot;,&amp;quot;BAC&amp;quot;,&amp;quot;combined&amp;quot;)
-
-# Center control variables
-
-TSL15_cent &amp;lt;- 
-  TSL15 %&amp;gt;%
-  mutate(
-    postwks_c = pmin(postwks, 26) - 12,
-    postwks_long = as.numeric(postwks &amp;gt; 26),
-    percoll_c = percoll - 1,
-    permale_c = permale - 0.5,
-    attrition_c = attrition_all - median(attrition_all),
-    study_dv = paste(studyid, dv_cat, sep = &amp;quot;-&amp;quot;),
-    study_ctype = paste(studyid, Ctype, sep = &amp;quot;-&amp;quot;)
-  ) %&amp;gt;%
-  # make dummies
-  dummy_cols(&amp;quot;dv_cat&amp;quot;) %&amp;gt;%
-  group_by(studyid) %&amp;gt;%
-  # group center, group means
-  mutate(across(starts_with(&amp;quot;dv_cat_&amp;quot;), list(gc = ~ .x - mean(.x), gm = ~ mean(.x)))) %&amp;gt;%
-  ungroup() %&amp;gt;%
-  mutate(
-    # center group means
-    across(matches(&amp;quot;dv_cat_.+_gm&amp;quot;), ~ .x - mean(.x)),
-    # add grand means to group-centered
-    across(matches(&amp;quot;dv_cat_.+_gc&amp;quot;), ~ .x + mean(.x), .names = &amp;quot;{.col}g&amp;quot;)
-  )
-
-# constant sampling correlation assumption
-rho &amp;lt;- 0.6
-
-# constant sampling correlation working model
-V_mat &amp;lt;- impute_covariance_matrix(TSL15_cent$V, 
-                                  cluster = TSL15_cent$studyid, 
-                                  r = rho, 
-                                  smooth_vi = TRUE)
-
-# fit random effects working model in metafor
-dv_multilevel &amp;lt;- rma.mv(yi = es,
-                        mods = ~ 0 + dv_cat,
-                        V = V_mat, 
-                        random = ~ 1 | studyid / esid,
-                        data = TSL15_cent, sparse = TRUE)
-dv_multilevel
-
-dv_A &amp;lt;- update(dv_multilevel, 
-               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc + 
-                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
-dv_A
-Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
-Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
-
-dv_B &amp;lt;- update(dv_multilevel, 
-               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc)
-dv_B
-Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
-Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
-
-
-dv_C &amp;lt;- update(dv_multilevel, 
-               mods = ~ 0 + dv_cat + 
-                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
-
-dv_C
-Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_equal(1:6))
-Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(1:6), tidy = TRUE)
-
-dv_D &amp;lt;- rma.mv(yi = es,
-               mods = ~ 0 + factor(studyid) + dv_cat,
-               V = V_mat, 
-               random = ~ 1 | esid,
-               data = TSL15_cent, sparse = TRUE)
-Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE))
-Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
-
-coef(dv_A)[2:6]
-coef(dv_B)[2:6]
-coef(dv_C)[1:5] - coef(dv_C)[6]
-coef(dv_D)[118:122]
-coef(dv_C)[2:6] - coef(dv_C)[1]&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>lmeInfo</title>
-      <link>/software/lmeinfo/</link>
+      <link>https://www.jepusto.com/software/lmeinfo/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/software/lmeinfo/</guid>
+      <guid>https://www.jepusto.com/software/lmeinfo/</guid>
       <description>&lt;p&gt;lmeInfo provides analytic derivatives and information matrices for fitted linear mixed effects models and generalized least squares models estimated using &lt;code&gt;nlme::lme()&lt;/code&gt; and &lt;code&gt;nlme::gls()&lt;/code&gt;, respectively. The package includes functions for estimating the sampling variance-covariance of variance component parameters using the inverse Fisher information. The variance components include the parameters of the random effects structure (for lme models), the variance structure, and the correlation structure. The expected and average forms of the Fisher information matrix are used in the calculations, and models estimated by full maximum likelihood or restricted maximum likelihood are supported. The package also includes a function for estimating standardized mean difference effect sizes (
-&lt;a href=&#34;/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=lmeInfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -518,9 +420,9 @@ coef(dv_C)[2:6] - coef(dv_C)[1]&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Bug in nlme::lme with fixed sigma and REML estimation</title>
-      <link>/bug-in-nlme-with-fixed-sigma/</link>
+      <link>https://www.jepusto.com/bug-in-nlme-with-fixed-sigma/</link>
       <pubDate>Mon, 07 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/bug-in-nlme-with-fixed-sigma/</guid>
+      <guid>https://www.jepusto.com/bug-in-nlme-with-fixed-sigma/</guid>
       <description>
 
 
@@ -744,9 +646,9 @@ Konstantopoulos(&amp;quot;REML&amp;quot;, constant_var = FALSE)&lt;/code&gt;&lt;
     
     <item>
       <title>Bug in nlme::getVarCov</title>
-      <link>/bug-in-nlme-getvarcov/</link>
+      <link>https://www.jepusto.com/bug-in-nlme-getvarcov/</link>
       <pubDate>Wed, 10 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>/bug-in-nlme-getvarcov/</guid>
+      <guid>https://www.jepusto.com/bug-in-nlme-getvarcov/</guid>
       <description>
 
 
@@ -961,18 +863,18 @@ all.equal(V_raw, V_sorted)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>scdhlm</title>
-      <link>/software/scdhlm/</link>
+      <link>https://www.jepusto.com/software/scdhlm/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/scdhlm/</guid>
+      <guid>https://www.jepusto.com/software/scdhlm/</guid>
       <description>&lt;p&gt;An R package implementing several methods of estimating a design-comparable standardized mean difference effect size based on data from a single-case design. Methods include those from Hedges, Pustejovsky, &amp;amp; Shadish (
-&lt;a href=&#34;/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
-&lt;a href=&#34;/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
-&lt;a href=&#34;/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
+&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -983,38 +885,38 @@ all.equal(V_raw, V_sorted)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/publication/design-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/design-comparable-effect-sizes/</link>
       <pubDate>Wed, 01 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/design-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/design-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
+      <link>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
+      <guid>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
       <description>
 
 
-&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;In single-case research, the multiple baseline design is a widely used approach for evaluating the effects of interventions on individuals. Multiple baseline designs involve repeated measurement of outcomes over time and the controlled introduction of a treatment at different times for different individuals. This article outlines a general approach for defining effect sizes in multiple baseline designs that are directly comparable to the standardized mean difference from a between-subjects randomized experiment. The target, design-comparable effect size parameter can be estimated using restricted maximum likelihood together with a small-sample correction analogous to Hedges’ g. The approach is demonstrated using hierarchical linear models that include baseline time trends and treatment-by-time interactions. A simulation compares the performance of the proposed estimator to that of an alternative, and an application illustrates the model-fitting process.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analyzing single-case designs: d, G, hierarchical models, Bayesian estimators, generalized additive models, and the hopes and fears of researchers about analyses</title>
-      <link>/publication/analyzing-scd-hopes-and-fears/</link>
+      <link>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/analyzing-scd-hopes-and-fears/</guid>
+      <guid>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>/publication/operationally-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>

@@ -2,21 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>power | James E. Pustejovsky</title>
-    <link>/tags/power/</link>
-      <atom:link href="/tags/power/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/power/</link>
+      <atom:link href="https://www.jepusto.com/tags/power/index.xml" rel="self" type="application/rss+xml" />
     <description>power</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 02 Dec 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>power</title>
-      <link>/tags/power/</link>
+      <link>https://www.jepusto.com/tags/power/</link>
     </image>
     
     <item>
-      <title>Power approximations for meta-analysis of dependent effect sizes</title>
-      <link>/publication/power-approximations-for-dependent-effects/</link>
-      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/publication/power-approximations-for-dependent-effects/</guid>
+      <title>POMADE</title>
+      <link>https://www.jepusto.com/software/pomade/</link>
+      <pubDate>Fri, 02 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/software/pomade/</guid>
+      <description>&lt;p&gt;An R package for computing power levels, minimum detectable effect sizes, and minimum required sample sizes for the test of the overall average effect size in meta-analysis of dependent effect sizes. The package also includes functions for creating plots of power analysis results.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Power approximations for overall average effects in meta-analysis of dependent effect sizes</title>
+      <link>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</link>
+      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</guid>
       <description></description>
     </item>
     

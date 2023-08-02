@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>inter-rater reliability | James E. Pustejovsky</title>
-    <link>/tags/inter-rater-reliability/</link>
-      <atom:link href="/tags/inter-rater-reliability/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/inter-rater-reliability/</link>
+      <atom:link href="https://www.jepusto.com/tags/inter-rater-reliability/index.xml" rel="self" type="application/rss+xml" />
     <description>inter-rater reliability</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Wed, 23 Oct 2013 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 23 Oct 2013 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>inter-rater reliability</title>
-      <link>/tags/inter-rater-reliability/</link>
+      <link>https://www.jepusto.com/tags/inter-rater-reliability/</link>
     </image>
     
     <item>
       <title>Reliability of UnGraphed single-case data: An example using the Shogren dataset</title>
-      <link>/shogren-reliability-analysis/</link>
+      <link>https://www.jepusto.com/shogren-reliability-analysis/</link>
       <pubDate>Wed, 23 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/shogren-reliability-analysis/</guid>
+      <guid>https://www.jepusto.com/shogren-reliability-analysis/</guid>
       <description>
 
 
@@ -47,7 +47,7 @@ head(Shogren)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The final variable distinguishes graphs that are particularly easy to capture. Wim/Patrick and I used slightly different exclusion criteria, so there are a total of 30 cases across 12 studies included in the merged dataset. To begin, here’s a plot of A versus B by study:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(A, B, geom = &amp;quot;point&amp;quot;, color = Case, data = Shogren) + facet_wrap( ~ Study, scales = &amp;quot;free&amp;quot;) + theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Clearly the two measurements are very correlated. You’ll notice that the studies (and sometimes cases within studies) used several different outcome measurement scales, so the overall correlation between A and B (r = 0.999767) isn’t really the best approach. Furthermore, some of the variation in the outcomes is presumably due to differences between phases, and it would be better to calculate a reliability based on the residual variation within phases.&lt;/p&gt;
 &lt;p&gt;I accomplish this with a simple hierarchical model, fit separately to the data from each case. Denote the outcome as &lt;span class=&#34;math inline&#34;&gt;\(y_{ijk}\)&lt;/span&gt; for phase &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,P\)&lt;/span&gt;, measurement occasion &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,n_i\)&lt;/span&gt;, and replicate &lt;span class=&#34;math inline&#34;&gt;\(k = 1,2\)&lt;/span&gt;. I model these outcomes as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_{ijk} = \beta_i + \epsilon_{ij} + \nu_{ijk}\]&lt;/span&gt;&lt;/p&gt;
@@ -72,7 +72,7 @@ Z_ICC &amp;lt;- function(x, formula = value ~ Phase){
 ICC &amp;lt;- ddply(Shogren_long, .(Study, Case, Setting, Measure, lowIntAxis), Z_ICC)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It turns out that 5 of 6 cases with lowIntAxis==1 are perfectly correlated. The remainder of my analysis focuses on the cases with lowIntAxis==0. Here’s a histogram of the Z-transformed correlations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(subset(ICC, lowIntAxis==0), hist(Z))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;With only 2 replicates per measurement occasion, the large-sample variance of the intra-class correlation is equivalent to that of the usual Pearson correlation (see Hedges, Hedberg, &amp;amp; Kuyper, 2013), except that I use &lt;span class=&#34;math inline&#34;&gt;\(N - P\)&lt;/span&gt; in the denominator to account for the fact that separate means are estimated for each of the &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; phases: &lt;span class=&#34;math display&#34;&gt;\[Var(\hat\rho) \approx \frac{(1 - \rho^2)^2}{N - P},\]&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(N = \sum_i n_i\)&lt;/span&gt;. Applying Fisher’s Z transform stabilizes the variance, so that it is appropriate to use inverse variance weights of simply &lt;span class=&#34;math inline&#34;&gt;\(N - P\)&lt;/span&gt;. Turning to a random-effects meta-analysis:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 summary(rma_Z &amp;lt;- rma(yi = Z, vi = 1 / df, data = ICC, subset = lowIntAxis==0))&lt;/code&gt;&lt;/pre&gt;

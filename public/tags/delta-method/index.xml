@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>delta method | James E. Pustejovsky</title>
-    <link>/tags/delta-method/</link>
-      <atom:link href="/tags/delta-method/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/delta-method/</link>
+      <atom:link href="https://www.jepusto.com/tags/delta-method/index.xml" rel="self" type="application/rss+xml" />
     <description>delta method</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>delta method</title>
-      <link>/tags/delta-method/</link>
+      <link>https://www.jepusto.com/tags/delta-method/</link>
     </image>
     
     <item>
       <title>Sampling variance of Pearson r in a two-level design</title>
-      <link>/variance-of-r-in-two-level-design/</link>
+      <link>https://www.jepusto.com/variance-of-r-in-two-level-design/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/variance-of-r-in-two-level-design/</guid>
+      <guid>https://www.jepusto.com/variance-of-r-in-two-level-design/</guid>
       <description>
 
 
@@ -92,9 +92,9 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>The multivariate delta method</title>
-      <link>/multivariate-delta-method/</link>
+      <link>https://www.jepusto.com/multivariate-delta-method/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/multivariate-delta-method/</guid>
+      <guid>https://www.jepusto.com/multivariate-delta-method/</guid>
       <description>
 
 
@@ -135,7 +135,7 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
 r = \frac{s_{xy}}{\sqrt{s_{xx} s_{yy}}},
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(s_{xx}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(s_{yy}\)&lt;/span&gt; are sample variances and &lt;span class=&#34;math inline&#34;&gt;\(s_{xy}\)&lt;/span&gt; is the sample covariance. These sample variances and covariances are unbiased estimates of &lt;span class=&#34;math inline&#34;&gt;\(\phi_{xx}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi_{yy}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\phi_{xy}\)&lt;/span&gt;, respectively. So in terms of the above notation, we have &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T} = \left(s_{xx}, s_{yy}, s_{xy}\right)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta = \left(\phi_{xx}, \phi_{yy}, \phi_{xy}\right)\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\rho = \phi_{xy} / \sqrt{\phi_{xx} \phi_{yy}}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;From &lt;a href=&#34;/distribution-of-sample-variances&#34;&gt;a previous post&lt;/a&gt;, we can work out the variance-covariance matrix of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;a previous post&lt;/a&gt;, we can work out the variance-covariance matrix of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}\left(\sqrt{n - 1} \left[\begin{array}{c} s_{xx} \\ s_{yy} \\ s_{xy}\end{array}\right]\right) = \boldsymbol\Sigma = \left[\begin{array}{ccc} 2 \phi_{xx}^2 &amp;amp; &amp;amp; \\ 2 \phi_{xy}^2 &amp;amp; 2 \phi_{yy}^2 &amp;amp; \\ 2 \phi_{xy} \phi_{xx} &amp;amp; 2 \phi_{xy} \phi_{yy} &amp;amp; \phi_{xy}^2 + \phi_{xx} \phi_{yy}\end{array}\right].
 \]&lt;/span&gt;&lt;/p&gt;
@@ -181,9 +181,9 @@ Fisher’s &lt;span class=&#34;math inline&#34;&gt;\(z\)&lt;/span&gt; is the var
     
     <item>
       <title>2SLS standard errors and the delta-method</title>
-      <link>/delta-method-and-2sls-ses/</link>
+      <link>https://www.jepusto.com/delta-method-and-2sls-ses/</link>
       <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/delta-method-and-2sls-ses/</guid>
+      <guid>https://www.jepusto.com/delta-method-and-2sls-ses/</guid>
       <description>
 
 

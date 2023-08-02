@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>/authors/young-ri-lee/</link>
-      <atom:link href="/authors/young-ri-lee/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/authors/young-ri-lee/</link>
+      <atom:link href="https://www.jepusto.com/authors/young-ri-lee/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 14 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>James E. Pustejovsky</title>
-      <link>/authors/young-ri-lee/</link>
+      <link>https://www.jepusto.com/authors/young-ri-lee/</link>
     </image>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>/publication/competing-approaches-for-cross-classified-data/</link>
-      <pubDate>Thu, 14 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/competing-approaches-for-cross-classified-data/</guid>
+      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     

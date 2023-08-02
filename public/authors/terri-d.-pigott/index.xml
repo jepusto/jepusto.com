@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terri D. Pigott | James E. Pustejovsky</title>
-    <link>/authors/terri-d.-pigott/</link>
-      <atom:link href="/authors/terri-d.-pigott/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/authors/terri-d.-pigott/</link>
+      <atom:link href="https://www.jepusto.com/authors/terri-d.-pigott/index.xml" rel="self" type="application/rss+xml" />
     <description>Terri D. Pigott</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Mon, 17 Oct 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Terri D. Pigott</title>
-      <link>/authors/terri-d.-pigott/</link>
+      <link>https://www.jepusto.com/authors/terri-d.-pigott/</link>
     </image>
     
     <item>
-      <title>Power approximations for meta-analysis of dependent effect sizes</title>
-      <link>/publication/power-approximations-for-dependent-effects/</link>
-      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/publication/power-approximations-for-dependent-effects/</guid>
+      <title>Power approximations for overall average effects in meta-analysis of dependent effect sizes</title>
+      <link>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</link>
+      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</guid>
       <description></description>
     </item>
     

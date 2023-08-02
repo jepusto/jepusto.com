@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>simulation | James E. Pustejovsky</title>
-    <link>/tags/simulation/</link>
-      <atom:link href="/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/simulation/</link>
+      <atom:link href="https://www.jepusto.com/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
     <description>simulation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 14 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>simulation</title>
-      <link>/tags/simulation/</link>
+      <link>https://www.jepusto.com/tags/simulation/</link>
     </image>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>/publication/competing-approaches-for-cross-classified-data/</link>
-      <pubDate>Thu, 14 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/competing-approaches-for-cross-classified-data/</guid>
+      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>simhelpers</title>
-      <link>/software/simhelpers/</link>
+      <link>https://www.jepusto.com/software/simhelpers/</link>
       <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/software/simhelpers/</guid>
+      <guid>https://www.jepusto.com/software/simhelpers/</guid>
       <description>&lt;p&gt;Monte Carlo simulations are computer experiments designed to study the performance of statistical methods under known data-generating conditions. The goal of simhelpers is to assist in running such simulation studies. The main tools in the package consist of functions to calculate measures of estimator performance, such as bias, root mean squared error, rejection rates. The functions also calculate the associated Monte Carlo standard errors (MCSE) of the performance measures. The functions use the tidyeval principles, so that they play well with dplyr and fit easily into a &lt;code&gt;%&amp;gt;%&lt;/code&gt;-centric workflow.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -37,13 +37,13 @@
     
     <item>
       <title>Simulating correlated standardized mean differences for meta-analysis</title>
-      <link>/simulating-correlated-smds/</link>
+      <link>https://www.jepusto.com/simulating-correlated-smds/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/simulating-correlated-smds/</guid>
+      <guid>https://www.jepusto.com/simulating-correlated-smds/</guid>
       <description>
 
 
-&lt;p&gt;As I’ve discussed in &lt;a href=&#34;/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
+&lt;p&gt;As I’ve discussed in &lt;a href=&#34;https://www.jepusto.com/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
 I’m interested in methods for meta-analyzing and meta-regressing effect sizes from data structures like this, and studying this sort of thing often entails conducting Monte Carlo simulations.
 Monte Carlo simulations involve generating artificial data—in this case, a set of studies, each of which has one or more dependent effect size estimates—that follows a certain distributional model, applying different analytic methods to the artificial data, and then repeating the process a bunch of times.
 Because we know the true parameters that govern the data-generating process, we can evaluate the performance of the analytic methods in terms of bias, accuracy, hypothesis test calibration and power, confidence interval coverage, and the like.&lt;/p&gt;
@@ -128,7 +128,7 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;Hedges_g = TRUE&lt;/code&gt;, which controls where the simulated effect size is Hedges’ &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; or Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;. If it is Hedges’ g, make sure that the standard error is corrected too.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;p_val = TRUE&lt;/code&gt;, which allows the user to control whether or not to return &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-values from the test of mean differences for each outcome. Note that the p-values should be for a test of the &lt;em&gt;raw&lt;/em&gt; mean differences between groups, rather than a test of the effect size &lt;span class=&#34;math inline&#34;&gt;\(\delta_{jk} = 0\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;https://www.jepusto.com/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -143,7 +143,7 @@ and
 \left(\mathbf{\bar{y}}_{Tk} - \mathbf{\bar{y}}_{Ck}\right) \sim N\left(\boldsymbol\delta_k, \frac{4}{N_k} \boldsymbol\Psi_k\right).
 \]&lt;/span&gt;
 This shows how we could directly simulate the numerator of the standardized mean difference.&lt;/p&gt;
-&lt;p&gt;A &lt;a href=&#34;/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
+&lt;p&gt;A &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
 &lt;span class=&#34;math display&#34;&gt;\[
 (N_k - 2) \mathbf{S}_k \sim Wishart\left(N_k - 2, \Psi_k \right).
 \]&lt;/span&gt;
@@ -300,15 +300,15 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x}_{jk}\)&lt;/span&gt; i
     
     <item>
       <title>Easily simulate thousands of single-case designs</title>
-      <link>/easily-simulate-thousands-of-single-case-designs/</link>
+      <link>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/easily-simulate-thousands-of-single-case-designs/</guid>
+      <guid>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</guid>
       <description>
 
 
 &lt;p&gt;Earlier this month, I taught at the &lt;a href=&#34;https://scdinstitute2018.com/&#34;&gt;Summer Research Training Institute on Single-Case Intervention Design and Analysis workshop&lt;/a&gt;, sponsored by the Institute of Education Sciences’ National Center for Special Education Research.
 While I was there, I shared &lt;a href=&#34;https://jepusto.shinyapps.io/ARPsimulator/&#34;&gt;a web-app for simulating data from a single-case design&lt;/a&gt;.
-This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
+This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;https://www.jepusto.com/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
 It provides an easy way to simulate “mock” data from a single-case design where the dependent variable is measured using systematic direct observation of behavior.
 The simulated data can be viewed in the form of a graph or downloaded as a csv file.
 And it’s quite fast—simulating 1000’s of mock single-case designs takes only a few seconds.
@@ -322,20 +322,20 @@ The initial baseline and treatment phases will be 7 sessions long.
 At baseline, the child engages in inappropriate play at a rate of about 0.8 per minute.
 You anticipate that the intervention could reduce inappropriate play by as much as 90% from baseline.
 Enter all of these details and assumptions into the simulator, and it will generate a graph like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Hit the “Simulate!” button again and you might get something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Or one of these:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of the above graphs were generated from the same hypothetical model—the variation in the clarity and strength of the functional relation is due to random error alone.
 The simulator can also produce graphs that show multiple realizations of the data-generating process. Here’s one with five replications:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And here’s the same figure, but with trend lines added:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The trend lines represent the overall average level of the dependent variable during each session, across infinitely replications of the study.
 The variability around the trend line provides a sense of the extent of random error in the measurements of the dependent variable.&lt;/p&gt;
 &lt;p&gt;I think it’s a rather interesting exercise to try and draw inferences based on visual inspection of randomly generated graphs like this—particularly because it forces you to grapple with random measurement error in a way that using only real data (or only hand-drawn mock data) doesn’t allow.
@@ -376,9 +376,9 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>New paper: procedural sensitivities of effect size measures for SCDs</title>
-      <link>/procedural-sensitivities-paper/</link>
+      <link>https://www.jepusto.com/procedural-sensitivities-paper/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/procedural-sensitivities-paper/</guid>
+      <guid>https://www.jepusto.com/procedural-sensitivities-paper/</guid>
       <description>
 
 
@@ -386,7 +386,7 @@ If you, dear reader, would be interested in helping to pursue any of these direc
 &lt;blockquote&gt;
 &lt;p&gt;A wide variety of effect size indices have been proposed for quantifying the magnitude of treatment effects in single-case designs. Commonly used measures include parametric indices such as the standardized mean difference, as well as non-overlap measures such as the percentage of non-overlapping data, improvement rate difference, and non-overlap of all pairs. Currently, little is known about the properties of these indices when applied to behavioral data collected by systematic direct observation, even though systematic direct observation is the most common method for outcome measurement in single-case research. This study uses Monte Carlo simulation to investigate the properties of several widely used single-case effect size measures when applied to systematic direct observation data. Results indicate that the magnitude of the non-overlap measures and of the standardized mean difference can be strongly influenced by procedural details of the study’s design, which is a significant limitation to using these indices as effect sizes for meta-analysis of single-case designs. A less widely used parametric index, the log-response ratio, has the advantage of being insensitive to sample size and observation session length, although its magnitude is influenced by the use of partial interval recording.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
+&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;https://www.jepusto.com/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
 &lt;p&gt;Here’s the complete time-line of submissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;August 5, 2015: submitted to journal #1 (special education)&lt;/li&gt;
@@ -413,9 +413,9 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>You wanna PEESE of d&#39;s?</title>
-      <link>/pet-peese-performance/</link>
+      <link>https://www.jepusto.com/pet-peese-performance/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/pet-peese-performance/</guid>
+      <guid>https://www.jepusto.com/pet-peese-performance/</guid>
       <description>
 
 
@@ -487,7 +487,7 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;li&gt;the modified PEESE estimator, which I’ll call “SPEESE”; and&lt;/li&gt;
 &lt;li&gt;SPET-SPEESE, which follows the same conditional logic as PET-PEESE.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;https://www.jepusto.com/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;results&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Results&lt;/h1&gt;
@@ -495,43 +495,43 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;h3&gt;False-positive rates for publication bias detection&lt;/h3&gt;
 &lt;p&gt;First, let’s consider the performance of PET and PEESE as tests for detecting publication bias. Here, a statistically significant estimate for the coefficient on the SE (for PET) or on &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; (for PEESE) is taken as evidence of small-sample bias. For that logic to hold, the tests should maintain the nominal error rates in the absence of publication bias.&lt;/p&gt;
 &lt;p&gt;The figure below depicts the Type-I error rates of the PET and PEESE tests when &lt;span class=&#34;math inline&#34;&gt;\(\pi = 1\)&lt;/span&gt; (so no publication bias at all), for a one-sided test of &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; at the nominal level of &lt;span class=&#34;math inline&#34;&gt;\(\alpha = .05\)&lt;/span&gt;. Rejection rates are plotted for varying true mean effects, levels of heterogeneity, and sample size distributions. Separate colors are used for maximum sample sizes of 50 or 120.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both tests are horribly mis-calibrated, tending to reject the null hypothesis far more often than they should. This happens because there is a non-zero correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt;, even in the absence of publication bias. Thus, it does not follow that rejecting &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; implies rejection of the hypothesis that there is no publication bias. (Sorry, that’s at least a triple negative!)&lt;/p&gt;
 &lt;p&gt;Here’s the same graph, but using the SPET and SPEESE estimators:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Yes, this may be the World’s Most Boring Figure, but it does make clear that both the SPET and SPEESE tests maintain the correct Type-I error rate. (Any variation in rejection rates is just Monte Carlo error.) Thus, it seems pretty clear that if we want to test for small-sample bias, SPET or SPEESE should be used rather than PET or PEESE.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bias-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Bias of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Now let’s consider the performance of these methods as estimators of the population mean effect. &lt;a href=&#34;http://datacolada.org/59&#34;&gt;Uri’s analysis&lt;/a&gt; focused on the bias of the estimators, meaning the difference between the average value of the estimator (across repeated samples) and the true parameter. The plot below depicts the expected level of PET, PEESE, and PET-PEESE as a function of the true mean effect, using the uniform distribution of studies and a maximum sample size of &lt;span class=&#34;math inline&#34;&gt;\(n = 50\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All three of these estimators are pretty bad in terms of bias. In the absence of publication bias, they consistently &lt;em&gt;under&lt;/em&gt;-estimate the true mean effect. With intermediate or strong publication bias, PET and PET-PEESE have a consistent downward bias. As an unconditional estimator, PEESE tends to have a positive bias when the true effect is small, but this decreases and becomes negative as the true effect increases. For all three estimators, bias increases as the degree of heterogeneity increases.&lt;/p&gt;
 &lt;p&gt;Here is how these estimators compare to the modified SPET, SPEESE, and SPET-SPEESE estimators, as well as to the usual fixed-effect average with no correction for publication bias:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left column, we see that SPET and SPEESE are exactly unbiased (and SPET-SPEESE is nearly so) in the absence of selective publication. So is regular old fixed effect meta-analysis, of course. In the middle and right columns, studies are selected based partially or fully on statistical significance, and things get messy. Overall, there’s no consistent winner between PEESE versus SPEESE. At small or moderate levels of between-study heterogeneity, and when the true mean effect is small, PEESE, SPEESE, and SPET-SPEESE have fairly similar biases, but PEESE appears to have a slight edge. This seems to me to be nothing but a fortuitous accident, in that the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; just happens to work in the right direction. Then, as the true mean effect increases, SPEESE and SPET-SPEESE start to edge out PEESE. This makes sense because the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; will be larger when the true effect sizes are larger.&lt;br /&gt;
 These trends seem mostly to hold for the other sample size distributions I examined too, although the biases of PEESE and PET-PEESE aren’t as severe when the maximum sample size is larger. You can see for yourself here:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;accuracy-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Accuracy of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Bias isn’t everything, of course. Now let’s look at the overall accuracy of these estimators, as measured by root mean squared error (RMSE). RMSE is a function of both bias and sampling variance, and so is one way to weigh an estimator that is biased but fairly precise against an estimator that is perfectly unbiased but noisy. The following chart plots the RMSE of all of the estimators (following the same layout as above, just with a different vertical axis):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Starting in the left column where there’s no selective publication, we can see that the normal fixed-effect average has the smallest RMSE (and so is most accurate). The next most accurate is SPEESE, which uniformly beats out PEESE, PET-PEESE, SPET, and SPET-SPEESE. It’s worth noting, though, that there is a fairly large penalty for using SPEESE when it is unnecessary: even with a quite large sample of 100 studies, SPEESE still has twice the RMSE of the FE estimator.&lt;/p&gt;
 &lt;p&gt;The middle column shows these estimators’ RMSE when there is an intermediate degree of selective publication. Because of the “fortuitous accident” of how the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; affects the PEESE estimator, it is more accurate than SPEESE for small values of the true mean effect. Its advantage is larger when heterogeneity is larger, and heterogeneity also affects the point (i.e., what true mean effect) at which SPEESE catches up with PEESE. Then at larger true mean effects, the accuracy of SPEESE continues to improve while the accuracy of PEESE degrades. It is also interesting to note that at this intermediate degree of selective publication, none of the other bias-correction estimators (PET-PEESE, SPET, SPET-SPEESE) compete with PEESE and SPEESE.&lt;/p&gt;
 &lt;p&gt;Finally, the right column plots RMSE when there’s strong selective publication, so only statistically significant effects appear. Just as in the middle column, PEESE edges out SPEESE for smaller values of the true mean effect. For very small true effects, both of these estimators are edged out by PET-PEESE and SPET-SPEESE. This only holds over a very small range for the true mean effect though, and for true effects above that range these conditional estimators perform poorly—consistently worse than just using PEESE or SPEESE.&lt;/p&gt;
 &lt;p&gt;Here are charts for the other sample size distributions:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The trends that I’ve noted mostly seem to hold for the other sample size distributions (but correct me if you disagree! I’m getting kind of bleary-eyed at the moment…). One difference worth noting is that when the sample size distribution skews towards having more large studies, the accuracy of the regular fixed-effect estimator improves a bit. At intermediate degrees of selective publication, the fixed-effect estimator is &lt;em&gt;consistently&lt;/em&gt; more accurate than SPEESE, and mostly more accurate than PEESE too. With strong selective publication, though, the FE estimator blows up just as before.&lt;/p&gt;
 &lt;/div&gt;
@@ -571,13 +571,13 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>New working paper: Procedural sensitivities of SCD effect sizes</title>
-      <link>/scd-effect-size-sensitivities/</link>
+      <link>https://www.jepusto.com/scd-effect-size-sensitivities/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/scd-effect-size-sensitivities/</guid>
+      <guid>https://www.jepusto.com/scd-effect-size-sensitivities/</guid>
       <description>
 
 
-&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
+&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
 &lt;p&gt;The paper itself is available on the Open Science Framework (&lt;a href=&#34;https://osf.io/pxn24/&#34;&gt;here&lt;/a&gt;), as are the &lt;a href=&#34;https://osf.io/hkzsm/&#34;&gt;supplementary materials&lt;/a&gt; and &lt;a href=&#34;https://osf.io/j4gvt/&#34;&gt;Source code&lt;/a&gt;. I also created interaction versions of the graphics from the main paper and the supplementary materials, which can be viewed in &lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-size-sensitivities/&#34;&gt;this shiny app&lt;/a&gt;. I would welcome any comments, questions, or feedback that readers may have.&lt;/p&gt;
 &lt;div id=&#34;abstract&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Abstract&lt;/h3&gt;
@@ -588,17 +588,17 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>Simulation studies in R (Fall, 2016 version)</title>
-      <link>/simulation-studies-in-r-2016/</link>
+      <link>https://www.jepusto.com/simulation-studies-in-r-2016/</link>
       <pubDate>Wed, 28 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>/simulation-studies-in-r-2016/</guid>
+      <guid>https://www.jepusto.com/simulation-studies-in-r-2016/</guid>
       <description>
 
 
 &lt;p&gt;In today’s Quant Methods colloquium, I gave an introduction to the logic and purposes of Monte Carlo simulation studies, with examples written in R.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/files/Simulations-in-R-2016.html&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/files/Simulations-in-R-2016.html&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/li&gt;
 &lt;li&gt;You can find the code that generates the slides &lt;a href=&#34;https://gist.github.com/jepusto/bf6cdb6e393f54470ba4d016199c6eb8&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Here is my &lt;a href=&#34;/Designing-simulation-studies-using-R&#34;&gt;presentation on the same topic&lt;/a&gt; from a couple of years ago.&lt;/li&gt;
+&lt;li&gt;Here is my &lt;a href=&#34;https://www.jepusto.com/Designing-simulation-studies-using-R&#34;&gt;presentation on the same topic&lt;/a&gt; from a couple of years ago.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://varianceexplained.org/r/beta_binomial_baseball/&#34;&gt;David Robinson’s blog&lt;/a&gt; has a much more in-depth discussion of beta-binomial regression.&lt;/li&gt;
 &lt;li&gt;The data I used is from &lt;a href=&#34;http://www.seanlahman.com/baseball-database.html&#34;&gt;Lahman’s baseball database&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
@@ -607,15 +607,15 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>ARPobservation</title>
-      <link>/software/arpobservation/</link>
+      <link>https://www.jepusto.com/software/arpobservation/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/arpobservation/</guid>
+      <guid>https://www.jepusto.com/software/arpobservation/</guid>
       <description>&lt;p&gt;An R package for simulating different methods of recording data based on direct observation of behavior, where behavior is modeled by an alternating renewal process.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://cran.r-project.org/package=ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://www.jepusto.com/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -626,13 +626,13 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>Update: parallel R on the TACC</title>
-      <link>/parallel-r-on-tacc-update/</link>
+      <link>https://www.jepusto.com/parallel-r-on-tacc-update/</link>
       <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/parallel-r-on-tacc-update/</guid>
+      <guid>https://www.jepusto.com/parallel-r-on-tacc-update/</guid>
       <description>
 
 
-&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
+&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The version of MVAPICH2 has changed to 2.0b&lt;/li&gt;
 &lt;li&gt;Changes to the Rmpi and snow packages necessitate using the latest version of R (Warm Puppy, 3.0.3). This version is available in the &lt;code&gt;Rstats&lt;/code&gt; module.&lt;/li&gt;
@@ -644,13 +644,13 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>Running R in parallel on the TACC</title>
-      <link>/parallel-r-on-tacc/</link>
+      <link>https://www.jepusto.com/parallel-r-on-tacc/</link>
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
-      <guid>/parallel-r-on-tacc/</guid>
+      <guid>https://www.jepusto.com/parallel-r-on-tacc/</guid>
       <description>
 
 
-&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
+&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
 &lt;p&gt;I’ve started to use the Texas Advanced Computing Cluster to run statistical simulations in R. It takes a little bit of time to get up and running, but once you do it is an amazing tool. To get started, you’ll need&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;An account on the &lt;a href=&#34;https://www.tacc.utexas.edu/&#34;&gt;TACC&lt;/a&gt; and an allocation of computing time.&lt;/li&gt;
@@ -661,7 +661,7 @@ These trends seem mostly to hold for the other sample size distributions I exami
 &lt;div id=&#34;the-r-script&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The R script&lt;/h3&gt;
 &lt;p&gt;I’ve been running my simulations using a combination of several packages that provide very high-level functionality for parallel computing, namely &lt;code&gt;foreach&lt;/code&gt;, &lt;code&gt;doSNOW&lt;/code&gt;, and the &lt;code&gt;maply&lt;/code&gt; function in &lt;code&gt;plyr&lt;/code&gt;. All of this runs on top of an &lt;code&gt;Rmpi&lt;/code&gt; implementation developed by the folks at TACC (&lt;a href=&#34;https://portal.tacc.utexas.edu/documents/13601/901835/Parallel_R_Final.pdf/&#34;&gt;more details here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Rmpi)
 library(snow)
 library(foreach)
@@ -738,13 +738,13 @@ login4$cd project_name&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Designing simulation studies using R</title>
-      <link>/designing-simulation-studies-using-r/</link>
+      <link>https://www.jepusto.com/designing-simulation-studies-using-r/</link>
       <pubDate>Fri, 06 Dec 2013 00:00:00 +0000</pubDate>
-      <guid>/designing-simulation-studies-using-r/</guid>
+      <guid>https://www.jepusto.com/designing-simulation-studies-using-r/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;/files/Designing-simulation-studies-using-R.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation at this afternoon’s Quant. Methods brown bag. I gave a very quick introduction to using R for conducting simulation studies. I hope it was enough to get people intrigued about the possibilities of using R in their own work.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jepusto.com/files/Designing-simulation-studies-using-R.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation at this afternoon’s Quant. Methods brown bag. I gave a very quick introduction to using R for conducting simulation studies. I hope it was enough to get people intrigued about the possibilities of using R in their own work.&lt;/p&gt;
 &lt;p&gt;The second half of the presentation sketched out a quick-and-dirty simulation of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Behrens%E2%80%93Fisher_problem&#34;&gt;Behrens-Fisher problem&lt;/a&gt;, or more specifically the coverage rates of 95% confidence intervals using Welch’s degrees of freedom approximation, given independent samples with unequal variances. Here is &lt;a href=&#34;https://gist.github.com/jepusto/7686463&#34;&gt;the complete code&lt;/a&gt;. As I mentioned in the talk, there’s lots of room for improvement. The main point that I was trying to illustrate is that simulations have five distinct pieces:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;a data generating model,&lt;/li&gt;
@@ -759,9 +759,9 @@ login4$cd project_name&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>To what extent does partial interval recording over-estimate prevalence?</title>
-      <link>/pir-overestimates-prevalence/</link>
+      <link>https://www.jepusto.com/pir-overestimates-prevalence/</link>
       <pubDate>Sat, 26 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/pir-overestimates-prevalence/</guid>
+      <guid>https://www.jepusto.com/pir-overestimates-prevalence/</guid>
       <description>
 
 
@@ -796,7 +796,7 @@ CDR &amp;lt;- continuous_duration_recording(BS)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(x = phi, y = CDR, geom = &amp;quot;point&amp;quot;) + geom_smooth(method = &amp;quot;loess&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/CDR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/CDR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue line is nearly identical to the line &lt;code&gt;y = x&lt;/code&gt;, meaning that the average of CDR data is equal to prevalence. Good news–the software appears to be working correctly!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;partial-interval-recording&#34; class=&#34;section level2&#34;&gt;
@@ -808,7 +808,7 @@ qplot(x = phi, y = PIR, geom = &amp;quot;point&amp;quot;, ylim = c(-0.02,1.02)) 
   geom_smooth(method = &amp;quot;loess&amp;quot;, se = FALSE) + 
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_bias-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue line indicates the average value of PIR data across the simulations for a given value of prevalence. The dashed line indicates &lt;code&gt;y = x&lt;/code&gt;, so clearly PIR data over-estimates prevalence.&lt;/p&gt;
 &lt;p&gt;Previous studies in the Applied Behavior Analysis literature have taken a slightly different approach to thinking about over-estimation. Rather than comparing PIR data to the prevalence parameter &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, PIR data is instead compared to the &lt;em&gt;sample&lt;/em&gt; value of prevalence, which is equivalent to the CDR proportion. Following this logic, I apply the PIR and CDR procedures to the same simulated behavior streams, then plot PIR versus CDR.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;obs_data &amp;lt;- reported_observations(BS, data_types = c(&amp;quot;C&amp;quot;,&amp;quot;P&amp;quot;), interval_length = 20, rest_length = 5)
@@ -817,7 +817,7 @@ qplot(x = CDR, y = PIR, data = obs_data, geom = &amp;quot;point&amp;quot;, ylim 
   geom_smooth(method = &amp;quot;loess&amp;quot;, se = FALSE) + 
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_CDR-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_CDR-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The blue fitted line is slightly different than with the other approach, but the general conclusion is the same: PIR data over-estimates prevalence.&lt;/p&gt;
 &lt;p&gt;But by how much? That’s actually a tricky question to answer, because the extent of the bias depends on a bunch of factors:&lt;/p&gt;
 &lt;ul&gt;
@@ -837,7 +837,7 @@ qplot(x = CDR, y = PIR, data = obs_data, geom = &amp;quot;smooth&amp;quot;, meth
   geom_abline(intercept = 0, slope = 1, linetype = &amp;quot;dashed&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;
 ## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_length-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_length-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The red line indicates that the longer interval time leads to a larger degree of over-estimation. (For clarity, I’ve removed the points in the scatter-plot.)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;interim-time-distribution&#34; class=&#34;section level4&#34;&gt;
@@ -855,7 +855,7 @@ obs_data &amp;lt;- rbind(obs_exp, obs_gam)
 qplot(x = C, y = P, color = F_lambda, 
       data = obs_data, geom = &amp;quot;smooth&amp;quot;, method = &amp;quot;loess&amp;quot;, se = FALSE, ylim = c(-0.02, 1.02))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/PIR-overestimates-prevalence_files/figure-html/PIR_interim_dist-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PIR-overestimates-prevalence_files/figure-html/PIR_interim_dist-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The gamma(3) interim time distribution leads to a slightly larger positive bias.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -864,9 +864,9 @@ qplot(x = C, y = P, color = F_lambda,
     
     <item>
       <title>Getting started with ARPobservation</title>
-      <link>/getting-started-with-arpobservation/</link>
+      <link>https://www.jepusto.com/getting-started-with-arpobservation/</link>
       <pubDate>Thu, 24 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/getting-started-with-arpobservation/</guid>
+      <guid>https://www.jepusto.com/getting-started-with-arpobservation/</guid>
       <description>
 
 

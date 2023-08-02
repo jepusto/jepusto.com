@@ -2,23 +2,355 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>effect size | James E. Pustejovsky</title>
-    <link>/tags/effect-size/</link>
-      <atom:link href="/tags/effect-size/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/effect-size/</link>
+      <atom:link href="https://www.jepusto.com/tags/effect-size/index.xml" rel="self" type="application/rss+xml" />
     <description>effect size</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Wed, 06 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>effect size</title>
-      <link>/tags/effect-size/</link>
+      <link>https://www.jepusto.com/tags/effect-size/</link>
     </image>
     
     <item>
-      <title>Standardized mean differences in single-group, repeated measures designs</title>
-      <link>/smds-in-single-group/</link>
-      <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/smds-in-single-group/</guid>
+      <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
+      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</title>
+      <link>https://www.jepusto.com/dizzy-for-d-z/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/dizzy-for-d-z/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Meta-analyses in education, psychology, and related fields rely heavily of Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In this post, I’m going to mull over how measurement error and design decisions influence the metric definition of Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; in basic within-group experimental designs. The distorting effects of measurement error has long been a source of concern within psychometric meta-analysis, a perspective associated with the work of &lt;a href=&#34;https://methods.sagepub.com/book/methods-of-meta-analysis-3e&#34;&gt;Frank Schmidt and Jack Hunter&lt;/a&gt;, and measurement-error corrections are well developed and often applied in meta-analyses of correlations. Straight-forward measurement-error corrections have also been described for Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; from between-group designs (see recent work by &lt;a href=&#34;https://psyarxiv.com/9mpbn/&#34;&gt;Brenton Wiernik and Jeff Dahlke&lt;/a&gt;). However, I have literally never seen a meta-analytic application that applied these corrections and I have thus far been unable to locate work on such corrections specifically for effect sizes in within-group designs.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; So, time to muck about…&lt;/p&gt;
+&lt;div id=&#34;effect-size-definitions-in-within-group-designs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Effect size definitions in within-group designs&lt;/h2&gt;
+&lt;p&gt;In basic between-group designs, the only variances in the model are the within-group variances, so the choice of standardizing variance is limited to a) the singular population variance, assuming it is homogeneous across groups, b) the variance of one group, or c) the average of the variances in each group. In most applications, homogeneity is assumed (often without much reflection), version (a) of Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; is estimated, and the meta-analyst can go along their merry way. For sake of succinctness, I’ll call this effect size &lt;span class=&#34;math inline&#34;&gt;\(d_{b}\)&lt;/span&gt;, where the &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt; indicates the usual version for basic between-group designs.&lt;/p&gt;
+&lt;p&gt;For within-group or repeated measures designs, the set of choices is more involved and includes a) standardizing by the across-participant variance in one condition (or both conditions, assuming homogeneity) or b) standardizing by the variance of the difference scores. The former approach is sometimes called &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt;&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;, the latter is called &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt;&lt;a href=&#34;#fn4&#34; class=&#34;footnote-ref&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;. The &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; metric uses the same standardizing variance as the &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; from a basic between-group design, and so results from both types of designs are, in principle, on the same scale.&lt;/p&gt;
+&lt;p&gt;In the context of meta-analysis, the comparability of &lt;span class=&#34;math inline&#34;&gt;\(d_b\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; is useful when working with a set of studies that include both types of designs. On the other hand, in meta-analyses that consist solely of within-group or repeated measures designs, comparability with &lt;span class=&#34;math inline&#34;&gt;\(d_b\)&lt;/span&gt; may be less of a priority and one could consider using &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; for synthesis. Purely on a pragmatic level, using &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; might be attractive because the only pieces of information needed to calculate it are the total sample size and the &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; statistic (or &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-value) from the comparison between conditions. In contrast, calculating &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; also requires the between-participant standard deviations from one or both groups, which primary studies might not always report.&lt;/p&gt;
+&lt;p&gt;Going in to this exercise, I had the notion that measurement error would affect &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; to a greater degree than &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; because &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; involves difference scores and difference scores get hit by measurement error twice. Does this intuition hold up? Let me try to formalize things a bit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-within-group-design-with-measurement-error&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A within-group design with measurement error&lt;/h2&gt;
+&lt;p&gt;Suppose we have a within-group design involving two conditions, where participants are assessed on &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; trials under each condition. Let &lt;span class=&#34;math inline&#34;&gt;\(Y_{ijk}\)&lt;/span&gt; denote the outcome from trial &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; for participant &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; under condition &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,2\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,N\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(k = 1,...,K\)&lt;/span&gt;. A basic model for this set-up is
+&lt;span class=&#34;math display&#34;&gt;\[
+Y_{ijk} = \mu_i + u_{ij} + e_{ijk}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(u_{1j}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(u_{2j}\)&lt;/span&gt; are participant-specific errors in the true scores under each condition and the &lt;span class=&#34;math inline&#34;&gt;\(e_{ijk}\)&lt;/span&gt;’s are measurement errors. For simplicity, I will assume that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the true-score variance is equal across conditions, with &lt;span class=&#34;math inline&#34;&gt;\(\Var(u_{ij}) = \sigma^2\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,2\)&lt;/span&gt;,&lt;/li&gt;
+&lt;li&gt;the true scores are correlated across conditions, &lt;span class=&#34;math inline&#34;&gt;\(\cor(u_{1j}, u_{2j}) = \rho\)&lt;/span&gt;, and&lt;/li&gt;
+&lt;li&gt;measurement errors are uncorrelated and have homogeneous variance across conditions, with &lt;span class=&#34;math inline&#34;&gt;\(\Var(e_{ijk}) = \psi^2\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let &lt;span class=&#34;math inline&#34;&gt;\(\phi = \sigma^2 / (\sigma^2 + \psi^2)\)&lt;/span&gt; denote the reliability (intra-class correlation) of a single observed score. Note that we can write &lt;span class=&#34;math inline&#34;&gt;\(\psi^2\)&lt;/span&gt; in terms of the reliability and true-score variance as &lt;span class=&#34;math inline&#34;&gt;\(\psi^2 = \sigma^2 \times \frac{1 - \phi}{\phi}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Under this model, there are several different standardized mean difference metrics that we could consider. Since measurement reliability might vary from study to study, it would make sense to define the metric in terms of true score variances alone, as
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma}
+\]&lt;/span&gt;
+or in terms of the variance of the difference in true scores, as
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2(1 - \rho)}}.
+\]&lt;/span&gt;
+However, we don’t directly observe the true scores, and we can’t estimate their variance unless we have information about score reliabilities. Thus, meta-analysts will usually need to calculate effect sizes in terms of &lt;em&gt;observed&lt;/em&gt; scores that include measurement error.&lt;/p&gt;
+&lt;p&gt;Suppose that the analysis is conducted by taking the average of the &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; trials for each participant under each condition, &lt;span class=&#34;math inline&#34;&gt;\(\bar{Y}_{ij} = \frac{1}{K} \sum_{k=1}^K Y_{ijk}\)&lt;/span&gt;, and conducting the analysis using these mean scores. The variance of the mean scores is
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(\bar{Y}_{ij}) = \sigma^2 \left(1 + \frac{1 - \phi}{\phi K}\right),
+\]&lt;/span&gt;
+so we can define the observed-score standardized mean difference using raw score standardization as
+&lt;span class=&#34;math display&#34;&gt;\[
+\tilde\delta_{av} = \frac{\mu_2 - \mu_1}{\sigma \sqrt{1 + \frac{1 - \phi}{\phi K}}} = \frac{1}{\sqrt{1 + \frac{1 - \phi}{\phi K}}} \times \delta_{av}.
+\]&lt;/span&gt;
+From this expression, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one.&lt;/p&gt;
+&lt;p&gt;Similarly, the variance of the observed difference scores is
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(\bar{Y}_{2j} - \bar{Y}_{1j}) =2 \sigma^2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right),
+\]&lt;/span&gt;
+so we can define the observed-score standardized mean difference using change score standardization as
+&lt;span class=&#34;math display&#34;&gt;\[
+\tilde\delta_z = \frac{\mu_2 - \mu_1}{\sigma \sqrt{2 \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)}} = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}} \times \delta_z.
+\]&lt;/span&gt;
+Again, we can see that measurement error attenuates the true-score effect size because the multiplier term is always going to be less than one. However, unlike with &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt;, the attenuation factor here depends on &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; in addition to &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt;. This additional term in the correction factor is one indication that &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; might be less desirable for meta-analysis. Correcting &lt;span class=&#34;math inline&#34;&gt;\(d_z\)&lt;/span&gt; for the distortion from measurement error would require estimates of both the true-score correlation and the reliability of the scores, whereas correcting &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; would require only the latter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;meta-analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Meta-analysis&lt;/h2&gt;
+&lt;p&gt;The relationships between the true-score effect sizes and the analogous observed score effect sizes starts to be a problem when we consider a meta-analysis of multiple primary studies. Primary studies will often use different instruments and procedures for measuring outcomes (necessitating the use of some standardized effect size), and those differences in instruments and procedures might come along with differences in score reliability as well as variation in the number of trials collected per condition (and plenty of other things, such as sample size, participant characteristics, etc.). Procedural heterogeneity like this creates two potential challenges for meta-analysis: bias in average effect sizes and extra heterogeneity in the distribution of effect sizes. Both could make findings from a meta-analysis more difficult to interpret, although I will argue that extra heterogeneity is more concerning than bias.&lt;/p&gt;
+&lt;p&gt;To illustrate, let’s now imagine that the parameters of the within-group study design, &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; are random variables, drawn from the distribution of parameters across a population of hypothetical studies.&lt;/p&gt;
+&lt;div id=&#34;a-model-for-delta_av&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A model for &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Let’s first consider &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; and assume that it follows a random effects model, with
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_{av} \sim N\left(\mu, \tau^2\right).
+\]&lt;/span&gt;
+Let’s also assume that the remaining parameters &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; are independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;. These parameters determine the attenuation factor &lt;span class=&#34;math inline&#34;&gt;\(A_{av} = \left(1 + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)&lt;/span&gt;, which relates the observed-score effect size parameter to the true score effect size parameter.&lt;/p&gt;
+&lt;p&gt;The bias of &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is therefore
+&lt;span class=&#34;math display&#34;&gt;\[
+\E\left(\tilde\delta_{av}\right) = \E\left(A_{av}\delta_{av}\right) = \E(A_{av}) \times \mu.
+\]&lt;/span&gt;
+Thus, under my very simplistic assumptions, a meta-analysis of observed score Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d_{av}\)&lt;/span&gt; estimates will be biased (downward) for the overall average effect in the true-score distribution.&lt;/p&gt;
+&lt;p&gt;You might find that the downward bias in &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is undesirable. On the other hand, bias might not be as a big a problem as it first seems. If all of the observed-score effect sizes are biased to a degree that is unrelated to the true effects, then bias just stretches or compresses the scale of measurement, but doesn’t necessarily lead to interpretive problems. Imagine you have a ruler that is half an inch too short, and you’re trying to compare the heights of different objects. As long as you use the same ruler, then you will still be able to determine which objects are bigger and which are smaller, and by how much, even if the measurements are off in an absolute sense.&lt;/p&gt;
+&lt;p&gt;Apart from bias, however, variability in &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; will also induce &lt;em&gt;additional heterogeneity&lt;/em&gt; in the distribution of observed score effect sizes. This is a clear problem because it creates additional uncertainty, making it harder to draw inferences about the distribution of effects, predict new effect sizes, or identify substantively interesting moderators. To measure this additional heterogeneity and keep its consequences separate from the consequences for bias, I will look at the coefficient of variation in &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. Under the assumption that &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\sqrt{\Var(\tilde\delta_{av})}}{\E(\tilde\delta_{av})} = \frac{\sqrt{(\mu^2 + 2 \tau^2) \Var(A_{av}) + \tau^2 \left[\E(A_{av})\right]^2}}{\E\left(A_{av} \right) \times \mu } = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_{av})}{\left[\E\left(A_{av} \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]&lt;/span&gt;
+Thus, the coefficient of variation for &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is amplified by a factor that depends on the squared coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;. Under the same model,
+&lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z = A_z \times \delta_{av}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(A_z = \left(1 - \rho + \frac{1 - \phi}{\phi K}\right)^{-1/2}\)&lt;/span&gt;, and so &lt;span class=&#34;math inline&#34;&gt;\(\E(\tilde\delta_z) = \E(A_z) \times \mu\)&lt;/span&gt; and
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\sqrt{\Var(\tilde\delta_z)}}{\E(\tilde\delta_z)} = \sqrt{\left[\left(1 + \frac{2 \tau^2}{\mu^2}\right) \frac{\Var(A_z)}{\left[\E\left(A_z \right)\right]^2} + \frac{\tau^2}{\mu^2}\right]}.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To see what’s going on here, let’s consider some specific distributions for these measurement factors. First, let’s assume:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\rho \sim B(14, 6)\)&lt;/span&gt;, so that &lt;span class=&#34;math inline&#34;&gt;\(\E(\rho) = .7\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\Var(\rho) = 0.1^2\)&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\phi \sim B(3, 5)\)&lt;/span&gt;, so that &lt;span class=&#34;math inline&#34;&gt;\(\E(\rho) = .0.375\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\Var(\rho) = 0.161^2\)&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(K \sim 1 + Pois(9)\)&lt;/span&gt;, so &lt;span class=&#34;math inline&#34;&gt;\(\E(K) = 10\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\Var(K) = 3^2\)&lt;/span&gt;; and&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; are mutually independent and independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below I simulate 50000 samples from these distributions and calculate &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;R &amp;lt;- 50000
+rho &amp;lt;- rbeta(R, 14, 6)
+phi &amp;lt;- rbeta(R, 3, 5)
+K &amp;lt;- 1 + rpois(R, 9)
+A_av &amp;lt;- 1 / sqrt(1 + (1 - phi) / (phi * K))
+A_z &amp;lt;- 1 / sqrt(2 * (1 - rho + (1 - phi) / (phi * K)))
+
+library(ggplot2)
+library(patchwork)
+
+density_plot &amp;lt;- function(x, lab, col, limits) {
+  ggplot(data.frame(x), aes(x)) + 
+    xlim(limits) +
+    geom_density(alpha = 0.4, fill = col) + 
+    scale_y_continuous(labels = NULL) +
+    theme_minimal() + 
+    labs(x = lab, y = NULL)
+}
+
+p_A_av &amp;lt;- density_plot(A_av, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2,1))
+p_A_z &amp;lt;- density_plot(A_z, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
+p_A_av + p_A_z&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; is mostly concentrated around the mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}) = 0.898\)&lt;/span&gt;, with a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av}) = 0.085\)&lt;/span&gt;. In contrast, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; has a mean very close to one, &lt;span class=&#34;math inline&#34;&gt;\(E(A_z) = 1.005\)&lt;/span&gt; but a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z) = 0.209\)&lt;/span&gt;, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; than into &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is &lt;span class=&#34;math inline&#34;&gt;\(A_{av}^2\)&lt;/span&gt;, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;. Let’s suppose that researchers always ensure &lt;span class=&#34;math inline&#34;&gt;\(A_{av} \geq 0.8\)&lt;/span&gt; so that reliability is always at least &lt;span class=&#34;math inline&#34;&gt;\(0.64\)&lt;/span&gt;. This leads to the following distributions for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_av_trunc &amp;lt;- A_av[A_av &amp;gt;= 0.8]
+A_z_trunc &amp;lt;- A_z[A_av &amp;gt;= 0.8]
+p_A_av_trunc &amp;lt;- density_plot(A_av_trunc, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2, 1))
+p_A_z_trunc &amp;lt;- density_plot(A_z_trunc, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
+p_A_av_trunc + p_A_z_trunc&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
+The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; loses its left tail, so that its mean is &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)&lt;/span&gt; and its coefficient of variation is reduced to &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av} | A_{av} \geq 0.8) = 0.05\)&lt;/span&gt;. The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; now has a mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_z | A_{av} \geq 0.8) = 1.044\)&lt;/span&gt; and a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z | A_{av} \geq 0.8) = 0.174\)&lt;/span&gt;, about 3.5 times larger than the squared coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Under both of these scenarios, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is substantially more sensitive to procedural heterogeneity than is &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. Based on this model and hypothetical example, it seems clear &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; should be preferred over &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; is the right answer. After all, the underlying effect size model is specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, and the design parameters—including &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; in particular—are treated as noise, uncorrelated with &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;.
+What happens to the observed-score metrics &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; if we instead start with a model specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-model-for-delta_z&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A model for &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Let’s now see how this works if we treat &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt; as the correct metric and assume that the design parameters are independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;. Assume that
+&lt;span class=&#34;math display&#34;&gt;\[
+\delta_z \sim N(\alpha, \omega^2)
+\]&lt;/span&gt;
+and that the remaining parameters &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; are independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;. Then the observed-score standardized mean difference using change score standardization can be written as &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z = B_z \times \delta_z\)&lt;/span&gt;, where
+&lt;span class=&#34;math display&#34;&gt;\[
+B_z = \sqrt{\frac{1 - \rho}{1 - \rho + \frac{1 - \phi}{\phi K}}}
+\]&lt;/span&gt;
+and the observed-score standardized mean difference using raw score standardization can be written as &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av} = B_{av} \times \delta_z\)&lt;/span&gt;, where
+&lt;span class=&#34;math display&#34;&gt;\[
+B_{av} = \frac{\sqrt{2}(1 - \rho)}{\sqrt{1 - \rho + \frac{1 - \phi}{\phi K}}}.
+\]&lt;/span&gt;
+The plots below show the distribution of &lt;span class=&#34;math inline&#34;&gt;\(B_z\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(B_{av}\)&lt;/span&gt; under the same scenarios considered above. First, the scenario where observed-score reliability is not controlled:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;B_z &amp;lt;- sqrt((1 - rho) / (1 - rho + (1 - phi) / (phi * K)))
+B_av &amp;lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
+
+p_B_av &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
+p_B_z &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
+p_B_av + p_B_z&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
+Second, the scenario where observed-score reliability is at least 0.64:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;B_z_trunc &amp;lt;- B_z[A_av &amp;gt;= 0.8]
+B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
+
+p_B_av_trunc &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
+p_B_z_trunc &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
+p_B_av_trunc + p_B_z_trunc&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
+The table below reports the coefficients of variation for each of the multiplicative factors I have considered.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+dat &amp;lt;- tibble(A_av, A_z, B_av, B_z)
+
+random_rel &amp;lt;- 
+  dat |&amp;gt;
+  summarise(
+    across(everything(), ~ sd(.) / mean(.)),
+    reliability = &amp;quot;random&amp;quot;
+  )
+
+controlled_rel &amp;lt;-
+  dat |&amp;gt;
+  filter(A_av &amp;gt;= 0.8) |&amp;gt;
+  summarise(
+    across(everything(), ~ sd(.) / mean(.)),
+    reliability = &amp;quot;at least 0.64&amp;quot;
+  )
+
+CVs &amp;lt;- 
+  bind_rows(random_rel, controlled_rel) |&amp;gt;
+  mutate(
+    A_ratio = A_z / A_av,
+    B_ratio = B_z / B_av
+  ) |&amp;gt;
+  select(reliability, A_av, A_z, A_ratio, B_av, B_z, B_ratio)
+
+knitr::kable(
+  CVs, 
+  digits = c(0,3,3,1,3,3,2),
+  caption = &amp;quot;Coefficients of variation&amp;quot;,
+  col.names = c(&amp;quot;Reliability&amp;quot;,&amp;quot;$A_{av}$&amp;quot;,&amp;quot;$A_z$&amp;quot;,&amp;quot;$A_z /A_{av}$&amp;quot;, &amp;quot;$B_{av}$&amp;quot;,&amp;quot;$B_z$&amp;quot;, &amp;quot;$B_{z} / B_{av}$&amp;quot;),
+  escape = TRUE
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-6&#34;&gt;Table 1: &lt;/span&gt;Coefficients of variation&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;18%&#34; /&gt;
+&lt;col width=&#34;12%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;col width=&#34;18%&#34; /&gt;
+&lt;col width=&#34;12%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;col width=&#34;22%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Reliability&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(A_z /A_{av}\)&lt;/span&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(B_{av}\)&lt;/span&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(B_z\)&lt;/span&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;&lt;span class=&#34;math inline&#34;&gt;\(B_{z} / B_{av}\)&lt;/span&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;random&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.085&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.209&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.286&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.182&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;at least 0.64&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.050&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.174&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.258&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.138&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The tables are now more or less turned. Under both reliability scenarios, &lt;span class=&#34;math inline&#34;&gt;\(B_z\)&lt;/span&gt; has a lower coefficient of variation than &lt;span class=&#34;math inline&#34;&gt;\(B_{av}\)&lt;/span&gt;, indicating that &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is less affected by procedural heterogeneity than is &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. However, &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is still affected in absolute terms, considering that the coefficient of variation for &lt;span class=&#34;math inline&#34;&gt;\(B_z\)&lt;/span&gt; is about 79% of the coefficient of variation for &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;. Of course, &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is quite strongly affected under this model, with a coefficient of variation of 0.258.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;consequences-for-heterogeneity&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Consequences for heterogeneity&lt;/h3&gt;
+&lt;p&gt;To make these results a bit more concrete, it’s useful to consider think in terms of heterogeneity of the observed score effect sizes. The figure below plots the CVs of observed-score effect size parameters as a function of the CVs of the true effect size distribution.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyr)
+library(stringr)
+
+CV_obs &amp;lt;- 
+  CVs |&amp;gt;
+  select(-A_ratio, -B_ratio) |&amp;gt;
+  pivot_longer(-reliability, names_to = &amp;quot;metric&amp;quot;, values_to = &amp;quot;het&amp;quot;) |&amp;gt;
+  expand_grid(tau_mu = seq(0,1,0.02)) |&amp;gt;
+  mutate(
+    reliability = recode(reliability, &amp;#39;at least 0.64&amp;#39; = &amp;quot;Reliability of at least 0.64&amp;quot;, &amp;#39;random&amp;#39; = &amp;quot;Random reliability&amp;quot;),
+    metric = paste0(str_replace(metric, &amp;quot;\\_&amp;quot;,&amp;quot;\\[&amp;quot;),&amp;quot;]&amp;quot;),
+    CV = sqrt((1 + 2 * tau_mu^2) * het^2 + tau_mu^2)
+  )
+
+CV_ex &amp;lt;- CV_obs |&amp;gt;
+  filter(tau_mu == 0.5, reliability == &amp;quot;Reliability of at least 0.64&amp;quot;) |&amp;gt;
+  select(metric, CV) |&amp;gt;
+  mutate(
+    CV = round(CV, 3),
+    metric = str_replace(str_sub(metric, 1, -2), &amp;quot;\\[&amp;quot;, &amp;quot;_&amp;quot;)
+  ) |&amp;gt;
+  pivot_wider(names_from = metric, values_from = CV)
+
+CV_obs_labs &amp;lt;-
+  CV_obs %&amp;gt;%
+  filter(tau_mu == 0)
+
+ggplot(CV_obs, aes(tau_mu, CV, color = metric)) + 
+  facet_wrap(vars(reliability)) +
+  scale_x_continuous(expand = expansion(c(0.1,0),0), breaks = seq(0.2, 1, 0.2)) + 
+  scale_y_continuous(expand = expansion(0,0), breaks = seq(0, 1, 0.2)) + 
+  geom_vline(xintercept = 0) + 
+  geom_hline(yintercept = 0) + 
+  geom_abline(slope = 1, linetype = &amp;quot;dashed&amp;quot;) + 
+  geom_text(
+    data = CV_obs_labs, 
+    aes(x = tau_mu, y = CV, color = metric, label = metric),
+    nudge_x = -0.05,
+    parse = TRUE
+  ) + 
+  geom_line() + 
+  theme_minimal() + 
+  labs(x = expression(tau / mu), y = &amp;quot;Coefficient of variation for observed score ES&amp;quot;) + 
+  theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu = 0.5\)&lt;/span&gt;, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is 0.543. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is strongly affected by measurement heterogeneity, with a CV of 0.592; in comparison, the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; of 0.528. Under both models, these increases in CV are effectively constant for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;so-whats-your-point&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;So what’s your point?&lt;/h2&gt;
+&lt;p&gt;Unfortunately, this particular trip down a rabbit hole doesn’t seem to yield many clear take-aways. For the scenario that I looked at here, the preferred choice of effect size metric is apparently driven by what assumptions we find more plausible. If we think the more plausible model is the one in which &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is less strongly affected by measurement variation and therefore preferred. Further, the attenuation in &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; depends only on &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;, which might mean that a correction for attenuation is more feasible. However, if we think the more plausible model is the one in which &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;, then &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is less strongly affected by measurement variation and therefore preferred.&lt;a href=&#34;#fn5&#34; class=&#34;footnote-ref&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; In the latter model, one caveat is that the measurement error attenuation in &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is still a complicated mess, depending on both the true score correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; and the reliability &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt;. This would make it pretty hard to implement some sort of correction for attenuation.&lt;/p&gt;
+&lt;p&gt;So, how could one decide which meta-analytic model is more plausible in a given application? On a conceptual level, I would argue that the model for &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; would tend to be more plausible in meta-analyses where there is more operational variation in the interventions examined. I would venture that syntheses that include many different versions of an intervention would tend to have a wider range of correlations between true scores (i.e., more heterogeneous correlations between potential outcomes), even holding the outcome measurement procedures constant. This doesn’t necessarily justify the assumption that &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is independent of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, but it does make it seem rather implausible that &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt; would be independent of &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;On a more practical level, it seems like there are a few empirical things that a meta-analyst could do to inform a choice between a model for &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; and one for &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;. Pragmatically, one could calculate both effect size metrics and just see which one exhibits more heterogeneity. All else equal, it seems reasonable to prefer the metric that has less heterogeneity. One could also try to gather data on the correlation between observed scores, on the reliability of the observed scores, and on the number of trials used in each study. With this information, one could construct measurement-related predictors and use them in a meta-regression to explain variation in the observed effect size estimates. Alternately, one could use the formulas given above to implement attenuation corrections for the effect sizes and see if this leads to reduced heterogeneity. How well would any of these approaches actually work? Answering that question would take some further, more careful and systematic investigation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes footnotes-end-of-document&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps because use of Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; is so under-scrutinized in practice, methodologists have spent many an afternoon blogging about this problem. For general discussions about issues with how to define Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;, see excellent posts from &lt;a href=&#34;https://janhove.github.io/reporting/2015/02/05/standardised-vs-unstandardised-es&#34;&gt;Jan Vanhove&lt;/a&gt; (with &lt;a href=&#34;https://janhove.github.io/design/2015/03/16/standardised-es-revisited&#34;&gt;a sequel&lt;/a&gt;), &lt;a href=&#34;http://jakewestfall.org/blog/index.php/2016/03/25/five-different-cohens-d-statistics-for-within-subject-designs/&#34;&gt;Jake Westfall&lt;/a&gt;, &lt;a href=&#34;http://datacolada.org/33&#34;&gt;Uri Simonsohn&lt;/a&gt;, and &lt;a href=&#34;https://transparentstatistics.org/2018/07/05/meanings-effect-size/&#34;&gt;Pierre Dragicevic&lt;/a&gt;; a more formal discussion by &lt;a href=&#34;https://www.floppybunny.org/robin/web/virtualclassroom/stats/basics/articles/effect_size/effect_size_baguley_2009.pdf&#34;&gt;Thom Baguley&lt;/a&gt;; and some very interesting work on alternative conceptualizations by &lt;a href=&#34;https://doi.org/10.1002/jrsm.1130&#34;&gt;Tony Ades and colleagues&lt;/a&gt;.
+I can promise, dear reader, that the present blog post will not be nearly as cogent as these contributions—this is more about getting my own thoughts straight than making any recommendations—and so &lt;em&gt;caveat lector&lt;/em&gt; applies.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;I would &lt;em&gt;love&lt;/em&gt; to be corrected on both of these points. Please drop a comment or email me with suggested reading.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;When the standardizing variance is calculated using measurements from only one condition (i.e., the pre-test in a repeated measures design), this version of &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; corresponds to &lt;code&gt;measure = &#34;SMCR&#34;&lt;/code&gt;, the “standardized mean change using raw score standardization” in &lt;code&gt;metafor::escalc&lt;/code&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;This version of &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; corresponds to &lt;code&gt;measure = &#34;SMCC&#34;&lt;/code&gt;, the “standardized mean change using change score standardization” in &lt;code&gt;metafor::escalc&lt;/code&gt;.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;And of course, these two models are not the only alternatives—one could look at intermediate scenarios where &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; are more or less strongly correlated with the true score effect sizes.&lt;a href=&#34;#fnref5&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Single case design research in Special Education: Next generation standards and considerations</title>
+      <link>https://www.jepusto.com/publication/single-case-next-generation-standards/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/single-case-next-generation-standards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Standardized mean differences in single-group, repeated measures designs</title>
+      <link>https://www.jepusto.com/smds-in-single-group/</link>
+      <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/smds-in-single-group/</guid>
+      <description>
+&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time. Deriving these quantities is a little exercise in normal distribution theory, which I find kind of relaxing sometimes (hey, we all have our coping mechanisms!).&lt;/p&gt;
@@ -42,7 +374,7 @@ The question is then, what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Va
 \]&lt;/span&gt;
 and
 &lt;span class=&#34;math display&#34;&gt;\[\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].\]&lt;/span&gt;
-From a &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
+From a &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Cov}(s_s^2, s_t^2) = \frac{2 \left(\rho_{st} \sigma_s \sigma_t\right)^2}{n - 1}.
 \]&lt;/span&gt;
@@ -53,7 +385,7 @@ Consequently,
 &amp;amp;= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
 \end{aligned}
 \]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
+Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;https://www.jepusto.com/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
 \]&lt;/span&gt;
@@ -88,11 +420,11 @@ V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad
     
     <item>
       <title>Finding the distribution of significant effect sizes</title>
-      <link>/number-of-significant-effects/</link>
+      <link>https://www.jepusto.com/number-of-significant-effects/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/number-of-significant-effects/</guid>
+      <guid>https://www.jepusto.com/number-of-significant-effects/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In basic meta-analysis, where each study contributes just a single effect size estimate, there has been a lot of work devoted to developing models for selective reporting. Most of these models formulate the selection process as a function of the statistical significance of the effect size estimate; some also allow for the possibility that the precision of the study’s effect influences the probability of selection (i.e., bigger studies are more likely to be reported, regardless of statistical significance).&lt;/p&gt;
@@ -127,9 +459,9 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{1}_m\)&lt;/span&gt; is a
     
     <item>
       <title>An ANCOVA puzzler</title>
-      <link>/ancova-puzzler/</link>
+      <link>https://www.jepusto.com/ancova-puzzler/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/ancova-puzzler/</guid>
+      <guid>https://www.jepusto.com/ancova-puzzler/</guid>
       <description>
 
 
@@ -239,11 +571,11 @@ for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &
     
     <item>
       <title>lmeInfo</title>
-      <link>/software/lmeinfo/</link>
+      <link>https://www.jepusto.com/software/lmeinfo/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/software/lmeinfo/</guid>
+      <guid>https://www.jepusto.com/software/lmeinfo/</guid>
       <description>&lt;p&gt;lmeInfo provides analytic derivatives and information matrices for fitted linear mixed effects models and generalized least squares models estimated using &lt;code&gt;nlme::lme()&lt;/code&gt; and &lt;code&gt;nlme::gls()&lt;/code&gt;, respectively. The package includes functions for estimating the sampling variance-covariance of variance component parameters using the inverse Fisher information. The variance components include the parameters of the random effects structure (for lme models), the variance structure, and the correlation structure. The expected and average forms of the Fisher information matrix are used in the calculations, and models estimated by full maximum likelihood or restricted maximum likelihood are supported. The package also includes a function for estimating standardized mean difference effect sizes (
-&lt;a href=&#34;/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=lmeInfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -255,13 +587,13 @@ for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &
     
     <item>
       <title>Simulating correlated standardized mean differences for meta-analysis</title>
-      <link>/simulating-correlated-smds/</link>
+      <link>https://www.jepusto.com/simulating-correlated-smds/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/simulating-correlated-smds/</guid>
+      <guid>https://www.jepusto.com/simulating-correlated-smds/</guid>
       <description>
 
 
-&lt;p&gt;As I’ve discussed in &lt;a href=&#34;/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
+&lt;p&gt;As I’ve discussed in &lt;a href=&#34;https://www.jepusto.com/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
 I’m interested in methods for meta-analyzing and meta-regressing effect sizes from data structures like this, and studying this sort of thing often entails conducting Monte Carlo simulations.
 Monte Carlo simulations involve generating artificial data—in this case, a set of studies, each of which has one or more dependent effect size estimates—that follows a certain distributional model, applying different analytic methods to the artificial data, and then repeating the process a bunch of times.
 Because we know the true parameters that govern the data-generating process, we can evaluate the performance of the analytic methods in terms of bias, accuracy, hypothesis test calibration and power, confidence interval coverage, and the like.&lt;/p&gt;
@@ -346,7 +678,7 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;Hedges_g = TRUE&lt;/code&gt;, which controls where the simulated effect size is Hedges’ &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; or Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;. If it is Hedges’ g, make sure that the standard error is corrected too.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;p_val = TRUE&lt;/code&gt;, which allows the user to control whether or not to return &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-values from the test of mean differences for each outcome. Note that the p-values should be for a test of the &lt;em&gt;raw&lt;/em&gt; mean differences between groups, rather than a test of the effect size &lt;span class=&#34;math inline&#34;&gt;\(\delta_{jk} = 0\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;https://www.jepusto.com/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -361,7 +693,7 @@ and
 \left(\mathbf{\bar{y}}_{Tk} - \mathbf{\bar{y}}_{Ck}\right) \sim N\left(\boldsymbol\delta_k, \frac{4}{N_k} \boldsymbol\Psi_k\right).
 \]&lt;/span&gt;
 This shows how we could directly simulate the numerator of the standardized mean difference.&lt;/p&gt;
-&lt;p&gt;A &lt;a href=&#34;/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
+&lt;p&gt;A &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
 &lt;span class=&#34;math display&#34;&gt;\[
 (N_k - 2) \mathbf{S}_k \sim Wishart\left(N_k - 2, \Psi_k \right).
 \]&lt;/span&gt;
@@ -518,9 +850,9 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x}_{jk}\)&lt;/span&gt; i
     
     <item>
       <title>Sometimes, aggregating effect sizes is fine</title>
-      <link>/sometimes-aggregating-effect-sizes-is-fine/</link>
+      <link>https://www.jepusto.com/sometimes-aggregating-effect-sizes-is-fine/</link>
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>/sometimes-aggregating-effect-sizes-is-fine/</guid>
+      <guid>https://www.jepusto.com/sometimes-aggregating-effect-sizes-is-fine/</guid>
       <description>
 
 
@@ -603,7 +935,7 @@ corrdat &amp;lt;- arrange(corrdat, studyid, esid)&lt;/code&gt;&lt;/pre&gt;
   group_by(studyid) %&amp;gt;%
   mutate(males = mean(males))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can then fit this model using a multi-variate meta-regression in metafor.&lt;/p&gt;
-&lt;p&gt;In order to estimate the model, we’ll first need to create a variance-covariance matrix for the effect size estimates in each study, which can be accomplished using &lt;code&gt;impute_covariance_matrix&lt;/code&gt; from &lt;code&gt;clubSandwich&lt;/code&gt; (&lt;a href=&#34;/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;further details here&lt;/a&gt;). I’ll assume a correlation of 0.6 between pairs of effect sizes within a given study:&lt;/p&gt;
+&lt;p&gt;In order to estimate the model, we’ll first need to create a variance-covariance matrix for the effect size estimates in each study, which can be accomplished using &lt;code&gt;impute_covariance_matrix&lt;/code&gt; from &lt;code&gt;clubSandwich&lt;/code&gt; (&lt;a href=&#34;https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;further details here&lt;/a&gt;). I’ll assume a correlation of 0.6 between pairs of effect sizes within a given study:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)
 library(metafor)
 
@@ -926,117 +1258,47 @@ coef_test(uni_fit, vcov = &amp;quot;CR2&amp;quot;, cluster = corrdat_agg$studyid
     </item>
     
     <item>
-      <title>Converting from odds ratios to standardized mean differences: What to do with logistic regression coefficients?</title>
-      <link>/converting-odds-ratios-to-standardized-mean-differences/</link>
-      <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
-      <guid>/converting-odds-ratios-to-standardized-mean-differences/</guid>
-      <description>
-
-
-&lt;p&gt;One of the central problems in research synthesis is that studies use a variety of different types of outcome measures to assess a construct. This is the main reason that meta-analysis often uses standardized, scale-free effect sizes (such as standardized mean differences), so that findings from studies that use different measures can be combined and contrasted on a common metric. In syntheses of education research (as well as other fields), a further issue that sometimes arises is that some included studies might report effects on a dichotomous outcome, while others report effects (of the same intervention, say) but using a continuous outcome measure.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;logit &amp;lt;- function(x) log(x) - log(1 - x)
-
-simulate_OR_to_SMD &amp;lt;- function(p0, SMD, r, n0, n1) {
-  
-  # simulate data
-  trt &amp;lt;- c(rep(0, n0), rep(1, n1))
-  Y &amp;lt;- rlogis(n0 + n1, location = logit(p0) + trt * SMD * pi / sqrt(3))
-  X &amp;lt;- r * (Y - trt * SMD) * sqrt(3) / pi + rnorm(n0 + n1, sd = sqrt(1 - r^2))
-  B &amp;lt;- Y &amp;gt; 0
-
-  # calculate LORs
-  logit_fit &amp;lt;- glm(B ~ trt + X, family = &amp;quot;binomial&amp;quot;)
-  LOR_marginal &amp;lt;- as.numeric(diff(logit(tapply(B, trt, mean))))
-  LOR_logit &amp;lt;- coef(logit_fit)[[&amp;quot;trt&amp;quot;]]
-  LORs &amp;lt;- c(LOR_marginal, LOR_logit)
-  
-  # convert to SMDs
-  SMDs &amp;lt;- LORs * sqrt(3) / pi
-  
-  data.frame(type = c(&amp;quot;marginal&amp;quot;,&amp;quot;conditional&amp;quot;), LOR_est = LORs, SMD_est = SMDs)
-} 
-
-simulate_OR_to_SMD(p0 = 0.6, SMD = 0.4, r = 0.7, n0 = 10000, n1 = 10000)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##          type   LOR_est   SMD_est
-## 1    marginal 0.7468089 0.4117373
-## 2 conditional 0.8711806 0.4803070&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Attaching packages ------------------------------------------------------ tidyverse 1.2.1 --&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.0     v purrr   0.3.3
-## v tibble  3.0.0     v dplyr   0.8.3
-## v tidyr   1.0.0     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.4.0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## -- Conflicts --------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;params &amp;lt;- 
-  list(
-    p0 = seq(0.2, 0.8, 0.2),
-    SMD = seq(0.2, 0.8, 0.2),
-    r = seq(0, 0.9, 0.1)
-  ) %&amp;gt;%
-  cross_df()
-
-SMDs &amp;lt;- 
-  params %&amp;gt;%
-  mutate(res = pmap(., simulate_OR_to_SMD, n0 = 50000, n1 = 50000)) %&amp;gt;%
-  unnest() %&amp;gt;%
-  mutate(RB = SMD_est / SMD)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-
-## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
-## Please use `cols = c(res)`&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(SMDs, aes(r, RB, color = type)) + 
-  geom_point() + geom_line() + 
-  facet_grid(SMD ~ p0, labeller = &amp;quot;label_both&amp;quot;) + 
-  theme_light()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Converting-odds-ratios-to-standardized-mean-differences_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized effect size analysis of single case design: Examination of the two methods</title>
-      <link>/publication/bcsmd-examination-of-two-methods/</link>
+      <link>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/bcsmd-examination-of-two-methods/</guid>
+      <guid>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: A gradual effects model for single-case designs</title>
-      <link>/gradual-effects-model-paper/</link>
+      <link>https://www.jepusto.com/gradual-effects-model-paper/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
-      <guid>/gradual-effects-model-paper/</guid>
+      <guid>https://www.jepusto.com/gradual-effects-model-paper/</guid>
       <description>
 
 
-&lt;p&gt;I’m very happy to share a new paper, co-authored with my student Danny Swan, “A gradual effects model for single-case designs,” which is now available online at &lt;em&gt;Multivariate Behavioral Research&lt;/em&gt;. You can access the published version &lt;a href=&#34;https://www.tandfonline.com/doi/abs/10.1080/00273171.2018.1466681?journalCode=hmbr20&#34;&gt;at the journal website&lt;/a&gt; (&lt;a href=&#34;https://www.tandfonline.com/eprint/dkVfazwZaxnyaa9MfUjw/full&#34;&gt;click here for free access while supplies last&lt;/a&gt;) or &lt;a href=&#34;https://psyarxiv.com/vh964/&#34;&gt;the pre-print on PsyArxiv&lt;/a&gt; (always free!). Here’s &lt;a href=&#34;/publication/gradual-effects-model&#34;&gt;the abstract&lt;/a&gt; and &lt;a href=&#34;https://osf.io/uzkq6/&#34;&gt;the supplementary materials&lt;/a&gt;. Danny wrote R functions for fitting the model, (available as part of the &lt;a href=&#34;/software/singlecasees/&#34;&gt;SingleCaseES package&lt;/a&gt;) as well as a &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;slick web interface&lt;/a&gt;, if you prefer to point-and-click.&lt;/p&gt;
-&lt;p&gt;This paper grew out of Danny’s qualifying process (QP), which is the major exam that our doctoral students have to pass before they can begin their dissertation work. For the QP, students work with a faculty advisor to develop an extensive literature review and proposal for an original research project. They produce a written research proposal, then take written and oral exams on their work. For Danny’s QP, he picked up one of the many loose ends in &lt;a href=&#34;/publication/operationally-comparable-effect-sizes&#34;&gt;my dissertation&lt;/a&gt;, studied up on generalized linear models to understand how to express and fit the model, and developed a simulation study evaluating the model. After he successfully passed his QP, we worked together to refine the estimation methods and the simulation design, and then draft a manuscript (much of it cribbed from his QP proposal). I’m very proud and pleased that Danny continued to develop the work and saw it through to a first-authored publication.&lt;/p&gt;
+&lt;p&gt;I’m very happy to share a new paper, co-authored with my student Danny Swan, “A gradual effects model for single-case designs,” which is now available online at &lt;em&gt;Multivariate Behavioral Research&lt;/em&gt;. You can access the published version &lt;a href=&#34;https://www.tandfonline.com/doi/abs/10.1080/00273171.2018.1466681?journalCode=hmbr20&#34;&gt;at the journal website&lt;/a&gt; (&lt;a href=&#34;https://www.tandfonline.com/eprint/dkVfazwZaxnyaa9MfUjw/full&#34;&gt;click here for free access while supplies last&lt;/a&gt;) or &lt;a href=&#34;https://psyarxiv.com/vh964/&#34;&gt;the pre-print on PsyArxiv&lt;/a&gt; (always free!). Here’s &lt;a href=&#34;https://www.jepusto.com/publication/gradual-effects-model&#34;&gt;the abstract&lt;/a&gt; and &lt;a href=&#34;https://osf.io/uzkq6/&#34;&gt;the supplementary materials&lt;/a&gt;. Danny wrote R functions for fitting the model, (available as part of the &lt;a href=&#34;https://www.jepusto.com/software/singlecasees/&#34;&gt;SingleCaseES package&lt;/a&gt;) as well as a &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;slick web interface&lt;/a&gt;, if you prefer to point-and-click.&lt;/p&gt;
+&lt;p&gt;This paper grew out of Danny’s qualifying process (QP), which is the major exam that our doctoral students have to pass before they can begin their dissertation work. For the QP, students work with a faculty advisor to develop an extensive literature review and proposal for an original research project. They produce a written research proposal, then take written and oral exams on their work. For Danny’s QP, he picked up one of the many loose ends in &lt;a href=&#34;https://www.jepusto.com/publication/operationally-comparable-effect-sizes&#34;&gt;my dissertation&lt;/a&gt;, studied up on generalized linear models to understand how to express and fit the model, and developed a simulation study evaluating the model. After he successfully passed his QP, we worked together to refine the estimation methods and the simulation design, and then draft a manuscript (much of it cribbed from his QP proposal). I’m very proud and pleased that Danny continued to develop the work and saw it through to a first-authored publication.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>/publication/gradual-effects-model/</link>
+      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/gradual-effects-model/</guid>
+      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sampling variance of Pearson r in a two-level design</title>
-      <link>/variance-of-r-in-two-level-design/</link>
+      <link>https://www.jepusto.com/variance-of-r-in-two-level-design/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/variance-of-r-in-two-level-design/</guid>
+      <guid>https://www.jepusto.com/variance-of-r-in-two-level-design/</guid>
       <description>
 
 
@@ -1112,9 +1374,9 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>New paper: Using response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-response-ratios-paper/</link>
+      <link>https://www.jepusto.com/using-response-ratios-paper/</link>
       <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/using-response-ratios-paper/</guid>
+      <guid>https://www.jepusto.com/using-response-ratios-paper/</guid>
       <description>
 
 
@@ -1133,17 +1395,17 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>/publication/using-response-ratios/</link>
+      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/using-response-ratios/</guid>
+      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: procedural sensitivities of effect size measures for SCDs</title>
-      <link>/procedural-sensitivities-paper/</link>
+      <link>https://www.jepusto.com/procedural-sensitivities-paper/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/procedural-sensitivities-paper/</guid>
+      <guid>https://www.jepusto.com/procedural-sensitivities-paper/</guid>
       <description>
 
 
@@ -1151,7 +1413,7 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
 &lt;blockquote&gt;
 &lt;p&gt;A wide variety of effect size indices have been proposed for quantifying the magnitude of treatment effects in single-case designs. Commonly used measures include parametric indices such as the standardized mean difference, as well as non-overlap measures such as the percentage of non-overlapping data, improvement rate difference, and non-overlap of all pairs. Currently, little is known about the properties of these indices when applied to behavioral data collected by systematic direct observation, even though systematic direct observation is the most common method for outcome measurement in single-case research. This study uses Monte Carlo simulation to investigate the properties of several widely used single-case effect size measures when applied to systematic direct observation data. Results indicate that the magnitude of the non-overlap measures and of the standardized mean difference can be strongly influenced by procedural details of the study’s design, which is a significant limitation to using these indices as effect sizes for meta-analysis of single-case designs. A less widely used parametric index, the log-response ratio, has the advantage of being insensitive to sample size and observation session length, although its magnitude is influenced by the use of partial interval recording.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
+&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;https://www.jepusto.com/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
 &lt;p&gt;Here’s the complete time-line of submissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;August 5, 2015: submitted to journal #1 (special education)&lt;/li&gt;
@@ -1178,53 +1440,53 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>Introduction to the special issue on single-case systematic reviews and meta-analysis</title>
-      <link>/publication/rase-special-issue-introduction/</link>
+      <link>https://www.jepusto.com/publication/rase-special-issue-introduction/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/rase-special-issue-introduction/</guid>
+      <guid>https://www.jepusto.com/publication/rase-special-issue-introduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New working paper: Using log response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-log-response-ratios/</link>
+      <link>https://www.jepusto.com/using-log-response-ratios/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/using-log-response-ratios/</guid>
+      <guid>https://www.jepusto.com/using-log-response-ratios/</guid>
       <description>
 
 
-&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
+&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>/publication/fabi-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/fabi-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research synthesis and meta-analysis of single-case designs</title>
-      <link>/publication/meta-analysis-of-scd/</link>
+      <link>https://www.jepusto.com/publication/meta-analysis-of-scd/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/meta-analysis-of-scd/</guid>
+      <guid>https://www.jepusto.com/publication/meta-analysis-of-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized mean difference effect sizes for single-case designs: A primer and tutorial using the scdhlm web application</title>
-      <link>/publication/bc-smd-primer-and-tutorial/</link>
+      <link>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/bc-smd-primer-and-tutorial/</guid>
+      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New tutorial paper on BC-SMD effect sizes</title>
-      <link>/scdhlm-tutorial/</link>
+      <link>https://www.jepusto.com/scdhlm-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/scdhlm-tutorial/</guid>
+      <guid>https://www.jepusto.com/scdhlm-tutorial/</guid>
       <description>
 
 
@@ -1236,25 +1498,25 @@ If you have any questions or feedback about the app, please feel free to contact
     
     <item>
       <title>Presentation at IES 2016 PI meeting</title>
-      <link>/ies-2016-pi-meeting/</link>
+      <link>https://www.jepusto.com/ies-2016-pi-meeting/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/ies-2016-pi-meeting/</guid>
+      <guid>https://www.jepusto.com/ies-2016-pi-meeting/</guid>
       <description>
 
 
-&lt;p&gt;I am just back from the Institute of Education Sciences 2016 Principal Investigators meeting. Rob Horner had organized a session titled “Single-case methods: Current status and needed directions” as a tribute to our colleague Will Shadish, who passed away this past year. Rob invited me to give some brief remarks about Will as a mentor, and then to present some of my work with Will and Larry Hedges on effect sizes for single-case research. Here are &lt;a href=&#34;/files/Single-case-methods-IES-PI-meeting-2016.pdf&#34;&gt;the slides from my part of the presentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am just back from the Institute of Education Sciences 2016 Principal Investigators meeting. Rob Horner had organized a session titled “Single-case methods: Current status and needed directions” as a tribute to our colleague Will Shadish, who passed away this past year. Rob invited me to give some brief remarks about Will as a mentor, and then to present some of my work with Will and Larry Hedges on effect sizes for single-case research. Here are &lt;a href=&#34;https://www.jepusto.com/files/Single-case-methods-IES-PI-meeting-2016.pdf&#34;&gt;the slides from my part of the presentation&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>What is Tau-U?</title>
-      <link>/what-is-tau-u/</link>
+      <link>https://www.jepusto.com/what-is-tau-u/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/what-is-tau-u/</guid>
+      <guid>https://www.jepusto.com/what-is-tau-u/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
 &lt;p&gt;To correct for baseline trend, the original paper proposes to calculate Kendall’s rank correlation (&lt;span class=&#34;math inline&#34;&gt;\(\tau_A\)&lt;/span&gt;) between the phase A outcome data and the session numbers and use the result to make an adjustment to Tau. The other analyses presented in the original paper (incorporating adjustments for time trends during the treatment phase) are not presented in subsequent review papers, nor are they implemented in &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;the web-calculator&lt;/a&gt; created by the authors, and so I won’t discuss them further here. Instead, in this post I will examine the calculation of the version of Tau-U that incorporates a baseline trend correction. This version seems to be the most widely applied in practice (likely due to the availability of the web-calculator) and is presented in several review papers by the same authors. It turns out though, that the definition of the index has shifted from the original paper to subsequent presentations.&lt;/p&gt;
 &lt;p&gt;To make this concrete, let me first define a couple of things. Suppose that we have data from the baseline and treatment phases for a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Let &lt;span class=&#34;math inline&#34;&gt;\(S_P\)&lt;/span&gt; denote Kendall’s S statistic calculated for the comparison between phases and &lt;span class=&#34;math inline&#34;&gt;\(S_A\)&lt;/span&gt; denote Kendall’s S statistic calculated on the baseline trend. More precisely,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -1283,7 +1545,7 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
 \text{Tau-U} = \frac{S_P - S_A}{mn} = \text{Tau} - \frac{m - 1}{2n} t_A.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The logical range of this version of the index is from &lt;span class=&#34;math inline&#34;&gt;\(-(2n + m - 1) / (2n)\)&lt;/span&gt; to &lt;span class=&#34;math inline&#34;&gt;\((2n + m - 1) / (2n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
+&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparison&lt;/h2&gt;
@@ -1354,13 +1616,13 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>New working paper: Procedural sensitivities of SCD effect sizes</title>
-      <link>/scd-effect-size-sensitivities/</link>
+      <link>https://www.jepusto.com/scd-effect-size-sensitivities/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/scd-effect-size-sensitivities/</guid>
+      <guid>https://www.jepusto.com/scd-effect-size-sensitivities/</guid>
       <description>
 
 
-&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
+&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
 &lt;p&gt;The paper itself is available on the Open Science Framework (&lt;a href=&#34;https://osf.io/pxn24/&#34;&gt;here&lt;/a&gt;), as are the &lt;a href=&#34;https://osf.io/hkzsm/&#34;&gt;supplementary materials&lt;/a&gt; and &lt;a href=&#34;https://osf.io/j4gvt/&#34;&gt;Source code&lt;/a&gt;. I also created interaction versions of the graphics from the main paper and the supplementary materials, which can be viewed in &lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-size-sensitivities/&#34;&gt;this shiny app&lt;/a&gt;. I would welcome any comments, questions, or feedback that readers may have.&lt;/p&gt;
 &lt;div id=&#34;abstract&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Abstract&lt;/h3&gt;
@@ -1371,9 +1633,9 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>Alternative formulas for the standardized mean difference</title>
-      <link>/alternative-formulas-for-the-smd/</link>
+      <link>https://www.jepusto.com/alternative-formulas-for-the-smd/</link>
       <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/alternative-formulas-for-the-smd/</guid>
+      <guid>https://www.jepusto.com/alternative-formulas-for-the-smd/</guid>
       <description>
 
 
@@ -1461,11 +1723,11 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;In this design,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{s_p} = \frac{2(1 - r)}{n},
+\frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\nu = \frac{2 (n - 1)}{1 + r^2}. 
+\nu = \frac{2 (n - 1)}{1 + r^2}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This formula will tend to give slightly larger degrees of freedom, but probably won’t be that discrepant from Borenstein’s approach except in quite small samples. It would be interesting to investigate which approach is better in small samples (i.e., leading to less biased estimates of the SMD and more accurate estimates of sampling variance, and by how much), although its possible than neither is all that good because the variance estimator itself is based on a large-sample approximation.&lt;/p&gt;
 &lt;/div&gt;
@@ -1473,7 +1735,7 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 &lt;h4&gt;Two group, pre-test post-test design: ANCOVA estimation&lt;/h4&gt;
 &lt;p&gt;Suppose that a study involves taking pre-test and post-test measurements on two groups of participants, with sample sizes &lt;span class=&#34;math inline&#34;&gt;\(n_T\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n_C\)&lt;/span&gt; respectively. One way to analyze this design is via ANCOVA using the pre-test measure as the covariate, so that the treatment effect estimate is the difference in adjusted post-test means. In this design, the scaled standard error will be approximately&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{S} = \frac{(n_C + n_T)(1 - r^2)}{n_C n_T},
+\frac{se_b}{S} = \sqrt{ \frac{(n_C + n_T)(1 - r^2)}{n_C n_T} },
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the pooled, within-group sample correlation between the pre-test and the post-test measures (this approximation assumes that the pre-test SMD between groups is relatively small). Alternately, if &lt;span class=&#34;math inline&#34;&gt;\(se_b\)&lt;/span&gt; is provided then the scaled standard error could be calculated directly.&lt;/p&gt;
 &lt;p&gt;Borenstein (2009) suggests calculating &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; as the difference in adjusted means, scaled by the pooled sample variances on the post-test measures. The post-test pooled sample variance will have the same degrees of freedom as in the two-sample t-test case: &lt;span class=&#34;math inline&#34;&gt;\(\nu = n_C + n_T - 2\)&lt;/span&gt;. (Borenstein instead uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n_C + n_T - 2 - q\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; is the number of covariates in the analysis, but this won’t usually make much difference unless the total sample size is quite small.)&lt;/p&gt;
@@ -1487,7 +1749,7 @@ b = \left(\bar{y}_{T1} - \bar{y}_{T0}\right) - \left(\bar{y}_{C1} - \bar{y}_{C0}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;which has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(b) = 2(1 - \rho)\sigma^2\left(n_C + n_T \right) / (n_C n_T)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is the correlation between the pre-test and the post-test measures. Thus, the scaled standard error is&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{S} = \frac{2(1 - r)(n_C + n_T)}{n_C n_T}.
+\frac{se_b}{S} = \sqrt{\frac{2(1 - r)(n_C + n_T)}{n_C n_T}}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;As with ANCOVA, there are several potential options for calculating the denominator of &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;:&lt;/p&gt;
 &lt;ul&gt;
@@ -1527,15 +1789,15 @@ S_{model}^2 = \mathbf{r}&amp;#39;\boldsymbol\omega,
 &lt;p&gt;&lt;a href=&#34;http://doi.org/10.3102/1076998606298043&#34;&gt;Hedges (2007)&lt;/a&gt; addresses estimation of standardized mean differences for cluster-randomized trials, in which the units of measurement are nested within higher-level clusters that comprise the units of randomization. Such designs involve two variance components (within- and between-cluster variance), and thus there are three potential approaches to scaling the treatment effect: standardize by the total variance (i.e., the sum of the within- and between-cluster components), standardize by the within-cluster variance, or standardize by the between-cluster variance. Furthermore, some of the effect sizes can be estimated in several different ways, each with a different sampling variance. &lt;a href=&#34;http://doi.org/10.3102/1076998606298043&#34;&gt;Hedges (2007)&lt;/a&gt; gives sampling variance estimates for each estimator of each effect size, but they all follow the same general formula as given above. (The appendix of the article actually gives the same formula as above, but using a more abstract formulation.)&lt;/p&gt;
 &lt;p&gt;For example, suppose the target SMD parameter uses the total variance and that we have data from a two-level, two-arm cluster randomized trial with &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt; clusters, &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations per cluster, and total sample sizes in each arm of &lt;span class=&#34;math inline&#34;&gt;\(N_T\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(N_C\)&lt;/span&gt;, respectively. Let &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; be the between-cluster variance, &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; be the within-cluster variance, and &lt;span class=&#34;math inline&#34;&gt;\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)&lt;/span&gt;. The target parameter is &lt;span class=&#34;math inline&#34;&gt;\(\delta = \left(\mu_T - \mu_C\right) / \left(\tau^2 + \sigma^2\right)\)&lt;/span&gt;. The article assumes that the treatment effect will be estimated by the difference in grand means, &lt;span class=&#34;math inline&#34;&gt;\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)&lt;/span&gt;. Letting &lt;span class=&#34;math inline&#34;&gt;\(S_B^2\)&lt;/span&gt; be the pooled sample variance of the cluster means within each arm and &lt;span class=&#34;math inline&#34;&gt;\(S_W^2\)&lt;/span&gt; be the pooled within-cluster sample variance, the total variance is estimated as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2. 
+S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;An estimate of the SMD is then&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}. 
+d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The scaled standard error of &lt;span class=&#34;math inline&#34;&gt;\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)&lt;/span&gt; is&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
+se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The appendix of the article demonstrates that &lt;span class=&#34;math inline&#34;&gt;\(\text{E}\left(S_{total}^2\right) = \tau^2 + \sigma^2\)&lt;/span&gt; and&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -1573,18 +1835,18 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
     
     <item>
       <title>scdhlm</title>
-      <link>/software/scdhlm/</link>
+      <link>https://www.jepusto.com/software/scdhlm/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/scdhlm/</guid>
+      <guid>https://www.jepusto.com/software/scdhlm/</guid>
       <description>&lt;p&gt;An R package implementing several methods of estimating a design-comparable standardized mean difference effect size based on data from a single-case design. Methods include those from Hedges, Pustejovsky, &amp;amp; Shadish (
-&lt;a href=&#34;/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
-&lt;a href=&#34;/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
-&lt;a href=&#34;/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
+&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -1595,9 +1857,9 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
     
     <item>
       <title>SingleCaseES</title>
-      <link>/software/singlecasees/</link>
+      <link>https://www.jepusto.com/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/singlecasees/</guid>
+      <guid>https://www.jepusto.com/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1614,14 +1876,14 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
     
     <item>
       <title>Tau-U</title>
-      <link>/tau-u/</link>
+      <link>https://www.jepusto.com/tau-u/</link>
       <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
-      <guid>/tau-u/</guid>
+      <guid>https://www.jepusto.com/tau-u/</guid>
       <description>
 
 
 &lt;p&gt;&lt;a href=&#34;http://doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed Tau-U as an effect size measure for use in single-case designs that exhibit baseline trend. In their original paper, they actually conceptualize Tau-U as a family of four distinct indices, distinguished by a) whether the index includes an adjustment for the presence of baseline trend and b) whether the index incorporates information about trend during the intervention phase. However, in subsequent presentations the authors seem to have focused exclusively on the index that adjusts for baseline trend but not for intervention phase trend, and so I’ll do the same here. (This version is also the one available in the web-tool at &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
+&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \text{Tau-U} = \frac{S_P - S_B}{mn}
 \]&lt;/span&gt;&lt;/p&gt;
@@ -1691,7 +1953,7 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
   geom_line() + 
   labs(y = &amp;quot;Expected magnitude of Tau-U&amp;quot;, color = &amp;quot;m&amp;quot;) + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the figure above, each plot corresponds to a different value of the baseline slope (&lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, ranging from -0.2 in the top row to 0.2 in the bottom row) and treatment shift (&lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt;, ranging from 0 in the first column to 2 in the last column). Within each plot, the x axis corresponds to treatment phase length and the different lines correspond to different baseline phase lengths. The thing to note is that, when the baseline slope is non-zero, the expected value of Tau-U ranges quite widely within each plot, depending on the values of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. For example, when &lt;span class=&#34;math inline&#34;&gt;\(\beta_2 = 0\)&lt;/span&gt; (in the first column), the data follow a simple linear trend with no shift. If the slope of the trend is equal to -0.2 (the first row), then the expected magnitude of Tau-U ranges from -0.8 to 0.3 depending on the phase lengths, which is quite a wide range.&lt;/p&gt;
 &lt;p&gt;Generally, the degree of sample size sensitivity depends on the absolute magnitude of the baseline slope, with steeper slopes leading to increased sensitivity. For steeper values of slope, it appears that the degree to which the measure is affected by sample size even swamps the degree to which the measure is sensitive to the magnitude of the treatment effect. Very peculiar.&lt;/p&gt;
 &lt;/div&gt;
@@ -1704,9 +1966,9 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
     
     <item>
       <title>Standard errors and confidence intervals for NAP</title>
-      <link>/nap-ses-and-cis/</link>
+      <link>https://www.jepusto.com/nap-ses-and-cis/</link>
       <pubDate>Sun, 28 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/nap-ses-and-cis/</guid>
+      <guid>https://www.jepusto.com/nap-ses-and-cis/</guid>
       <description>
 
 
@@ -1839,7 +2101,7 @@ ggplot(NAP_sim, aes(theta, val, color = sd)) +
   facet_grid(n ~ m, labeller = &amp;quot;label_both&amp;quot;) + 
   geom_line() + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the above figure, the actual sampling standard deviation of NAP (in red) and the value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; (in purple) are plotted against the true value of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, with separate plots for various combinations of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. The expected value of the standard errors &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; (actually the square root of the expectation of the variance estimators) are depicted in green and blue, respectively. The value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; agrees with the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(\delta = 0\)&lt;/span&gt;, but the two diverge when there is a positive treatment effect. It appears that &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; both under-estimate the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is equal to 5, and over-estimate for the largest values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. However, both of these estimators offer a marked improvement over &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1931,7 +2193,7 @@ params %&amp;gt;%
   labs(y = &amp;quot;SE&amp;quot;) + 
   geom_hline(yintercept=.90, linetype=&amp;quot;dashed&amp;quot;) +
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The figure above plots the coverage rates of several different confidence intervals for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;: the naive CI (in blue), the HM Wald CI (red), the Newcombe Wald CI (green), and the Newcombe score CI (purple). The dashed horizontal line is the nominal coverage rate of 90%. It can be seen that the null CI has the correct coverage only when &lt;span class=&#34;math inline&#34;&gt;\(\theta \leq .6\)&lt;/span&gt;; for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, its coverage becomes too conservative (tending towards 100%). The Wald-type CIs have below-nominal coverage rates, which improve as the sample size in each phase increases but remain too liberal even at the largest sample size considered. Finally, Newcombe’s score CI maintains close-to-nominal coverage over a wider range of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; values. Although these CIs have below-nominal coverage for the smallest sample sizes, they generally have good coverage for &lt;span class=&#34;math inline&#34;&gt;\(\theta &amp;lt; .9\)&lt;/span&gt; and when the sample size in each phase is 10 or more. It is also notable that their coverage rates appear to become more accurate as the sample size in a given group increases, even if the sample size in the other group is fairly small and remains constant.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1946,21 +2208,21 @@ params %&amp;gt;%
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>/sped-pro-sem-again/</link>
+      <link>https://www.jepusto.com/sped-pro-sem-again/</link>
       <pubDate>Tue, 24 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>/sped-pro-sem-again/</guid>
+      <guid>https://www.jepusto.com/sped-pro-sem-again/</guid>
       <description>
 
 
-&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
+&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Correlations between standardized mean differences</title>
-      <link>/correlations-between-smds/</link>
+      <link>https://www.jepusto.com/correlations-between-smds/</link>
       <pubDate>Thu, 17 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/correlations-between-smds/</guid>
+      <guid>https://www.jepusto.com/correlations-between-smds/</guid>
       <description>
 
 
@@ -2010,111 +2272,111 @@ params %&amp;gt;%
     
     <item>
       <title>Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/publication/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>/publication/four-methods-for-pir/</link>
+      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/four-methods-for-pir/</guid>
+      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/publication/design-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/design-comparable-effect-sizes/</link>
       <pubDate>Wed, 01 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/design-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/design-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
+      <link>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
+      <guid>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
       <description>
 
 
-&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;In single-case research, the multiple baseline design is a widely used approach for evaluating the effects of interventions on individuals. Multiple baseline designs involve repeated measurement of outcomes over time and the controlled introduction of a treatment at different times for different individuals. This article outlines a general approach for defining effect sizes in multiple baseline designs that are directly comparable to the standardized mean difference from a between-subjects randomized experiment. The target, design-comparable effect size parameter can be estimated using restricted maximum likelihood together with a small-sample correction analogous to Hedges’ g. The approach is demonstrated using hierarchical linear models that include baseline time trends and treatment-by-time interactions. A simulation compares the performance of the proposed estimator to that of an alternative, and an application illustrates the model-fitting process.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analyzing single-case designs: d, G, hierarchical models, Bayesian estimators, generalized additive models, and the hopes and fears of researchers about analyses</title>
-      <link>/publication/analyzing-scd-hopes-and-fears/</link>
+      <link>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/analyzing-scd-hopes-and-fears/</guid>
+      <guid>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>/sped-pro-sem/</link>
+      <link>https://www.jepusto.com/sped-pro-sem/</link>
       <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/sped-pro-sem/</guid>
+      <guid>https://www.jepusto.com/sped-pro-sem/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analysis and meta-analysis of single-case designs with a standardized mean difference statistic: A primer and applications</title>
-      <link>/publication/bc-smd-primer-and-applications/</link>
+      <link>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</link>
       <pubDate>Tue, 01 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/bc-smd-primer-and-applications/</guid>
+      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Converting from d to r to z when the design uses extreme groups, dichotomization, or experimental control</title>
-      <link>/publication/converting-from-d-to-r-to-z/</link>
+      <link>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/converting-from-d-to-r-to-z/</guid>
+      <guid>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/measurement-comparable-effect-sizes/</guid>
       <description>
 
 
-&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
+&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Single-case research comprises a set of designs and methods for evaluating the effects of interventions, practices, or programs on individual cases, through comparison of outcomes measured at different points in time. Although there has long been interest in meta-analytic technique for synthesizing single-case research, there has been little scrutiny of whether proposed effect sizes remain on a directly comparable metric when outcomes are measured using different operational procedures. Much of single-case research focuses on behavioral outcomes in free-operant contexts, which may be measured using a variety of different direct observation procedures. This article describes a suite of effect sizes for quantifying changes in free-operant behavior, motivated by an alternating renewal process model that allows measurement comparability to be established in precise terms. These effect size metrics have the advantage of comporting with how direct observation data are actually collected and summarized. Effect size estimators are proposed that are applicable when the behavior being measured remains stable within a given treatment condition. The methods are illustrated by two examples, including a re-analysis of a systematic review of the effects of choice-making opportunities on problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>A standardized mean difference effect size for multiple baseline designs</title>
-      <link>/publication/smd-for-mbd/</link>
+      <link>https://www.jepusto.com/publication/smd-for-mbd/</link>
       <pubDate>Fri, 23 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/smd-for-mbd/</guid>
+      <guid>https://www.jepusto.com/publication/smd-for-mbd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A d-statistic for single-case designs that is equivalent to the usual between-groups d-statistics</title>
-      <link>/publication/between-groups-d-statistic/</link>
+      <link>https://www.jepusto.com/publication/between-groups-d-statistic/</link>
       <pubDate>Thu, 18 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/between-groups-d-statistic/</guid>
+      <guid>https://www.jepusto.com/publication/between-groups-d-statistic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>/publication/operationally-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>
@@ -2122,9 +2384,9 @@ params %&amp;gt;%
     
     <item>
       <title>A standardized mean difference effect size for single case designs</title>
-      <link>/publication/smd-for-scd/</link>
+      <link>https://www.jepusto.com/publication/smd-for-scd/</link>
       <pubDate>Tue, 14 Aug 2012 00:00:00 +0000</pubDate>
-      <guid>/publication/smd-for-scd/</guid>
+      <guid>https://www.jepusto.com/publication/smd-for-scd/</guid>
       <description></description>
     </item>
     

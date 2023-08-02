@@ -2,177 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>instrumental variables | James E. Pustejovsky</title>
-    <link>/tags/instrumental-variables/</link>
-      <atom:link href="/tags/instrumental-variables/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/instrumental-variables/</link>
+      <atom:link href="https://www.jepusto.com/tags/instrumental-variables/index.xml" rel="self" type="application/rss+xml" />
     <description>instrumental variables</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sat, 09 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Sat, 07 Oct 2017 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>instrumental variables</title>
-      <link>/tags/instrumental-variables/</link>
+      <link>https://www.jepusto.com/tags/instrumental-variables/</link>
     </image>
     
     <item>
-      <title>A handmade clubSandwich for multi-site trials</title>
-      <link>/clustered-and-interacted/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/clustered-and-interacted/</guid>
-      <description>
-
-
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-data(STAR, package = &amp;quot;AER&amp;quot;)
-
-STAR_urban &amp;lt;-
-  STAR %&amp;gt;%
-  filter(
-    # limit to urban/inner city schools
-    schoolk %in% c(&amp;quot;urban&amp;quot;,&amp;quot;inner-city&amp;quot;),
-    # limit to complete outcome data
-    !is.na(readk), !is.na(mathk)
-  ) %&amp;gt;%
-  droplevels() %&amp;gt;%
-  # collapse control conditions
-  mutate(
-    stark = fct_collapse(stark, regular = c(&amp;quot;regular&amp;quot;,&amp;quot;regular+aide&amp;quot;))
-  ) %&amp;gt;%
-  # calculate inverse-propensity weight
-  group_by(schoolidk) %&amp;gt;%
-  mutate(
-    n = n(),
-    nT = sum(stark==&amp;quot;small&amp;quot;),
-    wt = ifelse(stark==&amp;quot;small&amp;quot;, n / nT, n / (n - nT))
-  ) %&amp;gt;%
-  select(schoolidk, stark, readk, mathk, wt)
-
-STAR_summary &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  count(schoolidk)
-
-STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    n = n(),
-    wt = sum(wt)
-  ) %&amp;gt;%
-  mutate(n = sum(n)) %&amp;gt;%
-  spread(stark, wt)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 4
-## # Groups:   schoolidk [23]
-##    schoolidk     n regular small
-##    &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-##  1 2            52      52    52
-##  2 9           120     120   120
-##  3 10           51      51    51
-##  4 14           34      34    34
-##  5 15           55      55    55
-##  6 16          105     105   105
-##  7 18           79      79    79
-##  8 19           99      99    99
-##  9 22          129     129   129
-## 10 26           49      49    49
-## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.&lt;/p&gt;
-&lt;p&gt;For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
-##   method    from    
-##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;STAR_wt &amp;lt;- lm(cbind(readk, mathk) ~ 0 + schoolidk + stark, weights = wt, data = STAR_urban)
-
-# conventional SEs
-CR0 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR0&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            test = &amp;quot;z&amp;quot;,
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-CR0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat p-val (z) Sig.
-## 1 readk:starksmall     6.21 3.13   1.98    0.0473    *
-## 2 mathk:starksmall    12.47 5.58   2.23    0.0254    *&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# clubSandwich SEs
-CR2 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR2&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-
-CR2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat d.f. p-val (Satt) Sig.
-## 1 readk:starksmall     6.21 2.70    2.3   19       0.0332    *
-## 2 mathk:starksmall    12.47 4.79    2.6   19       0.0174    *&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now I’ll do it “by hand”—or rather, with a bit of &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# summary statistics by site
-
-school_summaries &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    # means by arm and site
-    readk = mean(readk),
-    mathk = mean(mathk),
-    n_arm = n()
-  ) %&amp;gt;%
-  summarise(
-    # impact estimates by site
-    readk = diff(readk),
-    mathk = diff(mathk),
-    n = sum(n_arm),
-    p = n_arm[stark==&amp;quot;small&amp;quot;] / n
-  ) %&amp;gt;%
-  mutate(
-    w = n
-  )
-
-# overall impacts
-
-school_summaries %&amp;gt;%
-  gather(&amp;quot;subject&amp;quot;,&amp;quot;impact_j&amp;quot;, readk, mathk) %&amp;gt;%
-  group_by(subject) %&amp;gt;%
-  summarise(
-    impact = weighted.mean(impact_j, w = w),
-    SE_CR0 = sqrt(sum(w^2 * (impact_j - impact)^2) / sum(w)^2),
-    SE_CR2 = sqrt(sum(w^2 * (impact_j - impact)^2 / (1 - w / sum(w))) / sum(w)^2),
-    df_CR2 = 1 / (sum(w^2 / (sum(w) - w)^2) - 
-                    2 * sum(w^3 / (sum(w) - w)^2) / sum(w) + 
-                    sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
-  ) %&amp;gt;%
-  knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;subject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;impact&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR0&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;df_CR2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;mathk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12.47&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.58&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.76&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;readk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6.21&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.13&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.23&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The CR0 and CR2 standard errors match the results from &lt;code&gt;coef_test&lt;/code&gt;, as do the Satterthwaite degrees of freedom. Note that the degrees of freedom are equal to 19 in this case, a bit less than &lt;span class=&#34;math inline&#34;&gt;\(J - 1 = 22\)&lt;/span&gt; due to variation in the weight assigned to each school.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>2SLS standard errors and the delta-method</title>
-      <link>/delta-method-and-2sls-ses/</link>
+      <link>https://www.jepusto.com/delta-method-and-2sls-ses/</link>
       <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/delta-method-and-2sls-ses/</guid>
+      <guid>https://www.jepusto.com/delta-method-and-2sls-ses/</guid>
       <description>
 
 

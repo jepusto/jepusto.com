@@ -30,7 +30,7 @@
   <meta name="description" content="Associate Professor">
 
   
-  <link rel="alternate" hreflang="en-us" href="/">
+  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/">
 
   
 
@@ -224,7 +224,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/">
+  <link rel="canonical" href="https://www.jepusto.com/">
 
   
   
@@ -243,12 +243,12 @@
   <meta property="twitter:creator" content="@jepusto">
   
   <meta property="og:site_name" content="James E. Pustejovsky">
-  <meta property="og:url" content="/">
+  <meta property="og:url" content="https://www.jepusto.com/">
   <meta property="og:title" content="James E. Pustejovsky">
-  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2022-01-06T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2023-07-21T00:00:00&#43;00:00">
   
 
   
@@ -259,10 +259,10 @@
   "@type": "WebSite",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "/?q={search_term_string}",
+    "target": "https://www.jepusto.com/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   },
-  "url": "/"
+  "url": "https://www.jepusto.com/"
 }
 </script>
 
@@ -842,6 +842,21 @@
         
         
         
+        
+        
+        
+        
+          
+        
+        <li>
+          <a href="https://orcid.org/0000-0003-0591-9465" target="_blank" rel="noopener">
+            <i class="ai ai-orcid big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
           
         
         
@@ -981,7 +996,7 @@
     
 
   
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/megha-joshi/">Megha Joshi</a></span>
   </div>
   
   
@@ -992,7 +1007,7 @@
     
       
     
-    2021-12-22
+    2023-03-30
   </span>
   
 
@@ -1004,7 +1019,7 @@
   
   
   <span class="middot-divider"></span>
-  <a href="/rve-meta-analysis-with-mi/#disqus_thread"></a>
+  <a href="/cluster-bootstrap-selection-model/#disqus_thread"></a>
   
 
   
@@ -1019,13 +1034,261 @@
   
 
   <h3 class="article-title mb-1 mt-3">
-    <a href="/rve-meta-analysis-with-mi/">Meta-analysis with robust variance estimation and multiply imputed covariates</a>
+    <a href="/cluster-bootstrap-selection-model/">Cluster-Bootstrapping a meta-analytic selection model</a>
   </h3>
 
   
   <div class="article-style">
-    <p>\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
-library(tidyverse)## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --## v ggplot2 3.3.2 v purrr 0.3.4## v tibble 3.1.5 v dplyr 1.0.5## v tidyr 1.</p>
+    <p>In this post, we will sketch out what we think is a promising and pragmatic method for examining selective reporting while also accounting for effect size dependency. The method is to use a cluster-level bootstrap, which involves re-sampling clusters of observations to approximate the sampling distribution of an estimator. To illustrate this technique, we will demonstrate how to bootstrap a Vevea-Hedges selection model.</p>
+  </div>
+  
+
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-02-17
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/dizzy-for-d-z/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/dizzy-for-d-z/">Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</a>
+  </h3>
+
+  
+  <div class="article-style">
+    <p>Meta-analyses in education, psychology, and related fields rely heavily of Cohen&rsquo;s $d$, or the standardized mean difference effect size, for quantitatively describing the magnitude and direction of intervention effects. In these fields, Cohen&rsquo;s $d$ is so pervasive that its use is nearly automatic, and analysts rarely question its utility or consider alternatives (response ratios, anyone? POMP?). Despite this state of affairs, working with Cohen&rsquo;s $d$ is theoretically challenging because the standardized mean difference metric does not have a singular definition. Rather, its definition depends on the choice of the standardizing variance used in the denominator.</p>
+  </div>
+  
+
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2022-11-07
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/pusto-tipton-2018-theorem-2-redux/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/pusto-tipton-2018-theorem-2-redux/">Corrigendum to Pustejovsky and Tipton (2018), redux</a>
+  </h3>
+
+  
+  <div class="article-style">
+    <p>In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. We were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I&rsquo;ll give the revised theorem, following the notation and setup of the previous post (so better read that first, or what follows won&rsquo;t make much sense!).</p>
+  </div>
+  
+
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2022-09-28
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/pusto-tipton-2018-theorem-2/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/pusto-tipton-2018-theorem-2/">Corrigendum to Pustejovsky and Tipton (2018)</a>
+  </h3>
+
+  
+  <div class="article-style">
+    <p>In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I&rsquo;ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.</p>
   </div>
   
 
@@ -1110,255 +1373,6 @@ library(tidyverse)## -- Attaching packages ------------------------------------
   <div class="article-style">
     <p>\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
 In a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity).</p>
-  </div>
-  
-
-  
-
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2021-11-02
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/mean-variance-relationships-and-smds/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <h3 class="article-title mb-1 mt-3">
-    <a href="/mean-variance-relationships-and-smds/">Implications of mean-variance relationships for standardized mean differences</a>
-  </h3>
-
-  
-  <div class="article-style">
-    <p>I spend more time than I probably should discussing meta-analysis problems on the R-SIG-meta-analysis listserv. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they’re wrestling with while trying to complete meta-analysis projects in their diverse fields.</p>
-  </div>
-  
-
-  
-
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2021-10-20
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/inverting-partitioned-matrices/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <h3 class="article-title mb-1 mt-3">
-    <a href="/inverting-partitioned-matrices/">Inverting partitioned matrices</a>
-  </h3>
-
-  
-  <div class="article-style">
-    <p>There’s lots of linear algebra out there that’s quite useful for statistics, but that I never learned in school or never had cause to study in depth. In the same spirit as my previous post on the Woodbury identity, I thought I would share my notes on another helpful bit of math about matrices.</p>
-  </div>
-  
-
-  
-
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2021-10-06
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/smds-in-single-group/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <h3 class="article-title mb-1 mt-3">
-    <a href="/smds-in-single-group/">Standardized mean differences in single-group, repeated measures designs</a>
-  </h3>
-
-  
-  <div class="article-style">
-    <p>I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time.</p>
   </div>
   
 
@@ -1496,12 +1510,12 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/power-approximations-for-dependent-effects/" >Power approximations for meta-analysis of dependent effect sizes</a>
+      <a href="/publication/equivalences-between-ad-hoc-strategies-and-models/" >Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</a>
     </h3>
 
     
     <div class="article-style">
-      Meta-analytic models for dependent effect sizes have grown increasingly sophisticated over the last few decades, which has created challenges for a priori power calculations. We introduce power …
+      Meta-analyses of educational research findings frequently involve statistically dependent effect size estimates. Meta-analysts have often addressed dependence issues using ad hoc approaches that …
     </div>
     
 
@@ -1514,7 +1528,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
         
 
   
-  <span><a href="/authors/mikkel-h.-vembye/">Mikkel H. Vembye</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/terri-d.-pigott/">Terri D. Pigott</a></span>
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/man-chen/">Man Chen</a></span>
       </div>
       
     </div>
@@ -1531,7 +1545,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/6tp9y/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/pw54r/" target="_blank" rel="noopener">
   Preprint
 </a>
 
@@ -1549,379 +1563,17 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/yhkq4/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/9u52e/" target="_blank" rel="noopener">
   Code
 </a>
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
   
   
     
   
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/q84dv/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/publication/power-approximations-for-dependent-effects/" >
-      <img src="/publication/power-approximations-for-dependent-effects/featured_hub40878e1f440cc0f88c9f9ea7cd69fdf_419543_150x0_resize_lanczos_2.png" alt="">
-    </a>
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/competing-approaches-for-cross-classified-data/" >Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Cross-classified random effects modeling (CCREM) is a common approach for analyzing cross-classified data in education. However, when the focus of a study is on the regression coefficients at level …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/young-ri-lee/">Young Ri Lee</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/f9mr2" target="_blank" rel="noopener">
-  Preprint
-</a>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/s7hr3/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/cluster-wild-bootstrap-for-meta-analysis/" >Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</a>
-    </h3>
-
-    
-    <div class="article-style">
-      The most common and well-known meta-regression models work under the assumption that there is only one effect size estimate per study and that the estimates are independent. However, meta-analytic …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/megha-joshi/">Megha Joshi</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/s.-natasha-beretvas/">S. Natasha Beretvas</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/x6uhk" target="_blank" rel="noopener">
-  Preprint
-</a>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/meghapsimatrix/CWB_analyses" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/meghapsimatrix/wildmeta" target="_blank" rel="noopener">
-    
-    R package
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/sced-mlma-rve/" >Multi-level meta-analysis of single-case experimental designs using robust variance estimation</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Single-case experimental designs (SCEDs) are used to study the effects of interventions on the behavior of individual cases, by making comparisons between repeated measurements of an outcome under …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/man-chen/">Man Chen</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/59h32/" target="_blank" rel="noopener">
-  Preprint
-</a>
-
-
-
-
-  
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/zypsh" target="_blank" rel="noopener">
-  Code
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/9u52e/" target="_blank" rel="noopener">
+  Dataset
 </a>
 
 
@@ -1935,7 +1587,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
 
 
-
   
   
   
@@ -1947,7 +1598,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/zypsh" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/9u52e/" target="_blank" rel="noopener">
     
     Supplementary materials
   </a>
@@ -2204,12 +1855,12 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/rve-meta-analysis-expanding-the-range/" >Meta-Analysis with robust variance estimation: Expanding the range of working models</a>
+      <a href="/publication/efficacy-of-combining-cognitive-training-and-nibs/" >The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</a>
     </h3>
 
     
     <div class="article-style">
-      In prevention science and related fields, large meta-analyses are common, and these analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to …
+      Over the past decade, an increasing number of studies investigated the innovative approach of supplementing cognitive training (CT) with non-invasive brain stimulation (NIBS) to increase the effects …
     </div>
     
 
@@ -2222,7 +1873,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
         
 
   
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/elizabeth-tipton/">Elizabeth Tipton</a></span>
+  <span><a href="/authors/anika-poppe/">Anika Poppe</a></span>, <span><a href="/authors/franziska-d.-e.-ritter/">Franziska D. E. Ritter</a></span>, <span><a href="/authors/leonie-bais/">Leonie Bais</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/marie-jose-van-tol/">Marie-José van Tol</a></span>, <span><a href="/authors/branislava-curcic-blake/">Branislava Ćurčić-Blake</a></span>, <span><a href="/authors/gerdina-h.m.-pijnenborg/">Gerdina H.M. Pijnenborg</a></span>, <span><a href="/authors/lisette-van-der-meer/">Lisette van der Meer</a></span>
       </div>
       
     </div>
@@ -2235,14 +1886,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
 
 
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/vyfcj/" target="_blank" rel="noopener">
-  Preprint
-</a>
-
 
 
 
@@ -2257,7 +1900,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/z27wt/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/qfpba/" target="_blank" rel="noopener">
   Code
 </a>
 
@@ -2266,7 +1909,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/xpmjk/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/h6yta" target="_blank" rel="noopener">
   Dataset
 </a>
 
@@ -2276,155 +1919,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
 
 
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/ESMARConf2021-RVE-with-clubSandwich.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://youtu.be/Q9Nce5pxebY?t=66" target="_blank" rel="noopener">
-  Video
-</a>
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1007/s11121-021-01246-3" target="_blank" rel="noopener">
-    
-    Journal
-  </a>
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/nyv4u/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/publication/rve-meta-analysis-expanding-the-range/" >
-      <img src="/publication/rve-meta-analysis-expanding-the-range/featured_hu21f72023852a2af414cae22b0cace41e_29360_150x0_resize_lanczos_2.png" alt="">
-    </a>
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/transition-to-college-mathematics-year-3/" >Evaluating the Transition to College Mathematics Course in Texas high schools: Examining heterogeneity across schools and student characteristics</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Texas House Bill 5 introduced requirements that school districts partner with institutions of higher education to provide college preparatory courses in mathematics and English language arts for high …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/megha-joshi/">Megha Joshi</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/TCMC-Eval-Yr-3.pdf" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2467,13 +1961,12 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/psychosocial-interventions-for-spiritual-well-being/" >A systematic review and meta‐analysis of effects of psychosocial interventions on spiritual well‐being in adults with cancer</a>
+      <a href="/publication/aac-group-and-scd/" >Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design</a>
     </h3>
 
     
     <div class="article-style">
-      <strong>Objective</strong>
-Spiritual well‐being (SpWb) is an important dimension of health‐related quality of life for many cancer patients. Accordingly, an increasing number of psychosocial intervention studies have …
+      Purpose: This article provides a systematic review and analysis of group and single-case studies addressing augmentative and alternative communication (AAC) intervention with school-aged persons …
     </div>
     
 
@@ -2486,7 +1979,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
         
 
   
-  <span><a href="/authors/laurie-e.-mclouth/">Laurie E. McLouth</a></span>, <span><a href="/authors/c.-graham-ford/">C. Graham Ford</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/crystal-park/">Crystal Park</a></span>, <span><a href="/authors/allen-c.-sherman/">Allen C. Sherman</a></span>, <span><a href="/authors/kelly-trevino/">Kelly Trevino</a></span>, <span><a href="/authors/john-a.-salsman/">John A. Salsman</a></span>
+  <span><a href="/authors/joe-reichle/">Joe Reichle</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/kimberly-j.-vannest/">Kimberly J. Vannest</a></span>, <span><a href="/authors/margaret-foster/">Margaret Foster</a></span>, <span><a href="/authors/lauren-m.-pierson/">Lauren M. Pierson</a></span>, <span><a href="/authors/sanikan-wattanawongwan/">Sanikan Wattanawongwan</a></span>, <span><a href="/authors/man-chen/">Man Chen</a></span>, <span><a href="/authors/marcus-fuller/">Marcus Fuller</a></span>, <span><a href="/authors/april-n.-haas/">April N. Haas</a></span>, <span><a href="/authors/bethany-h.-bhat/">Bethany H. Bhat</a></span>, <span><a href="/authors/mary-r.-sallese/">Mary R. Sallese</a></span>, <span><a href="/authors/s.-d.-smith/">S. D. Smith</a></span>, <span><a href="/authors/valeria-yllades/">Valeria Yllades</a></span>, <span><a href="/authors/daira-rodriguez/">Daira Rodriguez</a></span>, <span><a href="/authors/amara-yoro/">Amara Yoro</a></span>, <span><a href="/authors/jay-b.-ganz/">Jay B. Ganz</a></span>
       </div>
       
     </div>
@@ -2499,6 +1992,14 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://edarxiv.org/nzq4h/" target="_blank" rel="noopener">
+  Preprint
+</a>
+
 
 
 
@@ -2509,6 +2010,22 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/zpbq6/" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/b5ydr/" target="_blank" rel="noopener">
+  Dataset
+</a>
 
 
 
@@ -2532,7 +2049,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1002/pon.5562" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1044/2023_AJSLP-22-00314" target="_blank" rel="noopener">
     
     Journal
   </a>
@@ -2574,12 +2091,12 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/stay-play-talk-meta-analysis/" >Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</a>
+      <a href="/publication/competing-approaches-for-cross-classified-data/" >Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</a>
     </h3>
 
     
     <div class="article-style">
-      Stay-play-talk (SPT) is a peer-mediated intervention which involves training peer implementers to stay in proximity to, play with, and talk to a focal child who has disabilities or lower social …
+      Cross-classified random effects modeling (CCREM) is a common approach for analyzing cross-classified data in education. However, when the focus of a study is on the regression coefficients at level …
     </div>
     
 
@@ -2592,7 +2109,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
         
 
   
-  <span><a href="/authors/jennifer-r.-ledford/">Jennifer R. Ledford</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  <span><a href="/authors/young-ri-lee/">Young Ri Lee</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
       </div>
       
     </div>
@@ -2609,7 +2126,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/u7cph/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/f9mr2" target="_blank" rel="noopener">
   Preprint
 </a>
 
@@ -2646,7 +2163,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1177/1098300720983521" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1037/met0000538" target="_blank" rel="noopener">
     
     Journal
   </a>
@@ -2662,7 +2179,145 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/m263p/" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/s7hr3/" target="_blank" rel="noopener">
+    
+    Supplementary materials
+  </a>
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/three-level-bc-smd/" >Between-case standardized mean differences: Flexible methods for single-case designs</a>
+    </h3>
+
+    
+    <div class="article-style">
+      Single-case designs (SCDs) are a class of research methods for evaluating the effects of academic and behavioral interventions in educational and clinical settings. Although visual analysis is …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/man-chen/">Man Chen</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/david-a.-klingbeil/">David A. Klingbeil</a></span>, <span><a href="/authors/ethan-r.-van-norman/">Ethan R. Van Norman</a></span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/3pk5q/" target="_blank" rel="noopener">
+  Preprint
+</a>
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/8eucf/" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1016/j.jsp.2023.02.002" target="_blank" rel="noopener">
+    
+    Journal
+  </a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/8eucf/" target="_blank" rel="noopener">
     
     Supplementary materials
   </a>
@@ -2676,8 +2331,8 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
     
     
     
-    <a href="/publication/stay-play-talk-meta-analysis/" >
-      <img src="/publication/stay-play-talk-meta-analysis/featured_huf556a1148a79db6b6fd688f4b509767b_23639_150x0_resize_lanczos_2.png" alt="">
+    <a href="/publication/three-level-bc-smd/" >
+      <img src="/publication/three-level-bc-smd/featured_hu2c4c27c7d2c491d9ca2076ba804e2342_1674784_150x0_resize_lanczos_2.png" alt="">
     </a>
     
   </div>
@@ -2709,12 +2364,12 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/transition-to-college-mathematics-year-2/" >Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the second year of implementation</a>
+      <a href="/publication/power-approximations-for-dependent-effects/" >Power approximations for overall average effects in meta-analysis of dependent effect sizes</a>
     </h3>
 
     
     <div class="article-style">
-      Texas House Bill 5 introduced requirements that school districts partner with institutions of higher education to provide college preparatory courses in mathematics and English for high school seniors …
+      Meta-analytic models for dependent effect sizes have grown increasingly sophisticated over the last few decades, which has created challenges for a priori power calculations. We introduce power …
     </div>
     
 
@@ -2727,7 +2382,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
         
 
   
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/megha-joshi/">Megha Joshi</a></span>
+  <span><a href="/authors/mikkel-h.-vembye/">Mikkel H. Vembye</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/terri-d.-pigott/">Terri D. Pigott</a></span>
       </div>
       
     </div>
@@ -2740,17 +2395,30 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
-
-
-
+  
   
     
   
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/6tp9y/" target="_blank" rel="noopener">
+  Preprint
+</a>
 
 
 
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/TCMC-Eval-Yr-2.pdf" target="_blank" rel="noopener">
-  PDF
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/yhkq4/" target="_blank" rel="noopener">
+  Code
 </a>
 
 
@@ -2765,8 +2433,21 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
-
-
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.3102/10769986221127379" target="_blank" rel="noopener">
+    
+    Journal
+  </a>
 
   
   
@@ -2779,9 +2460,25 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.greatertexasfoundation.org/wp-content/uploads/2021/08/Pustejovsky-White-Paper-2020-REVISED.pdf" target="_blank" rel="noopener">
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/q84dv/" target="_blank" rel="noopener">
     
-    White paper
+    Supplementary materials
+  </a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://mikkelvembye.github.io/POMADE/" target="_blank" rel="noopener">
+    
+    R package
   </a>
 
 
@@ -2791,6 +2488,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   </div>
   <div class="ml-3">
     
+    
+    
+    <a href="/publication/power-approximations-for-dependent-effects/" >
+      <img src="/publication/power-approximations-for-dependent-effects/featured_hu53bc08392176fd0bf28ac85de25276c5_407293_150x0_resize_lanczos_2.png" alt="">
+    </a>
     
   </div>
 </div>
@@ -2915,20 +2617,14 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
-  
-
 
 <div class="media stream-item">
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/edpsych-colloquium-2021-four-things/" >Four things every quantitative social scientist should know about meta-analysis</a>
+      <a href="/talk/wiscc-2023/" >Determining the Timing of Phase Changes: Some Statistical Perspective</a>
     </h3>
 
-    
-    <div class="article-style">
-      Meta-analysis is a set of statistical tools for synthesizing results across multiple sources of evidence. Meta-analyses of intervention research are often taken as a gold standard for informing …
-    </div>
     
 
     <div class="stream-meta article-metadata">
@@ -2936,19 +2632,26 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
       <div>
         <span>
-          2021-09-27 10:00 AM
+          2023-05-18 9:00 AM
         </span>
         
         <span class="middot-divider"></span>
-        <span>Educational Psychology PIE Colloquium</span>
+        <span>Wing Institute Single Case Conference 2023</span>
         
         
         <span class="middot-divider"></span>
-        <span>Educational Sciences 259</span>
+        <span>Nashville, TN</span>
         
       </div>
       
 
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+      </div>
       
     </div>
 
@@ -2981,7 +2684,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/EdPsych-Department-Colloquium-Four-Things.pdf" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/WISCC-2023.pdf" target="_blank" rel="noopener">
   Slides
 </a>
 
@@ -3027,12 +2730,12 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/oslorug-2021-rve-with-metafor-and-clubsandwich/" >Synthesis of dependent effect sizes: Robust variance estimation with clubSandwich</a>
+      <a href="/talk/small-is-beautiful-2023-workshop/" >Calculating Effect Sizes for Single-Case Research: An Introduction to the SingleCaseES and scdhlm Web Applications and R Packages</a>
     </h3>
 
     
     <div class="article-style">
-      Large meta-analyses often involve dependent effect sizes, but where the exact form of the dependence is unknown. Meta-analysis with robust variance estimation handles this problem through …
+      This workshop will provide an introduction to effect size calculations for single-case research designs, focused on two interactive web applications (or “apps”) and accompanying R packages. I will …
     </div>
     
 
@@ -3041,130 +2744,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
       <div>
         <span>
-          2021-09-02 10:00 AM
+          2023-04-26 11:00 AM
         </span>
         
         <span class="middot-divider"></span>
-        <span>Oslo R User Group Meetup</span>
-        
-        
-        <span class="middot-divider"></span>
-        <span>online</span>
-        
-      </div>
-      
-
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/vyfcj/" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/Oslo-RUG-RVE-with-clubSandwich.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://youtu.be/sJUc39vneWk" target="_blank" rel="noopener">
-  Video
-</a>
-
-
-
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/sips-2021-statistical-frontiers-for-selective-reporting/" >Statistical frontiers for selective reporting and publication bias</a>
-    </h3>
-
-    
-    <div class="article-style">
-      This workshop will cover methods to investigate selective reporting in meta-analysis of statistically dependent effect sizes, which are a common feature of systematic reviews in psychology. The workshop is organized into two sections.
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-      <div>
-        <span>
-          2021-06-23 12:30 PM
-        </span>
-        
-        <span class="middot-divider"></span>
-        <span>Society for the Improvement of Psychological Science 2021 meeting</span>
+        <span>Small is Beautiful {Once More}</span>
         
         
         <span class="middot-divider"></span>
@@ -3178,7 +2762,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
         
 
   
-  <span><a href="/authors/maya-b.-mathur/">Maya B. Mathur</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
       </div>
       
     </div>
@@ -3201,14 +2785,6 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/nwz3x/" target="_blank" rel="noopener">
-  Code
-</a>
-
 
 
 
@@ -3220,7 +2796,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/3mp6s/" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/Small-is-Beautiful-2023-Calculating-Effect-Sizes-for-Single-Case-Research.pdf" target="_blank" rel="noopener">
   Slides
 </a>
 
@@ -3228,6 +2804,25 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+    
+      
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/Small-is-Beautiful-2023-effect-size-workshop.xlsx" >
+    
+    Data
+  </a>
 
 
     </div>
@@ -3266,12 +2861,12 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/" >Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich</a>
+      <a href="/talk/small-is-beautiful-2023-keynote/" >Effect size measures for single-case research: Conceptual, practical, and statistical considerations</a>
     </h3>
 
     
     <div class="article-style">
-      Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single …
+      Quantitative analysis of single-case research and n-of-1 experiments often focuses on calculation of effect size measures, or numerical indices describing the direction and strength of an …
     </div>
     
 
@@ -3280,11 +2875,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
       <div>
         <span>
-          2021-01-21 9:00 AM
+          2023-04-25 8:00 AM
         </span>
         
         <span class="middot-divider"></span>
-        <span>Evidence Synthesis and Meta-Analysis in R Conference</span>
+        <span>Small is Beautiful {Once More}</span>
         
         
         <span class="middot-divider"></span>
@@ -3294,6 +2889,13 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
 
       
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+      </div>
+      
     </div>
 
     
@@ -3308,14 +2910,8 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
   
-    
-  
 
 
-
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/vyfcj/" target="_blank" rel="noopener">
-  PDF
-</a>
 
 
 
@@ -3331,19 +2927,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/ESMARConf2021-RVE-with-clubSandwich.pdf" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/Small-is-Beautiful-2023-Pustejovsky-keynote.pdf" target="_blank" rel="noopener">
   Slides
 </a>
 
 
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://youtu.be/Q9Nce5pxebY?t=66" target="_blank" rel="noopener">
-  Video
-</a>
 
 
 
@@ -3378,14 +2966,20 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
+  
+
 
 <div class="media stream-item">
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/srsm-2019-generalized-excess-significance-test/" >A generalized excess significance test for selective outcome reporting with dependent effect sizes</a>
+      <a href="/talk/aera-2023-bcsmd-benchmarks/" >Empirical benchmarks for between-case standardized mean differences from single-case multiple baseline designs examining academic interventions.</a>
     </h3>
 
+    
+    <div class="article-style">
+      The between-case standardized mean difference (BC-SMD) is an effect size measure for single-case designs (SCDs) that it puts findings on the same scale as standardized mean differences for …
+    </div>
     
 
     <div class="stream-meta article-metadata">
@@ -3393,11 +2987,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
       <div>
         <span>
-          2019-07-22 1:30 PM
+          2023-04-16 11:40 AM
         </span>
         
         <span class="middot-divider"></span>
-        <span>Society for Research Synthesis Methodology annual meeting</span>
+        <span>American Educational Research Association annual convention</span>
         
         
         <span class="middot-divider"></span>
@@ -3407,6 +3001,13 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
       
 
       
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/man-chen/">Man Chen</a></span>, <span><a href="/authors/david-klingbeil/">David Klingbeil</a></span>, <span><a href="/authors/ethan-van-norman/">Ethan van Norman</a></span>
+      </div>
+      
     </div>
 
     
@@ -3438,7 +3039,113 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   
     
   
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/SRSM%202019-GEST.pdf" target="_blank" rel="noopener">
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/AERA-2023-Empirical-benchmarks.pdf" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/talk/aera-2023-replication-discussion/" >Discussion of ‘Moving from What Works to What Replicates: Promoting the Systematic Replication of Results.’</a>
+    </h3>
+
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+      <div>
+        <span>
+          2023-04-15 2:50 PM
+        </span>
+        
+        <span class="middot-divider"></span>
+        <span>American Educational Research Association annual convention</span>
+        
+        
+        <span class="middot-divider"></span>
+        <span>Chicago, IL</span>
+        
+      </div>
+      
+
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/AERA-2023-Replication-discussion.pdf" target="_blank" rel="noopener">
   Slides
 </a>
 
@@ -3555,6 +3262,49 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
+<div class="project-card project-item isotope-item js-id-meta-analysis js-id-dependent-effect-sizes js-id-robust-variance-estimation js-id-Rstats js-id-power">
+  <div class="card">
+    
+    
+    <a href="/software/pomade/"  class="card-image hover-overlay">
+      <img src="/software/pomade/featured_hu21450e030a7eb9ebd37e9d8455b25442_151597_550x0_resize_q90_lanczos_2.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/software/pomade/" >POMADE</a></h4>
+      
+      <div class="article-style">
+        <p>Power for Meta-Analysis of Dependent Effects</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
 <div class="project-card project-item isotope-item js-id-hierarchical-models js-id-effect-size js-id-Rstats js-id-nlme">
   <div class="card">
     
@@ -3641,7 +3391,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
 
 
 
-<div class="project-card project-item isotope-item js-id-behavioral-observation js-id-alternating-renewal-process js-id-simulation js-id-R">
+<div class="project-card project-item isotope-item js-id-behavioral-observation js-id-alternating-renewal-process js-id-simulation js-id-Rstats">
   <div class="card">
     
     
@@ -3792,6 +3542,49 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
         
 
       
+
+        
+        
+        
+
+        
+          
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="project-card project-item isotope-item js-id-meta-analysis js-id-meta-regression js-id-bootstrap js-id-dependent-effect-sizes js-id-robust-variance-estimation js-id-Rstats">
+  <div class="card">
+    
+    
+    <a href="/software/wildmeta/"  class="card-image hover-overlay">
+      <img src="/software/wildmeta/featured_huc45dd65681b6d54dd3105f013ba37947_130236_550x0_resize_q90_lanczos.jpg" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/software/wildmeta/" >wildmeta</a></h4>
+      
+      <div class="article-style">
+        <p>Cluster-wild bootstrap for meta-regression</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+        
+
+      
     </div>
 
   </div>
@@ -3874,11 +3667,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
     
     
       
-      <a href="/authors/young-ri-lee/"><img class="avatar avatar-square" src="/authors/young-ri-lee/avatar_hu9b73183b1cbe00106a84c898d182e0af_38067_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
+      <a href="/authors/man-chen/"><img class="avatar avatar-square" src="/authors/man-chen/avatar_hu0e1e6f7980fd0022d244beef8226299e_82739_270x270_fill_q90_lanczos_center.JPG" alt="Avatar"></a>
     
 
     <div class="portrait-title">
-      <h2><a href="/authors/young-ri-lee/">Young Ri Lee</a></h2>
+      <h2><a href="/authors/man-chen/">Man Chen</a></h2>
       <h3>Graduate student</h3>
       
       
@@ -3899,11 +3692,11 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
     
     
       
-      <a href="/authors/man-chen/"><img class="avatar avatar-square" src="/authors/man-chen/avatar_hu0e1e6f7980fd0022d244beef8226299e_82739_270x270_fill_q90_lanczos_center.JPG" alt="Avatar"></a>
+      <a href="/authors/paulina-grekov/"><img class="avatar avatar-square" src="/authors/paulina-grekov/avatar_hu2761370df5d54896e3f8483a4b8199a2_1224523_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
     
 
     <div class="portrait-title">
-      <h2><a href="/authors/man-chen/">Man Chen</a></h2>
+      <h2><a href="/authors/paulina-grekov/">Paulina Grekov</a></h2>
       <h3>Graduate student</h3>
       
       
@@ -3959,12 +3752,87 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
     
     
       
+      <a href="/authors/young-ri-lee/"><img class="avatar avatar-square" src="/authors/young-ri-lee/avatar_hu9b73183b1cbe00106a84c898d182e0af_38067_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
+    
+
+    <div class="portrait-title">
+      <h2><a href="/authors/young-ri-lee/">Young Ri Lee</a></h2>
+      <h3>Postdoctoral Scholar</h3>
+      
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-auto people-person">
+    
+    
+      
+      
+    
+    
+      
+      <a href="/authors/daniel-m.-swan/"><img class="avatar avatar-square" src="/authors/daniel-m.-swan/avatar_hu87a6361f0767aa7e367c9c174138b267_85925_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
+    
+
+    <div class="portrait-title">
+      <h2><a href="/authors/daniel-m.-swan/">Daniel M. Swan</a></h2>
+      <h3>Research Associate</h3>
+      
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-auto people-person">
+    
+    
+      
+      
+    
+    
+      
       <a href="/authors/christopher-runyon/"><img class="avatar avatar-square" src="/authors/christopher-runyon/avatar_hufb479452712cc5a8f3d29625619c9853_85185_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
     
 
     <div class="portrait-title">
       <h2><a href="/authors/christopher-runyon/">Christopher Runyon</a></h2>
       <h3>Measurement Scientist</h3>
+      
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+    
+  
+  <div class="col-12 col-sm-auto people-person">
+    
+    
+      
+      
+    
+    
+      
+      <a href="/authors/gleb-furman/"><img class="avatar avatar-square" src="/authors/gleb-furman/avatar_hu1b2aa7df15be4e5bd5ac0a75af0c16ae_110172_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
+    
+
+    <div class="portrait-title">
+      <h2><a href="/authors/gleb-furman/">Gleb Furman</a></h2>
+      <h3>Senior Quantitative Research Scientist</h3>
       
       
     </div>
@@ -4269,67 +4137,82 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/alternating-renewal-process/" style="font-size:1.4539396815319239rem">alternating renewal process</a>
+          <a href="/tags/alternating-renewal-process/" style="font-size:1.4403716704526226rem">alternating renewal process</a>
         
           
           
           
-          <a href="/tags/behavioral-observation/" style="font-size:1.627684267925235rem">behavioral observation</a>
+          <a href="/tags/augmentative-and-alternative-communication/" style="font-size:1.145748161492175rem">Augmentative and alternative communication</a>
         
           
           
           
-          <a href="/tags/bootstrap/" style="font-size:0.7rem">bootstrap</a>
+          <a href="/tags/behavioral-observation/" style="font-size:1.6109895233274605rem">behavioral observation</a>
         
           
           
           
-          <a href="/tags/cancer/" style="font-size:1.3371529471516017rem">cancer</a>
+          <a href="/tags/bootstrap/" style="font-size:1.0532470603652477rem">bootstrap</a>
         
           
           
           
-          <a href="/tags/causal-inference/" style="font-size:1.3371529471516017rem">causal inference</a>
+          <a href="/tags/cancer/" style="font-size:1.3256866475815925rem">cancer</a>
         
           
           
           
-          <a href="/tags/correlation/" style="font-size:1.2866791058979126rem">correlation</a>
+          <a href="/tags/causal-inference/" style="font-size:1.3256866475815925rem">causal inference</a>
         
           
           
           
-          <a href="/tags/delta-method/" style="font-size:1.059720646835454rem">delta method</a>
+          <a href="/tags/cognitive-remediation/" style="font-size:0.7rem">cognitive remediation</a>
         
           
           
           
-          <a href="/tags/dependent-effect-sizes/" style="font-size:1.2866791058979126rem">dependent effect sizes</a>
+          <a href="/tags/correlation/" style="font-size:1.2761211411113351rem">correlation</a>
         
           
           
           
-          <a href="/tags/design-comparable-smd/" style="font-size:1.627684267925235rem">design-comparable SMD</a>
+          <a href="/tags/delta-method/" style="font-size:1.0532470603652477rem">delta method</a>
         
           
           
           
-          <a href="/tags/distribution-theory/" style="font-size:1.513637564960371rem">distribution theory</a>
+          <a href="/tags/dependent-effect-sizes/" style="font-size:1.471017641907737rem">dependent effect sizes</a>
         
           
           
           
-          <a href="/tags/econometrics/" style="font-size:1.2866791058979126rem">econometrics</a>
+          <a href="/tags/design-comparable-smd/" style="font-size:1.6467529396347522rem">design-comparable SMD</a>
         
           
           
           
-          <a href="/tags/effect-size/" style="font-size:1.939064187522784rem">effect size</a>
+          <a href="/tags/developmental-language-disorder/" style="font-size:0.7rem">developmental language disorder</a>
         
           
           
           
-          <a href="/tags/evaluation/" style="font-size:1.059720646835454rem">evaluation</a>
+          <a href="/tags/distribution-theory/" style="font-size:1.4989952218574225rem">distribution theory</a>
+        
+          
+          
+          
+          <a href="/tags/econometrics/" style="font-size:1.3256866475815925rem">econometrics</a>
+        
+          
+          
+          
+          <a href="/tags/effect-size/" style="font-size:1.9310587934002676rem">effect size</a>
+        
+          
+          
+          
+          <a href="/tags/evaluation/" style="font-size:1.0532470603652477rem">evaluation</a>
         
           
           
@@ -4339,7 +4222,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/fixed-effects/" style="font-size:1.059720646835454rem">fixed effects</a>
+          <a href="/tags/fixed-effects/" style="font-size:1.0532470603652477rem">fixed effects</a>
         
           
           
@@ -4354,17 +4237,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/hierarchical-models/" style="font-size:1.4851472693978673rem">hierarchical models</a>
+          <a href="/tags/hierarchical-models/" style="font-size:1.471017641907737rem">hierarchical models</a>
         
           
           
           
-          <a href="/tags/hypothesis-testing/" style="font-size:0.9269584590624583rem">hypothesis testing</a>
+          <a href="/tags/hypothesis-testing/" style="font-size:0.9228740807460875rem">hypothesis testing</a>
         
           
           
           
-          <a href="/tags/instrumental-variables/" style="font-size:0.9269584590624583rem">instrumental variables</a>
+          <a href="/tags/instrumental-variables/" style="font-size:0.7rem">instrumental variables</a>
         
           
           
@@ -4374,7 +4257,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/matrix-algebra/" style="font-size:0.9269584590624583rem">matrix algebra</a>
+          <a href="/tags/matrix-algebra/" style="font-size:1.145748161492175rem">matrix algebra</a>
         
           
           
@@ -4384,32 +4267,47 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
+          <a href="/tags/measurement-error/" style="font-size:0.7rem">measurement-error</a>
+        
+          
+          
+          
           <a href="/tags/mental-health/" style="font-size:0.7rem">mental health</a>
         
           
           
           
-          <a href="/tags/meta-analysis/" style="font-size:1.993763014407737rem">meta-analysis</a>
+          <a href="/tags/meta-analysis/" style="font-size:1.994308889819855rem">meta-analysis</a>
         
           
           
           
-          <a href="/tags/meta-regression/" style="font-size:1.1539169181249167rem">meta-regression</a>
+          <a href="/tags/meta-regression/" style="font-size:1.2761211411113351rem">meta-regression</a>
         
           
           
           
-          <a href="/tags/missing-data/" style="font-size:0.9269584590624583rem">missing data</a>
+          <a href="/tags/missing-data/" style="font-size:0.7rem">missing data</a>
         
           
           
           
-          <a href="/tags/multivariate/" style="font-size:0.7rem">multivariate</a>
+          <a href="/tags/multivariate/" style="font-size:0.9228740807460875rem">multivariate</a>
         
           
           
           
-          <a href="/tags/nlme/" style="font-size:1.059720646835454rem">nlme</a>
+          <a href="/tags/narrative-assessment/" style="font-size:0.7rem">narrative assessment</a>
+        
+          
+          
+          
+          <a href="/tags/nlme/" style="font-size:1.0532470603652477rem">nlme</a>
+        
+          
+          
+          
+          <a href="/tags/non-invasive-brain-stimulation/" style="font-size:0.7rem">non-invasive brain stimulation</a>
         
           
           
@@ -4419,12 +4317,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/non-overlap-measures/" style="font-size:1.4194412936709084rem">non-overlap measures</a>
-        
-          
-          
-          
-          <a href="/tags/odds-ratio/" style="font-size:0.7rem">odds ratio</a>
+          <a href="/tags/non-overlap-measures/" style="font-size:1.4064941207304953rem">non-overlap measures</a>
         
           
           
@@ -4444,7 +4337,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/power/" style="font-size:0.7rem">power</a>
+          <a href="/tags/power/" style="font-size:0.9228740807460875rem">power</a>
         
           
           
@@ -4454,17 +4347,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/programming/" style="font-size:1.4539396815319239rem">programming</a>
+          <a href="/tags/programming/" style="font-size:1.471017641907737rem">programming</a>
         
           
           
           
-          <a href="/tags/psycho-social-intervention/" style="font-size:1.1539169181249167rem">psycho-social intervention</a>
+          <a href="/tags/psycho-social-intervention/" style="font-size:1.145748161492175rem">psycho-social intervention</a>
         
           
           
           
-          <a href="/tags/publication-bias/" style="font-size:1.059720646835454rem">publication bias</a>
+          <a href="/tags/publication-bias/" style="font-size:1.145748161492175rem">publication bias</a>
         
           
           
@@ -4474,22 +4367,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/r/" style="font-size:0.7rem">R</a>
-        
-          
-          
-          
           <a href="/tags/random-effects/" style="font-size:0.7rem">random effects</a>
         
           
           
           
-          <a href="/tags/regression-discontinuity/" style="font-size:0.9269584590624583rem">regression discontinuity</a>
+          <a href="/tags/regression-discontinuity/" style="font-size:0.9228740807460875rem">regression discontinuity</a>
         
           
           
           
-          <a href="/tags/religion/spirituality/" style="font-size:1.059720646835454rem">religion/spirituality</a>
+          <a href="/tags/religion/spirituality/" style="font-size:1.0532470603652477rem">religion/spirituality</a>
         
           
           
@@ -4499,7 +4387,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/response-ratio/" style="font-size:1.646399752733367rem">response ratio</a>
+          <a href="/tags/response-ratio/" style="font-size:1.629368201476583rem">response ratio</a>
         
           
           
@@ -4509,17 +4397,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/robust-variance-estimation/" style="font-size:1.6641030826601768rem">robust variance estimation</a>
+          <a href="/tags/robust-variance-estimation/" style="font-size:1.70818471265418rem">robust variance estimation</a>
         
           
           
           
-          <a href="/tags/rstats/" style="font-size:1.813660328367378rem">Rstats</a>
+          <a href="/tags/rstats/" style="font-size:1.8338636040735479rem">Rstats</a>
         
           
           
           
-          <a href="/tags/sandwiches/" style="font-size:1.4851472693978673rem">sandwiches</a>
+          <a href="/tags/sandwiches/" style="font-size:1.4403716704526226rem">sandwiches</a>
         
           
           
@@ -4529,17 +4417,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/simulation/" style="font-size:1.5641114062140602rem">simulation</a>
+          <a href="/tags/simulation/" style="font-size:1.54856072832768rem">simulation</a>
         
           
           
           
-          <a href="/tags/single-case-design/" style="font-size:1.9743058943032037rem">single-case design</a>
+          <a href="/tags/single-case-design/" style="font-size:1.9885152316142722rem">single-case design</a>
         
           
           
           
-          <a href="/tags/small-sample/" style="font-size:0.9269584590624583rem">small-sample</a>
+          <a href="/tags/small-sample/" style="font-size:0.9228740807460875rem">small-sample</a>
         
           
           
@@ -4554,7 +4442,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/standardized-mean-difference/" style="font-size:1.3808753771873752rem">standardized mean difference</a>
+          <a href="/tags/standardized-mean-difference/" style="font-size:1.4403716704526226rem">standardized mean difference</a>
         
           
           
@@ -4564,17 +4452,17 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/systematic-review/" style="font-size:1.6078338362498337rem">systematic review</a>
+          <a href="/tags/systematic-review/" style="font-size:1.6789337079468403rem">systematic review</a>
         
           
           
           
-          <a href="/tags/tacc/" style="font-size:0.9269584590624583rem">TACC</a>
+          <a href="/tags/tacc/" style="font-size:0.9228740807460875rem">TACC</a>
         
           
           
           
-          <a href="/tags/transition-to-college-mathematics/" style="font-size:1.059720646835454rem">Transition to College Mathematics</a>
+          <a href="/tags/transition-to-college-mathematics/" style="font-size:1.0532470603652477rem">Transition to College Mathematics</a>
         
           
           
@@ -4584,7 +4472,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
           
           
           
-          <a href="/tags/weighting/" style="font-size:1.1539169181249167rem">weighting</a>
+          <a href="/tags/weighting/" style="font-size:1.0532470603652477rem">weighting</a>
         
       </div>
     
@@ -4713,7 +4601,7 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
     
     
     
-    <script src="/js/academic.min.4dd9b94a466daca7ed2f06b98847fa44.js"></script>
+    <script src="/js/academic.min.107281da73526e9b05dade8a9cfe7f27.js"></script>
 
     
 
@@ -4727,23 +4615,13 @@ Spiritual well‐being (SpWb) is an important dimension of health‐related qual
   <div class="container">
     <footer class="site-footer">
   
-  <p class="powered-by">
-    
-      <a href="/privacy/">Privacy Policy</a>
-    
-    
-       &middot; 
-      <a href="/terms/">Terms</a>
-    
-  </p>
-  
   
   
   
 
 
   <p class="powered-by">
-    © 2022 &middot; 
+    © 2023 &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

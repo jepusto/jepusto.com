@@ -2,181 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sandwiches | James E. Pustejovsky</title>
-    <link>/tags/sandwiches/</link>
-      <atom:link href="/tags/sandwiches/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/sandwiches/</link>
+      <atom:link href="https://www.jepusto.com/tags/sandwiches/index.xml" rel="self" type="application/rss+xml" />
     <description>sandwiches</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sat, 09 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Sat, 09 Mar 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>sandwiches</title>
-      <link>/tags/sandwiches/</link>
+      <link>https://www.jepusto.com/tags/sandwiches/</link>
     </image>
     
     <item>
       <title>A handmade clubSandwich for multi-site trials</title>
-      <link>/clustered-and-interacted/</link>
+      <link>https://www.jepusto.com/handmade-clubsandwich/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/clustered-and-interacted/</guid>
+      <guid>https://www.jepusto.com/handmade-clubsandwich/</guid>
       <description>
 
 
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-data(STAR, package = &amp;quot;AER&amp;quot;)
-
-STAR_urban &amp;lt;-
-  STAR %&amp;gt;%
-  filter(
-    # limit to urban/inner city schools
-    schoolk %in% c(&amp;quot;urban&amp;quot;,&amp;quot;inner-city&amp;quot;),
-    # limit to complete outcome data
-    !is.na(readk), !is.na(mathk)
-  ) %&amp;gt;%
-  droplevels() %&amp;gt;%
-  # collapse control conditions
-  mutate(
-    stark = fct_collapse(stark, regular = c(&amp;quot;regular&amp;quot;,&amp;quot;regular+aide&amp;quot;))
-  ) %&amp;gt;%
-  # calculate inverse-propensity weight
-  group_by(schoolidk) %&amp;gt;%
-  mutate(
-    n = n(),
-    nT = sum(stark==&amp;quot;small&amp;quot;),
-    wt = ifelse(stark==&amp;quot;small&amp;quot;, n / nT, n / (n - nT))
-  ) %&amp;gt;%
-  select(schoolidk, stark, readk, mathk, wt)
-
-STAR_summary &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  count(schoolidk)
-
-STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    n = n(),
-    wt = sum(wt)
-  ) %&amp;gt;%
-  mutate(n = sum(n)) %&amp;gt;%
-  spread(stark, wt)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 4
-## # Groups:   schoolidk [23]
-##    schoolidk     n regular small
-##    &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-##  1 2            52      52    52
-##  2 9           120     120   120
-##  3 10           51      51    51
-##  4 14           34      34    34
-##  5 15           55      55    55
-##  6 16          105     105   105
-##  7 18           79      79    79
-##  8 19           99      99    99
-##  9 22          129     129   129
-## 10 26           49      49    49
-## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.&lt;/p&gt;
-&lt;p&gt;For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
-##   method    from    
-##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;STAR_wt &amp;lt;- lm(cbind(readk, mathk) ~ 0 + schoolidk + stark, weights = wt, data = STAR_urban)
-
-# conventional SEs
-CR0 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR0&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            test = &amp;quot;z&amp;quot;,
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-CR0&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat p-val (z) Sig.
-## 1 readk:starksmall     6.21 3.13   1.98    0.0473    *
-## 2 mathk:starksmall    12.47 5.58   2.23    0.0254    *&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# clubSandwich SEs
-CR2 &amp;lt;- 
-  coef_test(STAR_wt, vcov = &amp;quot;CR2&amp;quot;, 
-            cluster = STAR_urban$schoolidk, 
-            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
-
-CR2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat d.f. p-val (Satt) Sig.
-## 1 readk:starksmall     6.21 2.70    2.3   19       0.0332    *
-## 2 mathk:starksmall    12.47 4.79    2.6   19       0.0174    *&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now I’ll do it “by hand”—or rather, with a bit of &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# summary statistics by site
-
-school_summaries &amp;lt;- 
-  STAR_urban %&amp;gt;%
-  group_by(schoolidk, stark) %&amp;gt;%
-  summarise(
-    # means by arm and site
-    readk = mean(readk),
-    mathk = mean(mathk),
-    n_arm = n()
-  ) %&amp;gt;%
-  summarise(
-    # impact estimates by site
-    readk = diff(readk),
-    mathk = diff(mathk),
-    n = sum(n_arm),
-    p = n_arm[stark==&amp;quot;small&amp;quot;] / n
-  ) %&amp;gt;%
-  mutate(
-    w = n
-  )
-
-# overall impacts
-
-school_summaries %&amp;gt;%
-  gather(&amp;quot;subject&amp;quot;,&amp;quot;impact_j&amp;quot;, readk, mathk) %&amp;gt;%
-  group_by(subject) %&amp;gt;%
-  summarise(
-    impact = weighted.mean(impact_j, w = w),
-    SE_CR0 = sqrt(sum(w^2 * (impact_j - impact)^2) / sum(w)^2),
-    SE_CR2 = sqrt(sum(w^2 * (impact_j - impact)^2 / (1 - w / sum(w))) / sum(w)^2),
-    df_CR2 = 1 / (sum(w^2 / (sum(w) - w)^2) - 
-                    2 * sum(w^3 / (sum(w) - w)^2) / sum(w) + 
-                    sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
-  ) %&amp;gt;%
-  knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;subject&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;impact&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR0&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SE_CR2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;df_CR2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;mathk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;12.47&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.58&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;5.76&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;readk&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;6.21&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.13&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.23&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;The CR0 and CR2 standard errors match the results from &lt;code&gt;coef_test&lt;/code&gt;, as do the Satterthwaite degrees of freedom. Note that the degrees of freedom are equal to 19 in this case, a bit less than &lt;span class=&#34;math inline&#34;&gt;\(J - 1 = 22\)&lt;/span&gt; due to variation in the weight assigned to each school.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A handmade clubSandwich for multi-site trials</title>
-      <link>/handmade-clubsandwich/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/handmade-clubsandwich/</guid>
-      <description>
-
-
-&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
+&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;https://www.jepusto.com/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;https://www.jepusto.com/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
 &lt;p&gt;The short answer is “no.”&lt;/p&gt;
 &lt;p&gt;The moderately longer answer is “not unless we can find funding to pay someone who knows how to program properly in SAS.” However, for the specific model that my colleague was interested in, it turns out that the small-sample corrections implemented in clubSandwich can be expressed in closed form, and they’re simple enough that they could easily be hand-calculated. I’ll sketch out the calculations in the remainder of this post.&lt;/p&gt;
 &lt;div id=&#34;a-multi-site-trial&#34; class=&#34;section level2&#34;&gt;
@@ -348,27 +192,27 @@ school_summaries %&amp;gt;%
     
     <item>
       <title>clubSandwich at the Austin R User Group Meetup</title>
-      <link>/clubsandwich-at-rug/</link>
+      <link>https://www.jepusto.com/clubsandwich-at-rug/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/clubsandwich-at-rug/</guid>
+      <guid>https://www.jepusto.com/clubsandwich-at-rug/</guid>
       <description>
 
 
-&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
+&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;https://www.jepusto.com/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/beeonaposy&#34;&gt;Caitlin Hudon&lt;/a&gt;: &lt;a href=&#34;https://www.slideshare.net/CaitlinGarrett1/getting-plugged-into-data-science-87767332&#34;&gt;Getting Plugged into Data Science&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/clairemcwhite&#34;&gt;Claire McWhite&lt;/a&gt;: &lt;a href=&#34;https://speakerdeck.com/clairemcwhite/a-quick-intro-to-networks&#34;&gt;A quick intro to networks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/NathanielRaley&#34;&gt;Nathaniel Woodward&lt;/a&gt;: &lt;a href=&#34;http://goo.gl/vJs8kD&#34;&gt;Blogdown Demo!&lt;/a&gt; (link includes his slides and a demo screencast)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;https://www.jepusto.com/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Pooling clubSandwich results across multiple imputations</title>
-      <link>/mi-with-clubsandwich/</link>
+      <link>https://www.jepusto.com/mi-with-clubsandwich/</link>
       <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>/mi-with-clubsandwich/</guid>
+      <guid>https://www.jepusto.com/mi-with-clubsandwich/</guid>
       <description>
 
 
@@ -580,13 +424,13 @@ robust_pooled %&amp;gt;%
     
     <item>
       <title>Imputing covariance matrices for meta-analysis of correlated effects</title>
-      <link>/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
+      <link>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
       <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
       <description>
 
 
-&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
+&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;https://www.jepusto.com/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
 &lt;p&gt;Several solutions to this conundrum have been proposed in the meta-analysis methodology literature. One possible strategy is to just impute a correlation based on subject-matter knowledge (or at least feigned expertise), and assume that this correlation is constant across studies. This analysis could be supplemented with sensitivity analyses to examine the extent to which the parameter estimates and inferences are sensitive to alternative assumptions about the inter-correlation of effects within studies. A related strategy, described by &lt;a href=&#34;https://dx.doi.org/10.1002/sim.5679&#34;&gt;Wei and Higgins (2013)&lt;/a&gt;, is to meta-analyze any available correlation estimates and then use the results to impute correlations for any studies with missing correlations.&lt;/p&gt;
 &lt;p&gt;Both of these approaches require the meta-analyst to calculate block-diagonal sampling covariance matrices for the effect size estimates, which can be a bit unwieldy. I often use the impute-the-correlation strategy in my meta-analysis work and have written a helper function to compute covariance matrices, given known sampling variances and imputed correlations for each study. In the interest of not repeating myself, I’ve added the function to the latest version of my clubSandwich package. In this post, I’ll explain the function and demonstrate how to use it for conducting meta-analysis of correlated effect size estimates.&lt;/p&gt;
 &lt;div id=&#34;an-r-function-for-block-diagonal-covariance-matrices&#34; class=&#34;section level2&#34;&gt;
@@ -905,14 +749,14 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>clubSandwich</title>
-      <link>/software/clubsandwich/</link>
+      <link>https://www.jepusto.com/software/clubsandwich/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/clubsandwich/</guid>
+      <guid>https://www.jepusto.com/software/clubsandwich/</guid>
       <description>&lt;p&gt;R and Stata packages for calculating cluster-robust variance estimators (i.e., sandwich estimators) with small-sample corrections, including the bias-reduced linearization estimator of 
 &lt;a href=&#34;http://www.statcan.gc.ca/pub/12-001-x/2002002/article/9058-eng.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bell and McCaffrey (2002)&lt;/a&gt; and extensions proposed in 
 &lt;a href=&#34;http://psycnet.apa.org/record/2014-14616-001&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipton (2015)&lt;/a&gt;, 
-&lt;a href=&#34;/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
-&lt;a href=&#34;/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
+&lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=clubSandwich&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -928,13 +772,13 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Clustered standard errors and hypothesis tests in fixed effects models</title>
-      <link>/clubsandwich-for-crve-fe/</link>
+      <link>https://www.jepusto.com/clubsandwich-for-crve-fe/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/clubsandwich-for-crve-fe/</guid>
+      <guid>https://www.jepusto.com/clubsandwich-for-crve-fe/</guid>
       <description>
 
 
-&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The importance of using CRVE (i.e., “clustered standard errors”) in panel models is now widely recognized. Less widely recognized, perhaps, is the fact that standard methods for constructing hypothesis tests and confidence intervals based on CRVE can perform quite poorly in when you have only a limited number of independent clusters. What’s worse, it can be hard to determine what counts as a large-enough sample to trust standard CRVE methods, because the finite-sample behavior of the variance estimators and test statistics depends on the configuration of the covariates, not just the total sample size. For example, suppose you have state-level panel data from 50 states across 15 years and are trying to estimate the effect of some policy using difference-in-differences. If only 5 or 6 states have variation in the policy variable over time, then you’re almost certainly in small-sample territory. And the sample size issues can be subtler than this, too, as I’ll show below.&lt;/p&gt;
 &lt;p&gt;One solution to this problem is to use bias-reduced linearization (BRL), which was proposed by Bell and McCaffrey (2002) and has recently begun to receive attention from econometricians (e.g., Cameron &amp;amp; Miller, 2015; Imbens &amp;amp; Kolesar, 2015). The idea of BRL is to correct the bias of standard CRVE based on a working model, and then to use a degrees-of-freedom correction for Wald tests based on the bias-reduced CRVE. That may seem silly (after all, the whole point of CRVE is to avoid making distributional assumptions about the errors in your model), but it turns out that the correction can help quite a bit, even when the working model is wrong. The degrees-of-freedom correction is based on a standard Satterthwaite-type approximation, and also relies on the working model. There’s now quite a bit of evidence (which we review in the working paper) that BRL performs well even in samples with a small number of clusters.&lt;/p&gt;
 &lt;p&gt;In the working paper, we make two contributions to all this:&lt;/p&gt;
@@ -1064,9 +908,9 @@ coef_test(lm_Hausman, vcov = &amp;quot;CR2&amp;quot;, cluster = MVA_deaths$state
     
     <item>
       <title>The clubSandwich package for meta-analysis with RVE</title>
-      <link>/clubsandwich-for-rve-meta-analysis/</link>
+      <link>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</link>
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
-      <guid>/clubsandwich-for-rve-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</guid>
       <description>
 
 
@@ -1232,13 +1076,13 @@ summary(m3_metafor)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Meta-sandwich with extra mustard</title>
-      <link>/robust-meta-analysis-3/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-3/</link>
       <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-3/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-3/</guid>
       <description>
 
 
-&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
+&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
 You can find her forthcoming paper on the adjustments &lt;a href=&#34;http://dx.doi.org/10.1037/met0000011&#34;&gt;here&lt;/a&gt;.
 My understanding is that these small-sample corrections are important because the uncorrected sandwich estimators can lead to under-statement of uncertainty and inflated type I error rates when a given meta-regression coefficient is estimated from only a small or moderately sized sample of independent studies (or clusters of studies).
 Moreover, it can be difficult to determine exactly when you have a large enough sample to trust the uncorrected sandwiches.&lt;/p&gt;
@@ -1355,13 +1199,13 @@ coef(WOLS)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Another meta-sandwich</title>
-      <link>/robust-meta-analysis-2/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-2/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-2/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-2/</guid>
       <description>
 
 
-&lt;p&gt;In &lt;a href=&#34;/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
+&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
 Here’s another example, replicating some more of the calculations from &lt;a href=&#34;http://doi.org/10.1002/jrsm.1091&#34;&gt;Tanner-Smith &amp;amp; Tipton (2013)&lt;/a&gt;.
 (&lt;a href=&#34;https://gist.github.com/jepusto/11147304&#34;&gt;See here&lt;/a&gt; for the complete code.)&lt;/p&gt;
 &lt;p&gt;As a starting point, here are the results produced by the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
@@ -1477,9 +1321,9 @@ cbind(rho = rho_sens, sigma2 = round(sigma2_sens, 4))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A meta-sandwich</title>
-      <link>/robust-meta-analysis-1/</link>
+      <link>https://www.jepusto.com/robust-meta-analysis-1/</link>
       <pubDate>Mon, 21 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/robust-meta-analysis-1/</guid>
+      <guid>https://www.jepusto.com/robust-meta-analysis-1/</guid>
       <description>
 
 

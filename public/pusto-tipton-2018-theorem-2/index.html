@@ -1,0 +1,1318 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I&#39;ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/pusto-tipton-2018-theorem-2/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://www.jepusto.com/pusto-tipton-2018-theorem-2/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="https://www.jepusto.com/pusto-tipton-2018-theorem-2/">
+  <meta property="og:title" content="Corrigendum to Pustejovsky and Tipton (2018) | James E. Pustejovsky">
+  <meta property="og:description" content="In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I&#39;ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated."><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2022-09-28T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2022-09-28T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.jepusto.com/pusto-tipton-2018-theorem-2/"
+  },
+  "headline": "Corrigendum to Pustejovsky and Tipton (2018)",
+  
+  "datePublished": "2022-09-28T00:00:00Z",
+  "dateModified": "2022-09-28T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "James E. Pustejovsky",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I'll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>Corrigendum to Pustejovsky and Tipton (2018) | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>Students</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Corrigendum to Pustejovsky and Tipton (2018)</h1>
+
+  
+  <p class="page-subtitle">Theorem 2 is incorrect as stated</p>
+  
+
+  
+    
+
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
+</div>
+
+
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2022-09-28
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/pusto-tipton-2018-theorem-2/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span>
+In my <a href="/publication/rve-in-fixed-effects-models/">2018 paper with Beth Tipton</a>, published in the <em>Journal of Business and Economic Statistics</em>, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader, <a href="https://eeecon.uibk.ac.at/~pfaffermayr/">Dr. Michael Pfaffermayr</a>, recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.</p>
+<div id="a-fixed-effects-model" class="section level3">
+<h3>A fixed effects model</h3>
+<p>For data that can be grouped into <span class="math inline">\(m\)</span> clusters of observations, we considered the model
+<span class="math display" id="eq:regression">\[
+\bm{y}_i = \bm{R}_i \bs\beta + \bm{S}_i \bs\gamma + \bm{T}_i \bs\mu + \bs\epsilon_i, \tag{1}
+\]</span>
+where <span class="math inline">\(\bm{y}_i\)</span> is an <span class="math inline">\(n_i \times 1\)</span> vector of responses for cluster <span class="math inline">\(i\)</span>, <span class="math inline">\(\bm{R}_i\)</span> is an <span class="math inline">\(n_i \times r\)</span> matrix of focal predictors, <span class="math inline">\(\bm{S}_i\)</span> is an <span class="math inline">\(n_i \times s\)</span> matrix of additional covariates that vary across multiple clusters, and <span class="math inline">\(\bm{T}_i\)</span> is an <span class="math inline">\(n_i \times t\)</span> matrix encoding cluster-specific fixed effects, all for <span class="math inline">\(i = 1,...,m\)</span>. The cluster-specific fixed effects satisfy <span class="math inline">\(\bm{T}_h \bm{T}_i&#39; = \bm{0}\)</span> for <span class="math inline">\(h \neq i\)</span>. Interest centers on inference for the coefficients on the focal predictors <span class="math inline">\(\bs\beta\)</span>.</p>
+<p>We considered estimation of Model <a href="#eq:regression">(1)</a> by weighted least squares (WLS), possibly under a working model for the distribution of <span class="math inline">\(\bs\epsilon_i\)</span>. Let <span class="math inline">\(\bm{W}_1,...,\bm{W}_m\)</span> be a set of symmetric weight matrices used for WLS estimation. Sometimes, these weight matrices may be diagonal, consisting of sampling weights for each observation. Other times, the weight matrices may involve off-diagonal terms as well. Consider a working model <span class="math inline">\(\Var\left(\bs\epsilon_i | \bm{R}_i, \bm{S}_i, \bm{T}_i\right) = \sigma^2 \bs\Phi_i\)</span> where <span class="math inline">\(\bs\Phi_i\)</span> is a symmetric <span class="math inline">\(n_i \times n_i\)</span> matrix that may be a function of a low-dimensional, estimable parameter. Based on this working model, the weight matrices might be taken as <span class="math inline">\(\bm{W}_i = \bs{\hat\Phi}_i^{-1}\)</span>, where <span class="math inline">\(\bs{\hat\Phi}_i\)</span> is an estimate of <span class="math inline">\(\bs\Phi_i\)</span>.</p>
+</div>
+<div id="the-cr2-variance-estimator" class="section level3">
+<h3>The CR2 variance estimator</h3>
+<p>In the paper, we provide a generalization of the bias-reduced linearization estimator introduced by <span class="citation">McCaffrey et al. (<a href="#ref-McCaffrey2001generalizations" role="doc-biblioref">2001</a>)</span> and <span class="citation">Bell &amp; McCaffrey (<a href="#ref-Bell2002bias" role="doc-biblioref">2002</a>)</span> that can be applied to Model <a href="#eq:regression">(1)</a>. The variance estimator is effectively a generalization of the HC2 correction for heteroskedasticity-robust standard errors, but that works for models with within-cluster dependence and cluster-specific fixed effects, and so we refer to it the “CR2” estimator.</p>
+<p>In order to define the CR2 variance estimator and explain the issue with Theorem 2, I’ll need to lay down a bit more notation. Let <span class="math inline">\(N = \sum_{i=1}^m n_i\)</span> be the total sample size. Let <span class="math inline">\(\bm{U}_i = \left[ \bm{R}_i \ \bm{S}_i \right]\)</span> be the set of predictors that vary across clusters and <span class="math inline">\(\bm{X}_i = \left[ \bm{R}_i \ \bm{S}_i \ \bm{T}_i \right]\)</span> be the full set of predictors. Let <span class="math inline">\(\bm{R}\)</span>, <span class="math inline">\(\bm{S}\)</span>, <span class="math inline">\(\bm{T}\)</span>, <span class="math inline">\(\bm{U}\)</span>, and <span class="math inline">\(\bm{X}\)</span> denote the stacked versions of the cluster-specific matrices (i.e., <span class="math inline">\(\bm{R} = \left[\bm{R}_1&#39; \ \bm{R}_2&#39; \ \cdots \ \bm{R}_m&#39;\right]&#39;\)</span>, etc.). Let <span class="math inline">\(\bm{W} = \bigoplus_{i=1}^m \bm{W}_i\)</span> and <span class="math inline">\(\bs\Phi = \bigoplus_{i=1}^m \bs\Phi_i\)</span>. For a generic matrix <span class="math inline">\(\bm{Z}\)</span>, let <span class="math inline">\(\bm{M}_{Z} = \left(\bm{Z}&#39;\bm{W}\bm{Z}\right)^{-1}\)</span> and <span class="math inline">\(\bm{H}_{\bm{Z}} = \bm{Z} \bm{M}_{\bm{Z}}\bm{Z}&#39;\bm{W}\)</span>. Let <span class="math inline">\(\bm{C}_i\)</span> be the <span class="math inline">\(n_i \times N\)</span> matrix that selects the rows of cluster <span class="math inline">\(i\)</span> from the full set of observations, such that <span class="math inline">\(\bm{X}_i = \bm{C}_i \bm{X}\)</span>. These operators provide an easy way to define absorbed versions of the predictors. Specifically, let <span class="math inline">\(\bm{\ddot{S}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{S}\)</span> be the covariates after absorbing (i.e., partialling out) the cluster-specific effects, let <span class="math inline">\(\bm{\ddot{U}} = \left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{U}\)</span> be an absorbed version of the focal predictors and the covariates, and let <span class="math inline">\(\bm{\ddot{R}} = \left(\bm{I} - \bm{H}_{\bm{\ddot{S}}}\right)\left(\bm{I} - \bm{H}_{\bm{T}}\right) \bm{R}\)</span> be the focal predictors after absorbing the covariates and the cluster-specific fixed effects.</p>
+<p>With this notation established, the CR2 variance estimator has the form
+<span class="math display">\[
+\bm{V}^{CR2} = \bm{M}_{\bm{\ddot{R}}} \left(\sum_{i=1}^m \bm{\ddot{R}}_i&#39; \bm{W}_i \bm{A}_i \bm{e}_i \bm{e}_i&#39; \bm{A}_i \bm{W}_i \bm{\ddot{R}}_i \right) \bm{M}_{\bm{\ddot{R}}},
+\]</span>
+where <span class="math inline">\(\bm{\ddot{R}}_i = \bm{C}_i \bm{\ddot{R}}\)</span> is the cluster-specific matrix of absorbed focal predictors, <span class="math inline">\(\bm{e}_i\)</span> is the vector of weighted least squares residuals from cluster <span class="math inline">\(i\)</span>, and <span class="math inline">\(\bm{A}_1,...,\bm{A}_m\)</span> are a set of adjustment matrices that correct the bias of the residual cross-products.
+The adjustment matrices are calculated as follows. Let <span class="math inline">\(\bm{D}_i\)</span> be the upper-right Cholesky factorization of <span class="math inline">\(\bm{\Phi}_i\)</span> and define the matrices
+<span class="math display" id="eq:B-matrix">\[
+\bm{B}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{X}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{X}}\right)&#39;\bm{C}_i&#39; \bm{D}_i&#39;
+\tag{2}
+\]</span>
+for <span class="math inline">\(i = 1,...,m\)</span>. The adjustment matrices are then calculated as
+<span class="math display" id="eq:A-matrix">\[
+\bm{A}_i = \bm{D}_i&#39; \bm{B}_i^{+1/2} \bm{D}_i,
+\tag{3}
+\]</span>
+where <span class="math inline">\(\bm{B}_i^{+1/2}\)</span> is the symmetric square root of the Moore-Penrose inverse of <span class="math inline">\(\bm{B}_i\)</span>.
+Theorem 1 in the paper shows that, if the working model <span class="math inline">\(\bs\Phi\)</span> is correctly specified and some conditions on the rank of <span class="math inline">\(\bm{U}\)</span> are satisfied, then the CR2 estimator is exactly unbiased for the sampling variance of the weighted least squares estimator of <span class="math inline">\(\bs\beta\)</span>. Across multiple simulation studies, it’s been observed that the CR2 estimator also works well and outperforms alternative sandwich estimators even when the working model is not correctly specified.</p>
+</div>
+<div id="theorem-2" class="section level3">
+<h3>Theorem 2</h3>
+<p>The adjustment matrices given in <a href="#eq:A-matrix">(3)</a> can be expensive to compute directly because the <span class="math inline">\(\bm{B}_i\)</span> matrices involve computing a “residualized” version of the <span class="math inline">\(N \times N\)</span> matrix <span class="math inline">\(\bs\Phi\)</span> involving the full set of predictors <span class="math inline">\(\bm{X}\)</span>—including the cluster-specific fixed effects <span class="math inline">\(\bm{T}_1,...,\bm{T}_m\)</span>. Theorem 2 considered whether one can take a computational short cut by omitting the cluster-specific fixed effects from the calculation of the <span class="math inline">\(\bm{B}_i\)</span> matrices. Specifically, define the modified matrices
+<span class="math display" id="eq:B-modified">\[
+\bm{\tilde{B}}_i = \bm{D}_i \bm{C}_i \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right) \bs\Phi \left(\bm{I} - \bm{H}_{\bm{\ddot{U}}}\right)&#39;\bm{C}_i&#39; \bm{D}_i&#39;
+\tag{4}
+\]</span>
+and
+<span class="math display" id="eq:A-modified">\[
+\bm{\tilde{A}}_i = \bm{D}_i&#39; \bm{\tilde{B}}_i^{+1/2} \bm{D}_i,
+\tag{5}.
+\]</span>
+Theorem 2 claims that if the weight matrices are inverse of the working model, such that <span class="math inline">\(\bm{W}_i = \bs\Phi_i^{-1}\)</span> for <span class="math inline">\(i = 1,...,m\)</span>, then <span class="math inline">\(\bm{\tilde{B}}_i^{+1/2} = \bm{B}_i^{+1/2}\)</span> and hence <span class="math inline">\(\bm{\tilde{A}}_i = \bm{A}_i\)</span>. The implication is that the cluster-specific fixed effects can be ignored when calculating the adjustment matrices. However, the claimed equivalence does not actually hold.</p>
+<p>Here is a simple numerical example that contradicts the assertion of Theorem 2. I first create a predictor matrix consisting of 4 clusters, a single focal predictor, and cluster-specific fixed effects.</p>
+<pre class="r"><code>set.seed(20220926)
+m &lt;- 4                                             # number of clusters
+ni &lt;- 2 + rpois(m, 3.5)                            # cluster sizes
+N &lt;- sum(ni)                                       # total sample size
+id &lt;- factor(rep(LETTERS[1:m], ni))                # cluster ID
+R &lt;- rnorm(N)                                      # focal predictor
+dat &lt;- data.frame(R, id)                           # create raw data frame
+X &lt;- model.matrix(~ R + id + 0, data = dat)        # full predictor matrix
+Ui &lt;- tapply(R, id, \(x) x - mean(x))              # absorbed version of R
+U &lt;- unsplit(Ui, id)</code></pre>
+<p>Consider a model estimated by ordinary least squares, where the assumed working model is homoskedastic and independent errors, so <span class="math inline">\(\bs\Phi_i = \bm{I}_i\)</span>, an <span class="math inline">\(n_i \times n_i\)</span> identity matrix (with no parameters to estimate). In this case, the adjustment matrices simplify considerably, to
+<span class="math display">\[
+\bm{A}_i = \left(\bm{I}_i - \bm{X}_i \bm{M}_{X} \bm{X}_i&#39; \right)^{+1/2} \qquad \text{and} \qquad \bm{\tilde{A}}_i = \left(\bm{I}_i - \bm{\ddot{U}}_i \bm{M}_{\ddot{U}} \bm{\ddot{U}}_i&#39; \right)^{+1/2}.
+\]</span>
+I calculate these directly as follows:</p>
+<pre class="r"><code>matrix_power &lt;- function(x, p) {
+  eig &lt;- eigen(x, symmetric = TRUE)
+  val_p &lt;- with(eig, ifelse(values &gt; 10^-12, values^p, 0))
+  with(eig, vectors %*% (val_p * t(vectors)))
+}
+
+MX &lt;- solve(crossprod(X))
+B &lt;- 
+  by(X, id, as.matrix) |&gt;
+  lapply(\(x) diag(nrow(x)) - x %*% MX %*% t(x))
+A &lt;- lapply(B, matrix_power, p = -1/2)
+  
+MU &lt;- 1 / crossprod(U)
+Btilde &lt;- lapply(Ui, \(x) diag(length(x)) - x %*% MU %*% t(x))
+Atilde &lt;- lapply(Btilde, matrix_power, p = -1/2)</code></pre>
+<p>Here are the adjustment matrices based on the full predictor matrix <span class="math inline">\(\bm{X}\)</span>:</p>
+<pre class="r"><code>print(A, digits = 3)</code></pre>
+<pre><code>## $A
+##        [,1]   [,2]   [,3]   [,4]   [,5]
+## [1,]  0.853 -0.198 -0.207 -0.191 -0.257
+## [2,] -0.198  0.800 -0.200 -0.200 -0.202
+## [3,] -0.207 -0.200  0.801 -0.201 -0.192
+## [4,] -0.191 -0.200 -0.201  0.802 -0.210
+## [5,] -0.257 -0.202 -0.192 -0.210  0.860
+## 
+## $B
+##        [,1]   [,2]   [,3]
+## [1,]  0.668 -0.338 -0.330
+## [2,] -0.338  0.683 -0.345
+## [3,] -0.330 -0.345  0.675
+## 
+## $C
+##        [,1]   [,2]   [,3]   [,4]   [,5]   [,6]
+## [1,]  0.873 -0.206 -0.163 -0.105 -0.233 -0.166
+## [2,] -0.206  0.873 -0.171 -0.229 -0.100 -0.167
+## [3,] -0.163 -0.171  0.834 -0.160 -0.173 -0.167
+## [4,] -0.105 -0.229 -0.160  0.931 -0.271 -0.166
+## [5,] -0.233 -0.100 -0.173 -0.271  0.946 -0.168
+## [6,] -0.166 -0.167 -0.167 -0.166 -0.168  0.833
+## 
+## $D
+##        [,1]   [,2]   [,3]
+## [1,]  0.797 -0.342 -0.455
+## [2,] -0.342  0.667 -0.325
+## [3,] -0.455 -0.325  0.780</code></pre>
+<p>Compare the above with the adjustment matrices based on the absorbed predictors only:</p>
+<pre class="r"><code>print(Atilde, digits = 3)</code></pre>
+<pre><code>## $A
+##          [,1]      [,2]     [,3]      [,4]     [,5]
+## [1,]  1.05313  0.001860 -0.00742  0.008995 -0.05657
+## [2,]  0.00186  1.000065 -0.00026  0.000315 -0.00198
+## [3,] -0.00742 -0.000260  1.00104 -0.001257  0.00790
+## [4,]  0.00900  0.000315 -0.00126  1.001523 -0.00958
+## [5,] -0.05657 -0.001980  0.00790 -0.009576  1.06022
+## 
+## $B
+##          [,1]     [,2]     [,3]
+## [1,]  1.00139 -0.00478  0.00339
+## [2,] -0.00478  1.01642 -0.01163
+## [3,]  0.00339 -0.01163  1.00824
+## 
+## $C
+##           [,1]      [,2]      [,3]      [,4]     [,5]      [,6]
+## [1,]  1.039180 -0.039378  4.00e-03  0.061921 -0.06632  5.94e-04
+## [2,] -0.039378  1.039577 -4.02e-03 -0.062234  0.06665 -5.97e-04
+## [3,]  0.003999 -0.004019  1.00e+00  0.006320 -0.00677  6.07e-05
+## [4,]  0.061921 -0.062234  6.32e-03  1.097861 -0.10481  9.39e-04
+## [5,] -0.066317  0.066651 -6.77e-03 -0.104808  1.11225 -1.01e-03
+## [6,]  0.000594 -0.000597  6.07e-05  0.000939 -0.00101  1.00e+00
+## 
+## $D
+##          [,1]     [,2]    [,3]
+## [1,]  1.13078 -0.00914 -0.1216
+## [2,] -0.00914  1.00064  0.0085
+## [3,] -0.12165  0.00850  1.1131</code></pre>
+<p>The matrices differ:</p>
+<pre class="r"><code>all.equal(A, Atilde)</code></pre>
+<pre><code>## [1] &quot;Component \&quot;A\&quot;: Mean relative difference: 0.6073885&quot;
+## [2] &quot;Component \&quot;B\&quot;: Mean relative difference: 0.7403564&quot;
+## [3] &quot;Component \&quot;C\&quot;: Mean relative difference: 0.5671847&quot;
+## [4] &quot;Component \&quot;D\&quot;: Mean relative difference: 0.6682793&quot;</code></pre>
+<p>Thus, Theorem 2 is incorrect as stated. (I have yet to identify the mis-step in the proof as given in the supplementary materials of the paper.)</p>
+</div>
+<div id="further-thoughts" class="section level3">
+<h3>Further thoughts</h3>
+<p>For this particular model specification, it is interesting to note that <span class="math inline">\(\bm{\tilde{A}}_i = \bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i&#39;\)</span>. Because <span class="math inline">\(\bm{\ddot{U}}_i&#39; \bm{T}_i = \bm{0}\)</span>, it follows that
+<span class="math display">\[
+\bm{\ddot{U}}_i&#39; \bm{\tilde{A}}_i = \bm{\ddot{U}}_i&#39; \left(\bm{A}_i + \bm{T}_i \bm{M}_{\bm{T}} \bm{T}_i&#39; \right) = \bm{\ddot{U}}_i&#39; \bm{A}_i.
+\]</span>
+This holds in the numerical example:</p>
+<pre class="r"><code>UiAtilde &lt;- mapply(\(u, a) t(u) %*% a, u = Ui, a = Atilde, SIMPLIFY = FALSE)
+UiA &lt;- mapply(\(u, a) t(u) %*% a, u = Ui, a = A, SIMPLIFY = FALSE)
+all.equal(UiAtilde, UiA)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Thus, although the exact statement of Theorem 2 is incorrect, the substantive implication actually still holds. For this particular example, computing the CR2 variance estimator using the short-cut adjustment matrices <span class="math inline">\(\bm{\tilde{A}}_1,...,\bm{\tilde{A}}_m\)</span> is equivalent to computing the CR2 variance estimator using the full model adjustment matrices <span class="math inline">\(\bm{A}_1,...,\bm{A}_m\)</span>. However, I have not yet been able to work out the general conditions under which this equivalence holds. It may require stricter conditions than those assumed in Theorem 2.</p>
+</div>
+<div id="references" class="section level3 unnumbered">
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Bell2002bias" class="csl-entry">
+Bell, R. M., &amp; McCaffrey, D. F. (2002). <span class="nocase">Bias reduction in standard errors for linear regression with multi-stage samples</span>. <em>Survey Methodology</em>, <em>28</em>(2), 169–181.
+</div>
+<div id="ref-McCaffrey2001generalizations" class="csl-entry">
+McCaffrey, D. F., Bell, R. M., &amp; Botts, C. H. (2001). <span class="nocase">Generalizations of biased reduced linearization</span>. <em>Proceedings of the Annual Meeting of the American Statistical Association</em>.
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/robust-variance-estimation/">robust variance estimation</a>
+  
+  <a class="badge badge-light" href="/tags/econometrics/">econometrics</a>
+  
+  <a class="badge badge-light" href="/tags/matrix-algebra/">matrix algebra</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.jepusto.com/pusto-tipton-2018-theorem-2/&amp;text=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.jepusto.com/pusto-tipton-2018-theorem-2/&amp;t=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29&amp;body=https://www.jepusto.com/pusto-tipton-2018-theorem-2/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.jepusto.com/pusto-tipton-2018-theorem-2/&amp;title=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29%20https://www.jepusto.com/pusto-tipton-2018-theorem-2/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.jepusto.com/pusto-tipton-2018-theorem-2/&amp;title=Corrigendum%20to%20Pustejovsky%20and%20Tipton%20%282018%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/handmade-clubsandwich/">A handmade clubSandwich for multi-site trials</a></li>
+      
+      <li><a href="/publication/sced-mlma-rve/">Multi-level meta-analysis of single-case experimental designs using robust variance estimation</a></li>
+      
+      <li><a href="/publication/cluster-wild-bootstrap-for-meta-analysis/">Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</a></li>
+      
+      <li><a href="/publication/rve-meta-analysis-expanding-the-range/">Meta-Analysis with robust variance estimation: Expanding the range of working models</a></li>
+      
+      <li><a href="/inverting-partitioned-matrices/">Inverting partitioned matrices</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.107281da73526e9b05dade8a9cfe7f27.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  
+  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "show");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
+
+
+  <p class="powered-by">
+    © 2023 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

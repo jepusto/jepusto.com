@@ -2,53 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>3 | James E. Pustejovsky</title>
-    <link>/publication_types/3/</link>
-      <atom:link href="/publication_types/3/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/publication_types/3/</link>
+      <atom:link href="https://www.jepusto.com/publication_types/3/index.xml" rel="self" type="application/rss+xml" />
     <description>3</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 06 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>3</title>
-      <link>/publication_types/3/</link>
+      <link>https://www.jepusto.com/publication_types/3/</link>
     </image>
     
     <item>
-      <title>Power approximations for meta-analysis of dependent effect sizes</title>
-      <link>/publication/power-approximations-for-dependent-effects/</link>
-      <pubDate>Thu, 06 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/publication/power-approximations-for-dependent-effects/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>/publication/competing-approaches-for-cross-classified-data/</link>
-      <pubDate>Thu, 14 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/competing-approaches-for-cross-classified-data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
-      <link>/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
-      <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>/publication/sced-mlma-rve/</link>
-      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/sced-mlma-rve/</guid>
+      <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
+      <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>High replicability of newly-discovered social-behavioral findings is achievable.</title>
-      <link>/publication/decline-effects/</link>
+      <link>https://www.jepusto.com/publication/decline-effects/</link>
       <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/decline-effects/</guid>
+      <guid>https://www.jepusto.com/publication/decline-effects/</guid>
       <description></description>
     </item>
     

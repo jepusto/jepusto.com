@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>causal inference | James E. Pustejovsky</title>
-    <link>/tags/causal-inference/</link>
-      <atom:link href="/tags/causal-inference/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/causal-inference/</link>
+      <atom:link href="https://www.jepusto.com/tags/causal-inference/index.xml" rel="self" type="application/rss+xml" />
     <description>causal inference</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Tue, 20 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Tue, 20 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>causal inference</title>
-      <link>/tags/causal-inference/</link>
+      <link>https://www.jepusto.com/tags/causal-inference/</link>
     </image>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Examining heterogeneity across schools and student characteristics</title>
-      <link>/publication/transition-to-college-mathematics-year-3/</link>
+      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/transition-to-college-mathematics-year-3/</guid>
+      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the second year of implementation</title>
-      <link>/publication/transition-to-college-mathematics-year-2/</link>
+      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/transition-to-college-mathematics-year-2/</guid>
+      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the first year of implementation</title>
-      <link>/publication/transition-to-college-mathematics-year-1/</link>
+      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/transition-to-college-mathematics-year-1/</guid>
+      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Effective sample size aggregation</title>
-      <link>/effective-sample-size-aggregation/</link>
+      <link>https://www.jepusto.com/effective-sample-size-aggregation/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>/effective-sample-size-aggregation/</guid>
+      <guid>https://www.jepusto.com/effective-sample-size-aggregation/</guid>
       <description>
 
 
@@ -96,9 +96,9 @@ ESS = \frac{N^2}{\sum_{j=1}^J n_j^2 / ESS_j}.
     
     <item>
       <title>2SLS standard errors and the delta-method</title>
-      <link>/delta-method-and-2sls-ses/</link>
+      <link>https://www.jepusto.com/delta-method-and-2sls-ses/</link>
       <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/delta-method-and-2sls-ses/</guid>
+      <guid>https://www.jepusto.com/delta-method-and-2sls-ses/</guid>
       <description>
 
 
@@ -187,15 +187,15 @@ V^{2SLS} &amp;amp;= \left(\mathbf{\tilde{t}}&amp;#39;\mathbf{\tilde{t}}\right)^{
     
     <item>
       <title>Estimating average effects in regression discontinuities with covariate interactions</title>
-      <link>/rdd-interactions-again/</link>
+      <link>https://www.jepusto.com/rdd-interactions-again/</link>
       <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/rdd-interactions-again/</guid>
+      <guid>https://www.jepusto.com/rdd-interactions-again/</guid>
       <description>
 
 
 &lt;p&gt;Regression discontinuity designs (RDDs) are now a widely used tool for program evaluation in economics and many other fields. RDDs occur in situations where some treatment/program of interest is assigned on the basis of a numerical score (called the running variable), all units scoring above a certain threshold receiving treatment and all units scoring at or below the threshold having treatment withheld (or vice versa, with treatment assigned to units scoring below the threshold). This mechanism provides a way to identify the &lt;strong&gt;marginal average treatment effect&lt;/strong&gt; (MATE): the average effect of treatment assignment for units on the cusp of the threshold.&lt;/p&gt;
 &lt;p&gt;RDDs are appealing for a couple of reasons. First and foremost, RDD-like mechanism occurs all over the place, since providing treatment on the basis of a numerical measure of need/eligibility is a natural way to allocate resources. Furthermore, analysis of the designs is straight-forward, as it involves nothing more complicated than a linear regression model, estimated using (weighted or un-weighted) least squares, and which can be represented graphically using a simple scatterplot. Things get a little bit more complicated if you are trying to account for imperfect compliance with treatment assignment—as in the “fuzzy” RDD—but for the moment let me focus on “sharp” RDDs.&lt;/p&gt;
-&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
+&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;https://www.jepusto.com/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
 &lt;div id=&#34;gday-mate&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;G’day, MATE&lt;/h3&gt;
 &lt;p&gt;I think it’s helpful to start by thinking about the definition of the MATE in non-parametric terms. Let &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt; be the running variable, assumed to be centered at the threshold; &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; be an indicator for treatment assignment, with &lt;span class=&#34;math inline&#34;&gt;\(T = I(R &amp;gt; 0)\)&lt;/span&gt;; and &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a covariate, which may be vector-valued. Denote the potential outcomes as &lt;span class=&#34;math inline&#34;&gt;\(Y^0\)&lt;/span&gt; (a unit’s outcome if not assigned to treatment) and &lt;span class=&#34;math inline&#34;&gt;\(Y^1\)&lt;/span&gt; (a unit’s outcome if assigned to treatment), so that the observed outcome is &lt;span class=&#34;math inline&#34;&gt;\(Y = Y^0 (1 - T) + Y^1 T\)&lt;/span&gt;. Now consider the potential response surfaces&lt;/p&gt;
@@ -305,9 +305,9 @@ coeftest(lm_fit, vcov. = vcovHC(lm_fit, type = &amp;quot;HC1&amp;quot;))[&amp;qu
     
     <item>
       <title>Regression discontinuities with covariate interactions in the rdd package</title>
-      <link>/rdd-interactions/</link>
+      <link>https://www.jepusto.com/rdd-interactions/</link>
       <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>/rdd-interactions/</guid>
+      <guid>https://www.jepusto.com/rdd-interactions/</guid>
       <description>
 
 
@@ -362,7 +362,7 @@ summary(rdd_simple)&lt;/code&gt;&lt;/pre&gt;
 ## Double-BW  104.74  3         1828        0.000e+00&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using a bandwidth of 1.09, the estimated marginal average treatment effect is 0.303. The figure below illustrates the discontinuity:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;rdd-with-covariates&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;RDD with covariates&lt;/h3&gt;
@@ -404,7 +404,7 @@ ldply(covariates, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;Speci
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y_i = \beta_0 + \beta_1 R_i + \beta_2 T_i + \beta_3 R_i T_i + \beta_4 X_i + \beta_5 X_i T_i + \epsilon_i, \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;while still taking &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; to represent the MATE. This is problematic because, as soon as the &lt;span class=&#34;math inline&#34;&gt;\(X_i T_i\)&lt;/span&gt; term is introduced into the model, &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; represents the difference between treated and untreated units at the threshold (where &lt;span class=&#34;math inline&#34;&gt;\(R_i = 0\)&lt;/span&gt;) and where &lt;span class=&#34;math inline&#34;&gt;\(X_i = 0\)&lt;/span&gt;. Thus, including the &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; is a difference extrapolated &lt;em&gt;way&lt;/em&gt; outside the support of the data, as in the following scatterplot of the outcome versus the covariate &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;RDestimate&lt;/code&gt; returns as the MATE estimate the difference between the regression lines when &lt;span class=&#34;math inline&#34;&gt;\(X_1 = 0\)&lt;/span&gt;, which in this example is -0.69. Similarly, including the &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; will represent the marginal average treatment effect for only one of the categories of &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;, rather than as some sort of average across all four categories.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-to-do-about-this&#34; class=&#34;section level3&#34;&gt;

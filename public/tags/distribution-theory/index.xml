@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>distribution theory | James E. Pustejovsky</title>
-    <link>/tags/distribution-theory/</link>
-      <atom:link href="/tags/distribution-theory/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/distribution-theory/</link>
+      <atom:link href="https://www.jepusto.com/tags/distribution-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>distribution theory</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>distribution theory</title>
-      <link>/tags/distribution-theory/</link>
+      <link>https://www.jepusto.com/tags/distribution-theory/</link>
     </image>
     
     <item>
       <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
-      <link>/variance-components-with-misspecified-correlation/</link>
+      <link>https://www.jepusto.com/variance-components-with-misspecified-correlation/</link>
       <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>/variance-components-with-misspecified-correlation/</guid>
+      <guid>https://www.jepusto.com/variance-components-with-misspecified-correlation/</guid>
       <description>
 
 
@@ -26,10 +26,10 @@
 \def\Var{{\text{Var}}}
 \def\Cov{{\text{Cov}}}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
+&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
 &lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
 &lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
-&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
+&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
 &lt;div id=&#34;the-correlated-and-hierarchical-effects-che-model&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;The correlated-and-hierarchical effects (CHE) model&lt;/h1&gt;
 &lt;p&gt;Consider a meta-analytic dataset with effect size estimates &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k_j\)&lt;/span&gt; indexes effect size estimates within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; indexes studies, for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. Say that effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_{ij}\)&lt;/span&gt;, and there is some sampling correlation between effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, denoted &lt;span class=&#34;math inline&#34;&gt;\(\phi_{hij}\)&lt;/span&gt;.
@@ -165,7 +165,7 @@ ggplot() +
   scale_x_continuous(expand = c(0,0)) + 
   scale_y_continuous(expand = c(0,0)) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.4\)&lt;/span&gt; corresponds to the true sampling correlation, the function is minimized at the true values of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the left-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.0\)&lt;/span&gt; leads to an upwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a downwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the right-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.8\)&lt;/span&gt; leads to a smaller value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a larger value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;.&lt;/p&gt;
 &lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Completely balanced designs&lt;/h2&gt;
@@ -241,7 +241,7 @@ opt_params %&amp;gt;%
   theme_minimal() + 
   labs(x = expression(rho), y = &amp;quot;Parameter&amp;quot;, color = &amp;quot;&amp;quot;, linetype = &amp;quot;&amp;quot;) +
   theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The top row of the figure shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt;, the middle row shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt;, and the bottom row shows the total SD, for varying levels of assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;. The solid green lines represent the values that actually minimize the KL divergence. The dashed orange lines correspond to the minimizing values assuming complete balance (and using the average value of the &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j^2\)&lt;/span&gt;’s to evaluate the bias). The “balanced” approximations are fairly close—close enough to use as heuristics, at least—although they’re not perfect. In particular, the balanced approximation becomes discrepant from the real minimizing values when &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt; gets closer to zero. It’s also notable that the total variance is nearly constant (except when one or the other variance component is zero) and the balanced approximation is quite close to the real minimizing values.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -261,11 +261,10 @@ opt_params %&amp;gt;%
     
     <item>
       <title>Implications of mean-variance relationships for standardized mean differences</title>
-      <link>/mean-variance-relationships-and-smds/</link>
+      <link>https://www.jepusto.com/mean-variance-relationships-and-smds/</link>
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>/mean-variance-relationships-and-smds/</guid>
+      <guid>https://www.jepusto.com/mean-variance-relationships-and-smds/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I spend more time than I probably should discussing meta-analysis problems on the &lt;a href=&#34;https://stat.ethz.ch/mailman/listinfo/r-sig-meta-analysis&#34;&gt;R-SIG-meta-analysis listserv&lt;/a&gt;. The questions that folks pose there are often quite interesting—especially when they’re motivated by issues that they’re wrestling with while trying to complete meta-analysis projects in their diverse fields. For those interested in meta-analytic methodology, I think perusing the mailing list is a good way to get a bit of ground sense about problems that come up in practice and places where there is a need for new methodological work, or at least further methodological guidance.&lt;/p&gt;
@@ -303,7 +302,7 @@ this analysis:&lt;/p&gt;
 &lt;h2&gt;Mean-variance relationships can induce heterogeneity&lt;/h2&gt;
 &lt;p&gt;The standardized mean difference parameter for a given study can be defined as:
 &lt;span class=&#34;math display&#34;&gt;\[
-\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}}, 
+\delta_i = \frac{\mu_{Bi} - \mu_{Ai}}{\sigma_{Ai}},
 \]&lt;/span&gt;
 where &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Ai}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\mu_{Bi}\)&lt;/span&gt; are the (population) mean outcomes in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; and group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\sigma_{Ai}\)&lt;/span&gt; is the (population) standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; of study &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;
 The ideal case for using the SMD metric is when the outcomes in different studies are linearly equatable, so that the outcome scale in one study can be directly translated into the outcome scale of another study. However, if outcomes exhibit mean-variance relationships, linearly equatability seems rather implausible, and we might expect that SMDs will display heterogeneity across studies as a result.&lt;/p&gt;
@@ -407,7 +406,8 @@ dat &amp;lt;- sim_props(k = 60, alpha = 12, beta = 4,
                  n_min = 10, n_max = 40)
 
 head(dat)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
+&lt;pre&gt;&lt;code&gt;## 
+##       pi_Ai     pi_Bi  lambda_i T_i    delta_i n_i        mA       sdA 
 ## 1 0.7584480 0.5836965 0.7695933  11 -1.3540950  24 0.7500000 0.1080650 
 ## 2 0.7359047 0.4950740 0.6727420  16 -2.1851474  24 0.7786458 0.1222235 
 ## 3 0.7132014 0.4773027 0.6692398  12 -1.8068471  10 0.7333333 0.1097134 
@@ -427,7 +427,7 @@ ggplot(dat) +
   geom_density(aes(log(lambda_i), ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.5) + 
   geom_density(aes(lRR, ..scaled..), fill = &amp;quot;green&amp;quot;, alpha = 0.2) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
@@ -444,7 +444,7 @@ rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-## estimate      se      zval    pval    ci.lb    ci.ub 
+## estimate      se      zval    pval    ci.lb    ci.ub      
 ##  -0.3498  0.0111  -31.5751  &amp;lt;.0001  -0.3715  -0.3281  *** 
 ## 
 ## ---
@@ -455,7 +455,7 @@ ggplot(dat) +
   geom_density(aes(delta_i, ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.2) + 
   geom_density(aes(d, ..scaled..), fill = &amp;quot;purple&amp;quot;, alpha = 0.5) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and in &lt;span class=&#34;math inline&#34;&gt;\(I^2\)&lt;/span&gt;, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(yi = d, vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -471,7 +471,7 @@ A random effects meta-analysis of the standardized mean differences shows a grea
 ## 
 ## Model Results:
 ## 
-## estimate      se      zval    pval    ci.lb    ci.ub 
+## estimate      se      zval    pval    ci.lb    ci.ub      
 ##  -1.5967  0.0824  -19.3771  &amp;lt;.0001  -1.7582  -1.4352  *** 
 ## 
 ## ---
@@ -499,7 +499,7 @@ ggplot(long_summary_stats,
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
 The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;long_summary_stats %&amp;gt;%
   mutate(
@@ -514,7 +514,7 @@ The plot above does suggest a mean-variance relationship, though it’s a bit me
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
 From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).&lt;/p&gt;
 &lt;p&gt;Second, since the outcomes in each group are all proportions, we can simply plot the mean in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; versus the mean in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(dat, aes(mA, mB)) + 
@@ -523,7 +523,7 @@ From the above, it does appear that there could be a relationship between the sc
   geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x) + 
   coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
 This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).&lt;/p&gt;
 &lt;p&gt;Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows &lt;span class=&#34;math inline&#34;&gt;\(d_i\)&lt;/span&gt; versus &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
@@ -543,7 +543,7 @@ Ti_d_plot &amp;lt;-
   theme_minimal()
 
 mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This impression is also born out by a meta-regression that includes the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt; as moderators:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -563,7 +563,7 @@ mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-##            estimate      se     zval    pval    ci.lb    ci.ub 
+##            estimate      se     zval    pval    ci.lb    ci.ub      
 ## intrcpt      2.5225  0.3964   6.3632  &amp;lt;.0001   1.7455   3.2995  *** 
 ## mA          -2.8326  0.4336  -6.5321  &amp;lt;.0001  -3.6825  -1.9827  *** 
 ## sqrt(T_i)   -0.6109  0.0756  -8.0855  &amp;lt;.0001  -0.7590  -0.4628  *** 
@@ -587,7 +587,7 @@ Ti_lRR_plot &amp;lt;-
   theme_minimal()
 
 mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;, which is a bit surprising, although the strength of the relationship is much weaker than what we saw with the standardized mean differences. Meta-regression analysis supports these interpretations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -607,7 +607,7 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Model Results:
 ## 
-##            estimate      se     zval    pval    ci.lb    ci.ub 
+##            estimate      se     zval    pval    ci.lb    ci.ub     
 ## intrcpt     -0.2362  0.0950  -2.4864  0.0129  -0.4224  -0.0500   * 
 ## mA           0.1061  0.0948   1.1196  0.2629  -0.0796   0.2918     
 ## sqrt(T_i)   -0.0553  0.0179  -3.0852  0.0020  -0.0904  -0.0202  ** 
@@ -617,7 +617,7 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now, you might think that a meta-analyst should get excited about the standardized mean difference results, since they’ve uncovered two systematic predictors of effect size magnitude. However, both of these factors are purely operational, arbitrary features of the (simulated) study designs, rather than theoretically or substantively interesting features of the studies. Considered in this light, the finding that they each moderate the magnitude of the standardized mean differences is, more than anything else, &lt;em&gt;annoying&lt;/em&gt;. If we wanted to examine other more theoretically interesting moderators, we’d have to do so in a way that accounts for these methodological predictors. At minimum, that would mean including them all in a meta-regression (leading to a model with 3+ predictors). Further, we would have to worry about whether the functional form of the regression is reasonable. Simply adding the theoretical moderator to the model amounts to assuming that it predicts effect size magnitude in a linear, additive fashion, but what if that’s not the right model? Since we know the true data-generating process here, we can see that the linear, additive model &lt;em&gt;would not&lt;/em&gt; be correct. But in practice, when we don’t know the true process, this would be much murkier.&lt;/p&gt;
 &lt;p&gt;The general principle that I’m suggesting here is that effect sizes should ideally be on a metric that is &lt;em&gt;independent&lt;/em&gt; of arbitrary methodological factors because this should &lt;em&gt;reduce&lt;/em&gt; overall heterogeneity and &lt;em&gt;simplify&lt;/em&gt; the model, making it easier to detect real relations of interest. If one has a choice between several different effect size metrics, then a metric that shows clear associations with methodological factors should be discounted in favor of metrics that do not show such associations or show them only weakly. How to fully operationalize this sort of decision (as one would need to when writing a protocol for a meta-analysis, for example), I’m not yet sure about. It seems like a useful avenue for further methodological work.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
+&lt;div class=&#34;footnotes footnotes-end-of-document&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Yes, there are other ways to define the SMD. Yes, usually we use the standard deviation pooled across both groups. I’m going to use the standard deviation in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; alone because it simplifies some of the mathy bits. Please feel free to work through the case with a pooled SD for yourself.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -629,11 +629,11 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Standardized mean differences in single-group, repeated measures designs</title>
-      <link>/smds-in-single-group/</link>
+      <link>https://www.jepusto.com/smds-in-single-group/</link>
       <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>/smds-in-single-group/</guid>
+      <guid>https://www.jepusto.com/smds-in-single-group/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time. Deriving these quantities is a little exercise in normal distribution theory, which I find kind of relaxing sometimes (hey, we all have our coping mechanisms!).&lt;/p&gt;
@@ -657,7 +657,7 @@ The question is then, what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Va
 \]&lt;/span&gt;
 and
 &lt;span class=&#34;math display&#34;&gt;\[\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].\]&lt;/span&gt;
-From a &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
+From a &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Cov}(s_s^2, s_t^2) = \frac{2 \left(\rho_{st} \sigma_s \sigma_t\right)^2}{n - 1}.
 \]&lt;/span&gt;
@@ -668,7 +668,7 @@ Consequently,
 &amp;amp;= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
 \end{aligned}
 \]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
+Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;https://www.jepusto.com/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
 \]&lt;/span&gt;
@@ -703,11 +703,11 @@ V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad
     
     <item>
       <title>Finding the distribution of significant effect sizes</title>
-      <link>/number-of-significant-effects/</link>
+      <link>https://www.jepusto.com/number-of-significant-effects/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/number-of-significant-effects/</guid>
+      <guid>https://www.jepusto.com/number-of-significant-effects/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In basic meta-analysis, where each study contributes just a single effect size estimate, there has been a lot of work devoted to developing models for selective reporting. Most of these models formulate the selection process as a function of the statistical significance of the effect size estimate; some also allow for the possibility that the precision of the study’s effect influences the probability of selection (i.e., bigger studies are more likely to be reported, regardless of statistical significance).&lt;/p&gt;
@@ -742,13 +742,13 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{1}_m\)&lt;/span&gt; is a
     
     <item>
       <title>Simulating correlated standardized mean differences for meta-analysis</title>
-      <link>/simulating-correlated-smds/</link>
+      <link>https://www.jepusto.com/simulating-correlated-smds/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>/simulating-correlated-smds/</guid>
+      <guid>https://www.jepusto.com/simulating-correlated-smds/</guid>
       <description>
 
 
-&lt;p&gt;As I’ve discussed in &lt;a href=&#34;/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
+&lt;p&gt;As I’ve discussed in &lt;a href=&#34;https://www.jepusto.com/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
 I’m interested in methods for meta-analyzing and meta-regressing effect sizes from data structures like this, and studying this sort of thing often entails conducting Monte Carlo simulations.
 Monte Carlo simulations involve generating artificial data—in this case, a set of studies, each of which has one or more dependent effect size estimates—that follows a certain distributional model, applying different analytic methods to the artificial data, and then repeating the process a bunch of times.
 Because we know the true parameters that govern the data-generating process, we can evaluate the performance of the analytic methods in terms of bias, accuracy, hypothesis test calibration and power, confidence interval coverage, and the like.&lt;/p&gt;
@@ -833,7 +833,7 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;Hedges_g = TRUE&lt;/code&gt;, which controls where the simulated effect size is Hedges’ &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; or Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;. If it is Hedges’ g, make sure that the standard error is corrected too.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;p_val = TRUE&lt;/code&gt;, which allows the user to control whether or not to return &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-values from the test of mean differences for each outcome. Note that the p-values should be for a test of the &lt;em&gt;raw&lt;/em&gt; mean differences between groups, rather than a test of the effect size &lt;span class=&#34;math inline&#34;&gt;\(\delta_{jk} = 0\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;https://www.jepusto.com/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -848,7 +848,7 @@ and
 \left(\mathbf{\bar{y}}_{Tk} - \mathbf{\bar{y}}_{Ck}\right) \sim N\left(\boldsymbol\delta_k, \frac{4}{N_k} \boldsymbol\Psi_k\right).
 \]&lt;/span&gt;
 This shows how we could directly simulate the numerator of the standardized mean difference.&lt;/p&gt;
-&lt;p&gt;A &lt;a href=&#34;/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
+&lt;p&gt;A &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
 &lt;span class=&#34;math display&#34;&gt;\[
 (N_k - 2) \mathbf{S}_k \sim Wishart\left(N_k - 2, \Psi_k \right).
 \]&lt;/span&gt;
@@ -1005,9 +1005,9 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x}_{jk}\)&lt;/span&gt; i
     
     <item>
       <title>Sampling variance of Pearson r in a two-level design</title>
-      <link>/variance-of-r-in-two-level-design/</link>
+      <link>https://www.jepusto.com/variance-of-r-in-two-level-design/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/variance-of-r-in-two-level-design/</guid>
+      <guid>https://www.jepusto.com/variance-of-r-in-two-level-design/</guid>
       <description>
 
 
@@ -1083,9 +1083,9 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>The multivariate delta method</title>
-      <link>/multivariate-delta-method/</link>
+      <link>https://www.jepusto.com/multivariate-delta-method/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>/multivariate-delta-method/</guid>
+      <guid>https://www.jepusto.com/multivariate-delta-method/</guid>
       <description>
 
 
@@ -1126,7 +1126,7 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
 r = \frac{s_{xy}}{\sqrt{s_{xx} s_{yy}}},
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(s_{xx}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(s_{yy}\)&lt;/span&gt; are sample variances and &lt;span class=&#34;math inline&#34;&gt;\(s_{xy}\)&lt;/span&gt; is the sample covariance. These sample variances and covariances are unbiased estimates of &lt;span class=&#34;math inline&#34;&gt;\(\phi_{xx}\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\phi_{yy}\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\phi_{xy}\)&lt;/span&gt;, respectively. So in terms of the above notation, we have &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T} = \left(s_{xx}, s_{yy}, s_{xy}\right)\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\boldsymbol\theta = \left(\phi_{xx}, \phi_{yy}, \phi_{xy}\right)\)&lt;/span&gt;, and &lt;span class=&#34;math inline&#34;&gt;\(\rho = \phi_{xy} / \sqrt{\phi_{xx} \phi_{yy}}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;From &lt;a href=&#34;/distribution-of-sample-variances&#34;&gt;a previous post&lt;/a&gt;, we can work out the variance-covariance matrix of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;From &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;a previous post&lt;/a&gt;, we can work out the variance-covariance matrix of &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{T}\)&lt;/span&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}\left(\sqrt{n - 1} \left[\begin{array}{c} s_{xx} \\ s_{yy} \\ s_{xy}\end{array}\right]\right) = \boldsymbol\Sigma = \left[\begin{array}{ccc} 2 \phi_{xx}^2 &amp;amp; &amp;amp; \\ 2 \phi_{xy}^2 &amp;amp; 2 \phi_{yy}^2 &amp;amp; \\ 2 \phi_{xy} \phi_{xx} &amp;amp; 2 \phi_{xy} \phi_{yy} &amp;amp; \phi_{xy}^2 + \phi_{xx} \phi_{yy}\end{array}\right].
 \]&lt;/span&gt;&lt;/p&gt;
@@ -1172,9 +1172,9 @@ Fisher’s &lt;span class=&#34;math inline&#34;&gt;\(z\)&lt;/span&gt; is the var
     
     <item>
       <title>2SLS standard errors and the delta-method</title>
-      <link>/delta-method-and-2sls-ses/</link>
+      <link>https://www.jepusto.com/delta-method-and-2sls-ses/</link>
       <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      <guid>/delta-method-and-2sls-ses/</guid>
+      <guid>https://www.jepusto.com/delta-method-and-2sls-ses/</guid>
       <description>
 
 
@@ -1263,9 +1263,9 @@ V^{2SLS} &amp;amp;= \left(\mathbf{\tilde{t}}&amp;#39;\mathbf{\tilde{t}}\right)^{
     
     <item>
       <title>Alternative formulas for the standardized mean difference</title>
-      <link>/alternative-formulas-for-the-smd/</link>
+      <link>https://www.jepusto.com/alternative-formulas-for-the-smd/</link>
       <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>/alternative-formulas-for-the-smd/</guid>
+      <guid>https://www.jepusto.com/alternative-formulas-for-the-smd/</guid>
       <description>
 
 
@@ -1353,11 +1353,11 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;In this design,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{s_p} = \frac{2(1 - r)}{n},
+\frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\nu = \frac{2 (n - 1)}{1 + r^2}. 
+\nu = \frac{2 (n - 1)}{1 + r^2}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This formula will tend to give slightly larger degrees of freedom, but probably won’t be that discrepant from Borenstein’s approach except in quite small samples. It would be interesting to investigate which approach is better in small samples (i.e., leading to less biased estimates of the SMD and more accurate estimates of sampling variance, and by how much), although its possible than neither is all that good because the variance estimator itself is based on a large-sample approximation.&lt;/p&gt;
 &lt;/div&gt;
@@ -1365,7 +1365,7 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 &lt;h4&gt;Two group, pre-test post-test design: ANCOVA estimation&lt;/h4&gt;
 &lt;p&gt;Suppose that a study involves taking pre-test and post-test measurements on two groups of participants, with sample sizes &lt;span class=&#34;math inline&#34;&gt;\(n_T\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n_C\)&lt;/span&gt; respectively. One way to analyze this design is via ANCOVA using the pre-test measure as the covariate, so that the treatment effect estimate is the difference in adjusted post-test means. In this design, the scaled standard error will be approximately&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{S} = \frac{(n_C + n_T)(1 - r^2)}{n_C n_T},
+\frac{se_b}{S} = \sqrt{ \frac{(n_C + n_T)(1 - r^2)}{n_C n_T} },
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the pooled, within-group sample correlation between the pre-test and the post-test measures (this approximation assumes that the pre-test SMD between groups is relatively small). Alternately, if &lt;span class=&#34;math inline&#34;&gt;\(se_b\)&lt;/span&gt; is provided then the scaled standard error could be calculated directly.&lt;/p&gt;
 &lt;p&gt;Borenstein (2009) suggests calculating &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; as the difference in adjusted means, scaled by the pooled sample variances on the post-test measures. The post-test pooled sample variance will have the same degrees of freedom as in the two-sample t-test case: &lt;span class=&#34;math inline&#34;&gt;\(\nu = n_C + n_T - 2\)&lt;/span&gt;. (Borenstein instead uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n_C + n_T - 2 - q\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; is the number of covariates in the analysis, but this won’t usually make much difference unless the total sample size is quite small.)&lt;/p&gt;
@@ -1379,7 +1379,7 @@ b = \left(\bar{y}_{T1} - \bar{y}_{T0}\right) - \left(\bar{y}_{C1} - \bar{y}_{C0}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;which has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(b) = 2(1 - \rho)\sigma^2\left(n_C + n_T \right) / (n_C n_T)\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is the correlation between the pre-test and the post-test measures. Thus, the scaled standard error is&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-\frac{se_b}{S} = \frac{2(1 - r)(n_C + n_T)}{n_C n_T}.
+\frac{se_b}{S} = \sqrt{\frac{2(1 - r)(n_C + n_T)}{n_C n_T}}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;As with ANCOVA, there are several potential options for calculating the denominator of &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;:&lt;/p&gt;
 &lt;ul&gt;
@@ -1419,15 +1419,15 @@ S_{model}^2 = \mathbf{r}&amp;#39;\boldsymbol\omega,
 &lt;p&gt;&lt;a href=&#34;http://doi.org/10.3102/1076998606298043&#34;&gt;Hedges (2007)&lt;/a&gt; addresses estimation of standardized mean differences for cluster-randomized trials, in which the units of measurement are nested within higher-level clusters that comprise the units of randomization. Such designs involve two variance components (within- and between-cluster variance), and thus there are three potential approaches to scaling the treatment effect: standardize by the total variance (i.e., the sum of the within- and between-cluster components), standardize by the within-cluster variance, or standardize by the between-cluster variance. Furthermore, some of the effect sizes can be estimated in several different ways, each with a different sampling variance. &lt;a href=&#34;http://doi.org/10.3102/1076998606298043&#34;&gt;Hedges (2007)&lt;/a&gt; gives sampling variance estimates for each estimator of each effect size, but they all follow the same general formula as given above. (The appendix of the article actually gives the same formula as above, but using a more abstract formulation.)&lt;/p&gt;
 &lt;p&gt;For example, suppose the target SMD parameter uses the total variance and that we have data from a two-level, two-arm cluster randomized trial with &lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt; clusters, &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations per cluster, and total sample sizes in each arm of &lt;span class=&#34;math inline&#34;&gt;\(N_T\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(N_C\)&lt;/span&gt;, respectively. Let &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; be the between-cluster variance, &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt; be the within-cluster variance, and &lt;span class=&#34;math inline&#34;&gt;\(\rho = \tau^2 / (\tau^2 + \sigma^2)\)&lt;/span&gt;. The target parameter is &lt;span class=&#34;math inline&#34;&gt;\(\delta = \left(\mu_T - \mu_C\right) / \left(\tau^2 + \sigma^2\right)\)&lt;/span&gt;. The article assumes that the treatment effect will be estimated by the difference in grand means, &lt;span class=&#34;math inline&#34;&gt;\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)&lt;/span&gt;. Letting &lt;span class=&#34;math inline&#34;&gt;\(S_B^2\)&lt;/span&gt; be the pooled sample variance of the cluster means within each arm and &lt;span class=&#34;math inline&#34;&gt;\(S_W^2\)&lt;/span&gt; be the pooled within-cluster sample variance, the total variance is estimated as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2. 
+S_{total}^2 = S_B^2 + \frac{n - 1}{n} S_W^2.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;An estimate of the SMD is then&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}. 
+d = \left(\bar{\bar{y}}_T - \bar{\bar{y}}_C \right) / \sqrt{S_{total}^2}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The scaled standard error of &lt;span class=&#34;math inline&#34;&gt;\(\bar{\bar{y}}_T - \bar{\bar{y}}_C\)&lt;/span&gt; is&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
+se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The appendix of the article demonstrates that &lt;span class=&#34;math inline&#34;&gt;\(\text{E}\left(S_{total}^2\right) = \tau^2 + \sigma^2\)&lt;/span&gt; and&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -1465,9 +1465,9 @@ se_b = \left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right].
     
     <item>
       <title>The sampling distribution of sample variances</title>
-      <link>/distribution-of-sample-variances/</link>
+      <link>https://www.jepusto.com/distribution-of-sample-variances/</link>
       <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/distribution-of-sample-variances/</guid>
+      <guid>https://www.jepusto.com/distribution-of-sample-variances/</guid>
       <description>
 
 
@@ -1505,9 +1505,9 @@ s_{jk} = \frac{1}{n - 1}\sum_{i=1}^n (y_{ij} - \bar{y}_j)(y_{ik} - \bar{y}_k).
     
     <item>
       <title>Standard errors and confidence intervals for NAP</title>
-      <link>/nap-ses-and-cis/</link>
+      <link>https://www.jepusto.com/nap-ses-and-cis/</link>
       <pubDate>Sun, 28 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/nap-ses-and-cis/</guid>
+      <guid>https://www.jepusto.com/nap-ses-and-cis/</guid>
       <description>
 
 
@@ -1640,7 +1640,7 @@ ggplot(NAP_sim, aes(theta, val, color = sd)) +
   facet_grid(n ~ m, labeller = &amp;quot;label_both&amp;quot;) + 
   geom_line() + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the above figure, the actual sampling standard deviation of NAP (in red) and the value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; (in purple) are plotted against the true value of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, with separate plots for various combinations of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. The expected value of the standard errors &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; (actually the square root of the expectation of the variance estimators) are depicted in green and blue, respectively. The value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; agrees with the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(\delta = 0\)&lt;/span&gt;, but the two diverge when there is a positive treatment effect. It appears that &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; both under-estimate the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is equal to 5, and over-estimate for the largest values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. However, both of these estimators offer a marked improvement over &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1732,7 +1732,7 @@ params %&amp;gt;%
   labs(y = &amp;quot;SE&amp;quot;) + 
   geom_hline(yintercept=.90, linetype=&amp;quot;dashed&amp;quot;) +
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The figure above plots the coverage rates of several different confidence intervals for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;: the naive CI (in blue), the HM Wald CI (red), the Newcombe Wald CI (green), and the Newcombe score CI (purple). The dashed horizontal line is the nominal coverage rate of 90%. It can be seen that the null CI has the correct coverage only when &lt;span class=&#34;math inline&#34;&gt;\(\theta \leq .6\)&lt;/span&gt;; for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, its coverage becomes too conservative (tending towards 100%). The Wald-type CIs have below-nominal coverage rates, which improve as the sample size in each phase increases but remain too liberal even at the largest sample size considered. Finally, Newcombe’s score CI maintains close-to-nominal coverage over a wider range of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; values. Although these CIs have below-nominal coverage for the smallest sample sizes, they generally have good coverage for &lt;span class=&#34;math inline&#34;&gt;\(\theta &amp;lt; .9\)&lt;/span&gt; and when the sample size in each phase is 10 or more. It is also notable that their coverage rates appear to become more accurate as the sample size in a given group increases, even if the sample size in the other group is fairly small and remains constant.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1747,9 +1747,9 @@ params %&amp;gt;%
     
     <item>
       <title>Correlations between standardized mean differences</title>
-      <link>/correlations-between-smds/</link>
+      <link>https://www.jepusto.com/correlations-between-smds/</link>
       <pubDate>Thu, 17 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/correlations-between-smds/</guid>
+      <guid>https://www.jepusto.com/correlations-between-smds/</guid>
       <description>
 
 

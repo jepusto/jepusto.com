@@ -2,75 +2,123 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>single-case design | James E. Pustejovsky</title>
-    <link>/tags/single-case-design/</link>
-      <atom:link href="/tags/single-case-design/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.jepusto.com/tags/single-case-design/</link>
+      <atom:link href="https://www.jepusto.com/tags/single-case-design/index.xml" rel="self" type="application/rss+xml" />
     <description>single-case design</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Thu, 08 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 26 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>single-case design</title>
-      <link>/tags/single-case-design/</link>
+      <link>https://www.jepusto.com/tags/single-case-design/</link>
     </image>
     
     <item>
+      <title>Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design</title>
+      <link>https://www.jepusto.com/publication/aac-group-and-scd/</link>
+      <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/aac-group-and-scd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
+      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Single case design research in Special Education: Next generation standards and considerations</title>
+      <link>https://www.jepusto.com/publication/single-case-next-generation-standards/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/single-case-next-generation-standards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>/publication/sced-mlma-rve/</link>
-      <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/sced-mlma-rve/</guid>
+      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>
-      <link>/publication/stay-play-talk-meta-analysis/</link>
-      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/publication/stay-play-talk-meta-analysis/</guid>
+      <title>Augmentative and Alternative Communication intervention targets for school-aged participants with ASD and ID: A single-case systematic review and meta-analysis</title>
+      <link>https://www.jepusto.com/publication/aac-communication-outcomes/</link>
+      <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/aac-communication-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>/publication/response-guided-designs-in-sced-baselines/</link>
-      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/response-guided-designs-in-sced-baselines/</guid>
+      <title>Considering instructional contexts in AAC interventions for people with ASD and/or IDD experiencing complex communication needs: A single-case design meta-analysis</title>
+      <link>https://www.jepusto.com/publication/aac-instructional-contexts/</link>
+      <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/aac-instructional-contexts/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
-      <link>/publication/measurement-procedures-and-baseline-outcomes/</link>
-      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-procedures-and-baseline-outcomes/</guid>
+      <title>Participant characteristics predicting communication outcomes in AAC implementation for individuals with ASD and IDD: Meta-analysis</title>
+      <link>https://www.jepusto.com/publication/aac-participant-characteristics/</link>
+      <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/aac-participant-characteristics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Examining the effects of social stories on challenging behavior and prosocial skills in young children: A systematic review and meta-analysis</title>
-      <link>/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
-      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
+      <link>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
+      <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>
+      <link>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
+      <link>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
+      <link>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Easily simulate thousands of single-case designs</title>
-      <link>/easily-simulate-thousands-of-single-case-designs/</link>
+      <link>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/easily-simulate-thousands-of-single-case-designs/</guid>
+      <guid>https://www.jepusto.com/easily-simulate-thousands-of-single-case-designs/</guid>
       <description>
 
 
 &lt;p&gt;Earlier this month, I taught at the &lt;a href=&#34;https://scdinstitute2018.com/&#34;&gt;Summer Research Training Institute on Single-Case Intervention Design and Analysis workshop&lt;/a&gt;, sponsored by the Institute of Education Sciences’ National Center for Special Education Research.
 While I was there, I shared &lt;a href=&#34;https://jepusto.shinyapps.io/ARPsimulator/&#34;&gt;a web-app for simulating data from a single-case design&lt;/a&gt;.
-This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
+This is a tool that I put together a couple of years ago as part of my &lt;a href=&#34;https://www.jepusto.com/software/arpobservation/&#34;&gt;ARPobservation R package&lt;/a&gt;, but haven’t ever really publicized or done anything formal with.
 It provides an easy way to simulate “mock” data from a single-case design where the dependent variable is measured using systematic direct observation of behavior.
 The simulated data can be viewed in the form of a graph or downloaded as a csv file.
 And it’s quite fast—simulating 1000’s of mock single-case designs takes only a few seconds.
@@ -84,20 +132,20 @@ The initial baseline and treatment phases will be 7 sessions long.
 At baseline, the child engages in inappropriate play at a rate of about 0.8 per minute.
 You anticipate that the intervention could reduce inappropriate play by as much as 90% from baseline.
 Enter all of these details and assumptions into the simulator, and it will generate a graph like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Hit the “Simulate!” button again and you might get something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-B.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Or one of these:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
-&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-C.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;
+&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-A.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-D.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-E.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of the above graphs were generated from the same hypothetical model—the variation in the clarity and strength of the functional relation is due to random error alone.
 The simulator can also produce graphs that show multiple realizations of the data-generating process. Here’s one with five replications:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-5.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And here’s the same figure, but with trend lines added:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Crozier-Tincani-simulated-data-trend.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The trend lines represent the overall average level of the dependent variable during each session, across infinitely replications of the study.
 The variability around the trend line provides a sense of the extent of random error in the measurements of the dependent variable.&lt;/p&gt;
 &lt;p&gt;I think it’s a rather interesting exercise to try and draw inferences based on visual inspection of randomly generated graphs like this—particularly because it forces you to grapple with random measurement error in a way that using only real data (or only hand-drawn mock data) doesn’t allow.
@@ -138,38 +186,38 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>Between-case standardized effect size analysis of single case design: Examination of the two methods</title>
-      <link>/publication/bcsmd-examination-of-two-methods/</link>
+      <link>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/bcsmd-examination-of-two-methods/</guid>
+      <guid>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: A gradual effects model for single-case designs</title>
-      <link>/gradual-effects-model-paper/</link>
+      <link>https://www.jepusto.com/gradual-effects-model-paper/</link>
       <pubDate>Mon, 14 May 2018 00:00:00 +0000</pubDate>
-      <guid>/gradual-effects-model-paper/</guid>
+      <guid>https://www.jepusto.com/gradual-effects-model-paper/</guid>
       <description>
 
 
-&lt;p&gt;I’m very happy to share a new paper, co-authored with my student Danny Swan, “A gradual effects model for single-case designs,” which is now available online at &lt;em&gt;Multivariate Behavioral Research&lt;/em&gt;. You can access the published version &lt;a href=&#34;https://www.tandfonline.com/doi/abs/10.1080/00273171.2018.1466681?journalCode=hmbr20&#34;&gt;at the journal website&lt;/a&gt; (&lt;a href=&#34;https://www.tandfonline.com/eprint/dkVfazwZaxnyaa9MfUjw/full&#34;&gt;click here for free access while supplies last&lt;/a&gt;) or &lt;a href=&#34;https://psyarxiv.com/vh964/&#34;&gt;the pre-print on PsyArxiv&lt;/a&gt; (always free!). Here’s &lt;a href=&#34;/publication/gradual-effects-model&#34;&gt;the abstract&lt;/a&gt; and &lt;a href=&#34;https://osf.io/uzkq6/&#34;&gt;the supplementary materials&lt;/a&gt;. Danny wrote R functions for fitting the model, (available as part of the &lt;a href=&#34;/software/singlecasees/&#34;&gt;SingleCaseES package&lt;/a&gt;) as well as a &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;slick web interface&lt;/a&gt;, if you prefer to point-and-click.&lt;/p&gt;
-&lt;p&gt;This paper grew out of Danny’s qualifying process (QP), which is the major exam that our doctoral students have to pass before they can begin their dissertation work. For the QP, students work with a faculty advisor to develop an extensive literature review and proposal for an original research project. They produce a written research proposal, then take written and oral exams on their work. For Danny’s QP, he picked up one of the many loose ends in &lt;a href=&#34;/publication/operationally-comparable-effect-sizes&#34;&gt;my dissertation&lt;/a&gt;, studied up on generalized linear models to understand how to express and fit the model, and developed a simulation study evaluating the model. After he successfully passed his QP, we worked together to refine the estimation methods and the simulation design, and then draft a manuscript (much of it cribbed from his QP proposal). I’m very proud and pleased that Danny continued to develop the work and saw it through to a first-authored publication.&lt;/p&gt;
+&lt;p&gt;I’m very happy to share a new paper, co-authored with my student Danny Swan, “A gradual effects model for single-case designs,” which is now available online at &lt;em&gt;Multivariate Behavioral Research&lt;/em&gt;. You can access the published version &lt;a href=&#34;https://www.tandfonline.com/doi/abs/10.1080/00273171.2018.1466681?journalCode=hmbr20&#34;&gt;at the journal website&lt;/a&gt; (&lt;a href=&#34;https://www.tandfonline.com/eprint/dkVfazwZaxnyaa9MfUjw/full&#34;&gt;click here for free access while supplies last&lt;/a&gt;) or &lt;a href=&#34;https://psyarxiv.com/vh964/&#34;&gt;the pre-print on PsyArxiv&lt;/a&gt; (always free!). Here’s &lt;a href=&#34;https://www.jepusto.com/publication/gradual-effects-model&#34;&gt;the abstract&lt;/a&gt; and &lt;a href=&#34;https://osf.io/uzkq6/&#34;&gt;the supplementary materials&lt;/a&gt;. Danny wrote R functions for fitting the model, (available as part of the &lt;a href=&#34;https://www.jepusto.com/software/singlecasees/&#34;&gt;SingleCaseES package&lt;/a&gt;) as well as a &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;slick web interface&lt;/a&gt;, if you prefer to point-and-click.&lt;/p&gt;
+&lt;p&gt;This paper grew out of Danny’s qualifying process (QP), which is the major exam that our doctoral students have to pass before they can begin their dissertation work. For the QP, students work with a faculty advisor to develop an extensive literature review and proposal for an original research project. They produce a written research proposal, then take written and oral exams on their work. For Danny’s QP, he picked up one of the many loose ends in &lt;a href=&#34;https://www.jepusto.com/publication/operationally-comparable-effect-sizes&#34;&gt;my dissertation&lt;/a&gt;, studied up on generalized linear models to understand how to express and fit the model, and developed a simulation study evaluating the model. After he successfully passed his QP, we worked together to refine the estimation methods and the simulation design, and then draft a manuscript (much of it cribbed from his QP proposal). I’m very proud and pleased that Danny continued to develop the work and saw it through to a first-authored publication.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>/publication/gradual-effects-model/</link>
+      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/gradual-effects-model/</guid>
+      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: Using response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-response-ratios-paper/</link>
+      <link>https://www.jepusto.com/using-response-ratios-paper/</link>
       <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/using-response-ratios-paper/</guid>
+      <guid>https://www.jepusto.com/using-response-ratios-paper/</guid>
       <description>
 
 
@@ -188,33 +236,33 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>Single-case synthesis tools II: Comparing overlap measures and parametric effect sizes for synthesizing antecedent sensory-based interventions</title>
-      <link>/publication/scd-synthesis-tools-ii/</link>
+      <link>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/scd-synthesis-tools-ii/</guid>
+      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single-case synthesis tools I: Evaluating the quality and rigor of research on antecedent sensory-based interventions</title>
-      <link>/publication/scd-synthesis-tools-i/</link>
+      <link>https://www.jepusto.com/publication/scd-synthesis-tools-i/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/scd-synthesis-tools-i/</guid>
+      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-i/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>/publication/using-response-ratios/</link>
+      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>/publication/using-response-ratios/</guid>
+      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: procedural sensitivities of effect size measures for SCDs</title>
-      <link>/procedural-sensitivities-paper/</link>
+      <link>https://www.jepusto.com/procedural-sensitivities-paper/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/procedural-sensitivities-paper/</guid>
+      <guid>https://www.jepusto.com/procedural-sensitivities-paper/</guid>
       <description>
 
 
@@ -222,7 +270,7 @@ If you, dear reader, would be interested in helping to pursue any of these direc
 &lt;blockquote&gt;
 &lt;p&gt;A wide variety of effect size indices have been proposed for quantifying the magnitude of treatment effects in single-case designs. Commonly used measures include parametric indices such as the standardized mean difference, as well as non-overlap measures such as the percentage of non-overlapping data, improvement rate difference, and non-overlap of all pairs. Currently, little is known about the properties of these indices when applied to behavioral data collected by systematic direct observation, even though systematic direct observation is the most common method for outcome measurement in single-case research. This study uses Monte Carlo simulation to investigate the properties of several widely used single-case effect size measures when applied to systematic direct observation data. Results indicate that the magnitude of the non-overlap measures and of the standardized mean difference can be strongly influenced by procedural details of the study’s design, which is a significant limitation to using these indices as effect sizes for meta-analysis of single-case designs. A less widely used parametric index, the log-response ratio, has the advantage of being insensitive to sample size and observation session length, although its magnitude is influenced by the use of partial interval recording.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
+&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;https://www.jepusto.com/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
 &lt;p&gt;Here’s the complete time-line of submissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;August 5, 2015: submitted to journal #1 (special education)&lt;/li&gt;
@@ -249,84 +297,84 @@ If you, dear reader, would be interested in helping to pursue any of these direc
     
     <item>
       <title>Back from the IES PI meeting</title>
-      <link>/back-from-ies-pi-meeting/</link>
+      <link>https://www.jepusto.com/back-from-ies-pi-meeting/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>/back-from-ies-pi-meeting/</guid>
+      <guid>https://www.jepusto.com/back-from-ies-pi-meeting/</guid>
       <description>
 
 
 &lt;p&gt;I’m just back from the Institute of Education Sciences’ Principle Investigators conference in Washington D.C. It was an envigorating trip for me, and not only because of the opportunity to catch up with colleagues and friends from across the country. A running theme across several of the keynote addresses was the importance of increasing the transparency and replicability of education research, and it was exciting to hear about promising reforms underway and to talk about how to change the norms of our discipline(s).&lt;/p&gt;
-&lt;p&gt;I contributed to the conference in two ways. First, I gave a presentation on incorporating randomization and randomization inference into single-case designs, as part of a session on innovations in single-case research methods organized by Dr. Wendy Machalicek. You can a static version of &lt;a href=&#34;/files/Randomization-inference-for-SCED-2018-01-10.pdf&#34;&gt;my slides here&lt;/a&gt;; unfortunately the animations don’t work in pdf.&lt;/p&gt;
-&lt;p&gt;Second, I brought &lt;a href=&#34;/files/Gradual-effects-model-poster-IES-2018-01-10.pdf&#34;&gt;a poster&lt;/a&gt; presenting some work from my IES-funded methods grant. Thanks very much to the folks who stopped by to talk during the poster session! Y’all gave me some very helpful feedback about technical aspects of the work and about how to better contextualize it for single case researchers.&lt;/p&gt;
+&lt;p&gt;I contributed to the conference in two ways. First, I gave a presentation on incorporating randomization and randomization inference into single-case designs, as part of a session on innovations in single-case research methods organized by Dr. Wendy Machalicek. You can a static version of &lt;a href=&#34;https://www.jepusto.com/files/Randomization-inference-for-SCED-2018-01-10.pdf&#34;&gt;my slides here&lt;/a&gt;; unfortunately the animations don’t work in pdf.&lt;/p&gt;
+&lt;p&gt;Second, I brought &lt;a href=&#34;https://www.jepusto.com/files/Gradual-effects-model-poster-IES-2018-01-10.pdf&#34;&gt;a poster&lt;/a&gt; presenting some work from my IES-funded methods grant. Thanks very much to the folks who stopped by to talk during the poster session! Y’all gave me some very helpful feedback about technical aspects of the work and about how to better contextualize it for single case researchers.&lt;/p&gt;
 &lt;p&gt;If you didn’t make it: this project was joint work with Danny Swan, a doctoral student in our Quantitative Methods program. It involved developing a model for estimating effect sizes from single-case designs where the effects of the intervention take time to reach full potency. Rather than assuming that the intervention produces immediate shifts in the level of the outcome, we model the effects using an impulse response function (cribbed from &lt;a href=&#34;http://www.jstor.org/stable/2285379&#34;&gt;an old paper by Box and Tiao&lt;/a&gt;) that leads to non-linear trends in response to the introduction of the intervention. Using an impulse response function also makes it possible to model more complex design patterns, like treatment reversal designs with returns-to-baseline and treatment re-introduction phases, in a very parsimonious way. Check out &lt;a href=&#34;https://osf.io/gaxrv/&#34;&gt;the full paper&lt;/a&gt;, the &lt;a href=&#34;https://github.com/jepusto/SingleCaseES&#34;&gt;accompanying R package&lt;/a&gt;, and Danny’s &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;interactive web-app&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction to the special issue on single-case systematic reviews and meta-analysis</title>
-      <link>/publication/rase-special-issue-introduction/</link>
+      <link>https://www.jepusto.com/publication/rase-special-issue-introduction/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/rase-special-issue-introduction/</guid>
+      <guid>https://www.jepusto.com/publication/rase-special-issue-introduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of school-based group contingency interventions for students with challenging behavior: An update</title>
-      <link>/publication/school-based-group-contingencies-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/school-based-group-contingencies-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of technology-aided instruction and intervention for students with ASD</title>
-      <link>/publication/taii-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/taii-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/taii-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/taii-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New working paper: Using log response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>/using-log-response-ratios/</link>
+      <link>https://www.jepusto.com/using-log-response-ratios/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>/using-log-response-ratios/</guid>
+      <guid>https://www.jepusto.com/using-log-response-ratios/</guid>
       <description>
 
 
-&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
+&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>/publication/fabi-meta-analysis/</link>
+      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/fabi-meta-analysis/</guid>
+      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research synthesis and meta-analysis of single-case designs</title>
-      <link>/publication/meta-analysis-of-scd/</link>
+      <link>https://www.jepusto.com/publication/meta-analysis-of-scd/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>/publication/meta-analysis-of-scd/</guid>
+      <guid>https://www.jepusto.com/publication/meta-analysis-of-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized mean difference effect sizes for single-case designs: A primer and tutorial using the scdhlm web application</title>
-      <link>/publication/bc-smd-primer-and-tutorial/</link>
+      <link>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/publication/bc-smd-primer-and-tutorial/</guid>
+      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New tutorial paper on BC-SMD effect sizes</title>
-      <link>/scdhlm-tutorial/</link>
+      <link>https://www.jepusto.com/scdhlm-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/scdhlm-tutorial/</guid>
+      <guid>https://www.jepusto.com/scdhlm-tutorial/</guid>
       <description>
 
 
@@ -338,25 +386,25 @@ If you have any questions or feedback about the app, please feel free to contact
     
     <item>
       <title>Presentation at IES 2016 PI meeting</title>
-      <link>/ies-2016-pi-meeting/</link>
+      <link>https://www.jepusto.com/ies-2016-pi-meeting/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>/ies-2016-pi-meeting/</guid>
+      <guid>https://www.jepusto.com/ies-2016-pi-meeting/</guid>
       <description>
 
 
-&lt;p&gt;I am just back from the Institute of Education Sciences 2016 Principal Investigators meeting. Rob Horner had organized a session titled “Single-case methods: Current status and needed directions” as a tribute to our colleague Will Shadish, who passed away this past year. Rob invited me to give some brief remarks about Will as a mentor, and then to present some of my work with Will and Larry Hedges on effect sizes for single-case research. Here are &lt;a href=&#34;/files/Single-case-methods-IES-PI-meeting-2016.pdf&#34;&gt;the slides from my part of the presentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am just back from the Institute of Education Sciences 2016 Principal Investigators meeting. Rob Horner had organized a session titled “Single-case methods: Current status and needed directions” as a tribute to our colleague Will Shadish, who passed away this past year. Rob invited me to give some brief remarks about Will as a mentor, and then to present some of my work with Will and Larry Hedges on effect sizes for single-case research. Here are &lt;a href=&#34;https://www.jepusto.com/files/Single-case-methods-IES-PI-meeting-2016.pdf&#34;&gt;the slides from my part of the presentation&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>What is Tau-U?</title>
-      <link>/what-is-tau-u/</link>
+      <link>https://www.jepusto.com/what-is-tau-u/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>/what-is-tau-u/</guid>
+      <guid>https://www.jepusto.com/what-is-tau-u/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
 &lt;p&gt;To correct for baseline trend, the original paper proposes to calculate Kendall’s rank correlation (&lt;span class=&#34;math inline&#34;&gt;\(\tau_A\)&lt;/span&gt;) between the phase A outcome data and the session numbers and use the result to make an adjustment to Tau. The other analyses presented in the original paper (incorporating adjustments for time trends during the treatment phase) are not presented in subsequent review papers, nor are they implemented in &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;the web-calculator&lt;/a&gt; created by the authors, and so I won’t discuss them further here. Instead, in this post I will examine the calculation of the version of Tau-U that incorporates a baseline trend correction. This version seems to be the most widely applied in practice (likely due to the availability of the web-calculator) and is presented in several review papers by the same authors. It turns out though, that the definition of the index has shifted from the original paper to subsequent presentations.&lt;/p&gt;
 &lt;p&gt;To make this concrete, let me first define a couple of things. Suppose that we have data from the baseline and treatment phases for a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Let &lt;span class=&#34;math inline&#34;&gt;\(S_P\)&lt;/span&gt; denote Kendall’s S statistic calculated for the comparison between phases and &lt;span class=&#34;math inline&#34;&gt;\(S_A\)&lt;/span&gt; denote Kendall’s S statistic calculated on the baseline trend. More precisely,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -385,7 +433,7 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
 \text{Tau-U} = \frac{S_P - S_A}{mn} = \text{Tau} - \frac{m - 1}{2n} t_A.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The logical range of this version of the index is from &lt;span class=&#34;math inline&#34;&gt;\(-(2n + m - 1) / (2n)\)&lt;/span&gt; to &lt;span class=&#34;math inline&#34;&gt;\((2n + m - 1) / (2n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
+&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparison&lt;/h2&gt;
@@ -456,13 +504,13 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>New working paper: Procedural sensitivities of SCD effect sizes</title>
-      <link>/scd-effect-size-sensitivities/</link>
+      <link>https://www.jepusto.com/scd-effect-size-sensitivities/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>/scd-effect-size-sensitivities/</guid>
+      <guid>https://www.jepusto.com/scd-effect-size-sensitivities/</guid>
       <description>
 
 
-&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
+&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
 &lt;p&gt;The paper itself is available on the Open Science Framework (&lt;a href=&#34;https://osf.io/pxn24/&#34;&gt;here&lt;/a&gt;), as are the &lt;a href=&#34;https://osf.io/hkzsm/&#34;&gt;supplementary materials&lt;/a&gt; and &lt;a href=&#34;https://osf.io/j4gvt/&#34;&gt;Source code&lt;/a&gt;. I also created interaction versions of the graphics from the main paper and the supplementary materials, which can be viewed in &lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-size-sensitivities/&#34;&gt;this shiny app&lt;/a&gt;. I would welcome any comments, questions, or feedback that readers may have.&lt;/p&gt;
 &lt;div id=&#34;abstract&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Abstract&lt;/h3&gt;
@@ -473,18 +521,18 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>scdhlm</title>
-      <link>/software/scdhlm/</link>
+      <link>https://www.jepusto.com/software/scdhlm/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/scdhlm/</guid>
+      <guid>https://www.jepusto.com/software/scdhlm/</guid>
       <description>&lt;p&gt;An R package implementing several methods of estimating a design-comparable standardized mean difference effect size based on data from a single-case design. Methods include those from Hedges, Pustejovsky, &amp;amp; Shadish (
-&lt;a href=&#34;/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
-&lt;a href=&#34;/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
-&lt;a href=&#34;/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
+&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
+&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -495,9 +543,9 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>SingleCaseES</title>
-      <link>/software/singlecasees/</link>
+      <link>https://www.jepusto.com/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/software/singlecasees/</guid>
+      <guid>https://www.jepusto.com/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -514,14 +562,14 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>Tau-U</title>
-      <link>/tau-u/</link>
+      <link>https://www.jepusto.com/tau-u/</link>
       <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
-      <guid>/tau-u/</guid>
+      <guid>https://www.jepusto.com/tau-u/</guid>
       <description>
 
 
 &lt;p&gt;&lt;a href=&#34;http://doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed Tau-U as an effect size measure for use in single-case designs that exhibit baseline trend. In their original paper, they actually conceptualize Tau-U as a family of four distinct indices, distinguished by a) whether the index includes an adjustment for the presence of baseline trend and b) whether the index incorporates information about trend during the intervention phase. However, in subsequent presentations the authors seem to have focused exclusively on the index that adjusts for baseline trend but not for intervention phase trend, and so I’ll do the same here. (This version is also the one available in the web-tool at &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
+&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \text{Tau-U} = \frac{S_P - S_B}{mn}
 \]&lt;/span&gt;&lt;/p&gt;
@@ -591,7 +639,7 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
   geom_line() + 
   labs(y = &amp;quot;Expected magnitude of Tau-U&amp;quot;, color = &amp;quot;m&amp;quot;) + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the figure above, each plot corresponds to a different value of the baseline slope (&lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, ranging from -0.2 in the top row to 0.2 in the bottom row) and treatment shift (&lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt;, ranging from 0 in the first column to 2 in the last column). Within each plot, the x axis corresponds to treatment phase length and the different lines correspond to different baseline phase lengths. The thing to note is that, when the baseline slope is non-zero, the expected value of Tau-U ranges quite widely within each plot, depending on the values of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. For example, when &lt;span class=&#34;math inline&#34;&gt;\(\beta_2 = 0\)&lt;/span&gt; (in the first column), the data follow a simple linear trend with no shift. If the slope of the trend is equal to -0.2 (the first row), then the expected magnitude of Tau-U ranges from -0.8 to 0.3 depending on the phase lengths, which is quite a wide range.&lt;/p&gt;
 &lt;p&gt;Generally, the degree of sample size sensitivity depends on the absolute magnitude of the baseline slope, with steeper slopes leading to increased sensitivity. For steeper values of slope, it appears that the degree to which the measure is affected by sample size even swamps the degree to which the measure is sensitive to the magnitude of the treatment effect. Very peculiar.&lt;/p&gt;
 &lt;/div&gt;
@@ -604,9 +652,9 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
     
     <item>
       <title>Standard errors and confidence intervals for NAP</title>
-      <link>/nap-ses-and-cis/</link>
+      <link>https://www.jepusto.com/nap-ses-and-cis/</link>
       <pubDate>Sun, 28 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>/nap-ses-and-cis/</guid>
+      <guid>https://www.jepusto.com/nap-ses-and-cis/</guid>
       <description>
 
 
@@ -739,7 +787,7 @@ ggplot(NAP_sim, aes(theta, val, color = sd)) +
   facet_grid(n ~ m, labeller = &amp;quot;label_both&amp;quot;) + 
   geom_line() + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the above figure, the actual sampling standard deviation of NAP (in red) and the value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; (in purple) are plotted against the true value of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, with separate plots for various combinations of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. The expected value of the standard errors &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; (actually the square root of the expectation of the variance estimators) are depicted in green and blue, respectively. The value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; agrees with the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(\delta = 0\)&lt;/span&gt;, but the two diverge when there is a positive treatment effect. It appears that &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; both under-estimate the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is equal to 5, and over-estimate for the largest values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. However, both of these estimators offer a marked improvement over &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -831,7 +879,7 @@ params %&amp;gt;%
   labs(y = &amp;quot;SE&amp;quot;) + 
   geom_hline(yintercept=.90, linetype=&amp;quot;dashed&amp;quot;) +
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The figure above plots the coverage rates of several different confidence intervals for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;: the naive CI (in blue), the HM Wald CI (red), the Newcombe Wald CI (green), and the Newcombe score CI (purple). The dashed horizontal line is the nominal coverage rate of 90%. It can be seen that the null CI has the correct coverage only when &lt;span class=&#34;math inline&#34;&gt;\(\theta \leq .6\)&lt;/span&gt;; for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, its coverage becomes too conservative (tending towards 100%). The Wald-type CIs have below-nominal coverage rates, which improve as the sample size in each phase increases but remain too liberal even at the largest sample size considered. Finally, Newcombe’s score CI maintains close-to-nominal coverage over a wider range of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; values. Although these CIs have below-nominal coverage for the smallest sample sizes, they generally have good coverage for &lt;span class=&#34;math inline&#34;&gt;\(\theta &amp;lt; .9\)&lt;/span&gt; and when the sample size in each phase is 10 or more. It is also notable that their coverage rates appear to become more accurate as the sample size in a given group increases, even if the sample size in the other group is fairly small and remains constant.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -846,50 +894,50 @@ params %&amp;gt;%
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>/sped-pro-sem-again/</link>
+      <link>https://www.jepusto.com/sped-pro-sem-again/</link>
       <pubDate>Tue, 24 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>/sped-pro-sem-again/</guid>
+      <guid>https://www.jepusto.com/sped-pro-sem-again/</guid>
       <description>
 
 
-&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
+&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/publication/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>/publication/four-methods-for-pir/</link>
+      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/four-methods-for-pir/</guid>
+      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Four methods for analyzing PIR data</title>
-      <link>/four-methods-for-analyzing-pir-data/</link>
+      <link>https://www.jepusto.com/four-methods-for-analyzing-pir-data/</link>
       <pubDate>Wed, 11 Feb 2015 00:00:00 +0000</pubDate>
-      <guid>/four-methods-for-analyzing-pir-data/</guid>
+      <guid>https://www.jepusto.com/four-methods-for-analyzing-pir-data/</guid>
       <description>
 
 
-&lt;p&gt;My article with Daniel Swan, “Four methods for analyzing partial interval recording data, with application to single-case research” has been accepted for publication in Multivariate Behavioral Research. In an extension of my earlier paper on &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;measurement-comparable effect sizes&lt;/a&gt; for single-case studies, this article provides some approaches to estimating effect sizes from single-case studies that use partial interval or whole interval recording to measure behavioral outcomes. The full abstract is below. &lt;a href=&#34;/files/4-PIR-methods-MBR.pdf&#34;&gt;Preprint&lt;/a&gt; and &lt;a href=&#34;/files/4-PIR-Methods-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. R functions that implement the proposed methods are available in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Daniel Swan, “Four methods for analyzing partial interval recording data, with application to single-case research” has been accepted for publication in Multivariate Behavioral Research. In an extension of my earlier paper on &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;measurement-comparable effect sizes&lt;/a&gt; for single-case studies, this article provides some approaches to estimating effect sizes from single-case studies that use partial interval or whole interval recording to measure behavioral outcomes. The full abstract is below. &lt;a href=&#34;https://www.jepusto.com/files/4-PIR-methods-MBR.pdf&#34;&gt;Preprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/4-PIR-Methods-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. R functions that implement the proposed methods are available in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Partial interval recording is a procedure for collecting measurements during direct observation of behavior. It is used in several areas of educational and psychological research, particularly in connection with single-case research. Measurements collected using partial interval recording suffer from construct invalidity because they are not readily interpretable in terms of the underlying characteristics of the behavior. Using an alternating renewal process model for the behavior under observation, we demonstrate that ignoring the construct invalidity of PIR data can produce misleading inferences, such as inferring that an intervention reduces the prevalence of an undesirable behavior when in fact it has the opposite effect. We then propose four different methods for analyzing PIR summary measurements, each of which can be used to draw inferences about interpretable behavioral parameters. We demonstrate the methods by applying them to data from two single-case studies of problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Getting started with scdhlm</title>
-      <link>/getting-started-with-scdhlm/</link>
+      <link>https://www.jepusto.com/getting-started-with-scdhlm/</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/getting-started-with-scdhlm/</guid>
+      <guid>https://www.jepusto.com/getting-started-with-scdhlm/</guid>
       <description>
 
 
@@ -931,79 +979,79 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/publication/design-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/design-comparable-effect-sizes/</link>
       <pubDate>Wed, 01 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/design-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/design-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alternating renewal process models for behavioral observation: Simulation methods and validity implications</title>
-      <link>/publication/arp-for-behavioral-observation/</link>
+      <link>https://www.jepusto.com/publication/arp-for-behavioral-observation/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/arp-for-behavioral-observation/</guid>
+      <guid>https://www.jepusto.com/publication/arp-for-behavioral-observation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
+      <link>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
+      <guid>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
       <description>
 
 
-&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;In single-case research, the multiple baseline design is a widely used approach for evaluating the effects of interventions on individuals. Multiple baseline designs involve repeated measurement of outcomes over time and the controlled introduction of a treatment at different times for different individuals. This article outlines a general approach for defining effect sizes in multiple baseline designs that are directly comparable to the standardized mean difference from a between-subjects randomized experiment. The target, design-comparable effect size parameter can be estimated using restricted maximum likelihood together with a small-sample correction analogous to Hedges’ g. The approach is demonstrated using hierarchical linear models that include baseline time trends and treatment-by-time interactions. A simulation compares the performance of the proposed estimator to that of an alternative, and an application illustrates the model-fitting process.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analyzing single-case designs: d, G, hierarchical models, Bayesian estimators, generalized additive models, and the hopes and fears of researchers about analyses</title>
-      <link>/publication/analyzing-scd-hopes-and-fears/</link>
+      <link>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/analyzing-scd-hopes-and-fears/</guid>
+      <guid>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>/sped-pro-sem/</link>
+      <link>https://www.jepusto.com/sped-pro-sem/</link>
       <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/sped-pro-sem/</guid>
+      <guid>https://www.jepusto.com/sped-pro-sem/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analysis and meta-analysis of single-case designs with a standardized mean difference statistic: A primer and applications</title>
-      <link>/publication/bc-smd-primer-and-applications/</link>
+      <link>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</link>
       <pubDate>Tue, 01 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/publication/bc-smd-primer-and-applications/</guid>
+      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>/measurement-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 04 Feb 2014 00:00:00 +0000</pubDate>
-      <guid>/measurement-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/measurement-comparable-effect-sizes/</guid>
       <description>
 
 
-&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
+&lt;p&gt;My article “Measurement-comparable effect sizes for single-case studies of free-operant behavior” has been accepted at &lt;em&gt;Psychological Methods&lt;/em&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Measuerment-comparable-ES-Appendix.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. Here’s the abstract:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Single-case research comprises a set of designs and methods for evaluating the effects of interventions, practices, or programs on individual cases, through comparison of outcomes measured at different points in time. Although there has long been interest in meta-analytic technique for synthesizing single-case research, there has been little scrutiny of whether proposed effect sizes remain on a directly comparable metric when outcomes are measured using different operational procedures. Much of single-case research focuses on behavioral outcomes in free-operant contexts, which may be measured using a variety of different direct observation procedures. This article describes a suite of effect sizes for quantifying changes in free-operant behavior, motivated by an alternating renewal process model that allows measurement comparability to be established in precise terms. These effect size metrics have the advantage of comporting with how direct observation data are actually collected and summarized. Effect size estimators are proposed that are applicable when the behavior being measured remains stable within a given treatment condition. The methods are illustrated by two examples, including a re-analysis of a systematic review of the effects of choice-making opportunities on problem behavior.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Reliability of UnGraphed single-case data: An example using the Shogren dataset</title>
-      <link>/shogren-reliability-analysis/</link>
+      <link>https://www.jepusto.com/shogren-reliability-analysis/</link>
       <pubDate>Wed, 23 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>/shogren-reliability-analysis/</guid>
+      <guid>https://www.jepusto.com/shogren-reliability-analysis/</guid>
       <description>
 
 
@@ -1034,7 +1082,7 @@ head(Shogren)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The final variable distinguishes graphs that are particularly easy to capture. Wim/Patrick and I used slightly different exclusion criteria, so there are a total of 30 cases across 12 studies included in the merged dataset. To begin, here’s a plot of A versus B by study:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 qplot(A, B, geom = &amp;quot;point&amp;quot;, color = Case, data = Shogren) + facet_wrap( ~ Study, scales = &amp;quot;free&amp;quot;) + theme(legend.position=&amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Clearly the two measurements are very correlated. You’ll notice that the studies (and sometimes cases within studies) used several different outcome measurement scales, so the overall correlation between A and B (r = 0.999767) isn’t really the best approach. Furthermore, some of the variation in the outcomes is presumably due to differences between phases, and it would be better to calculate a reliability based on the residual variation within phases.&lt;/p&gt;
 &lt;p&gt;I accomplish this with a simple hierarchical model, fit separately to the data from each case. Denote the outcome as &lt;span class=&#34;math inline&#34;&gt;\(y_{ijk}\)&lt;/span&gt; for phase &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,P\)&lt;/span&gt;, measurement occasion &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,n_i\)&lt;/span&gt;, and replicate &lt;span class=&#34;math inline&#34;&gt;\(k = 1,2\)&lt;/span&gt;. I model these outcomes as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[y_{ijk} = \beta_i + \epsilon_{ij} + \nu_{ijk}\]&lt;/span&gt;&lt;/p&gt;
@@ -1059,7 +1107,7 @@ Z_ICC &amp;lt;- function(x, formula = value ~ Phase){
 ICC &amp;lt;- ddply(Shogren_long, .(Study, Case, Setting, Measure, lowIntAxis), Z_ICC)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It turns out that 5 of 6 cases with lowIntAxis==1 are perfectly correlated. The remainder of my analysis focuses on the cases with lowIntAxis==0. Here’s a histogram of the Z-transformed correlations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;with(subset(ICC, lowIntAxis==0), hist(Z))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Shogren-reliability-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;With only 2 replicates per measurement occasion, the large-sample variance of the intra-class correlation is equivalent to that of the usual Pearson correlation (see Hedges, Hedberg, &amp;amp; Kuyper, 2013), except that I use &lt;span class=&#34;math inline&#34;&gt;\(N - P\)&lt;/span&gt; in the denominator to account for the fact that separate means are estimated for each of the &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt; phases: &lt;span class=&#34;math display&#34;&gt;\[Var(\hat\rho) \approx \frac{(1 - \rho^2)^2}{N - P},\]&lt;/span&gt; where &lt;span class=&#34;math inline&#34;&gt;\(N = \sum_i n_i\)&lt;/span&gt;. Applying Fisher’s Z transform stabilizes the variance, so that it is appropriate to use inverse variance weights of simply &lt;span class=&#34;math inline&#34;&gt;\(N - P\)&lt;/span&gt;. Turning to a random-effects meta-analysis:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 summary(rma_Z &amp;lt;- rma(yi = Z, vi = 1 / df, data = ICC, subset = lowIntAxis==0))&lt;/code&gt;&lt;/pre&gt;
@@ -1099,17 +1147,17 @@ summary(rma_Z &amp;lt;- rma(yi = Z, vi = 1 / df, data = ICC, subset = lowIntAxis
     
     <item>
       <title>A standardized mean difference effect size for multiple baseline designs</title>
-      <link>/publication/smd-for-mbd/</link>
+      <link>https://www.jepusto.com/publication/smd-for-mbd/</link>
       <pubDate>Fri, 23 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/smd-for-mbd/</guid>
+      <guid>https://www.jepusto.com/publication/smd-for-mbd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Current projects</title>
-      <link>/current-projects/</link>
+      <link>https://www.jepusto.com/current-projects/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>/current-projects/</guid>
+      <guid>https://www.jepusto.com/current-projects/</guid>
       <description>
 
 
@@ -1126,17 +1174,17 @@ summary(rma_Z &amp;lt;- rma(yi = Z, vi = 1 / df, data = ICC, subset = lowIntAxis
     
     <item>
       <title>A d-statistic for single-case designs that is equivalent to the usual between-groups d-statistics</title>
-      <link>/publication/between-groups-d-statistic/</link>
+      <link>https://www.jepusto.com/publication/between-groups-d-statistic/</link>
       <pubDate>Thu, 18 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/between-groups-d-statistic/</guid>
+      <guid>https://www.jepusto.com/publication/between-groups-d-statistic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>/publication/operationally-comparable-effect-sizes/</link>
+      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>
@@ -1144,9 +1192,9 @@ summary(rma_Z &amp;lt;- rma(yi = Z, vi = 1 / df, data = ICC, subset = lowIntAxis
     
     <item>
       <title>A standardized mean difference effect size for single case designs</title>
-      <link>/publication/smd-for-scd/</link>
+      <link>https://www.jepusto.com/publication/smd-for-scd/</link>
       <pubDate>Tue, 14 Aug 2012 00:00:00 +0000</pubDate>
-      <guid>/publication/smd-for-scd/</guid>
+      <guid>https://www.jepusto.com/publication/smd-for-scd/</guid>
       <description></description>
     </item>
     

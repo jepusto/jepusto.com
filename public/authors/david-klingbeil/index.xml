@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>David Klingbeil | James E. Pustejovsky</title>
+    <link>https://www.jepusto.com/authors/david-klingbeil/</link>
+      <atom:link href="https://www.jepusto.com/authors/david-klingbeil/index.xml" rel="self" type="application/rss+xml" />
+    <description>David Klingbeil</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Sun, 16 Apr 2023 11:40:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>David Klingbeil</title>
+      <link>https://www.jepusto.com/authors/david-klingbeil/</link>
+    </image>
+    
+    <item>
+      <title>Empirical benchmarks for between-case standardized mean differences from single-case multiple baseline designs examining academic interventions.</title>
+      <link>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</link>
+      <pubDate>Sun, 16 Apr 2023 11:40:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
