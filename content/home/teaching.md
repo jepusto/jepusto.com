@@ -25,12 +25,13 @@ weight = 50
 
 ### At UW Madison
 
-- [Meta-analysis](/teaching/Meta-analysis/)
-- [Design & Analysis of Quasi-Experiments](/teaching/Quasi-Experimental/)
+- [Meta-analysis](/teaching/meta-analysis/)
+- [Field Experiments in Education Research](/teaching/field-experiments/)
+- [Design & Analysis of Quasi-Experiments](/teaching/quasi-experimental/)
 
 ### At UT Austin
 
-- [Causal Inference](/teaching/Causal-Inference/)
-- [Research Design](/teaching/Research-design/)
-- [Data Analysis, Simulation, & Programming in R](/teaching/DASPiR/)
-- [Statistical Analysis of Experimental Data](/teaching/Experimental-Data/)
+- [Causal Inference](/teaching/causal-inference/)
+- [Research Design](/teaching/research-design/)
+- [Data Analysis, Simulation, & Programming in R](/teaching/daspir/)
+- [Statistical Analysis of Experimental Data](/teaching/experimental-data/)
