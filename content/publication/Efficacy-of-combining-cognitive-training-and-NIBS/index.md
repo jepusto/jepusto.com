@@ -26,7 +26,7 @@ tags:
 slides: 
 summary: 
 links:
-url_preprint: ""
+url_preprint: "https://psyarxiv.com/wqrne/"
 url_code: "https://osf.io/qfpba/"
 url_dataset: "https://osf.io/h6yta"
 url_pdf: 
