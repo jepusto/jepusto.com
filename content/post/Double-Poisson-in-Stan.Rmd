@@ -1,0 +1,151 @@
+---
+title: Implementing Efron's double Poisson distribution in Stan
+authors:
+- admin
+date: '2023-09-12'
+codefolding_show: 'show'
+slug: double-poisson-in-Stan
+categories: []
+draft: true
+tags:
+  - simulation
+  - distribution-theory
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002), but it's turning out to be a bit tricky. The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's more challenging is that also we need to also write a Stan function to generate random samples from the double-Poisson, so that we can generate posterior predictive checks. In this post, I'll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan. 
+
+The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from `gamlss.dist`. 
+
+```{r setup}
+library(tidyverse)
+library(gamlss.dist) # provides DPO distribution functions
+library(rstan)       # Stan interface to R
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit
+rstan_options(auto_write = TRUE)
+```
+
+## The double-Poisson 
+
+The double-Poisson distribution is a discrete distribution for non-negative counts, with support $\mathcal{S}_X = \{0, 1, 2, 3, ...\}$. 
+It is an interesting distribution because it admits for both over- and under-dispersion relative to the Poisson distribution, whereas most of the conventional alternatives such as the negative binomial distribution or Poisson-normal mixture distribution allow only for over-dispersion. 
+The mean-variance relationship of the double-Poisson is approximately constant; for $X \sim DPO(\mu, \theta)$,  $\text{E}(X) \approx \mu$ and $\text{Var}(X) \approx \mu / \theta$, so that the double-Poisson distribution approximately satisfies the assumptions of a quasi-Poisson generalized linear model (although not quite exactly so). 
+
+[Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\theta$:
+$$
+f(x | \mu, \theta) = \frac{\theta^{1/2} e^{-\theta \mu}}{c(\mu,\theta)} \left(\frac{e^{-x} x^x}{x!}\right) \left(\frac{e \mu}{x}\right)^{\theta x},
+$$
+where $c(\mu,\theta)$ is a scaling constant to ensure that the density sums to one, which is closely approximated by 
+$$
+c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\mu \theta}\right).
+$$
+We then have
+$$
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+$$
+where $x \ln (x)$ is evaluated as 0.
+
+# Log of the probability mass function
+
+For purposes of using this distribution in Stan, it's sufficient to provide the log of the probability mass function up to a constant---there's no need to normalize it to sum to one. Thus, we can ignore the $c(\mu, \theta)$ term above. Here's a Stan function implementing the lpmf:
+
+```{r lpmf}
+stancode_lpmf <- "
+functions {
+  real dpo_lpmf(int X, real mu, real theta) {
+    real ans;
+    real A = inv(2) * log(theta) - theta * mu;
+    if (X == 0)
+      ans = A;
+    else
+      ans = A + X * (theta * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - theta) * X * log(X);
+    return ans;
+  }
+}
+"
+```
+
+To check that this is accurate, I'll compare the Stan function to the corresponding function from `gamlss.dist` for a couple of different parameter values and for $x = 0,...,100$. If my function is accurate, the calculated log-probabilities should differ by a constant value for each set of parameters.
+
+```{r check-lpmf, cache = TRUE}
+writeLines(stancode_lpmf, "DPO-lpmf.stan")
+expose_stan_functions("DPO-lpmf.stan")
+
+test_values <- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    X = 0:100
+  ) %>%
+  mutate(
+    gamlss_lpmf = dDPO(x = X, mu = mu, sigma = 1 / theta, log = TRUE),
+    my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, theta = theta), .f = dpo_lpmf),
+    diff = my_lpmf - gamlss_lpmf
+  )
+
+test_values %>%
+  group_by(mu, theta) %>%
+  summarise(
+    range = diff(range(diff))
+  ) %>%
+  pivot_wider(names_from = mu, values_from = range, names_prefix = "mu = ") %>%
+  knitr::kable(digits = 10)
+```
+Checks out. Onward!
+
+# Quantile function and sampler
+
+```{r qr}
+stancode_qr <- " 
+functions {
+  int dpo_quantile(real p, real mu, real theta, int max_value) {
+    real mu_theta = mu * theta;
+    real Cval = 1 + (1 + 1 / mu_theta) * (1 - theta) / (12 * mu_theta);
+    real mult_term = exp(theta * (1 + log(mu)) - 1);
+    vector[max_value] probs;
+    probs[1] = sqrt(theta) * exp(-mu_theta);
+    probs[2] = probs[1] * mult_term;
+    real total = probs[1] + probs[2];
+    for (i in 3:max_value) {
+      probs[i] = probs[i - 1] * mult_term * exp((1 - theta) * (i - 2) * (log(i - 1) - log(i - 2))) * (i - 1)^theta;
+      total += probs[i]
+    }
+    int q = 0;
+    while (probs[q + 1] / total < p) {
+      q += 1;
+    }
+    return q;
+  }
+  int dpo_rng(real mu, real sigma, int max_value) {
+    real p = uniform_rng(0,1);
+    int x = dpo_quantile(p, mu, sigma, max_value);
+    return x;
+  }
+}
+"
+```
+```{r check-quantile, cache = TRUE}
+writeLines(stancode_qr, "DPO-rng.stan")
+expose_stan_functions("DPO-rng.stan")
+
+```
+
+# Colophon
+
+```{r}
+file.remove("DPO-lpmf.stan")
+file.remove("DPO-rng.stan")
+sessionInfo()
+```
+
