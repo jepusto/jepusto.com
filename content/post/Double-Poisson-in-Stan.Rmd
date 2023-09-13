@@ -29,10 +29,11 @@ The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss
 
 ```{r setup, warning = FALSE, message = FALSE}
 library(tidyverse)
-library(gamlss.dist) # provides DPO distribution functions
+library(gamlss.dist) # DPO distribution functions
 library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
 library(bayesplot)   # Examine fitted models
-library(loo)         # Model fit
+library(loo)         # Model fit measures
 rstan_options(auto_write = TRUE)
 ```
 
@@ -303,9 +304,12 @@ functions {
     }
     return qs;
   }
-  vector dpo_rng(int n, real mu, real sigma, int max_value) {
-    vector[n] p = uniform_rng(0,1);
-    int x = dpo_quantile(p, mu, sigma, max_value);
+  array[] int dpo_rng(int n, real mu, real sigma, int max_value) {
+    vector[n] p;
+    for (i in 1:n) {
+      p[i] = uniform_rng(0,1);
+    }
+    array[n] int x = dpo_quantile(p, mu, sigma, max_value);
     return x;
   }
 }
@@ -319,11 +323,14 @@ expose_stan_functions("DPO-rng.stan")
 
 # Colophon
 
-```{r}
+```{r, include = FALSE, warning = FALSE}
 file.remove("DPO-lpmf.stan")
 file.remove("DPO-cdf.stan")
 file.remove("DPO-quantile.stan")
 file.remove("DPO-rng.stan")
+```
+
+```{r, echo = FALSE}
 sessionInfo()
 ```
 
