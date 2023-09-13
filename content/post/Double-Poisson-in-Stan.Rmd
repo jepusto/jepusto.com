@@ -27,7 +27,7 @@ For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit 
 
 The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from `gamlss.dist`. 
 
-```{r setup}
+```{r setup, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(gamlss.dist) # provides DPO distribution functions
 library(rstan)       # Stan interface to R
@@ -82,7 +82,7 @@ To check that this is accurate, I'll compare the Stan function to the correspond
 writeLines(stancode_lpmf, "DPO-lpmf.stan")
 expose_stan_functions("DPO-lpmf.stan")
 
-test_values <- 
+test_lpmf <- 
   expand_grid(
     mu = c(2, 5, 10, 20),
     theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
@@ -93,36 +93,145 @@ test_values <-
     my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, theta = theta), .f = dpo_lpmf),
     diff = my_lpmf - gamlss_lpmf
   )
-
-test_values %>%
-  group_by(mu, theta) %>%
-  summarise(
-    range = diff(range(diff))
-  ) %>%
-  pivot_wider(names_from = mu, values_from = range, names_prefix = "mu = ") %>%
-  knitr::kable(digits = 10)
 ```
+
+```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+ggplot(test_lpmf, aes(factor(theta), diff, color = factor(theta))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
+  theme_minimal() + 
+  labs(x = "theta") + 
+  theme(legend.position = "none")
+```
+
 Checks out. Onward!
+
+# Cumulative distribution function
+
+I'll next implement a function to evaluate the cumulative distriution function over a range of values. This is an expensive calculation, but it can be improved a little bit by noting the relationship between sequential values of the probability mass function. Letting $d = \exp \left(\theta + \theta \ln \mu - 1 \right)$, observe that
+$$
+\begin{aligned}
+f(0 | \mu, \theta) &= \frac{\theta^{1/2} e^{-\theta \mu}}{c(\mu,\theta)} \\
+f(1 | \mu, \theta) &= f(0 | \mu, \theta) \times d \\
+f(x | \mu, \theta) &= f(x - 1 | \mu, \theta) \times d \times \frac{\exp\left[(1 - \theta)(x - 1)\left(\ln(x) - \ln(x - 1)\right) \right]}{x^\theta}
+\end{aligned}
+$$
+where the last expression holds for $x \geq 2$.
+
+The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \theta)$) over the range $x = 0,...,m$ as follows: 
+* Compute $f(x | \mu, \theta)$ for $x = 0,...,m$, without the scaling constant $c(\mu, \theta)$
+* Take $F(0 | \mu, \theta) = f(0 | \mu, \theta)$ and accumulating $F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)$ for $x = 0,...,m$.
+If $m$ is big enough, then the normalized cumulative distribution function will be $F(x | \mu, \theta) / F(m | \mu, \theta)$.
+
+```{r cdf}
+stancode_cdf <- " 
+functions {
+  vector dpo_cdf(int max_value, real mu, real theta) {
+    real d = exp(theta * (1 + log(mu)) - 1);
+    real prob;
+    vector[max_value + 1] cdf;
+    cdf[1] = sqrt(theta) * exp(-mu * theta);
+    prob = cdf[1] * d;
+    cdf[2] = cdf[1] + prob;
+    for (i in 2:max_value) {
+      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
+      cdf[i + 1] = cdf[i] + prob;
+    }
+    return cdf;
+  }
+}
+"
+```
+
+To check that this is accurate, I'll again compare the Stan function to the corresponding function from `gamlss.dist`. If my function is accurate, the unnormalized cdf values should be proportional to the cdf calculated from `gamlss.dist::pDPO()`. The ratio should be the sam
+
+```{r check-cdf, cache = TRUE}
+writeLines(stancode_cdf, "DPO-cdf.stan")
+expose_stan_functions("DPO-cdf.stan")
+
+test_cdf <- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %>%
+  mutate(
+    my_cdf = pmap(.l = list(max_value = 100, mu = mu, theta = theta), .f = dpo_cdf)
+  ) %>%
+  unnest(my_cdf) %>%
+  group_by(mu, theta) %>%
+  mutate(
+    q = 0:100,
+    gamlss_cdf = pDPO(q = q, mu = mu, sigma = 1 / theta),
+    ratio = my_cdf / gamlss_cdf
+  )
+```
+
+```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+ggplot(test_cdf, aes(factor(theta), ratio, color = factor(theta))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
+  theme_minimal() + 
+  labs(x = "theta") + 
+  theme(legend.position = "none")
+```
+
+Still on track here (although you might wonder, would I be sharing this post if I couldn't get the function working?).
 
 # Quantile function and sampler
 
-```{r qr}
-stancode_qr <- " 
+The main other thing we need is a function for generating random samples from the double-Poisson. The `gamlss.dist` package has the function `rDPO()` for this purpose. It's implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. I'll take the same approach.
+
+For a specified probability $p \in [0, 1]$, the function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \theta) / F(m | \mu, \theta) \geq p$.
+
+```{r quantile}
+stancode_quantile <- " 
+functions {
+  vector dpo_cdf(int max_value, real mu, real theta) {
+    real d = exp(theta * (1 + log(mu)) - 1);
+    real prob;
+    vector[max_value + 1] cdf;
+    cdf[1] = sqrt(theta) * exp(-mu * theta);
+    prob = cdf[1] * d;
+    cdf[2] = cdf[1] + prob;
+    for (i in 2:max_value) {
+      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
+      cdf[i + 1] = cdf[i] + prob;
+    }
+    return cdf;
+  }
+  int dpo_quantile(real p, real mu, real theta, int max_value) {
+    vector[max_value + 1] cdf = dpo_cdf(max_value, mu, theta);
+    int q = 0;
+    while (cdf[q + 1] / cdf[max_value + 1] < p) {
+      q += 1;
+    }
+    return q;
+  }
+}
+"
+```
+
+```{r check-quantile, cache = TRUE}
+writeLines(stancode_quantile, "DPO-quantile.stan")
+expose_stan_functions("DPO-quantile.stan")
+```
+
+```{r rng}
+stancode_qr <- "
 functions {
   int dpo_quantile(real p, real mu, real theta, int max_value) {
-    real mu_theta = mu * theta;
-    real Cval = 1 + (1 + 1 / mu_theta) * (1 - theta) / (12 * mu_theta);
-    real mult_term = exp(theta * (1 + log(mu)) - 1);
-    vector[max_value] probs;
-    probs[1] = sqrt(theta) * exp(-mu_theta);
-    probs[2] = probs[1] * mult_term;
-    real total = probs[1] + probs[2];
-    for (i in 3:max_value) {
-      probs[i] = probs[i - 1] * mult_term * exp((1 - theta) * (i - 2) * (log(i - 1) - log(i - 2))) * (i - 1)^theta;
-      total += probs[i]
+    real d = exp(theta * (1 + log(mu)) - 1);
+    real prob;
+    vector[max_value + 1] cdf;
+    cdf[1] = sqrt(theta) * exp(-mu * theta);
+    prob = cdf[1] * d;
+    cdf[2] = cdf[1] + prob;
+    for (i in 2:max_value) {
+      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) * i^theta;
+      cdf[i + 1] = cdf[i] + prob;
     }
     int q = 0;
-    while (probs[q + 1] / total < p) {
+    while (cdf[q + 1] / cdf[max_value + 1] < p) {
       q += 1;
     }
     return q;
@@ -135,16 +244,18 @@ functions {
 }
 "
 ```
-```{r check-quantile, cache = TRUE}
+
+```{r check-rng, cache = TRUE}
 writeLines(stancode_qr, "DPO-rng.stan")
 expose_stan_functions("DPO-rng.stan")
-
 ```
 
 # Colophon
 
 ```{r}
 file.remove("DPO-lpmf.stan")
+file.remove("DPO-cdf.stan")
+file.remove("DPO-quantile.stan")
 file.remove("DPO-rng.stan")
 sessionInfo()
 ```
