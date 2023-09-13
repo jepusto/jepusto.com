@@ -356,7 +356,8 @@ Looks pretty good, no?
 
 # Using the custom distribution functions
 
-To finsh out my tests of these functions, I'll demonstrate their use in an actual estimation problem. I'll generate data based on a simple generalized linear model with a single predictor $X$, where the outcome $Y$ follows a double-Poisson distribution conditional on $X$. The data-generating process is:
+To finish out my tests of these functions, I'll demonstrate their use in an actual estimation problem. I'll generate data based on a simple generalized linear model with a single predictor $X$, where the outcome $Y$ follows a double-Poisson distribution conditional on $X$. The data-generating process is:
+
 $$
 \begin{aligned}
 X &\sim N(0, 1) \\
@@ -367,9 +368,10 @@ $$
 To make things interesting, I'll set the dispersion parameter to $1 / \theta = 0.7$ so that the outcome is _under_-dispersed relative to the Poisson. 
 
 The following code generates a large sample from the data-generating process. To keep things R-centric, I use `gamlss.dist::rDPO` to generate the outcome.
+
 ```{r}
 set.seed(20230913)
-N <- 10000
+N <- 500
 X <- rnorm(N)
 mu <- exp(2 + 0.3 * X)
 theta_inv <- 0.7
@@ -378,13 +380,15 @@ dat <- data.frame(X = X, Y = Y)
 ```
 
 Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
+
 ```{r, fig.width = 6, fig.height = 4, fig.retina = 2}
 ggplot(dat, aes(X, Y)) + 
-  geom_point(alpha = 0.05) + 
+  geom_point(alpha = 0.1) + 
   geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
   theme_minimal()
 ```
 Surely the simplest, quickest, and dirtiest way to estimate such a regression is with a generalized linear model, using the "quasi-Poisson" family to allow for non-unit dispersion. In R:
+
 ```{r}
 quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
 summary(quasi_fit)
@@ -392,8 +396,20 @@ summary(quasi_fit)
 This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r theta_inv`.
 
 Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I'll fit the model in a Bayesian framework with the `brms` package.
-```{r}
 
+```{r}
+Poisson_fit <- 
+  brm(
+    Y ~ X, family = poisson(link = "log"),
+    data = dat, 
+    warmup = 500, 
+    iter = 2000, 
+    chains = 2, 
+    cores = 2,
+    seed = 20230913
+  )
+
+summary(Poisson_fit)
 ```
 
 
