@@ -53,7 +53,7 @@ c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\m
 $$
 We then have
 $$
-\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - \ln c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
 $$
 where $x \ln (x)$ is evaluated as 0.
 
@@ -120,6 +120,7 @@ $$
 where the last expression holds for $x \geq 2$.
 
 The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \theta)$) over the range $x = 0,...,m$ as follows: 
+
 * Compute $f(x | \mu, \theta)$ for $x = 0,1,2,...$, without the scaling constant $c(\mu, \theta)$
 * Take $F(0 | \mu, \theta) = f(0 | \mu, \theta)$ and accumulating $F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)$ for $x = 0,...,m$.
 * Checking if $f(x | \mu, \theta) / F(x | \mu, \theta)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
@@ -304,22 +305,97 @@ functions {
     }
     return qs;
   }
-  array[] int dpo_rng(int n, real mu, real sigma, int max_value) {
+  array[] int dpo_rng(int n, real mu, real theta, int max_value) {
     vector[n] p;
     for (i in 1:n) {
       p[i] = uniform_rng(0,1);
     }
-    array[n] int x = dpo_quantile(p, mu, sigma, max_value);
+    array[n] int x = dpo_quantile(p, mu, theta, max_value);
     return x;
   }
 }
 "
 ```
 
+To check this function, I'll generate some large samples from the double-Poisson with a few different parameter sets. If the sampler is working properly, the empirical cumulative distribution should line up closely with the cumulative distribution computed using `gamlss.dist::pDPO()`.
+
 ```{r check-rng, cache = TRUE}
 writeLines(stancode_qr, "DPO-rng.stan")
 expose_stan_functions("DPO-rng.stan")
+
+test_rng <- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %>%
+  mutate(
+    x = pmap(.l = list(n = 10000, mu = mu, theta = theta, max_value = 5000), .f = dpo_rng),
+    tb = map(x, ~ as.data.frame(table(.x)))
+  ) %>%
+  dplyr::select(-x) %>%
+  group_by(mu, theta) %>%
+  unnest(tb) %>%
+  mutate(
+    .x = as.integer(levels(.x))[.x],
+    Freq_cum = cumsum(Freq),
+    gamlss_F = 10000 * pDPO(q = .x, mu = mu, sigma = 1 / theta)
+  )
 ```
+
+```{r, fig.width = 7, fig.height = 10, fig.retina = 2}
+ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(theta))) + 
+  geom_abline(slope = 1, color = "blue", linetype = "dashed") + 
+  geom_point() + geom_line() +  
+  facet_grid(theta ~ mu, labeller = "label_both") + 
+  theme_minimal() + 
+  labs(x = "Theoretical cdf (gamlss.dist)", y = "Empirical cdf (my function)") + 
+  theme(legend.position = "none") 
+```
+
+Looks pretty good, no?
+
+# Using the custom distribution functions
+
+To finsh out my tests of these functions, I'll demonstrate their use in an actual estimation problem. I'll generate data based on a simple generalized linear model with a single predictor $X$, where the outcome $Y$ follows a double-Poisson distribution conditional on $X$. The data-generating process is:
+$$
+\begin{aligned}
+X &\sim N(0, 1) \\
+Y|X &\sim DPO(\mu(X), \theta) \\
+\log \mu(X) &= 2 + 0.3 \times X
+\end{aligned}
+$$
+To make things interesting, I'll set the dispersion parameter to $1 / \theta = 0.7$ so that the outcome is _under_-dispersed relative to the Poisson. 
+
+The following code generates a large sample from the data-generating process. To keep things R-centric, I use `gamlss.dist::rDPO` to generate the outcome.
+```{r}
+set.seed(20230913)
+N <- 10000
+X <- rnorm(N)
+mu <- exp(2 + 0.3 * X)
+theta_inv <- 0.7
+Y <- rDPO(N, mu = mu, sigma = theta_inv)
+dat <- data.frame(X = X, Y = Y)
+```
+
+Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
+```{r, fig.width = 6, fig.height = 4, fig.retina = 2}
+ggplot(dat, aes(X, Y)) + 
+  geom_point(alpha = 0.05) + 
+  geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
+  theme_minimal()
+```
+Surely the simplest, quickest, and dirtiest way to estimate such a regression is with a generalized linear model, using the "quasi-Poisson" family to allow for non-unit dispersion. In R:
+```{r}
+quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
+summary(quasi_fit)
+```
+This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r theta_inv`.
+
+Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I'll fit the model in a Bayesian framework with the `brms` package.
+```{r}
+
+```
+
 
 # Colophon
 

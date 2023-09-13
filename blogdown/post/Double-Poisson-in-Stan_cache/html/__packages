@@ -1,0 +1,17 @@
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+MASS
+gamlss.dist
+StanHeaders
+rstan
+Rcpp
+brms
+bayesplot
+loo
