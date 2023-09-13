@@ -119,9 +119,10 @@ $$
 where the last expression holds for $x \geq 2$.
 
 The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \theta)$) over the range $x = 0,...,m$ as follows: 
-* Compute $f(x | \mu, \theta)$ for $x = 0,...,m$, without the scaling constant $c(\mu, \theta)$
+* Compute $f(x | \mu, \theta)$ for $x = 0,1,2,...$, without the scaling constant $c(\mu, \theta)$
 * Take $F(0 | \mu, \theta) = f(0 | \mu, \theta)$ and accumulating $F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)$ for $x = 0,...,m$.
-If $m$ is big enough, then the normalized cumulative distribution function will be $F(x | \mu, \theta) / F(m | \mu, \theta)$.
+* Checking if $f(x | \mu, \theta) / F(x | \mu, \theta)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
+* The normalized cumulative distribution function will then be $F(x | \mu, \theta) / F(n | \mu, \theta)$.
 
 ```{r cdf}
 stancode_cdf <- " 
@@ -129,21 +130,26 @@ functions {
   vector dpo_cdf(int max_value, real mu, real theta) {
     real d = exp(theta * (1 + log(mu)) - 1);
     real prob;
-    vector[max_value + 1] cdf;
+    int n = max_value + 1;
+    vector[n] cdf;
     cdf[1] = sqrt(theta) * exp(-mu * theta);
     prob = cdf[1] * d;
     cdf[2] = cdf[1] + prob;
     for (i in 2:max_value) {
       prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
       cdf[i + 1] = cdf[i] + prob;
+      if (prob / cdf[i + 1] < 1e-8) {
+        n = i + 1;
+        break;
+      }
     }
-    return cdf;
+    return cdf / cdf[n];
   }
 }
 "
 ```
 
-To check that this is accurate, I'll again compare the Stan function to the corresponding function from `gamlss.dist`. If my function is accurate, the unnormalized cdf values should be proportional to the cdf calculated from `gamlss.dist::pDPO()`. The ratio should be the sam
+To check that this is accurate, I'll again compare the Stan function to the corresponding function from `gamlss.dist`. If my function is accurate, the computed cdf values should be proportional to the cdf calculated from `gamlss.dist::pDPO()` and the ratio should be very close to 1.
 
 ```{r check-cdf, cache = TRUE}
 writeLines(stancode_cdf, "DPO-cdf.stan")
@@ -158,21 +164,24 @@ test_cdf <-
     my_cdf = pmap(.l = list(max_value = 100, mu = mu, theta = theta), .f = dpo_cdf)
   ) %>%
   unnest(my_cdf) %>%
+  filter(!is.nan(my_cdf)) %>%
   group_by(mu, theta) %>%
   mutate(
-    q = 0:100,
+    q = row_number() - 1L,
     gamlss_cdf = pDPO(q = q, mu = mu, sigma = 1 / theta),
     ratio = my_cdf / gamlss_cdf
   )
 ```
 
 ```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+
 ggplot(test_cdf, aes(factor(theta), ratio, color = factor(theta))) + 
   geom_boxplot() + 
   facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
   theme_minimal() + 
   labs(x = "theta") + 
   theme(legend.position = "none")
+
 ```
 
 Still on track here (although you might wonder, would I be sharing this post if I couldn't get the function working?).
@@ -181,7 +190,7 @@ Still on track here (although you might wonder, would I be sharing this post if 
 
 The main other thing we need is a function for generating random samples from the double-Poisson. The `gamlss.dist` package has the function `rDPO()` for this purpose. It's implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. I'll take the same approach.
 
-For a specified probability $p \in [0, 1]$, the function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \theta) / F(m | \mu, \theta) \geq p$.
+The function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \theta) \geq p$ for a specified probability $p \in [0, 1]$, It is vectorized over $p$ and solves for $q$ by starting with the smallest $p$ and continuing through the largest value.
 
 ```{r quantile}
 stancode_quantile <- " 
@@ -189,55 +198,113 @@ functions {
   vector dpo_cdf(int max_value, real mu, real theta) {
     real d = exp(theta * (1 + log(mu)) - 1);
     real prob;
-    vector[max_value + 1] cdf;
+    int n = max_value + 1;
+    vector[n] cdf;
     cdf[1] = sqrt(theta) * exp(-mu * theta);
     prob = cdf[1] * d;
     cdf[2] = cdf[1] + prob;
     for (i in 2:max_value) {
       prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
       cdf[i + 1] = cdf[i] + prob;
+      if (prob / cdf[i + 1] < 1e-8) {
+        n = i + 1;
+        break;
+      }
     }
-    return cdf;
+    return cdf / cdf[n];
   }
-  int dpo_quantile(real p, real mu, real theta, int max_value) {
-    vector[max_value + 1] cdf = dpo_cdf(max_value, mu, theta);
-    int q = 0;
-    while (cdf[q + 1] / cdf[max_value + 1] < p) {
-      q += 1;
+  array[] int dpo_quantile(vector p, real mu, real theta, int max_value) {
+    int N = rows(p);
+    array[N] int qs;
+    array[N] int indices = sort_indices_asc(p);
+    vector[max_value + 1] cdf_vec = dpo_cdf(max_value, mu, theta);
+    int j = 0;
+    for (i in indices) {
+      while (cdf_vec[j + 1] < p[i]) {
+        j += 1;
+      }
+      qs[i] = j;
     }
-    return q;
+    return qs;
   }
 }
 "
 ```
 
+If my quantile function is accurate, it should match the value computed from `gamlss.dist::qDPO()` exactly.
+
 ```{r check-quantile, cache = TRUE}
 writeLines(stancode_quantile, "DPO-quantile.stan")
 expose_stan_functions("DPO-quantile.stan")
+
+test_quantile <- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %>%
+  mutate(
+    p = map(1:n(), ~ runif(100)),
+    my_q = pmap(.l = list(p = p, mu = mu, theta = theta, max_value = 5000), .f = dpo_quantile),
+    gamlss_q = pmap(.l = list(p = p, mu = mu, sigma = 1 / theta), .f = qDPO)
+  ) %>%
+  unnest(c(p, my_q, gamlss_q)) %>%
+  mutate(
+    diff = my_q - gamlss_q
+  )
 ```
+
+```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+
+ggplot(test_quantile, aes(factor(theta), diff, color = factor(theta))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
+  theme_minimal() + 
+  labs(x = "theta") + 
+  theme(legend.position = "none")
+
+```
+
+Phew, still got it!
+
+The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. My implementation is as follows:
 
 ```{r rng}
 stancode_qr <- "
 functions {
-  int dpo_quantile(real p, real mu, real theta, int max_value) {
+  vector dpo_cdf(int max_value, real mu, real theta) {
     real d = exp(theta * (1 + log(mu)) - 1);
     real prob;
-    vector[max_value + 1] cdf;
+    int n = max_value + 1;
+    vector[n] cdf;
     cdf[1] = sqrt(theta) * exp(-mu * theta);
     prob = cdf[1] * d;
     cdf[2] = cdf[1] + prob;
     for (i in 2:max_value) {
-      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) * i^theta;
+      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
       cdf[i + 1] = cdf[i] + prob;
+      if (prob / cdf[i + 1] < 1e-8) {
+        n = i + 1;
+        break;
+      }
     }
-    int q = 0;
-    while (cdf[q + 1] / cdf[max_value + 1] < p) {
-      q += 1;
-    }
-    return q;
+    return cdf / cdf[n];
   }
-  int dpo_rng(real mu, real sigma, int max_value) {
-    real p = uniform_rng(0,1);
+  array[] int dpo_quantile(vector p, real mu, real theta, int max_value) {
+    int N = rows(p);
+    array[N] int qs;
+    array[N] int indices = sort_indices_asc(p);
+    vector[max_value + 1] cdf_vec = dpo_cdf(max_value, mu, theta);
+    int j = 0;
+    for (i in indices) {
+      while (cdf_vec[j + 1] < p[i]) {
+        j += 1;
+      }
+      qs[i] = j;
+    }
+    return qs;
+  }
+  vector dpo_rng(int n, real mu, real sigma, int max_value) {
+    vector[n] p = uniform_rng(0,1);
     int x = dpo_quantile(p, mu, sigma, max_value);
     return x;
   }
