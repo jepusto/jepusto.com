@@ -2,7 +2,7 @@
 title: Implementing Efron's double Poisson distribution in Stan
 authors:
 - admin
-date: '2023-09-12'
+date: '2023-09-14'
 codefolding_show: 'show'
 slug: double-poisson-in-Stan
 categories: []
@@ -42,38 +42,36 @@ rstan_options(auto_write = TRUE)
 
 The double-Poisson distribution is a discrete distribution for non-negative counts, with support $\mathcal{S}_X = \{0, 1, 2, 3, ...\}$. 
 It is an interesting distribution because it admits for both over- and under-dispersion relative to the Poisson distribution, whereas most of the conventional alternatives such as the negative binomial distribution or Poisson-normal mixture distribution allow only for over-dispersion. 
-The mean-variance relationship of the double-Poisson is approximately constant; for $X \sim DPO(\mu, \theta)$,  $\text{E}(X) \approx \mu$ and $\text{Var}(X) \approx \mu / \theta$, so that the double-Poisson distribution approximately satisfies the assumptions of a quasi-Poisson generalized linear model (although not quite exactly so). 
+The mean-variance relationship of the double-Poisson is approximately constant; for $X \sim DPO(\mu, \phi)$,  $\text{E}(X) \approx \mu$ and $\text{Var}(X) \approx \mu / \phi$, so that the double-Poisson distribution approximately satisfies the assumptions of a quasi-Poisson generalized linear model (although not quite exactly so). 
 
-[Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\theta$:
+[Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\phi$:
 $$
-f(x | \mu, \theta) = \frac{\theta^{1/2} e^{-\theta \mu}}{c(\mu,\theta)} \left(\frac{e^{-x} x^x}{x!}\right) \left(\frac{e \mu}{x}\right)^{\theta x},
+f(x | \mu, \phi) = \frac{\phi^{1/2} e^{-\phi \mu}}{c(\mu,\phi)} \left(\frac{e^{-x} x^x}{x!}\right) \left(\frac{e \mu}{x}\right)^{\phi x},
 $$
-where $c(\mu,\theta)$ is a scaling constant to ensure that the density sums to one, which is closely approximated by 
+where $c(\mu,\phi)$ is a scaling constant to ensure that the density sums to one, which is closely approximated by 
 $$
-c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\mu \theta}\right).
+c(\mu, \phi) \approx 1 + \frac{1 - \phi}{12 \mu \phi}\left(1 + \frac{1}{\mu \phi}\right).
 $$
 We then have
 $$
-\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - \ln c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+\ln f(x | \mu, \phi) = \frac{1}{2} \ln \phi - \phi \mu - \ln c(\mu, \phi) + x (\phi + \phi \ln \mu - 1) + (1 - \phi) x \ln(x) - \ln \left(x!\right),
 $$
 where $x \ln (x)$ is evaluated as 0.
 
 # Log of the probability mass function
 
-For purposes of using this distribution in Stan, it's sufficient to provide the log of the probability mass function up to a constant---there's no need to normalize it to sum to one. Thus, we can ignore the $c(\mu, \theta)$ term above. Here's a Stan function implementing the lpmf:
+For purposes of using this distribution in Stan, it's sufficient to provide the log of the probability mass function up to a constant---there's no need to normalize it to sum to one. Thus, we can ignore the $c(\mu, \phi)$ term above. Here's a Stan function implementing the lpmf:
 
 ```{r lpmf}
 stancode_lpmf <- "
-functions {
-  real dpo_lpmf(int X, real mu, real theta) {
-    real ans;
-    real A = inv(2) * log(theta) - theta * mu;
-    if (X == 0)
-      ans = A;
-    else
-      ans = A + X * (theta * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - theta) * X * log(X);
-    return ans;
-  }
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
 }
 "
 ```
@@ -81,28 +79,28 @@ functions {
 To check that this is accurate, I'll compare the Stan function to the corresponding function from `gamlss.dist` for a couple of different parameter values and for $x = 0,...,100$. If my function is accurate, the calculated log-probabilities should differ by a constant value for each set of parameters.
 
 ```{r check-lpmf, cache = TRUE}
-writeLines(stancode_lpmf, "DPO-lpmf.stan")
+writeLines(paste("functions {", stancode_lpmf, "}", sep = "\n"), "DPO-lpmf.stan")
 expose_stan_functions("DPO-lpmf.stan")
 
 test_lpmf <- 
   expand_grid(
     mu = c(2, 5, 10, 20),
-    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
     X = 0:100
   ) %>%
   mutate(
-    gamlss_lpmf = dDPO(x = X, mu = mu, sigma = 1 / theta, log = TRUE),
-    my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, theta = theta), .f = dpo_lpmf),
+    gamlss_lpmf = dDPO(x = X, mu = mu, sigma = 1 / phi, log = TRUE),
+    my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, phi = phi), .f = dpo_lpmf),
     diff = my_lpmf - gamlss_lpmf
   )
 ```
 
 ```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
-ggplot(test_lpmf, aes(factor(theta), diff, color = factor(theta))) + 
+ggplot(test_lpmf, aes(factor(phi), diff, color = factor(phi))) + 
   geom_boxplot() + 
   facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
   theme_minimal() + 
-  labs(x = "theta") + 
+  labs(x = "phi") + 
   theme(legend.position = "none")
 ```
 
@@ -110,44 +108,42 @@ Checks out. Onward!
 
 # Cumulative distribution function
 
-I'll next implement a function to evaluate the cumulative distriution function over a range of values. This is an expensive calculation, but it can be improved a little bit by noting the relationship between sequential values of the probability mass function. Letting $d = \exp \left(\theta + \theta \ln \mu - 1 \right)$, observe that
+I'll next implement a function to evaluate the cumulative distriution function over a range of values. This is an expensive calculation, but it can be improved a little bit by noting the relationship between sequential values of the probability mass function. Letting $d = \exp \left(\phi + \phi \ln \mu - 1 \right)$, observe that
 $$
 \begin{aligned}
-f(0 | \mu, \theta) &= \frac{\theta^{1/2} e^{-\theta \mu}}{c(\mu,\theta)} \\
-f(1 | \mu, \theta) &= f(0 | \mu, \theta) \times d \\
-f(x | \mu, \theta) &= f(x - 1 | \mu, \theta) \times d \times \frac{\exp\left[(1 - \theta)(x - 1)\left(\ln(x) - \ln(x - 1)\right) \right]}{x^\theta}
+f(0 | \mu, \phi) &= \frac{\phi^{1/2} e^{-\phi \mu}}{c(\mu,\phi)} \\
+f(1 | \mu, \phi) &= f(0 | \mu, \phi) \times d \\
+f(x | \mu, \phi) &= f(x - 1 | \mu, \phi) \times d \times \frac{\exp\left[(1 - \phi)(x - 1)\left(\ln(x) - \ln(x - 1)\right) \right]}{x^\phi}
 \end{aligned}
 $$
 where the last expression holds for $x \geq 2$.
 
-The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \theta)$) over the range $x = 0,...,m$ as follows: 
+The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \phi)$) over the range $x = 0,...,m$ as follows: 
 
-* Compute $f(x | \mu, \theta)$ for $x = 0,1,2,...$, without the scaling constant $c(\mu, \theta)$
-* Take $F(0 | \mu, \theta) = f(0 | \mu, \theta)$ and accumulating $F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)$ for $x = 0,...,m$.
-* Checking if $f(x | \mu, \theta) / F(x | \mu, \theta)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
-* The normalized cumulative distribution function will then be $F(x | \mu, \theta) / F(n | \mu, \theta)$.
+* Compute $f(x | \mu, \phi)$ for $x = 0,1,2,...$, without the scaling constant $c(\mu, \phi)$
+* Take $F(0 | \mu, \phi) = f(0 | \mu, \phi)$ and accumulating $F(x | \mu, \phi) = F(x - 1 | \mu, \phi) + f(x | \mu, \phi)$ for $x = 0,...,m$.
+* Checking if $f(x | \mu, \phi) / F(x | \mu, \phi)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
+* The normalized cumulative distribution function will then be $F(x | \mu, \phi) / F(n | \mu, \phi)$.
 
 ```{r cdf}
 stancode_cdf <- " 
-functions {
-  vector dpo_cdf(int max_value, real mu, real theta) {
-    real d = exp(theta * (1 + log(mu)) - 1);
-    real prob;
-    int n = max_value + 1;
-    vector[n] cdf;
-    cdf[1] = sqrt(theta) * exp(-mu * theta);
-    prob = cdf[1] * d;
-    cdf[2] = cdf[1] + prob;
-    for (i in 2:max_value) {
-      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
-      cdf[i + 1] = cdf[i] + prob;
-      if (prob / cdf[i + 1] < 1e-8) {
-        n = i + 1;
-        break;
-      }
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] < 1e-8) {
+      n = i + 1;
+      break;
     }
-    return cdf / cdf[n];
   }
+  return cdf / cdf[n];
 }
 "
 ```
@@ -155,34 +151,36 @@ functions {
 To check that this is accurate, I'll again compare the Stan function to the corresponding function from `gamlss.dist`. If my function is accurate, the computed cdf values should be proportional to the cdf calculated from `gamlss.dist::pDPO()` and the ratio should be very close to 1.
 
 ```{r check-cdf, cache = TRUE}
-writeLines(stancode_cdf, "DPO-cdf.stan")
+writeLines(paste("functions {", stancode_cdf, "}", sep = "\n"), "DPO-cdf.stan")
 expose_stan_functions("DPO-cdf.stan")
 
 test_cdf <- 
   expand_grid(
     mu = c(2, 5, 10, 20),
-    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
   ) %>%
   mutate(
-    my_cdf = pmap(.l = list(max_value = 100, mu = mu, theta = theta), .f = dpo_cdf)
+    maxval = 20 * mu / pmin(1, phi),
+    my_cdf = pmap(.l = list(mu = mu, phi = phi, maxval = maxval), .f = dpo_cdf)
   ) %>%
   unnest(my_cdf) %>%
   filter(!is.nan(my_cdf)) %>%
-  group_by(mu, theta) %>%
+  group_by(mu, phi) %>%
   mutate(
     q = row_number() - 1L,
-    gamlss_cdf = pDPO(q = q, mu = mu, sigma = 1 / theta),
+    gamlss_cdf = pDPO(q = q, mu = mu, sigma = 1 / phi),
     ratio = my_cdf / gamlss_cdf
   )
 ```
 
 ```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
 
-ggplot(test_cdf, aes(factor(theta), ratio, color = factor(theta))) + 
+ggplot(test_cdf, aes(factor(phi), ratio, color = factor(phi))) + 
   geom_boxplot() + 
   facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
   theme_minimal() + 
-  labs(x = "theta") + 
+  labs(x = "phi") + 
+  ylim(1 + c(-1e-6, 1e-6)) + 
   theme(legend.position = "none")
 
 ```
@@ -193,43 +191,41 @@ Still on track here (although you might wonder, would I be sharing this post if 
 
 The main other thing we need is a function for generating random samples from the double-Poisson. The `gamlss.dist` package has the function `rDPO()` for this purpose. It's implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. I'll take the same approach.
 
-The function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \theta) \geq p$ for a specified probability $p \in [0, 1]$, It is vectorized over $p$ and solves for $q$ by starting with the smallest $p$ and continuing through the largest value.
+The function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \phi) \geq p$ for a specified probability $p \in [0, 1]$, It is vectorized over $p$ and solves for $q$ by starting with the smallest $p$ and continuing through the largest value.
 
 ```{r quantile}
 stancode_quantile <- " 
-functions {
-  vector dpo_cdf(real mu, real theta, int max_value) {
-    real d = exp(theta * (1 + log(mu)) - 1);
-    real prob;
-    int n = max_value + 1;
-    vector[n] cdf;
-    cdf[1] = sqrt(theta) * exp(-mu * theta);
-    prob = cdf[1] * d;
-    cdf[2] = cdf[1] + prob;
-    for (i in 2:max_value) {
-      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
-      cdf[i + 1] = cdf[i] + prob;
-      if (prob / cdf[i + 1] < 1e-8) {
-        n = i + 1;
-        break;
-      }
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] < 1e-8) {
+      n = i + 1;
+      break;
     }
-    return cdf / cdf[n];
   }
-  array[] int dpo_quantile(vector p, real mu, real theta, int max_value) {
-    int N = rows(p);
-    array[N] int qs;
-    array[N] int indices = sort_indices_asc(p);
-    vector[max_value + 1] cdf_vec = dpo_cdf(max_value, mu, theta);
-    int j = 0;
-    for (i in indices) {
-      while (cdf_vec[j + 1] < p[i]) {
-        j += 1;
-      }
-      qs[i] = j;
+  return cdf / cdf[n];
+}
+array[] int dpo_quantiles(vector p, real mu, real phi, int maxval) {
+  int N = rows(p);
+  array[N] int qs;
+  array[N] int indices = sort_indices_asc(p);
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int j = 0;
+  for (i in indices) {
+    while (cdf_vec[j + 1] < p[i]) {
+      j += 1;
     }
-    return qs;
+    qs[i] = j;
   }
+  return qs;
 }
 "
 ```
@@ -237,18 +233,19 @@ functions {
 If my quantile function is accurate, it should match the value computed from `gamlss.dist::qDPO()` exactly.
 
 ```{r check-quantile, cache = TRUE}
-writeLines(stancode_quantile, "DPO-quantile.stan")
+writeLines(paste("functions {", stancode_quantile, "}", sep = "\n"), "DPO-quantile.stan")
 expose_stan_functions("DPO-quantile.stan")
 
 test_quantile <- 
   expand_grid(
     mu = c(2, 5, 10, 20),
-    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
   ) %>%
   mutate(
+    maxval = 20 * mu / pmin(1, phi),
     p = map(1:n(), ~ runif(100)),
-    my_q = pmap(.l = list(p = p, mu = mu, theta = theta, max_value = 5000), .f = dpo_quantile),
-    gamlss_q = pmap(.l = list(p = p, mu = mu, sigma = 1 / theta), .f = qDPO)
+    my_q = pmap(.l = list(p = p, mu = mu, phi = phi, maxval = maxval), .f = dpo_quantiles),
+    gamlss_q = pmap(.l = list(p = p, mu = mu, sigma = 1 / phi), .f = qDPO)
   ) %>%
   unnest(c(p, my_q, gamlss_q)) %>%
   mutate(
@@ -258,11 +255,11 @@ test_quantile <-
 
 ```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
 
-ggplot(test_quantile, aes(factor(theta), diff, color = factor(theta))) + 
+ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) + 
   geom_boxplot() + 
   facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
   theme_minimal() + 
-  labs(x = "theta") + 
+  labs(x = "phi") + 
   theme(legend.position = "none")
 
 ```
@@ -273,61 +270,67 @@ The last piece of the puzzle is to write a sampler by generating random points f
 
 ```{r rng}
 stancode_qr <- "
-functions {
-  real dpo_lpmf(int X, real mu, real theta, int max_value) {
-    real ans;
-    real A = inv(2) * log(theta) - theta * mu;
-    if (X == 0)
-      ans = A;
-    else
-      ans = A + X * (theta * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - theta) * X * log(X);
-    return ans;
-  }
-  vector dpo_cdf(real mu, real theta, int max_value) {
-    real d = exp(theta * (1 + log(mu)) - 1);
-    real prob;
-    int n = max_value + 1;
-    vector[n] cdf;
-    cdf[1] = sqrt(theta) * exp(-mu * theta);
-    prob = cdf[1] * d;
-    cdf[2] = cdf[1] + prob;
-    for (i in 2:max_value) {
-      prob = prob * d * exp((1 - theta) * (i - 1) * (log(i) - log(i - 1))) / (i^theta);
-      cdf[i + 1] = cdf[i] + prob;
-      if (prob / cdf[i + 1] < 1e-8) {
-        n = i + 1;
-        break;
-      }
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] < 1e-8) {
+      n = i + 1;
+      break;
     }
-    return cdf / cdf[n];
   }
-  array[] int dpo_quantile(vector p, real mu, real theta, int max_value) {
-    int N = rows(p);
-    array[N] int qs;
-    array[N] int indices = sort_indices_asc(p);
-    vector[max_value + 1] cdf_vec = dpo_cdf(max_value, mu, theta);
-    int j = 0;
-    for (i in indices) {
-      while (cdf_vec[j + 1] < p[i]) {
-        j += 1;
-      }
-      qs[i] = j;
+  return cdf / cdf[n];
+}
+array[] int dpo_quantiles(vector p, real mu, real phi, int maxval) {
+  int N = rows(p);
+  array[N] int qs;
+  array[N] int indices = sort_indices_asc(p);
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int j = 0;
+  for (i in indices) {
+    while (cdf_vec[j + 1] < p[i]) {
+      j += 1;
     }
-    return qs;
+    qs[i] = j;
   }
-  array[] int dpo_sampler(int n, real mu, real theta, int max_value) {
-    vector[n] p;
-    for (i in 1:n) {
-      p[i] = uniform_rng(0,1);
+  return qs;
+}
+array[] int dpo_sample_rng(int n, real mu, real phi, int maxval) {
+  vector[n] p;
+  for (i in 1:n) {
+    p[i] = uniform_rng(0,1);
+  }
+  array[n] int x = dpo_quantiles(p, mu, phi, maxval);
+  return x;
+}
+int dpo_quantile(real p, real mu, real phi, int maxval) {
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int q = 0;
+  while (cdf_vec[q + 1] < p) {
+      q += 1;
     }
-    array[n] int x = dpo_quantile(p, mu, theta, max_value);
-    return x;
-  }
-  int dpo_rng(real mu, real theta, int max_value) {
-    real p = uniform_rng(0,1);
-    int x = dpo_quantile(p, mu, theta, max_value);
-    return x;
-  }
+  return q;
+}
+int dpo_rng(real mu, real phi, int maxval) {
+  real p = uniform_rng(0,1);
+  int x = dpo_quantile(p, mu, phi, maxval);
+  return x;
 }
 "
 ```
@@ -335,33 +338,33 @@ functions {
 To check this function, I'll generate some large samples from the double-Poisson with a few different parameter sets. If the sampler is working properly, the empirical cumulative distribution should line up closely with the cumulative distribution computed using `gamlss.dist::pDPO()`.
 
 ```{r check-rng, cache = TRUE}
-writeLines(stancode_qr, "DPO-rng.stan")
+writeLines(paste("functions {", stancode_qr, "}", sep = "\n"), "DPO-rng.stan")
 expose_stan_functions("DPO-rng.stan")
 
 test_rng <- 
   expand_grid(
     mu = c(2, 5, 10, 20),
-    theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
   ) %>%
   mutate(
-    x = pmap(.l = list(n = 10000, mu = mu, theta = theta, max_value = 5000), .f = dpo_sampler),
+    x = pmap(.l = list(n = 10000, mu = mu, phi = phi, maxval = 5000), .f = dpo_sample_rng),
     tb = map(x, ~ as.data.frame(table(.x)))
   ) %>%
   dplyr::select(-x) %>%
-  group_by(mu, theta) %>%
+  group_by(mu, phi) %>%
   unnest(tb) %>%
   mutate(
     .x = as.integer(levels(.x))[.x],
     Freq_cum = cumsum(Freq),
-    gamlss_F = 10000 * pDPO(q = .x, mu = mu, sigma = 1 / theta)
+    gamlss_F = 10000 * pDPO(q = .x, mu = mu, sigma = 1 / phi)
   )
 ```
 
 ```{r, fig.width = 7, fig.height = 10, fig.retina = 2}
-ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(theta))) + 
+ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) + 
   geom_abline(slope = 1, color = "blue", linetype = "dashed") + 
   geom_point() + geom_line() +  
-  facet_grid(theta ~ mu, labeller = "label_both") + 
+  facet_grid(phi ~ mu, labeller = "label_both") + 
   theme_minimal() + 
   labs(x = "Theoretical cdf (gamlss.dist)", y = "Empirical cdf (my function)") + 
   theme(legend.position = "none") 
@@ -376,11 +379,11 @@ To finish out my tests of these functions, I'll demonstrate their use in an actu
 $$
 \begin{aligned}
 X &\sim N(0, 1) \\
-Y|X &\sim DPO(\mu(X), \theta) \\
+Y|X &\sim DPO(\mu(X), \phi) \\
 \log \mu(X) &= 2 + 0.3 \times X
 \end{aligned}
 $$
-To make things interesting, I'll set the dispersion parameter to $1 / \theta = 0.7$ so that the outcome is _under_-dispersed relative to the Poisson. 
+To make things interesting, I'll set the dispersion parameter to $1 / \phi = 0.7$ so that the outcome is _under_-dispersed relative to the Poisson. 
 
 The following code generates a large sample from the data-generating process. To keep things R-centric, I use `gamlss.dist::rDPO` to generate the outcome.
 
@@ -389,9 +392,9 @@ set.seed(20230913)
 N <- 500
 X <- rnorm(N)
 mu <- exp(2 + 0.3 * X)
-theta_inv <- 0.7
-Y <- rDPO(N, mu = mu, sigma = theta_inv)
-dat <- data.frame(X = X, Y = Y)
+phi_inv <- 0.6
+Y <- rDPO(N, mu = mu, sigma = phi_inv)
+dat <- data.frame(X = X, Y = Y, maxval = 1000)
 ```
 
 Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
@@ -402,13 +405,16 @@ ggplot(dat, aes(X, Y)) +
   geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
   theme_minimal()
 ```
+## Comparison models
+
+Before using the custom distribution, I'll fit a couple of out-of-the-box models that are useful points of comparison. 
 Surely the simplest, quickest, and dirtiest way to estimate such a regression is with a generalized linear model, using the "quasi-Poisson" family to allow for non-unit dispersion. In R:
 
 ```{r}
 quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
 summary(quasi_fit)
 ```
-This approach recovers the data-generating parameters pretty well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r theta_inv`. The intercept is under-estimated a little bit, and the slope is over-estimated by a touch.
+This approach recovers the data-generating parameters pretty well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r phi_inv`. The intercept is under-estimated a little bit, and the slope is over-estimated by a touch.
 
 Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I'll fit the model in a Bayesian framework with the `brms` package.
 
@@ -418,9 +424,9 @@ Poisson_fit <-
     Y ~ X, family = poisson(link = "log"),
     data = dat, 
     warmup = 500, 
-    iter = 2000, 
-    chains = 2, 
-    cores = 2,
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
     seed = 20230913
   )
 
@@ -428,7 +434,7 @@ summary(Poisson_fit)
 ```
 This specification recovers the intercept and slope parameters well too, but doesn't provide any estimate of dispersion. 
 
-As an alternative, I'll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not underdispersion):
+As an alternative, I'll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not under-dispersion):
 
 ```{r negbin, cache = TRUE}
 negbin_fit <- 
@@ -436,9 +442,9 @@ negbin_fit <-
     Y ~ X, family = negbinomial(link = "log"),
     data = dat, 
     warmup = 500, 
-    iter = 2000, 
-    chains = 2, 
-    cores = 2,
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
     seed = 20230913
   )
 
@@ -446,50 +452,102 @@ summary(negbin_fit)
 ```
 The `brms` package implements the negative binomial using the rate parameterization and a log transformation, so the `shape` parameter corresponds to the log of the inverse dispersion. Thus, a large shape parameter (as in the above fit) corresponds to dispersion that is very, very close to one (i.e., close to the Poisson).
 
-Finally, I'll fit the same model but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions, I'll first specify the custom family object for the double-Poisson:
+## Double-Poisson model
+
+Now I'll fit the same model as previously but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions, I'll first specify the custom family object for the double-Poisson:
 ```{r}
 double_Poisson <- custom_family(
-  "double_Poisson", dpars = c("mu","theta"),
+  "dpo", dpars = c("mu","phi"),
   links = c("log","log"),
   lb = c(0, 0), ub = c(NA, NA),
-  type = "int",
-  vars = "vint1[n]"
+  type = "int"
 )
 ```
 I set the defaults to use a log-link for the mean (just as with the Poisson and negative binomial families) and a log-link for the inverse-dispersion. 
-The argument `vars = "vint1[n]"` is to allow passing a value for the `max_value` argument of 
+The argument `vars = "vint1[n]"` is to allow passing a value for the `maxval` argument of the `dpo_` stan functions.
 Next, I'll create an object to add the custom stan code from above into the code created by `brm` for fitting the model:
 ```{r}
-double_Poisson_stanvars <- stanvar(scode = "stancode_qr", block = "function")
+double_Poisson_stanvars <- stanvar(scode = stancode_qr, block = "functions")
 ```
+I'll also need to specify a prior to use for the $\phi$ parameter of the double-Poisson distribution:
+```{r}
+phi_prior <- prior(exponential(1), class = "phi")
+```
+
 Now I'm ready to fit the model:
+
 ```{r negbin, cache = TRUE}
 DPO_fit <- 
   brm(
-    Y | vint(1000) ~ X, family = double_Poisson,
+    Y ~ X, family = double_Poisson,
+    prior = phi_prior,
     stanvars = double_Poisson_stanvars,
     data = dat, 
     warmup = 500, 
-    iter = 2000, 
-    chains = 2, 
-    cores = 2,
-    seed = 20230913
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
+    seed = 20230913,
+    save_model = "DPO-fit.stan"
   )
 
 summary(DPO_fit)
 ```
-
-
-```{r, fig.width = 10, fig.height = 5}
-Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 500)
-Poisson_dens <- ppc_dens_overlay(dat$Y, Yrep_Poisson[1:100,])
-Poisson_ecdf <- ppc_ecdf_overlay(dat$Y, Yrep_Poisson[1:100,])
-
-Yrep_negbin <- posterior_predict(negbin_fit, draws = 500)
-negbin_dens <- ppc_dens_overlay(dat$Y, Yrep_negbin[1:100,])
-negbin_ecdf <- ppc_ecdf_overlay(dat$Y, Yrep_negbin[1:100,])
-(Poisson_dens + Poisson_ecdf) / (negbin_dens + negbin_ecdf)
+The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models. However, we get a posterior for $\phi$ that corresponds to _under_-dispersion. Here's the posterior for the dispersion (i.e., $1 / \phi$):
+```{r, fig.width = 5, fig.height = 2}
+mcmc_areas(DPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
+  theme_minimal()
 ```
+
+## Model comparison
+
+I'd like to get a sense of how much better the double-Poisson model does with capturing the real data-generating process compared to the simple Poisson model or the negative binomial model. There's a wide range of diagnostics that can inform such comparisons. I'll consider the leave-one-out information criteria (LOOIC) and also look at some posterior predictive checks.
+
+To calculate LOOIC for the double-Poisson model, I first need to provide a `log_lik` function that `brms` can use:
+```{r DPO-loglik, cache = TRUE}
+expose_functions(DPO_fit, vectorize = TRUE)
+log_lik_dpo <- function(i, prep) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  y <- prep$data$Y[i]
+  dpo_lpmf(y, mu, phi)
+}
+```
+I can then compute LOOIC for all three models:
+```{r, cache = TRUE}
+loo(DPO_fit, Poisson_fit, negbin_fit)
+```
+By these measures, the double-Poisson model has substantially better fit than either of the other models. 
+
+To do posterior predictive checks, I need to provide a `posterior_predict` function that `brms` can use:
+```{r}
+posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  if (is.null(maxval)) maxval <- 20 * mu / min(phi, 1)
+  dpo_rng(mu, phi, maxval = maxval)
+}
+```
+
+Now I can compute posterior predictions for the double-Poisson model and make pretty pictures of them, along with corresponding plots for the Poisson and negative-binomial models.
+
+```{r PPDs, fig.width = 8, fig.height = 6}
+Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 100) 
+color_scheme_set("blue")
+Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson) + labs(title = "Poisson")
+
+Yrep_negbin <- posterior_predict(negbin_fit, draws = 100)
+color_scheme_set("green")
+negbin_root <- ppc_rootogram(dat$Y, Yrep_negbin) + labs(title = "Negative-binomial")
+
+Yrep_dpo <- posterior_predict(DPO_fit, draws = 100)
+color_scheme_set("purple")
+dpo_root <- ppc_rootogram(dat$Y, Yrep_dpo) + labs(title = "Double-Poisson")
+
+dpo_root / Poisson_root / negbin_root &
+  theme_minimal()
+```
+The differences in predicted frequencies are not at all obvious from these plots.
 
 # Colophon
 
@@ -498,6 +556,7 @@ file.remove("DPO-lpmf.stan")
 file.remove("DPO-cdf.stan")
 file.remove("DPO-quantile.stan")
 file.remove("DPO-rng.stan")
+file.remove("DPO-fit.stan")
 ```
 
 ```{r, echo = FALSE}

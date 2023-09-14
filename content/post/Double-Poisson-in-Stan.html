@@ -49,7 +49,7 @@ c(\mu, \theta) \approx 1 + \frac{1 - \theta}{12 \mu \theta}\left(1 + \frac{1}{\m
 \]</span>
 We then have
 <span class="math display">\[
-\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
+\ln f(x | \mu, \theta) = \frac{1}{2} \ln \theta - \theta \mu - \ln c(\mu, \theta) + x (\theta + \theta \ln \mu - 1) + (1 - \theta) x \ln(x) - \ln \left(x!\right),
 \]</span>
 where <span class="math inline">\(x \ln (x)\)</span> is evaluated as 0.</p>
 </div>
@@ -104,11 +104,13 @@ f(x | \mu, \theta) &amp;= f(x - 1 | \mu, \theta) \times d \times \frac{\exp\left
 \end{aligned}
 \]</span>
 where the last expression holds for <span class="math inline">\(x \geq 2\)</span>.</p>
-<p>The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant <span class="math inline">\(c(\mu, \theta)\)</span>) over the range <span class="math inline">\(x = 0,...,m\)</span> as follows:
-* Compute <span class="math inline">\(f(x | \mu, \theta)\)</span> for <span class="math inline">\(x = 0,1,2,...\)</span>, without the scaling constant <span class="math inline">\(c(\mu, \theta)\)</span>
-* Take <span class="math inline">\(F(0 | \mu, \theta) = f(0 | \mu, \theta)\)</span> and accumulating <span class="math inline">\(F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)\)</span> for <span class="math inline">\(x = 0,...,m\)</span>.
-* Checking if <span class="math inline">\(f(x | \mu, \theta) / F(x | \mu, \theta)\)</span> is small (less than <span class="math inline">\(10^{-8}\)</span>), in which case accumulation stops at the value <span class="math inline">\(n\)</span>.
-* The normalized cumulative distribution function will then be <span class="math inline">\(F(x | \mu, \theta) / F(n | \mu, \theta)\)</span>.</p>
+<p>The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant <span class="math inline">\(c(\mu, \theta)\)</span>) over the range <span class="math inline">\(x = 0,...,m\)</span> as follows:</p>
+<ul>
+<li>Compute <span class="math inline">\(f(x | \mu, \theta)\)</span> for <span class="math inline">\(x = 0,1,2,...\)</span>, without the scaling constant <span class="math inline">\(c(\mu, \theta)\)</span></li>
+<li>Take <span class="math inline">\(F(0 | \mu, \theta) = f(0 | \mu, \theta)\)</span> and accumulating <span class="math inline">\(F(x | \mu, \theta) = F(x - 1 | \mu, \theta) + f(x | \mu, \theta)\)</span> for <span class="math inline">\(x = 0,...,m\)</span>.</li>
+<li>Checking if <span class="math inline">\(f(x | \mu, \theta) / F(x | \mu, \theta)\)</span> is small (less than <span class="math inline">\(10^{-8}\)</span>), in which case accumulation stops at the value <span class="math inline">\(n\)</span>.</li>
+<li>The normalized cumulative distribution function will then be <span class="math inline">\(F(x | \mu, \theta) / F(n | \mu, \theta)\)</span>.</li>
+</ul>
 <pre class="r"><code>stancode_cdf &lt;- &quot; 
 functions {
   vector dpo_cdf(int max_value, real mu, real theta) {
@@ -304,8 +306,8 @@ test_rng &lt;-
 </div>
 <div id="using-the-custom-distribution-functions" class="section level1">
 <h1>Using the custom distribution functions</h1>
-<p>To finsh out my tests of these functions, I’ll demonstrate their use in an actual estimation problem. I’ll generate data based on a simple generalized linear model with a single predictor <span class="math inline">\(X\)</span>, where the outcome <span class="math inline">\(Y\)</span> follows a double-Poisson distribution conditional on <span class="math inline">\(X\)</span>. The data-generating process is:
-<span class="math display">\[
+<p>To finish out my tests of these functions, I’ll demonstrate their use in an actual estimation problem. I’ll generate data based on a simple generalized linear model with a single predictor <span class="math inline">\(X\)</span>, where the outcome <span class="math inline">\(Y\)</span> follows a double-Poisson distribution conditional on <span class="math inline">\(X\)</span>. The data-generating process is:</p>
+<p><span class="math display">\[
 \begin{aligned}
 X &amp;\sim N(0, 1) \\
 Y|X &amp;\sim DPO(\mu(X), \theta) \\
@@ -315,7 +317,7 @@ Y|X &amp;\sim DPO(\mu(X), \theta) \\
 To make things interesting, I’ll set the dispersion parameter to <span class="math inline">\(1 / \theta = 0.7\)</span> so that the outcome is <em>under</em>-dispersed relative to the Poisson.</p>
 <p>The following code generates a large sample from the data-generating process. To keep things R-centric, I use <code>gamlss.dist::rDPO</code> to generate the outcome.</p>
 <pre class="r"><code>set.seed(20230913)
-N &lt;- 10000
+N &lt;- 500
 X &lt;- rnorm(N)
 mu &lt;- exp(2 + 0.3 * X)
 theta_inv &lt;- 0.7
@@ -323,7 +325,7 @@ Y &lt;- rDPO(N, mu = mu, sigma = theta_inv)
 dat &lt;- data.frame(X = X, Y = Y)</code></pre>
 <p>Here’s what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:</p>
 <pre class="r"><code>ggplot(dat, aes(X, Y)) + 
-  geom_point(alpha = 0.05) + 
+  geom_point(alpha = 0.1) + 
   geom_smooth(method = &#39;gam&#39;, formula = y ~ s(x, bs = &quot;cs&quot;)) + 
   theme_minimal()</code></pre>
 <p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-6-1.png" width="576" />
@@ -335,25 +337,87 @@ summary(quasi_fit)</code></pre>
 ## glm(formula = Y ~ X, family = quasipoisson(link = &quot;log&quot;), data = dat)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.5829  -0.6041  -0.0457   0.5154   3.0004  
+##      Min        1Q    Median        3Q       Max  
+## -2.79512  -0.59001   0.01096   0.53804   2.54536  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 1.992511   0.003114   639.9   &lt;2e-16 ***
-## X           0.301764   0.002958   102.0   &lt;2e-16 ***
+## (Intercept)  1.97015    0.01435  137.25   &lt;2e-16 ***
+## X            0.32611    0.01364   23.92   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## (Dispersion parameter for quasipoisson family taken to be 0.6820934)
+## (Dispersion parameter for quasipoisson family taken to be 0.7122746)
 ## 
-##     Null deviance: 14063.0  on 9999  degrees of freedom
-## Residual deviance:  6952.8  on 9998  degrees of freedom
+##     Null deviance: 779.58  on 499  degrees of freedom
+## Residual deviance: 373.24  on 498  degrees of freedom
 ## AIC: NA
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<p>This approach recovers the data-generating parameters quite well, with a dispersion estimate of 0.682 compared to the true dispersion parameter of 0.7.</p>
+<p>This approach recovers the data-generating parameters quite well, with a dispersion estimate of 0.712 compared to the true dispersion parameter of 0.7.</p>
 <p>Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I’ll fit the model in a Bayesian framework with the <code>brms</code> package.</p>
+<pre class="r"><code>Poisson_fit &lt;- 
+  brm(
+    Y ~ X, family = poisson(link = &quot;log&quot;),
+    data = dat, 
+    warmup = 500, 
+    iter = 2000, 
+    chains = 2, 
+    cores = 2,
+    seed = 20230913
+  )</code></pre>
+<pre><code>## Compiling Stan program...</code></pre>
+<pre><code>## Start sampling</code></pre>
+<pre class="r"><code>summary(Poisson_fit)</code></pre>
+<pre><code>##  Family: poisson 
+##   Links: mu = log 
+## Formula: Y ~ X 
+##    Data: dat (Number of observations: 500) 
+##   Draws: 2 chains, each with iter = 2000; warmup = 500; thin = 1;
+##          total post-warmup draws = 3000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     1.97      0.02     1.94     2.00 1.00     1994     1629
+## X             0.33      0.02     0.29     0.36 1.00     1578     1830
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>This specification recovers the intercept and slope parameters very well indeed, but doesn’t provide any estimate of dispersion.</p>
+<p>As an alternative, I’ll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not under-dispersion):</p>
+<pre class="r"><code>negbin_fit &lt;- 
+  brm(
+    Y ~ X, family = negbinomial(link = &quot;log&quot;),
+    data = dat, 
+    warmup = 500, 
+    iter = 2000, 
+    chains = 2, 
+    cores = 2,
+    seed = 20230913
+  )</code></pre>
+<pre><code>## Compiling Stan program...</code></pre>
+<pre><code>## Start sampling</code></pre>
+<pre class="r"><code>summary(negbin_fit)</code></pre>
+<pre><code>##  Family: negbinomial 
+##   Links: mu = log; shape = identity 
+## Formula: Y ~ X 
+##    Data: dat (Number of observations: 500) 
+##   Draws: 2 chains, each with iter = 2000; warmup = 500; thin = 1;
+##          total post-warmup draws = 3000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     1.97      0.02     1.94     2.00 1.00     2203     2065
+## X             0.33      0.02     0.30     0.36 1.00     2468     1885
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## shape   266.72    119.30   109.20   557.32 1.00     2262     2409
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 <div id="colophon" class="section level1">
 <h1>Colophon</h1>
