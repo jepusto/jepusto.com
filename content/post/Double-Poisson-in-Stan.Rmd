@@ -29,6 +29,7 @@ The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss
 
 ```{r setup, warning = FALSE, message = FALSE}
 library(tidyverse)
+library(patchwork)   # composing figures
 library(gamlss.dist) # DPO distribution functions
 library(rstan)       # Stan interface to R
 library(brms)        # fitting generalized linear models
@@ -197,7 +198,7 @@ The function below calculates quantiles by finding the minimum value of $q \geq 
 ```{r quantile}
 stancode_quantile <- " 
 functions {
-  vector dpo_cdf(int max_value, real mu, real theta) {
+  vector dpo_cdf(real mu, real theta, int max_value) {
     real d = exp(theta * (1 + log(mu)) - 1);
     real prob;
     int n = max_value + 1;
@@ -268,12 +269,21 @@ ggplot(test_quantile, aes(factor(theta), diff, color = factor(theta))) +
 
 Phew, still got it!
 
-The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. My implementation is as follows:
+The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. I will implement this two ways: first with an argument for the number of random variates to generate and then, more simply, to generate a single random variate:
 
 ```{r rng}
 stancode_qr <- "
 functions {
-  vector dpo_cdf(int max_value, real mu, real theta) {
+  real dpo_lpmf(int X, real mu, real theta, int max_value) {
+    real ans;
+    real A = inv(2) * log(theta) - theta * mu;
+    if (X == 0)
+      ans = A;
+    else
+      ans = A + X * (theta * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - theta) * X * log(X);
+    return ans;
+  }
+  vector dpo_cdf(real mu, real theta, int max_value) {
     real d = exp(theta * (1 + log(mu)) - 1);
     real prob;
     int n = max_value + 1;
@@ -305,12 +315,17 @@ functions {
     }
     return qs;
   }
-  array[] int dpo_rng(int n, real mu, real theta, int max_value) {
+  array[] int dpo_sampler(int n, real mu, real theta, int max_value) {
     vector[n] p;
     for (i in 1:n) {
       p[i] = uniform_rng(0,1);
     }
     array[n] int x = dpo_quantile(p, mu, theta, max_value);
+    return x;
+  }
+  int dpo_rng(real mu, real theta, int max_value) {
+    real p = uniform_rng(0,1);
+    int x = dpo_quantile(p, mu, theta, max_value);
     return x;
   }
 }
@@ -329,7 +344,7 @@ test_rng <-
     theta = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
   ) %>%
   mutate(
-    x = pmap(.l = list(n = 10000, mu = mu, theta = theta, max_value = 5000), .f = dpo_rng),
+    x = pmap(.l = list(n = 10000, mu = mu, theta = theta, max_value = 5000), .f = dpo_sampler),
     tb = map(x, ~ as.data.frame(table(.x)))
   ) %>%
   dplyr::select(-x) %>%
@@ -393,11 +408,11 @@ Surely the simplest, quickest, and dirtiest way to estimate such a regression is
 quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
 summary(quasi_fit)
 ```
-This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r theta_inv`.
+This approach recovers the data-generating parameters pretty well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r theta_inv`. The intercept is under-estimated a little bit, and the slope is over-estimated by a touch.
 
 Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I'll fit the model in a Bayesian framework with the `brms` package.
 
-```{r}
+```{r Poisson, cache = TRUE}
 Poisson_fit <- 
   brm(
     Y ~ X, family = poisson(link = "log"),
@@ -411,7 +426,70 @@ Poisson_fit <-
 
 summary(Poisson_fit)
 ```
+This specification recovers the intercept and slope parameters well too, but doesn't provide any estimate of dispersion. 
 
+As an alternative, I'll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not underdispersion):
+
+```{r negbin, cache = TRUE}
+negbin_fit <- 
+  brm(
+    Y ~ X, family = negbinomial(link = "log"),
+    data = dat, 
+    warmup = 500, 
+    iter = 2000, 
+    chains = 2, 
+    cores = 2,
+    seed = 20230913
+  )
+
+summary(negbin_fit)
+```
+The `brms` package implements the negative binomial using the rate parameterization and a log transformation, so the `shape` parameter corresponds to the log of the inverse dispersion. Thus, a large shape parameter (as in the above fit) corresponds to dispersion that is very, very close to one (i.e., close to the Poisson).
+
+Finally, I'll fit the same model but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions, I'll first specify the custom family object for the double-Poisson:
+```{r}
+double_Poisson <- custom_family(
+  "double_Poisson", dpars = c("mu","theta"),
+  links = c("log","log"),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = "int",
+  vars = "vint1[n]"
+)
+```
+I set the defaults to use a log-link for the mean (just as with the Poisson and negative binomial families) and a log-link for the inverse-dispersion. 
+The argument `vars = "vint1[n]"` is to allow passing a value for the `max_value` argument of 
+Next, I'll create an object to add the custom stan code from above into the code created by `brm` for fitting the model:
+```{r}
+double_Poisson_stanvars <- stanvar(scode = "stancode_qr", block = "function")
+```
+Now I'm ready to fit the model:
+```{r negbin, cache = TRUE}
+DPO_fit <- 
+  brm(
+    Y | vint(1000) ~ X, family = double_Poisson,
+    stanvars = double_Poisson_stanvars,
+    data = dat, 
+    warmup = 500, 
+    iter = 2000, 
+    chains = 2, 
+    cores = 2,
+    seed = 20230913
+  )
+
+summary(DPO_fit)
+```
+
+
+```{r, fig.width = 10, fig.height = 5}
+Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 500)
+Poisson_dens <- ppc_dens_overlay(dat$Y, Yrep_Poisson[1:100,])
+Poisson_ecdf <- ppc_ecdf_overlay(dat$Y, Yrep_Poisson[1:100,])
+
+Yrep_negbin <- posterior_predict(negbin_fit, draws = 500)
+negbin_dens <- ppc_dens_overlay(dat$Y, Yrep_negbin[1:100,])
+negbin_ecdf <- ppc_ecdf_overlay(dat$Y, Yrep_negbin[1:100,])
+(Poisson_dens + Poisson_ecdf) / (negbin_dens + negbin_ecdf)
+```
 
 # Colophon
 
