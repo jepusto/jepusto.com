@@ -2,14 +2,18 @@
 title: Implementing Efron's double Poisson distribution in Stan
 authors:
 - admin
-date: '2023-09-14'
+date: '2023-09-15'
 codefolding_show: 'show'
 slug: double-poisson-in-Stan
 categories: []
 draft: true
 tags:
+  - Bayes
   - simulation
   - distribution-theory
+  - generalized linear model
+  - programming
+  - Rstats
 header:
   caption: ''
   image: ''
@@ -23,9 +27,13 @@ $$
 \def\bm{\mathbf}
 \def\bs{\boldsymbol}
 $$
-For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002), but it's turning out to be a bit tricky. The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's more challenging is that also we need to also write a Stan function to generate random samples from the double-Poisson, so that we can generate posterior predictive checks. In this post, I'll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan. 
+
+For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002), but it's turning out to be a bit tricky. The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's more interesting is that I'm also trying write Stan functions to generate random samples from the double-Poisson, so that we can generate posterior predictive checks. In this post, I'll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan. 
 
 The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from `gamlss.dist`. 
+To be clear up front, what I present is more complicated than really necessary because of these existing R functions to simulate values from the double-Poisson---we can just use the functions from `gamlss.dist` for purposes of posterior predictive checks (about which more below). 
+I'm doing everything in Stan as an excuse to learn more about the language, which I haven't used much up until today.
+I should also note that the [`bamlss` package](http://www.bamlss.org/index.html) provides similar functionality and can be combined with `gamlss.dist` to accomplish basically the same thing as I'm going to do here.
 
 ```{r setup, warning = FALSE, message = FALSE}
 library(tidyverse)
@@ -36,6 +44,8 @@ library(brms)        # fitting generalized linear models
 library(bayesplot)   # Examine fitted models
 library(loo)         # Model fit measures
 rstan_options(auto_write = TRUE)
+
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
 ```
 
 ## The double-Poisson 
@@ -95,7 +105,7 @@ test_lpmf <-
   )
 ```
 
-```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+```{r, fig.width = 7, fig.height = 4}
 ggplot(test_lpmf, aes(factor(phi), diff, color = factor(phi))) + 
   geom_boxplot() + 
   facet_wrap( ~ mu, labeller = "label_both", ncol = 2) + 
@@ -173,7 +183,7 @@ test_cdf <-
   )
 ```
 
-```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+```{r, fig.width = 7, fig.height = 4}
 
 ggplot(test_cdf, aes(factor(phi), ratio, color = factor(phi))) + 
   geom_boxplot() + 
@@ -253,7 +263,7 @@ test_quantile <-
   )
 ```
 
-```{r, fig.width = 7, fig.height = 4, fig.retina = 2}
+```{r, fig.width = 7, fig.height = 4}
 
 ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) + 
   geom_boxplot() + 
@@ -360,7 +370,7 @@ test_rng <-
   )
 ```
 
-```{r, fig.width = 7, fig.height = 10, fig.retina = 2}
+```{r, fig.width = 7, fig.height = 10}
 ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) + 
   geom_abline(slope = 1, color = "blue", linetype = "dashed") + 
   geom_point() + geom_line() +  
@@ -383,28 +393,29 @@ Y|X &\sim DPO(\mu(X), \phi) \\
 \log \mu(X) &= 2 + 0.3 \times X
 \end{aligned}
 $$
-To make things interesting, I'll set the dispersion parameter to $1 / \phi = 0.7$ so that the outcome is _under_-dispersed relative to the Poisson. 
+To make things interesting, I'll set the dispersion parameter to $1 / \phi = 0.6$ so that the outcome is _under_-dispersed relative to the Poisson. 
 
 The following code generates a large sample from the data-generating process. To keep things R-centric, I use `gamlss.dist::rDPO` to generate the outcome.
 
 ```{r}
 set.seed(20230913)
-N <- 500
+N <- 600
 X <- rnorm(N)
 mu <- exp(2 + 0.3 * X)
 phi_inv <- 0.6
 Y <- rDPO(N, mu = mu, sigma = phi_inv)
-dat <- data.frame(X = X, Y = Y, maxval = 1000)
+dat <- data.frame(X = X, Y = Y)
 ```
 
 Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
 
-```{r, fig.width = 6, fig.height = 4, fig.retina = 2}
+```{r, fig.width = 6, fig.height = 4}
 ggplot(dat, aes(X, Y)) + 
   geom_point(alpha = 0.1) + 
   geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
   theme_minimal()
 ```
+
 ## Comparison models
 
 Before using the custom distribution, I'll fit a couple of out-of-the-box models that are useful points of comparison. 
@@ -414,7 +425,8 @@ Surely the simplest, quickest, and dirtiest way to estimate such a regression is
 quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
 summary(quasi_fit)
 ```
-This approach recovers the data-generating parameters pretty well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r phi_inv`. The intercept is under-estimated a little bit, and the slope is over-estimated by a touch.
+
+This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r phi_inv`. 
 
 Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I'll fit the model in a Bayesian framework with the `brms` package.
 
@@ -432,6 +444,7 @@ Poisson_fit <-
 
 summary(Poisson_fit)
 ```
+
 This specification recovers the intercept and slope parameters well too, but doesn't provide any estimate of dispersion. 
 
 As an alternative, I'll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not under-dispersion):
@@ -450,11 +463,13 @@ negbin_fit <-
 
 summary(negbin_fit)
 ```
-The `brms` package implements the negative binomial using the rate parameterization and a log transformation, so the `shape` parameter corresponds to the log of the inverse dispersion. Thus, a large shape parameter (as in the above fit) corresponds to dispersion that is very, very close to one (i.e., close to the Poisson).
+
+The `brms` package implements the negative binomial using the rate parameterization and a log transformation, so the `shape` parameter corresponds to the log of the inverse dispersion. Thus, a large shape parameter (as in the above fit) imples dispersion that is very, very close to one (i.e., close to the Poisson).
 
 ## Double-Poisson model
 
 Now I'll fit the same model as previously but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions, I'll first specify the custom family object for the double-Poisson:
+
 ```{r}
 double_Poisson <- custom_family(
   "dpo", dpars = c("mu","phi"),
@@ -463,6 +478,7 @@ double_Poisson <- custom_family(
   type = "int"
 )
 ```
+
 I set the defaults to use a log-link for the mean (just as with the Poisson and negative binomial families) and a log-link for the inverse-dispersion. 
 The argument `vars = "vint1[n]"` is to allow passing a value for the `maxval` argument of the `dpo_` stan functions.
 Next, I'll create an object to add the custom stan code from above into the code created by `brm` for fitting the model:
@@ -476,7 +492,7 @@ phi_prior <- prior(exponential(1), class = "phi")
 
 Now I'm ready to fit the model:
 
-```{r negbin, cache = TRUE}
+```{r DPO, cache = TRUE}
 DPO_fit <- 
   brm(
     Y ~ X, family = double_Poisson,
@@ -487,14 +503,15 @@ DPO_fit <-
     iter = 1500, 
     chains = 4, 
     cores = 4,
-    seed = 20230913,
-    save_model = "DPO-fit.stan"
+    seed = 20230913
   )
 
 summary(DPO_fit)
 ```
+
 The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models. However, we get a posterior for $\phi$ that corresponds to _under_-dispersion. Here's the posterior for the dispersion (i.e., $1 / \phi$):
-```{r, fig.width = 5, fig.height = 2}
+
+```{r DPO-dispersion, fig.width = 5, fig.height = 2}
 mcmc_areas(DPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
   theme_minimal()
 ```
@@ -514,13 +531,13 @@ log_lik_dpo <- function(i, prep) {
 }
 ```
 I can then compute LOOIC for all three models:
-```{r, cache = TRUE}
+```{r loo, cache = TRUE}
 loo(DPO_fit, Poisson_fit, negbin_fit)
 ```
 By these measures, the double-Poisson model has substantially better fit than either of the other models. 
 
 To do posterior predictive checks, I need to provide a `posterior_predict` function that `brms` can use:
-```{r}
+```{r posterior-predictor-dpo}
 posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
   mu <- brms::get_dpar(prep, "mu", i = i)
   phi <- brms::get_dpar(prep, "phi", i = i)
@@ -528,26 +545,91 @@ posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
   dpo_rng(mu, phi, maxval = maxval)
 }
 ```
+The function above uses my custom `dpo_rng()` from Stan. Of course, I could have saved a bunch of trouble by just using `gamlss.dist::rDPO()` instead.
 
-Now I can compute posterior predictions for the double-Poisson model and make pretty pictures of them, along with corresponding plots for the Poisson and negative-binomial models.
+Functions in hand, I can now compute posterior predictions for the double-Poisson model and make pretty pictures of them, along with corresponding plots for the Poisson and negative-binomial models.
 
-```{r PPDs, fig.width = 8, fig.height = 6}
-Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 100) 
+```{r ppd, fig.width = 8, fig.height = 6}
+Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 400) 
 color_scheme_set("blue")
-Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson) + labs(title = "Poisson")
+Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson, style = "hanging") + labs(title = "Poisson")
 
-Yrep_negbin <- posterior_predict(negbin_fit, draws = 100)
+Yrep_negbin <- posterior_predict(negbin_fit, draws = 400)
 color_scheme_set("green")
-negbin_root <- ppc_rootogram(dat$Y, Yrep_negbin) + labs(title = "Negative-binomial")
+negbin_root <- ppc_rootogram(dat$Y, Yrep_negbin, style = "hanging") + labs(title = "Negative-binomial")
 
-Yrep_dpo <- posterior_predict(DPO_fit, draws = 100)
+Yrep_dpo <- posterior_predict(DPO_fit, draws = 400)
 color_scheme_set("purple")
-dpo_root <- ppc_rootogram(dat$Y, Yrep_dpo) + labs(title = "Double-Poisson")
+dpo_root <- ppc_rootogram(dat$Y, Yrep_dpo, style = "hanging") + labs(title = "Double-Poisson")
 
 dpo_root / Poisson_root / negbin_root &
   theme_minimal()
 ```
-The differences in predicted frequencies are not at all obvious from these plots.
+
+The differences in predicted frequencies are not that obvious from these plots. The main notable difference is that the Poisson and negative-binomial distributions predict more small counts (in the range of 0 to 3) than are observed, whereas the double-Poisson does better at matching the observed frequency in this range.
+
+I think the lack of glaring differences in the above plots happens because I'm just looking at the marginal distribution of the outcome, and the (explained) variation due to the predictor dampens the degree of under-dispersion. To see this, I'll create some plots that are grouped by quintiles of $X$:
+
+```{r ppd-grouped, fig.width = 12, fig.height = 9}
+dat$g <- cut(dat$X, breaks = quantile(dat$X, seq(0,1,0.2)), include.lowest = TRUE)
+
+color_scheme_set("blue")
+Poisson_bars <- ppc_bars_grouped(
+  dat$Y, Yrep_Poisson, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = "Poisson")
+
+color_scheme_set("green")
+negbin_bars <- ppc_bars_grouped(
+  dat$Y, Yrep_negbin, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = "Negative-binomial")
+
+color_scheme_set("purple")
+dpo_bars <- ppc_bars_grouped(
+  dat$Y, Yrep_dpo, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = "Double-Poisson")
+
+dpo_bars / Poisson_bars / negbin_bars &
+  theme_minimal()
+
+```
+Still kind of subtle, I suppose.
+
+One last approach is to look directly at the degree of dispersion in the posterior predictive distributions relative to the actual data. I'll calculate this dispersion by re-fitting the quick-and-dirty quasi-poisson model in each sample:
+
+```{r ppc-dispersion, cache = TRUE, fig.width = 8, fig.height = 5}
+dispersion_coef <- function(y) {
+  quasi_fit <- glm(y ~ dat$X, family = quasipoisson(link = "log"))
+  sum(residuals(quasi_fit, type = "pearson")^2) / quasi_fit$df.residual
+}
+
+color_scheme_set("blue")
+Poisson_disp <- ppc_stat(dat$Y, Yrep_Poisson, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = "Poisson")
+
+color_scheme_set("green")
+negbin_disp <- ppc_stat(dat$Y, Yrep_negbin, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = "Negative-binomial")
+
+color_scheme_set("purple")
+dpo_disp <- ppc_stat(dat$Y, Yrep_dpo, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = "Double-Poisson")
+
+dpo_disp / Poisson_disp / negbin_disp &
+  theme_minimal() & 
+  xlim(c(0.45, 1.3))
+
+```
+
+From this, we can clearly see that the Poisson and negative binomial model generate data with approximately unit dispersion, which doesn't match at all with the degree of dispersion in the observed data. 
 
 # Colophon
 
