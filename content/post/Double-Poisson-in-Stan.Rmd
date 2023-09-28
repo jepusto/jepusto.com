@@ -6,7 +6,6 @@ date: '2023-09-15'
 codefolding_show: 'show'
 slug: double-poisson-in-Stan
 categories: []
-draft: true
 tags:
   - Bayes
   - simulation
@@ -28,14 +27,22 @@ $$
 \def\bs{\boldsymbol}
 $$
 
-For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002), but it's turning out to be a bit tricky. The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's more interesting is that I'm also trying write Stan functions to generate random samples from the double-Poisson, so that we can generate posterior predictive checks. In this post, I'll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan. 
+For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. We're interested in using the double-Poisson distribution, as described by [Efron (1986)](https://doi.org/10.2307/2289002). 
+This is an interesting distribution because it admits for both over- and under-dispersion relative to the Poisson distribution, whereas most of the conventional alternatives such as the negative binomial distribution or Poisson-normal mixture distribution allow only for over-dispersion. 
+The double-Poisson distribution is not implemented in Stan, so we've had to write our own distribution function. That's fine and not particularly difficult. What's a bit more of a challenge is writing Stan functions to generate random samples from the double-Poisson, so that we can generate posterior predictive checks.[^caveat] In this post, I'll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan. 
+The [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from `gamlss.dist`.[^bamlss]
 
-The incredible [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from `gamlss.dist`. 
-To be clear up front, what I present is more complicated than really necessary because of these existing R functions to simulate values from the double-Poisson---we can just use the functions from `gamlss.dist` for purposes of posterior predictive checks (about which more below). 
-I'm doing everything in Stan as an excuse to learn more about the language, which I haven't used much up until today.
-I should also note that the [`bamlss` package](http://www.bamlss.org/index.html) provides similar functionality and can be combined with `gamlss.dist` to accomplish basically the same thing as I'm going to do here.
+[^caveat]: To be clear up front, what I present is more complicated than really necessary because of these existing R functions to simulate values from the double-Poisson---we can just use the functions from `gamlss.dist` for purposes of posterior predictive checks (about which more below). 
+I'm trying to work in Stan to the maximum extent possible solely as an excuse to learn more about the language, which I haven't used much up until today.
 
-```{r setup, warning = FALSE, message = FALSE}
+[^bamlss]: I should also note that the [`bamlss` package](http://www.bamlss.org/index.html) provides similar functionality and can be combined with `gamlss.dist` to accomplish basically the same thing as I'm going to do here.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
+```
+
+
+```{r pkgs, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(patchwork)   # composing figures
 library(gamlss.dist) # DPO distribution functions
@@ -43,15 +50,11 @@ library(rstan)       # Stan interface to R
 library(brms)        # fitting generalized linear models
 library(bayesplot)   # Examine fitted models
 library(loo)         # Model fit measures
-rstan_options(auto_write = TRUE)
-
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
 ```
 
 ## The double-Poisson 
 
 The double-Poisson distribution is a discrete distribution for non-negative counts, with support $\mathcal{S}_X = \{0, 1, 2, 3, ...\}$. 
-It is an interesting distribution because it admits for both over- and under-dispersion relative to the Poisson distribution, whereas most of the conventional alternatives such as the negative binomial distribution or Poisson-normal mixture distribution allow only for over-dispersion. 
 The mean-variance relationship of the double-Poisson is approximately constant; for $X \sim DPO(\mu, \phi)$,  $\text{E}(X) \approx \mu$ and $\text{Var}(X) \approx \mu / \phi$, so that the double-Poisson distribution approximately satisfies the assumptions of a quasi-Poisson generalized linear model (although not quite exactly so). 
 
 [Efron (1986)](https://doi.org/10.2307/2289002) gives the following expression for the density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\phi$:
@@ -66,7 +69,7 @@ We then have
 $$
 \ln f(x | \mu, \phi) = \frac{1}{2} \ln \phi - \phi \mu - \ln c(\mu, \phi) + x (\phi + \phi \ln \mu - 1) + (1 - \phi) x \ln(x) - \ln \left(x!\right),
 $$
-where $x \ln (x)$ is evaluated as 0.
+where $0 \times \ln (0)$ is evaluated as 0.
 
 # Log of the probability mass function
 
@@ -128,11 +131,11 @@ f(x | \mu, \phi) &= f(x - 1 | \mu, \phi) \times d \times \frac{\exp\left[(1 - \p
 $$
 where the last expression holds for $x \geq 2$.
 
-The function below computes the un-normalized cumulative distribution function (i.e., without the scaling constant $c(\mu, \phi)$) over the range $x = 0,...,m$ as follows: 
+The function below computes the cumulative distribution function over the range $x = 0,...,m$ as follows: 
 
 * Compute $f(x | \mu, \phi)$ for $x = 0,1,2,...$, without the scaling constant $c(\mu, \phi)$
-* Take $F(0 | \mu, \phi) = f(0 | \mu, \phi)$ and accumulating $F(x | \mu, \phi) = F(x - 1 | \mu, \phi) + f(x | \mu, \phi)$ for $x = 0,...,m$.
-* Checking if $f(x | \mu, \phi) / F(x | \mu, \phi)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
+* Take $F(0 | \mu, \phi) = f(0 | \mu, \phi)$ and accumulate $F(x | \mu, \phi) = F(x - 1 | \mu, \phi) + f(x | \mu, \phi)$ for $x = 0,...,m$.
+* Check if $f(x | \mu, \phi) / F(x | \mu, \phi)$ is small (less than $10^{-8}$), in which case accumulation stops at the value $n$.
 * The normalized cumulative distribution function will then be $F(x | \mu, \phi) / F(n | \mu, \phi)$.
 
 ```{r cdf}
@@ -195,13 +198,13 @@ ggplot(test_cdf, aes(factor(phi), ratio, color = factor(phi))) +
 
 ```
 
-Still on track here (although you might wonder, would I be sharing this post if I couldn't get the function working?).
+Still on track here (although you might wonder---would I be sharing this post if I couldn't get the function working?).
 
 # Quantile function and sampler
 
-The main other thing we need is a function for generating random samples from the double-Poisson. The `gamlss.dist` package has the function `rDPO()` for this purpose. It's implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. I'll take the same approach.
+The main other thing we need is a function for generating random samples from the double-Poisson. The `gamlss.dist` package has the function `rDPO()` for this purpose. It's implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. Just for funzies, I'll implement the same approach using Stan.
 
-The function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \phi) \geq p$ for a specified probability $p \in [0, 1]$, It is vectorized over $p$ and solves for $q$ by starting with the smallest $p$ and continuing through the largest value.
+The function below calculates quantiles by finding the minimum value of $q \geq 0$ such that $F(q + 1 | \mu, \phi) \geq p$ for a specified probability $p \in [0, 1]$. It is vectorized over $p$ and solves for $q$ by starting with the smallest $p$ and continuing through the largest value.
 
 ```{r quantile}
 stancode_quantile <- " 
@@ -276,7 +279,9 @@ ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) +
 
 Phew, still got it!
 
-The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. I will implement this two ways: first with an argument for the number of random variates to generate and then, more simply, to generate a single random variate:
+The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. I will implement this two ways: first with an argument for the number of random variates to generate and then, more simply, to generate a single random variate.[^clever] 
+
+[^clever]: The simpler version is what's needed for generating posterior predictive checks, the fancy version is just to show off how clever I am.
 
 ```{r rng}
 stancode_qr <- "
@@ -365,8 +370,8 @@ test_rng <-
   unnest(tb) %>%
   mutate(
     .x = as.integer(levels(.x))[.x],
-    Freq_cum = cumsum(Freq),
-    gamlss_F = 10000 * pDPO(q = .x, mu = mu, sigma = 1 / phi)
+    Freq_cum = cumsum(Freq) / 10000,
+    gamlss_F = pDPO(q = .x, mu = mu, sigma = 1 / phi)
   )
 ```
 
@@ -384,7 +389,7 @@ Looks pretty good, no?
 
 # Using the custom distribution functions
 
-To finish out my tests of these functions, I'll demonstrate their use in an actual estimation problem. I'll generate data based on a simple generalized linear model with a single predictor $X$, where the outcome $Y$ follows a double-Poisson distribution conditional on $X$. The data-generating process is:
+To finish out my tests of these functions, let me demonstrate their use in an actual estimation problem. I'll generate data based on a simple generalized linear model with a single predictor $X$, where the outcome $Y$ follows a double-Poisson distribution conditional on $X$. The data-generating process is:
 
 $$
 \begin{aligned}
@@ -464,11 +469,11 @@ negbin_fit <-
 summary(negbin_fit)
 ```
 
-The `brms` package implements the negative binomial using the rate parameterization and a log transformation, so the `shape` parameter corresponds to the log of the inverse dispersion. Thus, a large shape parameter (as in the above fit) imples dispersion that is very, very close to one (i.e., close to the Poisson).
+The `brms` package implements the negative binomial using the rate parameterization, so the `shape` parameter corresponds to the inverse dispersion. Thus, a large shape parameter (as in the above fit) implies dispersion that is very close to one (i.e., close to the Poisson).
 
 ## Double-Poisson model
 
-Now I'll fit the same model as previously but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions, I'll first specify the custom family object for the double-Poisson:
+Now I'll fit the same model as previously but using my custom-built double-Poisson distribution. Following [Paul Buerkner's vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html) on using custom distributions in `brms`, I'll first specify the custom family object for the double-Poisson:
 
 ```{r}
 double_Poisson <- custom_family(
@@ -480,7 +485,6 @@ double_Poisson <- custom_family(
 ```
 
 I set the defaults to use a log-link for the mean (just as with the Poisson and negative binomial families) and a log-link for the inverse-dispersion. 
-The argument `vars = "vint1[n]"` is to allow passing a value for the `maxval` argument of the `dpo_` stan functions.
 Next, I'll create an object to add the custom stan code from above into the code created by `brm` for fitting the model:
 ```{r}
 double_Poisson_stanvars <- stanvar(scode = stancode_qr, block = "functions")
@@ -509,7 +513,7 @@ DPO_fit <-
 summary(DPO_fit)
 ```
 
-The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models. However, we get a posterior for $\phi$ that corresponds to _under_-dispersion. Here's the posterior for the dispersion (i.e., $1 / \phi$):
+The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models, estimated with slightly better precision than with the Poisson or negative binomial families. However, we get a posterior for $\phi$ that corresponds to _under_-dispersion. Here's the posterior for the dispersion (i.e., $1 / \phi$):
 
 ```{r DPO-dispersion, fig.width = 5, fig.height = 2}
 mcmc_areas(DPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
@@ -520,7 +524,7 @@ mcmc_areas(DPO_fit, pars = "phi", transformations = \(x) 1 / x) +
 
 I'd like to get a sense of how much better the double-Poisson model does with capturing the real data-generating process compared to the simple Poisson model or the negative binomial model. There's a wide range of diagnostics that can inform such comparisons. I'll consider the leave-one-out information criteria (LOOIC) and also look at some posterior predictive checks.
 
-To calculate LOOIC for the double-Poisson model, I first need to provide a `log_lik` function that `brms` can use:
+To calculate LOOIC for the double-Poisson model, I first need to provide a `log_lik` function that `brms` can use[^loglik-in-R]. Here's code, using the Stan function from above:
 ```{r DPO-loglik, cache = TRUE}
 expose_functions(DPO_fit, vectorize = TRUE)
 log_lik_dpo <- function(i, prep) {
@@ -530,13 +534,16 @@ log_lik_dpo <- function(i, prep) {
   dpo_lpmf(y, mu, phi)
 }
 ```
+
+[^loglik-in-R]: Rather than exposing and calling the Stan function, one could just re-implement the log likelihood in R. (Probably the easier way in practice, but again I'm trying to learn me some Stan here...)
+
 I can then compute LOOIC for all three models:
 ```{r loo, cache = TRUE}
 loo(DPO_fit, Poisson_fit, negbin_fit)
 ```
 By these measures, the double-Poisson model has substantially better fit than either of the other models. 
 
-To do posterior predictive checks, I need to provide a `posterior_predict` function that `brms` can use:
+To do posterior predictive checks, I need to provide a `posterior_predict` function that `brms` can use. I'll again do an implementation that uses my custom `dpo_rng()` from Stan.[^PP-in-R]
 ```{r posterior-predictor-dpo}
 posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
   mu <- brms::get_dpar(prep, "mu", i = i)
@@ -545,11 +552,13 @@ posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
   dpo_rng(mu, phi, maxval = maxval)
 }
 ```
-The function above uses my custom `dpo_rng()` from Stan. Of course, I could have saved a bunch of trouble by just using `gamlss.dist::rDPO()` instead.
+
+[^PP-in-R]: Of course, I could have saved a bunch of trouble by just using `gamlss.dist::rDPO()` instead.
 
 Functions in hand, I can now compute posterior predictions for the double-Poisson model and make pretty pictures of them, along with corresponding plots for the Poisson and negative-binomial models.
 
 ```{r ppd, fig.width = 8, fig.height = 6}
+
 Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 400) 
 color_scheme_set("blue")
 Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson, style = "hanging") + labs(title = "Poisson")
@@ -601,7 +610,7 @@ dpo_bars / Poisson_bars / negbin_bars &
   theme_minimal()
 
 ```
-Still kind of subtle, I suppose.
+Still kind of subtle, I suppose, but you can see more clearly that the double-Poisson does a better job than the other distributions at matching the modes (peaks) of the empirical distribution in each of these subgroups.
 
 One last approach is to look directly at the degree of dispersion in the posterior predictive distributions relative to the actual data. I'll calculate this dispersion by re-fitting the quick-and-dirty quasi-poisson model in each sample:
 
@@ -630,6 +639,11 @@ dpo_disp / Poisson_disp / negbin_disp &
 ```
 
 From this, we can clearly see that the Poisson and negative binomial model generate data with approximately unit dispersion, which doesn't match at all with the degree of dispersion in the observed data. 
+
+# Kudos
+
+So there you have it. It's really quite feasible to build models with custom distributions. Efron (1986) also describes a double-binomial distribution (as an approximation to the "quasi-binomial" family of generalized linear models), which you could play with implementing for yourself, dear reader, if you are in the mood. 
+Major kudos to [Paul Buerkner](https://paul-buerkner.github.io/) for [`brms`](https://paul-buerkner.github.io/brms/), [Jonah Gabry](https://jgabry.github.io/) and collaborators for [`bayesplot`](https://mc-stan.org/bayesplot/), and [the incredible team of folks](https://mc-stan.org/about/team/) developing [`Stan`](https://mc-stan.org/).
 
 # Colophon
 
