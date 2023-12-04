@@ -1,0 +1,111 @@
+---
+title: Implementing Consul's generalized Poisson distribution in Stan
+authors:
+- admin
+date: '2023-12-04'
+codefolding_show: 'show'
+slug: generalized-poisson-in-Stan
+categories: []
+tags:
+  - Bayes
+  - simulation
+  - distribution-theory
+  - generalized linear model
+  - programming
+  - Rstats
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<p>For a project I am working on, we are using <a href="https://mc-stan.org/">Stan</a> to fit generalized random effects location-scale models to a bunch of count data.
+In <a href="/Double-Poisson-in-Stan/">a previous post</a>, I walked through our implementation of <a href="https://doi.org/10.2307/2289002">Efron’s (1986)</a> double-Poisson distribution, which we are interested in using because it allows for both over- and under-dispersion relative to the Poisson distribution.
+Another distribution with these properties is the generalized Poisson distribution described by <a href="https://doi.org/10.1080/00401706.1973.10489112">Consul and Jain (1973)</a>.</p>
+<p>In this post, I’ll walk through my implementation ofthe GPO in Stan.
+The <a href="https://cran.r-project.org/package=gamlss.dist"><code>gamlss.dist</code> package</a> provides a full set of distributional functions for the generalized Poisson distribution, including a sampler, but the functions are configured to only allow for over-dispersion. Since I’m interested in allowing for under-dispersion as well, I’ll need to write my own functions. As in my previous post, I can validate my Stan functions against the functions from <code>gamlss.dist</code> (although only for over-dispersion scenarios).</p>
+<pre class="r"><code>library(tidyverse)
+library(patchwork)   # composing figures
+library(gamlss.dist) # DPO distribution functions
+library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit measures</code></pre>
+<div id="the-generalized-poisson" class="section level2">
+<h2>The generalized Poisson</h2>
+<p>Consul and Jain’s generalized Poisson distribution is a discrete distribution for non-negative counts, with support <span class="math inline">\(\mathcal{S}_X = \{0, 1, 2, 3, ...\}\)</span>.
+The mean-variance relationship of the generalized Poisson is constant; for <span class="math inline">\(X \sim GPO(\mu, \phi)\)</span>, <span class="math inline">\(\text{E}(X) = \mu\)</span> and <span class="math inline">\(\text{Var}(X) = \mu / \phi\)</span> for <span class="math inline">\(0 &lt; \phi &lt; 1\)</span>; the expectation and variance are not exact but are close approximations when there is underdispersion, so <span class="math inline">\(\phi &gt; 1\)</span>. Thus, like the double-Poisson distribution, the generalized Poisson satisfies the assumptions of a quasi-Poisson generalized linear model (at least approximately).</p>
+<p>The density of the double-Poisson distribution with mean <span class="math inline">\(\mu\)</span> and inverse-disperson <span class="math inline">\(\phi\)</span> is:
+<span class="math display">\[
+f(x | \mu, \phi) = \mu \sqrt{\phi} \left( x + \sqrt{\phi}(\mu - x) \right)^{x-1} \frac{\exp \left[-\left( x + \sqrt{\phi}(\mu - x)\right)\right]}{x!}.
+\]</span>
+We then have
+<span class="math display">\[
+\ln f(x | \mu, \phi) = \frac{1}{2} \ln \phi + \ln \mu + (x - 1) \ln \left( x + \sqrt{\phi}(\mu - x) \right) - \left( x + \sqrt{\phi}(\mu - x) \right) - \ln \left(x!\right).
+\]</span>
+Using the GPO with under-dispersed data is a little bit more controversial (by statistical standards) than using the DPO.
+This is because its probability mass function becomes negative for large counts for parameter values corresponding to under-dispersion. In particular, note that for values <span class="math inline">\(x &gt; \frac{\mu}{1 - \phi^{-1/2}}\)</span>, the quantity <span class="math inline">\(x + \sqrt{\phi}(\mu - x)\)</span> becomes negative, and so <span class="math inline">\(f(x| \mu, \phi)\)</span> is no longer a proper probability.
+Consul suggested handling this situation by truncating the distribution at <span class="math inline">\(m = \left\lfloor \frac{\mu}{1 - \phi^{-1/2}} \right\rfloor\)</span>. However, doing so makes the distribution only an approximation, such that <span class="math inline">\(\mu\)</span> is no longer exactly the mean and <span class="math inline">\(\phi\)</span> is no longer exactly the inverse dispersion.
+For mild under-dispersion of no less than 80% of the mean, <span class="math inline">\(1 &lt; \phi &lt; 1.25\)</span> and the truncation point is quite extreme, with <span class="math inline">\(m \approx 10 \mu\)</span>, so I’m not too worried about this issue.
+We’ll see how it plays out in application, of course.</p>
+</div>
+<div id="log-of-the-probability-mass-function" class="section level1">
+<h1>Log of the probability mass function</h1>
+<p>Here’s a Stan function implementing the lpmf, with the truncation bit:</p>
+<pre class="r"><code>stancode_lpmf &lt;- &quot;
+real gpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real m = mu / (1 - inv(sqrt(phi)));
+  real z = X + sqrt(phi) * (mu - X);
+  if (phi &gt; 1 &amp;&amp; X &gt; m)
+    ans = negative_infinity();
+  else 
+    ans = log(mu) + inv(2) * log(phi) + (X - 1) * log(z) - z - lgamma(X + 1);
+  return ans;
+}
+&quot;</code></pre>
+<p>To check that this is accurate, I’ll compare the Stan function to the corresponding function from <code>gamlss.dist</code> for a couple of different parameter values and for <span class="math inline">\(x = 0,...,100\)</span>. If my function is accurate, the calculated log-probabilities should differ by a constant value for each set of parameters. Note that the <code>gamlss.dist</code> function uses a different parameterization for the dispersion, with <span class="math inline">\(\sigma = \frac{\phi^{-1/2} - 1}{\mu}\)</span>.</p>
+<pre class="r"><code>writeLines(paste(&quot;functions {&quot;, stancode_lpmf, &quot;}&quot;, sep = &quot;\n&quot;), &quot;GPO-lpmf.stan&quot;)
+expose_stan_functions(&quot;GPO-lpmf.stan&quot;)
+
+test_lpmf &lt;- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    phi = c(0.1, 0.2, 0.4, 0.5, 0.8, 0.9),
+    X = 0:100
+  ) %&gt;%
+  mutate(
+    sigma = (phi^(-1/2) - 1) / mu,
+    gamlss_lpmf = dGPO(x = X, mu = mu, sigma = sigma, log = TRUE),
+    my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, phi = phi), .f = gpo_lpmf),
+    diff = my_lpmf - gamlss_lpmf
+  )</code></pre>
+<pre class="r"><code>ggplot(test_lpmf, aes(factor(phi), diff, color = factor(phi))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = &quot;label_both&quot;, ncol = 2) + 
+  theme_minimal() + 
+  labs(x = &quot;phi&quot;) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/Generalized-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Checks out. Onward!</p>
+</div>
+<div id="cumulative-distribution-function" class="section level1">
+<h1>Cumulative distribution function</h1>
+<p>I’ll next implement a function to evaluate the cumulative distriution function over a range of values, taking advantage of a simple recurrence relationship for sequential values. Note that
+<span class="math display">\[
+\begin{aligned}
+f(0 | \mu, \phi) &amp;= \exp \left(-\mu \sqrt{\phi}\right) \\
+f(x | \mu, \phi) &amp;= f(x - 1 | \mu, \phi) \times \frac{\left(x + \sqrt{\phi}(\mu - x)\right)^{x - 1}}{\left(x - 1 + \sqrt{\phi}(\mu - (x - 1))\right)^{x - 2}} \times \frac{\exp(\sqrt{\phi} - 1)}{x}
+\end{aligned}
+\]</span>
+where the second expression holds for <span class="math inline">\(x \geq 1\)</span>.</p>
+</div>
