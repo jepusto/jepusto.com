@@ -1,0 +1,1849 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="James E. Pustejovsky">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\def\bm{\mathbf}\def\bs{\boldsymbol}\]
+For a project I am working on, we are using Stan to fit generalized random effects location-scale models to a bunch of count data.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/double-poisson-in-stan/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#3f51b5">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://www.jepusto.com/double-poisson-in-stan/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@jepusto">
+  <meta property="twitter:creator" content="@jepusto">
+  
+  <meta property="og:site_name" content="James E. Pustejovsky">
+  <meta property="og:url" content="https://www.jepusto.com/double-poisson-in-stan/">
+  <meta property="og:title" content="Implementing Efron&#39;s double Poisson distribution in Stan | James E. Pustejovsky">
+  <meta property="og:description" content="\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\def\bm{\mathbf}\def\bs{\boldsymbol}\]
+For a project I am working on, we are using Stan to fit generalized random effects location-scale models to a bunch of count data."><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2023-09-15T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2023-09-15T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.jepusto.com/double-poisson-in-stan/"
+  },
+  "headline": "Implementing Efron's double Poisson distribution in Stan",
+  
+  "datePublished": "2023-09-15T00:00:00Z",
+  "dateModified": "2023-09-15T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "James E. Pustejovsky"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "James E. Pustejovsky",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\\[\r\\def\\Pr{{\\text{Pr}}}\r\\def\\E{{\\text{E}}}\r\\def\\Var{{\\text{Var}}}\r\\def\\Cov{{\\text{Cov}}}\r\\def\\bm{\\mathbf}\r\\def\\bs{\\boldsymbol}\r\\]\nFor a project I am working on, we are using Stan to fit generalized random effects location-scale models to a bunch of count data."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="/css/codefolding.css" />
+
+
+
+  <title>Implementing Efron&#39;s double Poisson distribution in Stan | James E. Pustejovsky</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">James E. Pustejovsky</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/Pustejovsky-CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#working-papers"><span>Working papers</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication/"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/talk/"><span>Presentations</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#software"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#people"><span>Students</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tags"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Implementing Efron&#39;s double Poisson distribution in Stan</h1>
+
+  
+
+  
+    
+
+<div id="code-folding-buttons" class="dropdown btn-group pull-right">
+  <a class="btn btn-light btn-sm dropdown-toggle" href="#" role="button" id="allCodeToggleButton"
+     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Code
+  </a>
+  <div class="dropdown-menu" aria-labelledby="allCodeToggleButton">
+    <a id="rmd-show-all-code" class="dropdown-item small" href="#">Show all</a>
+    <a id="rmd-hide-all-code" class="dropdown-item small" href="#">Hide all</a>
+  </div>
+</div>
+
+
+
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-09-15
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/double-poisson-in-stan/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<p>For a project I am working on, we are using <a href="https://mc-stan.org/">Stan</a> to fit generalized random effects location-scale models to a bunch of count data. We’re interested in using the double-Poisson distribution, as described by <a href="https://doi.org/10.2307/2289002">Efron (1986)</a>.
+This is an interesting distribution because it admits for both over- and under-dispersion relative to the Poisson distribution, whereas most of the conventional alternatives such as the negative binomial distribution or Poisson-normal mixture distribution allow only for over-dispersion.
+The double-Poisson distribution is not implemented in Stan, so we’ve had to write our own distribution function. That’s fine and not particularly difficult. What’s a bit more of a challenge is writing Stan functions to generate random samples from the double-Poisson, so that we can generate posterior predictive checks.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> In this post, I’ll walk through the implementation of the custom distribution functions needed to use the double-Poisson in Stan.
+The <a href="https://cran.r-project.org/package=gamlss.dist"><code>gamlss.dist</code> package</a> provides a full set of distributional functions for the double-Poisson distribution, including a sampler. Thus, I can validate my Stan functions against the functions from <code>gamlss.dist</code>.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<pre class="r"><code>library(tidyverse)
+library(patchwork)   # composing figures
+library(gamlss.dist) # DPO distribution functions
+library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit measures</code></pre>
+<div id="the-double-poisson" class="section level2">
+<h2>The double-Poisson</h2>
+<p>The double-Poisson distribution is a discrete distribution for non-negative counts, with support <span class="math inline">\(\mathcal{S}_X = \{0, 1, 2, 3, ...\}\)</span>.
+The mean-variance relationship of the double-Poisson is approximately constant; for <span class="math inline">\(X \sim DPO(\mu, \phi)\)</span>, <span class="math inline">\(\text{E}(X) \approx \mu\)</span> and <span class="math inline">\(\text{Var}(X) \approx \mu / \phi\)</span>, so that the double-Poisson distribution approximately satisfies the assumptions of a quasi-Poisson generalized linear model (although not quite exactly so).</p>
+<p><a href="https://doi.org/10.2307/2289002">Efron (1986)</a> gives the following expression for the density of the double-Poisson distribution with mean <span class="math inline">\(\mu\)</span> and inverse-disperson <span class="math inline">\(\phi\)</span>:
+<span class="math display">\[
+f(x | \mu, \phi) = \frac{\phi^{1/2} e^{-\phi \mu}}{c(\mu,\phi)} \left(\frac{e^{-x} x^x}{x!}\right) \left(\frac{e \mu}{x}\right)^{\phi x},
+\]</span>
+where <span class="math inline">\(c(\mu,\phi)\)</span> is a scaling constant to ensure that the density sums to one, which is closely approximated by
+<span class="math display">\[
+c(\mu, \phi) \approx 1 + \frac{1 - \phi}{12 \mu \phi}\left(1 + \frac{1}{\mu \phi}\right).
+\]</span>
+We then have
+<span class="math display">\[
+\ln f(x | \mu, \phi) = \frac{1}{2} \ln \phi - \phi \mu - \ln c(\mu, \phi) + x (\phi + \phi \ln \mu - 1) + (1 - \phi) x \ln(x) - \ln \left(x!\right),
+\]</span>
+where <span class="math inline">\(0 \times \ln (0)\)</span> is evaluated as 0.</p>
+</div>
+<div id="log-of-the-probability-mass-function" class="section level1">
+<h1>Log of the probability mass function</h1>
+<p>For purposes of using this distribution in Stan, it’s sufficient to provide the log of the probability mass function up to a constant—there’s no need to normalize it to sum to one. Thus, we can ignore the <span class="math inline">\(c(\mu, \phi)\)</span> term above. Here’s a Stan function implementing the lpmf:</p>
+<pre class="r"><code>stancode_lpmf &lt;- &quot;
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+&quot;</code></pre>
+<p>To check that this is accurate, I’ll compare the Stan function to the corresponding function from <code>gamlss.dist</code> for a couple of different parameter values and for <span class="math inline">\(x = 0,...,100\)</span>. If my function is accurate, the calculated log-probabilities should differ by a constant value for each set of parameters.</p>
+<pre class="r"><code>writeLines(paste(&quot;functions {&quot;, stancode_lpmf, &quot;}&quot;, sep = &quot;\n&quot;), &quot;DPO-lpmf.stan&quot;)
+expose_stan_functions(&quot;DPO-lpmf.stan&quot;)
+
+test_lpmf &lt;- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+    X = 0:100
+  ) %&gt;%
+  mutate(
+    gamlss_lpmf = dDPO(x = X, mu = mu, sigma = 1 / phi, log = TRUE),
+    my_lpmf = pmap_dbl(.l = list(X = X, mu = mu, phi = phi), .f = dpo_lpmf),
+    diff = my_lpmf - gamlss_lpmf
+  )</code></pre>
+<pre class="r"><code>ggplot(test_lpmf, aes(factor(phi), diff, color = factor(phi))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = &quot;label_both&quot;, ncol = 2) + 
+  theme_minimal() + 
+  labs(x = &quot;phi&quot;) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Checks out. Onward!</p>
+</div>
+<div id="cumulative-distribution-function" class="section level1">
+<h1>Cumulative distribution function</h1>
+<p>I’ll next implement a function to evaluate the cumulative distriution function over a range of values. This is an expensive calculation, but it can be improved a little bit by noting the relationship between sequential values of the probability mass function. Letting <span class="math inline">\(d = \exp \left(\phi + \phi \ln \mu - 1 \right)\)</span>, observe that
+<span class="math display">\[
+\begin{aligned}
+f(0 | \mu, \phi) &amp;= \frac{\phi^{1/2} e^{-\phi \mu}}{c(\mu,\phi)} \\
+f(1 | \mu, \phi) &amp;= f(0 | \mu, \phi) \times d \\
+f(x | \mu, \phi) &amp;= f(x - 1 | \mu, \phi) \times d \times \frac{\exp\left[(1 - \phi)(x - 1)\left(\ln(x) - \ln(x - 1)\right) \right]}{x^\phi}
+\end{aligned}
+\]</span>
+where the last expression holds for <span class="math inline">\(x \geq 2\)</span>.</p>
+<p>The function below computes the cumulative distribution function over the range <span class="math inline">\(x = 0,...,m\)</span> as follows:</p>
+<ul>
+<li>Compute <span class="math inline">\(f(x | \mu, \phi)\)</span> for <span class="math inline">\(x = 0,1,2,...\)</span>, without the scaling constant <span class="math inline">\(c(\mu, \phi)\)</span></li>
+<li>Take <span class="math inline">\(F(0 | \mu, \phi) = f(0 | \mu, \phi)\)</span> and accumulate <span class="math inline">\(F(x | \mu, \phi) = F(x - 1 | \mu, \phi) + f(x | \mu, \phi)\)</span> for <span class="math inline">\(x = 0,...,m\)</span>.</li>
+<li>Check if <span class="math inline">\(f(x | \mu, \phi) / F(x | \mu, \phi)\)</span> is small (less than <span class="math inline">\(10^{-8}\)</span>), in which case accumulation stops at the value <span class="math inline">\(n\)</span>.</li>
+<li>The normalized cumulative distribution function will then be <span class="math inline">\(F(x | \mu, \phi) / F(n | \mu, \phi)\)</span>.</li>
+</ul>
+<pre class="r"><code>stancode_cdf &lt;- &quot; 
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] &lt; 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+&quot;</code></pre>
+<p>To check that this is accurate, I’ll again compare the Stan function to the corresponding function from <code>gamlss.dist</code>. If my function is accurate, the computed cdf values should be proportional to the cdf calculated from <code>gamlss.dist::pDPO()</code> and the ratio should be very close to 1.</p>
+<pre class="r"><code>writeLines(paste(&quot;functions {&quot;, stancode_cdf, &quot;}&quot;, sep = &quot;\n&quot;), &quot;DPO-cdf.stan&quot;)
+expose_stan_functions(&quot;DPO-cdf.stan&quot;)
+
+test_cdf &lt;- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %&gt;%
+  mutate(
+    maxval = 20 * mu / pmin(1, phi),
+    my_cdf = pmap(.l = list(mu = mu, phi = phi, maxval = maxval), .f = dpo_cdf)
+  ) %&gt;%
+  unnest(my_cdf) %&gt;%
+  filter(!is.nan(my_cdf)) %&gt;%
+  group_by(mu, phi) %&gt;%
+  mutate(
+    q = row_number() - 1L,
+    gamlss_cdf = pDPO(q = q, mu = mu, sigma = 1 / phi),
+    ratio = my_cdf / gamlss_cdf
+  )</code></pre>
+<pre class="r"><code>ggplot(test_cdf, aes(factor(phi), ratio, color = factor(phi))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = &quot;label_both&quot;, ncol = 2) + 
+  theme_minimal() + 
+  labs(x = &quot;phi&quot;) + 
+  ylim(1 + c(-1e-6, 1e-6)) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Still on track here (although you might wonder—would I be sharing this post if I couldn’t get the function working?).</p>
+</div>
+<div id="quantile-function-and-sampler" class="section level1">
+<h1>Quantile function and sampler</h1>
+<p>The main other thing we need is a function for generating random samples from the double-Poisson. The <code>gamlss.dist</code> package has the function <code>rDPO()</code> for this purpose. It’s implemented using the standard inversion method, by calculating quantiles of the double-Poisson corresponding to a random sample from a uniform distribution. Just for funzies, I’ll implement the same approach using Stan.</p>
+<p>The function below calculates quantiles by finding the minimum value of <span class="math inline">\(q \geq 0\)</span> such that <span class="math inline">\(F(q + 1 | \mu, \phi) \geq p\)</span> for a specified probability <span class="math inline">\(p \in [0, 1]\)</span>. It is vectorized over <span class="math inline">\(p\)</span> and solves for <span class="math inline">\(q\)</span> by starting with the smallest <span class="math inline">\(p\)</span> and continuing through the largest value.</p>
+<pre class="r"><code>stancode_quantile &lt;- &quot; 
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] &lt; 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+array[] int dpo_quantiles(vector p, real mu, real phi, int maxval) {
+  int N = rows(p);
+  array[N] int qs;
+  array[N] int indices = sort_indices_asc(p);
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int j = 0;
+  for (i in indices) {
+    while (cdf_vec[j + 1] &lt; p[i]) {
+      j += 1;
+    }
+    qs[i] = j;
+  }
+  return qs;
+}
+&quot;</code></pre>
+<p>If my quantile function is accurate, it should match the value computed from <code>gamlss.dist::qDPO()</code> exactly.</p>
+<pre class="r"><code>writeLines(paste(&quot;functions {&quot;, stancode_quantile, &quot;}&quot;, sep = &quot;\n&quot;), &quot;DPO-quantile.stan&quot;)
+expose_stan_functions(&quot;DPO-quantile.stan&quot;)
+
+test_quantile &lt;- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %&gt;%
+  mutate(
+    maxval = 20 * mu / pmin(1, phi),
+    p = map(1:n(), ~ runif(100)),
+    my_q = pmap(.l = list(p = p, mu = mu, phi = phi, maxval = maxval), .f = dpo_quantiles),
+    gamlss_q = pmap(.l = list(p = p, mu = mu, sigma = 1 / phi), .f = qDPO)
+  ) %&gt;%
+  unnest(c(p, my_q, gamlss_q)) %&gt;%
+  mutate(
+    diff = my_q - gamlss_q
+  )</code></pre>
+<pre class="r"><code>ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) + 
+  geom_boxplot() + 
+  facet_wrap( ~ mu, labeller = &quot;label_both&quot;, ncol = 2) + 
+  theme_minimal() + 
+  labs(x = &quot;phi&quot;) + 
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Phew, still got it!</p>
+<p>The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. I will implement this two ways: first with an argument for the number of random variates to generate and then, more simply, to generate a single random variate.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<pre class="r"><code>stancode_qr &lt;- &quot;
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] &lt; 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+array[] int dpo_quantiles(vector p, real mu, real phi, int maxval) {
+  int N = rows(p);
+  array[N] int qs;
+  array[N] int indices = sort_indices_asc(p);
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int j = 0;
+  for (i in indices) {
+    while (cdf_vec[j + 1] &lt; p[i]) {
+      j += 1;
+    }
+    qs[i] = j;
+  }
+  return qs;
+}
+array[] int dpo_sample_rng(int n, real mu, real phi, int maxval) {
+  vector[n] p;
+  for (i in 1:n) {
+    p[i] = uniform_rng(0,1);
+  }
+  array[n] int x = dpo_quantiles(p, mu, phi, maxval);
+  return x;
+}
+int dpo_quantile(real p, real mu, real phi, int maxval) {
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int q = 0;
+  while (cdf_vec[q + 1] &lt; p) {
+      q += 1;
+    }
+  return q;
+}
+int dpo_rng(real mu, real phi, int maxval) {
+  real p = uniform_rng(0,1);
+  int x = dpo_quantile(p, mu, phi, maxval);
+  return x;
+}
+&quot;</code></pre>
+<p>To check this function, I’ll generate some large samples from the double-Poisson with a few different parameter sets. If the sampler is working properly, the empirical cumulative distribution should line up closely with the cumulative distribution computed using <code>gamlss.dist::pDPO()</code>.</p>
+<pre class="r"><code>writeLines(paste(&quot;functions {&quot;, stancode_qr, &quot;}&quot;, sep = &quot;\n&quot;), &quot;DPO-rng.stan&quot;)
+expose_stan_functions(&quot;DPO-rng.stan&quot;)
+
+test_rng &lt;- 
+  expand_grid(
+    mu = c(2, 5, 10, 20),
+    phi = c(0.1, 0.2, 0.5, 1, 2, 5, 10),
+  ) %&gt;%
+  mutate(
+    x = pmap(.l = list(n = 10000, mu = mu, phi = phi, maxval = 5000), .f = dpo_sample_rng),
+    tb = map(x, ~ as.data.frame(table(.x)))
+  ) %&gt;%
+  dplyr::select(-x) %&gt;%
+  group_by(mu, phi) %&gt;%
+  unnest(tb) %&gt;%
+  mutate(
+    .x = as.integer(levels(.x))[.x],
+    Freq_cum = cumsum(Freq) / 10000,
+    gamlss_F = pDPO(q = .x, mu = mu, sigma = 1 / phi)
+  )</code></pre>
+<pre class="r"><code>ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) + 
+  geom_abline(slope = 1, color = &quot;blue&quot;, linetype = &quot;dashed&quot;) + 
+  geom_point() + geom_line() +  
+  facet_grid(phi ~ mu, labeller = &quot;label_both&quot;) + 
+  theme_minimal() + 
+  labs(x = &quot;Theoretical cdf (gamlss.dist)&quot;, y = &quot;Empirical cdf (my function)&quot;) + 
+  theme(legend.position = &quot;none&quot;) </code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Looks pretty good, no?</p>
+</div>
+<div id="using-the-custom-distribution-functions" class="section level1">
+<h1>Using the custom distribution functions</h1>
+<p>To finish out my tests of these functions, let me demonstrate their use in an actual estimation problem. I’ll generate data based on a simple generalized linear model with a single predictor <span class="math inline">\(X\)</span>, where the outcome <span class="math inline">\(Y\)</span> follows a double-Poisson distribution conditional on <span class="math inline">\(X\)</span>. The data-generating process is:</p>
+<p><span class="math display">\[
+\begin{aligned}
+X &amp;\sim N(0, 1) \\
+Y|X &amp;\sim DPO(\mu(X), \phi) \\
+\log \mu(X) &amp;= 2 + 0.3 \times X
+\end{aligned}
+\]</span>
+To make things interesting, I’ll set the dispersion parameter to <span class="math inline">\(1 / \phi = 0.6\)</span> so that the outcome is <em>under</em>-dispersed relative to the Poisson.</p>
+<p>The following code generates a large sample from the data-generating process. To keep things R-centric, I use <code>gamlss.dist::rDPO</code> to generate the outcome.</p>
+<pre class="r"><code>set.seed(20230913)
+N &lt;- 600
+X &lt;- rnorm(N)
+mu &lt;- exp(2 + 0.3 * X)
+phi_inv &lt;- 0.6
+Y &lt;- rDPO(N, mu = mu, sigma = phi_inv)
+dat &lt;- data.frame(X = X, Y = Y)</code></pre>
+<p>Here’s what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:</p>
+<pre class="r"><code>ggplot(dat, aes(X, Y)) + 
+  geom_point(alpha = 0.1) + 
+  geom_smooth(method = &#39;gam&#39;, formula = y ~ s(x, bs = &quot;cs&quot;)) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<div id="comparison-models" class="section level2">
+<h2>Comparison models</h2>
+<p>Before using the custom distribution, I’ll fit a couple of out-of-the-box models that are useful points of comparison.
+Surely the simplest, quickest, and dirtiest way to estimate such a regression is with a generalized linear model, using the “quasi-Poisson” family to allow for non-unit dispersion. In R:</p>
+<pre class="r"><code>quasi_fit &lt;- glm(Y ~ X, family = quasipoisson(link = &quot;log&quot;), data = dat)
+summary(quasi_fit)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Y ~ X, family = quasipoisson(link = &quot;log&quot;), data = dat)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.77671  -0.58205  -0.03293   0.49158   2.52711  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.98784    0.01219  163.03   &lt;2e-16 ***
+## X            0.29276    0.01178   24.85   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for quasipoisson family taken to be 0.6324771)
+## 
+##     Null deviance: 777.74  on 599  degrees of freedom
+## Residual deviance: 384.90  on 598  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>This approach recovers the data-generating parameters quite well, with a dispersion estimate of 0.632 compared to the true dispersion parameter of 0.6.</p>
+<p>Now let me fit the same generalized linear model but assuming that the outcome follows a true Poisson distribution (with unit dispersion). I’ll fit the model in a Bayesian framework with the <code>brms</code> package.</p>
+<pre class="r"><code>Poisson_fit &lt;- 
+  brm(
+    Y ~ X, family = poisson(link = &quot;log&quot;),
+    data = dat, 
+    warmup = 500, 
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
+    seed = 20230913
+  )
+
+summary(Poisson_fit)</code></pre>
+<pre><code>##  Family: poisson 
+##   Links: mu = log 
+## Formula: Y ~ X 
+##    Data: dat (Number of observations: 600) 
+##   Draws: 4 chains, each with iter = 1500; warmup = 500; thin = 1;
+##          total post-warmup draws = 4000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     1.99      0.02     1.96     2.02 1.00     2733     2582
+## X             0.29      0.01     0.26     0.32 1.00     2705     2485
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>This specification recovers the intercept and slope parameters well too, but doesn’t provide any estimate of dispersion.</p>
+<p>As an alternative, I’ll also fit the model using the negative binomial distribution, which is a generalization of the Poisson that allows for over-dispersion (but not under-dispersion):</p>
+<pre class="r"><code>negbin_fit &lt;- 
+  brm(
+    Y ~ X, family = negbinomial(link = &quot;log&quot;),
+    data = dat, 
+    warmup = 500, 
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
+    seed = 20230913
+  )
+
+summary(negbin_fit)</code></pre>
+<pre><code>##  Family: negbinomial 
+##   Links: mu = log; shape = identity 
+## Formula: Y ~ X 
+##    Data: dat (Number of observations: 600) 
+##   Draws: 4 chains, each with iter = 1500; warmup = 500; thin = 1;
+##          total post-warmup draws = 4000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     1.99      0.02     1.96     2.02 1.00     3571     3057
+## X             0.29      0.01     0.26     0.32 1.00     3696     3141
+## 
+## Family Specific Parameters: 
+##       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## shape   313.78    130.37   136.26   622.52 1.00     3132     3122
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>The <code>brms</code> package implements the negative binomial using the rate parameterization, so the <code>shape</code> parameter corresponds to the inverse dispersion. Thus, a large shape parameter (as in the above fit) implies dispersion that is very close to one (i.e., close to the Poisson).</p>
+</div>
+<div id="double-poisson-model" class="section level2">
+<h2>Double-Poisson model</h2>
+<p>Now I’ll fit the same model as previously but using my custom-built double-Poisson distribution. Following <a href="https://cran.r-project.org/web/packages/brms/vignettes/brms_customfamilies.html">Paul Buerkner’s vignette</a> on using custom distributions in <code>brms</code>, I’ll first specify the custom family object for the double-Poisson:</p>
+<pre class="r"><code>double_Poisson &lt;- custom_family(
+  &quot;dpo&quot;, dpars = c(&quot;mu&quot;,&quot;phi&quot;),
+  links = c(&quot;log&quot;,&quot;log&quot;),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = &quot;int&quot;
+)</code></pre>
+<p>I set the defaults to use a log-link for the mean (just as with the Poisson and negative binomial families) and a log-link for the inverse-dispersion.
+Next, I’ll create an object to add the custom stan code from above into the code created by <code>brm</code> for fitting the model:</p>
+<pre class="r"><code>double_Poisson_stanvars &lt;- stanvar(scode = stancode_qr, block = &quot;functions&quot;)</code></pre>
+<p>I’ll also need to specify a prior to use for the <span class="math inline">\(\phi\)</span> parameter of the double-Poisson distribution:</p>
+<pre class="r"><code>phi_prior &lt;- prior(exponential(1), class = &quot;phi&quot;)</code></pre>
+<p>Now I’m ready to fit the model:</p>
+<pre class="r"><code>DPO_fit &lt;- 
+  brm(
+    Y ~ X, family = double_Poisson,
+    prior = phi_prior,
+    stanvars = double_Poisson_stanvars,
+    data = dat, 
+    warmup = 500, 
+    iter = 1500, 
+    chains = 4, 
+    cores = 4,
+    seed = 20230913
+  )
+
+summary(DPO_fit)</code></pre>
+<pre><code>##  Family: dpo 
+##   Links: mu = log; phi = identity 
+## Formula: Y ~ X 
+##    Data: dat (Number of observations: 600) 
+##   Draws: 4 chains, each with iter = 1500; warmup = 500; thin = 1;
+##          total post-warmup draws = 4000
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     1.99      0.01     1.96     2.01 1.00     3468     3162
+## X             0.29      0.01     0.27     0.32 1.00     3745     2786
+## 
+## Family Specific Parameters: 
+##     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## phi     1.55      0.09     1.38     1.73 1.00     3814     2780
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models, estimated with slightly better precision than with the Poisson or negative binomial families. However, we get a posterior for <span class="math inline">\(\phi\)</span> that corresponds to <em>under</em>-dispersion. Here’s the posterior for the dispersion (i.e., <span class="math inline">\(1 / \phi\)</span>):</p>
+<pre class="r"><code>mcmc_areas(DPO_fit, pars = &quot;phi&quot;, transformations = \(x) 1 / x) + 
+  theme_minimal()</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/DPO-dispersion-1.png" width="480" /></p>
+</div>
+<div id="model-comparison" class="section level2">
+<h2>Model comparison</h2>
+<p>I’d like to get a sense of how much better the double-Poisson model does with capturing the real data-generating process compared to the simple Poisson model or the negative binomial model. There’s a wide range of diagnostics that can inform such comparisons. I’ll consider the leave-one-out information criteria (LOOIC) and also look at some posterior predictive checks.</p>
+<p>To calculate LOOIC for the double-Poisson model, I first need to provide a <code>log_lik</code> function that <code>brms</code> can use<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Here’s code, using the Stan function from above:</p>
+<pre class="r"><code>expose_functions(DPO_fit, vectorize = TRUE)
+log_lik_dpo &lt;- function(i, prep) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  y &lt;- prep$data$Y[i]
+  dpo_lpmf(y, mu, phi)
+}</code></pre>
+<p>I can then compute LOOIC for all three models:</p>
+<pre class="r"><code>loo(DPO_fit, Poisson_fit, negbin_fit)</code></pre>
+<pre><code>## Output of model &#39;DPO_fit&#39;:
+## 
+## Computed from 4000 by 600 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo  -1305.7 16.9
+## p_loo         2.9  0.2
+## looic      2611.5 33.8
+## ------
+## Monte Carlo SE of elpd_loo is 0.0.
+## 
+## All Pareto k estimates are good (k &lt; 0.5).
+## See help(&#39;pareto-k-diagnostic&#39;) for details.
+## 
+## Output of model &#39;Poisson_fit&#39;:
+## 
+## Computed from 4000 by 600 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo  -1330.0 11.3
+## p_loo         1.3  0.1
+## looic      2660.1 22.6
+## ------
+## Monte Carlo SE of elpd_loo is 0.0.
+## 
+## All Pareto k estimates are good (k &lt; 0.5).
+## See help(&#39;pareto-k-diagnostic&#39;) for details.
+## 
+## Output of model &#39;negbin_fit&#39;:
+## 
+## Computed from 4000 by 600 log-likelihood matrix
+## 
+##          Estimate   SE
+## elpd_loo  -1333.2 11.1
+## p_loo         1.3  0.1
+## looic      2666.3 22.2
+## ------
+## Monte Carlo SE of elpd_loo is 0.0.
+## 
+## All Pareto k estimates are good (k &lt; 0.5).
+## See help(&#39;pareto-k-diagnostic&#39;) for details.
+## 
+## Model comparisons:
+##             elpd_diff se_diff
+## DPO_fit       0.0       0.0  
+## Poisson_fit -24.3       6.1  
+## negbin_fit  -27.4       6.3</code></pre>
+<p>By these measures, the double-Poisson model has substantially better fit than either of the other models.</p>
+<p>To do posterior predictive checks, I need to provide a <code>posterior_predict</code> function that <code>brms</code> can use. I’ll again do an implementation that uses my custom <code>dpo_rng()</code> from Stan.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<pre class="r"><code>posterior_predict_dpo &lt;- function(i, prep, maxval = NULL, ...) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  if (is.null(maxval)) maxval &lt;- 20 * mu / min(phi, 1)
+  dpo_rng(mu, phi, maxval = maxval)
+}</code></pre>
+<p>Functions in hand, I can now compute posterior predictions for the double-Poisson model and make pretty pictures of them, along with corresponding plots for the Poisson and negative-binomial models.</p>
+<pre class="r"><code>Yrep_Poisson &lt;- posterior_predict(Poisson_fit, draws = 400) 
+color_scheme_set(&quot;blue&quot;)
+Poisson_root &lt;- ppc_rootogram(dat$Y, Yrep_Poisson, style = &quot;hanging&quot;) + labs(title = &quot;Poisson&quot;)
+
+Yrep_negbin &lt;- posterior_predict(negbin_fit, draws = 400)
+color_scheme_set(&quot;green&quot;)
+negbin_root &lt;- ppc_rootogram(dat$Y, Yrep_negbin, style = &quot;hanging&quot;) + labs(title = &quot;Negative-binomial&quot;)
+
+Yrep_dpo &lt;- posterior_predict(DPO_fit, draws = 400)
+color_scheme_set(&quot;purple&quot;)
+dpo_root &lt;- ppc_rootogram(dat$Y, Yrep_dpo, style = &quot;hanging&quot;) + labs(title = &quot;Double-Poisson&quot;)
+
+dpo_root / Poisson_root / negbin_root &amp;
+  theme_minimal()</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/ppd-1.png" width="768" /></p>
+<p>The differences in predicted frequencies are not that obvious from these plots. The main notable difference is that the Poisson and negative-binomial distributions predict more small counts (in the range of 0 to 3) than are observed, whereas the double-Poisson does better at matching the observed frequency in this range.</p>
+<p>I think the lack of glaring differences in the above plots happens because I’m just looking at the marginal distribution of the outcome, and the (explained) variation due to the predictor dampens the degree of under-dispersion. To see this, I’ll create some plots that are grouped by quintiles of <span class="math inline">\(X\)</span>:</p>
+<pre class="r"><code>dat$g &lt;- cut(dat$X, breaks = quantile(dat$X, seq(0,1,0.2)), include.lowest = TRUE)
+
+color_scheme_set(&quot;blue&quot;)
+Poisson_bars &lt;- ppc_bars_grouped(
+  dat$Y, Yrep_Poisson, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = &quot;Poisson&quot;)
+
+color_scheme_set(&quot;green&quot;)
+negbin_bars &lt;- ppc_bars_grouped(
+  dat$Y, Yrep_negbin, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = &quot;Negative-binomial&quot;)
+
+color_scheme_set(&quot;purple&quot;)
+dpo_bars &lt;- ppc_bars_grouped(
+  dat$Y, Yrep_dpo, dat$g, 
+  prob = 0.5, 
+  facet_args = list(ncol = 5)
+) + 
+  labs(title = &quot;Double-Poisson&quot;)
+
+dpo_bars / Poisson_bars / negbin_bars &amp;
+  theme_minimal()</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/ppd-grouped-1.png" width="1152" />
+Still kind of subtle, I suppose, but you can see more clearly that the double-Poisson does a better job than the other distributions at matching the modes (peaks) of the empirical distribution in each of these subgroups.</p>
+<p>One last approach is to look directly at the degree of dispersion in the posterior predictive distributions relative to the actual data. I’ll calculate this dispersion by re-fitting the quick-and-dirty quasi-poisson model in each sample:</p>
+<pre class="r"><code>dispersion_coef &lt;- function(y) {
+  quasi_fit &lt;- glm(y ~ dat$X, family = quasipoisson(link = &quot;log&quot;))
+  sum(residuals(quasi_fit, type = &quot;pearson&quot;)^2) / quasi_fit$df.residual
+}
+
+color_scheme_set(&quot;blue&quot;)
+Poisson_disp &lt;- ppc_stat(dat$Y, Yrep_Poisson, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = &quot;Poisson&quot;)
+
+color_scheme_set(&quot;green&quot;)
+negbin_disp &lt;- ppc_stat(dat$Y, Yrep_negbin, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = &quot;Negative-binomial&quot;)
+
+color_scheme_set(&quot;purple&quot;)
+dpo_disp &lt;- ppc_stat(dat$Y, Yrep_dpo, stat = dispersion_coef, binwidth = 0.02) + 
+  labs(title = &quot;Double-Poisson&quot;)
+
+dpo_disp / Poisson_disp / negbin_disp &amp;
+  theme_minimal() &amp; 
+  xlim(c(0.45, 1.3))</code></pre>
+<p><img src="/post/Double-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png" width="768" /></p>
+<p>From this, we can clearly see that the Poisson and negative binomial model generate data with approximately unit dispersion, which doesn’t match at all with the degree of dispersion in the observed data.</p>
+</div>
+</div>
+<div id="kudos" class="section level1">
+<h1>Kudos</h1>
+<p>So there you have it. It’s really quite feasible to build models with custom distributions. Efron (1986) also describes a double-binomial distribution (as an approximation to the “quasi-binomial” family of generalized linear models), which you could play with implementing for yourself, dear reader, if you are in the mood.
+Major kudos to <a href="https://paul-buerkner.github.io/">Paul Buerkner</a> for <a href="https://paul-buerkner.github.io/brms/"><code>brms</code></a>, <a href="https://jgabry.github.io/">Jonah Gabry</a> and collaborators for <a href="https://mc-stan.org/bayesplot/"><code>bayesplot</code></a>, and <a href="https://mc-stan.org/about/team/">the incredible team of folks</a> developing <a href="https://mc-stan.org/"><code>Stan</code></a>.</p>
+</div>
+<div id="colophon" class="section level1">
+<h1>Colophon</h1>
+<pre><code>## R version 4.2.2 (2022-10-31 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19045)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] loo_2.5.1           bayesplot_1.9.0     brms_2.18.0        
+##  [4] Rcpp_1.0.10         rstan_2.26.23       StanHeaders_2.26.27
+##  [7] gamlss.dist_6.0-3   MASS_7.3-57         patchwork_1.1.1    
+## [10] forcats_0.5.1       stringr_1.5.0       dplyr_1.1.2        
+## [13] purrr_1.0.2         readr_2.1.2         tidyr_1.3.0        
+## [16] tibble_3.2.1        ggplot2_3.4.0       tidyverse_1.3.1    
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.4.2         backports_1.4.1      RcppEigen_0.3.3.9.2 
+##   [4] plyr_1.8.8           igraph_1.3.5         splines_4.2.2       
+##   [7] crosstalk_1.2.0      TH.data_1.1-2        rstantools_2.2.0    
+##  [10] inline_0.3.19        digest_0.6.30        htmltools_0.5.4     
+##  [13] fansi_1.0.4          magrittr_2.0.3       BH_1.78.0-0         
+##  [16] checkmate_2.1.0      tzdb_0.3.0           modelr_0.1.8        
+##  [19] RcppParallel_5.1.5   matrixStats_0.62.0   xts_0.12.1          
+##  [22] sandwich_3.0-1       timechange_0.2.0     prettyunits_1.1.1   
+##  [25] colorspace_2.1-0     rvest_1.0.2          haven_2.5.0         
+##  [28] xfun_0.34            callr_3.7.2          crayon_1.5.2        
+##  [31] jsonlite_1.8.4       survival_3.4-0       zoo_1.8-10          
+##  [34] glue_1.6.2           gtable_0.3.1         emmeans_1.7.3       
+##  [37] distributional_0.3.1 pkgbuild_1.3.1       abind_1.4-5         
+##  [40] scales_1.2.1         mvtnorm_1.1-3        DBI_1.1.2           
+##  [43] miniUI_0.1.1.1       xtable_1.8-4         stats4_4.2.2        
+##  [46] DT_0.23              htmlwidgets_1.6.2    httr_1.4.3          
+##  [49] threejs_0.3.3        posterior_1.3.1      ellipsis_0.3.2      
+##  [52] pkgconfig_2.0.3      farver_2.1.1         sass_0.4.5          
+##  [55] dbplyr_2.1.1         utf8_1.2.3           tidyselect_1.2.0    
+##  [58] labeling_0.4.2       rlang_1.1.1          reshape2_1.4.4      
+##  [61] later_1.3.0          munsell_0.5.0        cellranger_1.1.0    
+##  [64] tools_4.2.2          cachem_1.0.6         cli_3.6.1           
+##  [67] generics_0.1.3       broom_0.8.0          ggridges_0.5.3      
+##  [70] evaluate_0.18        fastmap_1.1.0        yaml_2.3.5          
+##  [73] processx_3.7.0       knitr_1.40           fs_1.6.1            
+##  [76] nlme_3.1-157         mime_0.12            xml2_1.3.3          
+##  [79] compiler_4.2.2       shinythemes_1.2.0    rstudioapi_0.13     
+##  [82] reprex_2.0.1         bslib_0.4.2          stringi_1.7.12      
+##  [85] highr_0.9            ps_1.6.0             blogdown_1.10       
+##  [88] Brobdingnag_1.2-9    lattice_0.20-45      Matrix_1.5-1        
+##  [91] markdown_1.7         shinyjs_2.1.0        tensorA_0.36.2      
+##  [94] vctrs_0.6.3          pillar_1.9.0         lifecycle_1.0.3     
+##  [97] jquerylib_0.1.4      bridgesampling_1.1-2 estimability_1.3    
+## [100] httpuv_1.6.8         QuickJSR_1.0.5       R6_2.5.1            
+## [103] bookdown_0.26        promises_1.2.0.1     gridExtra_2.3       
+## [106] codetools_0.2-18     colourpicker_1.1.1   gtools_3.9.3        
+## [109] assertthat_0.2.1     withr_2.5.0          shinystan_2.6.0     
+## [112] multcomp_1.4-23      mgcv_1.8-41          parallel_4.2.2      
+## [115] hms_1.1.3            grid_4.2.2           coda_0.19-4         
+## [118] rmarkdown_2.18       shiny_1.7.4          lubridate_1.9.2     
+## [121] base64enc_0.1-3      dygraphs_1.1.1.6</code></pre>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>To be clear up front, what I present is more complicated than really necessary because of these existing R functions to simulate values from the double-Poisson—we can just use the functions from <code>gamlss.dist</code> for purposes of posterior predictive checks (about which more below).
+I’m trying to work in Stan to the maximum extent possible solely as an excuse to learn more about the language, which I haven’t used much up until today.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>I should also note that the <a href="http://www.bamlss.org/index.html"><code>bamlss</code> package</a> provides similar functionality and can be combined with <code>gamlss.dist</code> to accomplish basically the same thing as I’m going to do here.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>The simpler version is what’s needed for generating posterior predictive checks, the fancy version is just to show off how clever I am.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Rather than exposing and calling the Stan function, one could just re-implement the log likelihood in R. (Probably the easier way in practice, but again I’m trying to learn me some Stan here…)<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Of course, I could have saved a bunch of trouble by just using <code>gamlss.dist::rDPO()</code> instead.<a href="#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/bayes/">Bayes</a>
+  
+  <a class="badge badge-light" href="/tags/simulation/">simulation</a>
+  
+  <a class="badge badge-light" href="/tags/distribution-theory/">distribution-theory</a>
+  
+  <a class="badge badge-light" href="/tags/generalized-linear-model/">generalized linear model</a>
+  
+  <a class="badge badge-light" href="/tags/programming/">programming</a>
+  
+  <a class="badge badge-light" href="/tags/rstats/">Rstats</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://www.jepusto.com/double-poisson-in-stan/&amp;text=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://www.jepusto.com/double-poisson-in-stan/&amp;t=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan&amp;body=https://www.jepusto.com/double-poisson-in-stan/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://www.jepusto.com/double-poisson-in-stan/&amp;title=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan%20https://www.jepusto.com/double-poisson-in-stan/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://www.jepusto.com/double-poisson-in-stan/&amp;title=Implementing%20Efron&amp;#39;s%20double%20Poisson%20distribution%20in%20Stan" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "jepusto" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/simulation-studies-in-r-2016/">Simulation studies in R (Fall, 2016 version)</a></li>
+      
+      <li><a href="/parallel-r-on-tacc-update/">Update: parallel R on the TACC</a></li>
+      
+      <li><a href="/parallel-r-on-tacc/">Running R in parallel on the TACC</a></li>
+      
+      <li><a href="/cluster-bootstrap-selection-model/">Cluster-Bootstrapping a meta-analytic selection model</a></li>
+      
+      <li><a href="/code-folding-update/">An update on code folding with blogdown &#43; Academic theme</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://jepusto.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.107281da73526e9b05dade8a9cfe7f27.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  
+  
+   
+  <script>
+  $(document).ready(function () {
+    window.initializeCodeFolding("show" === "show");
+  });
+  </script>
+  <script src="/js/codefolding.js"></script>
+
+
+
+  <p class="powered-by">
+    © 2023 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -5,12 +5,20 @@
     <link>https://www.jepusto.com/publication/</link>
       <atom:link href="https://www.jepusto.com/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Thu, 09 Nov 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Publications</title>
       <link>https://www.jepusto.com/publication/</link>
     </image>
+    
+    <item>
+      <title>High replicability of newly-discovered social-behavioral findings is achievable.</title>
+      <link>https://www.jepusto.com/publication/decline-effects/</link>
+      <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/decline-effects/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
@@ -161,14 +169,6 @@
       <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
       <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>High replicability of newly-discovered social-behavioral findings is achievable.</title>
-      <link>https://www.jepusto.com/publication/decline-effects/</link>
-      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/decline-effects/</guid>
       <description></description>
     </item>
     

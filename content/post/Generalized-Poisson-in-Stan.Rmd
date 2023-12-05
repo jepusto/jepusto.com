@@ -2,8 +2,7 @@
 title: Implementing Consul's generalized Poisson distribution in Stan
 authors:
 - admin
-date: '2023-12-04'
-draft: true
+date: '2023-12-06'
 codefolding_show: 'show'
 slug: generalized-poisson-in-Stan
 categories: []
@@ -29,10 +28,10 @@ $$
 $$
 
 For a project I am working on, we are using [Stan](https://mc-stan.org/) to fit generalized random effects location-scale models to a bunch of count data. 
-In [a previous post](/Double-Poisson-in-Stan/), I walked through our implementation of [Efron's (1986)](https://doi.org/10.2307/2289002) double-Poisson distribution, which we are interested in using because it allows for both over- and under-dispersion relative to the Poisson distribution. 
+In [a previous post](/double-poisson-in-Stan/), I walked through our implementation of [Efron's (1986)](https://doi.org/10.2307/2289002) double-Poisson distribution, which we are interested in using because it allows for both over- and under-dispersion relative to the Poisson distribution. 
 Another distribution with these properties is the generalized Poisson distribution described by [Consul and Jain (1973)](https://doi.org/10.1080/00401706.1973.10489112).
 
-In this post, I'll walk through my implementation ofthe GPO in Stan.
+In this post, I'll walk through my implementation of the GPO in Stan.
 The [`gamlss.dist` package](https://cran.r-project.org/package=gamlss.dist) provides a full set of distributional functions for the generalized Poisson distribution, including a sampler, but the functions are configured to only allow for over-dispersion. Since I'm interested in allowing for under-dispersion as well, I'll need to write my own functions. As in my previous post, I can validate my Stan functions against the functions from `gamlss.dist` (although only for over-dispersion scenarios).
 
 ```{r setup, include = FALSE}
@@ -52,11 +51,10 @@ library(loo)         # Model fit measures
 
 ## The generalized Poisson 
 
-
 Consul and Jain's generalized Poisson distribution is a discrete distribution for non-negative counts, with support $\mathcal{S}_X = \{0, 1, 2, 3, ...\}$. 
 The mean-variance relationship of the generalized Poisson is constant; for $X \sim GPO(\mu, \phi)$,  $\text{E}(X) = \mu$ and $\text{Var}(X) = \mu / \phi$ for $0 < \phi < 1$; the expectation and variance are not exact but are close approximations when there is underdispersion, so $\phi > 1$. Thus, like the double-Poisson distribution, the generalized Poisson satisfies the assumptions of a quasi-Poisson generalized linear model (at least approximately). 
 
-The density of the double-Poisson distribution with mean $\mu$ and inverse-disperson $\phi$ is:
+The density of the generalized Poisson distribution with mean $\mu$ and inverse-disperson $\phi$ is:
 $$
 f(x | \mu, \phi) = \mu \sqrt{\phi} \left( x + \sqrt{\phi}(\mu - x) \right)^{x-1} \frac{\exp \left[-\left( x + \sqrt{\phi}(\mu - x)\right)\right]}{x!}.
 $$
@@ -65,9 +63,9 @@ $$
 \ln f(x | \mu, \phi) = \frac{1}{2} \ln \phi + \ln \mu + (x - 1) \ln \left( x + \sqrt{\phi}(\mu - x) \right) - \left( x + \sqrt{\phi}(\mu - x) \right) - \ln \left(x!\right).
 $$
 Using the GPO with under-dispersed data is a little bit more controversial (by statistical standards) than using the DPO. 
-This is because its probability mass function becomes negative for large counts for parameter values corresponding to under-dispersion. In particular, note that for values $x > \frac{\mu}{1 - \phi^{-1/2}}$, the quantity $x + \sqrt{\phi}(\mu - x)$ becomes negative, and so $f(x| \mu, \phi)$ is no longer a proper probability. 
-Consul suggested handling this situation by truncating the distribution at $m = \left\lfloor \frac{\mu}{1 - \phi^{-1/2}} \right\rfloor$. However, doing so makes the distribution only an approximation, such that $\mu$ is no longer exactly the mean and $\phi$ is no longer exactly the inverse dispersion. 
-For mild under-dispersion of no less than 80% of the mean, $1 < \phi < 1.25$ and the truncation point is quite extreme, with $m \approx 10 \mu$, so I'm not too worried about this issue. 
+This is because, for parameter values corresponding to under-dispersion, its probability mass function becomes negative for large counts. In particular, note that for values $x > \frac{\mu\sqrt\phi}{\sqrt\phi - 1}$, the quantity $x + \sqrt{\phi}(\mu - x)$ becomes negative, and so $f(x| \mu, \phi)$ is no longer a proper probability. 
+Consul suggested handling this situation by truncating the distribution at $m = \left\lfloor \frac{\mu\sqrt\phi}{\sqrt\phi - 1}\right\rfloor$. However, doing so makes the distribution only an approximation, such that $\mu$ is no longer exactly the mean and $\phi$ is no longer exactly the inverse dispersion. 
+For modest under-dispersion of no less than 60% of the mean, $1 < \phi < 5 / 3$ and the truncation point is fairly extreme, with $m \approx 4.4 \mu$, so I'm not too worried about this issue. 
 We'll see how it plays out in application, of course.
 
 # Log of the probability mass function
@@ -89,9 +87,9 @@ real gpo_lpmf(int X, real mu, real phi) {
 "
 ```
 
-To check that this is accurate, I'll compare the Stan function to the corresponding function from `gamlss.dist` for a couple of different parameter values and for $x = 0,...,100$. If my function is accurate, the calculated log-probabilities should differ by a constant value for each set of parameters. Note that the `gamlss.dist` function uses a different parameterization for the dispersion, with $\sigma = \frac{\phi^{-1/2} - 1}{\mu}$. 
+To check that this is accurate, I'll compare the Stan function to the corresponding function from `gamlss.dist` for a couple of different parameter values and for $x = 0,...,100$. If my function is accurate, my calculated log-probabilities should be equal to the results from `gamlss.dist::dGPO`. Note that the `gamlss.dist` function uses a different parameterization for the dispersion, with $\sigma = \frac{\phi^{-1/2} - 1}{\mu}$. 
 
-```{r check-lpmf, cache = TRUE}
+```{r check-lpmf}
 writeLines(paste("functions {", stancode_lpmf, "}", sep = "\n"), "GPO-lpmf.stan")
 expose_stan_functions("GPO-lpmf.stan")
 
@@ -122,7 +120,7 @@ Checks out. Onward!
 
 # Quantile function
 
-I'll next implement a function to evaluate the quantile function over a range of values, taking advantage of a simple recurrence relationship for sequential values. Note that
+I'll next implement the generalized Poisson quantile function, taking advantage of a recurrence relationship for sequential values. Note that
 $$
 \begin{aligned}
 f(0 | \mu, \phi) &= \exp \left(-\mu \sqrt{\phi}\right) \\
@@ -131,7 +129,7 @@ f(x | \mu, \phi) &= f(x - 1 | \mu, \phi) \times \frac{\left(x + \sqrt{\phi}(\mu 
 $$
 where the second expression holds for $x \geq 1$.
 
-The function below computes the quantile function given a value $p$ by computing the cumulative distribution function until $p$ is exceeded: 
+The function below computes the quantile given a value $p$ by computing the cumulative distribution function until $p$ is exceeded: 
 
 ```{r quantile}
 stancode_quantile <- " 
@@ -160,7 +158,7 @@ int gpo_quantile(real p, real mu, real phi) {
 
 If my quantile function is accurate, it should match the value computed from `gamlss.dist::qDPO()` exactly.
 
-```{r check-quantile, cache = TRUE}
+```{r check-quantile}
 writeLines(paste("functions {", stancode_quantile, "}", sep = "\n"), "GPO-quantile.stan")
 expose_stan_functions("GPO-quantile.stan")
 
@@ -182,7 +180,7 @@ test_quantile <-
 
 ```
 
-```{r, fig.width = 7, fig.height = 4}
+```{r check-quantile-plot, fig.width = 7, fig.height = 4}
 
 ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) + 
   geom_boxplot() + 
@@ -193,7 +191,7 @@ ggplot(test_quantile, aes(factor(phi), diff, color = factor(phi))) +
 
 ```
 
-Maybe I should enter this in the competition for the world's most boring data-based graphic.
+I should enter this figure in the competition for the world's most boring statistical graphic.
 
 # Sampler
 
@@ -232,7 +230,7 @@ int gpo_rng(real mu, real phi) {
 
 To check this function, I'll generate some large samples from the generalized Poisson with a few different parameter sets. If the sampler is working properly, the empirical cumulative distribution should line up closely with the cumulative distribution computed using `gamlss.dist::pGPO()`.
 
-```{r check-rng, cache = TRUE}
+```{r check-rng}
 writeLines(paste("functions {", stancode_qr, "}", sep = "\n"), "GPO-rng.stan")
 expose_stan_functions("GPO-rng.stan")
 
@@ -260,7 +258,7 @@ test_rng <-
   )
 ```
 
-```{r, fig.width = 7, fig.height = 10}
+```{r check-rng-plot, fig.width = 7, fig.height = 10}
 ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) + 
   geom_abline(slope = 1, color = "blue", linetype = "dashed") + 
   geom_point() + geom_line() +  
@@ -269,11 +267,40 @@ ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) +
   labs(x = "Theoretical cdf (gamlss.dist)", y = "Empirical cdf (my function)") + 
   theme(legend.position = "none") 
 ```
+Another approach to checking the sampler is to simulate a bunch of observations and check whether the empirical mean and variance match the theoretical moments. I'll do this as well, using some values of $\phi > 1$ to test whether the sampler still works when there's under-dispersion.
+
+```{r test-sample-moments, cache = TRUE, fig.width = 8, fig.height = 4}
+
+test_moments <- 
+  expand_grid(
+    mu = c(5, 10, 20, 40, 60),
+    phi = seq(1, 2, 0.1),
+  ) %>%
+  mutate(
+    x = pmap(.l = list(N = 1e5, mu = mu, phi = phi), .f = gpo_rng_sampler),
+    M = map_dbl(x, mean),
+    S = map_dbl(x, sd),
+    M_ratio = M / mu,
+    S_ratio = S / sqrt(mu / phi)
+  ) %>%
+  dplyr::select(-x) %>%
+  pivot_longer(ends_with("_ratio"),names_to = "moment",values_to = "ratio") %>%
+  mutate(
+    moment = factor(moment, levels = c("M_ratio", "S_ratio"), labels = c("Sample mean", "Standard deviation")),
+    mu = factor(mu)
+  )
+
+ggplot(test_moments, aes(phi, ratio, color = mu)) + 
+  geom_point() + geom_line() + 
+  facet_wrap(~ moment) + 
+  theme_minimal()
+
+```
+Looks like the sample moments closely match the parameter values, with deviations that look pretty much like random error. Nice!
+
 # Using the custom distribution functions
 
-## A simple generalized linear model
-
-To finish out my tests of these functions, I'll try out a few small simulations. Following my [previous post](/Double-Poisson-in-Stan/), I'll generate data based on a generalized linear model with a single predictor $X$, where the outcome $Y$ follows a generalized Poisson distribution conditional on $X$. The data-generating process is:
+To finish out my tests of these functions, I'll try out a small simulation. Following my [previous post](/Double-Poisson-in-Stan/), I'll generate data based on a generalized linear model with a single predictor $X$, where the outcome $Y$ follows a generalized Poisson distribution conditional on $X$. The data-generating process is:
 
 $$
 \begin{aligned}
@@ -282,23 +309,23 @@ Y|X &\sim GPO(\mu(X), \phi) \\
 \log \mu(X) &= 2 + 0.3 \times X
 \end{aligned}
 $$
-with dispersion parameter to $1 / \phi = 0.7$ so that the outcome is _under_-dispersed. 
+with the dispersion parameter set to $\phi = 6/10$ so that the outcome is _over_-dispersed. I'm looking at over-dispersion here so that the negative binomial has a chance to keep up, since it doesn't allow for any degree of under-dispersion.
 
 The following code generates a large sample from the data-generating process:
 
-```{r}
+```{r sim-glm, cache = TRUE}
 set.seed(20231204)
 N <- 600
 X <- rnorm(N)
 mu <- exp(2 + 0.3 * X)
-phi_inv <- 0.7
-Y <- map_dbl(mu, gpo_rng, phi = 1 / phi_inv)
+phi <- 6 / 10
+Y <- map_dbl(mu, gpo_rng, phi = phi)
 dat <- data.frame(X = X, Y = Y)
 ```
 
 Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
 
-```{r, fig.width = 6, fig.height = 4}
+```{r glm-scatterplot, cache = TRUE, fig.width = 6, fig.height = 4}
 ggplot(dat, aes(X, Y)) + 
   geom_point(alpha = 0.1) + 
   geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
@@ -306,12 +333,14 @@ ggplot(dat, aes(X, Y)) +
 ```
 Here is a fit using quasi-likelihood estimation of a log-linear model:
 
-```{r}
+```{r quasi-poisson-fit}
 quasi_fit <- glm(Y ~ X, family = quasipoisson(link = "log"), data = dat)
 summary(quasi_fit)
 ```
 
-This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r phi_inv`. 
+This approach recovers the data-generating parameters quite well, with a dispersion estimate of `r round(summary(quasi_fit)$dispersion, 3)` compared to the true dispersion parameter of `r round(1  / phi, 2)`. 
+
+## Candidate models
 
 Now let me fit the same generalized linear model but assuming that the outcome follow a couple of different distributions, including a true Poisson (with unit dispersion), a negative binomial, the double-Poisson distribution from the previous post, and the generalized Poisson distribution. Here goes!
 
@@ -505,39 +534,41 @@ posterior_predict_gpo <- function(i, prep, maxval = NULL, ...) {
 
 ```
 
+## Model comparison
+
 Here is a comparison of LOOIC for all of the models:
 ```{r loo, cache = TRUE}
-loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)
+loo_comparison <- loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)
+loo_comparison$diffs
 ```
 Unsurprisingly, the model based on the true data-generating process clearly fits better than the models involving other outcome distributions.
 
 Here's the posterior for the dispersion (i.e., $1 / \phi$) based on the GPO and DPO models:
 
-```{r dispersion-comparison, fig.width = 5, fig.height = 3}
+```{r dispersion-comparison, cache = TRUE, fig.width = 5, fig.height = 3}
 color_scheme_set("green")
 GPO_dispersion <- 
   mcmc_areas(GPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
-  scale_x_continuous(limits = c(0.55, 0.95)) + 
   theme_minimal() + 
   ggtitle("Generalized Poisson")
 
 color_scheme_set("brightblue")
 DPO_dispersion <- 
   mcmc_areas(DPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
-  scale_x_continuous(limits = c(0.55, 0.95)) + 
   theme_minimal() + 
   ggtitle("Double Poisson")
 
-DPO_dispersion / GPO_dispersion
+DPO_dispersion / GPO_dispersion &
+  xlim()
 ```
 
-It looks like the estimated dispersion from the double Poisson model is biased upwards (towards one) a little bit). To get a better sense of this, I'll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:
+It looks like the estimated dispersion from the generalized Poisson model might be biased towards one by a little bit. To get a better sense of this, I'll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:
 
 ```{r ppc-dispersion, cache = TRUE, fig.width = 8, fig.height = 6}
-Yrep_Poisson <- posterior_predict(Poisson_fit, draws = 200) 
-Yrep_negbin <- posterior_predict(negbin_fit, draws = 200)
-Yrep_dpo <- posterior_predict(DPO_fit, draws = 200)
-Yrep_gpo <- posterior_predict(GPO_fit, draws = 200)
+Yrep_Poisson <- posterior_predict(Poisson_fit, ndraws = 500) 
+Yrep_negbin <- posterior_predict(negbin_fit, ndraws = 500)
+Yrep_dpo <- posterior_predict(DPO_fit, ndraws = 500)
+Yrep_gpo <- posterior_predict(GPO_fit, ndraws = 500)
 
 dispersion_coef <- function(y) {
   quasi_fit <- glm(y ~ dat$X, family = quasipoisson(link = "log"))
@@ -562,51 +593,75 @@ gpo_disp <- ppc_stat(dat$Y, Yrep_gpo, stat = dispersion_coef, binwidth = 0.02) +
 
 Poisson_disp / negbin_disp / dpo_disp / gpo_disp &
   theme_minimal() & 
-  xlim(c(0.45, 1.3))
-
-```
-Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data. Squinting pretty hard, it looks like perhaps the double Poisson model is indeed a bit biased. 
-
-## A fancy hierarchical model
-
-The research project for which we need these distributions involves models that are quite a bit more involved than the simple GLM that I simulated above. We're especially interested in hierarchical models that allow for cluster-level heterogeneity in both the mean and the dispersion parameter of the distribution. These models go under the heading of generalized additive models for location, scale, and shape (GAMLSS) and have been developed in the likelihood framework with the  [gamlss package](https://www.gamlss.com/) and in the Bayesian framework with the [bamlss package]. 
-
-I'll test out my generalized Poisson implementation by simulating data from a model that has random variation in the means and in the variances. The data-generating process is as follows:
-$$
-\begin{aligned}
-N_j &\sim 1 + Pois(7) \\
-\ln \mu_j &\sim N(\mu = 3.5, \sigma = 1) \\
-\ln \phi_j &\sim N(\mu = 3.5, \sigma = 1) \\
-\end{aligned}
-$$
-```{r}
-J <- 50
-N_j <- 1L + rpois(J, lambda = 7)
-log_mu <- rnorm(J, mean = 3.5, sd = 1)
-log_sigma <- log(2)
-
-dat1 <- 
-  tibble(ID = 1:J, N = N_j, log_mu = log_mu, log_sigma = log_sigma) %>%
-  mutate(
-    Y = pmap(list(n = N, mu = exp(log_mu), sigma = exp(log_sigma)), rDPO)
-  ) %>%
-  unnest(Y)
-
-# Fit two-level DPO model
-
-m1 <- brm(
-  Y ~ 1 + (1 | ID),
-  data = dat1,
-  family = double_Poisson,
-  stanvars = double_Poisson_stanvars_old,
-  cores = getOption("mc.cores", 4),
-  iter = 3000,
-  control = list(adapt_delta = 0.95)
-)
+  xlim(c(0.8, 2.1))
 
 ```
 
+Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data.
 
+## Marginal posterior predictive densities
+
+Here's some rootograms for the posterior predictive density of the raw outcomes:
+
+```{r ppd, cache = TRUE, fig.width = 7, fig.height = 7}
+color_scheme_set("blue")
+Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson, style = "hanging") + labs(title = "Poisson")
+color_scheme_set("purple")
+negbin_root <- ppc_rootogram(dat$Y, Yrep_negbin, style = "hanging") + labs(title = "Negative-binomial")
+color_scheme_set("brightblue")
+dpo_root <- ppc_rootogram(dat$Y, Yrep_dpo, style = "hanging") + labs(title = "Double Poisson")
+color_scheme_set("green")
+gpo_root <- ppc_rootogram(dat$Y, Yrep_gpo, style = "hanging") + labs(title = "Generalized Poisson")
+
+Poisson_root / negbin_root / dpo_root / gpo_root &
+  theme_minimal()
+```
+You can see from these that the Poisson model maybe expects slightly fewer low counts and slightly fewer high counts than are present in the observed data. However, the figure doesn't really capture the degree of mis-fit that is apparent with the dispersion summary statistics. I think this is because the distribution of $Y$ changes so much depending on the value of the predictor $X$. 
+
+## Posterior predictive residual densities
+
+One way to focus in on the distributional assumption is to examine the distribution of residuals rather than raw outcomes. I'll do that here by looking the deviance residuals from the quasi-Poisson GLM model, treating the calculation of the residuals as merely a transformation of the raw data. Here are some posterior predictive density plots of these deviance residuals:
+
+```{r ppd-residuals, cache = TRUE, fig.width = 6, fig.height = 7}
+# quasi-Poisson deviance residuals
+dat$resid <- residuals(quasi_fit)
+
+# function to calculate quasi-Poisson deviance residuals
+quasi_residuals <- function(y) as.numeric(residuals(glm(y ~ dat$X, family = quasipoisson(link = "log"))))
+
+# transform posterior predictive data into residuals
+R <- 50
+resid_Poisson <- apply(Yrep_Poisson[1:R,], 1, quasi_residuals) |> t()
+resid_negbin <- apply(Yrep_negbin[1:R,], 1, quasi_residuals) |> t()
+resid_dpo <- apply(Yrep_dpo[1:R,], 1, quasi_residuals) |> t()
+resid_gpo <- apply(Yrep_gpo[1:R,], 1, quasi_residuals) |> t()
+
+# make density plots
+color_scheme_set("blue")
+Poisson_resid_density <- ppc_dens_overlay(dat$resid, resid_Poisson) + labs(title = "Poisson")
+
+color_scheme_set("purple")
+negbin_resid_density <- ppc_dens_overlay(dat$resid, resid_negbin) + labs(title = "Negative-binomial")
+
+color_scheme_set("brightblue")
+dpo_resid_density <- ppc_dens_overlay(dat$resid, resid_dpo) + labs(title = "Double Poisson")
+
+color_scheme_set("green")
+gpo_resid_density <- ppc_dens_overlay(dat$resid, resid_gpo) + labs(title = "Generalized Poisson")
+
+Poisson_resid_density / negbin_resid_density / dpo_resid_density / gpo_resid_density &
+  theme_minimal() & 
+  xlim(c(-3.5, 3.5))
+
+```
+
+It's quite a bit clearer from these plots that the DPO and GPO models are closer to replicating the distribution of the data than the Poisson model. 
+The negative binomial model is not obviously mis-specified either. 
+
+A notable difference between the negative binomial versus the DPO and GPO distributions is in the form of the mean-variance relationship.
+For the negative binomial, the variance increases with the square of the mean, whereas for the DPO and GPO, the variance increases in constant proportion to the mean.
+The residual posterior density plots above don't really capture these mean-variance relationships in an obvious way.
+Maybe we could see it if we looked at smoothed plots of the squared residuals versus $X$, but I can't find an easy way to do that with the `bayesplot` functions I've used above. I'll leave it as an exercise for you, dear reader, because I need to get to bed.
 
 # Colophon
 

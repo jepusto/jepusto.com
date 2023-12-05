@@ -248,7 +248,7 @@
   <meta property="og:description" content="Associate Professor"><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2023-07-21T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2023-12-06T00:00:00&#43;00:00">
   
 
   
@@ -996,6 +996,174 @@
     
 
   
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-12-06
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/generalized-poisson-in-stan/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/generalized-poisson-in-stan/">Implementing Consul&#39;s generalized Poisson distribution in Stan</a>
+  </h3>
+
+  
+  <div class="article-style">
+    <p>\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\def\bm{\mathbf}\def\bs{\boldsymbol}\]
+For a project I am working on, we are using Stan to fit generalized random effects location-scale models to a bunch of count data.</p>
+  </div>
+  
+
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-09-15
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/double-poisson-in-stan/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+  
+
+  
+  
+  
+
+  <h3 class="article-title mb-1 mt-3">
+    <a href="/double-poisson-in-stan/">Implementing Efron&#39;s double Poisson distribution in Stan</a>
+  </h3>
+
+  
+  <div class="article-style">
+    <p>\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\def\bm{\mathbf}\def\bs{\boldsymbol}\]
+For a project I am working on, we are using Stan to fit generalized random effects location-scale models to a bunch of count data.</p>
+  </div>
+  
+
+  
+
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="card-simple">
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
   <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/megha-joshi/">Megha Joshi</a></span>
   </div>
   
@@ -1206,173 +1374,6 @@
   
   <div class="article-style">
     <p>In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. We were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I&rsquo;ll give the revised theorem, following the notation and setup of the previous post (so better read that first, or what follows won&rsquo;t make much sense!).</p>
-  </div>
-  
-
-  
-
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2022-09-28
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/pusto-tipton-2018-theorem-2/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <h3 class="article-title mb-1 mt-3">
-    <a href="/pusto-tipton-2018-theorem-2/">Corrigendum to Pustejovsky and Tipton (2018)</a>
-  </h3>
-
-  
-  <div class="article-style">
-    <p>In my 2018 paper with Beth Tipton, published in the Journal of Business and Economic Statistics, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I&rsquo;ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.</p>
-  </div>
-  
-
-  
-
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="card-simple">
-
-  
-    
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2021-11-28
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/variance-components-with-misspecified-correlation/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-  
-
-  
-  
-  
-
-  <h3 class="article-title mb-1 mt-3">
-    <a href="/variance-components-with-misspecified-correlation/">Variance component estimates in meta-analysis with mis-specified sampling correlation</a>
-  </h3>
-
-  
-  <div class="article-style">
-    <p>\[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
-In a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity).</p>
   </div>
   
 
@@ -1616,125 +1617,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
       
     
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/decline-effects/" >High replicability of newly-discovered social-behavioral findings is achievable.</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Failures to replicate evidence of new discoveries have forced scientists to ask whether this unreliability is due to suboptimal implementation of optimal methods or whether presumptively optimal …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/john-protzko/">John Protzko</a></span>, <span><a href="/authors/jon-krosnick/">Jon Krosnick</a></span>, <span><a href="/authors/leif-nelson/">Leif Nelson</a></span>, <span><a href="/authors/brian-nosek/">Brian Nosek</a></span>, <span><a href="/authors/jordan-axt/">Jordan Axt</a></span>, <span><a href="/authors/matt-berent/">Matt Berent</a></span>, <span><a href="/authors/nicholas-buttrick/">Nicholas Buttrick</a></span>, <span><a href="/authors/matthew-debell/">Matthew DeBell</a></span>, <span><a href="/authors/charles-r.-ebersole/">Charles R. Ebersole</a></span>, <span><a href="/authors/sebastian-lundmark/">Sebastian Lundmark</a></span>, <span><a href="/authors/bo-macinnis/">Bo MacInnis</a></span>, <span><a href="/authors/michael-odonnell/">Michael O&rsquo;Donnell</a></span>, <span><a href="/authors/hannah-perfecto/">Hannah Perfecto</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/scott-roeder/">Scott Roeder</a></span>, <span><a href="/authors/jan-walleczek/">Jan Walleczek</a></span>, <span><a href="/authors/jonathan-w.-schooler/">Jonathan W. Schooler</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/n2a9x/" target="_blank" rel="noopener">
-  Preprint
-</a>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/bnq5j/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/publication/decline-effects/" >
-      <img src="/publication/decline-effects/featured_huec3141c1cf3de812c0cd98d90310595a_21603_150x0_resize_lanczos_2.png" alt="">
-    </a>
-    
-  </div>
-</div>
-
-      
-    
 
     
 
@@ -1855,6 +1737,141 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
+      <a href="/publication/decline-effects/" >High replicability of newly-discovered social-behavioral findings is achievable.</a>
+    </h3>
+
+    
+    <div class="article-style">
+      Failures to replicate evidence of new discoveries have forced scientists to ask whether this unreliability is due to suboptimal implementation of optimal methods or whether presumptively optimal …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/john-protzko/">John Protzko</a></span>, <span><a href="/authors/jon-krosnick/">Jon Krosnick</a></span>, <span><a href="/authors/leif-nelson/">Leif Nelson</a></span>, <span><a href="/authors/brian-nosek/">Brian Nosek</a></span>, <span><a href="/authors/jordan-axt/">Jordan Axt</a></span>, <span><a href="/authors/matt-berent/">Matt Berent</a></span>, <span><a href="/authors/nicholas-buttrick/">Nicholas Buttrick</a></span>, <span><a href="/authors/matthew-debell/">Matthew DeBell</a></span>, <span><a href="/authors/charles-r.-ebersole/">Charles R. Ebersole</a></span>, <span><a href="/authors/sebastian-lundmark/">Sebastian Lundmark</a></span>, <span><a href="/authors/bo-macinnis/">Bo MacInnis</a></span>, <span><a href="/authors/michael-odonnell/">Michael O&rsquo;Donnell</a></span>, <span><a href="/authors/hannah-perfecto/">Hannah Perfecto</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/scott-roeder/">Scott Roeder</a></span>, <span><a href="/authors/jan-walleczek/">Jan Walleczek</a></span>, <span><a href="/authors/jonathan-w.-schooler/">Jonathan W. Schooler</a></span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/n2a9x/" target="_blank" rel="noopener">
+  Preprint
+</a>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1038/s41562-023-01749-9" target="_blank" rel="noopener">
+    
+    Journal
+  </a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/bnq5j/" target="_blank" rel="noopener">
+    
+    Supplementary materials
+  </a>
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/publication/decline-effects/" >
+      <img src="/publication/decline-effects/featured_huec3141c1cf3de812c0cd98d90310595a_21603_150x0_resize_lanczos_2.png" alt="">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
       <a href="/publication/efficacy-of-combining-cognitive-training-and-nibs/" >The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</a>
     </h3>
 
@@ -1885,6 +1902,14 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
 
 
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://psyarxiv.com/wqrne/" target="_blank" rel="noopener">
+  Preprint
+</a>
 
 
 
@@ -1923,6 +1948,22 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
 
 
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1037/bul0000406" target="_blank" rel="noopener">
+    
+    Journal
+  </a>
 
 
     </div>
@@ -2340,165 +2381,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
       
     
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/power-approximations-for-dependent-effects/" >Power approximations for overall average effects in meta-analysis of dependent effect sizes</a>
-    </h3>
-
-    
-    <div class="article-style">
-      Meta-analytic models for dependent effect sizes have grown increasingly sophisticated over the last few decades, which has created challenges for a priori power calculations. We introduce power …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/mikkel-h.-vembye/">Mikkel H. Vembye</a></span>, <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/terri-d.-pigott/">Terri D. Pigott</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/preprints/metaarxiv/6tp9y/" target="_blank" rel="noopener">
-  Preprint
-</a>
-
-
-
-
-  
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/yhkq4/" target="_blank" rel="noopener">
-  Code
-</a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.3102/10769986221127379" target="_blank" rel="noopener">
-    
-    Journal
-  </a>
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://osf.io/q84dv/" target="_blank" rel="noopener">
-    
-    Supplementary materials
-  </a>
-
-  
-  
-  
-    
-  
-  
-  
-  
-  
-    
-  
-  <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://mikkelvembye.github.io/POMADE/" target="_blank" rel="noopener">
-    
-    R package
-  </a>
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/publication/power-approximations-for-dependent-effects/" >
-      <img src="/publication/power-approximations-for-dependent-effects/featured_hu53bc08392176fd0bf28ac85de25276c5_407293_150x0_resize_lanczos_2.png" alt="">
-    </a>
-    
-  </div>
-</div>
-
-      
-    
 
     
     <div class="see-all">
@@ -2599,6 +2481,224 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
 
     
 
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/talk/sree-2023-stabilizing-performance-measures-discussion/" >Discussion of Stabilizing measures to reconcile accuracy and equity in performance measurement</a>
+    </h3>
+
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+      <div>
+        <span>
+          2023-09-29 4:30 PM
+        </span>
+        
+        <span class="middot-divider"></span>
+        <span>Society for Research on Educational Effectiveness Conference</span>
+        
+        
+        <span class="middot-divider"></span>
+        <span>Arlington, VA</span>
+        
+      </div>
+      
+
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/SREE-2023-Stabilizing-performance-measures.pdf" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
+      <a href="/talk/sree-2023-equity-related-moderator-analysis/" >Equity-related moderator analysis in syntheses of dependent effect sizes: Conceptual and statistical considerations</a>
+    </h3>
+
+    
+    <div class="article-style">
+      Background/Context In meta-analyses examining educational interventions, researchers seek to understand the distribution of intervention impacts, in order to draw generalizations about what works, for whom, and under what conditions. One common way to examine equity implications in such reviews is through moderator analysis, which involves modeling how intervention effect sizes vary depending on the characteristics of primary study participants.
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+      <div>
+        <span>
+          2023-09-27 4:15 PM
+        </span>
+        
+        <span class="middot-divider"></span>
+        <span>Society for Research on Educational Effectiveness Conference</span>
+        
+        
+        <span class="middot-divider"></span>
+        <span>Arlington, VA</span>
+        
+      </div>
+      
+
+      
+      <div>
+        
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/jingru-zhang/">Jingru Zhang</a></span>, <span><a href="/authors/elizabeth-tipton/">Elizabeth Tipton</a></span>
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/SREE-2023-Equity-Related-Moderator-Analysis.pdf" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
     
       
         
@@ -2928,224 +3028,6 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
     
   
 <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/Small-is-Beautiful-2023-Pustejovsky-keynote.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/aera-2023-bcsmd-benchmarks/" >Empirical benchmarks for between-case standardized mean differences from single-case multiple baseline designs examining academic interventions.</a>
-    </h3>
-
-    
-    <div class="article-style">
-      The between-case standardized mean difference (BC-SMD) is an effect size measure for single-case designs (SCDs) that it puts findings on the same scale as standardized mean differences for …
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-      <div>
-        <span>
-          2023-04-16 11:40 AM
-        </span>
-        
-        <span class="middot-divider"></span>
-        <span>American Educational Research Association annual convention</span>
-        
-        
-        <span class="middot-divider"></span>
-        <span>Chicago, IL</span>
-        
-      </div>
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>, <span><a href="/authors/man-chen/">Man Chen</a></span>, <span><a href="/authors/david-klingbeil/">David Klingbeil</a></span>, <span><a href="/authors/ethan-van-norman/">Ethan van Norman</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/AERA-2023-Empirical-benchmarks.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
-
-    </div>
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-      
-    
-      
-        
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/talk/aera-2023-replication-discussion/" >Discussion of ‘Moving from What Works to What Replicates: Promoting the Systematic Replication of Results.’</a>
-    </h3>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-      <div>
-        <span>
-          2023-04-15 2:50 PM
-        </span>
-        
-        <span class="middot-divider"></span>
-        <span>American Educational Research Association annual convention</span>
-        
-        
-        <span class="middot-divider"></span>
-        <span>Chicago, IL</span>
-        
-      </div>
-      
-
-      
-      <div>
-        
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-      </div>
-      
-    </div>
-
-    
-    <div class="btn-links">
-      
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="/files/AERA-2023-Replication-discussion.pdf" target="_blank" rel="noopener">
   Slides
 </a>
 
@@ -3692,7 +3574,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
     
     
       
-      <a href="/authors/paulina-grekov/"><img class="avatar avatar-square" src="/authors/paulina-grekov/avatar_hu2761370df5d54896e3f8483a4b8199a2_1224523_270x270_fill_q90_lanczos_center.jpg" alt="Avatar"></a>
+      <a href="/authors/paulina-grekov/"><img class="avatar avatar-square" src="/authors/paulina-grekov/avatar_hu2761370df5d54896e3f8483a4b8199a2_1224523_270x270_fill_q90_lanczos_center.JPG" alt="Avatar"></a>
     
 
     <div class="portrait-title">
@@ -3924,20 +3806,22 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
       <h3 id="at-uw-madison">At UW Madison</h3>
 <ul>
 <li>
-<a href="/teaching/Meta-analysis/">Meta-analysis</a></li>
+<a href="/teaching/meta-analysis/">Meta-analysis</a></li>
 <li>
-<a href="/teaching/Quasi-Experimental/">Design &amp; Analysis of Quasi-Experiments</a></li>
+<a href="/teaching/field-experiments/">Field Experiments in Education Research</a></li>
+<li>
+<a href="/teaching/quasi-experimental/">Design &amp; Analysis of Quasi-Experiments</a></li>
 </ul>
 <h3 id="at-ut-austin">At UT Austin</h3>
 <ul>
 <li>
-<a href="/teaching/Causal-Inference/">Causal Inference</a></li>
+<a href="/teaching/causal-inference/">Causal Inference</a></li>
 <li>
-<a href="/teaching/Research-design/">Research Design</a></li>
+<a href="/teaching/research-design/">Research Design</a></li>
 <li>
-<a href="/teaching/DASPiR/">Data Analysis, Simulation, &amp; Programming in R</a></li>
+<a href="/teaching/daspir/">Data Analysis, Simulation, &amp; Programming in R</a></li>
 <li>
-<a href="/teaching/Experimental-Data/">Statistical Analysis of Experimental Data</a></li>
+<a href="/teaching/experimental-data/">Statistical Analysis of Experimental Data</a></li>
 </ul>
 
     </div>
@@ -4147,6 +4031,11 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
+          <a href="/tags/bayes/" style="font-size:0.9228740807460875rem">Bayes</a>
+        
+          
+          
+          
           <a href="/tags/behavioral-observation/" style="font-size:1.6109895233274605rem">behavioral observation</a>
         
           
@@ -4197,7 +4086,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
-          <a href="/tags/distribution-theory/" style="font-size:1.4989952218574225rem">distribution theory</a>
+          <a href="/tags/distribution-theory/" style="font-size:1.54856072832768rem">distribution theory</a>
         
           
           
@@ -4227,7 +4116,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
-          <a href="/tags/generalized-linear-model/" style="font-size:0.7rem">generalized linear model</a>
+          <a href="/tags/generalized-linear-model/" style="font-size:1.0532470603652477rem">generalized linear model</a>
         
           
           
@@ -4347,7 +4236,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
-          <a href="/tags/programming/" style="font-size:1.471017641907737rem">programming</a>
+          <a href="/tags/programming/" style="font-size:1.524732100537007rem">programming</a>
         
           
           
@@ -4402,7 +4291,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
-          <a href="/tags/rstats/" style="font-size:1.8338636040735479rem">Rstats</a>
+          <a href="/tags/rstats/" style="font-size:1.8522422822226703rem">Rstats</a>
         
           
           
@@ -4417,7 +4306,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
           
           
           
-          <a href="/tags/simulation/" style="font-size:1.54856072832768rem">simulation</a>
+          <a href="/tags/simulation/" style="font-size:1.5914963229843497rem">simulation</a>
         
           
           
