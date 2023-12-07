@@ -559,8 +559,7 @@ DPO_dispersion <-
   theme_minimal() + 
   ggtitle("Double Poisson")
 
-DPO_dispersion / GPO_dispersion &
-  xlim()
+DPO_dispersion / GPO_dispersion
 ```
 
 It looks like the estimated dispersion from the generalized Poisson model might be biased towards one by a little bit. To get a better sense of this, I'll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:
