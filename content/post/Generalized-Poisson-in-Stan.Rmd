@@ -541,6 +541,7 @@ Here is a comparison of LOOIC for all of the models:
 loo_comparison <- loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)
 loo_comparison$diffs
 ```
+
 Unsurprisingly, the model based on the true data-generating process clearly fits better than the models involving other outcome distributions.
 
 Here's the posterior for the dispersion (i.e., $1 / \phi$) based on the GPO and DPO models:
@@ -674,5 +675,3 @@ file.remove("GPO-rng.stan")
 ```{r, echo = FALSE}
 sessionInfo()
 ```
-
-
