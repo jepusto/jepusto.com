@@ -36,7 +36,6 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
 ```{r pkgs, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(patchwork)   # composing figures
-library(gamlss.dist) # DPO distribution functions
 library(rstan)       # Stan interface to R
 library(brms)        # fitting generalized linear models
 library(bayesplot)   # Examine fitted models

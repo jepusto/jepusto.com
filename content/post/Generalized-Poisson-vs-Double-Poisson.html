@@ -1,0 +1,464 @@
+---
+title: generalized Poisson versus double Poisson
+authors:
+- admin
+date: '2023-12-06'
+draft: true
+codefolding_show: 'show'
+slug: generalized-poisson-vs-double-poisson
+categories: []
+tags:
+  - Bayes
+  - simulation
+  - distribution-theory
+  - generalized linear model
+  - programming
+  - Rstats
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<pre class="r"><code>library(tidyverse)
+library(patchwork)   # composing figures
+library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit measures</code></pre>
+<pre class="r"><code>stancode_qr &lt;- &quot;
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi &gt; 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf &lt; p &amp;&amp; q &lt; m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+&quot;
+writeLines(paste(&quot;functions {&quot;, stancode_qr, &quot;}&quot;, sep = &quot;\n&quot;), &quot;GPO-rng.stan&quot;)
+expose_stan_functions(&quot;GPO-rng.stan&quot;)
+gpo_rng_sampler &lt;- function(N, mu, phi) {
+  replicate(N, gpo_rng(mu = mu, phi = phi))
+}</code></pre>
+<p>The research project for which we need these distributions involves models that are quite a bit more involved than the simple GLM that I simulated above. We’re especially interested in hierarchical models that allow for cluster-level heterogeneity in both the mean and the dispersion parameter of the distribution. These models go under the heading of generalized additive models for location, scale, and shape (GAMLSS) and have been developed in the likelihood framework with the <a href="https://www.gamlss.com/">gamlss package</a> and in the Bayesian framework with the [bamlss package].</p>
+<p>I’ll test out my generalized Poisson implementation by simulating data from a model that has random variation in the means and in the variances. The data-generating process is as follows:
+<span class="math display">\[
+\begin{aligned}
+N_j &amp;\sim 1 + Pois(15) \\
+\ln \mu_j &amp;\sim N(3.5, \ 1) \\
+\ln \phi_j &amp;\sim N(0.15, \ 0.15) \\
+Y_{ij} &amp;\sim GPO(\mu_j, \phi_j) \quad \text{for} \quad i = 1,...,N_j
+\end{aligned}
+\]</span></p>
+<p>all for <span class="math inline">\(j = 1,...,J\)</span>. The specified distribution of <span class="math inline">\(\phi_j\)</span>’s leads to dispersions ranging from about 0.61 to 1.22, with a median of 0.86 and and IQR of 0.78 to 0.95.</p>
+<p>Here’s a simulation from the model with <span class="math inline">\(J = 80\)</span>:</p>
+<pre class="r"><code>set.seed(20231205)
+J &lt;- 80
+
+dat &lt;- 
+  tibble(
+    ID = 1:J, 
+    N = 1L + rpois(J, lambda = 15), 
+    log_mu = rnorm(J, mean = 3.5, sd = 1), 
+    log_phi = rnorm(J, mean = 0.15, sd = 0.15)
+  ) %&gt;%
+  mutate(
+    Y = pmap(list(N = N, mu = exp(log_mu), phi = exp(log_phi)), gpo_rng_sampler)
+  ) %&gt;%
+  unnest(Y)</code></pre>
+<p>Now let me try fitting some models. I’ll first try fitting some GLMMs, which include random intercepts on the mean term but not on the dispersions. Just for kicks, I’ll use both the generalized Poisson (i.e., the true distribution) and the double Poisson (which is mis-specified).</p>
+<pre class="r"><code>stancode_gpo &lt;- &quot;
+real gpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real m = mu / (1 - inv(sqrt(phi)));
+  real z = X + sqrt(phi) * (mu - X);
+  if (phi &gt; 1 &amp;&amp; X &gt; m)
+    ans = negative_infinity();
+  else 
+    ans = log(mu) + inv(2) * log(phi) + (X - 1) * log(z) - z - lgamma(X + 1);
+  return ans;
+}
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi &gt; 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf &lt; p &amp;&amp; q &lt; m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+&quot;
+generalized_Poisson &lt;- custom_family(
+  &quot;gpo&quot;, dpars = c(&quot;mu&quot;,&quot;phi&quot;),
+  links = c(&quot;log&quot;,&quot;log&quot;),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = &quot;int&quot;
+)
+
+generalized_Poisson_stanvars &lt;- stanvar(scode = stancode_gpo, block = &quot;functions&quot;)
+
+phi_prior &lt;- prior(exponential(1), class = &quot;phi&quot;)
+
+# Fit GPO model with mean random effects
+glmm_gpo &lt;- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_gpo, vectorize = TRUE)
+
+log_lik_gpo &lt;- function(i, prep) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  y &lt;- prep$data$Y[i]
+  gpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_gpo &lt;- function(i, prep, maxval = NULL, ...) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  gpo_rng(mu, phi)
+}
+
+summary(glmm_gpo)</code></pre>
+<pre><code>##  Family: gpo 
+##   Links: mu = log; phi = identity 
+## Formula: Y ~ 1 + (1 | ID) 
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sd(Intercept)     1.03      0.08     0.89     1.22 1.01      184      392
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     3.31      0.11     3.07     3.52 1.06      120      203
+## 
+## Family Specific Parameters: 
+##     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## phi     1.09      0.05     1.01     1.18 1.00     3276     4630
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<pre class="r"><code>stancode_dpo &lt;- &quot;
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] &lt; 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+int dpo_quantile(real p, real mu, real phi, int maxval) {
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int q = 0;
+  while (cdf_vec[q + 1] &lt; p) {
+      q += 1;
+    }
+  return q;
+}
+int dpo_rng(real mu, real phi, int maxval) {
+  real p = uniform_rng(0,1);
+  int x = dpo_quantile(p, mu, phi, maxval);
+  return x;
+}
+&quot;
+double_Poisson &lt;- custom_family(
+  &quot;dpo&quot;, dpars = c(&quot;mu&quot;,&quot;phi&quot;),
+  links = c(&quot;log&quot;,&quot;log&quot;),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = &quot;int&quot;
+)
+
+double_Poisson_stanvars &lt;- stanvar(scode = stancode_dpo, block = &quot;functions&quot;)
+
+# Fit DPO model with mean random effects
+glmm_dpo &lt;- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_dpo, vectorize = TRUE)
+
+log_lik_dpo &lt;- function(i, prep) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  y &lt;- prep$data$Y[i]
+  dpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_dpo &lt;- function(i, prep, maxval = NULL, ...) {
+  mu &lt;- brms::get_dpar(prep, &quot;mu&quot;, i = i)
+  phi &lt;- brms::get_dpar(prep, &quot;phi&quot;, i = i)
+  if (is.null(maxval)) maxval &lt;- 20 * mu / min(phi, 1)
+  dpo_rng(mu, phi, maxval = maxval)
+}
+
+
+summary(glmm_dpo)</code></pre>
+<pre><code>##  Family: dpo 
+##   Links: mu = log; phi = identity 
+## Formula: Y ~ 1 + (1 | ID) 
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sd(Intercept)     1.05      0.09     0.91     1.25 1.02      150      209
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     3.31      0.12     3.08     3.54 1.12       30      179
+## 
+## Family Specific Parameters: 
+##     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## phi     1.08      0.04     0.99     1.17 1.00     1435     2708
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>I’ll now fit the actual data-generating model, which has random dispersion terms in addition to the random intercepts on the mean. I’ll also try out the same model specification, but with the double Poisson distribution:</p>
+<pre class="r"><code># Fit GPO model with mean and dispersion random effects
+gamlss_gpo &lt;- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_gpo)</code></pre>
+<pre><code>##  Family: gpo 
+##   Links: mu = log; phi = log 
+## Formula: Y ~ 1 + (1 | a | ID) 
+##          phi ~ 1 + (1 | a | ID)
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##                              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                    1.04      0.08     0.90     1.22 1.00      577
+## sd(phi_Intercept)                0.21      0.07     0.04     0.34 1.00     1987
+## cor(Intercept,phi_Intercept)     0.22      0.24    -0.26     0.70 1.00     6380
+##                              Tail_ESS
+## sd(Intercept)                    1282
+## sd(phi_Intercept)                1909
+## cor(Intercept,phi_Intercept)     3532
+## 
+## Population-Level Effects: 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept         3.31      0.11     3.08     3.53 1.02      225      593
+## phi_Intercept     0.11      0.05     0.02     0.22 1.00     5237     5580
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<pre class="r"><code># Fit DPO model with mean and dispersion random effects
+gamlss_dpo &lt;- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_dpo)</code></pre>
+<pre><code>##  Family: dpo 
+##   Links: mu = log; phi = log 
+## Formula: Y ~ 1 + (1 | a | ID) 
+##          phi ~ 1 + (1 | a | ID)
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##                              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                    1.04      0.09     0.88     1.24 1.02      413
+## sd(phi_Intercept)                0.19      0.08     0.03     0.33 1.00     1209
+## cor(Intercept,phi_Intercept)     0.39      0.26    -0.10     0.91 1.00     2846
+##                              Tail_ESS
+## sd(Intercept)                     795
+## sd(phi_Intercept)                1115
+## cor(Intercept,phi_Intercept)     1588
+## 
+## Population-Level Effects: 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept         3.31      0.13     3.06     3.56 1.03      112      191
+## phi_Intercept     0.09      0.05    -0.00     0.19 1.00     3386     5390
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+<p>We get some rather odd results. The simpler GLMMs have better fit (as indicated by LOOIC) than the GAMLSS models:</p>
+<pre class="r"><code>loo_comparison &lt;- loo(glmm_gpo, glmm_dpo, gamlss_gpo, gamlss_dpo)
+loo_comparison$diffs</code></pre>
+<pre><code>##            elpd_diff se_diff
+## gamlss_gpo  0.0       0.0   
+## gamlss_dpo -1.3       0.9   
+## glmm_gpo   -2.4       2.9   
+## glmm_dpo   -3.9       2.7</code></pre>
+<p>All of the models also estimate some degree of over-dispersion (<span class="math inline">\(\phi &lt; 1\)</span>) on average. Curious.</p>
+<div id="colophon" class="section level1">
+<h1>Colophon</h1>
+<pre><code>## R version 4.2.2 (2022-10-31 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19045)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] gamlss.dist_6.0-3   MASS_7.3-57         loo_2.5.1          
+##  [4] bayesplot_1.9.0     brms_2.18.0         Rcpp_1.0.10        
+##  [7] rstan_2.26.23       StanHeaders_2.26.27 patchwork_1.1.3    
+## [10] lubridate_1.9.2     forcats_1.0.0       stringr_1.5.0      
+## [13] dplyr_1.1.2         purrr_1.0.2         readr_2.1.4        
+## [16] tidyr_1.3.0         tibble_3.2.1        ggplot2_3.4.3      
+## [19] tidyverse_2.0.0    
+## 
+## loaded via a namespace (and not attached):
+##   [1] TH.data_1.1-2        colorspace_2.1-0     RcppEigen_0.3.3.9.2 
+##   [4] ellipsis_0.3.2       ggridges_0.5.3       estimability_1.3    
+##   [7] markdown_1.7         QuickJSR_1.0.5       base64enc_0.1-3     
+##  [10] rstudioapi_0.15.0    farver_2.1.1         DT_0.29             
+##  [13] fansi_1.0.4          mvtnorm_1.1-3        bridgesampling_1.1-2
+##  [16] codetools_0.2-18     splines_4.2.2        cachem_1.0.6        
+##  [19] knitr_1.40           shinythemes_1.2.0    jsonlite_1.8.4      
+##  [22] shiny_1.7.4          compiler_4.2.2       emmeans_1.7.3       
+##  [25] backports_1.4.1      Matrix_1.6-3         fastmap_1.1.0       
+##  [28] cli_3.6.1            later_1.3.0          htmltools_0.5.4     
+##  [31] prettyunits_1.1.1    tools_4.2.2          igraph_1.3.5        
+##  [34] coda_0.19-4          gtable_0.3.4         glue_1.6.2          
+##  [37] reshape2_1.4.4       posterior_1.3.1      jquerylib_0.1.4     
+##  [40] vctrs_0.6.3          nlme_3.1-157         blogdown_1.10       
+##  [43] crosstalk_1.2.0      tensorA_0.36.2       xfun_0.40           
+##  [46] ps_1.6.0             timechange_0.2.0     mime_0.12           
+##  [49] miniUI_0.1.1.1       lifecycle_1.0.3      gtools_3.9.3        
+##  [52] zoo_1.8-10           scales_1.2.1         colourpicker_1.1.1  
+##  [55] hms_1.1.3            promises_1.2.0.1     Brobdingnag_1.2-9   
+##  [58] parallel_4.2.2       sandwich_3.0-1       inline_0.3.19       
+##  [61] shinystan_2.6.0      yaml_2.3.5           gridExtra_2.3       
+##  [64] sass_0.4.5           stringi_1.7.12       dygraphs_1.1.1.6    
+##  [67] checkmate_2.1.0      pkgbuild_1.3.1       rlang_1.1.1         
+##  [70] pkgconfig_2.0.3      matrixStats_0.62.0   BH_1.78.0-0         
+##  [73] distributional_0.3.1 evaluate_0.18        lattice_0.20-45     
+##  [76] rstantools_2.2.0     htmlwidgets_1.6.2    processx_3.7.0      
+##  [79] tidyselect_1.2.0     plyr_1.8.8           magrittr_2.0.3      
+##  [82] bookdown_0.26        R6_2.5.1             generics_0.1.3      
+##  [85] multcomp_1.4-23      pillar_1.9.0         withr_2.5.0         
+##  [88] xts_0.12.1           survival_3.4-0       abind_1.4-5         
+##  [91] crayon_1.5.2         utf8_1.2.3           tzdb_0.3.0          
+##  [94] rmarkdown_2.18       grid_4.2.2           callr_3.7.2         
+##  [97] threejs_0.3.3        digest_0.6.30        xtable_1.8-4        
+## [100] httpuv_1.6.8         RcppParallel_5.1.5   stats4_4.2.2        
+## [103] munsell_0.5.0        bslib_0.4.2          shinyjs_2.1.0</code></pre>
+</div>
