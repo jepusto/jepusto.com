@@ -1,0 +1,349 @@
+---
+title: generalized Poisson versus double Poisson
+authors:
+- admin
+date: '2023-12-06'
+draft: true
+codefolding_show: 'show'
+slug: generalized-poisson-vs-double-poisson
+categories: []
+tags:
+  - Bayes
+  - simulation
+  - distribution-theory
+  - generalized linear model
+  - programming
+  - Rstats
+header:
+  caption: ''
+  image: ''
+---
+
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina = 2)
+```
+
+
+```{r pkgs, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(patchwork)   # composing figures
+library(gamlss.dist) # DPO distribution functions
+library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit measures
+```
+
+```{r rng}
+stancode_qr <- "
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi > 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf < p && q < m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+"
+writeLines(paste("functions {", stancode_qr, "}", sep = "\n"), "GPO-rng.stan")
+expose_stan_functions("GPO-rng.stan")
+gpo_rng_sampler <- function(N, mu, phi) {
+  replicate(N, gpo_rng(mu = mu, phi = phi))
+}
+
+```
+
+
+The research project for which we need these distributions involves models that are quite a bit more involved than the simple GLM that I simulated above. We're especially interested in hierarchical models that allow for cluster-level heterogeneity in both the mean and the dispersion parameter of the distribution. These models go under the heading of generalized additive models for location, scale, and shape (GAMLSS) and have been developed in the likelihood framework with the  [gamlss package](https://www.gamlss.com/) and in the Bayesian framework with the [bamlss package]. 
+
+I'll test out my generalized Poisson implementation by simulating data from a model that has random variation in the means and in the variances. The data-generating process is as follows:
+$$
+\begin{aligned}
+N_j &\sim 1 + Pois(15) \\
+\ln \mu_j &\sim N(3.5, \ 1) \\
+\ln \phi_j &\sim N(0.15, \ 0.15) \\
+Y_{ij} &\sim GPO(\mu_j, \phi_j) \quad \text{for} \quad i = 1,...,N_j
+\end{aligned}
+$$
+```{r, include = FALSE}
+ln_phi <- rnorm(10000, 0.15, 0.15)
+disp <- 1 / exp(ln_phi)
+disp_q <- quantile(disp, c(0.01, 0.25, 0.5, 0.75, 0.99))
+```
+
+all for $j = 1,...,J$. The specified distribution of $\phi_j$'s leads to dispersions ranging from about `r round(disp_q[1], 2)` to `r round(disp_q[5], 2)`, with a median of `r round(disp_q[3], 2)` and and IQR of `r round(disp_q[2], 2)` to `r round(disp_q[4], 2)`.
+
+Here's a simulation from the model with $J = 80$:
+
+```{r sim-gamlss, cache = TRUE}
+set.seed(20231205)
+J <- 80
+
+dat <- 
+  tibble(
+    ID = 1:J, 
+    N = 1L + rpois(J, lambda = 15), 
+    log_mu = rnorm(J, mean = 3.5, sd = 1), 
+    log_phi = rnorm(J, mean = 0.15, sd = 0.15)
+  ) %>%
+  mutate(
+    Y = pmap(list(N = N, mu = exp(log_mu), phi = exp(log_phi)), gpo_rng_sampler)
+  ) %>%
+  unnest(Y)
+```
+
+Now let me try fitting some models. I'll first try fitting some GLMMs, which include random intercepts on the mean term but not on the dispersions. Just for kicks, I'll use both the generalized Poisson (i.e., the true distribution) and the double Poisson (which is mis-specified).
+
+```{r GLMM-gpo, cache = TRUE}
+stancode_gpo <- "
+real gpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real m = mu / (1 - inv(sqrt(phi)));
+  real z = X + sqrt(phi) * (mu - X);
+  if (phi > 1 && X > m)
+    ans = negative_infinity();
+  else 
+    ans = log(mu) + inv(2) * log(phi) + (X - 1) * log(z) - z - lgamma(X + 1);
+  return ans;
+}
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi > 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf < p && q < m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+"
+generalized_Poisson <- custom_family(
+  "gpo", dpars = c("mu","phi"),
+  links = c("log","log"),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = "int"
+)
+
+generalized_Poisson_stanvars <- stanvar(scode = stancode_gpo, block = "functions")
+
+phi_prior <- prior(exponential(1), class = "phi")
+
+# Fit GPO model with mean random effects
+glmm_gpo <- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_gpo, vectorize = TRUE)
+
+log_lik_gpo <- function(i, prep) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  y <- prep$data$Y[i]
+  gpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_gpo <- function(i, prep, maxval = NULL, ...) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  gpo_rng(mu, phi)
+}
+
+summary(glmm_gpo)
+```
+
+```{r GLMM-dpo, cache = TRUE}
+stancode_dpo <- "
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] < 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+int dpo_quantile(real p, real mu, real phi, int maxval) {
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int q = 0;
+  while (cdf_vec[q + 1] < p) {
+      q += 1;
+    }
+  return q;
+}
+int dpo_rng(real mu, real phi, int maxval) {
+  real p = uniform_rng(0,1);
+  int x = dpo_quantile(p, mu, phi, maxval);
+  return x;
+}
+"
+double_Poisson <- custom_family(
+  "dpo", dpars = c("mu","phi"),
+  links = c("log","log"),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = "int"
+)
+
+double_Poisson_stanvars <- stanvar(scode = stancode_dpo, block = "functions")
+
+# Fit DPO model with mean random effects
+glmm_dpo <- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_dpo, vectorize = TRUE)
+
+log_lik_dpo <- function(i, prep) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  y <- prep$data$Y[i]
+  dpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
+  mu <- brms::get_dpar(prep, "mu", i = i)
+  phi <- brms::get_dpar(prep, "phi", i = i)
+  if (is.null(maxval)) maxval <- 20 * mu / min(phi, 1)
+  dpo_rng(mu, phi, maxval = maxval)
+}
+
+
+summary(glmm_dpo)
+
+```
+
+I'll now fit the actual data-generating model, which has random dispersion terms in addition to the random intercepts on the mean. I'll also try out the same model specification, but with the double Poisson distribution:
+
+```{r gamlss-gpo, cache = TRUE}
+# Fit GPO model with mean and dispersion random effects
+gamlss_gpo <- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_gpo)
+```
+
+```{r gamlss-dpo, cache = TRUE}
+# Fit DPO model with mean and dispersion random effects
+gamlss_dpo <- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_dpo)
+```
+
+We get some rather odd results. The simpler GLMMs have better fit (as indicated by LOOIC) than the GAMLSS models:
+```{r gamlss-loo, cache = TRUE}
+loo_comparison <- loo(glmm_gpo, glmm_dpo, gamlss_gpo, gamlss_dpo)
+loo_comparison$diffs
+```
+All of the models also estimate some degree of over-dispersion ($\phi < 1$) on average. Curious.
+
+# Colophon
+
+```{r, include = FALSE, warning = FALSE}
+file.remove("GPO-rng.stan")
+```
+
+```{r, echo = FALSE}
+sessionInfo()
+```
+
+

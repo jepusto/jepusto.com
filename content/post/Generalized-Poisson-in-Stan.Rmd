@@ -269,7 +269,7 @@ ggplot(test_rng, aes(gamlss_F, Freq_cum, color = factor(phi))) +
 ```
 Another approach to checking the sampler is to simulate a bunch of observations and check whether the empirical mean and variance match the theoretical moments. I'll do this as well, using some values of $\phi > 1$ to test whether the sampler still works when there's under-dispersion.
 
-```{r test-sample-moments, cache = TRUE, fig.width = 8, fig.height = 4}
+```{r test-sample-moments, fig.width = 8, fig.height = 4}
 
 test_moments <- 
   expand_grid(
@@ -304,7 +304,7 @@ To finish out my tests of these functions, I'll try out a small simulation. Foll
 
 $$
 \begin{aligned}
-X &\sim N(0, 1) \\
+X &\sim \Gamma(6,2) \\
 Y|X &\sim GPO(\mu(X), \phi) \\
 \log \mu(X) &= 2 + 0.3 \times X
 \end{aligned}
@@ -313,10 +313,10 @@ with the dispersion parameter set to $\phi = 6/10$ so that the outcome is _over_
 
 The following code generates a large sample from the data-generating process:
 
-```{r sim-glm, cache = TRUE}
-set.seed(20231204)
-N <- 600
-X <- rnorm(N)
+```{r sim-glm}
+set.seed(20231206)
+N <- 1500
+X <- rgamma(N, shape = 6, rate = 2)
 mu <- exp(2 + 0.3 * X)
 phi <- 6 / 10
 Y <- map_dbl(mu, gpo_rng, phi = phi)
@@ -325,7 +325,7 @@ dat <- data.frame(X = X, Y = Y)
 
 Here's what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:
 
-```{r glm-scatterplot, cache = TRUE, fig.width = 6, fig.height = 4}
+```{r glm-scatterplot, fig.width = 6, fig.height = 4}
 ggplot(dat, aes(X, Y)) + 
   geom_point(alpha = 0.1) + 
   geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) + 
@@ -344,33 +344,33 @@ This approach recovers the data-generating parameters quite well, with a dispers
 
 Now let me fit the same generalized linear model but assuming that the outcome follow a couple of different distributions, including a true Poisson (with unit dispersion), a negative binomial, the double-Poisson distribution from the previous post, and the generalized Poisson distribution. Here goes!
 
-```{r Poisson-fit, cache = TRUE}
+```{r Poisson-fit}
 Poisson_fit <- 
   brm(
     Y ~ X, family = poisson(link = "log"),
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
   )
 ```
 
-```{r NegBinomial-fit, cache = TRUE}
+```{r NegBinomial-fit}
 negbin_fit <- 
   brm(
     Y ~ X, family = negbinomial(link = "log"),
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
   )
 ```
 
-```{r DPO-fit, cache = TRUE}
+```{r DPO-fit}
 stancode_dpo <- "
 real dpo_lpmf(int X, real mu, real phi) {
   real ans;
@@ -431,7 +431,7 @@ DPO_fit <-
     stanvars = double_Poisson_stanvars,
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -455,7 +455,7 @@ posterior_predict_dpo <- function(i, prep, maxval = NULL, ...) {
 
 ```
 
-```{r GPO-fit, cache = TRUE}
+```{r GPO-fit}
 stancode_gpo <- "
 real gpo_lpmf(int X, real mu, real phi) {
   real ans;
@@ -511,7 +511,7 @@ GPO_fit <-
     stanvars = generalized_Poisson_stanvars,
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -537,16 +537,16 @@ posterior_predict_gpo <- function(i, prep, maxval = NULL, ...) {
 ## Model comparison
 
 Here is a comparison of LOOIC for all of the models:
-```{r loo, cache = TRUE}
+```{r loo}
 loo_comparison <- loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)
 loo_comparison$diffs
 ```
 
-Unsurprisingly, the model based on the true data-generating process clearly fits better than the models involving other outcome distributions.
+The model based on the double-Poisson distribution fits equally well to the true data-generating process here, suggesting that there's really just not enough information to distriguish between the two models. The negative binomial distribution fit is substantially worse, and the Poisson distribution fit is awful.
 
 Here's the posterior for the dispersion (i.e., $1 / \phi$) based on the GPO and DPO models:
 
-```{r dispersion-comparison, cache = TRUE, fig.width = 5, fig.height = 3}
+```{r dispersion-comparison, fig.width = 5, fig.height = 3}
 color_scheme_set("green")
 GPO_dispersion <- 
   mcmc_areas(GPO_fit, pars = "phi", transformations = \(x) 1 / x) + 
@@ -559,12 +559,13 @@ DPO_dispersion <-
   theme_minimal() + 
   ggtitle("Double Poisson")
 
-DPO_dispersion / GPO_dispersion
+DPO_dispersion / GPO_dispersion & 
+  xlim(1.5, 2.0)
 ```
 
-It looks like the estimated dispersion from the generalized Poisson model might be biased towards one by a little bit. To get a better sense of this, I'll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:
+Right on par. To get a better sense of model fit, I'll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:
 
-```{r ppc-dispersion, cache = TRUE, fig.width = 8, fig.height = 6}
+```{r ppc-dispersion, fig.width = 8, fig.height = 6}
 Yrep_Poisson <- posterior_predict(Poisson_fit, ndraws = 500) 
 Yrep_negbin <- posterior_predict(negbin_fit, ndraws = 500)
 Yrep_dpo <- posterior_predict(DPO_fit, ndraws = 500)
@@ -597,13 +598,13 @@ Poisson_disp / negbin_disp / dpo_disp / gpo_disp &
 
 ```
 
-Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data.
+Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data. The negative binomial distribution is not noticeably worse.
 
 ## Marginal posterior predictive densities
 
 Here's some rootograms for the posterior predictive density of the raw outcomes:
 
-```{r ppd, cache = TRUE, fig.width = 7, fig.height = 7}
+```{r ppd, fig.width = 7, fig.height = 7}
 color_scheme_set("blue")
 Poisson_root <- ppc_rootogram(dat$Y, Yrep_Poisson, style = "hanging") + labs(title = "Poisson")
 color_scheme_set("purple")
@@ -622,7 +623,7 @@ You can see from these that the Poisson model maybe expects slightly fewer low c
 
 One way to focus in on the distributional assumption is to examine the distribution of residuals rather than raw outcomes. I'll do that here by looking the deviance residuals from the quasi-Poisson GLM model, treating the calculation of the residuals as merely a transformation of the raw data. Here are some posterior predictive density plots of these deviance residuals:
 
-```{r ppd-residuals, cache = TRUE, fig.width = 6, fig.height = 7}
+```{r ppd-residuals, fig.width = 6, fig.height = 7}
 # quasi-Poisson deviance residuals
 dat$resid <- residuals(quasi_fit)
 
@@ -661,7 +662,53 @@ The negative binomial model is not obviously mis-specified either.
 A notable difference between the negative binomial versus the DPO and GPO distributions is in the form of the mean-variance relationship.
 For the negative binomial, the variance increases with the square of the mean, whereas for the DPO and GPO, the variance increases in constant proportion to the mean.
 The residual posterior density plots above don't really capture these mean-variance relationships in an obvious way.
-Maybe we could see it if we looked at smoothed plots of the squared residuals versus $X$, but I can't find an easy way to do that with the `bayesplot` functions I've used above. I'll leave it as an exercise for you, dear reader, because I need to get to bed.
+I took one more crack at a posterior predictive check to get at this. 
+Below is a figure showing the loess smooth of the squared residuals versus $X$ based on the posterior predictive distributions versus the real data. I couldn't find an easy way to do this with the `bayesplot` functions I've used above, so I had to bang it out in regular `ggplot`. 
+
+```{r ppd-residual-smooth, fig.width = 7, fig.height = 7, out.width = "100%"}
+X_grid <- seq(min(dat$X), max(dat$X), length.out = 200)
+
+smooth_square_resid <- function(r, x_dat, X_pred = X_grid) {
+  loess_fit <- loess(I(r^2) ~ x_dat)
+  predict(loess_fit, newdata = data.frame(x_dat = X_pred))
+}
+
+dat$sm <- smooth_square_resid(r = dat$resid, x_dat = dat$X, X_pred = dat$X)
+
+smooth_square_resid_ppcs <- function(R, x_dat, X_pred = X_grid) {
+  smooth_list <- apply(R, 1, smooth_square_resid, x_dat = dat$X, X_pred = X_pred, simplify = FALSE)
+  tibble(
+    group = 1:length(smooth_list),
+    X = rep(list(X_pred), length(smooth_list)),
+    sm = smooth_list
+  )
+}
+
+smooth_MV <- 
+  list(
+    Poisson = resid_Poisson, 
+    `Negative binomial` = resid_negbin,
+    `Double Poisson` = resid_dpo,
+    `Generalized Poisson` = resid_gpo
+  ) %>%
+  map_dfr(smooth_square_resid_ppcs, x_dat = dat$X, .id = "distribution") %>%
+  unnest(X, sm) %>%
+  mutate(
+    distribution = factor(distribution, levels = c("Poisson", "Negative binomial","Double Poisson", "Generalized Poisson"))
+  )
+
+ggplot(smooth_MV, aes(X, sm, group = group, color = distribution)) + 
+  geom_line(alpha = 0.4) + 
+  geom_line(data = dat, aes(X, sm, group = NULL), color = "black", linewidth = 1.25) + 
+  scale_color_manual(values = c("grey","purple","lightblue","lightgreen")) + 
+  scale_y_continuous(limits = c(0, 9), breaks = seq(0,8,2), expand = expansion(0,0)) + 
+  facet_wrap(~ distribution, ncol = 1) + 
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(y = "Loess smooth of squared residuals")
+
+```
+Aha! Here we can clearly see that the negative binomial model generates residuals that have more curvature to the mean-variance relationship, and so don't really fit with the observed data. The double Poisson and generalized Poisson both generate residuals that match the observed mean-variance relationship decently well. 
 
 # Colophon
 
