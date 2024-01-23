@@ -1,0 +1,95 @@
+---
+title: Approximating the distribution of cluster-robust Wald statistics
+authors:
+  - admin
+summary: ""
+date: '2024-01-20'
+draft: true
+codefolding_show: 'hide'
+slug: cluster-robust-Wald-statistics
+categories: []
+tags:
+  - robust variance estimation
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+$$
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+$$
+```{r, echo = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+In [Tipton and Pustejovsky (2015)](http://doi.org/10.3102/1076998615606099), we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like $F$ statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a one-way ANOVA problem with clusters of dependent observations.
+
+Consider a setup where clusters can be classified into one of $C$ categories, with each cluster of observations falling into a single category. Let $\bs\mu = \left[\mu_c \right]_{c=1}^C$ denote the means of these categories. Suppose we have an estimator of those means $\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C$ and a corresponding cluster-robust variance estimator $\bm{V}^R = \bigoplus_{c=1}^C V^R_c$. Note that $\bm{V}^R$ is diagonal because the estimators for each category are independent. 
+
+Suppose that we want to test the null hypothesis that that means of the categories are all equal, $H_0: \mu_1 = \mu_2 = \cdots = \mu_C$. We can express this null using a $q \times C$ contrast matrix $\bm{C} = \left[-\bm{1}_q \ \bm{I}_q \right]$, where $q = C - 1$. The null hypothesis is then $\bm{C} \bs\mu = \bm{0}_q$. The corresponding cluster-robust Wald statistic is
+$$
+Q = \bs{\hat\mu}' \bm{C}' \left(\bm{C} \bm{V}^R \bm{C}'\right)^{-1} \bm{C} \bs{\hat\mu}.
+$$
+Under the null hypothesis, the distribution of $Q$ will converge to a $\chi^2_q$ as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates. In the paper, we considered several different ways of approximating the distribution of $Q$ that work at smaller sample sizes. 
+
+Assume that the robust variance estimator is unbiased so $\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c$ for $c = 1,...,C$. Let $\bs\Psi = \bigoplus_{c=1}^C \psi_c$ and $\bs\Omega = \bm{C} \bs\Psi \bm{C}'$. Several of the small sample approximations that we considered are based on representing the test statistic as
+$$
+Q = \bm{z}' \bm{D}^{-1} \bm{z},
+$$
+where $\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c$ and 
+$$
+\bm{D} = \bs\Omega^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Omega^{-1/2}.
+$$
+To make sense of the approximations, I will look at the form of $\bm{D}$. 
+
+Before going further, it's useful to observe that $\bm{D}$ is invariant to linear transformations of $\bm{C}$. In particular, an equivalent way to write the null hypothesis is as $H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q$, where $\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c$ is the diagonal of the true sampling variances of categories 2 through $C$, omitting the first category. Thus, let me redefine 
+$$
+\bs\Omega = \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}'\bs\Psi_{\circ}^{-1/2},
+$$ 
+$\bm{z} = \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c$, and 
+$$
+\bm{D} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2}.
+$$
+This transformation of the constraint matrix will make it possible to find a closed-form expression for $\bs\Omega^{-1/2}$.
+
+Now, observe that 
+$$
+\begin{aligned}
+\bs\Omega &= \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}'\bs\Psi_{\circ}^{-1/2} \\
+&= \bs\Psi_{\circ}^{-1/2} \left(\bs\Psi_{\circ} + \psi_1 \bm{1}_q \bm{1}_q'\right)\bs\Psi_{\circ}^{-1/2} \\
+&= \bm{I}_q + \psi_1 \bm{f} \bm{f}',
+\end{aligned}
+$$
+where $\bm{f} = \bs\Psi_{\circ}^{-1/2} \bm{1}_q = \left[ \psi_c^{-1/2}\right]_{c = 2}^C$. From the [Woodbury identity](\bs\Psi_{\circ}^{-1/2}),
+$$
+\bs\Omega^{-1} = \bm{I} - \frac{1}{W} \bm{f} \bm{f}',
+$$
+where $W = \sum_{c=1}^C \frac{1}{\psi_c}$. 
+
+[Fasi, Higham, and Liu (2023)](https://doi.org/10.1137/22M1471559) provide formulas for $p^{th}$ roots of low-rank updates to scaled identity matrices. Their results provide a neat closed-form expression for $\bs\Omega^{-1/2}$. From their Equation (1.9), 
+$$
+\bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}',
+$$
+where $\kappa = \frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}$.
+Further, letting $\bm{V}^R_{\circ} = \bigoplus_{c=2}^C V^R_c$,
+$$
+\begin{aligned}
+\bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} &= \bs\Psi_{\circ}^{-1/2} \left( \bm{V}^R_{\circ} + V^R_1 \bm{1}_q \bm{1}_q'\right) \bs\Psi_{\circ}^{-1/2} \\
+&= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}'.
+\end{aligned}
+$$
+And putting it all together
+$$
+\begin{aligned}
+\bm{D} &= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2} \\
+&= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \left( \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}' \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \\
+&= \left(\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 (1 - \kappa \ \bm{f}'\bm{f}) \bm{f} \bm{f}' \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \\
+&= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}' + \left(\kappa^2 \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}\bm{f} +  V^R_1 (1 - \kappa \ \bm{f}'\bm{f})^2 \right) \bm{f} \bm{f}'
+\end{aligned}
+$$

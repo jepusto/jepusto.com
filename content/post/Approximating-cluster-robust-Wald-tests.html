@@ -1,0 +1,88 @@
+---
+title: Approximating the distribution of cluster-robust Wald statistics
+authors:
+  - admin
+summary: ""
+date: '2024-01-20'
+draft: true
+codefolding_show: 'hide'
+slug: cluster-robust-Wald-statistics
+categories: []
+tags:
+  - robust variance estimation
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><span class="math display">\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]</span></p>
+<p>In <a href="http://doi.org/10.3102/1076998615606099">Tipton and Pustejovsky (2015)</a>, we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like <span class="math inline">\(F\)</span> statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a one-way ANOVA problem with clusters of dependent observations.</p>
+<p>Consider a setup where clusters can be classified into one of <span class="math inline">\(C\)</span> categories, with each cluster of observations falling into a single category. Let <span class="math inline">\(\bs\mu = \left[\mu_c \right]_{c=1}^C\)</span> denote the means of these categories. Suppose we have an estimator of those means <span class="math inline">\(\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C\)</span> and a corresponding cluster-robust variance estimator <span class="math inline">\(\bm{V}^R = \bigoplus_{c=1}^C V^R_c\)</span>. Note that <span class="math inline">\(\bm{V}^R\)</span> is diagonal because the estimators for each category are independent.</p>
+<p>Suppose that we want to test the null hypothesis that that means of the categories are all equal, <span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_C\)</span>. We can express this null using a <span class="math inline">\(q \times C\)</span> contrast matrix <span class="math inline">\(\bm{C} = \left[-\bm{1}_q \ \bm{I}_q \right]\)</span>, where <span class="math inline">\(q = C - 1\)</span>. The null hypothesis is then <span class="math inline">\(\bm{C} \bs\mu = \bm{0}_q\)</span>. The corresponding cluster-robust Wald statistic is
+<span class="math display">\[
+Q = \bs{\hat\mu}&#39; \bm{C}&#39; \left(\bm{C} \bm{V}^R \bm{C}&#39;\right)^{-1} \bm{C} \bs{\hat\mu}.
+\]</span>
+Under the null hypothesis, the distribution of <span class="math inline">\(Q\)</span> will converge to a <span class="math inline">\(\chi^2_q\)</span> as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates. In the paper, we considered several different ways of approximating the distribution of <span class="math inline">\(Q\)</span> that work at smaller sample sizes.</p>
+<p>Assume that the robust variance estimator is unbiased so <span class="math inline">\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c\)</span> for <span class="math inline">\(c = 1,...,C\)</span>. Let <span class="math inline">\(\bs\Psi = \bigoplus_{c=1}^C \psi_c\)</span> and <span class="math inline">\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&#39;\)</span>. Several of the small sample approximations that we considered are based on representing the test statistic as
+<span class="math display">\[
+Q = \bm{z}&#39; \bm{D}^{-1} \bm{z},
+\]</span>
+where <span class="math inline">\(\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c\)</span> and
+<span class="math display">\[
+\bm{D} = \bs\Omega^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39; \bs\Omega^{-1/2}.
+\]</span>
+To make sense of the approximations, I will look at the form of <span class="math inline">\(\bm{D}\)</span>.</p>
+<p>Before going further, it’s useful to observe that <span class="math inline">\(\bm{D}\)</span> is invariant to linear transformations of <span class="math inline">\(\bm{C}\)</span>. In particular, an equivalent way to write the null hypothesis is as <span class="math inline">\(H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q\)</span>, where <span class="math inline">\(\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c\)</span> is the diagonal of the true sampling variances of categories 2 through <span class="math inline">\(C\)</span>, omitting the first category. Thus, let me redefine
+<span class="math display">\[
+\bs\Omega = \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&#39;\bs\Psi_{\circ}^{-1/2},
+\]</span>
+<span class="math inline">\(\bm{z} = \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c\)</span>, and
+<span class="math display">\[
+\bm{D} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39; \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2}.
+\]</span>
+This transformation of the constraint matrix will make it possible to find a closed-form expression for <span class="math inline">\(\bs\Omega^{-1/2}\)</span>.</p>
+<p>Now, observe that
+<span class="math display">\[
+\begin{aligned}
+\bs\Omega &amp;= \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&#39;\bs\Psi_{\circ}^{-1/2} \\
+&amp;= \bs\Psi_{\circ}^{-1/2} \left(\bs\Psi_{\circ} + \psi_1 \bm{1}_q \bm{1}_q&#39;\right)\bs\Psi_{\circ}^{-1/2} \\
+&amp;= \bm{I}_q + \psi_1 \bm{f} \bm{f}&#39;,
+\end{aligned}
+\]</span>
+where <span class="math inline">\(\bm{f} = \bs\Psi_{\circ}^{-1/2} \bm{1}_q = \left[ \psi_c^{-1/2}\right]_{c = 2}^C\)</span>. From the <a href="\bs\Psi_%7B\circ%7D%5E%7B-1/2%7D">Woodbury identity</a>,
+<span class="math display">\[
+\bs\Omega^{-1} = \bm{I} - \frac{1}{W} \bm{f} \bm{f}&#39;,
+\]</span>
+where <span class="math inline">\(W = \sum_{c=1}^C \frac{1}{\psi_c}\)</span>.</p>
+<p><a href="https://doi.org/10.1137/22M1471559">Fasi, Higham, and Liu (2023)</a> provide formulas for <span class="math inline">\(p^{th}\)</span> roots of low-rank updates to scaled identity matrices. Their results provide a neat closed-form expression for <span class="math inline">\(\bs\Omega^{-1/2}\)</span>. From their Equation (1.9),
+<span class="math display">\[
+\bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39;,
+\]</span>
+where <span class="math inline">\(\kappa = \frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}\)</span>.
+Further, letting <span class="math inline">\(\bm{V}^R_{\circ} = \bigoplus_{c=2}^C V^R_c\)</span>,
+<span class="math display">\[
+\begin{aligned}
+\bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39; \bs\Psi_{\circ}^{-1/2} &amp;= \bs\Psi_{\circ}^{-1/2} \left( \bm{V}^R_{\circ} + V^R_1 \bm{1}_q \bm{1}_q&#39;\right) \bs\Psi_{\circ}^{-1/2} \\
+&amp;= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}&#39;.
+\end{aligned}
+\]</span>
+And putting it all together
+<span class="math display">\[
+\begin{aligned}
+\bm{D} &amp;= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39; \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2} \\
+&amp;= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right) \left( \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}&#39; \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right) \\
+&amp;= \left(\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 (1 - \kappa \ \bm{f}&#39;\bm{f}) \bm{f} \bm{f}&#39; \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right) \\
+&amp;= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}&#39; + \left(\kappa^2 \bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}\bm{f} +  V^R_1 (1 - \kappa \ \bm{f}&#39;\bm{f})^2 \right) \bm{f} \bm{f}&#39;
+\end{aligned}
+\]</span></p>
