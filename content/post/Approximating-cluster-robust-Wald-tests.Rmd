@@ -109,16 +109,16 @@ And because the variance estimators for each category are independent,
 $$
 \Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \Var(V^R_c).
 $$
-In [prior work](/publication/power-approximations-for-dependent-effects/), we derived expressions for the Satterthwaite degrees of freedom for variances of average effect sizes, and the same formulas can be applied here with the category-specific $V^R_c$. Let me write $\nu_c = \left[\E(d_{st})\right]^2 / \Var(d_{st})$ for the degrees of freedom corresponding to category $c$. Then 
+In [prior work](/publication/power-approximations-for-dependent-effects/), we derived expressions for the Satterthwaite degrees of freedom for variances of average effect sizes, and the same formulas can be applied here with the category-specific $V^R_c$. Let me write $\nu_c = 2\left[\E(V^R_c)\right]^2 / \Var(V^R_c)$ for the degrees of freedom corresponding to category $c$. Then 
 $$
-\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
+\Var(d_{st}) = 2 \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
 $$
 We can use this to obtain an expression for Zhang's approximate degrees of freedom:
 $$
 \begin{aligned}
 q(q + 1)\eta_Z^{-1} &= \sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st}) \\ 
-&= \sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c} \\
-&= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2.
+&= 2\sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c} \\
+&= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2.
 \end{aligned}
 $$
 Now, all we need to do is simplify...
@@ -144,14 +144,14 @@ $$
 Thus,
 $$
 \begin{aligned}
-q(q + 1)\eta_Z^{-1} &= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
-&= \sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c - \frac{1}{W}\right)^2 \\
-&= \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
+q(q + 1)\eta_Z^{-1} &= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
+&= 2\sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c - \frac{1}{W}\right)^2 \\
+&= 2\sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
 \end{aligned}
 $$
 or, rearranging, 
 $$
-\eta_Z = \frac{q(q + 1)}{\sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+\eta_Z = \frac{q(q + 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
 $$
 It's a surprisingly clean formula!
 
