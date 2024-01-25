@@ -381,7 +381,11 @@ those means <span class="math inline">\(\bs{\hat\mu} =
 \left[\hat\mu_c\right]_{c=1}^C\)</span> and a corresponding
 cluster-robust variance estimator <span class="math inline">\(\bm{V}^R =
 \bigoplus_{c=1}^C V^R_c\)</span>. Note that <span class="math inline">\(\bm{V}^R\)</span> is diagonal because the
-estimators for each category are independent.</p>
+estimators for each category are independent. Assume that the robust
+variance estimator is unbiased so <span class="math inline">\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c
+\right) = \psi_c\)</span> for <span class="math inline">\(c =
+1,...,C\)</span>. Let <span class="math inline">\(\bs\Psi =
+\bigoplus_{c=1}^C \psi_c\)</span>.</p>
 <p>Suppose that we want to test the null hypothesis that that means of
 the categories are all equal, <span class="math inline">\(H_0: \mu_1 =
 \mu_2 = \cdots = \mu_C\)</span>. We can express this null using a <span class="math inline">\(q \times C\)</span> contrast matrix <span class="math inline">\(\bm{C} = \left[-\bm{1}_q \ \bm{I}_q
@@ -395,21 +399,28 @@ Q = \bs{\hat\mu}&#39; \bm{C}&#39; \left(\bm{C} \bm{V}^R
 each category grows large. However, with a limited number of clusters in
 some of the categories, this approximate reference distribution is not
 very accurate and tests based on it can have wildly inflated type I
-error rates. In the paper, we considered several different ways of
-approximating the distribution of <span class="math inline">\(Q\)</span>
-that work at smaller sample sizes.</p>
-<p>Assume that the robust variance estimator is unbiased so <span class="math inline">\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c
-\right) = \psi_c\)</span> for <span class="math inline">\(c =
-1,...,C\)</span>. Let <span class="math inline">\(\bs\Psi =
-\bigoplus_{c=1}^C \psi_c\)</span> and <span class="math inline">\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&#39;\)</span>.
-Several of the small sample approximations that we considered are based
-on representing the test statistic as <span class="math display">\[
+error rates.</p>
+<p>In the paper, we considered several different ways of approximating
+the distribution of <span class="math inline">\(Q\)</span> that work at
+smaller sample sizes. Several of the small-sample approximations that we
+considered are based on representing the test statistic as <span class="math display">\[
 Q = \bm{z}&#39; \bm{D}^{-1} \bm{z},
-\]</span> where <span class="math inline">\(\bm{z} =
-\bs\Omega^{-1/2}\bm{C}\hat\mu_c\)</span> and <span class="math display">\[
-\bm{D} = \bs\Omega^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39; \bs\Omega^{-1/2}.
+\]</span> where <span class="math inline">\(\bs\Omega = \bm{C} \bs\Psi
+\bm{C}&#39;\)</span>, <span class="math inline">\(\bm{z} =
+\bs\Omega^{-1/2}\bm{C}\hat\mu_c\)</span>, <span class="math inline">\(\bm{G} = \bs\Omega^{-1/2} \bm{C}\)</span>, and
+<span class="math display">\[
+\bm{D} = \bm{G} \bm{V}^R \bm{G}&#39;.
 \]</span> To make sense of the approximations, I will look at the form
 of <span class="math inline">\(\bm{D}\)</span>.</p>
+<p>One class of approaches to approximating the sampling distribution of
+<span class="math inline">\(Q\)</span> is to use a Hotelling’s <span class="math inline">\(T^2\)</span> distribution with degrees of freedom
+<span class="math inline">\(\eta\)</span>. We considered several
+different approximations for <span class="math inline">\(\eta\)</span>,
+including one proposed by Zhang (<a href="https://doi.org/10.1016/j.jspi.2011.07.023">2012</a>, <a href="https://doi.org/10.14419/ijasp.v1i2.908">2013</a>). These degrees
+of freedom are given by <span class="math display">\[
+\eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
+\]</span> where <span class="math inline">\(d_{st}\)</span> is the entry
+in row <span class="math inline">\(s\)</span>, column <span class="math inline">\(t\)</span> of <span class="math inline">\(\bm{D}\)</span>.</p>
 <p>Before going further, it’s useful to observe that <span class="math inline">\(\bm{D}\)</span> is invariant to linear
 transformations of <span class="math inline">\(\bm{C}\)</span>. In
 particular, an equivalent way to write the null hypothesis is as <span class="math inline">\(H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} =
@@ -422,8 +433,7 @@ me redefine <span class="math display">\[
 \]</span> <span class="math inline">\(\bm{z} =
 \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c\)</span>, and
 <span class="math display">\[
-\bm{D} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R
-\bm{C}&#39; \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2}.
+\bm{G} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C}.
 \]</span> This transformation of the constraint matrix will make it
 possible to find a closed-form expression for <span class="math inline">\(\bs\Omega^{-1/2}\)</span>.</p>
 <p>Now, observe that <span class="math display">\[
@@ -447,62 +457,92 @@ expression for <span class="math inline">\(\bs\Omega^{-1/2}\)</span>.
 From their Equation (1.9), <span class="math display">\[
 \bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39;,
 \]</span> where <span class="math inline">\(\kappa =
-\frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}\)</span>. Further,
-letting <span class="math inline">\(\bm{V}^R_{\circ} = \bigoplus_{c=2}^C
-V^R_c\)</span>, <span class="math display">\[
+\frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}\)</span>. Further, we
+can write the <span class="math inline">\(q \times C\)</span> matrix
+<span class="math inline">\(\bm{G}\)</span> as <span class="math display">\[
 \begin{aligned}
-\bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}&#39;
-\bs\Psi_{\circ}^{-1/2} &amp;= \bs\Psi_{\circ}^{-1/2} \left(
-\bm{V}^R_{\circ} + V^R_1 \bm{1}_q \bm{1}_q&#39;\right)
-\bs\Psi_{\circ}^{-1/2} \\
-&amp;= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}&#39;.
+\bm{G} &amp;= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \\
+&amp;= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right)
+\bs\Psi_{\circ}^{-1/2} \left[-\bm{1}_q, \ \bm{I}_q \right] \\
+&amp;= \left[\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1}
+\bm{f},  \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right)
+\bs\Psi_{\circ}^{-1/2}\right],
 \end{aligned}
-\]</span> And putting it all together <span class="math display">\[
+\]</span> with entries given by <span class="math display">\[
+g_{sc} = \begin{cases}
+\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1 \sqrt{\psi_{s+1}}} &amp;
+\text{if} \quad c = 1 \\
+\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c
+\sqrt{\psi_{s+1}}} &amp; \text{if} \quad c &gt; 1.
+\end{cases}
+\]</span> Because <span class="math inline">\(\bm{D} = \bm{G} \bm{V}^R
+\bm{G}&#39;\)</span> and <span class="math inline">\(\bm{V}^R\)</span>
+is diagonal, we can write the entries of <span class="math inline">\(\bm{D}\)</span> as <span class="math display">\[
+d_{st} = \sum_{c=1}^C g_{sc} g_{tc} V^R_c.
+\]</span> And because the variance estimators for each category are
+independent, <span class="math display">\[
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \Var(V^R_c).
+\]</span> In <a href="/publication/power-approximations-for-dependent-effects/">prior
+work</a>, we derived expressions for the Satterthwaite degrees of
+freedom for variances of average effect sizes, and the same formulas can
+be applied here with the category-specific <span class="math inline">\(V^R_c\)</span>. Let me write <span class="math inline">\(\nu_c = \left[\E(d_{st})\right]^2 /
+\Var(d_{st})\)</span> for the degrees of freedom corresponding to
+category <span class="math inline">\(c\)</span>. Then <span class="math display">\[
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
+\]</span> We can use this to obtain an expression for Zhang’s
+approximate degrees of freedom: <span class="math display">\[
 \begin{aligned}
-\bm{D} &amp;= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R
-\bm{C}&#39; \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2} \\
-&amp;= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right) \left(
-\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}&#39; \right)
-\left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&#39; \right) \\
-&amp;= \left(\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f}
-\bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 (1 - \kappa \
-\bm{f}&#39;\bm{f}) \bm{f} \bm{f}&#39; \right) \left( \mathbf{I}_q -
-\kappa \ \bm{f} \bm{f}&#39; \right) \\
-&amp;= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f}
-\bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa
-\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}&#39; +
-\left(\kappa^2 \bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}\bm{f}
-+  V^R_1 (1 - \kappa \ \bm{f}&#39;\bm{f})^2 \right) \bm{f} \bm{f}&#39;
+q(q + 1)\eta_Z^{-1} &amp;= \sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st}) \\
+&amp;= \sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2
+\frac{\psi_c^2}{\nu_c} \\
+&amp;= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q
+g_{sc}^2\right)^2.
+\end{aligned}
+\]</span> Now, all we need to do is simplify… <span class="math display">\[
+\begin{aligned}
+\sum_{s=1}^q g_{s1}^2 &amp;= \sum_{s=1}^q \frac{\left(\kappa(W \psi_1 -
+1) - \psi_1\right)^2}{\psi_1^2 \psi_{s+1}} \\
+&amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2}
+\sum_{c=2}^C \frac{1}{\psi_{s+1}} \\
+&amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2}
+\frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;= \text{...a bunch of tedious algebra...} \\
+&amp;= \frac{1}{\psi_1^2} \left(\psi_1 - \frac{1}{W}\right)
+\end{aligned}
+\]</span> and, for <span class="math inline">\(c = 2,...,C\)</span>,
+<span class="math display">\[
+\begin{aligned}
+\sum_{s=1}^q g_{sc}^2 &amp;= \sum_{s=1}^q \left(\frac{I(s+1 =
+c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}}\right)^2
 \\
-&amp;= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f}
-\bm{f}&#39;\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa
-\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}&#39; + \left((1 -
-\kappa \ \bm{f}&#39;\bm{f})^2 V^R_1 + \kappa^2 \sum_{c=2}^C
-\frac{V^R_c}{\psi_c^2}\right) \bm{f} \bm{f}&#39;.
+&amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} +
+\frac{\kappa^2}{\psi_c^2}\sum_{s=1}^q \frac{1}{\psi_{s+1}} \\
+&amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} +
+\frac{\kappa^2}{\psi_c^2}\frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;= \text{...a bunch of tedious algebra...} \\
+&amp;= \frac{1}{\psi_c^2} \left(\psi_c - \frac{1}{W}\right)
 \end{aligned}
-\]</span> Thus, the entries of <span class="math inline">\(\bm{D}\)</span> consist of <span class="math display">\[
-D_{ij} = I(i = j)\frac{V^R_{i + 1}}{\psi_{i+1}} - \kappa
-\frac{V^R_{j+1}}{\psi_{i+1}^{1/2} \psi_{j+1}^{3/2}} - - \kappa
-\frac{V^R_{i+1}}{\psi_{i+1}^{3/2} \psi_{j+1}^{1/2}} +
-\frac{1}{\psi_{i+1}^{1/2} \psi_{j+1}^{1/2}} \left((1 - \kappa \
-\bm{f}&#39;\bm{f})^2 V^R_1 + \kappa^2 \sum_{c=2}^C
-\frac{V^R_c}{\psi_c^2}\right)
-\]</span> and the variances of the diagonal entries of <span class="math inline">\(\bm{D}\)</span> are given by <span class="math display">\[
+\]</span> Thus, <span class="math display">\[
 \begin{aligned}
-\Var\left(D_{ii}\right) &amp;=  \frac{1}{\psi_{i+1}^2}\left(1 - \frac{2
-\kappa}{\psi_{i+1}} + \frac{\kappa^2}{\psi_{i+1}^2}\right)^2
-\Var(V_{i+1}^R) + (1 - \kappa \ \bm{f}&#39;\bm{f})^4 \Var(V^R_1) +
-\sum_{c\neq {i+1}}^C \frac{\kappa^4}{\psi_c^4}\Var(V^R_c) \\
-&amp;=  \frac{1}{\psi_{i+1}^2}\left(1 -
-\frac{\kappa}{\psi_{i+1}}\right)^4 \Var(V_{i+1}^R) + (1 - \kappa \
-\bm{f}&#39;\bm{f})^4 \Var(V^R_1) + \sum_{c\neq {i+1}}^C
-\frac{\kappa^4}{\psi_c^4}\Var(V^R_c)
+q(q + 1)\eta_Z^{-1} &amp;= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c}
+\left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
+&amp;= \sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c -
+\frac{1}{W}\right)^2 \\
+&amp;= \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
 \end{aligned}
-\]</span> and the variances of the off-diagonal entries by <span class="math display">\[
-\begin{aligned}
-\Var\left(D_{ij}\right) &amp;=  
-\end{aligned}
-\]</span></p>
+\]</span> or, rearranging, <span class="math display">\[
+\eta_Z = \frac{q(q + 1)}{\sum_{c=1}^C \frac{1}{\nu_c}\left(1 -
+\frac{1}{\psi_c W}\right)^2}.
+\]</span> It’s a surprisingly clean formula!</p>
+<p>In the paper, we also considered two other degrees of freedom
+approximations, which involve not only the variances of <span class="math inline">\(d_{st}\)</span> but also the covariances between
+entries. In principle, one could follow similar algebra to get
+expressions for these other degrees of freedom as well. However, our
+simulations indicated that the other degrees of freedom approximations
+tend to be overly conservative and produce type-I error rates way below
+the nominal level (essentially, hardly ever rejecting the null) and less
+accurate than HTZ. So, there’s not much reason to work through them
+unless you find algebra enjoyable for its own sake.</p>
 
 
 

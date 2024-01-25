@@ -31,22 +31,31 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 In [Tipton and Pustejovsky (2015)](http://doi.org/10.3102/1076998615606099), we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like $F$ statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a one-way ANOVA problem with clusters of dependent observations.
 
 Consider a setup where clusters can be classified into one of $C$ categories, with each cluster of observations falling into a single category. Let $\bs\mu = \left[\mu_c \right]_{c=1}^C$ denote the means of these categories. Suppose we have an estimator of those means $\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C$ and a corresponding cluster-robust variance estimator $\bm{V}^R = \bigoplus_{c=1}^C V^R_c$. Note that $\bm{V}^R$ is diagonal because the estimators for each category are independent. 
+Assume that the robust variance estimator is unbiased so $\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c$ for $c = 1,...,C$. 
+Let $\bs\Psi = \bigoplus_{c=1}^C \psi_c$. 
 
 Suppose that we want to test the null hypothesis that that means of the categories are all equal, $H_0: \mu_1 = \mu_2 = \cdots = \mu_C$. We can express this null using a $q \times C$ contrast matrix $\bm{C} = \left[-\bm{1}_q \ \bm{I}_q \right]$, where $q = C - 1$. The null hypothesis is then $\bm{C} \bs\mu = \bm{0}_q$. The corresponding cluster-robust Wald statistic is
 $$
 Q = \bs{\hat\mu}' \bm{C}' \left(\bm{C} \bm{V}^R \bm{C}'\right)^{-1} \bm{C} \bs{\hat\mu}.
 $$
-Under the null hypothesis, the distribution of $Q$ will converge to a $\chi^2_q$ as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates. In the paper, we considered several different ways of approximating the distribution of $Q$ that work at smaller sample sizes. 
+Under the null hypothesis, the distribution of $Q$ will converge to a $\chi^2_q$ as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates. 
 
-Assume that the robust variance estimator is unbiased so $\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c$ for $c = 1,...,C$. Let $\bs\Psi = \bigoplus_{c=1}^C \psi_c$ and $\bs\Omega = \bm{C} \bs\Psi \bm{C}'$. Several of the small sample approximations that we considered are based on representing the test statistic as
+In the paper, we considered several different ways of approximating the distribution of $Q$ that work at smaller sample sizes. 
+Several of the small-sample approximations that we considered are based on representing the test statistic as
 $$
 Q = \bm{z}' \bm{D}^{-1} \bm{z},
 $$
-where $\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c$ and 
+where $\bs\Omega = \bm{C} \bs\Psi \bm{C}'$, $\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c$, $\bm{G} = \bs\Omega^{-1/2} \bm{C}$, and 
 $$
-\bm{D} = \bs\Omega^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Omega^{-1/2}.
+\bm{D} = \bm{G} \bm{V}^R \bm{G}'.
 $$
 To make sense of the approximations, I will look at the form of $\bm{D}$. 
+
+One class of approaches to approximating the sampling distribution of $Q$ is to use a Hotelling's $T^2$ distribution with degrees of freedom $\eta$. We considered several different approximations for $\eta$, including one proposed by Zhang ([2012](https://doi.org/10.1016/j.jspi.2011.07.023), [2013](https://doi.org/10.14419/ijasp.v1i2.908)). These degrees of freedom are given by
+$$
+\eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
+$$
+where $d_{st}$ is the entry in row $s$, column $t$ of $\bm{D}$.
 
 Before going further, it's useful to observe that $\bm{D}$ is invariant to linear transformations of $\bm{C}$. In particular, an equivalent way to write the null hypothesis is as $H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q$, where $\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c$ is the diagonal of the true sampling variances of categories 2 through $C$, omitting the first category. Thus, let me redefine 
 $$
@@ -54,7 +63,7 @@ $$
 $$ 
 $\bm{z} = \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c$, and 
 $$
-\bm{D} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2}.
+\bm{G} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C}.
 $$
 This transformation of the constraint matrix will make it possible to find a closed-form expression for $\bs\Omega^{-1/2}$.
 
@@ -77,37 +86,73 @@ $$
 \bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}',
 $$
 where $\kappa = \frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}$.
-Further, letting $\bm{V}^R_{\circ} = \bigoplus_{c=2}^C V^R_c$,
+Further, we can write the $q \times C$ matrix $\bm{G}$ as 
 $$
 \begin{aligned}
-\bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} &= \bs\Psi_{\circ}^{-1/2} \left( \bm{V}^R_{\circ} + V^R_1 \bm{1}_q \bm{1}_q'\right) \bs\Psi_{\circ}^{-1/2} \\
-&= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}'.
+\bm{G} &= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \\
+&= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \bs\Psi_{\circ}^{-1/2} \left[-\bm{1}_q, \ \bm{I}_q \right] \\
+&= \left[\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1} \bm{f},  \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \bs\Psi_{\circ}^{-1/2}\right],
 \end{aligned}
 $$
-And putting it all together
+with entries given by 
+$$
+g_{sc} = \begin{cases}
+\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1 \sqrt{\psi_{s+1}}} & \text{if} \quad c = 1 \\
+\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}} & \text{if} \quad c > 1.
+\end{cases}
+$$
+Because $\bm{D} = \bm{G} \bm{V}^R \bm{G}'$ and $\bm{V}^R$ is diagonal, we can write the entries of $\bm{D}$ as 
+$$
+d_{st} = \sum_{c=1}^C g_{sc} g_{tc} V^R_c.
+$$
+And because the variance estimators for each category are independent, 
+$$
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \Var(V^R_c).
+$$
+In [prior work](/publication/power-approximations-for-dependent-effects/), we derived expressions for the Satterthwaite degrees of freedom for variances of average effect sizes, and the same formulas can be applied here with the category-specific $V^R_c$. Let me write $\nu_c = \left[\E(d_{st})\right]^2 / \Var(d_{st})$ for the degrees of freedom corresponding to category $c$. Then 
+$$
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
+$$
+We can use this to obtain an expression for Zhang's approximate degrees of freedom:
 $$
 \begin{aligned}
-\bm{D} &= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \bm{V}^R \bm{C}' \bs\Psi_{\circ}^{-1/2} \bs\Omega^{-1/2} \\
-&= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \left( \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 \bm{f} \bm{f}' \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \\
-&= \left(\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} + V^R_1 (1 - \kappa \ \bm{f}'\bm{f}) \bm{f} \bm{f}' \right) \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}' \right) \\
-&= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}' + \left(\kappa^2 \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}\bm{f} +  V^R_1 (1 - \kappa \ \bm{f}'\bm{f})^2 \right) \bm{f} \bm{f}' \\
-&= \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} - \kappa  \bm{f} \bm{f}'\bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ} -  \kappa \bs\Psi_{\circ}^{-1}\bm{V}^R_{\circ}  \bm{f} \bm{f}' + \left((1 - \kappa \ \bm{f}'\bm{f})^2 V^R_1 + \kappa^2 \sum_{c=2}^C \frac{V^R_c}{\psi_c^2}\right) \bm{f} \bm{f}'.
+q(q + 1)\eta_Z^{-1} &= \sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st}) \\ 
+&= \sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c} \\
+&= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2.
 \end{aligned}
 $$
-Thus, the entries of $\bm{D}$ consist of
-$$
-D_{ij} = I(i = j)\frac{V^R_{i + 1}}{\psi_{i+1}} - \kappa \frac{V^R_{j+1}}{\psi_{i+1}^{1/2} \psi_{j+1}^{3/2}} - - \kappa \frac{V^R_{i+1}}{\psi_{i+1}^{3/2} \psi_{j+1}^{1/2}} + \frac{1}{\psi_{i+1}^{1/2} \psi_{j+1}^{1/2}} \left((1 - \kappa \ \bm{f}'\bm{f})^2 V^R_1 + \kappa^2 \sum_{c=2}^C \frac{V^R_c}{\psi_c^2}\right)
-$$
-and the variances of the diagonal entries of $\bm{D}$ are given by
+Now, all we need to do is simplify...
 $$
 \begin{aligned}
-\Var\left(D_{ii}\right) &=  \frac{1}{\psi_{i+1}^2}\left(1 - \frac{2 \kappa}{\psi_{i+1}} + \frac{\kappa^2}{\psi_{i+1}^2}\right)^2 \Var(V_{i+1}^R) + (1 - \kappa \ \bm{f}'\bm{f})^4 \Var(V^R_1) + \sum_{c\neq {i+1}}^C \frac{\kappa^4}{\psi_c^4}\Var(V^R_c) \\
-&=  \frac{1}{\psi_{i+1}^2}\left(1 - \frac{\kappa}{\psi_{i+1}}\right)^4 \Var(V_{i+1}^R) + (1 - \kappa \ \bm{f}'\bm{f})^4 \Var(V^R_1) + \sum_{c\neq {i+1}}^C \frac{\kappa^4}{\psi_c^4}\Var(V^R_c)
+\sum_{s=1}^q g_{s1}^2 &= \sum_{s=1}^q \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2 \psi_{s+1}} \\
+&= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \sum_{c=2}^C \frac{1}{\psi_{s+1}} \\
+&= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \frac{(W \psi_1 - 1)}{\psi_1} \\
+&= \text{...a bunch of tedious algebra...} \\
+&= \frac{1}{\psi_1^2} \left(\psi_1 - \frac{1}{W}\right)
 \end{aligned}
 $$
-and the variances of the off-diagonal entries by
+and, for $c = 2,...,C$, 
 $$
 \begin{aligned}
-\Var\left(D_{ij}\right) &=  
+\sum_{s=1}^q g_{sc}^2 &= \sum_{s=1}^q \left(\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}}\right)^2 \\
+&= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\sum_{s=1}^q \frac{1}{\psi_{s+1}} \\
+&= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\frac{(W \psi_1 - 1)}{\psi_1} \\
+&= \text{...a bunch of tedious algebra...} \\
+&= \frac{1}{\psi_c^2} \left(\psi_c - \frac{1}{W}\right)
 \end{aligned}
 $$
+Thus,
+$$
+\begin{aligned}
+q(q + 1)\eta_Z^{-1} &= \sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
+&= \sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c - \frac{1}{W}\right)^2 \\
+&= \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
+\end{aligned}
+$$
+or, rearranging, 
+$$
+\eta_Z = \frac{q(q + 1)}{\sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+$$
+It's a surprisingly clean formula!
+
+In the paper, we also considered two other degrees of freedom approximations, which involve not only the variances of $d_{st}$ but also the covariances between entries. In principle, one could follow similar algebra to get expressions for these other degrees of freedom as well. However, our simulations indicated that the other degrees of freedom approximations tend to be overly conservative and produce type-I error rates way below the nominal level (essentially, hardly ever rejecting the null) and less accurate than HTZ. So, there's not much reason to work through them unless you find algebra enjoyable for its own sake.
