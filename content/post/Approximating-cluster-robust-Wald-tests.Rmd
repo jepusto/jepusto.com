@@ -156,3 +156,47 @@ $$
 It's a surprisingly clean formula!
 
 In the paper, we also considered two other degrees of freedom approximations, which involve not only the variances of $d_{st}$ but also the covariances between entries. In principle, one could follow similar algebra to get expressions for these other degrees of freedom as well. However, our simulations indicated that the other degrees of freedom approximations tend to be overly conservative and produce type-I error rates way below the nominal level (essentially, hardly ever rejecting the null) and less accurate than HTZ. So, there's not much reason to work through them unless you find algebra enjoyable for its own sake.
+
+# Numerical validation
+
+```{r}
+library(tidyverse)
+library(metadat)
+library(metafor)
+library(clubSandwich)
+
+dat.tannersmith2016$ESid <- 1:nrow(dat.tannersmith2016)
+rho <- 0.7
+Vmat <- with(dat.tannersmith2016, impute_covariance_matrix(vi = vi, cluster = studyid, r = rho, smooth_vi = TRUE))
+
+TS_fit <- rma.mv(yi ~ 0 + sexmix, V = Vmat, 
+                 random = ~ 1 | studyid / ESid,
+                 data = dat.tannersmith2016,
+                 method = "REML", sparse = TRUE)
+TS_cat <- conf_int(TS_fit, vcov = "CR2")
+Wald_cat <- Wald_test(TS_fit, constraints = constrain_equal("^sexmix", reg_ex = TRUE), vcov = "CR2")
+
+# calculate category-specific degrees of freedom
+tau_sq <- TS_fit$sigma2[1]
+omega_sq <- TS_fit$sigma2[2]
+
+cat_calcs <- 
+  dat.tannersmith2016 %>%
+  group_by(sexmix, studyid) %>%
+  summarise(
+    ybar = mean(yi),
+    kj = n(),
+    sigma2j = mean(vi),
+    .groups = "drop_last"
+  ) %>%
+  mutate(
+    wj = kj/ (kj * tau_sq + (kj - 1) * rho * sigma2j + omega_sq + sigma2j)
+  ) %>%
+  summarise(
+    ybar_c = weighted.mean(ybar, wj),
+    W_c = sum(wj),
+    E_VR = 1 / W_c,
+    nu_VR = 1 / (sum(wj^2 / (W_c - wj)^2) - (2 / W_c) * sum(wj^3 / (W_c - wj)^2) + (1 / W_c^2) * sum(wj^2 / (W_c - wj))^2)
+  )
+```
+
