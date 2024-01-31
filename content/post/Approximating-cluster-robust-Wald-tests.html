@@ -544,6 +544,62 @@ tend to be overly conservative and produce type-I error rates way below
 the nominal level (essentially, hardly ever rejecting the null) and less
 accurate than HTZ. So, there’s not much reason to work through them
 unless you find algebra enjoyable for its own sake.</p>
+<div id="numerical-validation" class="section level1">
+<h1>Numerical validation</h1>
+<pre class="r"><code>library(tidyverse)
+library(metadat)
+library(metafor)
+library(clubSandwich)
+
+dat.tannersmith2016$ESid &lt;- 1:nrow(dat.tannersmith2016)
+rho &lt;- 0.7
+Vmat &lt;- with(dat.tannersmith2016, impute_covariance_matrix(vi = vi, cluster = studyid, r = rho, smooth_vi = TRUE))
+
+TS_fit &lt;- rma.mv(yi ~ 0 + sexmix, V = Vmat, 
+                 random = ~ 1 | studyid / ESid,
+                 data = dat.tannersmith2016,
+                 method = &quot;REML&quot;, sparse = TRUE)
+TS_cat &lt;- conf_int(TS_fit, vcov = &quot;CR2&quot;)
+
+Cmat &lt;- constrain_equal(&quot;^sexmix&quot;, reg_ex = TRUE, 
+                        coefs = coef(TS_fit))
+Cmat_pivot &lt;- vcov(TS_fit)[-1,-1] %*% Cmat
+
+Wald_cat &lt;- Wald_test(TS_fit, constraints = Cmat, vcov = &quot;CR2&quot;)
+Wald_test(TS_fit, constraints = Cmat_pivot, vcov = &quot;CR2&quot;)</code></pre>
+<pre><code>##  test  Fstat df_num df_denom p_val sig
+##   HTZ 0.0804      2     7.63 0.924</code></pre>
+<pre class="r"><code># calculate category-specific degrees of freedom
+tau_sq &lt;- TS_fit$sigma2[1]
+omega_sq &lt;- TS_fit$sigma2[2]
+
+cat_calcs &lt;- 
+  dat.tannersmith2016 %&gt;%
+  group_by(sexmix, studyid) %&gt;%
+  summarise(
+    ybar = mean(yi),
+    kj = n(),
+    sigma2j = mean(vi),
+    .groups = &quot;drop_last&quot;
+  ) %&gt;%
+  mutate(
+    wj = kj/ (kj * tau_sq + (kj - 1) * rho * sigma2j + omega_sq + sigma2j)
+  ) %&gt;%
+  summarise(
+    ybar_c = weighted.mean(ybar, wj),
+    W_c = sum(wj),
+    E_VR = 1 / W_c,
+    nu_VR = 1 / (sum(wj^2 / (W_c - wj)^2) - (2 / W_c) * sum(wj^3 / (W_c - wj)^2) + (1 / W_c^2) * sum(wj^2 / (W_c - wj))^2)
+  )
+
+df_Z &lt;- 
+  cat_calcs %&gt;%
+  summarize(
+    num = n() * (n() - 1),
+    den = 2 * sum((1 - 1 / (E_VR * sum(W_c)))^2 / nu_VR),
+    df_Z = num / den
+  )</code></pre>
+</div>
 
 
 
