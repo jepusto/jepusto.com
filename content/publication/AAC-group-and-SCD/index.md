@@ -21,7 +21,7 @@ authors:
 - Jay B. Ganz
 publishDate: "2023-05-26T00:00:00"
 title: "Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design"
-publication: "_American Journal of Speech-Language Pathology_, advance online publication"
+publication: "_American Journal of Speech-Language Pathology, 32_(4), 1734-1757"
 abstract: "Purpose: This article provides a systematic review and analysis of group and single-case studies addressing augmentative and alternative communication (AAC) intervention with school-aged persons having autism spectrum disorder (ASD) and/or intellectual/developmental disabilities resulting in complex communication needs (CCNs). Specifically, we examined participant characteristics in group-design studies reporting AAC intervention outcomes and how these compared to those reported in single-case experimental designs (SCEDs). In addition, we compared the status of intervention features reported in group and SCED studies with respect to instructional strategies utilized.
 
 Participants: Participants included school-aged individuals with CCNs who also experienced ASD or ASD with an intellectual delay who utilized aided or unaided AAC.

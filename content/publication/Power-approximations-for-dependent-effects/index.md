@@ -8,7 +8,7 @@ authors:
 - Terri D. Pigott
 publishDate: "2022-10-17T00:00:00"
 title: "Power approximations for overall average effects in meta-analysis of dependent effect sizes"
-publication: "_Journal of Educational and Behavioral Statistics_, forthcoming"
+publication: "_Journal of Educational and Behavioral Statistics, 48_(1), 70-102"
 abstract: "Meta-analytic models for dependent effect sizes have grown increasingly sophisticated over the last few decades, which has created challenges for a priori power calculations. We introduce power approximations for tests of average effect sizes based upon several common approaches for handling dependent effect sizes. In a Monte Carlo simulation, we show that the new power formulas can accurately approximate the true power of meta-analytic models for dependent effect sizes. Lastly, we investigate the Type I error rate and power for several common models, finding that tests using robust variance estimation provide better Type I error calibration than tests with model-based variance estimation. We consider implications for practice with respect to selecting a working model and an inferential approach."
 featured: false
 image: 
