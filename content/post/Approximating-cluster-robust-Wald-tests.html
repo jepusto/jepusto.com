@@ -3,8 +3,7 @@ title: Approximating the distribution of cluster-robust Wald statistics
 authors:
   - admin
 summary: ""
-date: '2024-01-20'
-draft: true
+date: '2024-03-24'
 codefolding_show: 'hide'
 slug: cluster-robust-Wald-statistics
 categories: []
@@ -26,8 +25,8 @@ header:
 \def\cor{{\text{cor}}}
 \def\bm{\mathbf}
 \def\bs{\boldsymbol}
-\]</span></p>
-<p>In <a href="http://doi.org/10.3102/1076998615606099">Tipton and Pustejovsky (2015)</a>, we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like <span class="math inline">\(F\)</span> statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a one-way ANOVA problem with clusters of dependent observations.</p>
+\]</span>
+In <a href="http://doi.org/10.3102/1076998615606099">Tipton and Pustejovsky (2015)</a>, we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like <span class="math inline">\(F\)</span> statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a simple but common scenario: a one-way ANOVA problem with clusters of dependent observations.</p>
 <p>Consider a setup where clusters can be classified into one of <span class="math inline">\(C\)</span> categories, with each cluster of observations falling into a single category. Let <span class="math inline">\(\bs\mu = \left[\mu_c \right]_{c=1}^C\)</span> denote the means of these categories. Suppose we have an estimator of those means <span class="math inline">\(\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C\)</span> and a corresponding cluster-robust variance estimator <span class="math inline">\(\bm{V}^R = \bigoplus_{c=1}^C V^R_c\)</span>. Note that <span class="math inline">\(\bm{V}^R\)</span> is diagonal because the estimators for each category are independent.
 Assume that the robust variance estimator is unbiased so <span class="math inline">\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c\)</span> for <span class="math inline">\(c = 1,...,C\)</span>.
 Let <span class="math inline">\(\bs\Psi = \bigoplus_{c=1}^C \psi_c\)</span>.</p>
@@ -37,7 +36,12 @@ Q = \bs{\hat\mu}&#39; \bm{C}&#39; \left(\bm{C} \bm{V}^R \bm{C}&#39;\right)^{-1} 
 \]</span>
 Under the null hypothesis, the distribution of <span class="math inline">\(Q\)</span> will converge to a <span class="math inline">\(\chi^2_q\)</span> as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates.</p>
 <p>In the paper, we considered several different ways of approximating the distribution of <span class="math inline">\(Q\)</span> that work at smaller sample sizes.
-Several of the small-sample approximations that we considered are based on representing the test statistic as
+One class of approaches to approximating the sampling distribution of <span class="math inline">\(Q\)</span> is to use a Hotelling’s <span class="math inline">\(T^2\)</span> distribution with degrees of freedom <span class="math inline">\(\eta\)</span>. Given the degrees of freedom, Hotelling’s <span class="math inline">\(T^2\)</span> is a multiple of an <span class="math inline">\(F\)</span> distribution:
+<span class="math display">\[
+\frac{\eta - q + 1}{\eta q} Q \sim F(q, \eta - q + 1).
+\]</span>
+The question is then how to determine <span class="math inline">\(\eta\)</span>.</p>
+<p>Several of the small-sample approximations that we considered are based on representing the <span class="math inline">\(Q\)</span> statistic as
 <span class="math display">\[
 Q = \bm{z}&#39; \bm{D}^{-1} \bm{z},
 \]</span>
@@ -45,17 +49,12 @@ where <span class="math inline">\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&#39;\)</span
 <span class="math display">\[
 \bm{D} = \bm{G} \bm{V}^R \bm{G}&#39;.
 \]</span>
-To make sense of the approximations, I will look at the form of <span class="math inline">\(\bm{D}\)</span>.</p>
-<p>One class of approaches to approximating the sampling distribution of <span class="math inline">\(Q\)</span> is to use a Hotelling’s <span class="math inline">\(T^2\)</span> distribution with degrees of freedom <span class="math inline">\(\eta\)</span>. Given the degrees of freedom, Hotelling’s <span class="math inline">\(T^2\)</span> is a multiple of an <span class="math inline">\(F\)</span> distribution:
-<span class="math display">\[
-\frac{\eta - q + 1}{\eta q} Q \sim F(q, \eta - q + 1).
-\]</span>
-The question is then how to determine <span class="math inline">\(\eta\)</span>.</p>
-<p>We considered several different approximations for <span class="math inline">\(\eta\)</span>, including one proposed by Zhang (<a href="https://doi.org/10.1016/j.jspi.2011.07.023">2012</a>, <a href="https://doi.org/10.14419/ijasp.v1i2.908">2013</a>). These degrees of freedom are given by
+The approximations involve different approximations based on the sampling distribution of <span class="math inline">\(\bm{D}\)</span>.</p>
+<p>One of the approximations involves finding degrees of freedom <span class="math inline">\(\eta\)</span> by following a strategy suggested by Zhang (<a href="https://doi.org/10.1016/j.jspi.2011.07.023">2012</a>, <a href="https://doi.org/10.14419/ijasp.v1i2.908">2013</a>). These degrees of freedom are given by
 <span class="math display">\[
 \eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
 \]</span>
-where <span class="math inline">\(d_{st}\)</span> is the entry in row <span class="math inline">\(s\)</span>, column <span class="math inline">\(t\)</span> of <span class="math inline">\(\bm{D}\)</span>.</p>
+where <span class="math inline">\(d_{st}\)</span> is the entry in row <span class="math inline">\(s\)</span>, column <span class="math inline">\(t\)</span> of <span class="math inline">\(\bm{D}\)</span>. To find <span class="math inline">\(\eta_Z\)</span>, we can compute the denominator using general formulas given in the paper. However, with a bit of analysis we can find a much simpler expression for the special case of one-way ANOVA.</p>
 <p>Before going further, it’s useful to observe that <span class="math inline">\(\bm{D}\)</span> is invariant to linear transformations of <span class="math inline">\(\bm{C}\)</span>. In particular, an equivalent way to write the null hypothesis is as <span class="math inline">\(H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q\)</span>, where <span class="math inline">\(\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c\)</span> is the diagonal of the true sampling variances of categories 2 through <span class="math inline">\(C\)</span>, omitting the first category. Thus, let me redefine
 <span class="math display">\[
 \bs\Omega = \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&#39;\bs\Psi_{\circ}^{-1/2},
@@ -153,78 +152,4 @@ or, rearranging,
 It’s a surprisingly clean formula!
 Once these degrees of freedom are calculated, the degrees of freedom for the reference <span class="math inline">\(F\)</span> distribution would be <span class="math inline">\(q\)</span> and <span class="math inline">\(\eta_Z - q + 1\)</span>.</p>
 <p>In the paper, we also considered two other degrees of freedom approximations, which involve not only the variances of <span class="math inline">\(d_{st}\)</span> but also the covariances between entries. In principle, one could follow similar algebra to get expressions for these other degrees of freedom as well. However, our simulations indicated that the other degrees of freedom approximations tend to be overly conservative and produce type-I error rates way below the nominal level (essentially, hardly ever rejecting the null) and less accurate than HTZ. So, there’s not much reason to work through them unless you find algebra enjoyable for its own sake.</p>
-<div id="numerical-validation" class="section level1">
-<h1>Numerical validation</h1>
-<pre class="r"><code>library(tidyverse)
-library(metadat)
-library(metafor)
-library(clubSandwich)
-
-dat.tannersmith2016$ESid &lt;- 1:nrow(dat.tannersmith2016)
-rho &lt;- 0.7
-Vmat &lt;- with(dat.tannersmith2016, impute_covariance_matrix(vi = vi, cluster = studyid, r = rho, smooth_vi = TRUE))
-
-TS_fit &lt;- rma.mv(yi ~ 0 + sexmix, V = Vmat, 
-                 random = ~ 1 | studyid / ESid,
-                 data = dat.tannersmith2016,
-                 method = &quot;REML&quot;, sparse = TRUE)
-TS_cat &lt;- conf_int(TS_fit, vcov = &quot;CR2&quot;)
-
-Cmat &lt;- constrain_equal(&quot;^sexmix&quot;, reg_ex = TRUE, 
-                        coefs = coef(TS_fit))
-Cmat_pivot &lt;- vcov(TS_fit)[-1,-1] %*% Cmat
-
-Wald_cat &lt;- Wald_test(TS_fit, constraints = Cmat, vcov = &quot;CR2&quot;)
-Wald_test(TS_fit, constraints = Cmat_pivot, vcov = &quot;CR2&quot;)</code></pre>
-<pre><code>##  test  Fstat df_num df_denom p_val sig
-##   HTZ 0.0804      2     7.63 0.924</code></pre>
-<pre class="r"><code># calculate category-specific degrees of freedom
-tau_sq &lt;- TS_fit$sigma2[1]
-omega_sq &lt;- TS_fit$sigma2[2]
-
-cat_calcs &lt;- 
-  dat.tannersmith2016 %&gt;%
-  group_by(sexmix, studyid) %&gt;%
-  summarise(
-    ybar = mean(yi),
-    kj = n(),
-    sigma2j = mean(vi),
-    .groups = &quot;drop_last&quot;
-  ) %&gt;%
-  mutate(
-    wj = kj/ (kj * tau_sq + (kj - 1) * rho * sigma2j + omega_sq + sigma2j)
-  ) %&gt;%
-  summarise(
-    ybar_c = weighted.mean(ybar, wj),
-    W_c = sum(wj),
-    E_VR = 1 / W_c,
-    nu_VR = 1 / (sum(wj^2 / (W_c - wj)^2) - (2 / W_c) * sum(wj^3 / (W_c - wj)^2) + (1 / W_c^2) * sum(wj^2 / (W_c - wj))^2)
-  )
-
-df_Z &lt;- 
-  cat_calcs %&gt;%
-  summarize(
-    q = n() - 1,
-    num = q * (q + 1),
-    den = 2 * sum((1 - 1 / (E_VR * sum(W_c)))^2 / nu_VR),
-    df_Z = num / den
-  ) %&gt;%
-  pull(df_Z)
-
-mu_hat &lt;- coef(TS_fit)
-VR &lt;- vcovCR(TS_fit, type = &quot;CR2&quot;) %&gt;% as.matrix()
-q &lt;- nrow(Cmat)
-Q &lt;- as.numeric(t(Cmat %*% mu_hat) %*% solve(Cmat %*% VR %*% t(Cmat)) %*% (Cmat %*% mu_hat))
-delta &lt;- (df_Z - q + 1) / (df_Z)
-Fstat &lt;- delta * Q / q
-df_num &lt;- q
-df_den &lt;- df_Z - q + 1
-all.equal(df_num, Wald_cat$df_num)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>all.equal(df_den, Wald_cat$df_denom)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>all.equal(delta, Wald_cat$delta)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>all.equal(Fstat, Wald_cat$Fstat)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-</div>
+<p>A further question about this cluster-robust Wald statistic is how to approximate its sampling distribution under specific alternative hypotheses. In other words, given a vector of means <span class="math inline">\(\mu_1,...,\mu_C\)</span> where the null does not hold, plus some information to determine <span class="math inline">\(\psi_c\)</span> and <span class="math inline">\(\nu_c\)</span> for <span class="math inline">\(c = 1,...,C\)</span>, how could we approximate the distribution of <span class="math inline">\(Q\)</span>? We need something like a non-central Hotelling’s <span class="math inline">\(T^2\)</span> distribution…</p>
