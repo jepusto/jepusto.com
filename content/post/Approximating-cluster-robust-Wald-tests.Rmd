@@ -42,7 +42,7 @@ $$
 $$
 The question is then how to determine $\eta$.
 
-Several of the small-sample approximations that we considered are based on representing the $Q$ statistic as
+Several of the approaches that we considered are based on representing the $Q$ statistic as
 $$
 Q = \bm{z}' \bm{D}^{-1} \bm{z},
 $$
@@ -50,7 +50,7 @@ where $\bs\Omega = \bm{C} \bs\Psi \bm{C}'$, $\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat
 $$
 \bm{D} = \bm{G} \bm{V}^R \bm{G}'.
 $$
-The approximations involve different approximations based on the sampling distribution of $\bm{D}$. 
+The various approaches we considered involve different ways of approximating the sampling distribution of $\bm{D}$. 
 
 One of the approximations involves finding degrees of freedom $\eta$ by following a strategy suggested by Zhang ([2012](https://doi.org/10.1016/j.jspi.2011.07.023), [2013](https://doi.org/10.14419/ijasp.v1i2.908)). These degrees of freedom are given by
 $$
@@ -152,7 +152,7 @@ q(q + 1)\eta_Z^{-1} &= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g
 $$
 or, rearranging, 
 $$
-\eta_Z = \frac{q(q + 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+\eta_Z = \frac{C(C - 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
 $$
 It's a surprisingly clean formula!
 Once these degrees of freedom are calculated, the degrees of freedom for the reference $F$ distribution would be $q$ and $\eta_Z - q + 1$.
