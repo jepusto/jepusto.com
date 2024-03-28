@@ -1,0 +1,75 @@
+---
+title: Distribution of the number of significant effect sizes
+subtitle: In a study reporting multiple outcomes
+authors:
+- admin
+date: '2024-03-28'
+slug: distribution-of-significant-effects
+draft: true
+categories: []
+tags:
+  - effect size
+  - distribution theory
+header:
+  caption: ''
+  image: ''
+---
+
+
+
+<p><a href="/number-of-significant-effects/">A while back</a>, I posted the outline of a problem about the number of significant effect size estimates in a study that reports multiple outcomes. This problem interests me because it connects to the issue of selective reporting of study results, which creates problems for meta-analysis.
+Here, I’ll re-state the problem in slightly more general terms and then make some notes about what’s going on.</p>
+<p>Consider a study that assesses some effect size across <span class="math inline">\(m\)</span> different outcomes. (We’ll be thinking about one study at a time here, so no need to index the study as we would in a meta-analysis problem.) Let <span class="math inline">\(T_i\)</span> denote the effect size estimate for outcome <span class="math inline">\(i\)</span>, let <span class="math inline">\(V_i\)</span> denote the sampling variance of the effect size estimate for outcome <span class="math inline">\(i\)</span>, and let <span class="math inline">\(\theta_i\)</span> denote the true effect size parameter for corresponding to outcome <span class="math inline">\(i\)</span>. Assume that the study outcomes <span class="math inline">\(\left[T_i\right]_{i=1}^m\)</span> follow a correlated-and-hierarchical effects model, in which
+<span class="math display">\[T_i = \mu + u + v_i + e_i,\]</span>
+where the study-level error <span class="math inline">\(u \sim N\left(0,\tau^2\right)\)</span>, the effect-specific error <span class="math inline">\(v_i \stackrel{iid}{\sim} N\left(0, \omega^2\right)\)</span>, and the vector of sampling errors <span class="math inline">\(\left[e_i\right]_{i=1}^m\)</span> is multivariate normal with mean <span class="math inline">\(\mathbf{0}\)</span>, known variances <span class="math inline">\(\text{Var}(e_i) = \sigma^2\)</span>, and compound symmetric correlation structure <span class="math inline">\(\text{cor}(e_h, e_i) = \rho\)</span>.</p>
+<p>Define <span class="math inline">\(A_i\)</span> as an indicator that is equal to one if <span class="math inline">\(T_i\)</span> is statistically significant at level <span class="math inline">\(\alpha\)</span> based on a one-sided test, and otherwise equal to zero. (Equivalently, let <span class="math inline">\(A_i\)</span> be equal to one if the effect is statistically significant at level <span class="math inline">\(2 \alpha\)</span> and in the theoretically expected direction.) Formally,
+<span class="math display">\[A_i = I\left(\frac{T_i}{\sigma} &gt; q_\alpha \right)\]</span>
+where <span class="math inline">\(q_\alpha = \Phi^{-1}(1 - \alpha)\)</span> is the critical value from a standard normal distribution (e.g., <span class="math inline">\(q_{.05} = 1.645\)</span>, <span class="math inline">\(q_{.025} = 1.96\)</span>). Let <span class="math inline">\(N_A = \sum_{i=1}^m A_i\)</span> denote the total number of statistically significant effect sizes in the study. The question is: what is the distribution of <span class="math inline">\(N_A\)</span>.</p>
+<div id="compound-symmetry-to-the-rescue" class="section level2">
+<h2>Compound symmetry to the rescue</h2>
+<p>As I noted in the previous post, this set-up means that the effect size estimates have a compound symmetric distribution. We can make this a bit more explicit by writing the sampling errors in terms of the sum of a component that’s common acrosss outcomes and a component that’s specific to each outcome. Thus, let <span class="math inline">\(e_i = f + g_i\)</span>, where <span class="math inline">\(f \sim N\left(0, \rho \sigma^2 \right)\)</span> and <span class="math inline">\(g_i \stackrel{iid}{\sim} N \left(0, (1 - \rho) \sigma^2\right)\)</span>. Let me also define <span class="math inline">\(\zeta = \mu + u + f\)</span> as the conditional mean of the effects. It then follows that the effect size estimates are <em>conditionally independent</em>, given the common components:
+<span class="math display">\[
+\left(T_i | \zeta \right) \stackrel{iid}{\sim} N\left(\zeta, \omega^2 + (1 - \rho) \sigma^2\right)
+\]</span>
+Furthermore, the conditional probability of a significant effect is
+<span class="math display">\[
+\text{Pr}(A_i = 1 | \zeta) = \Phi\left(\frac{\zeta - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)
+\]</span>
+and <span class="math inline">\(A_1,...,A_m\)</span> are mutually independent, conditional on <span class="math inline">\(\zeta\)</span>. Therefore, the conditional distribution of <span class="math inline">\(N_A\)</span> is binomial,
+<span class="math display">\[
+\left(N_A | \zeta\right) \sim Bin(m, \pi)
+\]</span>
+where
+<span class="math display">\[
+\pi = \Phi\left(\frac{\zeta - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right).
+\]</span>
+What about the unconditional distribution?</p>
+<p>To get rid of the <span class="math inline">\(\zeta\)</span>, we need to integrate over its distribution, which leads to
+<span class="math display">\[
+\text{Pr}(N_A = a) = \text{E}\left[\text{Pr}\left(N_A | \zeta\right)\right] = \int f_{N_A}\left(a | \zeta, \omega, \sigma, \rho, m\right) \times f_\zeta(\zeta | \mu, \tau, \sigma, \rho) \ d \zeta,
+\]</span>
+where <span class="math inline">\(f_{N_A}\left(a | \zeta, \omega, \sigma, \rho \right)\)</span> is a binomial density with size <span class="math inline">\(m\)</span> and probability <span class="math inline">\(\pi = \pi(\zeta, \omega, \sigma, \rho)\)</span> and <span class="math inline">\(f_\zeta(\zeta | \mu, \tau, \sigma, \rho)\)</span> is a normal density with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2 + \rho \sigma^2\)</span>.</p>
+<p>This distribution is what you might call a binomial-normal convolution or a random-intercept probit model (where the random intercept is <span class="math inline">\(\zeta\)</span>). As far as I know, the density cannot be evaluated analytically but instead must be calculated using some sort of numerical integration routine (Laplace approximation, Gaussian quadrature, etc.).</p>
+</div>
+<div id="just-the-moments-please" class="section level2">
+<h2>Just the moments, please</h2>
+<p>If all we care about is the expectation of <span class="math inline">\(N_A\)</span>, we don’t need to bother with all the conditioning business and can just look at the marginal distribution of the effect size estimates taken individually. Marginally, <span class="math inline">\(T_i\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2 + \omega^2 + \sigma^2\)</span>, so <span class="math inline">\(\text{Pr}(A_i = 1) = \psi\)</span>, where
+<span class="math display">\[
+\psi = \Phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\tau^2 + \omega^2 + \sigma^2}}\right).
+\]</span>
+By the linearity of expectations,
+<span class="math display">\[
+\text{E}(N_A) = \sum_{i=1}^m \text{E}(A_i) = m \psi.
+\]</span></p>
+<p>We can also get an approximation for the variance of <span class="math inline">\(N_A\)</span> by working with its conditional distribution above. By the rule of variance decomposition,
+<span class="math display">\[
+\begin{aligned}
+\text{Var}(N_A) &amp;= \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] + \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] \\
+&amp;= m^2 \times \text{Var}\left[\pi\right] + m \times \text{E}\left[\pi (1 - \pi)\right],
+\end{aligned}
+\]</span>
+where <span class="math inline">\(\pi\)</span> is, as defined above, a function of <span class="math inline">\(\zeta\)</span> and thus a random variable.</p>
+</div>
+<div id="gaussian-quadrature" class="section level2">
+<h2>Gaussian quadrature</h2>
+</div>
