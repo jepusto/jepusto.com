@@ -5,7 +5,6 @@ authors:
 - admin
 date: '2024-03-28'
 slug: distribution-of-significant-effects
-draft: true
 categories: []
 tags:
   - effect size
@@ -68,10 +67,19 @@ $$
 We can also get an approximation for the variance of $N_A$ by working with its conditional distribution above. By the rule of variance decomposition,
 $$
 \begin{aligned}
-\text{Var}(N_A) &= \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] + \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] \\
-&= m^2 \times \text{Var}\left[\pi\right] + m \times \text{E}\left[\pi (1 - \pi)\right],
+\text{Var}(N_A) &= \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] + \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] \\
+&= m \times \text{E}\left[\pi (1 - \pi)\right] + m^2 \times \text{Var}\left[\pi\right]\\
+&= m \times \text{E}\left[\pi\right] \left(1 - \text{E}\left[\pi\right]\right) + m (m - 1) \times \text{Var}\left[\pi\right],
 \end{aligned}
 $$
-where $\pi$ is, as defined above, a function of $\zeta$ and thus a random variable.
-
-## Gaussian quadrature
+where $\pi$ is, as defined above, a function of $\zeta$ and thus a random variable. Now, $\text{E}(\pi) = \psi$ and we can get something close to $\text{Var}(\pi)$ using a first-order approximation:
+$$
+\text{Var}\left(\pi\right) \approx \left(\left.\frac{\delta \pi}{\delta \zeta}\right|_{\zeta = \mu}\right)^2 \times \text{Var}\left(\zeta\right) = \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+$$
+Thus,
+$$
+\begin{aligned}
+\text{Var}(N_A) \approx m \times \psi \left(1 - \psi\right) + m (m - 1) \times \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+\end{aligned}
+$$
+If the amount of common variation is small, so $\tau^2$ is near zero and $\rho$ is near zero, then the contribution of the second term will be small, and $N_A$ will act more or less like a binomial random variable with size $m$ and probability $\psi$. On the other hand, if the amount of independent variation in the effect sizes is small, so $\omega^2$ is near zero and $\rho$ is near 1, then the term on the right will approach $m(m - 1)\psi(1 - \psi)$ and $\text{Var}\left(N_A\right)$ will approach $m^2 \psi(1 - \psi)$, or the variance of $m$ times a single Bernoulli variate. So you could say that $N_A$ has anywhere between $1$ and $m$ variate's worth of information in it, depending on the degree of correlation between the effect size estimates. 

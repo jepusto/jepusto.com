@@ -5,7 +5,6 @@ authors:
 - admin
 date: '2024-03-28'
 slug: distribution-of-significant-effects
-draft: true
 categories: []
 tags:
   - effect size
@@ -64,12 +63,20 @@ By the linearity of expectations,
 <p>We can also get an approximation for the variance of <span class="math inline">\(N_A\)</span> by working with its conditional distribution above. By the rule of variance decomposition,
 <span class="math display">\[
 \begin{aligned}
-\text{Var}(N_A) &amp;= \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] + \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] \\
-&amp;= m^2 \times \text{Var}\left[\pi\right] + m \times \text{E}\left[\pi (1 - \pi)\right],
+\text{Var}(N_A) &amp;= \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] + \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] \\
+&amp;= m \times \text{E}\left[\pi (1 - \pi)\right] + m^2 \times \text{Var}\left[\pi\right]\\
+&amp;= m \times \text{E}\left[\pi\right] \left(1 - \text{E}\left[\pi\right]\right) + m (m - 1) \times \text{Var}\left[\pi\right],
 \end{aligned}
 \]</span>
-where <span class="math inline">\(\pi\)</span> is, as defined above, a function of <span class="math inline">\(\zeta\)</span> and thus a random variable.</p>
-</div>
-<div id="gaussian-quadrature" class="section level2">
-<h2>Gaussian quadrature</h2>
+where <span class="math inline">\(\pi\)</span> is, as defined above, a function of <span class="math inline">\(\zeta\)</span> and thus a random variable. Now, <span class="math inline">\(\text{E}(\pi) = \psi\)</span> and we can get something close to <span class="math inline">\(\text{Var}(\pi)\)</span> using a first-order approximation:
+<span class="math display">\[
+\text{Var}\left(\pi\right) \approx \left(\left.\frac{\delta \pi}{\delta \zeta}\right|_{\zeta = \mu}\right)^2 \times \text{Var}\left(\zeta\right) = \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+\]</span>
+Thus,
+<span class="math display">\[
+\begin{aligned}
+\text{Var}(N_A) \approx m \times \psi \left(1 - \psi\right) + m (m - 1) \times \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+\end{aligned}
+\]</span>
+If the amount of common variation is small, so <span class="math inline">\(\tau^2\)</span> is near zero and <span class="math inline">\(\rho\)</span> is near zero, then the contribution of the second term will be small, and <span class="math inline">\(N_A\)</span> will act more or less like a binomial random variable with size <span class="math inline">\(m\)</span> and probability <span class="math inline">\(\psi\)</span>. On the other hand, if the amount of independent variation in the effect sizes is small, so <span class="math inline">\(\omega^2\)</span> is near zero and <span class="math inline">\(\rho\)</span> is near 1, then the term on the right will approach <span class="math inline">\(m(m - 1)\psi(1 - \psi)\)</span> and <span class="math inline">\(\text{Var}\left(N_A\right)\)</span> will approach <span class="math inline">\(m^2 \psi(1 - \psi)\)</span>, or the variance of <span class="math inline">\(m\)</span> times a single Bernoulli variate. So you could say that <span class="math inline">\(N_A\)</span> has anywhere between <span class="math inline">\(1\)</span> and <span class="math inline">\(m\)</span> variate’s worth of information in it, depending on the degree of correlation between the effect size estimates.</p>
 </div>
