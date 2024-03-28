@@ -1,0 +1,65 @@
+library(tidyverse)
+library(future)
+library(furrr)
+plan(multisession, workers = availableCores() - 2L)
+
+f <- function(phi, mu, tau, omega, sigma, rho, k, s, alpha = .025) {
+  crit <- qnorm(1 - alpha)
+  Z <- (phi - crit * sigma) / sqrt(omega^2 + (1 - rho) * sigma^2)
+  prob <- pnorm(Z)
+  phi_sd <- sqrt(tau^2 + rho * sigma^2)
+  if (phi_sd > 0) {
+    dbinom(s, size = k, prob = prob) * dnorm(phi, mean = mu, sd = phi_sd)
+  } else {
+    dbinom(s, size = k, prob = prob)
+  }
+}
+
+binom_norm_density <- function(s, k, mu, tau, omega, sigma, rho, alpha = .025) {
+  phi_sd <- sqrt(tau^2 + rho * sigma^2)
+  if (phi_sd > 0) {
+    integrate(
+      f, 
+      lower = mu - 6 * phi_sd, 
+      upper = mu + 6 * phi_sd,
+      mu = mu, tau = tau, omega = omega, sigma = sigma, 
+      rho = rho, k = k, s = s, alpha = alpha
+    )$value
+  } else {
+    f(phi = mu, mu = mu, tau = tau, omega = omega,
+      sigma = sigma, rho = rho, k = k, s = s, alpha = alpha)
+  }
+}
+
+find_dist <- function(k, ESS, mu, tau, omega, rho) {
+  s <- 0:k
+  sigma <- 2 / sqrt(ESS)
+  probs <- sapply(
+    s, 
+    binom_norm_density, 
+    k = k, mu = mu,
+    tau = tau, omega = omega,
+    sigma = sigma, rho = rho
+  )
+  data.frame(
+    s = s, 
+    p = probs
+  )
+}
+
+params <- list(
+  k = 1:12,
+  ESS = seq(20, 300, 20),
+  mu = seq(0, 1, 0.1),
+  tau = seq(0, 0.4, 0.05),
+  omega = seq(0, 0.4, 0.05),
+  rho = seq(0, 0.9, 0.1)
+)
+
+number_sig_effects <- 
+  expand_grid(!!!params) %>%
+  mutate(
+    res = future_pmap(., find_dist)
+  )
+
+save(number_sig_effects, file = "R/number_sig_effects.Rdata")

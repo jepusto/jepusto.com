@@ -41,7 +41,7 @@ One class of approaches to approximating the sampling distribution of <span clas
 \frac{\eta - q + 1}{\eta q} Q \sim F(q, \eta - q + 1).
 \]</span>
 The question is then how to determine <span class="math inline">\(\eta\)</span>.</p>
-<p>Several of the small-sample approximations that we considered are based on representing the <span class="math inline">\(Q\)</span> statistic as
+<p>Several of the approaches that we considered are based on representing the <span class="math inline">\(Q\)</span> statistic as
 <span class="math display">\[
 Q = \bm{z}&#39; \bm{D}^{-1} \bm{z},
 \]</span>
@@ -49,7 +49,7 @@ where <span class="math inline">\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&#39;\)</span
 <span class="math display">\[
 \bm{D} = \bm{G} \bm{V}^R \bm{G}&#39;.
 \]</span>
-The approximations involve different approximations based on the sampling distribution of <span class="math inline">\(\bm{D}\)</span>.</p>
+The various approaches we considered involve different ways of approximating the sampling distribution of <span class="math inline">\(\bm{D}\)</span>.</p>
 <p>One of the approximations involves finding degrees of freedom <span class="math inline">\(\eta\)</span> by following a strategy suggested by Zhang (<a href="https://doi.org/10.1016/j.jspi.2011.07.023">2012</a>, <a href="https://doi.org/10.14419/ijasp.v1i2.908">2013</a>). These degrees of freedom are given by
 <span class="math display">\[
 \eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
@@ -147,7 +147,7 @@ q(q + 1)\eta_Z^{-1} &amp;= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}
 \]</span>
 or, rearranging,
 <span class="math display">\[
-\eta_Z = \frac{q(q + 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+\eta_Z = \frac{C(C - 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
 \]</span>
 It’s a surprisingly clean formula!
 Once these degrees of freedom are calculated, the degrees of freedom for the reference <span class="math inline">\(F\)</span> distribution would be <span class="math inline">\(q\)</span> and <span class="math inline">\(\eta_Z - q + 1\)</span>.</p>
