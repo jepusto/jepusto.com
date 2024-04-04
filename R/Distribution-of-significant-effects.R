@@ -1,7 +1,4 @@
 library(tidyverse)
-library(future)
-library(furrr)
-plan(multisession, workers = availableCores() - 2L)
 
 f <- function(phi, mu, tau, omega, sigma, rho, k, s, alpha = .025) {
   crit <- qnorm(1 - alpha)
@@ -80,19 +77,3 @@ ggplot(res) +
   geom_point(aes(x = s, y = p.x), color = "blue") + 
   geom_point(aes(x = s, y = p.y), color = "green")
 
-params <- list(
-  k = 1:12,
-  ESS = seq(20, 300, 20),
-  mu = seq(0, 1, 0.1),
-  tau = seq(0, 0.4, 0.05),
-  omega = seq(0, 0.4, 0.05),
-  rho = seq(0, 0.9, 0.1)
-)
-
-number_sig_effects <- 
-  expand_grid(!!!params) %>%
-  mutate(
-    res = future_pmap(., find_dist)
-  )
-
-save(number_sig_effects, file = "R/number_sig_effects.Rdata")
