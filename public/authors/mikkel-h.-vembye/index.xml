@@ -5,12 +5,28 @@
     <link>https://www.jepusto.com/authors/mikkel-h.-vembye/</link>
       <atom:link href="https://www.jepusto.com/authors/mikkel-h.-vembye/index.xml" rel="self" type="application/rss+xml" />
     <description>Mikkel H. Vembye</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 02 Dec 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Mon, 12 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Mikkel H. Vembye</title>
       <link>https://www.jepusto.com/authors/mikkel-h.-vembye/</link>
     </image>
+    
+    <item>
+      <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
+      <link>https://www.jepusto.com/publication/pomade/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/pomade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
+      <link>https://www.jepusto.com/publication/conducting-pomade/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/conducting-pomade/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>POMADE</title>

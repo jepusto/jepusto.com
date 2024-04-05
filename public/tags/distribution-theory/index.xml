@@ -5,12 +5,234 @@
     <link>https://www.jepusto.com/tags/distribution-theory/</link>
       <atom:link href="https://www.jepusto.com/tags/distribution-theory/index.xml" rel="self" type="application/rss+xml" />
     <description>distribution theory</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 28 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>distribution theory</title>
       <link>https://www.jepusto.com/tags/distribution-theory/</link>
     </image>
+    
+    <item>
+      <title>Distribution of the number of significant effect sizes</title>
+      <link>https://www.jepusto.com/distribution-of-significant-effects/</link>
+      <pubDate>Thu, 28 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/distribution-of-significant-effects/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;a href=&#34;https://www.jepusto.com/number-of-significant-effects/&#34;&gt;A while back&lt;/a&gt;, I posted the outline of a problem about the number of significant effect size estimates in a study that reports multiple outcomes. This problem interests me because it connects to the issue of selective reporting of study results, which creates problems for meta-analysis.
+Here, I’ll re-state the problem in slightly more general terms and then make some notes about what’s going on.&lt;/p&gt;
+&lt;p&gt;Consider a study that assesses some effect size across &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; different outcomes. (We’ll be thinking about one study at a time here, so no need to index the study as we would in a meta-analysis problem.) Let &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt; denote the effect size estimate for outcome &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, let &lt;span class=&#34;math inline&#34;&gt;\(V_i\)&lt;/span&gt; denote the sampling variance of the effect size estimate for outcome &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, and let &lt;span class=&#34;math inline&#34;&gt;\(\theta_i\)&lt;/span&gt; denote the true effect size parameter for corresponding to outcome &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;. Assume that the study outcomes &lt;span class=&#34;math inline&#34;&gt;\(\left[T_i\right]_{i=1}^m\)&lt;/span&gt; follow a correlated-and-hierarchical effects model, in which
+&lt;span class=&#34;math display&#34;&gt;\[T_i = \mu + u + v_i + e_i,\]&lt;/span&gt;
+where the study-level error &lt;span class=&#34;math inline&#34;&gt;\(u \sim N\left(0,\tau^2\right)\)&lt;/span&gt;, the effect-specific error &lt;span class=&#34;math inline&#34;&gt;\(v_i \stackrel{iid}{\sim} N\left(0, \omega^2\right)\)&lt;/span&gt;, and the vector of sampling errors &lt;span class=&#34;math inline&#34;&gt;\(\left[e_i\right]_{i=1}^m\)&lt;/span&gt; is multivariate normal with mean &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{0}\)&lt;/span&gt;, known variances &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(e_i) = \sigma^2\)&lt;/span&gt;, and compound symmetric correlation structure &lt;span class=&#34;math inline&#34;&gt;\(\text{cor}(e_h, e_i) = \rho\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Define &lt;span class=&#34;math inline&#34;&gt;\(A_i\)&lt;/span&gt; as an indicator that is equal to one if &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt; is statistically significant at level &lt;span class=&#34;math inline&#34;&gt;\(\alpha\)&lt;/span&gt; based on a one-sided test, and otherwise equal to zero. (Equivalently, let &lt;span class=&#34;math inline&#34;&gt;\(A_i\)&lt;/span&gt; be equal to one if the effect is statistically significant at level &lt;span class=&#34;math inline&#34;&gt;\(2 \alpha\)&lt;/span&gt; and in the theoretically expected direction.) Formally,
+&lt;span class=&#34;math display&#34;&gt;\[A_i = I\left(\frac{T_i}{\sigma} &amp;gt; q_\alpha \right)\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(q_\alpha = \Phi^{-1}(1 - \alpha)\)&lt;/span&gt; is the critical value from a standard normal distribution (e.g., &lt;span class=&#34;math inline&#34;&gt;\(q_{.05} = 1.645\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(q_{.025} = 1.96\)&lt;/span&gt;). Let &lt;span class=&#34;math inline&#34;&gt;\(N_A = \sum_{i=1}^m A_i\)&lt;/span&gt; denote the total number of statistically significant effect sizes in the study. The question is: what is the distribution of &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;compound-symmetry-to-the-rescue&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Compound symmetry to the rescue&lt;/h2&gt;
+&lt;p&gt;As I noted in the previous post, this set-up means that the effect size estimates have a compound symmetric distribution. We can make this a bit more explicit by writing the sampling errors in terms of the sum of a component that’s common acrosss outcomes and a component that’s specific to each outcome. Thus, let &lt;span class=&#34;math inline&#34;&gt;\(e_i = f + g_i\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(f \sim N\left(0, \rho \sigma^2 \right)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(g_i \stackrel{iid}{\sim} N \left(0, (1 - \rho) \sigma^2\right)\)&lt;/span&gt;. Let me also define &lt;span class=&#34;math inline&#34;&gt;\(\zeta = \mu + u + f\)&lt;/span&gt; as the conditional mean of the effects. It then follows that the effect size estimates are &lt;em&gt;conditionally independent&lt;/em&gt;, given the common components:
+&lt;span class=&#34;math display&#34;&gt;\[
+\left(T_i | \zeta \right) \stackrel{iid}{\sim} N\left(\zeta, \omega^2 + (1 - \rho) \sigma^2\right)
+\]&lt;/span&gt;
+Furthermore, the conditional probability of a significant effect is
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Pr}(A_i = 1 | \zeta) = \Phi\left(\frac{\zeta - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)
+\]&lt;/span&gt;
+and &lt;span class=&#34;math inline&#34;&gt;\(A_1,...,A_m\)&lt;/span&gt; are mutually independent, conditional on &lt;span class=&#34;math inline&#34;&gt;\(\zeta\)&lt;/span&gt;. Therefore, the conditional distribution of &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt; is binomial,
+&lt;span class=&#34;math display&#34;&gt;\[
+\left(N_A | \zeta\right) \sim Bin(m, \pi)
+\]&lt;/span&gt;
+where
+&lt;span class=&#34;math display&#34;&gt;\[
+\pi = \Phi\left(\frac{\zeta - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right).
+\]&lt;/span&gt;
+What about the unconditional distribution?&lt;/p&gt;
+&lt;p&gt;To get rid of the &lt;span class=&#34;math inline&#34;&gt;\(\zeta\)&lt;/span&gt;, we need to integrate over its distribution, which leads to
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Pr}(N_A = a) = \text{E}\left[\text{Pr}\left(N_A | \zeta\right)\right] = \int f_{N_A}\left(a | \zeta, \omega, \sigma, \rho, m\right) \times f_\zeta(\zeta | \mu, \tau, \sigma, \rho) \ d \zeta,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(f_{N_A}\left(a | \zeta, \omega, \sigma, \rho \right)\)&lt;/span&gt; is a binomial density with size &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and probability &lt;span class=&#34;math inline&#34;&gt;\(\pi = \pi(\zeta, \omega, \sigma, \rho)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(f_\zeta(\zeta | \mu, \tau, \sigma, \rho)\)&lt;/span&gt; is a normal density with mean &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and variance &lt;span class=&#34;math inline&#34;&gt;\(\tau^2 + \rho \sigma^2\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;This distribution is what you might call a binomial-normal convolution or a random-intercept probit model (where the random intercept is &lt;span class=&#34;math inline&#34;&gt;\(\zeta\)&lt;/span&gt;). As far as I know, the density cannot be evaluated analytically but instead must be calculated using some sort of numerical integration routine (Laplace approximation, Gaussian quadrature, etc.).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;just-the-moments-please&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Just the moments, please&lt;/h2&gt;
+&lt;p&gt;If all we care about is the expectation of &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt;, we don’t need to bother with all the conditioning business and can just look at the marginal distribution of the effect size estimates taken individually. Marginally, &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt; is normally distributed with mean &lt;span class=&#34;math inline&#34;&gt;\(\mu\)&lt;/span&gt; and variance &lt;span class=&#34;math inline&#34;&gt;\(\tau^2 + \omega^2 + \sigma^2\)&lt;/span&gt;, so &lt;span class=&#34;math inline&#34;&gt;\(\text{Pr}(A_i = 1) = \psi\)&lt;/span&gt;, where
+&lt;span class=&#34;math display&#34;&gt;\[
+\psi = \Phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\tau^2 + \omega^2 + \sigma^2}}\right).
+\]&lt;/span&gt;
+By the linearity of expectations,
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{E}(N_A) = \sum_{i=1}^m \text{E}(A_i) = m \psi.
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can also get an approximation for the variance of &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt; by working with its conditional distribution above. By the rule of variance decomposition,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{Var}(N_A) &amp;amp;= \text{E}\left[\text{Var}\left(N_A | \zeta\right)\right] + \text{Var}\left[\text{E}\left(N_A | \zeta\right)\right] \\
+&amp;amp;= m \times \text{E}\left[\pi (1 - \pi)\right] + m^2 \times \text{Var}\left[\pi\right]\\
+&amp;amp;= m \times \text{E}\left[\pi\right] \left(1 - \text{E}\left[\pi\right]\right) + m (m - 1) \times \text{Var}\left[\pi\right],
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\pi\)&lt;/span&gt; is, as defined above, a function of &lt;span class=&#34;math inline&#34;&gt;\(\zeta\)&lt;/span&gt; and thus a random variable. Now, &lt;span class=&#34;math inline&#34;&gt;\(\text{E}(\pi) = \psi\)&lt;/span&gt; and we can get something close to &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(\pi)\)&lt;/span&gt; using a first-order approximation:
+&lt;span class=&#34;math display&#34;&gt;\[
+\text{Var}\left(\pi\right) \approx \left(\left.\frac{\delta \pi}{\delta \zeta}\right|_{\zeta = \mu}\right)^2 \times \text{Var}\left(\zeta\right) = \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+\]&lt;/span&gt;
+Thus,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\text{Var}(N_A) \approx m \times \psi \left(1 - \psi\right) + m (m - 1) \times \left[\phi\left(\frac{\mu - q_{\alpha} \sigma}{\sqrt{\omega^2 + (1 - \rho)\sigma^2}}\right)\right]^2 \times \frac{\tau^2 + \rho \sigma^2}{\omega^2 + (1 - \rho)\sigma^2}.
+\end{aligned}
+\]&lt;/span&gt;
+If the amount of common variation is small, so &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt; is near zero and &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near zero, then the contribution of the second term will be small, and &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt; will act more or less like a binomial random variable with size &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and probability &lt;span class=&#34;math inline&#34;&gt;\(\psi\)&lt;/span&gt;. On the other hand, if the amount of independent variation in the effect sizes is small, so &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt; is near zero and &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; is near 1, then the term on the right will approach &lt;span class=&#34;math inline&#34;&gt;\(m(m - 1)\psi(1 - \psi)\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}\left(N_A\right)\)&lt;/span&gt; will approach &lt;span class=&#34;math inline&#34;&gt;\(m^2 \psi(1 - \psi)\)&lt;/span&gt;, or the variance of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; times a single Bernoulli variate. So you could say that &lt;span class=&#34;math inline&#34;&gt;\(N_A\)&lt;/span&gt; has anywhere between &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; variate’s worth of information in it, depending on the degree of correlation between the effect size estimates.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Approximating the distribution of cluster-robust Wald statistics</title>
+      <link>https://www.jepusto.com/cluster-robust-wald-statistics/</link>
+      <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/cluster-robust-wald-statistics/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;
+In &lt;a href=&#34;http://doi.org/10.3102/1076998615606099&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a simple but common scenario: a one-way ANOVA problem with clusters of dependent observations.&lt;/p&gt;
+&lt;p&gt;Consider a setup where clusters can be classified into one of &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; categories, with each cluster of observations falling into a single category. Let &lt;span class=&#34;math inline&#34;&gt;\(\bs\mu = \left[\mu_c \right]_{c=1}^C\)&lt;/span&gt; denote the means of these categories. Suppose we have an estimator of those means &lt;span class=&#34;math inline&#34;&gt;\(\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C\)&lt;/span&gt; and a corresponding cluster-robust variance estimator &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R = \bigoplus_{c=1}^C V^R_c\)&lt;/span&gt;. Note that &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R\)&lt;/span&gt; is diagonal because the estimators for each category are independent.
+Assume that the robust variance estimator is unbiased so &lt;span class=&#34;math inline&#34;&gt;\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt;.
+Let &lt;span class=&#34;math inline&#34;&gt;\(\bs\Psi = \bigoplus_{c=1}^C \psi_c\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Suppose that we want to test the null hypothesis that that means of the categories are all equal, &lt;span class=&#34;math inline&#34;&gt;\(H_0: \mu_1 = \mu_2 = \cdots = \mu_C\)&lt;/span&gt;. We can express this null using a &lt;span class=&#34;math inline&#34;&gt;\(q \times C\)&lt;/span&gt; contrast matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{C} = \left[-\bm{1}_q \ \bm{I}_q \right]\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(q = C - 1\)&lt;/span&gt;. The null hypothesis is then &lt;span class=&#34;math inline&#34;&gt;\(\bm{C} \bs\mu = \bm{0}_q\)&lt;/span&gt;. The corresponding cluster-robust Wald statistic is
+&lt;span class=&#34;math display&#34;&gt;\[
+Q = \bs{\hat\mu}&amp;#39; \bm{C}&amp;#39; \left(\bm{C} \bm{V}^R \bm{C}&amp;#39;\right)^{-1} \bm{C} \bs{\hat\mu}.
+\]&lt;/span&gt;
+Under the null hypothesis, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; will converge to a &lt;span class=&#34;math inline&#34;&gt;\(\chi^2_q\)&lt;/span&gt; as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates.&lt;/p&gt;
+&lt;p&gt;In the paper, we considered several different ways of approximating the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; that work at smaller sample sizes.
+One class of approaches to approximating the sampling distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; is to use a Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; distribution with degrees of freedom &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt;. Given the degrees of freedom, Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; is a multiple of an &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; distribution:
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\eta - q + 1}{\eta q} Q \sim F(q, \eta - q + 1).
+\]&lt;/span&gt;
+The question is then how to determine &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Several of the approaches that we considered are based on representing the &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; statistic as
+&lt;span class=&#34;math display&#34;&gt;\[
+Q = \bm{z}&amp;#39; \bm{D}^{-1} \bm{z},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&amp;#39;\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{G} = \bs\Omega^{-1/2} \bm{C}\)&lt;/span&gt;, and
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{D} = \bm{G} \bm{V}^R \bm{G}&amp;#39;.
+\]&lt;/span&gt;
+The various approaches we considered involve different ways of approximating the sampling distribution of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;One of the approximations involves finding degrees of freedom &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt; by following a strategy suggested by Zhang (&lt;a href=&#34;https://doi.org/10.1016/j.jspi.2011.07.023&#34;&gt;2012&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.14419/ijasp.v1i2.908&#34;&gt;2013&lt;/a&gt;). These degrees of freedom are given by
+&lt;span class=&#34;math display&#34;&gt;\[
+\eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(d_{st}\)&lt;/span&gt; is the entry in row &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;, column &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt;. To find &lt;span class=&#34;math inline&#34;&gt;\(\eta_Z\)&lt;/span&gt;, we can compute the denominator using general formulas given in the paper. However, with a bit of analysis we can find a much simpler expression for the special case of one-way ANOVA.&lt;/p&gt;
+&lt;p&gt;Before going further, it’s useful to observe that &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt; is invariant to linear transformations of &lt;span class=&#34;math inline&#34;&gt;\(\bm{C}\)&lt;/span&gt;. In particular, an equivalent way to write the null hypothesis is as &lt;span class=&#34;math inline&#34;&gt;\(H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c\)&lt;/span&gt; is the diagonal of the true sampling variances of categories 2 through &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;, omitting the first category. Thus, let me redefine
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega = \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&amp;#39;\bs\Psi_{\circ}^{-1/2},
+\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\bm{z} = \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c\)&lt;/span&gt;, and
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{G} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C}.
+\]&lt;/span&gt;
+This transformation of the constraint matrix will make it possible to find a closed-form expression for &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega^{-1/2}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now, observe that
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\bs\Omega &amp;amp;= \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&amp;#39;\bs\Psi_{\circ}^{-1/2} \\
+&amp;amp;= \bs\Psi_{\circ}^{-1/2} \left(\bs\Psi_{\circ} + \psi_1 \bm{1}_q \bm{1}_q&amp;#39;\right)\bs\Psi_{\circ}^{-1/2} \\
+&amp;amp;= \bm{I}_q + \psi_1 \bm{f} \bm{f}&amp;#39;,
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{f} = \bs\Psi_{\circ}^{-1/2} \bm{1}_q = \left[ \psi_c^{-1/2}\right]_{c = 2}^C\)&lt;/span&gt;. From the &lt;a href=&#34;\bs\Psi_%7B\circ%7D%5E%7B-1/2%7D&#34;&gt;Woodbury identity&lt;/a&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega^{-1} = \bm{I} - \frac{1}{W} \bm{f} \bm{f}&amp;#39;,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(W = \sum_{c=1}^C \frac{1}{\psi_c}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1137/22M1471559&#34;&gt;Fasi, Higham, and Liu (2023)&lt;/a&gt; provide formulas for &lt;span class=&#34;math inline&#34;&gt;\(p^{th}\)&lt;/span&gt; roots of low-rank updates to scaled identity matrices. Their results provide a neat closed-form expression for &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega^{-1/2}\)&lt;/span&gt;. From their Equation (1.9),
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39;,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\kappa = \frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}\)&lt;/span&gt;.
+Further, we can write the &lt;span class=&#34;math inline&#34;&gt;\(q \times C\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{G}\)&lt;/span&gt; as
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\bm{G} &amp;amp;= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \\
+&amp;amp;= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39; \right) \bs\Psi_{\circ}^{-1/2} \left[-\bm{1}_q, \ \bm{I}_q \right] \\
+&amp;amp;= \left[\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1} \bm{f},  \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39; \right) \bs\Psi_{\circ}^{-1/2}\right],
+\end{aligned}
+\]&lt;/span&gt;
+with entries given by
+&lt;span class=&#34;math display&#34;&gt;\[
+g_{sc} = \begin{cases}
+\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1 \sqrt{\psi_{s+1}}} &amp;amp; \text{if} \quad c = 1 \\
+\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}} &amp;amp; \text{if} \quad c &amp;gt; 1.
+\end{cases}
+\]&lt;/span&gt;
+Because &lt;span class=&#34;math inline&#34;&gt;\(\bm{D} = \bm{G} \bm{V}^R \bm{G}&amp;#39;\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R\)&lt;/span&gt; is diagonal, we can write the entries of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt; as
+&lt;span class=&#34;math display&#34;&gt;\[
+d_{st} = \sum_{c=1}^C g_{sc} g_{tc} V^R_c.
+\]&lt;/span&gt;
+And because the variance estimators for each category are independent,
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \Var(V^R_c).
+\]&lt;/span&gt;
+In &lt;a href=&#34;https://www.jepusto.com/publication/power-approximations-for-dependent-effects/&#34;&gt;prior work&lt;/a&gt;, we derived expressions for the Satterthwaite degrees of freedom for variances of average effect sizes, and the same formulas can be applied here with the category-specific &lt;span class=&#34;math inline&#34;&gt;\(V^R_c\)&lt;/span&gt;. Let me write &lt;span class=&#34;math inline&#34;&gt;\(\nu_c = 2\left[\E(V^R_c)\right]^2 / \Var(V^R_c)\)&lt;/span&gt; for the degrees of freedom corresponding to category &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt;. Then
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(d_{st}) = 2 \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
+\]&lt;/span&gt;
+We can use this to obtain an expression for Zhang’s approximate degrees of freedom:
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+q(q + 1)\eta_Z^{-1} &amp;amp;= \sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st}) \\
+&amp;amp;= 2\sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c} \\
+&amp;amp;= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2.
+\end{aligned}
+\]&lt;/span&gt;
+Now, all we need to do is simplify…
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\sum_{s=1}^q g_{s1}^2 &amp;amp;= \sum_{s=1}^q \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2 \psi_{s+1}} \\
+&amp;amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \sum_{c=2}^C \frac{1}{\psi_{s+1}} \\
+&amp;amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;amp;= \text{...a bunch of tedious algebra...} \\
+&amp;amp;= \frac{1}{\psi_1^2} \left(\psi_1 - \frac{1}{W}\right)
+\end{aligned}
+\]&lt;/span&gt;
+and, for &lt;span class=&#34;math inline&#34;&gt;\(c = 2,...,C\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\sum_{s=1}^q g_{sc}^2 &amp;amp;= \sum_{s=1}^q \left(\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}}\right)^2 \\
+&amp;amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\sum_{s=1}^q \frac{1}{\psi_{s+1}} \\
+&amp;amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;amp;= \text{...a bunch of tedious algebra...} \\
+&amp;amp;= \frac{1}{\psi_c^2} \left(\psi_c - \frac{1}{W}\right)
+\end{aligned}
+\]&lt;/span&gt;
+Thus,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+q(q + 1)\eta_Z^{-1} &amp;amp;= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
+&amp;amp;= 2\sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c - \frac{1}{W}\right)^2 \\
+&amp;amp;= 2\sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
+\end{aligned}
+\]&lt;/span&gt;
+or, rearranging,
+&lt;span class=&#34;math display&#34;&gt;\[
+\eta_Z = \frac{C(C - 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+\]&lt;/span&gt;
+It’s a surprisingly clean formula!
+Once these degrees of freedom are calculated, the degrees of freedom for the reference &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; distribution would be &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\eta_Z - q + 1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;In the paper, we also considered two other degrees of freedom approximations, which involve not only the variances of &lt;span class=&#34;math inline&#34;&gt;\(d_{st}\)&lt;/span&gt; but also the covariances between entries. In principle, one could follow similar algebra to get expressions for these other degrees of freedom as well. However, our simulations indicated that the other degrees of freedom approximations tend to be overly conservative and produce type-I error rates way below the nominal level (essentially, hardly ever rejecting the null) and less accurate than HTZ. So, there’s not much reason to work through them unless you find algebra enjoyable for its own sake.&lt;/p&gt;
+&lt;p&gt;A further question about this cluster-robust Wald statistic is how to approximate its sampling distribution under specific alternative hypotheses. In other words, given a vector of means &lt;span class=&#34;math inline&#34;&gt;\(\mu_1,...,\mu_C\)&lt;/span&gt; where the null does not hold, plus some information to determine &lt;span class=&#34;math inline&#34;&gt;\(\psi_c\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\nu_c\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt;, how could we approximate the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt;? We need something like a non-central Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; distribution…&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Implementing Consul&#39;s generalized Poisson distribution in Stan</title>
@@ -100,7 +322,7 @@ test_lpmf &amp;lt;-
 &lt;/div&gt;
 &lt;div id=&#34;quantile-function&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Quantile function&lt;/h1&gt;
-&lt;p&gt;I’ll next implement the generalized Poisson quantile function, taking advantage of a simple recurrence relationship for sequential values. Note that
+&lt;p&gt;I’ll next implement the generalized Poisson quantile function, taking advantage of a recurrence relationship for sequential values. Note that
 &lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
 f(0 | \mu, \phi) &amp;amp;= \exp \left(-\mu \sqrt{\phi}\right) \\
@@ -256,18 +478,18 @@ Looks like the sample moments closely match the parameter values, with deviation
 &lt;p&gt;To finish out my tests of these functions, I’ll try out a small simulation. Following my &lt;a href=&#34;https://www.jepusto.com/Double-Poisson-in-Stan/&#34;&gt;previous post&lt;/a&gt;, I’ll generate data based on a generalized linear model with a single predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, where the outcome &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; follows a generalized Poisson distribution conditional on &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;. The data-generating process is:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
-X &amp;amp;\sim N(0, 1) \\
+X &amp;amp;\sim \Gamma(6,2) \\
 Y|X &amp;amp;\sim GPO(\mu(X), \phi) \\
 \log \mu(X) &amp;amp;= 2 + 0.3 \times X
 \end{aligned}
 \]&lt;/span&gt;
-with the dispersion parameter set to &lt;span class=&#34;math inline&#34;&gt;\(\phi = 10 / 7\)&lt;/span&gt; so that the outcome is &lt;em&gt;under&lt;/em&gt;-dispersed.&lt;/p&gt;
+with the dispersion parameter set to &lt;span class=&#34;math inline&#34;&gt;\(\phi = 6/10\)&lt;/span&gt; so that the outcome is &lt;em&gt;over&lt;/em&gt;-dispersed. I’m looking at over-dispersion here so that the negative binomial has a chance to keep up, since it doesn’t allow for any degree of under-dispersion.&lt;/p&gt;
 &lt;p&gt;The following code generates a large sample from the data-generating process:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(20231204)
-N &amp;lt;- 600
-X &amp;lt;- rnorm(N)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(20231206)
+N &amp;lt;- 1500
+X &amp;lt;- rgamma(N, shape = 6, rate = 2)
 mu &amp;lt;- exp(2 + 0.3 * X)
-phi &amp;lt;- 10 / 7
+phi &amp;lt;- 6 / 10
 Y &amp;lt;- map_dbl(mu, gpo_rng, phi = phi)
 dat &amp;lt;- data.frame(X = X, Y = Y)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here’s what the sample looks like, along with a smoothed regression estimated using a basic cubic spline:&lt;/p&gt;
@@ -285,23 +507,23 @@ summary(quasi_fit)&lt;/code&gt;&lt;/pre&gt;
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
-## -2.8059  -0.5958  -0.0308   0.5275   2.8044  
+## -5.3261  -0.9290  -0.0912   0.7371   5.0944  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&amp;gt;|t|)    
-## (Intercept)  1.99558    0.01273  156.71   &amp;lt;2e-16 ***
-## X            0.30081    0.01174   25.61   &amp;lt;2e-16 ***
+## (Intercept) 1.981959   0.020609   96.17   &amp;lt;2e-16 ***
+## X           0.306733   0.005525   55.52   &amp;lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
-## (Dispersion parameter for quasipoisson family taken to be 0.6689639)
+## (Dispersion parameter for quasipoisson family taken to be 1.680427)
 ## 
-##     Null deviance: 852.98  on 599  degrees of freedom
-## Residual deviance: 413.94  on 598  degrees of freedom
+##     Null deviance: 7248.1  on 1499  degrees of freedom
+## Residual deviance: 2520.5  on 1498  degrees of freedom
 ## AIC: NA
 ## 
 ## Number of Fisher Scoring iterations: 4&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This approach recovers the data-generating parameters quite well, with a dispersion estimate of 0.669 compared to the true dispersion parameter of 0.7.&lt;/p&gt;
+&lt;p&gt;This approach recovers the data-generating parameters quite well, with a dispersion estimate of 1.68 compared to the true dispersion parameter of 1.67.&lt;/p&gt;
 &lt;div id=&#34;candidate-models&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Candidate models&lt;/h2&gt;
 &lt;p&gt;Now let me fit the same generalized linear model but assuming that the outcome follow a couple of different distributions, including a true Poisson (with unit dispersion), a negative binomial, the double-Poisson distribution from the previous post, and the generalized Poisson distribution. Here goes!&lt;/p&gt;
@@ -310,7 +532,7 @@ summary(quasi_fit)&lt;/code&gt;&lt;/pre&gt;
     Y ~ X, family = poisson(link = &amp;quot;log&amp;quot;),
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -320,7 +542,7 @@ summary(quasi_fit)&lt;/code&gt;&lt;/pre&gt;
     Y ~ X, family = negbinomial(link = &amp;quot;log&amp;quot;),
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -385,7 +607,7 @@ DPO_fit &amp;lt;-
     stanvars = double_Poisson_stanvars,
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -461,7 +683,7 @@ GPO_fit &amp;lt;-
     stanvars = generalized_Poisson_stanvars,
     data = dat, 
     warmup = 500, 
-    iter = 1500, 
+    iter = 2500, 
     chains = 4, 
     cores = 4,
     seed = 20231204
@@ -485,26 +707,31 @@ posterior_predict_gpo &amp;lt;- function(i, prep, maxval = NULL, ...) {
 &lt;div id=&#34;model-comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Model comparison&lt;/h2&gt;
 &lt;p&gt;Here is a comparison of LOOIC for all of the models:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;loo_comparison &amp;lt;- loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Unsurprisingly, the model based on the true data-generating process clearly fits better than the models involving other outcome distributions.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;loo_comparison &amp;lt;- loo(Poisson_fit, negbin_fit, DPO_fit, GPO_fit)
+loo_comparison$diffs&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##             elpd_diff se_diff
+## DPO_fit        0.0       0.0 
+## GPO_fit       -2.9       2.8 
+## negbin_fit    -8.9       4.4 
+## Poisson_fit -120.7      20.1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The model based on the double-Poisson distribution fits equally well to the true data-generating process here, suggesting that there’s really just not enough information to distriguish between the two models. The negative binomial distribution fit is substantially worse, and the Poisson distribution fit is awful.&lt;/p&gt;
 &lt;p&gt;Here’s the posterior for the dispersion (i.e., &lt;span class=&#34;math inline&#34;&gt;\(1 / \phi\)&lt;/span&gt;) based on the GPO and DPO models:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;color_scheme_set(&amp;quot;green&amp;quot;)
 GPO_dispersion &amp;lt;- 
   mcmc_areas(GPO_fit, pars = &amp;quot;phi&amp;quot;, transformations = \(x) 1 / x) + 
-  scale_x_continuous(limits = c(0.55, 0.95)) + 
   theme_minimal() + 
   ggtitle(&amp;quot;Generalized Poisson&amp;quot;)
 
 color_scheme_set(&amp;quot;brightblue&amp;quot;)
 DPO_dispersion &amp;lt;- 
   mcmc_areas(DPO_fit, pars = &amp;quot;phi&amp;quot;, transformations = \(x) 1 / x) + 
-  scale_x_continuous(limits = c(0.55, 0.95)) + 
   theme_minimal() + 
   ggtitle(&amp;quot;Double Poisson&amp;quot;)
 
-DPO_dispersion / GPO_dispersion&lt;/code&gt;&lt;/pre&gt;
+DPO_dispersion / GPO_dispersion &amp;amp; 
+  xlim(1.5, 2.0)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/dispersion-comparison-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;It looks like the estimated dispersion from the double Poisson model is biased upwards (towards one) a little bit). To get a better sense of this, I’ll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:&lt;/p&gt;
+&lt;p&gt;Right on par. To get a better sense of model fit, I’ll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Yrep_Poisson &amp;lt;- posterior_predict(Poisson_fit, ndraws = 500) 
 Yrep_negbin &amp;lt;- posterior_predict(negbin_fit, ndraws = 500)
 Yrep_dpo &amp;lt;- posterior_predict(DPO_fit, ndraws = 500)
@@ -533,9 +760,9 @@ gpo_disp &amp;lt;- ppc_stat(dat$Y, Yrep_gpo, stat = dispersion_coef, binwidth = 
 
 Poisson_disp / negbin_disp / dpo_disp / gpo_disp &amp;amp;
   theme_minimal() &amp;amp; 
-  xlim(c(0.45, 1.3))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;
-Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data. Squinting pretty hard, it looks like the double Poisson model could be a little bit biased.&lt;/p&gt;
+  xlim(c(0.8, 2.1))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data. The negative binomial distribution is not noticeably worse.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;marginal-posterior-predictive-densities&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Marginal posterior predictive densities&lt;/h2&gt;
@@ -552,11 +779,11 @@ gpo_root &amp;lt;- ppc_rootogram(dat$Y, Yrep_gpo, style = &amp;quot;hanging&amp;
 Poisson_root / negbin_root / dpo_root / gpo_root &amp;amp;
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-1.png&#34; width=&#34;672&#34; /&gt;
-You can see from these that the Poisson and negative-binomial models expect more low-frequency counts than are present in the observed data. However, the figure doesn’t really capture the degree of mis-fit that is apparent with the dispersion summary statistics. I think this is because the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; changes so much depending on the value of the predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;.&lt;/p&gt;
+You can see from these that the Poisson model maybe expects slightly fewer low counts and slightly fewer high counts than are present in the observed data. However, the figure doesn’t really capture the degree of mis-fit that is apparent with the dispersion summary statistics. I think this is because the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; changes so much depending on the value of the predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;posterior-predictive-residual-densities&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Posterior predictive residual densities&lt;/h2&gt;
-&lt;p&gt;One way to focus in on the distributional assumption is to examine the distribution of residuals rather than raw outcomes. I’ll do that here by looking the deviance residuals from the quasi-Poisson GLM model, treating the calculation of the residuals as merely as transformation of the raw data. Here are some posterior predictive density plots of these deviance residuals:&lt;/p&gt;
+&lt;p&gt;One way to focus in on the distributional assumption is to examine the distribution of residuals rather than raw outcomes. I’ll do that here by looking the deviance residuals from the quasi-Poisson GLM model, treating the calculation of the residuals as merely a transformation of the raw data. Here are some posterior predictive density plots of these deviance residuals:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# quasi-Poisson deviance residuals
 dat$resid &amp;lt;- residuals(quasi_fit)
 
@@ -585,16 +812,64 @@ gpo_resid_density &amp;lt;- ppc_dens_overlay(dat$resid, resid_gpo) + labs(title 
 
 Poisson_resid_density / negbin_resid_density / dpo_resid_density / gpo_resid_density &amp;amp;
   theme_minimal() &amp;amp; 
-  xlim(c(-3, 3))&lt;/code&gt;&lt;/pre&gt;
+  xlim(c(-3.5, 3.5))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residuals-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;It’s quite a bit clearer from these plots that the DPO and GPO models are closer to replicating the distribution of the data than are the Poisson or negative binomial models.&lt;/p&gt;
+&lt;p&gt;It’s quite a bit clearer from these plots that the DPO and GPO models are closer to replicating the distribution of the data than the Poisson model.
+The negative binomial model is not obviously mis-specified either.&lt;/p&gt;
+&lt;p&gt;A notable difference between the negative binomial versus the DPO and GPO distributions is in the form of the mean-variance relationship.
+For the negative binomial, the variance increases with the square of the mean, whereas for the DPO and GPO, the variance increases in constant proportion to the mean.
+The residual posterior density plots above don’t really capture these mean-variance relationships in an obvious way.
+I took one more crack at a posterior predictive check to get at this.
+Below is a figure showing the loess smooth of the squared residuals versus &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; based on the posterior predictive distributions versus the real data. I couldn’t find an easy way to do this with the &lt;code&gt;bayesplot&lt;/code&gt; functions I’ve used above, so I had to bang it out in regular &lt;code&gt;ggplot&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X_grid &amp;lt;- seq(min(dat$X), max(dat$X), length.out = 200)
+
+smooth_square_resid &amp;lt;- function(r, x_dat, X_pred = X_grid) {
+  loess_fit &amp;lt;- loess(I(r^2) ~ x_dat)
+  predict(loess_fit, newdata = data.frame(x_dat = X_pred))
+}
+
+dat$sm &amp;lt;- smooth_square_resid(r = dat$resid, x_dat = dat$X, X_pred = dat$X)
+
+smooth_square_resid_ppcs &amp;lt;- function(R, x_dat, X_pred = X_grid) {
+  smooth_list &amp;lt;- apply(R, 1, smooth_square_resid, x_dat = dat$X, X_pred = X_pred, simplify = FALSE)
+  tibble(
+    group = 1:length(smooth_list),
+    X = rep(list(X_pred), length(smooth_list)),
+    sm = smooth_list
+  )
+}
+
+smooth_MV &amp;lt;- 
+  list(
+    Poisson = resid_Poisson, 
+    `Negative binomial` = resid_negbin,
+    `Double Poisson` = resid_dpo,
+    `Generalized Poisson` = resid_gpo
+  ) %&amp;gt;%
+  map_dfr(smooth_square_resid_ppcs, x_dat = dat$X, .id = &amp;quot;distribution&amp;quot;) %&amp;gt;%
+  unnest(X, sm) %&amp;gt;%
+  mutate(
+    distribution = factor(distribution, levels = c(&amp;quot;Poisson&amp;quot;, &amp;quot;Negative binomial&amp;quot;,&amp;quot;Double Poisson&amp;quot;, &amp;quot;Generalized Poisson&amp;quot;))
+  )
+
+ggplot(smooth_MV, aes(X, sm, group = group, color = distribution)) + 
+  geom_line(alpha = 0.4) + 
+  geom_line(data = dat, aes(X, sm, group = NULL), color = &amp;quot;black&amp;quot;, linewidth = 1.25) + 
+  scale_color_manual(values = c(&amp;quot;grey&amp;quot;,&amp;quot;purple&amp;quot;,&amp;quot;lightblue&amp;quot;,&amp;quot;lightgreen&amp;quot;)) + 
+  scale_y_continuous(limits = c(0, 9), breaks = seq(0,8,2), expand = expansion(0,0)) + 
+  facet_wrap(~ distribution, ncol = 1) + 
+  theme_minimal() + 
+  theme(legend.position = &amp;quot;none&amp;quot;) + 
+  labs(y = &amp;quot;Loess smooth of squared residuals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residual-smooth-1.png&#34; width=&#34;576&#34; /&gt;
+Aha! Here we can clearly see that the negative binomial model generates residuals that have more curvature to the mean-variance relationship, and so don’t really fit with the observed data. The double Poisson and generalized Poisson both generate residuals that match the observed mean-variance relationship decently well.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;colophon&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Colophon&lt;/h1&gt;
 &lt;pre&gt;&lt;code&gt;## R version 4.2.2 (2022-10-31 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 22621)
+## Running under: Windows 10 x64 (build 19045)
 ## 
 ## Matrix products: default
 ## 
@@ -609,56 +884,51 @@ Poisson_resid_density / negbin_resid_density / dpo_resid_density / gpo_resid_den
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] loo_2.5.1           bayesplot_1.10.0    brms_2.18.0        
-##  [4] Rcpp_1.0.10         rstan_2.26.23       StanHeaders_2.26.28
-##  [7] gamlss.dist_6.0-5   MASS_7.3-58.1       patchwork_1.1.2    
-## [10] forcats_0.5.2       stringr_1.5.0       dplyr_1.1.3        
-## [13] purrr_1.0.2         readr_2.1.3         tidyr_1.3.0        
-## [16] tibble_3.2.1        ggplot2_3.4.3       tidyverse_1.3.2    
+##  [1] loo_2.5.1           bayesplot_1.9.0     brms_2.18.0        
+##  [4] Rcpp_1.0.10         rstan_2.26.23       StanHeaders_2.26.27
+##  [7] gamlss.dist_6.0-3   MASS_7.3-57         patchwork_1.1.3    
+## [10] lubridate_1.9.2     forcats_1.0.0       stringr_1.5.0      
+## [13] dplyr_1.1.2         purrr_1.0.2         readr_2.1.4        
+## [16] tidyr_1.3.0         tibble_3.2.1        ggplot2_3.4.3      
+## [19] tidyverse_2.0.0    
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] readxl_1.4.1         backports_1.4.1      RcppEigen_0.3.3.9.2 
-##   [4] plyr_1.8.7           igraph_1.3.5         splines_4.2.2       
-##   [7] crosstalk_1.2.0      TH.data_1.1-2        rstantools_2.2.0    
-##  [10] inline_0.3.19        digest_0.6.31        htmltools_0.5.4     
-##  [13] fansi_1.0.4          BH_1.78.0-0          magrittr_2.0.3      
-##  [16] checkmate_2.1.0      googlesheets4_1.0.1  tzdb_0.3.0          
-##  [19] modelr_0.1.9         RcppParallel_5.1.5   matrixStats_0.63.0  
-##  [22] xts_0.12.2           sandwich_3.0-2       timechange_0.2.0    
-##  [25] prettyunits_1.1.1    colorspace_2.1-0     rvest_1.0.3         
-##  [28] haven_2.5.1          xfun_0.40            callr_3.7.3         
-##  [31] crayon_1.5.2         jsonlite_1.8.4       survival_3.4-0      
-##  [34] zoo_1.8-12           glue_1.6.2           gtable_0.3.4        
-##  [37] gargle_1.3.0         emmeans_1.8.2        distributional_0.3.1
-##  [40] pkgbuild_1.4.0       abind_1.4-5          scales_1.2.1        
-##  [43] mvtnorm_1.1-3        DBI_1.1.3            miniUI_0.1.1.1      
-##  [46] xtable_1.8-4         stats4_4.2.2         DT_0.26             
-##  [49] htmlwidgets_1.6.2    httr_1.4.5           threejs_0.3.3       
-##  [52] posterior_1.3.1      ellipsis_0.3.2       pkgconfig_2.0.3     
-##  [55] farver_2.1.1         sass_0.4.5           dbplyr_2.2.1        
-##  [58] utf8_1.2.3           labeling_0.4.3       tidyselect_1.2.0    
-##  [61] rlang_1.1.1          reshape2_1.4.4       later_1.3.0         
-##  [64] munsell_0.5.0        cellranger_1.1.0     tools_4.2.2         
-##  [67] cachem_1.0.6         cli_3.6.1            generics_0.1.3      
-##  [70] ggridges_0.5.4       broom_1.0.1          evaluate_0.20       
-##  [73] fastmap_1.1.0        yaml_2.3.7           processx_3.7.0      
-##  [76] knitr_1.42           fs_1.6.1             nlme_3.1-160        
-##  [79] mime_0.12            xml2_1.3.3           compiler_4.2.2      
-##  [82] shinythemes_1.2.0    rstudioapi_0.14      reprex_2.0.2        
-##  [85] bslib_0.4.2          stringi_1.7.12       highr_0.10          
-##  [88] ps_1.7.1             blogdown_1.13        Brobdingnag_1.2-9   
-##  [91] lattice_0.20-45      Matrix_1.6-3         markdown_1.8        
-##  [94] shinyjs_2.1.0        tensorA_0.36.2       vctrs_0.6.3         
-##  [97] pillar_1.9.0         lifecycle_1.0.3      jquerylib_0.1.4     
-## [100] bridgesampling_1.1-2 estimability_1.4.1   httpuv_1.6.8        
-## [103] QuickJSR_1.0.6       R6_2.5.1             bookdown_0.29       
-## [106] promises_1.2.0.1     gridExtra_2.3        codetools_0.2-18    
-## [109] colourpicker_1.2.0   gtools_3.9.4         assertthat_0.2.1    
-## [112] withr_2.5.0          shinystan_2.6.0      multcomp_1.4-25     
-## [115] mgcv_1.8-41          parallel_4.2.2       hms_1.1.2           
-## [118] grid_4.2.2           coda_0.19-4          rmarkdown_2.20      
-## [121] googledrive_2.0.0    shiny_1.7.2          lubridate_1.9.2     
-## [124] base64enc_0.1-3      dygraphs_1.1.1.6&lt;/code&gt;&lt;/pre&gt;
+##   [1] TH.data_1.1-2        colorspace_2.1-0     RcppEigen_0.3.3.9.2 
+##   [4] ellipsis_0.3.2       ggridges_0.5.3       estimability_1.3    
+##   [7] markdown_1.7         QuickJSR_1.0.5       base64enc_0.1-3     
+##  [10] rstudioapi_0.15.0    farver_2.1.1         DT_0.29             
+##  [13] fansi_1.0.4          mvtnorm_1.1-3        splines_4.2.2       
+##  [16] bridgesampling_1.1-2 codetools_0.2-18     cachem_1.0.6        
+##  [19] knitr_1.40           shinythemes_1.2.0    jsonlite_1.8.4      
+##  [22] shiny_1.7.4          compiler_4.2.2       emmeans_1.7.3       
+##  [25] backports_1.4.1      Matrix_1.6-3         fastmap_1.1.0       
+##  [28] cli_3.6.1            later_1.3.0          htmltools_0.5.4     
+##  [31] prettyunits_1.1.1    tools_4.2.2          igraph_1.3.5        
+##  [34] coda_0.19-4          gtable_0.3.4         glue_1.6.2          
+##  [37] reshape2_1.4.4       posterior_1.3.1      jquerylib_0.1.4     
+##  [40] vctrs_0.6.3          nlme_3.1-157         blogdown_1.10       
+##  [43] crosstalk_1.2.0      tensorA_0.36.2       xfun_0.40           
+##  [46] ps_1.6.0             timechange_0.2.0     mime_0.12           
+##  [49] miniUI_0.1.1.1       lifecycle_1.0.3      gtools_3.9.3        
+##  [52] zoo_1.8-10           scales_1.2.1         colourpicker_1.1.1  
+##  [55] hms_1.1.3            promises_1.2.0.1     Brobdingnag_1.2-9   
+##  [58] parallel_4.2.2       sandwich_3.0-1       inline_0.3.19       
+##  [61] shinystan_2.6.0      yaml_2.3.5           gridExtra_2.3       
+##  [64] sass_0.4.5           stringi_1.7.12       highr_0.9           
+##  [67] dygraphs_1.1.1.6     checkmate_2.1.0      pkgbuild_1.3.1      
+##  [70] rlang_1.1.1          pkgconfig_2.0.3      matrixStats_0.62.0  
+##  [73] BH_1.78.0-0          distributional_0.3.1 evaluate_0.18       
+##  [76] lattice_0.20-45      labeling_0.4.3       rstantools_2.2.0    
+##  [79] htmlwidgets_1.6.2    processx_3.7.0       tidyselect_1.2.0    
+##  [82] plyr_1.8.8           magrittr_2.0.3       bookdown_0.26       
+##  [85] R6_2.5.1             generics_0.1.3       multcomp_1.4-23     
+##  [88] mgcv_1.8-41          pillar_1.9.0         withr_2.5.0         
+##  [91] xts_0.12.1           survival_3.4-0       abind_1.4-5         
+##  [94] crayon_1.5.2         utf8_1.2.3           tzdb_0.3.0          
+##  [97] rmarkdown_2.18       grid_4.2.2           callr_3.7.2         
+## [100] threejs_0.3.3        digest_0.6.30        xtable_1.8-4        
+## [103] httpuv_1.6.8         RcppParallel_5.1.5   stats4_4.2.2        
+## [106] munsell_0.5.0        bslib_0.4.2          shinyjs_2.1.0&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
     </item>

@@ -5,7 +5,7 @@
     <link>https://www.jepusto.com/tags/robust-variance-estimation/</link>
       <atom:link href="https://www.jepusto.com/tags/robust-variance-estimation/index.xml" rel="self" type="application/rss+xml" />
     <description>robust variance estimation</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2023</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>robust variance estimation</title>
@@ -13,10 +13,173 @@
     </image>
     
     <item>
+      <title>Approximating the distribution of cluster-robust Wald statistics</title>
+      <link>https://www.jepusto.com/cluster-robust-wald-statistics/</link>
+      <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/cluster-robust-wald-statistics/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\cor{{\text{cor}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;
+In &lt;a href=&#34;http://doi.org/10.3102/1076998615606099&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, we examined several different small-sample approximations for cluster-robust Wald test statistics, which are like &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; statistics but based on cluster-robust variance estimators. These statistics are, frankly, kind of weird and awkward to work with, and the approximations that we examined were far from perfect. In this post, I will look in detail at the robust Wald statistic for a simple but common scenario: a one-way ANOVA problem with clusters of dependent observations.&lt;/p&gt;
+&lt;p&gt;Consider a setup where clusters can be classified into one of &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt; categories, with each cluster of observations falling into a single category. Let &lt;span class=&#34;math inline&#34;&gt;\(\bs\mu = \left[\mu_c \right]_{c=1}^C\)&lt;/span&gt; denote the means of these categories. Suppose we have an estimator of those means &lt;span class=&#34;math inline&#34;&gt;\(\bs{\hat\mu} = \left[\hat\mu_c\right]_{c=1}^C\)&lt;/span&gt; and a corresponding cluster-robust variance estimator &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R = \bigoplus_{c=1}^C V^R_c\)&lt;/span&gt;. Note that &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R\)&lt;/span&gt; is diagonal because the estimators for each category are independent.
+Assume that the robust variance estimator is unbiased so &lt;span class=&#34;math inline&#34;&gt;\(\E\left(V^R_c\right) = \Var\left( \hat\mu_c \right) = \psi_c\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt;.
+Let &lt;span class=&#34;math inline&#34;&gt;\(\bs\Psi = \bigoplus_{c=1}^C \psi_c\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Suppose that we want to test the null hypothesis that that means of the categories are all equal, &lt;span class=&#34;math inline&#34;&gt;\(H_0: \mu_1 = \mu_2 = \cdots = \mu_C\)&lt;/span&gt;. We can express this null using a &lt;span class=&#34;math inline&#34;&gt;\(q \times C\)&lt;/span&gt; contrast matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{C} = \left[-\bm{1}_q \ \bm{I}_q \right]\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(q = C - 1\)&lt;/span&gt;. The null hypothesis is then &lt;span class=&#34;math inline&#34;&gt;\(\bm{C} \bs\mu = \bm{0}_q\)&lt;/span&gt;. The corresponding cluster-robust Wald statistic is
+&lt;span class=&#34;math display&#34;&gt;\[
+Q = \bs{\hat\mu}&amp;#39; \bm{C}&amp;#39; \left(\bm{C} \bm{V}^R \bm{C}&amp;#39;\right)^{-1} \bm{C} \bs{\hat\mu}.
+\]&lt;/span&gt;
+Under the null hypothesis, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; will converge to a &lt;span class=&#34;math inline&#34;&gt;\(\chi^2_q\)&lt;/span&gt; as the number of clusters in each category grows large. However, with a limited number of clusters in some of the categories, this approximate reference distribution is not very accurate and tests based on it can have wildly inflated type I error rates.&lt;/p&gt;
+&lt;p&gt;In the paper, we considered several different ways of approximating the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; that work at smaller sample sizes.
+One class of approaches to approximating the sampling distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; is to use a Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; distribution with degrees of freedom &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt;. Given the degrees of freedom, Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; is a multiple of an &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; distribution:
+&lt;span class=&#34;math display&#34;&gt;\[
+\frac{\eta - q + 1}{\eta q} Q \sim F(q, \eta - q + 1).
+\]&lt;/span&gt;
+The question is then how to determine &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Several of the approaches that we considered are based on representing the &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt; statistic as
+&lt;span class=&#34;math display&#34;&gt;\[
+Q = \bm{z}&amp;#39; \bm{D}^{-1} \bm{z},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega = \bm{C} \bs\Psi \bm{C}&amp;#39;\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{z} = \bs\Omega^{-1/2}\bm{C}\hat\mu_c\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(\bm{G} = \bs\Omega^{-1/2} \bm{C}\)&lt;/span&gt;, and
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{D} = \bm{G} \bm{V}^R \bm{G}&amp;#39;.
+\]&lt;/span&gt;
+The various approaches we considered involve different ways of approximating the sampling distribution of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;One of the approximations involves finding degrees of freedom &lt;span class=&#34;math inline&#34;&gt;\(\eta\)&lt;/span&gt; by following a strategy suggested by Zhang (&lt;a href=&#34;https://doi.org/10.1016/j.jspi.2011.07.023&#34;&gt;2012&lt;/a&gt;, &lt;a href=&#34;https://doi.org/10.14419/ijasp.v1i2.908&#34;&gt;2013&lt;/a&gt;). These degrees of freedom are given by
+&lt;span class=&#34;math display&#34;&gt;\[
+\eta_Z = \frac{q(q + 1)}{\sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st})},
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(d_{st}\)&lt;/span&gt; is the entry in row &lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;, column &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt; of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt;. To find &lt;span class=&#34;math inline&#34;&gt;\(\eta_Z\)&lt;/span&gt;, we can compute the denominator using general formulas given in the paper. However, with a bit of analysis we can find a much simpler expression for the special case of one-way ANOVA.&lt;/p&gt;
+&lt;p&gt;Before going further, it’s useful to observe that &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt; is invariant to linear transformations of &lt;span class=&#34;math inline&#34;&gt;\(\bm{C}\)&lt;/span&gt;. In particular, an equivalent way to write the null hypothesis is as &lt;span class=&#34;math inline&#34;&gt;\(H_0: \bs\Psi_{\circ}^{-1/2} \bm{C} = \bm{0}_q\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(\bs\Psi_{\circ} = \bigoplus_{c=2}^C \psi_c\)&lt;/span&gt; is the diagonal of the true sampling variances of categories 2 through &lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;, omitting the first category. Thus, let me redefine
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega = \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&amp;#39;\bs\Psi_{\circ}^{-1/2},
+\]&lt;/span&gt;
+&lt;span class=&#34;math inline&#34;&gt;\(\bm{z} = \bs\Omega^{-1/2}\bs\Psi_{\circ}^{-1/2}\bm{C}\hat\mu_c\)&lt;/span&gt;, and
+&lt;span class=&#34;math display&#34;&gt;\[
+\bm{G} = \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C}.
+\]&lt;/span&gt;
+This transformation of the constraint matrix will make it possible to find a closed-form expression for &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega^{-1/2}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Now, observe that
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\bs\Omega &amp;amp;= \bs\Psi_{\circ}^{-1/2} \bm{C} \bs\Psi \bm{C}&amp;#39;\bs\Psi_{\circ}^{-1/2} \\
+&amp;amp;= \bs\Psi_{\circ}^{-1/2} \left(\bs\Psi_{\circ} + \psi_1 \bm{1}_q \bm{1}_q&amp;#39;\right)\bs\Psi_{\circ}^{-1/2} \\
+&amp;amp;= \bm{I}_q + \psi_1 \bm{f} \bm{f}&amp;#39;,
+\end{aligned}
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\bm{f} = \bs\Psi_{\circ}^{-1/2} \bm{1}_q = \left[ \psi_c^{-1/2}\right]_{c = 2}^C\)&lt;/span&gt;. From the &lt;a href=&#34;\bs\Psi_%7B\circ%7D%5E%7B-1/2%7D&#34;&gt;Woodbury identity&lt;/a&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega^{-1} = \bm{I} - \frac{1}{W} \bm{f} \bm{f}&amp;#39;,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(W = \sum_{c=1}^C \frac{1}{\psi_c}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1137/22M1471559&#34;&gt;Fasi, Higham, and Liu (2023)&lt;/a&gt; provide formulas for &lt;span class=&#34;math inline&#34;&gt;\(p^{th}\)&lt;/span&gt; roots of low-rank updates to scaled identity matrices. Their results provide a neat closed-form expression for &lt;span class=&#34;math inline&#34;&gt;\(\bs\Omega^{-1/2}\)&lt;/span&gt;. From their Equation (1.9),
+&lt;span class=&#34;math display&#34;&gt;\[
+\bs\Omega^{-1/2} = \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39;,
+\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(\kappa = \frac{\sqrt{\psi_1}}{W \sqrt{\psi_1} + \sqrt{W}}\)&lt;/span&gt;.
+Further, we can write the &lt;span class=&#34;math inline&#34;&gt;\(q \times C\)&lt;/span&gt; matrix &lt;span class=&#34;math inline&#34;&gt;\(\bm{G}\)&lt;/span&gt; as
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\bm{G} &amp;amp;= \bs\Omega^{-1/2} \bs\Psi_{\circ}^{-1/2} \bm{C} \\
+&amp;amp;= \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39; \right) \bs\Psi_{\circ}^{-1/2} \left[-\bm{1}_q, \ \bm{I}_q \right] \\
+&amp;amp;= \left[\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1} \bm{f},  \left( \mathbf{I}_q - \kappa \ \bm{f} \bm{f}&amp;#39; \right) \bs\Psi_{\circ}^{-1/2}\right],
+\end{aligned}
+\]&lt;/span&gt;
+with entries given by
+&lt;span class=&#34;math display&#34;&gt;\[
+g_{sc} = \begin{cases}
+\frac{\kappa(W \psi_1 - 1) - \psi_1}{\psi_1 \sqrt{\psi_{s+1}}} &amp;amp; \text{if} \quad c = 1 \\
+\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}} &amp;amp; \text{if} \quad c &amp;gt; 1.
+\end{cases}
+\]&lt;/span&gt;
+Because &lt;span class=&#34;math inline&#34;&gt;\(\bm{D} = \bm{G} \bm{V}^R \bm{G}&amp;#39;\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\bm{V}^R\)&lt;/span&gt; is diagonal, we can write the entries of &lt;span class=&#34;math inline&#34;&gt;\(\bm{D}\)&lt;/span&gt; as
+&lt;span class=&#34;math display&#34;&gt;\[
+d_{st} = \sum_{c=1}^C g_{sc} g_{tc} V^R_c.
+\]&lt;/span&gt;
+And because the variance estimators for each category are independent,
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(d_{st}) = \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \Var(V^R_c).
+\]&lt;/span&gt;
+In &lt;a href=&#34;https://www.jepusto.com/publication/power-approximations-for-dependent-effects/&#34;&gt;prior work&lt;/a&gt;, we derived expressions for the Satterthwaite degrees of freedom for variances of average effect sizes, and the same formulas can be applied here with the category-specific &lt;span class=&#34;math inline&#34;&gt;\(V^R_c\)&lt;/span&gt;. Let me write &lt;span class=&#34;math inline&#34;&gt;\(\nu_c = 2\left[\E(V^R_c)\right]^2 / \Var(V^R_c)\)&lt;/span&gt; for the degrees of freedom corresponding to category &lt;span class=&#34;math inline&#34;&gt;\(c\)&lt;/span&gt;. Then
+&lt;span class=&#34;math display&#34;&gt;\[
+\Var(d_{st}) = 2 \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c}.
+\]&lt;/span&gt;
+We can use this to obtain an expression for Zhang’s approximate degrees of freedom:
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+q(q + 1)\eta_Z^{-1} &amp;amp;= \sum_{s=1}^q \sum_{t = 1}^q \Var(d_{st}) \\
+&amp;amp;= 2\sum_{s=1}^q \sum_{t = 1}^q \sum_{c=1}^C g_{sc}^2 g_{tc}^2 \frac{\psi_c^2}{\nu_c} \\
+&amp;amp;= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2.
+\end{aligned}
+\]&lt;/span&gt;
+Now, all we need to do is simplify…
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\sum_{s=1}^q g_{s1}^2 &amp;amp;= \sum_{s=1}^q \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2 \psi_{s+1}} \\
+&amp;amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \sum_{c=2}^C \frac{1}{\psi_{s+1}} \\
+&amp;amp;= \frac{\left(\kappa(W \psi_1 - 1) - \psi_1\right)^2}{\psi_1^2} \frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;amp;= \text{...a bunch of tedious algebra...} \\
+&amp;amp;= \frac{1}{\psi_1^2} \left(\psi_1 - \frac{1}{W}\right)
+\end{aligned}
+\]&lt;/span&gt;
+and, for &lt;span class=&#34;math inline&#34;&gt;\(c = 2,...,C\)&lt;/span&gt;,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+\sum_{s=1}^q g_{sc}^2 &amp;amp;= \sum_{s=1}^q \left(\frac{I(s+1 = c)}{\sqrt{\psi_{c}}} - \frac{\kappa}{\psi_c \sqrt{\psi_{s+1}}}\right)^2 \\
+&amp;amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\sum_{s=1}^q \frac{1}{\psi_{s+1}} \\
+&amp;amp;= \frac{1}{\psi_c} - \frac{2 \kappa}{\psi_c^2} + \frac{\kappa^2}{\psi_c^2}\frac{(W \psi_1 - 1)}{\psi_1} \\
+&amp;amp;= \text{...a bunch of tedious algebra...} \\
+&amp;amp;= \frac{1}{\psi_c^2} \left(\psi_c - \frac{1}{W}\right)
+\end{aligned}
+\]&lt;/span&gt;
+Thus,
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+q(q + 1)\eta_Z^{-1} &amp;amp;= 2\sum_{c=1}^C \frac{\psi_c^2}{\nu_c} \left(\sum_{s=1}^q g_{sc}^2\right)^2 \\
+&amp;amp;= 2\sum_{c=1}^C \frac{1}{\nu_c \psi_c^2}\left(\psi_c - \frac{1}{W}\right)^2 \\
+&amp;amp;= 2\sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2
+\end{aligned}
+\]&lt;/span&gt;
+or, rearranging,
+&lt;span class=&#34;math display&#34;&gt;\[
+\eta_Z = \frac{C(C - 1)}{2 \sum_{c=1}^C \frac{1}{\nu_c}\left(1 - \frac{1}{\psi_c W}\right)^2}.
+\]&lt;/span&gt;
+It’s a surprisingly clean formula!
+Once these degrees of freedom are calculated, the degrees of freedom for the reference &lt;span class=&#34;math inline&#34;&gt;\(F\)&lt;/span&gt; distribution would be &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\eta_Z - q + 1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;In the paper, we also considered two other degrees of freedom approximations, which involve not only the variances of &lt;span class=&#34;math inline&#34;&gt;\(d_{st}\)&lt;/span&gt; but also the covariances between entries. In principle, one could follow similar algebra to get expressions for these other degrees of freedom as well. However, our simulations indicated that the other degrees of freedom approximations tend to be overly conservative and produce type-I error rates way below the nominal level (essentially, hardly ever rejecting the null) and less accurate than HTZ. So, there’s not much reason to work through them unless you find algebra enjoyable for its own sake.&lt;/p&gt;
+&lt;p&gt;A further question about this cluster-robust Wald statistic is how to approximate its sampling distribution under specific alternative hypotheses. In other words, given a vector of means &lt;span class=&#34;math inline&#34;&gt;\(\mu_1,...,\mu_C\)&lt;/span&gt; where the null does not hold, plus some information to determine &lt;span class=&#34;math inline&#34;&gt;\(\psi_c\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\nu_c\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(c = 1,...,C\)&lt;/span&gt;, how could we approximate the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Q\)&lt;/span&gt;? We need something like a non-central Hotelling’s &lt;span class=&#34;math inline&#34;&gt;\(T^2\)&lt;/span&gt; distribution…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
       <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
-      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
+      <link>https://www.jepusto.com/publication/pomade/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/pomade/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
+      <link>https://www.jepusto.com/publication/conducting-pomade/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.jepusto.com/publication/conducting-pomade/</guid>
       <description></description>
     </item>
     

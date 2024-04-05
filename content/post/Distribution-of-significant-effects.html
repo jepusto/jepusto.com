@@ -48,7 +48,7 @@ What about the unconditional distribution?</p>
 \text{Pr}(N_A = a) = \text{E}\left[\text{Pr}\left(N_A | \zeta\right)\right] = \int f_{N_A}\left(a | \zeta, \omega, \sigma, \rho, m\right) \times f_\zeta(\zeta | \mu, \tau, \sigma, \rho) \ d \zeta,
 \]</span>
 where <span class="math inline">\(f_{N_A}\left(a | \zeta, \omega, \sigma, \rho \right)\)</span> is a binomial density with size <span class="math inline">\(m\)</span> and probability <span class="math inline">\(\pi = \pi(\zeta, \omega, \sigma, \rho)\)</span> and <span class="math inline">\(f_\zeta(\zeta | \mu, \tau, \sigma, \rho)\)</span> is a normal density with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\tau^2 + \rho \sigma^2\)</span>.</p>
-<p>This distribution is what you might call a binomial-normal convolution or a random-intercept probit model (where the random intercept is <span class="math inline">\(\zeta\)</span>). As far as I know, the density cannot be evaluated analytically but instead must be calculated using some sort of numerical integration routine (Laplace approximation, Gaussian quadrature, etc.).</p>
+<p>This distribution is what you might call a binomial-normal convolution or a random-intercept probit model (where the random intercept is <span class="math inline">\(\zeta\)</span>). As far as I know, the distribution cannot be evaluated analytically but instead must be calculated using some sort of numerical integration routine. Here is <a href="/distribution-of-significant-effects-graph/">an interactive graph of the probability mass function</a> (the probability points are calculated using Gaussian quadrature).</p>
 </div>
 <div id="just-the-moments-please" class="section level2">
 <h2>Just the moments, please</h2>
