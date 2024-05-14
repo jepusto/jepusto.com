@@ -1,0 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+
+body { font-family: 'Lato', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif; font-size: 150%;}
+h1, h2, h3, h4 { font-family: 'Yanone Kaffeesatz'; }
+.remark-code, .remark-inline-code { font-family: 'Inconsolata', 'Lucida Console', Monaco, monospace; }
+
+
+h1, h2, h3 {
+  color: #9b0000;
+}
+
+
+.inverse {
+  background-color: #000;
+  color: #d6d6d6;
+  text-shadow: 0 0 20px #333;
+}
+
+.remark-code, .remark-inline-code {
+  background: #f0f0f0;
+}
+
+.remark-code {
+  font-size: 18px;
+}
+
+.bigger .remark-code { 
+  font-size: 150% !important;
+}
+
+.littler .remark-code {
+  font-size: 75% !important;
+}
+
+.verylittle .remark-code {
+  font-size: 60% !important;
+}
+
+.MathJax {
+  font-size: 1.3em;
+}
