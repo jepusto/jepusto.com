@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jay B. Ganz | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/jay-b.-ganz/</link>
-      <atom:link href="https://www.jepusto.com/authors/jay-b.-ganz/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/jay-b.-ganz/</link>
+      <atom:link href="http://localhost:4321/authors/jay-b.-ganz/index.xml" rel="self" type="application/rss+xml" />
     <description>Jay B. Ganz</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 26 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Jay B. Ganz</title>
-      <link>https://www.jepusto.com/authors/jay-b.-ganz/</link>
+      <link>http://localhost:4321/authors/jay-b.-ganz/</link>
     </image>
     
     <item>
       <title>Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design</title>
-      <link>https://www.jepusto.com/publication/aac-group-and-scd/</link>
+      <link>http://localhost:4321/publication/aac-group-and-scd/</link>
       <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-group-and-scd/</guid>
+      <guid>http://localhost:4321/publication/aac-group-and-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Augmentative and Alternative Communication intervention targets for school-aged participants with ASD and ID: A single-case systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-communication-outcomes/</link>
+      <link>http://localhost:4321/publication/aac-communication-outcomes/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-communication-outcomes/</guid>
+      <guid>http://localhost:4321/publication/aac-communication-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Considering instructional contexts in AAC interventions for people with ASD and/or IDD experiencing complex communication needs: A single-case design meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-instructional-contexts/</link>
+      <link>http://localhost:4321/publication/aac-instructional-contexts/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-instructional-contexts/</guid>
+      <guid>http://localhost:4321/publication/aac-instructional-contexts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Participant characteristics predicting communication outcomes in AAC implementation for individuals with ASD and IDD: Meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-participant-characteristics/</link>
+      <link>http://localhost:4321/publication/aac-participant-characteristics/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-participant-characteristics/</guid>
+      <guid>http://localhost:4321/publication/aac-participant-characteristics/</guid>
       <description></description>
     </item>
     

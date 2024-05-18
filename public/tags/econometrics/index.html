@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-us" >
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
   <meta name="description" content="Associate Professor">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/tags/econometrics/">
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/tags/econometrics/">
 
   
 
@@ -222,7 +222,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://www.jepusto.com/tags/econometrics/">
+  <link rel="canonical" href="http://localhost:4321/tags/econometrics/">
 
   
   
@@ -241,10 +241,10 @@
   <meta property="twitter:creator" content="@jepusto">
   
   <meta property="og:site_name" content="James E. Pustejovsky">
-  <meta property="og:url" content="https://www.jepusto.com/tags/econometrics/">
+  <meta property="og:url" content="http://localhost:4321/tags/econometrics/">
   <meta property="og:title" content="Econometrics | James E. Pustejovsky">
-  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png">
-  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png">
+  <meta property="twitter:image" content="http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
   
     <meta property="og:updated_time" content="2022-11-07T00:00:00&#43;00:00">
   
@@ -694,6 +694,18 @@
     
     
     <div>
+      <h2><a href="/clustered-and-interacted/" >A handmade clubSandwich for multi-site trials</a></h2>
+      <div class="article-style">
+        
+          library(tidyverse)data(STAR, package = &quot;AER&quot;)STAR_urban &lt;-STAR %&gt;%filter(# limit to urban/inner city schoolsschoolk %in% c(&quot;urban&quot;,&quot;inner-city&quot;),# limit to complete outcome data!is.na(readk), !is.na(mathk)) %&gt;%droplevels() %&gt;%# collapse control conditionsmutate(stark = fct_collapse(stark, regular = c(&quot;regular&quot;,&quot;regular+aide&quot;))) %&gt;%# calculate inverse-propensity weightgroup_by(schoolidk) %&gt;%mutate(n = n(),nT = sum(stark==&quot;small&quot;),wt = ifelse(stark==&quot;small&quot;, n / nT, n / (n - nT))) %&gt;%select(schoolidk, stark, readk, mathk, wt)STAR_summary &lt;- STAR_urban %&gt;%count(schoolidk)STAR_urban %&gt;%group_by(schoolidk, stark) %&gt;%summarise(n = n(),wt = sum(wt)) %&gt;%mutate(n = sum(n)) %&gt;%spread(stark, wt)## # A tibble: 23 x 4## # Groups: schoolidk [23]## schoolidk n regular small## &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;## 1 2 52 52 52## 2 9 120 120 120## 3 10 51 51 51## 4 14 34 34 34## 5 15 55 55 55## 6 16 105 105 105## 7 18 79 79 79## 8 19 99 99 99## 9 22 129 129 129## 10 26 49 49 49## # .
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div>
       <h2><a href="/handmade-clubsandwich/" >A handmade clubSandwich for multi-site trials</a></h2>
       <div class="article-style">
         
@@ -872,6 +884,16 @@
   
   <div class="container">
     <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
   
   
   

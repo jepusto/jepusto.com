@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>non-invasive brain stimulation | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/non-invasive-brain-stimulation/</link>
-      <atom:link href="https://www.jepusto.com/tags/non-invasive-brain-stimulation/index.xml" rel="self" type="application/rss+xml" />
-    <description>non-invasive brain stimulation</description>
+    <title>Non-Invasive Brain Stimulation | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/non-invasive-brain-stimulation/</link>
+      <atom:link href="http://localhost:4321/tags/non-invasive-brain-stimulation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Non-Invasive Brain Stimulation</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>non-invasive brain stimulation</title>
-      <link>https://www.jepusto.com/tags/non-invasive-brain-stimulation/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Non-Invasive Brain Stimulation</title>
+      <link>http://localhost:4321/tags/non-invasive-brain-stimulation/</link>
     </image>
     
     <item>
       <title>The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
+      <link>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
+      <guid>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
       <description></description>
     </item>
     

@@ -2,21 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/young-ri-lee/</link>
-      <atom:link href="https://www.jepusto.com/authors/young-ri-lee/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/young-ri-lee/</link>
+      <atom:link href="http://localhost:4321/authors/young-ri-lee/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>James E. Pustejovsky</title>
-      <link>https://www.jepusto.com/authors/young-ri-lee/</link>
+      <link>http://localhost:4321/authors/young-ri-lee/</link>
     </image>
     
     <item>
-      <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <title></title>
+      <link>http://localhost:4321/authors/young-ri-lee/</link>
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
+      <guid>http://localhost:4321/authors/young-ri-lee/</guid>
+      <description>&lt;h1 id=&#34;young-ri-lee&#34;&gt;Young Ri Lee&lt;/h1&gt;
+&lt;p&gt;Young Ri completed her PhD in the Quantitative Methods program at The University of Texas at Austin. She is currently a postdoctoral scholar in Developmental and Learning Sciences at the Urban Education Institute of the University of Chicago. Her research interests include Hierarchical Linear Modeling (HLM), Robust Variance Estimation methods (RVE), and meta-analysis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
+      <link>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     

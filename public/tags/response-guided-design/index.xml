@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>response-guided design | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/response-guided-design/</link>
-      <atom:link href="https://www.jepusto.com/tags/response-guided-design/index.xml" rel="self" type="application/rss+xml" />
-    <description>response-guided design</description>
+    <title>Response-Guided Design | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/response-guided-design/</link>
+      <atom:link href="http://localhost:4321/tags/response-guided-design/index.xml" rel="self" type="application/rss+xml" />
+    <description>Response-Guided Design</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>response-guided design</title>
-      <link>https://www.jepusto.com/tags/response-guided-design/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Response-Guided Design</title>
+      <link>http://localhost:4321/tags/response-guided-design/</link>
     </image>
     
     <item>
       <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</link>
+      <link>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</link>
       <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</guid>
+      <guid>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     

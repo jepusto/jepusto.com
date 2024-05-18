@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>design-comparable SMD | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/design-comparable-smd/</link>
-      <atom:link href="https://www.jepusto.com/tags/design-comparable-smd/index.xml" rel="self" type="application/rss+xml" />
-    <description>design-comparable SMD</description>
+    <title>Design-Comparable SMD | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/design-comparable-smd/</link>
+      <atom:link href="http://localhost:4321/tags/design-comparable-smd/index.xml" rel="self" type="application/rss+xml" />
+    <description>Design-Comparable SMD</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>design-comparable SMD</title>
-      <link>https://www.jepusto.com/tags/design-comparable-smd/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Design-Comparable SMD</title>
+      <link>http://localhost:4321/tags/design-comparable-smd/</link>
     </image>
     
     <item>
       <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
-      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <link>http://localhost:4321/publication/three-level-bc-smd/</link>
       <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <guid>http://localhost:4321/publication/three-level-bc-smd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</title>
-      <link>https://www.jepusto.com/dizzy-for-d-z/</link>
+      <link>http://localhost:4321/dizzy-for-d-z/</link>
       <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/dizzy-for-d-z/</guid>
+      <guid>http://localhost:4321/dizzy-for-d-z/</guid>
       <description>
 
 
@@ -143,7 +143,7 @@ density_plot &amp;lt;- function(x, lab, col, limits) {
 p_A_av &amp;lt;- density_plot(A_av, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2,1))
 p_A_z &amp;lt;- density_plot(A_z, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av + p_A_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; is mostly concentrated around the mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}) = 0.898\)&lt;/span&gt;, with a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av}) = 0.085\)&lt;/span&gt;. In contrast, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; has a mean very close to one, &lt;span class=&#34;math inline&#34;&gt;\(E(A_z) = 1.005\)&lt;/span&gt; but a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z) = 0.209\)&lt;/span&gt;, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; than into &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is &lt;span class=&#34;math inline&#34;&gt;\(A_{av}^2\)&lt;/span&gt;, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;. Let’s suppose that researchers always ensure &lt;span class=&#34;math inline&#34;&gt;\(A_{av} \geq 0.8\)&lt;/span&gt; so that reliability is always at least &lt;span class=&#34;math inline&#34;&gt;\(0.64\)&lt;/span&gt;. This leads to the following distributions for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_av_trunc &amp;lt;- A_av[A_av &amp;gt;= 0.8]
@@ -151,7 +151,7 @@ A_z_trunc &amp;lt;- A_z[A_av &amp;gt;= 0.8]
 p_A_av_trunc &amp;lt;- density_plot(A_av_trunc, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2, 1))
 p_A_z_trunc &amp;lt;- density_plot(A_z_trunc, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av_trunc + p_A_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
 The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; loses its left tail, so that its mean is &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)&lt;/span&gt; and its coefficient of variation is reduced to &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av} | A_{av} \geq 0.8) = 0.05\)&lt;/span&gt;. The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; now has a mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_z | A_{av} \geq 0.8) = 1.044\)&lt;/span&gt; and a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z | A_{av} \geq 0.8) = 0.174\)&lt;/span&gt;, about 3.5 times larger than the squared coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Under both of these scenarios, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is substantially more sensitive to procedural heterogeneity than is &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. Based on this model and hypothetical example, it seems clear &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; should be preferred over &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; is the right answer. After all, the underlying effect size model is specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, and the design parameters—including &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; in particular—are treated as noise, uncorrelated with &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;.
 What happens to the observed-score metrics &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; if we instead start with a model specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;?&lt;/p&gt;
@@ -177,7 +177,7 @@ B_av &amp;lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
 p_B_av &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av + p_B_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
 Second, the scenario where observed-score reliability is at least 0.64:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;B_z_trunc &amp;lt;- B_z[A_av &amp;gt;= 0.8]
 B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
@@ -185,7 +185,7 @@ B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
 p_B_av_trunc &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z_trunc &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av_trunc + p_B_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
 The table below reports the coefficients of variation for each of the multiplicative factors I have considered.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 dat &amp;lt;- tibble(A_av, A_z, B_av, B_z)
@@ -312,7 +312,7 @@ ggplot(CV_obs, aes(tau_mu, CV, color = metric)) +
   theme_minimal() + 
   labs(x = expression(tau / mu), y = &amp;quot;Coefficient of variation for observed score ES&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
 Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu = 0.5\)&lt;/span&gt;, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is 0.543. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is strongly affected by measurement heterogeneity, with a CV of 0.592; in comparison, the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; of 0.528. Under both models, these increases in CV are effectively constant for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -338,57 +338,57 @@ I can promise, dear reader, that the present blog post will not be nearly as cog
     
     <item>
       <title>Between-case standardized effect size analysis of single case design: Examination of the two methods</title>
-      <link>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</link>
+      <link>http://localhost:4321/publication/bcsmd-examination-of-two-methods/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</guid>
+      <guid>http://localhost:4321/publication/bcsmd-examination-of-two-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of school-based group contingency interventions for students with challenging behavior: An update</title>
-      <link>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</link>
+      <link>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of technology-aided instruction and intervention for students with ASD</title>
-      <link>https://www.jepusto.com/publication/taii-meta-analysis/</link>
+      <link>http://localhost:4321/publication/taii-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/taii-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/taii-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
+      <link>http://localhost:4321/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research synthesis and meta-analysis of single-case designs</title>
-      <link>https://www.jepusto.com/publication/meta-analysis-of-scd/</link>
+      <link>http://localhost:4321/publication/meta-analysis-of-scd/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/meta-analysis-of-scd/</guid>
+      <guid>http://localhost:4321/publication/meta-analysis-of-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized mean difference effect sizes for single-case designs: A primer and tutorial using the scdhlm web application</title>
-      <link>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</link>
+      <link>http://localhost:4321/publication/bc-smd-primer-and-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-tutorial/</guid>
+      <guid>http://localhost:4321/publication/bc-smd-primer-and-tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New tutorial paper on BC-SMD effect sizes</title>
-      <link>https://www.jepusto.com/scdhlm-tutorial/</link>
+      <link>http://localhost:4321/scdhlm-tutorial/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/scdhlm-tutorial/</guid>
+      <guid>http://localhost:4321/scdhlm-tutorial/</guid>
       <description>
 
 
@@ -400,18 +400,18 @@ If you have any questions or feedback about the app, please feel free to contact
     
     <item>
       <title>scdhlm</title>
-      <link>https://www.jepusto.com/software/scdhlm/</link>
+      <link>http://localhost:4321/software/scdhlm/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/scdhlm/</guid>
+      <guid>http://localhost:4321/software/scdhlm/</guid>
       <description>&lt;p&gt;An R package implementing several methods of estimating a design-comparable standardized mean difference effect size based on data from a single-case design. Methods include those from Hedges, Pustejovsky, &amp;amp; Shadish (
-&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
-&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
-&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
+&lt;a href=&#34;http://localhost:4321/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
+&lt;a href=&#34;http://localhost:4321/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -422,9 +422,9 @@ If you have any questions or feedback about the app, please feel free to contact
     
     <item>
       <title>Getting started with scdhlm</title>
-      <link>https://www.jepusto.com/getting-started-with-scdhlm/</link>
+      <link>http://localhost:4321/getting-started-with-scdhlm/</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/getting-started-with-scdhlm/</guid>
+      <guid>http://localhost:4321/getting-started-with-scdhlm/</guid>
       <description>
 
 
@@ -466,62 +466,62 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>https://www.jepusto.com/publication/design-comparable-effect-sizes/</link>
+      <link>http://localhost:4321/publication/design-comparable-effect-sizes/</link>
       <pubDate>Wed, 01 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/design-comparable-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/design-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New article: Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
+      <link>http://localhost:4321/design-comparable-effect-sizes-in-multiple-baseline-designs/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
+      <guid>http://localhost:4321/design-comparable-effect-sizes-in-multiple-baseline-designs/</guid>
       <description>
 
 
-&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;https://www.jepusto.com/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Larry Hedges and Will Shadish, titled “Design-comparable effect sizes in multiple baseline designs: A general modeling framework” has been accepted at Journal of Educational and Behavioral Statistics. The abstract is below. Here’s the article at &lt;a href=&#34;http://doi.org/10.3102/1076998614547577&#34;&gt;the journal website&lt;/a&gt;. &lt;a href=&#34;http://localhost:4321/files/Effect-sizes-in-multiple-baseline-designs-JEBS.pdf&#34;&gt;Postprint&lt;/a&gt; and &lt;a href=&#34;http://localhost:4321/files/Effect-sizes-in-multiple-baseline-designs-Simulation-results.pdf&#34;&gt;supporting materials&lt;/a&gt; are available. An R package that implements the proposed methods is &lt;a href=&#34;http://localhost:4321/getting-started-with-scdhlm/&#34;&gt;available here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;In single-case research, the multiple baseline design is a widely used approach for evaluating the effects of interventions on individuals. Multiple baseline designs involve repeated measurement of outcomes over time and the controlled introduction of a treatment at different times for different individuals. This article outlines a general approach for defining effect sizes in multiple baseline designs that are directly comparable to the standardized mean difference from a between-subjects randomized experiment. The target, design-comparable effect size parameter can be estimated using restricted maximum likelihood together with a small-sample correction analogous to Hedges’ g. The approach is demonstrated using hierarchical linear models that include baseline time trends and treatment-by-time interactions. A simulation compares the performance of the proposed estimator to that of an alternative, and an application illustrates the model-fitting process.&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Analyzing single-case designs: d, G, hierarchical models, Bayesian estimators, generalized additive models, and the hopes and fears of researchers about analyses</title>
-      <link>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</link>
+      <link>http://localhost:4321/publication/analyzing-scd-hopes-and-fears/</link>
       <pubDate>Fri, 18 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/analyzing-scd-hopes-and-fears/</guid>
+      <guid>http://localhost:4321/publication/analyzing-scd-hopes-and-fears/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Analysis and meta-analysis of single-case designs with a standardized mean difference statistic: A primer and applications</title>
-      <link>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</link>
+      <link>http://localhost:4321/publication/bc-smd-primer-and-applications/</link>
       <pubDate>Tue, 01 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</guid>
+      <guid>http://localhost:4321/publication/bc-smd-primer-and-applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A standardized mean difference effect size for multiple baseline designs</title>
-      <link>https://www.jepusto.com/publication/smd-for-mbd/</link>
+      <link>http://localhost:4321/publication/smd-for-mbd/</link>
       <pubDate>Fri, 23 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/smd-for-mbd/</guid>
+      <guid>http://localhost:4321/publication/smd-for-mbd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A d-statistic for single-case designs that is equivalent to the usual between-groups d-statistics</title>
-      <link>https://www.jepusto.com/publication/between-groups-d-statistic/</link>
+      <link>http://localhost:4321/publication/between-groups-d-statistic/</link>
       <pubDate>Thu, 18 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/between-groups-d-statistic/</guid>
+      <guid>http://localhost:4321/publication/between-groups-d-statistic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</link>
+      <link>http://localhost:4321/publication/operationally-comparable-effect-sizes/</link>
       <pubDate>Sat, 01 Jun 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/operationally-comparable-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/operationally-comparable-effect-sizes/</guid>
       <description>&lt;p&gt;This thesis studies quantitative methods for summarizing and synthesizing single-case studies, a class of research designs for evaluating the effects of interventions through repeated measurement of individuals. Despite long-standing interest in meta-analytic synthesis of single-case research, there remains a lack of consensus about appropriate methods, even about the most basic question of what effect size metrics are useful and appropriate. I argue that operational comparability, or invariance to heterogeneous operational procedures, is crucial property for an effect size metric. I then consider two problems with operational comparability that arise in single-case research. The first problem is to find effect sizes that can be applied across studies that use different research designs, such as single-case designs and two-group randomized experiments. The second problem is to find effect sizes that can be applied across studies that use varied operations for measuring the same construct. To address each of these problems, I propose structural models that capture essential features of multiple relevant operations (either design-related operations or measurement-related operations). I then use these structural models to precisely define target effect size parameters and to consider identification issues and estimation strategies.&lt;/p&gt;
 &lt;p&gt;Chapter 1 defines operational comparability and situates the concept within the broad methodological concerns of meta-analysis, then reviews relevant features of single-case research and previously proposed effect sizes. Chapter 2 describes an abstract set of modeling criteria for constructing design-comparable effect sizes. Chapters 3 applies the general criteria to the case of standardized mean differences and proposes an effect size estimator based on restricted maximum likelihood. Chapter 4 presents several applications of the proposed models and methods. Chapter 5 proposes measurement-comparability model and defines effect size measures for use in studies of free-operant behavior, one of the most common classes of outcomes in single-case research. Chapter 6 extends the proposed effect size models to incorporate more complex features, including time trends and serial dependence, and studies a method of estimating those models through a combination of marginal quasi-likelihood and Gaussian pseudo-likelihood estimating equations. Chapter 7 collects various further extensions, areas for further research, and concluding thoughts.&lt;/p&gt;
 </description>
@@ -529,9 +529,9 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A standardized mean difference effect size for single case designs</title>
-      <link>https://www.jepusto.com/publication/smd-for-scd/</link>
+      <link>http://localhost:4321/publication/smd-for-scd/</link>
       <pubDate>Tue, 14 Aug 2012 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/smd-for-scd/</guid>
+      <guid>http://localhost:4321/publication/smd-for-scd/</guid>
       <description></description>
     </item>
     

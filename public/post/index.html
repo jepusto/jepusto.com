@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-us" >
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@
   <meta name="description" content="Associate Professor">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://www.jepusto.com/post/">
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/">
 
   
 
@@ -222,7 +222,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_3.png">
 
-  <link rel="canonical" href="https://www.jepusto.com/post/">
+  <link rel="canonical" href="http://localhost:4321/post/">
 
   
   
@@ -241,10 +241,10 @@
   <meta property="twitter:creator" content="@jepusto">
   
   <meta property="og:site_name" content="James E. Pustejovsky">
-  <meta property="og:url" content="https://www.jepusto.com/post/">
+  <meta property="og:url" content="http://localhost:4321/post/">
   <meta property="og:title" content="Posts | James E. Pustejovsky">
-  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png">
-  <meta property="twitter:image" content="https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="Associate Professor"><meta property="og:image" content="http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png">
+  <meta property="twitter:image" content="http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png"><meta property="og:locale" content="en-us">
   
     <meta property="og:updated_time" content="2024-03-28T00:00:00&#43;00:00">
   
@@ -874,6 +874,100 @@
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
+      <a href="/generalized-poisson-vs-double-poisson/" >generalized Poisson versus double Poisson</a>
+    </h3>
+
+    
+    <div class="article-style">
+      \[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\def\bm{\mathbf}\def\bs{\boldsymbol}\]
+library(tidyverse)library(patchwork) # composing figureslibrary(rstan) # Stan interface to Rlibrary(brms) # fitting generalized linear modelslibrary(bayesplot) # Examine fitted modelslibrary(loo) # Model fit measuresstancode_qr &lt;- &quot;int gpo_quantile(real p, real mu, real phi) {int q = 0;real phi_sqrt = sqrt(phi);real mu_phi_sqrt = mu * phi_sqrt;real m;if (phi &gt; 1) m = mu / (1 - inv(phi_sqrt));else m = positive_infinity();real lpmf = - mu_phi_sqrt;real cdf = exp(lpmf);real ln_inc;while (cdf &lt; p &amp;&amp; q &lt; m) {q += 1;ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);lpmf += ln_inc; cdf += exp(lpmf);}return q;}int gpo_rng(real mu, real phi) {real p = uniform_rng(0,1);int x = gpo_quantile(p, mu, phi);return x;}&quot;writeLines(paste(&quot;functions {&quot;, stancode_qr, &quot;}&quot;, sep = &quot;\n&quot;), &quot;GPO-rng.
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    2023-12-06
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/generalized-poisson-vs-double-poisson/#disqus_thread"></a>
+  
+
+  
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+    
+  
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<div class="media stream-item">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0">
       <a href="/generalized-poisson-in-stan/" >Implementing Consul&#39;s generalized Poisson distribution in Stan</a>
     </h3>
 
@@ -1434,13 +1528,13 @@ For a project I am working on, we are using Stan to fit generalized random effec
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/variance-components-with-misspecified-correlation/" >Variance component estimates in meta-analysis with mis-specified sampling correlation</a>
+      <a href="/rve-meta-analysis-with-mi/" >Meta-analysis with robust variance estimation and multiply imputed covariates</a>
     </h3>
 
     
     <div class="article-style">
       \[\def\Pr{{\text{Pr}}}\def\E{{\text{E}}}\def\Var{{\text{Var}}}\def\Cov{{\text{Cov}}}\]
-In a recent paper with Beth Tipton, we proposed new working models for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity).
+library(tidyverse)## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --## v ggplot2 3.3.2 v purrr 0.3.4## v tibble 3.1.5 v dplyr 1.0.5## v tidyr 1.
     </div>
     
 
@@ -1473,7 +1567,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
     
       
     
-    2021-11-28
+    2021-12-22
   </span>
   
 
@@ -1485,100 +1579,7 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
   
   <span class="middot-divider"></span>
-  <a href="/variance-components-with-misspecified-correlation/#disqus_thread"></a>
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-    
-  
-    
-      
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<div class="media stream-item">
-  <div class="media-body">
-
-    <h3 class="article-title mb-0 mt-0">
-      <a href="/mean-variance-relationships-and-smds/" >Implications of mean-variance relationships for standardized mean differences</a>
-    </h3>
-
-    
-    <div class="article-style">
-      A question came up on the R-SIG-meta-analysis listserv about whether it was reasonable to use the standardized mean difference metric for synthesizing studies where the outcomes are measured as proportions. I think this is an interesting question because, while the SMD could work perfectly fine as an effect size metric for proportions, there are also other alternatives that could be considered, such as odds ratios or response ratios or raw differences in proportions. Further, there are some situations where the SMD has disadvantages for synthesizing contrasts between proportions. Thus, it&rsquo;s a situation where one has to make a choice about the effect size metric, and where the most common metric (the SMD) might not be the right answer. In this post, I want to provide a bit more detail regarding why I think mean-variance relationships in raw data can signal that the standardized mean differences might be less useful as an effect size metric compared to alternatives.
-    </div>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  
-  <span><a href="/authors/admin/">James E. Pustejovsky</a></span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    2021-11-02
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <a href="/mean-variance-relationships-and-smds/#disqus_thread"></a>
+  <a href="/rve-meta-analysis-with-mi/#disqus_thread"></a>
   
 
   
@@ -1732,6 +1733,16 @@ In a recent paper with Beth Tipton, we proposed new working models for meta-anal
   
   <div class="container">
     <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
   
   
   

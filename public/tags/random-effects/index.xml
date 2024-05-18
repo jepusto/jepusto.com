@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>random effects | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/random-effects/</link>
-      <atom:link href="https://www.jepusto.com/tags/random-effects/index.xml" rel="self" type="application/rss+xml" />
-    <description>random effects</description>
+    <title>Random Effects | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/random-effects/</link>
+      <atom:link href="http://localhost:4321/tags/random-effects/index.xml" rel="self" type="application/rss+xml" />
+    <description>Random Effects</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>random effects</title>
-      <link>https://www.jepusto.com/tags/random-effects/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Random Effects</title>
+      <link>http://localhost:4321/tags/random-effects/</link>
     </image>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <link>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</link>
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
+      <guid>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     

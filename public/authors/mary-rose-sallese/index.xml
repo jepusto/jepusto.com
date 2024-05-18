@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mary Rose Sallese | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/mary-rose-sallese/</link>
-      <atom:link href="https://www.jepusto.com/authors/mary-rose-sallese/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/mary-rose-sallese/</link>
+      <atom:link href="http://localhost:4321/authors/mary-rose-sallese/index.xml" rel="self" type="application/rss+xml" />
     <description>Mary Rose Sallese</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 20 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Mary Rose Sallese</title>
-      <link>https://www.jepusto.com/authors/mary-rose-sallese/</link>
+      <link>http://localhost:4321/authors/mary-rose-sallese/</link>
     </image>
     
     <item>
       <title>Participant characteristics predicting communication outcomes in AAC implementation for individuals with ASD and IDD: Meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-participant-characteristics/</link>
+      <link>http://localhost:4321/publication/aac-participant-characteristics/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-participant-characteristics/</guid>
+      <guid>http://localhost:4321/publication/aac-participant-characteristics/</guid>
       <description></description>
     </item>
     

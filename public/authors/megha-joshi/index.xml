@@ -2,32 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/megha-joshi/</link>
-      <atom:link href="https://www.jepusto.com/authors/megha-joshi/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/megha-joshi/</link>
+      <atom:link href="http://localhost:4321/authors/megha-joshi/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 30 Mar 2023 08:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>James E. Pustejovsky</title>
-      <link>https://www.jepusto.com/authors/megha-joshi/</link>
+      <link>http://localhost:4321/authors/megha-joshi/</link>
     </image>
     
     <item>
-      <title>Clustered bootstrapping for selective reporting models in meta-analysis with dependent effects</title>
-      <link>https://www.jepusto.com/talk/esmarconf2023-clustered-bootstrap-selection-model/</link>
+      <title></title>
+      <link>http://localhost:4321/authors/megha-joshi/</link>
       <pubDate>Thu, 30 Mar 2023 08:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/esmarconf2023-clustered-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/authors/megha-joshi/</guid>
+      <description>&lt;h1 id=&#34;megha-joshi&#34;&gt;Megha Joshi&lt;/h1&gt;
+&lt;p&gt;Megha completed her PhD in the Quantitative Methods program at The University of Texas at Austin. Her dissertation work examined cluster wild bootstrapping to handle dependent effect sizes in meta-analyses with a small number of studies. She now works as quantitative researcher at the 
+&lt;a href=&#34;https://www.air.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;American Institutes for Research&lt;/a&gt;. Her research interests include causal inference, meta-analysis, and missing data analysis.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Clustered bootstrapping for selective reporting models in meta-analysis with dependent effects</title>
+      <link>http://localhost:4321/talk/esmarconf2023-clustered-bootstrap-selection-model/</link>
+      <pubDate>Thu, 30 Mar 2023 08:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/talk/esmarconf2023-clustered-bootstrap-selection-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cluster-Bootstrapping a meta-analytic selection model</title>
-      <link>https://www.jepusto.com/cluster-bootstrap-selection-model/</link>
+      <link>http://localhost:4321/cluster-bootstrap-selection-model/</link>
       <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/cluster-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/cluster-bootstrap-selection-model/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;style type=&#34;text/css&#34;&gt;
@@ -12590,7 +12601,7 @@ RE_robust&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The random effects model indicates an average effect size of about 0.21 standard deviations and substantial heterogeneity, with &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.32\)&lt;/span&gt;. The cluster-robust standard error is about 27% bigger than the model-based standard error (not shown) because the latter does not account for dependent effect sizes.&lt;/p&gt;
 &lt;p&gt;Here is a contour-enhanced funnel plot of the data:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;funnel(RE_mod, refline = 0, level=c(90, 95, 99), shade=c(&amp;quot;white&amp;quot;, &amp;quot;gray55&amp;quot;, &amp;quot;gray75&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The funnel plot shows some asymmetry, suggesting that there is reason to be concerned about selective reporting bias in these data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;a-selection-model&#34; class=&#34;section level3&#34;&gt;
@@ -13103,33 +13114,33 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
     
     <item>
       <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
-      <link>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
+      <link>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
       <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Examining heterogeneity across schools and student characteristics</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-3/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the second year of implementation</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-2/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>simhelpers</title>
-      <link>https://www.jepusto.com/software/simhelpers/</link>
+      <link>http://localhost:4321/software/simhelpers/</link>
       <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/simhelpers/</guid>
+      <guid>http://localhost:4321/software/simhelpers/</guid>
       <description>&lt;p&gt;Monte Carlo simulations are computer experiments designed to study the performance of statistical methods under known data-generating conditions. The goal of simhelpers is to assist in running such simulation studies. The main tools in the package consist of functions to calculate measures of estimator performance, such as bias, root mean squared error, rejection rates. The functions also calculate the associated Monte Carlo standard errors (MCSE) of the performance measures. The functions use the tidyeval principles, so that they play well with dplyr and fit easily into a &lt;code&gt;%&amp;gt;%&lt;/code&gt;-centric workflow.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -13142,19 +13153,19 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the first year of implementation</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-1/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>wildmeta</title>
-      <link>https://www.jepusto.com/software/wildmeta/</link>
+      <link>http://localhost:4321/software/wildmeta/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/wildmeta/</guid>
+      <guid>http://localhost:4321/software/wildmeta/</guid>
       <description>&lt;p&gt;An R package for conducting hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in 
-&lt;a href=&#34;https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Transition to College Mathematics | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/transition-to-college-mathematics/</link>
-      <atom:link href="https://www.jepusto.com/tags/transition-to-college-mathematics/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/tags/transition-to-college-mathematics/</link>
+      <atom:link href="http://localhost:4321/tags/transition-to-college-mathematics/index.xml" rel="self" type="application/rss+xml" />
     <description>Transition to College Mathematics</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Tue, 20 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Transition to College Mathematics</title>
-      <link>https://www.jepusto.com/tags/transition-to-college-mathematics/</link>
+      <link>http://localhost:4321/tags/transition-to-college-mathematics/</link>
     </image>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Examining heterogeneity across schools and student characteristics</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-3/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-3/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the second year of implementation</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-2/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-2/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating the Transition to College Mathematics Course in Texas high schools: Findings from the first year of implementation</title>
-      <link>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</link>
+      <link>http://localhost:4321/publication/transition-to-college-mathematics-year-1/</link>
       <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/transition-to-college-mathematics-year-1/</guid>
+      <guid>http://localhost:4321/publication/transition-to-college-mathematics-year-1/</guid>
       <description></description>
     </item>
     

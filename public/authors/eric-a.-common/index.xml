@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eric A. Common | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/eric-a.-common/</link>
-      <atom:link href="https://www.jepusto.com/authors/eric-a.-common/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/eric-a.-common/</link>
+      <atom:link href="http://localhost:4321/authors/eric-a.-common/index.xml" rel="self" type="application/rss+xml" />
     <description>Eric A. Common</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 01 Mar 2017 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Eric A. Common</title>
-      <link>https://www.jepusto.com/authors/eric-a.-common/</link>
+      <link>http://localhost:4321/authors/eric-a.-common/</link>
     </image>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
+      <link>http://localhost:4321/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     

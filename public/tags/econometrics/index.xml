@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>econometrics | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/econometrics/</link>
-      <atom:link href="https://www.jepusto.com/tags/econometrics/index.xml" rel="self" type="application/rss+xml" />
-    <description>econometrics</description>
+    <title>Econometrics | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/econometrics/</link>
+      <atom:link href="http://localhost:4321/tags/econometrics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Econometrics</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Mon, 07 Nov 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>econometrics</title>
-      <link>https://www.jepusto.com/tags/econometrics/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Econometrics</title>
+      <link>http://localhost:4321/tags/econometrics/</link>
     </image>
     
     <item>
       <title>Corrigendum to Pustejovsky and Tipton (2018), redux</title>
-      <link>https://www.jepusto.com/pusto-tipton-2018-theorem-2-redux/</link>
+      <link>http://localhost:4321/pusto-tipton-2018-theorem-2-redux/</link>
       <pubDate>Mon, 07 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/pusto-tipton-2018-theorem-2-redux/</guid>
+      <guid>http://localhost:4321/pusto-tipton-2018-theorem-2-redux/</guid>
       <description>
 
 
@@ -29,7 +29,7 @@
 \def\bs{\boldsymbol}
 \]&lt;/span&gt;
 &lt;strong&gt;UPDATE, March 8, 2023: The correction to our paper has now been published at &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;. It is available at&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.1080/07350015.2023.2174123&#34; class=&#34;uri&#34;&gt;https://doi.org/10.1080/07350015.2023.2174123&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In my &lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. As explained in &lt;a href=&#34;https://www.jepusto.com/pusto-tipton-2018-theorem-2/&#34;&gt;my previous post&lt;/a&gt;, we were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I’ll give the revised theorem, following the notation and setup of &lt;a href=&#34;https://www.jepusto.com/pusto-tipton-2018-theorem-2/&#34;&gt;the previous post&lt;/a&gt; (so better read that first, or what follows won’t make much sense!).&lt;/p&gt;
+&lt;p&gt;In my &lt;a href=&#34;http://localhost:4321/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. As explained in &lt;a href=&#34;http://localhost:4321/pusto-tipton-2018-theorem-2/&#34;&gt;my previous post&lt;/a&gt;, we were recently alerted that Theorem 2 in the paper is incorrect as stated. It turns out, the conditions in the original version of the theorem are too general. A more limited version of the Theorem does actually hold, but only for models estimated using ordinary (unweighted) least squares, under a working model that assumes independent, homoskedastic errors. In this post, I’ll give the revised theorem, following the notation and setup of &lt;a href=&#34;http://localhost:4321/pusto-tipton-2018-theorem-2/&#34;&gt;the previous post&lt;/a&gt; (so better read that first, or what follows won’t make much sense!).&lt;/p&gt;
 &lt;div id=&#34;theorem-2-revised&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Theorem 2, revised&lt;/h3&gt;
 &lt;p&gt;Consider the model
@@ -100,9 +100,9 @@ Showing that &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i \bm{A}_i \bm{B}_
     
     <item>
       <title>Corrigendum to Pustejovsky and Tipton (2018)</title>
-      <link>https://www.jepusto.com/pusto-tipton-2018-theorem-2/</link>
+      <link>http://localhost:4321/pusto-tipton-2018-theorem-2/</link>
       <pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/pusto-tipton-2018-theorem-2/</guid>
+      <guid>http://localhost:4321/pusto-tipton-2018-theorem-2/</guid>
       <description>
 
 
@@ -114,7 +114,7 @@ Showing that &lt;span class=&#34;math inline&#34;&gt;\(\bm{B}_i \bm{A}_i \bm{B}_
 \def\bm{\mathbf}
 \def\bs{\boldsymbol}
 \]&lt;/span&gt;
-In my &lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader, &lt;a href=&#34;https://eeecon.uibk.ac.at/~pfaffermayr/&#34;&gt;Dr. Michael Pfaffermayr&lt;/a&gt;, recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.&lt;/p&gt;
+In my &lt;a href=&#34;http://localhost:4321/publication/rve-in-fixed-effects-models/&#34;&gt;2018 paper with Beth Tipton&lt;/a&gt;, published in the &lt;em&gt;Journal of Business and Economic Statistics&lt;/em&gt;, we considered how to do cluster-robust variance estimation in fixed effects models estimated by weighted (or unweighted) least squares. A careful reader, &lt;a href=&#34;https://eeecon.uibk.ac.at/~pfaffermayr/&#34;&gt;Dr. Michael Pfaffermayr&lt;/a&gt;, recently alerted us to a problem with Theorem 2 in the paper, which concerns a computational short cut for a certain cluster-robust variance estimator in models with cluster-specific fixed effects. The theorem is incorrect as stated, and we are currently working on issuing a correction for the published version of the paper. In the interim, this post details the problem with Theorem 2. I’ll first review the CR2 variance estimator, then describe the assertion of the theorem, and then provide a numerical counter-example demonstrating that the assertion is not correct as stated.&lt;/p&gt;
 &lt;div id=&#34;a-fixed-effects-model&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;A fixed effects model&lt;/h3&gt;
 &lt;p&gt;For data that can be grouped into &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; clusters of observations, we considered the model
@@ -287,13 +287,169 @@ McCaffrey, D. F., Bell, R. M., &amp;amp; Botts, C. H. (2001). &lt;span class=&#3
     
     <item>
       <title>A handmade clubSandwich for multi-site trials</title>
-      <link>https://www.jepusto.com/handmade-clubsandwich/</link>
+      <link>http://localhost:4321/clustered-and-interacted/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/handmade-clubsandwich/</guid>
+      <guid>http://localhost:4321/clustered-and-interacted/</guid>
       <description>
 
 
-&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;https://www.jepusto.com/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;https://www.jepusto.com/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+data(STAR, package = &amp;quot;AER&amp;quot;)
+
+STAR_urban &amp;lt;-
+  STAR %&amp;gt;%
+  filter(
+    # limit to urban/inner city schools
+    schoolk %in% c(&amp;quot;urban&amp;quot;,&amp;quot;inner-city&amp;quot;),
+    # limit to complete outcome data
+    !is.na(readk), !is.na(mathk)
+  ) %&amp;gt;%
+  droplevels() %&amp;gt;%
+  # collapse control conditions
+  mutate(
+    stark = fct_collapse(stark, regular = c(&amp;quot;regular&amp;quot;,&amp;quot;regular+aide&amp;quot;))
+  ) %&amp;gt;%
+  # calculate inverse-propensity weight
+  group_by(schoolidk) %&amp;gt;%
+  mutate(
+    n = n(),
+    nT = sum(stark==&amp;quot;small&amp;quot;),
+    wt = ifelse(stark==&amp;quot;small&amp;quot;, n / nT, n / (n - nT))
+  ) %&amp;gt;%
+  select(schoolidk, stark, readk, mathk, wt)
+
+STAR_summary &amp;lt;- 
+  STAR_urban %&amp;gt;%
+  count(schoolidk)
+
+STAR_urban %&amp;gt;%
+  group_by(schoolidk, stark) %&amp;gt;%
+  summarise(
+    n = n(),
+    wt = sum(wt)
+  ) %&amp;gt;%
+  mutate(n = sum(n)) %&amp;gt;%
+  spread(stark, wt)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 23 x 4
+## # Groups:   schoolidk [23]
+##    schoolidk     n regular small
+##    &amp;lt;fct&amp;gt;     &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+##  1 2            52      52    52
+##  2 9           120     120   120
+##  3 10           51      51    51
+##  4 14           34      34    34
+##  5 15           55      55    55
+##  6 16          105     105   105
+##  7 18           79      79    79
+##  8 19           99      99    99
+##  9 22          129     129   129
+## 10 26           49      49    49
+## # ... with 13 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After these exclusions, the data include a total of 1810 students from 23 schools, ranging in size from 34 to 134 students.&lt;/p&gt;
+&lt;p&gt;For starters, let’s get the average impacts using a seeming unrelated regression specification, with both conventional and clubSandwich standard errors.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
+##   method    from    
+##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;STAR_wt &amp;lt;- lm(cbind(readk, mathk) ~ 0 + schoolidk + stark, weights = wt, data = STAR_urban)
+
+# conventional SEs
+CR0 &amp;lt;- 
+  coef_test(STAR_wt, vcov = &amp;quot;CR0&amp;quot;, 
+            cluster = STAR_urban$schoolidk, 
+            test = &amp;quot;z&amp;quot;,
+            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
+CR0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat p-val (z) Sig.
+## 1 readk:starksmall     6.21 3.13   1.98    0.0473    *
+## 2 mathk:starksmall    12.47 5.58   2.23    0.0254    *&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# clubSandwich SEs
+CR2 &amp;lt;- 
+  coef_test(STAR_wt, vcov = &amp;quot;CR2&amp;quot;, 
+            cluster = STAR_urban$schoolidk, 
+            coefs = c(&amp;quot;readk:starksmall&amp;quot;,&amp;quot;mathk:starksmall&amp;quot;))
+
+CR2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##              Coef. Estimate   SE t-stat d.f. p-val (Satt) Sig.
+## 1 readk:starksmall     6.21 2.70    2.3   19       0.0332    *
+## 2 mathk:starksmall    12.47 4.79    2.6   19       0.0174    *&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now I’ll do it “by hand”—or rather, with a bit of &lt;code&gt;dplyr&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# summary statistics by site
+
+school_summaries &amp;lt;- 
+  STAR_urban %&amp;gt;%
+  group_by(schoolidk, stark) %&amp;gt;%
+  summarise(
+    # means by arm and site
+    readk = mean(readk),
+    mathk = mean(mathk),
+    n_arm = n()
+  ) %&amp;gt;%
+  summarise(
+    # impact estimates by site
+    readk = diff(readk),
+    mathk = diff(mathk),
+    n = sum(n_arm),
+    p = n_arm[stark==&amp;quot;small&amp;quot;] / n
+  ) %&amp;gt;%
+  mutate(
+    w = n
+  )
+
+# overall impacts
+
+school_summaries %&amp;gt;%
+  gather(&amp;quot;subject&amp;quot;,&amp;quot;impact_j&amp;quot;, readk, mathk) %&amp;gt;%
+  group_by(subject) %&amp;gt;%
+  summarise(
+    impact = weighted.mean(impact_j, w = w),
+    SE_CR0 = sqrt(sum(w^2 * (impact_j - impact)^2) / sum(w)^2),
+    SE_CR2 = sqrt(sum(w^2 * (impact_j - impact)^2 / (1 - w / sum(w))) / sum(w)^2),
+    df_CR2 = 1 / (sum(w^2 / (sum(w) - w)^2) - 
+                    2 * sum(w^3 / (sum(w) - w)^2) / sum(w) + 
+                    sum(w^2 / (sum(w) - w))^2 / sum(w)^2)
+  ) %&amp;gt;%
+  knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;subject&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;impact&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SE_CR0&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SE_CR2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;df_CR2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;mathk&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.47&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.58&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.76&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;readk&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19.07&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The CR0 and CR2 standard errors match the results from &lt;code&gt;coef_test&lt;/code&gt;, as do the Satterthwaite degrees of freedom. Note that the degrees of freedom are equal to 19 in this case, a bit less than &lt;span class=&#34;math inline&#34;&gt;\(J - 1 = 22\)&lt;/span&gt; due to variation in the weight assigned to each school.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A handmade clubSandwich for multi-site trials</title>
+      <link>http://localhost:4321/handmade-clubsandwich/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/handmade-clubsandwich/</guid>
+      <description>
+
+
+&lt;p&gt;I’m just back from the &lt;a href=&#34;https://sree.org/conferences/2019s&#34;&gt;Society for Research on Educational Effectiveness&lt;/a&gt; meetings, where I presented work on small-sample corrections for cluster-robust variance estimators in two-stage least squares models, which I’ve implemented in the &lt;a href=&#34;http://localhost:4321/software/clubSandwich/&#34;&gt;&lt;code&gt;clubSandwich&lt;/code&gt;&lt;/a&gt; R package. &lt;a href=&#34;http://localhost:4321/files/SREE-2019-2SLS-CRVE.html&#34;&gt;Here’s my presentation&lt;/a&gt;. So I had “clubSandwich” estimators on the brain when a colleague asked me about whether the methods were implemented in SAS.&lt;/p&gt;
 &lt;p&gt;The short answer is “no.”&lt;/p&gt;
 &lt;p&gt;The moderately longer answer is “not unless we can find funding to pay someone who knows how to program properly in SAS.” However, for the specific model that my colleague was interested in, it turns out that the small-sample corrections implemented in clubSandwich can be expressed in closed form, and they’re simple enough that they could easily be hand-calculated. I’ll sketch out the calculations in the remainder of this post.&lt;/p&gt;
 &lt;div id=&#34;a-multi-site-trial&#34; class=&#34;section level2&#34;&gt;
@@ -465,9 +621,9 @@ school_summaries %&amp;gt;%
     
     <item>
       <title>Effective sample size aggregation</title>
-      <link>https://www.jepusto.com/effective-sample-size-aggregation/</link>
+      <link>http://localhost:4321/effective-sample-size-aggregation/</link>
       <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/effective-sample-size-aggregation/</guid>
+      <guid>http://localhost:4321/effective-sample-size-aggregation/</guid>
       <description>
 
 
@@ -523,15 +679,15 @@ ESS = \frac{N^2}{\sum_{j=1}^J n_j^2 / ESS_j}.
     
     <item>
       <title>Estimating average effects in regression discontinuities with covariate interactions</title>
-      <link>https://www.jepusto.com/rdd-interactions-again/</link>
+      <link>http://localhost:4321/rdd-interactions-again/</link>
       <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions-again/</guid>
+      <guid>http://localhost:4321/rdd-interactions-again/</guid>
       <description>
 
 
 &lt;p&gt;Regression discontinuity designs (RDDs) are now a widely used tool for program evaluation in economics and many other fields. RDDs occur in situations where some treatment/program of interest is assigned on the basis of a numerical score (called the running variable), all units scoring above a certain threshold receiving treatment and all units scoring at or below the threshold having treatment withheld (or vice versa, with treatment assigned to units scoring below the threshold). This mechanism provides a way to identify the &lt;strong&gt;marginal average treatment effect&lt;/strong&gt; (MATE): the average effect of treatment assignment for units on the cusp of the threshold.&lt;/p&gt;
 &lt;p&gt;RDDs are appealing for a couple of reasons. First and foremost, RDD-like mechanism occurs all over the place, since providing treatment on the basis of a numerical measure of need/eligibility is a natural way to allocate resources. Furthermore, analysis of the designs is straight-forward, as it involves nothing more complicated than a linear regression model, estimated using (weighted or un-weighted) least squares, and which can be represented graphically using a simple scatterplot. Things get a little bit more complicated if you are trying to account for imperfect compliance with treatment assignment—as in the “fuzzy” RDD—but for the moment let me focus on “sharp” RDDs.&lt;/p&gt;
-&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;https://www.jepusto.com/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
+&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;http://localhost:4321/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
 &lt;div id=&#34;gday-mate&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;G’day, MATE&lt;/h3&gt;
 &lt;p&gt;I think it’s helpful to start by thinking about the definition of the MATE in non-parametric terms. Let &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt; be the running variable, assumed to be centered at the threshold; &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; be an indicator for treatment assignment, with &lt;span class=&#34;math inline&#34;&gt;\(T = I(R &amp;gt; 0)\)&lt;/span&gt;; and &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a covariate, which may be vector-valued. Denote the potential outcomes as &lt;span class=&#34;math inline&#34;&gt;\(Y^0\)&lt;/span&gt; (a unit’s outcome if not assigned to treatment) and &lt;span class=&#34;math inline&#34;&gt;\(Y^1\)&lt;/span&gt; (a unit’s outcome if assigned to treatment), so that the observed outcome is &lt;span class=&#34;math inline&#34;&gt;\(Y = Y^0 (1 - T) + Y^1 T\)&lt;/span&gt;. Now consider the potential response surfaces&lt;/p&gt;
@@ -641,9 +797,9 @@ coeftest(lm_fit, vcov. = vcovHC(lm_fit, type = &amp;quot;HC1&amp;quot;))[&amp;qu
     
     <item>
       <title>Regression discontinuities with covariate interactions in the rdd package</title>
-      <link>https://www.jepusto.com/rdd-interactions/</link>
+      <link>http://localhost:4321/rdd-interactions/</link>
       <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions/</guid>
+      <guid>http://localhost:4321/rdd-interactions/</guid>
       <description>
 
 
@@ -698,7 +854,7 @@ summary(rdd_simple)&lt;/code&gt;&lt;/pre&gt;
 ## Double-BW  104.74  3         1828        0.000e+00&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using a bandwidth of 1.09, the estimated marginal average treatment effect is 0.303. The figure below illustrates the discontinuity:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;rdd-with-covariates&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;RDD with covariates&lt;/h3&gt;
@@ -740,7 +896,7 @@ ldply(covariates, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;Speci
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y_i = \beta_0 + \beta_1 R_i + \beta_2 T_i + \beta_3 R_i T_i + \beta_4 X_i + \beta_5 X_i T_i + \epsilon_i, \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;while still taking &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; to represent the MATE. This is problematic because, as soon as the &lt;span class=&#34;math inline&#34;&gt;\(X_i T_i\)&lt;/span&gt; term is introduced into the model, &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; represents the difference between treated and untreated units at the threshold (where &lt;span class=&#34;math inline&#34;&gt;\(R_i = 0\)&lt;/span&gt;) and where &lt;span class=&#34;math inline&#34;&gt;\(X_i = 0\)&lt;/span&gt;. Thus, including the &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; is a difference extrapolated &lt;em&gt;way&lt;/em&gt; outside the support of the data, as in the following scatterplot of the outcome versus the covariate &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;RDestimate&lt;/code&gt; returns as the MATE estimate the difference between the regression lines when &lt;span class=&#34;math inline&#34;&gt;\(X_1 = 0\)&lt;/span&gt;, which in this example is -0.69. Similarly, including the &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; will represent the marginal average treatment effect for only one of the categories of &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;, rather than as some sort of average across all four categories.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-to-do-about-this&#34; class=&#34;section level3&#34;&gt;
@@ -818,13 +974,13 @@ ldply(covariates_cent, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;
     
     <item>
       <title>Clustered standard errors and hypothesis tests in fixed effects models</title>
-      <link>https://www.jepusto.com/clubsandwich-for-crve-fe/</link>
+      <link>http://localhost:4321/clubsandwich-for-crve-fe/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-for-crve-fe/</guid>
+      <guid>http://localhost:4321/clubsandwich-for-crve-fe/</guid>
       <description>
 
 
-&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;http://localhost:4321/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The importance of using CRVE (i.e., “clustered standard errors”) in panel models is now widely recognized. Less widely recognized, perhaps, is the fact that standard methods for constructing hypothesis tests and confidence intervals based on CRVE can perform quite poorly in when you have only a limited number of independent clusters. What’s worse, it can be hard to determine what counts as a large-enough sample to trust standard CRVE methods, because the finite-sample behavior of the variance estimators and test statistics depends on the configuration of the covariates, not just the total sample size. For example, suppose you have state-level panel data from 50 states across 15 years and are trying to estimate the effect of some policy using difference-in-differences. If only 5 or 6 states have variation in the policy variable over time, then you’re almost certainly in small-sample territory. And the sample size issues can be subtler than this, too, as I’ll show below.&lt;/p&gt;
 &lt;p&gt;One solution to this problem is to use bias-reduced linearization (BRL), which was proposed by Bell and McCaffrey (2002) and has recently begun to receive attention from econometricians (e.g., Cameron &amp;amp; Miller, 2015; Imbens &amp;amp; Kolesar, 2015). The idea of BRL is to correct the bias of standard CRVE based on a working model, and then to use a degrees-of-freedom correction for Wald tests based on the bias-reduced CRVE. That may seem silly (after all, the whole point of CRVE is to avoid making distributional assumptions about the errors in your model), but it turns out that the correction can help quite a bit, even when the working model is wrong. The degrees-of-freedom correction is based on a standard Satterthwaite-type approximation, and also relies on the working model. There’s now quite a bit of evidence (which we review in the working paper) that BRL performs well even in samples with a small number of clusters.&lt;/p&gt;
 &lt;p&gt;In the working paper, we make two contributions to all this:&lt;/p&gt;

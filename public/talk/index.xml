@@ -2,29 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Presentations &amp; Posters | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/talk/</link>
-      <atom:link href="https://www.jepusto.com/talk/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/talk/</link>
+      <atom:link href="http://localhost:4321/talk/index.xml" rel="self" type="application/rss+xml" />
     <description>Presentations &amp; Posters</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 29 Sep 2023 16:30:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 17 May 2024 09:30:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Presentations &amp; Posters</title>
-      <link>https://www.jepusto.com/talk/</link>
+      <link>http://localhost:4321/talk/</link>
     </image>
     
     <item>
+      <title>Model-Building Considerations in Meta-Analysis of Dependent Effect Sizes</title>
+      <link>http://localhost:4321/talk/vive-2024-dependent-effects/</link>
+      <pubDate>Fri, 17 May 2024 09:30:00 +0000</pubDate>
+      <guid>http://localhost:4321/talk/vive-2024-dependent-effects/</guid>
+      <description>&lt;p&gt;In fields ranging from Education to Economics to Ecology, meta-analysts often encounter complicated data structures, in which some or all primary studies include multiple effect size estimates. These estimates may be correlated because they are based on data from a common sample or a partially overlapping sample, or may be statistically dependent due to use of common study operations. A broad analytic strategy for dealing with such data is to specify a &amp;ldquo;working model&amp;rdquo; to roughly characterize the dependence structure, then use robust inference strategies that work well even if the working model is mis-specified relative to the true data-generating process. Although the technical and computational aspects of this strategy are now well developed, questions remain about how to apply it effectively in practice. In this talk, I will examine two practical questions related to how to build models for meta-analyses involving dependent effect sizes. First, I will illustrate some connections between working models and simpler, ad hoc techniques for dealing with effect size multiplicity, arguing that these connections provide useful heuristics to guide specification of random effects structures in multi-level and multi-variate meta-analysis. Second, I will describe some analytic strategies for conducting equity-related moderator analyses, where predictors involve personal characteristics of the primary study participants that can vary both within and between studies. I distinguish between direct evidence and contextual evidence about equity of impacts and show that the choice of working model can be consequential for analyses involving direct evidence. Throughout, I will highlight some open issues and practical challenges involved in modeling dependent effect sizes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bayesian estimation of between-case standardized mean differences: A simulation study</title>
+      <link>http://localhost:4321/talk/aera-2024-bayes-bcsmd/</link>
+      <pubDate>Fri, 12 Apr 2024 15:30:00 +0000</pubDate>
+      <guid>http://localhost:4321/talk/aera-2024-bayes-bcsmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Discussion of Stabilizing measures to reconcile accuracy and equity in performance measurement</title>
-      <link>https://www.jepusto.com/talk/sree-2023-stabilizing-performance-measures-discussion/</link>
+      <link>http://localhost:4321/talk/sree-2023-stabilizing-performance-measures-discussion/</link>
       <pubDate>Fri, 29 Sep 2023 16:30:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2023-stabilizing-performance-measures-discussion/</guid>
+      <guid>http://localhost:4321/talk/sree-2023-stabilizing-performance-measures-discussion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Equity-related moderator analysis in syntheses of dependent effect sizes: Conceptual and statistical considerations</title>
-      <link>https://www.jepusto.com/talk/sree-2023-equity-related-moderator-analysis/</link>
+      <link>http://localhost:4321/talk/sree-2023-equity-related-moderator-analysis/</link>
       <pubDate>Wed, 27 Sep 2023 16:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2023-equity-related-moderator-analysis/</guid>
+      <guid>http://localhost:4321/talk/sree-2023-equity-related-moderator-analysis/</guid>
       <description>&lt;h1 id=&#34;backgroundcontext&#34;&gt;Background/Context&lt;/h1&gt;
 &lt;p&gt;In meta-analyses examining educational interventions, researchers seek to understand the distribution of intervention impacts, in order to draw generalizations about what works, for whom, and under what conditions. One common way to examine equity implications in such reviews is through moderator analysis, which involves modeling how intervention effect sizes vary depending on the characteristics of primary study participants. For example, one might estimate associations between effect size and the percentage of the primary study participants who were from a rural school, from a low-income family, identified as a specific racial or ethnic group, or designated as an English Language Learner. Such moderator analyses can provide insights about the populations and contexts where an intervention is more or less effective—that is, they can address questions of who benefits and how the effects of an educational intervention are distributed.&lt;/p&gt;
 &lt;p&gt;Meta-analyses of educational interventions often include primary studies that report multiple relevant effect size estimates, such for more than one measure of an outcome construct, at multiple time-points, for multiple versions of an intervention, or for different sub-groups of participants. This leads to a data structure where the effects from a given study are correlated, necessitating the use of statistical methods that are appropriate for dependent observations. Methodological research in this area has provided estimation and inference methods that which can handle dependent effect sizes, including multi-level meta-analyses (Van den Noortgate et al., 2013, 2015), robust variance estimation (Hedges et al., 2010), and combinations thereof (Fernández-Castilla et al., 2020; Pustejovsky &amp;amp; Tipton, 2022). However, there has been much less attention to the specific forms of moderator analysis that are of interest in practice.&lt;/p&gt;
@@ -45,387 +62,387 @@ Conceptual Considerations&lt;/p&gt;
     
     <item>
       <title>Determining the Timing of Phase Changes: Some Statistical Perspective</title>
-      <link>https://www.jepusto.com/talk/wiscc-2023/</link>
+      <link>http://localhost:4321/talk/wiscc-2023/</link>
       <pubDate>Thu, 18 May 2023 09:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/wiscc-2023/</guid>
+      <guid>http://localhost:4321/talk/wiscc-2023/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Calculating Effect Sizes for Single-Case Research: An Introduction to the SingleCaseES and scdhlm Web Applications and R Packages</title>
-      <link>https://www.jepusto.com/talk/small-is-beautiful-2023-workshop/</link>
+      <link>http://localhost:4321/talk/small-is-beautiful-2023-workshop/</link>
       <pubDate>Wed, 26 Apr 2023 11:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/small-is-beautiful-2023-workshop/</guid>
+      <guid>http://localhost:4321/talk/small-is-beautiful-2023-workshop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Effect size measures for single-case research: Conceptual, practical, and statistical considerations</title>
-      <link>https://www.jepusto.com/talk/small-is-beautiful-2023-keynote/</link>
+      <link>http://localhost:4321/talk/small-is-beautiful-2023-keynote/</link>
       <pubDate>Tue, 25 Apr 2023 08:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/small-is-beautiful-2023-keynote/</guid>
+      <guid>http://localhost:4321/talk/small-is-beautiful-2023-keynote/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Empirical benchmarks for between-case standardized mean differences from single-case multiple baseline designs examining academic interventions.</title>
-      <link>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</link>
+      <link>http://localhost:4321/talk/aera-2023-bcsmd-benchmarks/</link>
       <pubDate>Sun, 16 Apr 2023 11:40:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</guid>
+      <guid>http://localhost:4321/talk/aera-2023-bcsmd-benchmarks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Discussion of ‘Moving from What Works to What Replicates: Promoting the Systematic Replication of Results.’</title>
-      <link>https://www.jepusto.com/talk/aera-2023-replication-discussion/</link>
+      <link>http://localhost:4321/talk/aera-2023-replication-discussion/</link>
       <pubDate>Sat, 15 Apr 2023 14:50:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2023-replication-discussion/</guid>
+      <guid>http://localhost:4321/talk/aera-2023-replication-discussion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Clustered bootstrapping for selective reporting models in meta-analysis with dependent effects</title>
-      <link>https://www.jepusto.com/talk/esmarconf2023-clustered-bootstrap-selection-model/</link>
+      <link>http://localhost:4321/talk/esmarconf2023-clustered-bootstrap-selection-model/</link>
       <pubDate>Thu, 30 Mar 2023 08:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/esmarconf2023-clustered-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/talk/esmarconf2023-clustered-bootstrap-selection-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A matter of emphasis: Comparison of working models for meta-analysis of dependent effect sizes</title>
-      <link>https://www.jepusto.com/talk/srsm-2022-matter-of-emphasis/</link>
+      <link>http://localhost:4321/talk/srsm-2022-matter-of-emphasis/</link>
       <pubDate>Wed, 20 Jul 2022 14:50:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/srsm-2022-matter-of-emphasis/</guid>
+      <guid>http://localhost:4321/talk/srsm-2022-matter-of-emphasis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The state of single case synthesis: Premises, tools, and possibilities</title>
-      <link>https://www.jepusto.com/talk/sscc-2022-state-of-scd-synthesis/</link>
+      <link>http://localhost:4321/talk/sscc-2022-state-of-scd-synthesis/</link>
       <pubDate>Thu, 19 May 2022 13:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sscc-2022-state-of-scd-synthesis/</guid>
+      <guid>http://localhost:4321/talk/sscc-2022-state-of-scd-synthesis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Selective reporting in meta-analysis of dependent effect size estimates</title>
-      <link>https://www.jepusto.com/talk/stanford-qsu-2022-selective-reporting/</link>
+      <link>http://localhost:4321/talk/stanford-qsu-2022-selective-reporting/</link>
       <pubDate>Tue, 08 Feb 2022 18:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/stanford-qsu-2022-selective-reporting/</guid>
+      <guid>http://localhost:4321/talk/stanford-qsu-2022-selective-reporting/</guid>
       <description>&lt;p&gt;Publication bias and other forms of selective outcome reporting are important threats to the validity of findings from research syntheses—even undermining their special status for informing evidence-based practice and policy guidance. An array of methods have been proposed for detecting selective outcome reporting, but nearly all of the available statistical tests are premised on the assumption that each study contributes a single effect size, which is statistically independent of the other effect sizes in the analysis. In practice, however, it is very common for meta-analyses to include studies that contribute multiple, statistically dependent effect sizes (e.g., effect sizes for multiple, related outcome measures, effect sizes at different follow-up times, or effect sizes from multiple replications based on a common protocol). In this talk, I will review these issues and describe the range of methods that synthesists currently use to examine selective reporting issues under effect size dependence. I then describe a new test for diagnosing selective reporting by comparing the observed number of statistically significant effect sizes to the number expected based on the power of included studies to detect the estimated average effect. This test generalizes the Test of Excess Significance (TES; Ioannidis &amp;amp; Trikalinos, 2007) and is closely related to the score test under a simple version of the Vevea and Hedges (1995) selection model. It uses cluster-robust sandwich estimation methods to handle dependence of effect sizes nested within studies. I report some simulation evidence on the power of this new test relative to existing alternatives and discuss further directions for investigating selective reporting issues in meta-analysis.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Easy, cluster-robust standard errors with the clubSandwich package</title>
-      <link>https://www.jepusto.com/talk/oslorug-2022-clubsandwich/</link>
+      <link>http://localhost:4321/talk/oslorug-2022-clubsandwich/</link>
       <pubDate>Thu, 03 Feb 2022 10:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/oslorug-2022-clubsandwich/</guid>
+      <guid>http://localhost:4321/talk/oslorug-2022-clubsandwich/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four things every quantitative social scientist should know about meta-analysis</title>
-      <link>https://www.jepusto.com/talk/edpsych-colloquium-2021-four-things/</link>
+      <link>http://localhost:4321/talk/edpsych-colloquium-2021-four-things/</link>
       <pubDate>Mon, 27 Sep 2021 10:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/edpsych-colloquium-2021-four-things/</guid>
+      <guid>http://localhost:4321/talk/edpsych-colloquium-2021-four-things/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Synthesis of dependent effect sizes: Robust variance estimation with clubSandwich</title>
-      <link>https://www.jepusto.com/talk/oslorug-2021-rve-with-metafor-and-clubsandwich/</link>
+      <link>http://localhost:4321/talk/oslorug-2021-rve-with-metafor-and-clubsandwich/</link>
       <pubDate>Thu, 02 Sep 2021 10:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/oslorug-2021-rve-with-metafor-and-clubsandwich/</guid>
+      <guid>http://localhost:4321/talk/oslorug-2021-rve-with-metafor-and-clubsandwich/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Statistical frontiers for selective reporting and publication bias</title>
-      <link>https://www.jepusto.com/talk/sips-2021-statistical-frontiers-for-selective-reporting/</link>
+      <link>http://localhost:4321/talk/sips-2021-statistical-frontiers-for-selective-reporting/</link>
       <pubDate>Wed, 23 Jun 2021 12:30:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sips-2021-statistical-frontiers-for-selective-reporting/</guid>
-      <description>&lt;p&gt;This workshop will cover methods to investigate selective reporting in meta-analysis of statistically dependent effect sizes, which are a common feature of systematic reviews in psychology. The workshop is organized into two sections. In the first section, we will describe situations where dependent effect sizes occur and review methods for summarizing findings in the presence of dependent effects. We will then describe methods for creating and interpreting funnel plots, including tests of asymmetry, with dependent effect sizes. In the second section, we will present new statistical sensitivity analyses for publication bias, which perform well in small meta-analyses, those with non-normal or dependent effect sizes, and those with heterogeneity. The sensitivity analyses enable statements such as &amp;ldquo;For publication bias to shift the observed point estimate to the null, &amp;lsquo;significant&amp;rsquo; results would need to be at least 10-fold more likely to be published than negative or &amp;lsquo;non-significant&amp;rsquo; results&amp;rdquo; or &amp;ldquo;no amount of publication bias could explain away the average effect.&amp;rdquo; In both sections, we will demonstrate methods using R code and examples from real meta-analyses.&lt;/p&gt;
+      <guid>http://localhost:4321/talk/sips-2021-statistical-frontiers-for-selective-reporting/</guid>
+      <description>&lt;p&gt;This workshop will cover methods to investigate selective reporting in meta-analysis of statistically dependent effect sizes, which are a common feature of systematic reviews in psychology. The workshop is organized into two sections. In the first section, we will describe situations where dependent effect sizes occur and review methods for summarizing findings in the presence of dependent effects. We will then describe methods for creating and interpreting funnel plots, including tests of asymmetry, with dependent effect sizes. In the second section, we will present new statistical sensitivity analyses for publication bias, which perform well in small meta-analyses, those with non-normal or dependent effect sizes, and those with heterogeneity. The sensitivity analyses enable statements such as &amp;ldquo;For publication bias to shift the observed point estimate to the null, &amp;lsquo;significant&amp;rsquo; results would need to be at least 10-fold more likely to be published than negative or &amp;rsquo;non-significant&amp;rsquo; results&amp;rdquo; or &amp;ldquo;no amount of publication bias could explain away the average effect.&amp;rdquo; In both sections, we will demonstrate methods using R code and examples from real meta-analyses.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Synthesis of dependent effect sizes: Versatile models through metafor and clubSandwich</title>
-      <link>https://www.jepusto.com/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/</link>
+      <link>http://localhost:4321/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/</link>
       <pubDate>Thu, 21 Jan 2021 09:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/</guid>
+      <guid>http://localhost:4321/talk/esmarconf2021-rve-with-metafor-and-clubsandwich/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A generalized excess significance test for selective outcome reporting with dependent effect sizes</title>
-      <link>https://www.jepusto.com/talk/srsm-2019-generalized-excess-significance-test/</link>
+      <link>http://localhost:4321/talk/srsm-2019-generalized-excess-significance-test/</link>
       <pubDate>Mon, 22 Jul 2019 13:30:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/srsm-2019-generalized-excess-significance-test/</guid>
+      <guid>http://localhost:4321/talk/srsm-2019-generalized-excess-significance-test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Log response ratio effect sizes: Rationale and methods for single case designs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/talk/abai-2019-log-response-ratios/</link>
+      <link>http://localhost:4321/talk/abai-2019-log-response-ratios/</link>
       <pubDate>Sun, 26 May 2019 17:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/abai-2019-log-response-ratios/</guid>
+      <guid>http://localhost:4321/talk/abai-2019-log-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating meta-analytic methods to detect outcome reporting bias in the presence of dependent effect sizes</title>
-      <link>https://www.jepusto.com/talk/aera-2019-orb-dependence/</link>
+      <link>http://localhost:4321/talk/aera-2019-orb-dependence/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2019-orb-dependence/</guid>
+      <guid>http://localhost:4321/talk/aera-2019-orb-dependence/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An examination of measurement procedures and baseline behavioral outcomes in single-case research</title>
-      <link>https://www.jepusto.com/talk/aera-2019-outcome-measurement-procedures/</link>
+      <link>http://localhost:4321/talk/aera-2019-outcome-measurement-procedures/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2019-outcome-measurement-procedures/</guid>
+      <guid>http://localhost:4321/talk/aera-2019-outcome-measurement-procedures/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The impact of response-guided designs on count outcomes in single-case design baselines</title>
-      <link>https://www.jepusto.com/talk/aera-2019-response-guided-algorithms/</link>
+      <link>http://localhost:4321/talk/aera-2019-response-guided-algorithms/</link>
       <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2019-response-guided-algorithms/</guid>
+      <guid>http://localhost:4321/talk/aera-2019-response-guided-algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample cluster-robust variance estimators for two-stage least squares models</title>
-      <link>https://www.jepusto.com/talk/sree-2019-2sls-crve/</link>
+      <link>http://localhost:4321/talk/sree-2019-2sls-crve/</link>
       <pubDate>Fri, 08 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2019-2sls-crve/</guid>
+      <guid>http://localhost:4321/talk/sree-2019-2sls-crve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Combining robust variance estimation with models for dependent effect sizes</title>
-      <link>https://www.jepusto.com/talk/utaustin-2018-combining-rve-with-models/</link>
+      <link>http://localhost:4321/talk/utaustin-2018-combining-rve-with-models/</link>
       <pubDate>Mon, 01 Oct 2018 12:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/utaustin-2018-combining-rve-with-models/</guid>
+      <guid>http://localhost:4321/talk/utaustin-2018-combining-rve-with-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Combining robust variance estimation with models for dependent effect sizes</title>
-      <link>https://www.jepusto.com/talk/srsm-2018-combining-rve-with-models/</link>
+      <link>http://localhost:4321/talk/srsm-2018-combining-rve-with-models/</link>
       <pubDate>Wed, 18 Jul 2018 09:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/srsm-2018-combining-rve-with-models/</guid>
+      <guid>http://localhost:4321/talk/srsm-2018-combining-rve-with-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Meta-analysis of dependent effects: A review and consolidation of methods</title>
-      <link>https://www.jepusto.com/talk/aera-2018-dependent-effects/</link>
+      <link>http://localhost:4321/talk/aera-2018-dependent-effects/</link>
       <pubDate>Sun, 15 Apr 2018 08:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2018-dependent-effects/</guid>
+      <guid>http://localhost:4321/talk/aera-2018-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Meta-analysis of single-case research: A brief and breezy tour</title>
-      <link>https://www.jepusto.com/talk/aera-2018-meta-analysis-of-single-case-research/</link>
+      <link>http://localhost:4321/talk/aera-2018-meta-analysis-of-single-case-research/</link>
       <pubDate>Sun, 15 Apr 2018 08:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2018-meta-analysis-of-single-case-research/</guid>
+      <guid>http://localhost:4321/talk/aera-2018-meta-analysis-of-single-case-research/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A gradual effects model for single case designs</title>
-      <link>https://www.jepusto.com/talk/ies-2018-gradual-effects-model/</link>
+      <link>http://localhost:4321/talk/ies-2018-gradual-effects-model/</link>
       <pubDate>Wed, 10 Jan 2018 08:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/ies-2018-gradual-effects-model/</guid>
+      <guid>http://localhost:4321/talk/ies-2018-gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Randomization inference for single-case experimental designs</title>
-      <link>https://www.jepusto.com/talk/ies-2018-randomization-inference/</link>
+      <link>http://localhost:4321/talk/ies-2018-randomization-inference/</link>
       <pubDate>Wed, 10 Jan 2018 08:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/ies-2018-randomization-inference/</guid>
+      <guid>http://localhost:4321/talk/ies-2018-randomization-inference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Heteroskedasticity-robust tests in linear regression: A review and evaluation of small-sample corrections</title>
-      <link>https://www.jepusto.com/talk/aera-2017-hc-t-tests/</link>
+      <link>http://localhost:4321/talk/aera-2017-hc-t-tests/</link>
       <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2017-hc-t-tests/</guid>
+      <guid>http://localhost:4321/talk/aera-2017-hc-t-tests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A nonlinear intervention analysis model for treatment reversal single-case designs</title>
-      <link>https://www.jepusto.com/talk/aera-2017-intervention-analysis/</link>
+      <link>http://localhost:4321/talk/aera-2017-intervention-analysis/</link>
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2017-intervention-analysis/</guid>
+      <guid>http://localhost:4321/talk/aera-2017-intervention-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/talk/aera-2017-response-ratios/</link>
+      <link>http://localhost:4321/talk/aera-2017-response-ratios/</link>
       <pubDate>Fri, 28 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2017-response-ratios/</guid>
+      <guid>http://localhost:4321/talk/aera-2017-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small sample corrections for use of cluster-robust standard errors in the analysis of school-based experiments</title>
-      <link>https://www.jepusto.com/talk/sree-2017-small-sample-corrections/</link>
+      <link>http://localhost:4321/talk/sree-2017-small-sample-corrections/</link>
       <pubDate>Thu, 02 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2017-small-sample-corrections/</guid>
+      <guid>http://localhost:4321/talk/sree-2017-small-sample-corrections/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Effect sizes for single-case research</title>
-      <link>https://www.jepusto.com/talk/ies-2016-single-case-effect-sizes/</link>
+      <link>http://localhost:4321/talk/ies-2016-single-case-effect-sizes/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/ies-2016-single-case-effect-sizes/</guid>
+      <guid>http://localhost:4321/talk/ies-2016-single-case-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models</title>
-      <link>https://www.jepusto.com/talk/jsm-2016-small-sample-crve/</link>
+      <link>http://localhost:4321/talk/jsm-2016-small-sample-crve/</link>
       <pubDate>Sun, 31 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/jsm-2016-small-sample-crve/</guid>
+      <guid>http://localhost:4321/talk/jsm-2016-small-sample-crve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>When large samples act small: The importance of small-sample adjustments for cluster-robust inference in impact evaluations</title>
-      <link>https://www.jepusto.com/talk/air-2016-when-large-samples-act-small/</link>
+      <link>http://localhost:4321/talk/air-2016-when-large-samples-act-small/</link>
       <pubDate>Mon, 18 Jul 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/air-2016-when-large-samples-act-small/</guid>
+      <guid>http://localhost:4321/talk/air-2016-when-large-samples-act-small/</guid>
       <description></description>
     </item>
     
     <item>
       <title>When large samples act small: Cluster-robust variance estimation and hypothesis testing with few clusters</title>
-      <link>https://www.jepusto.com/talk/prc-2016-when-large-samples-act-small/</link>
+      <link>http://localhost:4321/talk/prc-2016-when-large-samples-act-small/</link>
       <pubDate>Fri, 19 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/prc-2016-when-large-samples-act-small/</guid>
+      <guid>http://localhost:4321/talk/prc-2016-when-large-samples-act-small/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample adjustments for multiple-contrast hypothesis tests of meta-regressions using robust variance estimation</title>
-      <link>https://www.jepusto.com/talk/srsm-2015-small-sample-adjustments/</link>
+      <link>http://localhost:4321/talk/srsm-2015-small-sample-adjustments/</link>
       <pubDate>Wed, 08 Jul 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/srsm-2015-small-sample-adjustments/</guid>
+      <guid>http://localhost:4321/talk/srsm-2015-small-sample-adjustments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operational sensitivities of non-overlap effect sizes for single-case experimental designs</title>
-      <link>https://www.jepusto.com/talk/aera-2015-operational-sensitivities/</link>
+      <link>http://localhost:4321/talk/aera-2015-operational-sensitivities/</link>
       <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2015-operational-sensitivities/</guid>
+      <guid>http://localhost:4321/talk/aera-2015-operational-sensitivities/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample adjustments for F-tests using robust variance estimation in meta-regression</title>
-      <link>https://www.jepusto.com/talk/aera-2015-small-sample-adjustments/</link>
+      <link>http://localhost:4321/talk/aera-2015-small-sample-adjustments/</link>
       <pubDate>Sat, 18 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2015-small-sample-adjustments/</guid>
+      <guid>http://localhost:4321/talk/aera-2015-small-sample-adjustments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Observation procedures and Markov Chain models for estimating the prevalence and incidence of a state behavior</title>
-      <link>https://www.jepusto.com/talk/aera-2015-observation-procedures/</link>
+      <link>http://localhost:4321/talk/aera-2015-observation-procedures/</link>
       <pubDate>Thu, 16 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2015-observation-procedures/</guid>
+      <guid>http://localhost:4321/talk/aera-2015-observation-procedures/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</title>
-      <link>https://www.jepusto.com/talk/sree-2015-small-sample-adjustments/</link>
+      <link>http://localhost:4321/talk/sree-2015-small-sample-adjustments/</link>
       <pubDate>Fri, 06 Mar 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2015-small-sample-adjustments/</guid>
+      <guid>http://localhost:4321/talk/sree-2015-small-sample-adjustments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods of analyzing partial interval recording data, with application to single-case research</title>
-      <link>https://www.jepusto.com/talk/aera-2014-four-methods-for-pir/</link>
+      <link>http://localhost:4321/talk/aera-2014-four-methods-for-pir/</link>
       <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2014-four-methods-for-pir/</guid>
+      <guid>http://localhost:4321/talk/aera-2014-four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Addressing construct invalidity in partial interval recording data</title>
-      <link>https://www.jepusto.com/talk/tuesap-2014-construct-invalidity-of-pir/</link>
+      <link>http://localhost:4321/talk/tuesap-2014-construct-invalidity-of-pir/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/tuesap-2014-construct-invalidity-of-pir/</guid>
+      <guid>http://localhost:4321/talk/tuesap-2014-construct-invalidity-of-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>On internal validity in multiple baseline designs</title>
-      <link>https://www.jepusto.com/talk/sree-2014-internal-validity-of-mbd/</link>
+      <link>http://localhost:4321/talk/sree-2014-internal-validity-of-mbd/</link>
       <pubDate>Thu, 06 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2014-internal-validity-of-mbd/</guid>
+      <guid>http://localhost:4321/talk/sree-2014-internal-validity-of-mbd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Some Markov models for direct observation of behavior</title>
-      <link>https://www.jepusto.com/talk/nu-stats-2013-markov-models-for-direct-observation/</link>
+      <link>http://localhost:4321/talk/nu-stats-2013-markov-models-for-direct-observation/</link>
       <pubDate>Wed, 29 May 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/nu-stats-2013-markov-models-for-direct-observation/</guid>
+      <guid>http://localhost:4321/talk/nu-stats-2013-markov-models-for-direct-observation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Effect sizes and measurement comparability for meta-analysis of single-case research</title>
-      <link>https://www.jepusto.com/talk/abai-2013-effect-sizes/</link>
+      <link>http://localhost:4321/talk/abai-2013-effect-sizes/</link>
       <pubDate>Tue, 28 May 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/abai-2013-effect-sizes/</guid>
+      <guid>http://localhost:4321/talk/abai-2013-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Observation procedures and Markov chain models for estimating the prevalence and incidence of a behavior</title>
-      <link>https://www.jepusto.com/talk/aera-2013-observation-procedures/</link>
+      <link>http://localhost:4321/talk/aera-2013-observation-procedures/</link>
       <pubDate>Tue, 30 Apr 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2013-observation-procedures/</guid>
+      <guid>http://localhost:4321/talk/aera-2013-observation-procedures/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Operationally comparable effect sizes for meta-analysis of single-case research</title>
-      <link>https://www.jepusto.com/talk/sree-2013-operationally-comparable-effect-sizes/</link>
+      <link>http://localhost:4321/talk/sree-2013-operationally-comparable-effect-sizes/</link>
       <pubDate>Thu, 07 Mar 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2013-operationally-comparable-effect-sizes/</guid>
+      <guid>http://localhost:4321/talk/sree-2013-operationally-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Some implications of behavioral observation procedures for meta-analysis of single-case research</title>
-      <link>https://www.jepusto.com/talk/ut-austin-2012-meta-analysis-of-single-case-research/</link>
+      <link>http://localhost:4321/talk/ut-austin-2012-meta-analysis-of-single-case-research/</link>
       <pubDate>Wed, 14 Nov 2012 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/ut-austin-2012-meta-analysis-of-single-case-research/</guid>
+      <guid>http://localhost:4321/talk/ut-austin-2012-meta-analysis-of-single-case-research/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Question-order effects in social network name generators</title>
-      <link>https://www.jepusto.com/talk/issna-2008-question-order-effects/</link>
+      <link>http://localhost:4321/talk/issna-2008-question-order-effects/</link>
       <pubDate>Wed, 23 Jan 2008 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/issna-2008-question-order-effects/</guid>
+      <guid>http://localhost:4321/talk/issna-2008-question-order-effects/</guid>
       <description></description>
     </item>
     

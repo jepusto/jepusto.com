@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>publication bias | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/publication-bias/</link>
-      <atom:link href="https://www.jepusto.com/tags/publication-bias/index.xml" rel="self" type="application/rss+xml" />
-    <description>publication bias</description>
+    <title>Publication Bias | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/publication-bias/</link>
+      <atom:link href="http://localhost:4321/tags/publication-bias/index.xml" rel="self" type="application/rss+xml" />
+    <description>Publication Bias</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 30 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>publication bias</title>
-      <link>https://www.jepusto.com/tags/publication-bias/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Publication Bias</title>
+      <link>http://localhost:4321/tags/publication-bias/</link>
     </image>
     
     <item>
       <title>Cluster-Bootstrapping a meta-analytic selection model</title>
-      <link>https://www.jepusto.com/cluster-bootstrap-selection-model/</link>
+      <link>http://localhost:4321/cluster-bootstrap-selection-model/</link>
       <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/cluster-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/cluster-bootstrap-selection-model/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;style type=&#34;text/css&#34;&gt;
@@ -12582,7 +12582,7 @@ RE_robust&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The random effects model indicates an average effect size of about 0.21 standard deviations and substantial heterogeneity, with &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.32\)&lt;/span&gt;. The cluster-robust standard error is about 27% bigger than the model-based standard error (not shown) because the latter does not account for dependent effect sizes.&lt;/p&gt;
 &lt;p&gt;Here is a contour-enhanced funnel plot of the data:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;funnel(RE_mod, refline = 0, level=c(90, 95, 99), shade=c(&amp;quot;white&amp;quot;, &amp;quot;gray55&amp;quot;, &amp;quot;gray75&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The funnel plot shows some asymmetry, suggesting that there is reason to be concerned about selective reporting bias in these data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;a-selection-model&#34; class=&#34;section level3&#34;&gt;
@@ -13095,25 +13095,25 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
     
     <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</link>
+      <link>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</link>
       <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</guid>
+      <guid>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing for funnel plot asymmetry of standardized mean differences</title>
-      <link>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
+      <link>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
+      <guid>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
       <description></description>
     </item>
     
     <item>
       <title>You wanna PEESE of d&#39;s?</title>
-      <link>https://www.jepusto.com/pet-peese-performance/</link>
+      <link>http://localhost:4321/pet-peese-performance/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/pet-peese-performance/</guid>
+      <guid>http://localhost:4321/pet-peese-performance/</guid>
       <description>
 
 
@@ -13185,7 +13185,7 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;li&gt;the modified PEESE estimator, which I’ll call “SPEESE”; and&lt;/li&gt;
 &lt;li&gt;SPET-SPEESE, which follows the same conditional logic as PET-PEESE.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;https://www.jepusto.com/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;http://localhost:4321/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;results&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Results&lt;/h1&gt;
@@ -13193,43 +13193,43 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;h3&gt;False-positive rates for publication bias detection&lt;/h3&gt;
 &lt;p&gt;First, let’s consider the performance of PET and PEESE as tests for detecting publication bias. Here, a statistically significant estimate for the coefficient on the SE (for PET) or on &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; (for PEESE) is taken as evidence of small-sample bias. For that logic to hold, the tests should maintain the nominal error rates in the absence of publication bias.&lt;/p&gt;
 &lt;p&gt;The figure below depicts the Type-I error rates of the PET and PEESE tests when &lt;span class=&#34;math inline&#34;&gt;\(\pi = 1\)&lt;/span&gt; (so no publication bias at all), for a one-sided test of &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; at the nominal level of &lt;span class=&#34;math inline&#34;&gt;\(\alpha = .05\)&lt;/span&gt;. Rejection rates are plotted for varying true mean effects, levels of heterogeneity, and sample size distributions. Separate colors are used for maximum sample sizes of 50 or 120.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both tests are horribly mis-calibrated, tending to reject the null hypothesis far more often than they should. This happens because there is a non-zero correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt;, even in the absence of publication bias. Thus, it does not follow that rejecting &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; implies rejection of the hypothesis that there is no publication bias. (Sorry, that’s at least a triple negative!)&lt;/p&gt;
 &lt;p&gt;Here’s the same graph, but using the SPET and SPEESE estimators:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Yes, this may be the World’s Most Boring Figure, but it does make clear that both the SPET and SPEESE tests maintain the correct Type-I error rate. (Any variation in rejection rates is just Monte Carlo error.) Thus, it seems pretty clear that if we want to test for small-sample bias, SPET or SPEESE should be used rather than PET or PEESE.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bias-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Bias of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Now let’s consider the performance of these methods as estimators of the population mean effect. &lt;a href=&#34;http://datacolada.org/59&#34;&gt;Uri’s analysis&lt;/a&gt; focused on the bias of the estimators, meaning the difference between the average value of the estimator (across repeated samples) and the true parameter. The plot below depicts the expected level of PET, PEESE, and PET-PEESE as a function of the true mean effect, using the uniform distribution of studies and a maximum sample size of &lt;span class=&#34;math inline&#34;&gt;\(n = 50\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All three of these estimators are pretty bad in terms of bias. In the absence of publication bias, they consistently &lt;em&gt;under&lt;/em&gt;-estimate the true mean effect. With intermediate or strong publication bias, PET and PET-PEESE have a consistent downward bias. As an unconditional estimator, PEESE tends to have a positive bias when the true effect is small, but this decreases and becomes negative as the true effect increases. For all three estimators, bias increases as the degree of heterogeneity increases.&lt;/p&gt;
 &lt;p&gt;Here is how these estimators compare to the modified SPET, SPEESE, and SPET-SPEESE estimators, as well as to the usual fixed-effect average with no correction for publication bias:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left column, we see that SPET and SPEESE are exactly unbiased (and SPET-SPEESE is nearly so) in the absence of selective publication. So is regular old fixed effect meta-analysis, of course. In the middle and right columns, studies are selected based partially or fully on statistical significance, and things get messy. Overall, there’s no consistent winner between PEESE versus SPEESE. At small or moderate levels of between-study heterogeneity, and when the true mean effect is small, PEESE, SPEESE, and SPET-SPEESE have fairly similar biases, but PEESE appears to have a slight edge. This seems to me to be nothing but a fortuitous accident, in that the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; just happens to work in the right direction. Then, as the true mean effect increases, SPEESE and SPET-SPEESE start to edge out PEESE. This makes sense because the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; will be larger when the true effect sizes are larger.&lt;br /&gt;
 These trends seem mostly to hold for the other sample size distributions I examined too, although the biases of PEESE and PET-PEESE aren’t as severe when the maximum sample size is larger. You can see for yourself here:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;accuracy-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Accuracy of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Bias isn’t everything, of course. Now let’s look at the overall accuracy of these estimators, as measured by root mean squared error (RMSE). RMSE is a function of both bias and sampling variance, and so is one way to weigh an estimator that is biased but fairly precise against an estimator that is perfectly unbiased but noisy. The following chart plots the RMSE of all of the estimators (following the same layout as above, just with a different vertical axis):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Starting in the left column where there’s no selective publication, we can see that the normal fixed-effect average has the smallest RMSE (and so is most accurate). The next most accurate is SPEESE, which uniformly beats out PEESE, PET-PEESE, SPET, and SPET-SPEESE. It’s worth noting, though, that there is a fairly large penalty for using SPEESE when it is unnecessary: even with a quite large sample of 100 studies, SPEESE still has twice the RMSE of the FE estimator.&lt;/p&gt;
 &lt;p&gt;The middle column shows these estimators’ RMSE when there is an intermediate degree of selective publication. Because of the “fortuitous accident” of how the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; affects the PEESE estimator, it is more accurate than SPEESE for small values of the true mean effect. Its advantage is larger when heterogeneity is larger, and heterogeneity also affects the point (i.e., what true mean effect) at which SPEESE catches up with PEESE. Then at larger true mean effects, the accuracy of SPEESE continues to improve while the accuracy of PEESE degrades. It is also interesting to note that at this intermediate degree of selective publication, none of the other bias-correction estimators (PET-PEESE, SPET, SPET-SPEESE) compete with PEESE and SPEESE.&lt;/p&gt;
 &lt;p&gt;Finally, the right column plots RMSE when there’s strong selective publication, so only statistically significant effects appear. Just as in the middle column, PEESE edges out SPEESE for smaller values of the true mean effect. For very small true effects, both of these estimators are edged out by PET-PEESE and SPET-SPEESE. This only holds over a very small range for the true mean effect though, and for true effects above that range these conditional estimators perform poorly—consistently worse than just using PEESE or SPEESE.&lt;/p&gt;
 &lt;p&gt;Here are charts for the other sample size distributions:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The trends that I’ve noted mostly seem to hold for the other sample size distributions (but correct me if you disagree! I’m getting kind of bleary-eyed at the moment…). One difference worth noting is that when the sample size distribution skews towards having more large studies, the accuracy of the regular fixed-effect estimator improves a bit. At intermediate degrees of selective publication, the fixed-effect estimator is &lt;em&gt;consistently&lt;/em&gt; more accurate than SPEESE, and mostly more accurate than PEESE too. With strong selective publication, though, the FE estimator blows up just as before.&lt;/p&gt;
 &lt;/div&gt;

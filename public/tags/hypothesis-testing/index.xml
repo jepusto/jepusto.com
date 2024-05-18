@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hypothesis testing | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/hypothesis-testing/</link>
-      <atom:link href="https://www.jepusto.com/tags/hypothesis-testing/index.xml" rel="self" type="application/rss+xml" />
-    <description>hypothesis testing</description>
+    <title>Hypothesis Testing | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/hypothesis-testing/</link>
+      <atom:link href="http://localhost:4321/tags/hypothesis-testing/index.xml" rel="self" type="application/rss+xml" />
+    <description>Hypothesis Testing</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>hypothesis testing</title>
-      <link>https://www.jepusto.com/tags/hypothesis-testing/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Hypothesis Testing</title>
+      <link>http://localhost:4321/tags/hypothesis-testing/</link>
     </image>
     
     <item>
       <title>Back from the IES PI meeting</title>
-      <link>https://www.jepusto.com/back-from-ies-pi-meeting/</link>
+      <link>http://localhost:4321/back-from-ies-pi-meeting/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/back-from-ies-pi-meeting/</guid>
+      <guid>http://localhost:4321/back-from-ies-pi-meeting/</guid>
       <description>
 
 
 &lt;p&gt;I’m just back from the Institute of Education Sciences’ Principle Investigators conference in Washington D.C. It was an envigorating trip for me, and not only because of the opportunity to catch up with colleagues and friends from across the country. A running theme across several of the keynote addresses was the importance of increasing the transparency and replicability of education research, and it was exciting to hear about promising reforms underway and to talk about how to change the norms of our discipline(s).&lt;/p&gt;
-&lt;p&gt;I contributed to the conference in two ways. First, I gave a presentation on incorporating randomization and randomization inference into single-case designs, as part of a session on innovations in single-case research methods organized by Dr. Wendy Machalicek. You can a static version of &lt;a href=&#34;https://www.jepusto.com/files/Randomization-inference-for-SCED-2018-01-10.pdf&#34;&gt;my slides here&lt;/a&gt;; unfortunately the animations don’t work in pdf.&lt;/p&gt;
-&lt;p&gt;Second, I brought &lt;a href=&#34;https://www.jepusto.com/files/Gradual-effects-model-poster-IES-2018-01-10.pdf&#34;&gt;a poster&lt;/a&gt; presenting some work from my IES-funded methods grant. Thanks very much to the folks who stopped by to talk during the poster session! Y’all gave me some very helpful feedback about technical aspects of the work and about how to better contextualize it for single case researchers.&lt;/p&gt;
+&lt;p&gt;I contributed to the conference in two ways. First, I gave a presentation on incorporating randomization and randomization inference into single-case designs, as part of a session on innovations in single-case research methods organized by Dr. Wendy Machalicek. You can a static version of &lt;a href=&#34;http://localhost:4321/files/Randomization-inference-for-SCED-2018-01-10.pdf&#34;&gt;my slides here&lt;/a&gt;; unfortunately the animations don’t work in pdf.&lt;/p&gt;
+&lt;p&gt;Second, I brought &lt;a href=&#34;http://localhost:4321/files/Gradual-effects-model-poster-IES-2018-01-10.pdf&#34;&gt;a poster&lt;/a&gt; presenting some work from my IES-funded methods grant. Thanks very much to the folks who stopped by to talk during the poster session! Y’all gave me some very helpful feedback about technical aspects of the work and about how to better contextualize it for single case researchers.&lt;/p&gt;
 &lt;p&gt;If you didn’t make it: this project was joint work with Danny Swan, a doctoral student in our Quantitative Methods program. It involved developing a model for estimating effect sizes from single-case designs where the effects of the intervention take time to reach full potency. Rather than assuming that the intervention produces immediate shifts in the level of the outcome, we model the effects using an impulse response function (cribbed from &lt;a href=&#34;http://www.jstor.org/stable/2285379&#34;&gt;an old paper by Box and Tiao&lt;/a&gt;) that leads to non-linear trends in response to the introduction of the intervention. Using an impulse response function also makes it possible to model more complex design patterns, like treatment reversal designs with returns-to-baseline and treatment re-introduction phases, in a very parsimonious way. Check out &lt;a href=&#34;https://osf.io/gaxrv/&#34;&gt;the full paper&lt;/a&gt;, the &lt;a href=&#34;https://github.com/jepusto/SingleCaseES&#34;&gt;accompanying R package&lt;/a&gt;, and Danny’s &lt;a href=&#34;https://jepusto.shinyapps.io/gem-scd/&#34;&gt;interactive web-app&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>The siren song of significance</title>
-      <link>https://www.jepusto.com/siren-song-of-significance/</link>
+      <link>http://localhost:4321/siren-song-of-significance/</link>
       <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/siren-song-of-significance/</guid>
+      <guid>http://localhost:4321/siren-song-of-significance/</guid>
       <description>
 
 

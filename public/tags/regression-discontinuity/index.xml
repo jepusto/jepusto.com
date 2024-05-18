@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>regression discontinuity | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/regression-discontinuity/</link>
-      <atom:link href="https://www.jepusto.com/tags/regression-discontinuity/index.xml" rel="self" type="application/rss+xml" />
-    <description>regression discontinuity</description>
+    <title>Regression Discontinuity | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/regression-discontinuity/</link>
+      <atom:link href="http://localhost:4321/tags/regression-discontinuity/index.xml" rel="self" type="application/rss+xml" />
+    <description>Regression Discontinuity</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 27 Jan 2016 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>regression discontinuity</title>
-      <link>https://www.jepusto.com/tags/regression-discontinuity/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Regression Discontinuity</title>
+      <link>http://localhost:4321/tags/regression-discontinuity/</link>
     </image>
     
     <item>
       <title>Estimating average effects in regression discontinuities with covariate interactions</title>
-      <link>https://www.jepusto.com/rdd-interactions-again/</link>
+      <link>http://localhost:4321/rdd-interactions-again/</link>
       <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions-again/</guid>
+      <guid>http://localhost:4321/rdd-interactions-again/</guid>
       <description>
 
 
 &lt;p&gt;Regression discontinuity designs (RDDs) are now a widely used tool for program evaluation in economics and many other fields. RDDs occur in situations where some treatment/program of interest is assigned on the basis of a numerical score (called the running variable), all units scoring above a certain threshold receiving treatment and all units scoring at or below the threshold having treatment withheld (or vice versa, with treatment assigned to units scoring below the threshold). This mechanism provides a way to identify the &lt;strong&gt;marginal average treatment effect&lt;/strong&gt; (MATE): the average effect of treatment assignment for units on the cusp of the threshold.&lt;/p&gt;
 &lt;p&gt;RDDs are appealing for a couple of reasons. First and foremost, RDD-like mechanism occurs all over the place, since providing treatment on the basis of a numerical measure of need/eligibility is a natural way to allocate resources. Furthermore, analysis of the designs is straight-forward, as it involves nothing more complicated than a linear regression model, estimated using (weighted or un-weighted) least squares, and which can be represented graphically using a simple scatterplot. Things get a little bit more complicated if you are trying to account for imperfect compliance with treatment assignment—as in the “fuzzy” RDD—but for the moment let me focus on “sharp” RDDs.&lt;/p&gt;
-&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;https://www.jepusto.com/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
+&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;http://localhost:4321/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
 &lt;div id=&#34;gday-mate&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;G’day, MATE&lt;/h3&gt;
 &lt;p&gt;I think it’s helpful to start by thinking about the definition of the MATE in non-parametric terms. Let &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt; be the running variable, assumed to be centered at the threshold; &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; be an indicator for treatment assignment, with &lt;span class=&#34;math inline&#34;&gt;\(T = I(R &amp;gt; 0)\)&lt;/span&gt;; and &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a covariate, which may be vector-valued. Denote the potential outcomes as &lt;span class=&#34;math inline&#34;&gt;\(Y^0\)&lt;/span&gt; (a unit’s outcome if not assigned to treatment) and &lt;span class=&#34;math inline&#34;&gt;\(Y^1\)&lt;/span&gt; (a unit’s outcome if assigned to treatment), so that the observed outcome is &lt;span class=&#34;math inline&#34;&gt;\(Y = Y^0 (1 - T) + Y^1 T\)&lt;/span&gt;. Now consider the potential response surfaces&lt;/p&gt;
@@ -132,9 +132,9 @@ coeftest(lm_fit, vcov. = vcovHC(lm_fit, type = &amp;quot;HC1&amp;quot;))[&amp;qu
     
     <item>
       <title>Regression discontinuities with covariate interactions in the rdd package</title>
-      <link>https://www.jepusto.com/rdd-interactions/</link>
+      <link>http://localhost:4321/rdd-interactions/</link>
       <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions/</guid>
+      <guid>http://localhost:4321/rdd-interactions/</guid>
       <description>
 
 
@@ -189,7 +189,7 @@ summary(rdd_simple)&lt;/code&gt;&lt;/pre&gt;
 ## Double-BW  104.74  3         1828        0.000e+00&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using a bandwidth of 1.09, the estimated marginal average treatment effect is 0.303. The figure below illustrates the discontinuity:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;rdd-with-covariates&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;RDD with covariates&lt;/h3&gt;
@@ -231,7 +231,7 @@ ldply(covariates, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;Speci
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y_i = \beta_0 + \beta_1 R_i + \beta_2 T_i + \beta_3 R_i T_i + \beta_4 X_i + \beta_5 X_i T_i + \epsilon_i, \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;while still taking &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; to represent the MATE. This is problematic because, as soon as the &lt;span class=&#34;math inline&#34;&gt;\(X_i T_i\)&lt;/span&gt; term is introduced into the model, &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; represents the difference between treated and untreated units at the threshold (where &lt;span class=&#34;math inline&#34;&gt;\(R_i = 0\)&lt;/span&gt;) and where &lt;span class=&#34;math inline&#34;&gt;\(X_i = 0\)&lt;/span&gt;. Thus, including the &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; is a difference extrapolated &lt;em&gt;way&lt;/em&gt; outside the support of the data, as in the following scatterplot of the outcome versus the covariate &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;RDestimate&lt;/code&gt; returns as the MATE estimate the difference between the regression lines when &lt;span class=&#34;math inline&#34;&gt;\(X_1 = 0\)&lt;/span&gt;, which in this example is -0.69. Similarly, including the &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; will represent the marginal average treatment effect for only one of the categories of &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;, rather than as some sort of average across all four categories.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-to-do-about-this&#34; class=&#34;section level3&#34;&gt;

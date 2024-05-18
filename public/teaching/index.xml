@@ -2,85 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Teachings | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/teaching/</link>
-      <atom:link href="https://www.jepusto.com/teaching/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/teaching/</link>
+      <atom:link href="http://localhost:4321/teaching/index.xml" rel="self" type="application/rss+xml" />
     <description>Teachings</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 10 May 2023 00:00:00 -0500</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 10 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Teachings</title>
-      <link>https://www.jepusto.com/teaching/</link>
+      <link>http://localhost:4321/teaching/</link>
     </image>
     
     <item>
       <title>Field Experiments in Education Research</title>
-      <link>https://www.jepusto.com/teaching/field-experiments/</link>
-      <pubDate>Wed, 10 May 2023 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/field-experiments/</guid>
+      <link>http://localhost:4321/teaching/field-experiments/</link>
+      <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/field-experiments/</guid>
       <description>&lt;p&gt;How effective is tutoring for improving the mathematics performance of students from economically disadvantaged backgrounds? Does participating in mindfulness training during school improve the mental health and wellbeing of adolescents? Does peer observation of teaching have beneficial effects on student learning? What are the benefits and costs of reducing class sizes in the elementary grades? Such questions focus on understanding the causal effects of an intervention (program, practice, or policy) on educational outcomes, and are often of central interest to educational leaders and policy-makers, program developers, and researchers. Randomized experiments are one way to investigate questions about causal impacts, and indeed, are often accorded a special status due to their potential for clearly identifying causal relationships. Although once rare in education research, randomized experiments conducted in naturalistic educational settings have grown increasingly common and prominent over the past two decades. Planning and conducting such studies involve a unique set of challenges, and their findings have a distinctive profile of advantages and limitations.&lt;/p&gt;
 &lt;p&gt;This course will cover the design, analysis, and interpretation of randomized field experiments in education research. We will examine the theoretical, statistical, and pragmatic considerations involved in such studies, from articulating a theory of change and selecting outcome measurements, to choosing an experimental design and analytic strategy, to addressing questions of generalizability. Our focus will be on designs most commonly used in educational settings, such as block-randomized or cluster-randomized experiments, and the implementation challenges that arise in such settings, such as non-compliance, attrition, and interference. By the end of the course, students should be able to contribute to the design and planning of a randomized experiment in a realistic field setting, to critically assess reported findings from field experiments, and to make informed judgments about the role of randomized field experiments within education research.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-711-021-Field-Experiments-2023-Spring-syllabus.pdf&#34;&gt;2023 (Spring) syllabus&lt;/a&gt; and 
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-711-021-Field-Experiments-2023-Spring-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-021-Field-Experiments-2023-Spring-syllabus.pdf&#34;&gt;2023 (Spring) syllabus&lt;/a&gt; and 
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-021-Field-Experiments-2023-Spring-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Design &amp; Analysis of Quasi-Experiments for Causal Inference</title>
-      <link>https://www.jepusto.com/teaching/quasi-experimental/</link>
-      <pubDate>Wed, 08 Sep 2021 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/quasi-experimental/</guid>
+      <link>http://localhost:4321/teaching/quasi-experimental/</link>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/quasi-experimental/</guid>
       <description>&lt;p&gt;In many fields, randomized experiments are often considered the gold standard approach for learning about the causal effects of an intervention, program, or policy. However, randomized experiments are not always feasible or ethical. Furthermore, the increasing availability of large-scale observational datasets presents opportunities to investigate causal effects outside of the realm of designed experiments. This course surveys contemporary research design strategies for investigating questions about causal effects, focusing on the theory and application of quasi-experimental methods that can, under some conditions, provide strong warrants for drawing causal inferences. The focus of the course is on causal description of point-in-time interventions (“Is this intervention effective?”) rather than causal explanation (“Why is this intervention effective?”).&lt;/p&gt;
 &lt;p&gt;The course begins with an introduction to the potential outcomes framework for expressing causal quantities, followed by an examination of (idealized) simple and block randomized experiments as prototypes for learning about causal effects. The remainder of the course covers theory and data-analysis strategies for drawing causal inferences from four quasi-experimental designs: instrumental variables approaches, regression discontinuity designs, non-equivalent control group designs (using techniques such as matching and propensity score weighting), and comparative interrupted time series designs. For each design, we will consider (i) the core strategy for identifying a causal effect, (ii) corresponding statistical approaches for estimating the effect, and (iii) strategies and design elements for strengthening the design. Further, advanced topics will be covered based on student interest.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2021-Fall-syllabus.pdf&#34;&gt;2021 (Fall) syllabus&lt;/a&gt; and 
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2021-Fall-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2021-Fall-syllabus.pdf&#34;&gt;2021 (Fall) syllabus&lt;/a&gt; and 
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2021-Fall-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2023-Fall-syllabus.pdf&#34;&gt;2023 (Fall) syllabus&lt;/a&gt; and 
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2023-Fall-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2023-Fall-syllabus.pdf&#34;&gt;2023 (Fall) syllabus&lt;/a&gt; and 
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-963-001-Quasi-Experiments-2023-Fall-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Meta-analysis</title>
-      <link>https://www.jepusto.com/teaching/meta-analysis/</link>
-      <pubDate>Thu, 21 Jan 2021 00:00:00 -0600</pubDate>
-      <guid>https://www.jepusto.com/teaching/meta-analysis/</guid>
+      <link>http://localhost:4321/teaching/meta-analysis/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/meta-analysis/</guid>
       <description>&lt;p&gt;Meta-analysis is the set of statistical methods and practices for synthesizing evidence collected from multiple sources, such as multiple studies on the same topic. Often conducted as part of a systematic literature review, meta-analyses play an increasingly prominent role in education research, psychology, and many other areas of social and behavior science. This course introduces the stages of the research synthesis process and the statistical methods used for conducting quantitative syntheses of social-scientific research. The focus of the course is on practical application and interpretation of meta-analytic methods, enriched with discussion of underlying statistical theory. Major topics include scope of research syntheses, systematic search and screening procedures, effect size calculations, summary meta-analysis, meta-regression, dependent effect sizes, selective reporting and publication bias analysis. Computational exercises use the R statistical computing environment.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-711-011-Meta-analysis-2021-Spring-syllabus.pdf&#34;&gt;2021 (Spring) syllabus&lt;/a&gt; and 
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDPSYCH-711-011-Meta-analysis-2021-Spring-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-011-Meta-analysis-2021-Spring-syllabus.pdf&#34;&gt;2021 (Spring) syllabus&lt;/a&gt; and 
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-011-Meta-analysis-2021-Spring-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-003-Meta-analysis-2024-Spring-syllabus.pdf&#34;&gt;2024 (Spring) syllabus&lt;/a&gt; and 
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDPSYCH-711-003-Meta-analysis-2024-Spring-reading-list.pdf&#34;&gt;reading list&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Causal Inference</title>
-      <link>https://www.jepusto.com/teaching/causal-inference/</link>
-      <pubDate>Fri, 11 May 2018 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/causal-inference/</guid>
+      <link>http://localhost:4321/teaching/causal-inference/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/causal-inference/</guid>
       <description>&lt;p&gt;This course introduces the contemporary statistical approach to addressing questions about the causal effects of programs, policies, or interventions, with a focus on applied data-analysis strategies and interpretation. The course begins with an introduction to the potential outcomes framework for expressing causal quantities, followed by an examination of (idealized) simple and block randomized experiments as prototypes for learning about causal effects. The remainder of the course covers theory and data-analysis strategies for drawing causal inferences from observational studies, in which treatment conditions are not randomly assigned. Analysis techniques such as matching methods, propensity-score methods, and instrumental variables are covered both in theory and in application. Further, advanced topics are covered based on student interest.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP-381C-10930-Causal-inference-2020S.pdf&#34;&gt;2020 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP-381C-10930-Causal-inference-2020S.pdf&#34;&gt;2020 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP-381C-10705-Causal-inference-2017F.pdf&#34;&gt;2017 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP-381C-10705-Causal-inference-2017F.pdf&#34;&gt;2017 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP-384-25-Causal-inference-2014F-syllabus.pdf&#34;&gt;2014 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP-384-25-Causal-inference-2014F-syllabus.pdf&#34;&gt;2014 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Data Analysis, Simulation, and Programming in R</title>
-      <link>https://www.jepusto.com/teaching/daspir/</link>
-      <pubDate>Fri, 11 May 2018 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/daspir/</guid>
+      <link>http://localhost:4321/teaching/daspir/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/daspir/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;For a long time I have thought I was a statistician, interested in inferences from the particular to the general. But as I have watched mathematical statistics evolve, I have had cause to wonder and to doubt…. All in all, I have come to feel that my central interest is in data analysis, which I take to include, among other things: procedures for analyzing data, techniques for interpreting the results of such procedures, ways of planning the gathering of data to make its analysis easier, more precise or more accurate, and all the machinery and results of (mathematical) statistics which apply to analyzing data. [Tukey, J., 1962. The future of data analysis. &lt;em&gt;The Annals of Mathematical Statistics, 33&lt;/em&gt;(1), 1–67.]&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -95,61 +98,61 @@
 &lt;p&gt;Content relevant to designing and implementing Monte Carlo simulation studies is interwoven throughout the course.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP380C-20-10745-Data-Analysis-Simulation-and-Programming-in-R-2019S.pdf&#34;&gt;2019 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP380C-20-10745-Data-Analysis-Simulation-and-Programming-in-R-2019S.pdf&#34;&gt;2019 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-10875-Data-Analysis-Simulation-and-Programming-in-R-2017S.pdf&#34;&gt;2017 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-10875-Data-Analysis-Simulation-and-Programming-in-R-2017S.pdf&#34;&gt;2017 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-10585-Data-Analysis-Simulation-and-Programming-in-R-2015S.pdf&#34;&gt;2015 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-10585-Data-Analysis-Simulation-and-Programming-in-R-2015S.pdf&#34;&gt;2015 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Research Design and Methods for Psychology and Education</title>
-      <link>https://www.jepusto.com/teaching/research-design/</link>
-      <pubDate>Fri, 11 May 2018 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/research-design/</guid>
+      <link>http://localhost:4321/teaching/research-design/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/research-design/</guid>
       <description>&lt;p&gt;This course surveys essential concepts and methods used in quantitative empirical research in the fields of education and psychology, in order to prepare students both to be informed consumers of research and to conduct empirical research of their own. The course is organized around four main themes: measurement, populations and sampling, experimental causal research, and quasi-experimental causal research. On each theme, we read relevant theoretical and methodological literature, discuss empirical research in light of those concepts, and develop research proposals using the methods that we discuss. Throughout, emphasis is on building intuition and heuristics regarding research designs and methods.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10575-Research-Design-2019F.pdf&#34;&gt;2019 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10575-Research-Design-2019F.pdf&#34;&gt;2019 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10775-Research-Design-2019S.pdf&#34;&gt;2019 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10775-Research-Design-2019S.pdf&#34;&gt;2019 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10540-Research-Design-2018F.pdf&#34;&gt;2018 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10540-Research-Design-2018F.pdf&#34;&gt;2018 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10200-Research-Design-2018S.pdf&#34;&gt;2018 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10200-Research-Design-2018S.pdf&#34;&gt;2018 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10895-Research-Design-2017S.pdf&#34;&gt;2017 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10895-Research-Design-2017S.pdf&#34;&gt;2017 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10770-Research-Design-2016F.pdf&#34;&gt;2016 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10770-Research-Design-2016F.pdf&#34;&gt;2016 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10790-Research-Design-2016S.pdf&#34;&gt;2016 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10790-Research-Design-2016S.pdf&#34;&gt;2016 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP381C-2-10790-Research-Design-2015F.pdf&#34;&gt;2015 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP381C-2-10790-Research-Design-2015F.pdf&#34;&gt;2015 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-10594-Research-Design-2015S.pdf&#34;&gt;2015 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-10594-Research-Design-2015S.pdf&#34;&gt;2015 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-10977-Research-Design-2014F.pdf&#34;&gt;2014 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-10977-Research-Design-2014F.pdf&#34;&gt;2014 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-11212-Research-Design-2014S.pdf&#34;&gt;2014 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-11212-Research-Design-2014S.pdf&#34;&gt;2014 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP384-10615-Research-Design-2013F.pdf&#34;&gt;2013 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP384-10615-Research-Design-2013F.pdf&#34;&gt;2013 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Statistical Analysis of Experimental Data</title>
-      <link>https://www.jepusto.com/teaching/experimental-data/</link>
-      <pubDate>Fri, 11 May 2018 00:00:00 -0500</pubDate>
-      <guid>https://www.jepusto.com/teaching/experimental-data/</guid>
+      <link>http://localhost:4321/teaching/experimental-data/</link>
+      <pubDate>Fri, 11 May 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/teaching/experimental-data/</guid>
       <description>&lt;p&gt;This course covers the principles and procedures involved in analyzing data from experimental designs. Approaches for analyzing simple (one-way) designs, factorial designs, and repeated measures designs are presented using the analysis of variance (ANOVA) framework. Lectures focus on developing conceptual understanding of the experimental designs and corresponding analytical models and on interpreting the results of analysis procedures. Laboratory sections focus on using statistical software for data analysis.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP380C-6-Statistical-Analysis-of-Experimental-Data-2016S.pdf&#34;&gt;2016 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP380C-6-Statistical-Analysis-of-Experimental-Data-2016S.pdf&#34;&gt;2016 (Spring) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/files/syllabi/EDP380C-6-Statistical-Analysis-of-Experimental-Data-2015F.pdf&#34;&gt;2015 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/files/syllabi/EDP380C-6-Statistical-Analysis-of-Experimental-Data-2015F.pdf&#34;&gt;2015 (Fall) Syllabus&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

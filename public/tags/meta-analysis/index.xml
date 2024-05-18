@@ -1,65 +1,57 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>meta-analysis | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/meta-analysis/</link>
-      <atom:link href="https://www.jepusto.com/tags/meta-analysis/index.xml" rel="self" type="application/rss+xml" />
-    <description>meta-analysis</description>
+    <title>Meta-Analysis | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/meta-analysis/</link>
+      <atom:link href="http://localhost:4321/tags/meta-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <description>Meta-Analysis</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 07 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>meta-analysis</title>
-      <link>https://www.jepusto.com/tags/meta-analysis/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Meta-Analysis</title>
+      <link>http://localhost:4321/tags/meta-analysis/</link>
     </image>
     
     <item>
       <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
+      <link>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
       <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
-      <link>https://www.jepusto.com/publication/pomade/</link>
-      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/pomade/</guid>
+      <guid>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>High replicability of newly-discovered social-behavioral findings is achievable.</title>
-      <link>https://www.jepusto.com/publication/decline-effects/</link>
+      <link>http://localhost:4321/publication/decline-effects/</link>
       <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/decline-effects/</guid>
+      <guid>http://localhost:4321/publication/decline-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Conducting power analysis for meta-analysis of dependent effect sizes: Common guidelines and an introduction to the POMADE R package</title>
-      <link>https://www.jepusto.com/publication/conducting-pomade/</link>
+      <link>http://localhost:4321/publication/conducting-pomade/</link>
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/conducting-pomade/</guid>
+      <guid>http://localhost:4321/publication/conducting-pomade/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
+      <link>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
+      <guid>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cluster-Bootstrapping a meta-analytic selection model</title>
-      <link>https://www.jepusto.com/cluster-bootstrap-selection-model/</link>
+      <link>http://localhost:4321/cluster-bootstrap-selection-model/</link>
       <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/cluster-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/cluster-bootstrap-selection-model/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;style type=&#34;text/css&#34;&gt;
@@ -12622,7 +12614,7 @@ RE_robust&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The random effects model indicates an average effect size of about 0.21 standard deviations and substantial heterogeneity, with &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.32\)&lt;/span&gt;. The cluster-robust standard error is about 27% bigger than the model-based standard error (not shown) because the latter does not account for dependent effect sizes.&lt;/p&gt;
 &lt;p&gt;Here is a contour-enhanced funnel plot of the data:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;funnel(RE_mod, refline = 0, level=c(90, 95, 99), shade=c(&amp;quot;white&amp;quot;, &amp;quot;gray55&amp;quot;, &amp;quot;gray75&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The funnel plot shows some asymmetry, suggesting that there is reason to be concerned about selective reporting bias in these data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;a-selection-model&#34; class=&#34;section level3&#34;&gt;
@@ -13135,74 +13127,74 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
     
     <item>
       <title>POMADE</title>
-      <link>https://www.jepusto.com/software/pomade/</link>
+      <link>http://localhost:4321/software/pomade/</link>
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/pomade/</guid>
+      <guid>http://localhost:4321/software/pomade/</guid>
       <description>&lt;p&gt;An R package for computing power levels, minimum detectable effect sizes, and minimum required sample sizes for the test of the overall average effect size in meta-analysis of dependent effect sizes. The package also includes functions for creating plots of power analysis results.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Single case design research in Special Education: Next generation standards and considerations</title>
-      <link>https://www.jepusto.com/publication/single-case-next-generation-standards/</link>
+      <link>http://localhost:4321/publication/single-case-next-generation-standards/</link>
       <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/single-case-next-generation-standards/</guid>
+      <guid>http://localhost:4321/publication/single-case-next-generation-standards/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Power approximations for overall average effects in meta-analysis of dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</link>
+      <link>http://localhost:4321/publication/power-approximations-for-dependent-effects/</link>
       <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</guid>
+      <guid>http://localhost:4321/publication/power-approximations-for-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Investigating narrative performance in children with developmental language disorder: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/investigating-narrative-performance/</link>
+      <link>http://localhost:4321/publication/investigating-narrative-performance/</link>
       <pubDate>Fri, 30 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/investigating-narrative-performance/</guid>
+      <guid>http://localhost:4321/publication/investigating-narrative-performance/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <link>http://localhost:4321/publication/sced-mlma-rve/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <guid>http://localhost:4321/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
-      <link>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</link>
+      <link>http://localhost:4321/publication/rve-meta-analysis-expanding-the-range/</link>
       <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <guid>http://localhost:4321/publication/rve-meta-analysis-expanding-the-range/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
-      <link>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
+      <link>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
       <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Examining the effects of social stories on challenging behavior and prosocial skills in young children: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
+      <link>http://localhost:4321/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
       <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
+      <guid>http://localhost:4321/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
-      <link>https://www.jepusto.com/variance-components-with-misspecified-correlation/</link>
-      <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/variance-components-with-misspecified-correlation/</guid>
+      <title>Meta-analysis with robust variance estimation and multiply imputed covariates</title>
+      <link>http://localhost:4321/rve-meta-analysis-with-mi/</link>
+      <pubDate>Wed, 22 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/rve-meta-analysis-with-mi/</guid>
       <description>
 
 
@@ -13212,10 +13204,154 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
 \def\Var{{\text{Var}}}
 \def\Cov{{\text{Cov}}}
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.1.5     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tibble&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metadat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metadat&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;metafor&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: Matrix&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;Matrix&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:tidyr&amp;#39;:
+## 
+##     expand, pack, unpack&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Loading the &amp;#39;metafor&amp;#39; package (version 3.0-2). For an
+## introduction to the package please type: help(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;metafor&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:metadat&amp;#39;:
+## 
+##     dat.hackshaw1998, dat.ishak2007, dat.konstantopoulos2011,
+##     dat.lim2014, dat.maire2019, dat.moura2021, dat.raudenbush1985,
+##     dat.riley2003&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
+##   method    from    
+##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mice)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mice&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;mice&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     cbind, rbind&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mitools)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: package &amp;#39;mitools&amp;#39; was built under R version 4.0.5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create missingness
+
+set.seed(20211222)
+
+dat_miss &amp;lt;- 
+  dat.assink2016 %&amp;gt;%
+  group_by(study) %&amp;gt;%
+  mutate(
+    pubstatus = if_else(rbinom(1L, 1L, 0.15) == 1L, NA_integer_, unique(pubstatus)),
+    pubstatus = factor(pubstatus, levels = 0:1, labels = c(&amp;quot;unpublished&amp;quot;,&amp;quot;published&amp;quot;)),
+    deltype = if_else(rbinom(n(), 1L, prob = plogis(-2.5 - 0.1 * year)) == 1L, NA_character_, deltype),
+    deltype = factor(deltype)
+  )
+
+# Impute missing values 20 times
+
+predMatrix &amp;lt;- make.predictorMatrix(dat_miss)
+predMatrix[,c(&amp;quot;study&amp;quot;,&amp;quot;esid&amp;quot;,&amp;quot;id&amp;quot;)] &amp;lt;- 0 # don&amp;#39;t use study or esid or id for imputing
+
+impMethod &amp;lt;- make.method(dat_miss)
+impMethod&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     study      esid        id        yi        vi pubstatus      year   deltype 
+##        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;        &amp;quot;&amp;quot;  &amp;quot;logreg&amp;quot;        &amp;quot;&amp;quot; &amp;quot;polyreg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imp &amp;lt;- mice(dat_miss, m = 20, print = FALSE,
+            predictorMatrix = predMatrix, 
+            method=impMethod, seed = 20211222)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Number of logged events: 70&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit SCE+ model
+fits &amp;lt;- with(imp, rma.mv(
+  yi = yi, 
+  V = impute_covariance_matrix(vi = vi, cluster = study, r = 0.6, subgroup = deltype),
+  mods = ~ pubstatus + deltype + year,
+  random = list(~ deltype | study, ~ deltype | id),
+  struct = c(&amp;quot;DIAG&amp;quot;,&amp;quot;DIAG&amp;quot;)
+))
+
+# Get coefficients
+coefs &amp;lt;- map(fits$analyses, coef)
+
+# Get CR2 variance-covariance matrices
+vcovs &amp;lt;- map(fits$analyses, vcovCR, type = &amp;quot;CR2&amp;quot;)
+
+# Get denominator df from complete-data F-tests
+q &amp;lt;- 2
+dfs &amp;lt;- 
+  map_dfr(fits$analyses, Wald_test, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(3:4), test = &amp;quot;HTZ&amp;quot;) %&amp;gt;%
+  mutate(
+    eta = df_denom + (q - 1)
+  )
+eta &amp;lt;- mean(dfs$eta)
+
+# Combine imputed results
+res &amp;lt;- MIcombine(results = coefs, variances = vcovs)
+res$coefficients&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            intrcpt pubstatuspublished       deltypeovert      deltypecovert 
+##         0.89897557        -0.55770641        -0.38101335        -0.46723794 
+##               year 
+##        -0.02576823&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;res$variance&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                         intrcpt pubstatuspublished deltypeovert deltypecovert
+## intrcpt             0.074539988       -0.083961053 -0.058577507  0.0010493986
+## pubstatuspublished -0.083961053        0.103264126  0.067143252 -0.0032322609
+## deltypeovert       -0.058577507        0.067143252  0.106429071 -0.0108120033
+## deltypecovert       0.001049399       -0.003232261 -0.010812003  0.0321118999
+## year                0.002758525       -0.004318211 -0.003867039  0.0002642098
+##                             year
+## intrcpt             0.0027585250
+## pubstatuspublished -0.0043182112
+## deltypeovert       -0.0038670392
+## deltypecovert       0.0002642098
+## year                0.0004815795&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Calculate manual HTZ test using averaged eta 
+Cmat &amp;lt;- constrain_zero(3:4, coefs = res$coefficients)
+Q &amp;lt;- t(Cmat %*% res$coefficients) %*% solve(Cmat %*% res$variance %*% t(Cmat)) %*% (Cmat %*% res$coefficients)
+Fstat &amp;lt;- (eta - q + 1) / (eta * q) * as.numeric(Q)
+p_val &amp;lt;- pf(Fstat, df1 = q, df2 = eta - q + 1, lower.tail = FALSE)
+data.frame(Fstat = Fstat, df_num = q, df_denom = eta - q + 1, p_val = p_val)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      Fstat df_num df_denom     p_val
+## 1 3.003453      2 1.663534 0.2804675&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Variance component estimates in meta-analysis with mis-specified sampling correlation</title>
+      <link>http://localhost:4321/variance-components-with-misspecified-correlation/</link>
+      <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/variance-components-with-misspecified-correlation/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In a recent paper with Beth Tipton, we proposed &lt;a href=&#34;http://localhost:4321/publication/rve-meta-analysis-expanding-the-range/&#34;&gt;new working models&lt;/a&gt; for meta-analyses involving dependent effect sizes. The central idea of our approach is to use a working model that captures the main features of the effect size data, such as by allowing for both between- and within-study heterogeneity in the true effect sizes (rather than only between-study heterogeneity). Doing so will lead to more precise estimates of overall average effects or, in models that include predictor variables, more precise estimates of meta-regression coefficients. Further, one can combine this working model with robust variance estimation methods to provide protection against the possibility that some of the model’s assumptions could be mis-specified.&lt;/p&gt;
 &lt;p&gt;In order to estimate these new working models, the analyst must first make some assumption about the degree of correlation between effect size estimates that come from the same sample. In typical applications, it can be difficult to obtain good empirical information about the correlation between effect size estimates, and so it is common to impose some simplifying assumptions and use rough guesses about the degree of correlation. There’s a sense that this might not matter much—particularly because robust variance estimation should protect the inferences if the assumptions about the correlation are wrong. However, I’m still curious about the extent to which these assumptions about the correlation structure matter for anything.&lt;/p&gt;
 &lt;p&gt;There’s a few reasons to wonder about how much the correlation matters. One is that the analyst might actually care about the variance component estimates from the working model, if they’re substantively interested in the extent of heterogeneity or if they’re trying to make predictions about the distribution of effect sizes that could be expected in a new study. Compared to earlier working models, the variance component estimates of the models that we proposed in the paper seem to be relatively more sensitive to the assumed correlation. Second, one alternative analytic strategy that’s been proposed (and applied) for meta-analysis of dependent effect sizes is to use a multi-level meta-analysis (MLMA) model. The MLMA is a special case of the correlated-and-hierarchical effects model that we described in the paper, the main difference being that MLMA &lt;em&gt;ignores&lt;/em&gt; any correlations between effect size estimates (at the level of the sampling errors), or equivalently, assumes that the correlations are all zero. Thus, MLMA is one specific way that this correlation assumption might be mis-specified. There’s some simulation evidence that inferences based on MLMA may be robust (even without using robust variance estimation), but it’s not clear how general this robustness property might be.&lt;/p&gt;
-&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;https://www.jepusto.com/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
+&lt;p&gt;In this post, I’m going to look at the implications of using a mis-specified assumption about the sampling correlation for the variance components in the correlated-and-hierarchical effects working model. As in &lt;a href=&#34;http://localhost:4321/weighting-in-multivariate-meta-analysis/&#34;&gt;my previous post on weights in multivariate meta-analysis&lt;/a&gt;, I’m going to mostly limit consideration to the simple (but important!) case of an intercept-only model, without any further predictors of effect size, to see what can be learned about how the variance components can go wrong.&lt;/p&gt;
 &lt;div id=&#34;the-correlated-and-hierarchical-effects-che-model&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;The correlated-and-hierarchical effects (CHE) model&lt;/h1&gt;
 &lt;p&gt;Consider a meta-analytic dataset with effect size estimates &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,k_j\)&lt;/span&gt; indexes effect size estimates within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; indexes studies, for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. Say that effect size estimate &lt;span class=&#34;math inline&#34;&gt;\(T_{ij}\)&lt;/span&gt; has sampling variance &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2_{ij}\)&lt;/span&gt;, and there is some sampling correlation between effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; within study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, denoted &lt;span class=&#34;math inline&#34;&gt;\(\phi_{hij}\)&lt;/span&gt;.
@@ -13351,7 +13487,7 @@ ggplot() +
   scale_x_continuous(expand = c(0,0)) + 
   scale_y_continuous(expand = c(0,0)) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The white points correspond to the true parameter values, while the red points correspond with the values that minimized the K-L divergence. In the middle plot, where &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.4\)&lt;/span&gt; corresponds to the true sampling correlation, the function is minimized at the true values of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the left-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.0\)&lt;/span&gt; leads to an upwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a downwardly biased value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;. In the right-hand plot, assuming &lt;span class=&#34;math inline&#34;&gt;\(\rho = 0.8\)&lt;/span&gt; leads to a smaller value of &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and a larger value of &lt;span class=&#34;math inline&#34;&gt;\(\omega\)&lt;/span&gt;.&lt;/p&gt;
 &lt;div id=&#34;completely-balanced-designs&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Completely balanced designs&lt;/h2&gt;
@@ -13427,7 +13563,7 @@ opt_params %&amp;gt;%
   theme_minimal() + 
   labs(x = expression(rho), y = &amp;quot;Parameter&amp;quot;, color = &amp;quot;&amp;quot;, linetype = &amp;quot;&amp;quot;) +
   theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Variance-component-estimation-in-misspecified-CHE_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The top row of the figure shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt;, the middle row shows &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt;, and the bottom row shows the total SD, for varying levels of assumed correlation &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt;. The solid green lines represent the values that actually minimize the KL divergence. The dashed orange lines correspond to the minimizing values assuming complete balance (and using the average value of the &lt;span class=&#34;math inline&#34;&gt;\(\sigma_j^2\)&lt;/span&gt;’s to evaluate the bias). The “balanced” approximations are fairly close—close enough to use as heuristics, at least—although they’re not perfect. In particular, the balanced approximation becomes discrepant from the real minimizing values when &lt;span class=&#34;math inline&#34;&gt;\(\tilde\tau\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\tilde\omega\)&lt;/span&gt; gets closer to zero. It’s also notable that the total variance is nearly constant (except when one or the other variance component is zero) and the balanced approximation is quite close to the real minimizing values.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -13447,9 +13583,9 @@ opt_params %&amp;gt;%
     
     <item>
       <title>Implications of mean-variance relationships for standardized mean differences</title>
-      <link>https://www.jepusto.com/mean-variance-relationships-and-smds/</link>
+      <link>http://localhost:4321/mean-variance-relationships-and-smds/</link>
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/mean-variance-relationships-and-smds/</guid>
+      <guid>http://localhost:4321/mean-variance-relationships-and-smds/</guid>
       <description>
 
 
@@ -13613,7 +13749,7 @@ ggplot(dat) +
   geom_density(aes(log(lambda_i), ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.5) + 
   geom_density(aes(lRR, ..scaled..), fill = &amp;quot;green&amp;quot;, alpha = 0.2) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
@@ -13641,7 +13777,7 @@ ggplot(dat) +
   geom_density(aes(delta_i, ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.2) + 
   geom_density(aes(d, ..scaled..), fill = &amp;quot;purple&amp;quot;, alpha = 0.5) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and in &lt;span class=&#34;math inline&#34;&gt;\(I^2\)&lt;/span&gt;, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(yi = d, vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -13685,7 +13821,7 @@ ggplot(long_summary_stats,
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
 The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;long_summary_stats %&amp;gt;%
   mutate(
@@ -13700,7 +13836,7 @@ The plot above does suggest a mean-variance relationship, though it’s a bit me
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
 From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).&lt;/p&gt;
 &lt;p&gt;Second, since the outcomes in each group are all proportions, we can simply plot the mean in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; versus the mean in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(dat, aes(mA, mB)) + 
@@ -13709,7 +13845,7 @@ From the above, it does appear that there could be a relationship between the sc
   geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x) + 
   coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
 This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).&lt;/p&gt;
 &lt;p&gt;Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows &lt;span class=&#34;math inline&#34;&gt;\(d_i\)&lt;/span&gt; versus &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
@@ -13729,7 +13865,7 @@ Ti_d_plot &amp;lt;-
   theme_minimal()
 
 mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This impression is also born out by a meta-regression that includes the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt; as moderators:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -13773,7 +13909,7 @@ Ti_lRR_plot &amp;lt;-
   theme_minimal()
 
 mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;, which is a bit surprising, although the strength of the relationship is much weaker than what we saw with the standardized mean differences. Meta-regression analysis supports these interpretations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -13815,25 +13951,25 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A systematic review and meta‐analysis of effects of psychosocial interventions on spiritual well‐being in adults with cancer</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-for-spiritual-well-being/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-for-spiritual-well-being/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-for-spiritual-well-being/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-for-spiritual-well-being/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>
-      <link>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</link>
+      <link>http://localhost:4321/publication/stay-play-talk-meta-analysis/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/stay-play-talk-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An ANCOVA puzzler</title>
-      <link>https://www.jepusto.com/ancova-puzzler/</link>
+      <link>http://localhost:4321/ancova-puzzler/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/ancova-puzzler/</guid>
+      <guid>http://localhost:4321/ancova-puzzler/</guid>
       <description>
 
 
@@ -13942,25 +14078,131 @@ for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &
     </item>
     
     <item>
+      <title>Centering categorical predictors in meta-regression</title>
+      <link>http://localhost:4321/centering-categorical-predictors/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/centering-categorical-predictors/</guid>
+      <description>
+
+
+&lt;p&gt;Meta-analyses of dependent effect size estimates involve a hierarchical data structure, where you’ve got multiple independent samples (or experiments or studies, you might call them) and one or more effect size estimates are drawn from each sample.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(fastDummies)
+library(clubSandwich)
+library(metafor)
+
+tmp &amp;lt;- tempfile(fileext = &amp;quot;.rds&amp;quot;)
+download.file(&amp;quot;https://jepusto.com/data/Tanner-Smith-Lipsey-2015-subset.rds&amp;quot;, tmp)
+
+TSL15 &amp;lt;- 
+  readRDS(file = tmp) %&amp;gt;%
+  # exclude observations missing control variables
+  filter(!is.na(percoll), !is.na(attrition_all), !is.na(permale))
+
+# Shorten dv category labels
+levels(TSL15$dv_cat) &amp;lt;- c(&amp;quot;freq&amp;quot;,&amp;quot;heavy&amp;quot;,&amp;quot;quantity&amp;quot;,&amp;quot;peak&amp;quot;,&amp;quot;BAC&amp;quot;,&amp;quot;combined&amp;quot;)
+
+# Center control variables
+
+TSL15_cent &amp;lt;- 
+  TSL15 %&amp;gt;%
+  mutate(
+    postwks_c = pmin(postwks, 26) - 12,
+    postwks_long = as.numeric(postwks &amp;gt; 26),
+    percoll_c = percoll - 1,
+    permale_c = permale - 0.5,
+    attrition_c = attrition_all - median(attrition_all),
+    study_dv = paste(studyid, dv_cat, sep = &amp;quot;-&amp;quot;),
+    study_ctype = paste(studyid, Ctype, sep = &amp;quot;-&amp;quot;)
+  ) %&amp;gt;%
+  # make dummies
+  dummy_cols(&amp;quot;dv_cat&amp;quot;) %&amp;gt;%
+  group_by(studyid) %&amp;gt;%
+  # group center, group means
+  mutate(across(starts_with(&amp;quot;dv_cat_&amp;quot;), list(gc = ~ .x - mean(.x), gm = ~ mean(.x)))) %&amp;gt;%
+  ungroup() %&amp;gt;%
+  mutate(
+    # center group means
+    across(matches(&amp;quot;dv_cat_.+_gm&amp;quot;), ~ .x - mean(.x)),
+    # add grand means to group-centered
+    across(matches(&amp;quot;dv_cat_.+_gc&amp;quot;), ~ .x + mean(.x), .names = &amp;quot;{.col}g&amp;quot;)
+  )
+
+# constant sampling correlation assumption
+rho &amp;lt;- 0.6
+
+# constant sampling correlation working model
+V_mat &amp;lt;- impute_covariance_matrix(TSL15_cent$V, 
+                                  cluster = TSL15_cent$studyid, 
+                                  r = rho, 
+                                  smooth_vi = TRUE)
+
+# fit random effects working model in metafor
+dv_multilevel &amp;lt;- rma.mv(yi = es,
+                        mods = ~ 0 + dv_cat,
+                        V = V_mat, 
+                        random = ~ 1 | studyid / esid,
+                        data = TSL15_cent, sparse = TRUE)
+dv_multilevel
+
+dv_A &amp;lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+dv_A
+Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_A, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+dv_B &amp;lt;- update(dv_multilevel, 
+               mods = ~ dv_cat_freq_gc + dv_cat_heavy_gc + dv_cat_quantity_gc + dv_cat_peak_gc + dv_cat_BAC_gc)
+dv_B
+Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_B, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat_.+_gc&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+
+dv_C &amp;lt;- update(dv_multilevel, 
+               mods = ~ 0 + dv_cat + 
+                 dv_cat_freq_gm + dv_cat_heavy_gm + dv_cat_quantity_gm + dv_cat_peak_gm + dv_cat_BAC_gm)
+
+dv_C
+Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_equal(1:6))
+Wald_test(dv_C, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(1:6), tidy = TRUE)
+
+dv_D &amp;lt;- rma.mv(yi = es,
+               mods = ~ 0 + factor(studyid) + dv_cat,
+               V = V_mat, 
+               random = ~ 1 | esid,
+               data = TSL15_cent, sparse = TRUE)
+Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_zero(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE))
+Wald_test(dv_D, vcov = &amp;quot;CR2&amp;quot;, constraints = constrain_pairwise(&amp;quot;dv_cat&amp;quot;, reg_ex = TRUE, with_zero = TRUE), tidy = TRUE)
+
+coef(dv_A)[2:6]
+coef(dv_B)[2:6]
+coef(dv_C)[1:5] - coef(dv_C)[6]
+coef(dv_D)[118:122]
+coef(dv_C)[2:6] - coef(dv_C)[1]&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</link>
+      <link>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</link>
       <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</guid>
+      <guid>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>What do meta-analysts mean by &#39;multivariate&#39; meta-analysis?</title>
-      <link>https://www.jepusto.com/what-does-multivariate-mean/</link>
+      <link>http://localhost:4321/what-does-multivariate-mean/</link>
       <pubDate>Sat, 27 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/what-does-multivariate-mean/</guid>
+      <guid>http://localhost:4321/what-does-multivariate-mean/</guid>
       <description>
 
 
 &lt;p&gt;If you’ve ever had class with me or attended one of my presentations, you’ve probably heard me grouse about how statisticians are mostly awful about naming things.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; A lot of the terminology in our field is pretty bad and ineloquent. As a leading example, look no further than Rubin and Little’s classification of missing data mechanisms as missing completely at random (MCAR), missing at random (MAR), or missing not at random (MNAR). Clear as mud, and the last one sounds like something you’d see on a handmade sign with a picture of someone’s pet puppy who wandered off last week.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://petkey.blob.core.windows.net/resource/images/940000/949000/949340_500W.jpg&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;As another example, consider that introductory statistics students always struggle to distinguish between no less than &lt;strong&gt;&lt;em&gt;three&lt;/em&gt;&lt;/strong&gt; different concepts that are all called “variance”: population variance, sample variance, and sampling variance.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; Unless the instructor also took diction training from the Royal Shakespeare Company, it’s no wonder that a fair number of students are left confused.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/img/Hamlet-z-transform.jpg&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/img/Hamlet-z-transform.jpg&#34; /&gt;
 In this post, I will try to clarify (at least a little bit) another mess of terminology that crops up a lot in my work on meta-analysis: what do we mean when we say a model or method is “multivariate”? In the context of meta-analysis methods, I think there are at least three distinct senses in which this term is used:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;As an umbrella term for models/methods where there is more than one effect size estimate per study,&lt;/li&gt;
@@ -13985,7 +14227,7 @@ Here, a multivariate meta-analysis would go a step further and make assumptions 
 Typically, the sampling variances and covariances would play into how the model is estimated and how one conducts inference and gets standard errors on things, etc.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;citation&#34;&gt;Becker (&lt;a href=&#34;#ref-Becker2000multivariate&#34; role=&#34;doc-biblioref&#34;&gt;2000&lt;/a&gt;)&lt;/span&gt; and &lt;span class=&#34;citation&#34;&gt;Gleser &amp;amp; Olkin (&lt;a href=&#34;#ref-Gleser2009stochastically&#34; role=&#34;doc-biblioref&#34;&gt;2009&lt;/a&gt;)&lt;/span&gt; describe a whole slew of different situations where meta-analysts will encounter multiple effect size estimates within a given study, and both provide formulas for the covariances between those effect sizes.
 In some situations, these covariances can be calculated just based on primary study sample sizes or other information readily available from study reports.
-In other situations (such as when one calculates &lt;a href=&#34;https://www.jepusto.com/correlations-between-smds/&#34;&gt;standardized mean differences for each of several outcomes on a common set of participants&lt;/a&gt;), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
+In other situations (such as when one calculates &lt;a href=&#34;http://localhost:4321/correlations-between-smds/&#34;&gt;standardized mean differences for each of several outcomes on a common set of participants&lt;/a&gt;), the information needed to calculate covariances might not be available, which is where methods like robust variance estimation come in.
 With this meaning of the term, multivariate meta-analysis methods are those that both directly model the dependent effects structure and that treat the sampling covariances as known. They are therefore distinct from methods, such as robust variance estimation, that do not rely on knowing the exact variance-covariance structure of the sampling errors.
 In my own work, I find it helpful to be able to draw this distinction, so I rather like this usage of “multivariate.” This will surely irritate some statisticians, though, who prefer the third, stricter meaning of the term.&lt;/p&gt;
 &lt;/div&gt;
@@ -14063,9 +14305,9 @@ In my example of educational intervention impact studies, say that are intereste
     
     <item>
       <title>Weighting in multivariate meta-analysis</title>
-      <link>https://www.jepusto.com/weighting-in-multivariate-meta-analysis/</link>
+      <link>http://localhost:4321/weighting-in-multivariate-meta-analysis/</link>
       <pubDate>Tue, 09 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/weighting-in-multivariate-meta-analysis/</guid>
+      <guid>http://localhost:4321/weighting-in-multivariate-meta-analysis/</guid>
       <description>
 
 
@@ -14104,7 +14346,7 @@ In the second line of the model, &lt;span class=&#34;math inline&#34;&gt;\(\mu\)
 &lt;div id=&#34;equally-precise-effect-size-estimates&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Equally precise effect size estimates&lt;/h2&gt;
 &lt;p&gt;To make some headway, it is helpful to first consider an even more specific model where, within a given study, all effect size estimates are equally precise and equally correlated. In particular, let’s assume that for each study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;, the sampling variances are all equal, with &lt;span class=&#34;math inline&#34;&gt;\(V_{ij} = V_j\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_j\)&lt;/span&gt;, and the correlations between the sampling errors are also all equal, with &lt;span class=&#34;math inline&#34;&gt;\(r_{hij} = r_j\)&lt;/span&gt; for &lt;span class=&#34;math inline&#34;&gt;\(h,i = 1,...,n_j\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;These assumptions might not be all that far-fetched. Within a given study, if the effect size estimates are for different measures of a common construct, it’s not unlikely that they would all be based on similar sample sizes (+/- a bit of item non-response). It might be a bit less likely if the effect size estimates are for treatment effects from different follow-up times (since drop-out/non-response tends to increase over time) or different treatment groups compared to a common control group—but still perhaps not entirely unreasonable. Further, it’s rather &lt;em&gt;uncommon&lt;/em&gt; to have good information about the correlations between effect size estimates from a given study (because primary studies don’t often report all of the information needed to calculate these correlations). In practice, meta-analysts might need to simply &lt;a href=&#34;https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;make a rough guess about the correlations&lt;/a&gt; and then use robust variance estimation and/or sensitivity analysis to check themselves. And if we’re just ball-parking, then we’ll probably assume a single correlation for all of the studies.&lt;/p&gt;
+&lt;p&gt;These assumptions might not be all that far-fetched. Within a given study, if the effect size estimates are for different measures of a common construct, it’s not unlikely that they would all be based on similar sample sizes (+/- a bit of item non-response). It might be a bit less likely if the effect size estimates are for treatment effects from different follow-up times (since drop-out/non-response tends to increase over time) or different treatment groups compared to a common control group—but still perhaps not entirely unreasonable. Further, it’s rather &lt;em&gt;uncommon&lt;/em&gt; to have good information about the correlations between effect size estimates from a given study (because primary studies don’t often report all of the information needed to calculate these correlations). In practice, meta-analysts might need to simply &lt;a href=&#34;http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;make a rough guess about the correlations&lt;/a&gt; and then use robust variance estimation and/or sensitivity analysis to check themselves. And if we’re just ball-parking, then we’ll probably assume a single correlation for all of the studies.&lt;/p&gt;
 &lt;p&gt;The handy thing about this particular scenario is that, because all of the effect size estimates within a study are equally precise and equally correlated, the most efficient way to estimate an average effect for a given study is to &lt;strong&gt;&lt;em&gt;just take the simple average&lt;/em&gt;&lt;/strong&gt; (and, intuitively, this seems like the only sensible thing to do). To be precise, consider how we would estimate &lt;span class=&#34;math inline&#34;&gt;\(\theta_j\)&lt;/span&gt; for a given study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;. The most precise possible estimate is simply
 &lt;span class=&#34;math display&#34;&gt;\[
 \hat\theta_j = \frac{1}{n_j} \sum_{i=1}^{n_j} T_{ij}.
@@ -14150,9 +14392,9 @@ corrdat &amp;lt;-
   corrdat %&amp;gt;%
   distinct(studyid, esid, .keep_all = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This dataset included a total of 171 effect size estimates from 39 unique studies. For each study, between 1 and 18 eligible effect size estimates were reported. Here is a histogram depicting the number of studies by the number of reported effect size estimates:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Here is the plot of the variances of each effect size versus the study IDs:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;For most of the studies, the effect sizes have very similar sampling variances. One exception is study 9, where two of the effect sizes have variances of under 0.20 and the other two effect sizes have variances in excess of 0.35. Another exception is study 30, which has one effect size with much larger variance than the others.&lt;/p&gt;
 &lt;p&gt;Just for sake of illustration, I’m going to &lt;em&gt;enforce&lt;/em&gt; my assumption that effect sizes have equal variances within each study by recomputing the sampling variances as the &lt;em&gt;average&lt;/em&gt; sampling variance within each study. I will then impute a sampling variance-covariance matrix for the effect sizes, assuming a correlation of 0.7 for effects from the same study:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)
@@ -14220,7 +14462,7 @@ corrdat_weights &amp;lt;-
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(corrdat_weights, aes(w_ij, w_ij_metafor)) + 
   geom_point() + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;384&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;384&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we remove the within-study random effect term from the model, the weights will be equivalent to setting &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt; to zero, but with a different estimate of &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;MVMA_no_omega &amp;lt;- rma.mv(yi = effectsize, V = V_mat, 
                         random = ~ 1 | studyid,
@@ -14258,14 +14500,14 @@ with(corrdat_weights, weighted.mean(effectsize, w = w_ij_no_omega))&lt;/code&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.2235231&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This matches the output of &lt;code&gt;rma.mv()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Here is a plot showing the weights of individual effect sizes for each study. In blue are the weights under the assumption that &lt;span class=&#34;math inline&#34;&gt;\(\omega^2 = 0\)&lt;/span&gt;. In green are the weights allowing for &lt;span class=&#34;math inline&#34;&gt;\(\omega^2 &amp;gt; 0\)&lt;/span&gt;. It’s notable here that introducing the within-study heterogeneity term leads to pretty big changes in the weights for some studies. In particular, studies that have only a single effect size estimate (e.g., studys 7, 8, 22, 25, 28) lose &lt;em&gt;a lot&lt;/em&gt; of weight when &lt;span class=&#34;math inline&#34;&gt;\(\omega^2 &amp;gt; 0\)&lt;/span&gt;. That’s partially because &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt; tends to pull weight towards studies with more effect sizes, and partially because of the change in the estimate of &lt;span class=&#34;math inline&#34;&gt;\(\tau^2\)&lt;/span&gt;, which tends to equalize the weight assigned to each study.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Below is a plot illustrating the changes in study-level weights (i.e., aggregating the weight assigned to each study). The bar color corresponds to the number of effect size estimates in each study; light grey studies have just one effect size, while studies with more effect sizes are more intensly purple. The notable drops in weight for studies with a single effect size estimate (light grey) are visible here too. Studies with more effect sizes (e.g., studies 2, 15, 30, with dark purple bars) gain weight when we allow &lt;span class=&#34;math inline&#34;&gt;\(\omega^2\)&lt;/span&gt; to be greater than zero.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in
 ## ggplot2 3.3.4.
 ## ℹ Please use &amp;quot;none&amp;quot; instead.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Weighting-in-multivariate-meta-analysis_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;now-without-compound-symmetry&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Now without compound symmetry&lt;/h2&gt;
@@ -14416,7 +14658,7 @@ summary(MR_study_fit)&lt;/code&gt;&lt;/pre&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Note that this model also encompasses the multi-level meta-analysis described by &lt;a href=&#34;https://doi.org/10.1002/jrsm.35&#34;&gt;Konstantopoulos (2011)&lt;/a&gt; and &lt;a href=&#34;https://doi.org/10.3758/s13428-012-0261-6&#34;&gt;Van den Noortgate, et al. (2013)&lt;/a&gt; as a special case, with &lt;span class=&#34;math inline&#34;&gt;\(r_{hij} = 0\)&lt;/span&gt; for all &lt;span class=&#34;math inline&#34;&gt;\(h,i=1,...,n_j\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,k\)&lt;/span&gt;.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Perhaps that makes sense, if you’ve carefully selected the set of effect sizes for inclusion in your meta-analysis. However, it seems to me that it could sometimes lead to perverse results. Say that all studies but one include just a single effect size estimate, each using the absolute gold standard approach to assessing the outcome, but that one study took a “kitchen sink” approach and assessed the outcome a bunch of different ways, including the gold standard plus a bunch of junky scales. Inclusion of the junky scales will lead to within-study heterogeneity, which in turn will &lt;em&gt;pull the overall average effect size towards this study—the one with all the junk!&lt;/em&gt; That seems less than ideal, and the sort of situation where it would be better to select from the study with multiple outcomes the single effect size estimate based on the outcome assessment that most closely aligns with the other studies.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Things get even simpler if the model does not include within-study random effects, as I discussed in &lt;a href=&#34;https://www.jepusto.com/sometimes-aggregating-effect-sizes-is-fine/&#34;&gt;a previous post&lt;/a&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Things get even simpler if the model does not include within-study random effects, as I discussed in &lt;a href=&#34;http://localhost:4321/sometimes-aggregating-effect-sizes-is-fine/&#34;&gt;a previous post&lt;/a&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;However, this need not be the case—it’s possible that introducing between-study predictors could &lt;em&gt;increase&lt;/em&gt; the estimate of between-study heterogeneity. Yes, that’s totally counter-intuitive. Multi-level models can be weird.&lt;a href=&#34;#fnref4&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -14425,21 +14667,21 @@ summary(MR_study_fit)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Psychosocial interventions for cancer survivors: A meta-analysis of effects on positive affect</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-for-positive-affect/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-for-positive-affect/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-for-positive-affect/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-for-positive-affect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Simulating correlated standardized mean differences for meta-analysis</title>
-      <link>https://www.jepusto.com/simulating-correlated-smds/</link>
+      <link>http://localhost:4321/simulating-correlated-smds/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/simulating-correlated-smds/</guid>
+      <guid>http://localhost:4321/simulating-correlated-smds/</guid>
       <description>
 
 
-&lt;p&gt;As I’ve discussed in &lt;a href=&#34;https://www.jepusto.com/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
+&lt;p&gt;As I’ve discussed in &lt;a href=&#34;http://localhost:4321/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
 I’m interested in methods for meta-analyzing and meta-regressing effect sizes from data structures like this, and studying this sort of thing often entails conducting Monte Carlo simulations.
 Monte Carlo simulations involve generating artificial data—in this case, a set of studies, each of which has one or more dependent effect size estimates—that follows a certain distributional model, applying different analytic methods to the artificial data, and then repeating the process a bunch of times.
 Because we know the true parameters that govern the data-generating process, we can evaluate the performance of the analytic methods in terms of bias, accuracy, hypothesis test calibration and power, confidence interval coverage, and the like.&lt;/p&gt;
@@ -14524,7 +14766,7 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;Hedges_g = TRUE&lt;/code&gt;, which controls where the simulated effect size is Hedges’ &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; or Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;. If it is Hedges’ g, make sure that the standard error is corrected too.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;p_val = TRUE&lt;/code&gt;, which allows the user to control whether or not to return &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-values from the test of mean differences for each outcome. Note that the p-values should be for a test of the &lt;em&gt;raw&lt;/em&gt; mean differences between groups, rather than a test of the effect size &lt;span class=&#34;math inline&#34;&gt;\(\delta_{jk} = 0\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;https://www.jepusto.com/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;http://localhost:4321/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -14539,7 +14781,7 @@ and
 \left(\mathbf{\bar{y}}_{Tk} - \mathbf{\bar{y}}_{Ck}\right) \sim N\left(\boldsymbol\delta_k, \frac{4}{N_k} \boldsymbol\Psi_k\right).
 \]&lt;/span&gt;
 This shows how we could directly simulate the numerator of the standardized mean difference.&lt;/p&gt;
-&lt;p&gt;A &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
+&lt;p&gt;A &lt;a href=&#34;http://localhost:4321/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
 &lt;span class=&#34;math display&#34;&gt;\[
 (N_k - 2) \mathbf{S}_k \sim Wishart\left(N_k - 2, \Psi_k \right).
 \]&lt;/span&gt;
@@ -14696,9 +14938,9 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x}_{jk}\)&lt;/span&gt; i
     
     <item>
       <title>Sometimes, aggregating effect sizes is fine</title>
-      <link>https://www.jepusto.com/sometimes-aggregating-effect-sizes-is-fine/</link>
+      <link>http://localhost:4321/sometimes-aggregating-effect-sizes-is-fine/</link>
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/sometimes-aggregating-effect-sizes-is-fine/</guid>
+      <guid>http://localhost:4321/sometimes-aggregating-effect-sizes-is-fine/</guid>
       <description>
 
 
@@ -14781,7 +15023,7 @@ corrdat &amp;lt;- arrange(corrdat, studyid, esid)&lt;/code&gt;&lt;/pre&gt;
   group_by(studyid) %&amp;gt;%
   mutate(males = mean(males))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can then fit this model using a multi-variate meta-regression in metafor.&lt;/p&gt;
-&lt;p&gt;In order to estimate the model, we’ll first need to create a variance-covariance matrix for the effect size estimates in each study, which can be accomplished using &lt;code&gt;impute_covariance_matrix&lt;/code&gt; from &lt;code&gt;clubSandwich&lt;/code&gt; (&lt;a href=&#34;https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;further details here&lt;/a&gt;). I’ll assume a correlation of 0.6 between pairs of effect sizes within a given study:&lt;/p&gt;
+&lt;p&gt;In order to estimate the model, we’ll first need to create a variance-covariance matrix for the effect size estimates in each study, which can be accomplished using &lt;code&gt;impute_covariance_matrix&lt;/code&gt; from &lt;code&gt;clubSandwich&lt;/code&gt; (&lt;a href=&#34;http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;further details here&lt;/a&gt;). I’ll assume a correlation of 0.6 between pairs of effect sizes within a given study:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)
 library(metafor)
 
@@ -15105,28 +15347,98 @@ coef_test(uni_fit, vcov = &amp;quot;CR2&amp;quot;, cluster = corrdat_agg$studyid
     
     <item>
       <title>Interventions to enhance self-efficacy in cancer patients and survivors: A meta-analysis of randomized controlled trials</title>
-      <link>https://www.jepusto.com/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</link>
+      <link>http://localhost:4321/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</link>
       <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</guid>
+      <guid>http://localhost:4321/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Converting from odds ratios to standardized mean differences: What to do with logistic regression coefficients?</title>
+      <link>http://localhost:4321/converting-odds-ratios-to-standardized-mean-differences/</link>
+      <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/converting-odds-ratios-to-standardized-mean-differences/</guid>
+      <description>
+
+
+&lt;p&gt;One of the central problems in research synthesis is that studies use a variety of different types of outcome measures to assess a construct. This is the main reason that meta-analysis often uses standardized, scale-free effect sizes (such as standardized mean differences), so that findings from studies that use different measures can be combined and contrasted on a common metric. In syntheses of education research (as well as other fields), a further issue that sometimes arises is that some included studies might report effects on a dichotomous outcome, while others report effects (of the same intervention, say) but using a continuous outcome measure.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;logit &amp;lt;- function(x) log(x) - log(1 - x)
+
+simulate_OR_to_SMD &amp;lt;- function(p0, SMD, r, n0, n1) {
+  
+  # simulate data
+  trt &amp;lt;- c(rep(0, n0), rep(1, n1))
+  Y &amp;lt;- rlogis(n0 + n1, location = logit(p0) + trt * SMD * pi / sqrt(3))
+  X &amp;lt;- r * (Y - trt * SMD) * sqrt(3) / pi + rnorm(n0 + n1, sd = sqrt(1 - r^2))
+  B &amp;lt;- Y &amp;gt; 0
+
+  # calculate LORs
+  logit_fit &amp;lt;- glm(B ~ trt + X, family = &amp;quot;binomial&amp;quot;)
+  LOR_marginal &amp;lt;- as.numeric(diff(logit(tapply(B, trt, mean))))
+  LOR_logit &amp;lt;- coef(logit_fit)[[&amp;quot;trt&amp;quot;]]
+  LORs &amp;lt;- c(LOR_marginal, LOR_logit)
+  
+  # convert to SMDs
+  SMDs &amp;lt;- LORs * sqrt(3) / pi
+  
+  data.frame(type = c(&amp;quot;marginal&amp;quot;,&amp;quot;conditional&amp;quot;), LOR_est = LORs, SMD_est = SMDs)
+} 
+
+simulate_OR_to_SMD(p0 = 0.6, SMD = 0.4, r = 0.7, n0 = 10000, n1 = 10000)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##          type   LOR_est   SMD_est
+## 1    marginal 0.7468089 0.4117373
+## 2 conditional 0.8711806 0.4803070&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Attaching packages ------------------------------------------------------ tidyverse 1.2.1 --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## v ggplot2 3.3.0     v purrr   0.3.3
+## v tibble  3.0.0     v dplyr   0.8.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## -- Conflicts --------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;params &amp;lt;- 
+  list(
+    p0 = seq(0.2, 0.8, 0.2),
+    SMD = seq(0.2, 0.8, 0.2),
+    r = seq(0, 0.9, 0.1)
+  ) %&amp;gt;%
+  cross_df()
+
+SMDs &amp;lt;- 
+  params %&amp;gt;%
+  mutate(res = pmap(., simulate_OR_to_SMD, n0 = 50000, n1 = 50000)) %&amp;gt;%
+  unnest() %&amp;gt;%
+  mutate(RB = SMD_est / SMD)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `cols` is now required.
+## Please use `cols = c(res)`&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(SMDs, aes(r, RB, color = type)) + 
+  geom_point() + geom_line() + 
+  facet_grid(SMD ~ p0, labeller = &amp;quot;label_both&amp;quot;) + 
+  theme_light()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Converting-odds-ratios-to-standardized-mean-differences_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Effects of psychosocial interventions on meaning and purpose in adults with cancer: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-meaning-and-purpose/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-meaning-and-purpose/</link>
       <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-meaning-and-purpose/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-meaning-and-purpose/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CRAN downloads of my packages</title>
-      <link>https://www.jepusto.com/package-downloads/</link>
+      <link>http://localhost:4321/package-downloads/</link>
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/package-downloads/</guid>
+      <guid>http://localhost:4321/package-downloads/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;p&gt;At AERA this past weekend, one of the recurring themes was how software availability (and its usability and default features) influences how people conduct meta-analyses. That got me thinking about the R packages that I’ve developed, how to understand the extent to which people are using them, how they’re being used, and so on. I’ve had badges on my github repos for a while now:&lt;/p&gt;
@@ -15340,7 +15652,7 @@ ggplot(downloads_sample, aes(x = package, y = count)) +
   scale_color_discrete_qualitative(palette = &amp;quot;custom-qual&amp;quot;) + 
   labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads (per month)&amp;quot;, title = title_str) + 
   theme(legend.position = &amp;quot;none&amp;quot;, axis.line.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;downloads-over-time&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Downloads over time&lt;/h3&gt;
@@ -15374,7 +15686,7 @@ weekly_downloads %&amp;gt;%
   theme_minimal() + 
   labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads (per month)&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are a couple of curious features in these plots. For one, there are big spikes in downloads of &lt;code&gt;ARPobservation&lt;/code&gt; and &lt;code&gt;SingleCaseES&lt;/code&gt;. The &lt;code&gt;ARPobservation&lt;/code&gt; spike was in mid-June of 2018, when I was at the IES Single-Case Design training institute and demonstrated some of the package’s tools. The &lt;code&gt;SingleCaseES&lt;/code&gt; spike was in early January, 2019. Perhaps someone was teaching a class in single-case research and demonstrated the package? Or something at the IES PI meeting (January 9-10, 2019)?&lt;/p&gt;
 &lt;p&gt;Another interesting pattern is in the download rate of &lt;code&gt;scdhlm&lt;/code&gt;, which looks like it increased systematically starting in September, 2018. I wonder if this was the result of someone demonstrating or incorporating use of the package into a course. Lacking details about where the downloads are coming from, it’s hard to do anything but speculate.&lt;/p&gt;
 &lt;/div&gt;
@@ -15395,53 +15707,53 @@ Corrections. R package version 0.5.0. &lt;a href=&#34;https://CRAN.R-project.org
     
     <item>
       <title>Systematic Reviews and Meta-analysis SIG at AERA 2019</title>
-      <link>https://www.jepusto.com/aera-2019-srma-sig/</link>
+      <link>http://localhost:4321/aera-2019-srma-sig/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/aera-2019-srma-sig/</guid>
+      <guid>http://localhost:4321/aera-2019-srma-sig/</guid>
       <description>
 
 
-&lt;p&gt;This year, &lt;a href=&#34;https://pure.qub.ac.uk/portal/en/persons/laura-dunne(7bf21af1-3fa0-4c1b-aab9-7b5f526cb1c9).html&#34;&gt;Dr. Laura Dunne&lt;/a&gt; and I are serving as program co-chairs for the AERA special interest group on &lt;a href=&#34;http://www.aera.net/SIG176/Systematic-Reviews-and-Meta-Analysis-SIG176&#34;&gt;Systematic Reviews and Meta-Analysis&lt;/a&gt;, which is a great group of scholars interested in the methodology and application of research synthesis to questions in education and the broader social sciences. We had a strong batch of submissions to the SIG and (since we’re new and still a fairly small group) only a few sessions to fill with them. In assembling this year’s program, Laura and I noted a few common themes that stood out to us. In this post, I’ll highlight a few of them and hopefully whet your appetite to hear more during our sessions at this year’s convention. And if you want to skip the details for now, just take a look at our handy pdf with &lt;a href=&#34;https://www.jepusto.com/files/2019_SRMA_Schedule.pdf&#34;&gt;the full SIG program&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This year, &lt;a href=&#34;https://pure.qub.ac.uk/portal/en/persons/laura-dunne(7bf21af1-3fa0-4c1b-aab9-7b5f526cb1c9).html&#34;&gt;Dr. Laura Dunne&lt;/a&gt; and I are serving as program co-chairs for the AERA special interest group on &lt;a href=&#34;http://www.aera.net/SIG176/Systematic-Reviews-and-Meta-Analysis-SIG176&#34;&gt;Systematic Reviews and Meta-Analysis&lt;/a&gt;, which is a great group of scholars interested in the methodology and application of research synthesis to questions in education and the broader social sciences. We had a strong batch of submissions to the SIG and (since we’re new and still a fairly small group) only a few sessions to fill with them. In assembling this year’s program, Laura and I noted a few common themes that stood out to us. In this post, I’ll highlight a few of them and hopefully whet your appetite to hear more during our sessions at this year’s convention. And if you want to skip the details for now, just take a look at our handy pdf with &lt;a href=&#34;http://localhost:4321/files/2019_SRMA_Schedule.pdf&#34;&gt;the full SIG program&lt;/a&gt;.&lt;/p&gt;
 &lt;div id=&#34;sig-highlights&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;SIG highlights&lt;/h2&gt;
 &lt;p&gt;First, two of this year’s presentations deal with &lt;strong&gt;&lt;em&gt;network meta-analysis&lt;/em&gt;&lt;/strong&gt;, an approach that goes beyond a single intervention-control comparison, to instead synthesize evidence on the comparative effects of multiple alternative interventions (not just red pill vs blue pill, but also red versus green, green versus blue, etc.). Network meta-analysis is increasingly important in clinical medicine (for example, &lt;a href=&#34;https://ora.ox.ac.uk/objects/uuid:95a796fa-e842-4e11-bee6-b0b2237a2541&#34;&gt;here’s a recent synthesis&lt;/a&gt; examining the relative efficacy of 21 different anti-depressant drugs) but it is still relatively rare in education and other social science meta-analyses. Not in this year’s SIG program though! Both our &lt;a href=&#34;http://tinyurl.com/ybfxaqq9&#34;&gt;Sunday morning paper session&lt;/a&gt; and &lt;a href=&#34;http://tinyurl.com/y773wb5x&#34;&gt;Monday round table&lt;/a&gt; feature applications of network meta-analysis: one on &lt;a href=&#34;http://tinyurl.com/y7ehtuhf&#34;&gt;distance and face-to-face learning&lt;/a&gt;, and one on &lt;a href=&#34;http://tinyurl.com/y8x5dh7f&#34;&gt;interventions for treatment of post-traumatic stress disorder&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Second, &lt;strong&gt;&lt;em&gt;publication bias&lt;/em&gt;&lt;/strong&gt; and other forms of &lt;strong&gt;&lt;em&gt;outcome reporting bias&lt;/em&gt;&lt;/strong&gt; remain one of the most vexing challenges for meta-analysis. Our &lt;a href=&#34;http://tinyurl.com/ybfxaqq9&#34;&gt;Sunday morning paper session&lt;/a&gt; includes an innovative methodological study on &lt;a href=&#34;http://tinyurl.com/yaze63jr&#34;&gt;how to detect selective outcome reporting in multi-level meta-analyses&lt;/a&gt;—an important setting where publication bias techniques have yet to be explored. Even with very sophisticated statistical tools, though, the best way to address publication bias is probably to try and prevent it in the first place. To that end, our &lt;a href=&#34;http://tinyurl.com/y773wb5x&#34;&gt;Monday round table session&lt;/a&gt; includes a presentation on &lt;a href=&#34;http://tinyurl.com/y6vslf6m&#34;&gt;locating unreported outcome data for use in meta-analysis&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Third, the Systematic Reviews and Meta-Analysis SIG has always included &lt;strong&gt;&lt;em&gt;a mix of theory and practice&lt;/em&gt;&lt;/strong&gt;. In this year’s program, we’ve tried to preserve that mix within each of our sessions, so that our Sunday paper session and Monday round table each include both methodological research and substantive applications of meta-analysis. We hope that this will promote interesting and valuable dialogues within our community.&lt;/p&gt;
 &lt;p&gt;Finally, I am very excited that &lt;a href=&#34;http://tinyurl.com/y45wbgfe&#34;&gt;our business meeting&lt;/a&gt; will feature an address by &lt;strong&gt;&lt;em&gt;&lt;a href=&#34;https://scholar.gse.upenn.edu/maynard&#34;&gt;Dr. Rebecca Maynard&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt;, who is the University Trustee Chair Professor of Education and Social Policy at the University of Pennsylvania Graduate School of Education, and an influential voice in the use of research synthesis methods to inform education and social policy. She’ll be speaking on &lt;strong&gt;&lt;em&gt;Expanded Roles for Meta-Analysis in Supporting Evidence-Based Policy and Practice&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Be sure to check out &lt;a href=&#34;https://www.jepusto.com/files/2019_SRMA_Schedule.pdf&#34;&gt;the SIG program&lt;/a&gt; for more details and other sessions of interest. I look forward to seeing everyone in Toronto!&lt;/p&gt;
+&lt;p&gt;Be sure to check out &lt;a href=&#34;http://localhost:4321/files/2019_SRMA_Schedule.pdf&#34;&gt;the SIG program&lt;/a&gt; for more details and other sessions of interest. I look forward to seeing everyone in Toronto!&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>Testing for funnel plot asymmetry of standardized mean differences</title>
-      <link>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
+      <link>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
+      <guid>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Current practices in meta-regression in psychology, education, and medicine</title>
-      <link>https://www.jepusto.com/publication/current-practices-in-meta-regression/</link>
+      <link>http://localhost:4321/publication/current-practices-in-meta-regression/</link>
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/current-practices-in-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/current-practices-in-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A history of meta-regression: Technical, conceptual, and practical developments between 1974 and 2018</title>
-      <link>https://www.jepusto.com/publication/history-of-meta-regression/</link>
+      <link>http://localhost:4321/publication/history-of-meta-regression/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/history-of-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/history-of-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sampling variance of Pearson r in a two-level design</title>
-      <link>https://www.jepusto.com/variance-of-r-in-two-level-design/</link>
+      <link>http://localhost:4321/variance-of-r-in-two-level-design/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/variance-of-r-in-two-level-design/</guid>
+      <guid>http://localhost:4321/variance-of-r-in-two-level-design/</guid>
       <description>
 
 
@@ -15517,9 +15829,9 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>New paper: Using response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/using-response-ratios-paper/</link>
+      <link>http://localhost:4321/using-response-ratios-paper/</link>
       <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/using-response-ratios-paper/</guid>
+      <guid>http://localhost:4321/using-response-ratios-paper/</guid>
       <description>
 
 
@@ -15538,29 +15850,29 @@ DEF = \frac{N}{\tilde{N}} = 1 + (g_2 - g_1^2) \psi^2,
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
+      <link>http://localhost:4321/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
+      <guid>http://localhost:4321/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to the special issue on single-case systematic reviews and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/rase-special-issue-introduction/</link>
+      <link>http://localhost:4321/publication/rase-special-issue-introduction/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rase-special-issue-introduction/</guid>
+      <guid>http://localhost:4321/publication/rase-special-issue-introduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Imputing covariance matrices for meta-analysis of correlated effects</title>
-      <link>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
+      <link>http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
       <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
+      <guid>http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
       <description>
 
 
-&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;https://www.jepusto.com/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
+&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;http://localhost:4321/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
 &lt;p&gt;Several solutions to this conundrum have been proposed in the meta-analysis methodology literature. One possible strategy is to just impute a correlation based on subject-matter knowledge (or at least feigned expertise), and assume that this correlation is constant across studies. This analysis could be supplemented with sensitivity analyses to examine the extent to which the parameter estimates and inferences are sensitive to alternative assumptions about the inter-correlation of effects within studies. A related strategy, described by &lt;a href=&#34;https://dx.doi.org/10.1002/sim.5679&#34;&gt;Wei and Higgins (2013)&lt;/a&gt;, is to meta-analyze any available correlation estimates and then use the results to impute correlations for any studies with missing correlations.&lt;/p&gt;
 &lt;p&gt;Both of these approaches require the meta-analyst to calculate block-diagonal sampling covariance matrices for the effect size estimates, which can be a bit unwieldy. I often use the impute-the-correlation strategy in my meta-analysis work and have written a helper function to compute covariance matrices, given known sampling variances and imputed correlations for each study. In the interest of not repeating myself, I’ve added the function to the latest version of my clubSandwich package. In this post, I’ll explain the function and demonstrate how to use it for conducting meta-analysis of correlated effect size estimates.&lt;/p&gt;
 &lt;div id=&#34;an-r-function-for-block-diagonal-covariance-matrices&#34; class=&#34;section level2&#34;&gt;
@@ -15879,25 +16191,25 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A meta-analysis of school-based group contingency interventions for students with challenging behavior: An update</title>
-      <link>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</link>
+      <link>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of technology-aided instruction and intervention for students with ASD</title>
-      <link>https://www.jepusto.com/publication/taii-meta-analysis/</link>
+      <link>http://localhost:4321/publication/taii-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/taii-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/taii-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>You wanna PEESE of d&#39;s?</title>
-      <link>https://www.jepusto.com/pet-peese-performance/</link>
+      <link>http://localhost:4321/pet-peese-performance/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/pet-peese-performance/</guid>
+      <guid>http://localhost:4321/pet-peese-performance/</guid>
       <description>
 
 
@@ -15969,7 +16281,7 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;li&gt;the modified PEESE estimator, which I’ll call “SPEESE”; and&lt;/li&gt;
 &lt;li&gt;SPET-SPEESE, which follows the same conditional logic as PET-PEESE.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;https://www.jepusto.com/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;http://localhost:4321/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;results&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Results&lt;/h1&gt;
@@ -15977,43 +16289,43 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;h3&gt;False-positive rates for publication bias detection&lt;/h3&gt;
 &lt;p&gt;First, let’s consider the performance of PET and PEESE as tests for detecting publication bias. Here, a statistically significant estimate for the coefficient on the SE (for PET) or on &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; (for PEESE) is taken as evidence of small-sample bias. For that logic to hold, the tests should maintain the nominal error rates in the absence of publication bias.&lt;/p&gt;
 &lt;p&gt;The figure below depicts the Type-I error rates of the PET and PEESE tests when &lt;span class=&#34;math inline&#34;&gt;\(\pi = 1\)&lt;/span&gt; (so no publication bias at all), for a one-sided test of &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; at the nominal level of &lt;span class=&#34;math inline&#34;&gt;\(\alpha = .05\)&lt;/span&gt;. Rejection rates are plotted for varying true mean effects, levels of heterogeneity, and sample size distributions. Separate colors are used for maximum sample sizes of 50 or 120.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both tests are horribly mis-calibrated, tending to reject the null hypothesis far more often than they should. This happens because there is a non-zero correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt;, even in the absence of publication bias. Thus, it does not follow that rejecting &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; implies rejection of the hypothesis that there is no publication bias. (Sorry, that’s at least a triple negative!)&lt;/p&gt;
 &lt;p&gt;Here’s the same graph, but using the SPET and SPEESE estimators:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Yes, this may be the World’s Most Boring Figure, but it does make clear that both the SPET and SPEESE tests maintain the correct Type-I error rate. (Any variation in rejection rates is just Monte Carlo error.) Thus, it seems pretty clear that if we want to test for small-sample bias, SPET or SPEESE should be used rather than PET or PEESE.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bias-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Bias of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Now let’s consider the performance of these methods as estimators of the population mean effect. &lt;a href=&#34;http://datacolada.org/59&#34;&gt;Uri’s analysis&lt;/a&gt; focused on the bias of the estimators, meaning the difference between the average value of the estimator (across repeated samples) and the true parameter. The plot below depicts the expected level of PET, PEESE, and PET-PEESE as a function of the true mean effect, using the uniform distribution of studies and a maximum sample size of &lt;span class=&#34;math inline&#34;&gt;\(n = 50\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All three of these estimators are pretty bad in terms of bias. In the absence of publication bias, they consistently &lt;em&gt;under&lt;/em&gt;-estimate the true mean effect. With intermediate or strong publication bias, PET and PET-PEESE have a consistent downward bias. As an unconditional estimator, PEESE tends to have a positive bias when the true effect is small, but this decreases and becomes negative as the true effect increases. For all three estimators, bias increases as the degree of heterogeneity increases.&lt;/p&gt;
 &lt;p&gt;Here is how these estimators compare to the modified SPET, SPEESE, and SPET-SPEESE estimators, as well as to the usual fixed-effect average with no correction for publication bias:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left column, we see that SPET and SPEESE are exactly unbiased (and SPET-SPEESE is nearly so) in the absence of selective publication. So is regular old fixed effect meta-analysis, of course. In the middle and right columns, studies are selected based partially or fully on statistical significance, and things get messy. Overall, there’s no consistent winner between PEESE versus SPEESE. At small or moderate levels of between-study heterogeneity, and when the true mean effect is small, PEESE, SPEESE, and SPET-SPEESE have fairly similar biases, but PEESE appears to have a slight edge. This seems to me to be nothing but a fortuitous accident, in that the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; just happens to work in the right direction. Then, as the true mean effect increases, SPEESE and SPET-SPEESE start to edge out PEESE. This makes sense because the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; will be larger when the true effect sizes are larger.&lt;br /&gt;
 These trends seem mostly to hold for the other sample size distributions I examined too, although the biases of PEESE and PET-PEESE aren’t as severe when the maximum sample size is larger. You can see for yourself here:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;accuracy-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Accuracy of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Bias isn’t everything, of course. Now let’s look at the overall accuracy of these estimators, as measured by root mean squared error (RMSE). RMSE is a function of both bias and sampling variance, and so is one way to weigh an estimator that is biased but fairly precise against an estimator that is perfectly unbiased but noisy. The following chart plots the RMSE of all of the estimators (following the same layout as above, just with a different vertical axis):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Starting in the left column where there’s no selective publication, we can see that the normal fixed-effect average has the smallest RMSE (and so is most accurate). The next most accurate is SPEESE, which uniformly beats out PEESE, PET-PEESE, SPET, and SPET-SPEESE. It’s worth noting, though, that there is a fairly large penalty for using SPEESE when it is unnecessary: even with a quite large sample of 100 studies, SPEESE still has twice the RMSE of the FE estimator.&lt;/p&gt;
 &lt;p&gt;The middle column shows these estimators’ RMSE when there is an intermediate degree of selective publication. Because of the “fortuitous accident” of how the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; affects the PEESE estimator, it is more accurate than SPEESE for small values of the true mean effect. Its advantage is larger when heterogeneity is larger, and heterogeneity also affects the point (i.e., what true mean effect) at which SPEESE catches up with PEESE. Then at larger true mean effects, the accuracy of SPEESE continues to improve while the accuracy of PEESE degrades. It is also interesting to note that at this intermediate degree of selective publication, none of the other bias-correction estimators (PET-PEESE, SPET, SPET-SPEESE) compete with PEESE and SPEESE.&lt;/p&gt;
 &lt;p&gt;Finally, the right column plots RMSE when there’s strong selective publication, so only statistically significant effects appear. Just as in the middle column, PEESE edges out SPEESE for smaller values of the true mean effect. For very small true effects, both of these estimators are edged out by PET-PEESE and SPET-SPEESE. This only holds over a very small range for the true mean effect though, and for true effects above that range these conditional estimators perform poorly—consistently worse than just using PEESE or SPEESE.&lt;/p&gt;
 &lt;p&gt;Here are charts for the other sample size distributions:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The trends that I’ve noted mostly seem to hold for the other sample size distributions (but correct me if you disagree! I’m getting kind of bleary-eyed at the moment…). One difference worth noting is that when the sample size distribution skews towards having more large studies, the accuracy of the regular fixed-effect estimator improves a bit. At intermediate degrees of selective publication, the fixed-effect estimator is &lt;em&gt;consistently&lt;/em&gt; more accurate than SPEESE, and mostly more accurate than PEESE too. With strong selective publication, though, the FE estimator blows up just as before.&lt;/p&gt;
 &lt;/div&gt;
@@ -16053,37 +16365,37 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>New working paper: Using log response ratios for meta-analyzing SCDs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/using-log-response-ratios/</link>
+      <link>http://localhost:4321/using-log-response-ratios/</link>
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/using-log-response-ratios/</guid>
+      <guid>http://localhost:4321/using-log-response-ratios/</guid>
       <description>
 
 
-&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;https://www.jepusto.com/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
+&lt;p&gt;One of the papers that came out of my dissertation work (&lt;a href=&#34;http://localhost:4321/files/Measurement-comparable-ES.pdf&#34;&gt;Pustejovsky, 2015&lt;/a&gt;) introduced an effect size metric called the &lt;strong&gt;log response ratio&lt;/strong&gt; (or LRR) for use in meta-analysis of single-case research—particularly for single-case studies that measure behavioral outcomes through systematic direct observation. The original paper was pretty technical since it focused mostly on a formal measurement model for behavioral observation data. I’ve just completed a tutorial paper that demonstrates how to use the LRR for meta-analyzing single-case studies with behavioral outcomes. In this paper, I’ve tried to present the methods in as accessible a manner as I could muster, to provide a sort of “user’s guide” for researchers wanting to apply the LRR for their own work. You can find the &lt;a href=&#34;https://osf.io/4fe6u/&#34;&gt;working paper&lt;/a&gt; and &lt;a href=&#34;https://osf.io/c3fe9/&#34;&gt;supplementary materials&lt;/a&gt; (including data and replication code) on the Open Science Framework. I would welcome your feedback and questions about this work!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
+      <link>http://localhost:4321/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Research synthesis and meta-analysis of single-case designs</title>
-      <link>https://www.jepusto.com/publication/meta-analysis-of-scd/</link>
+      <link>http://localhost:4321/publication/meta-analysis-of-scd/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/meta-analysis-of-scd/</guid>
+      <guid>http://localhost:4321/publication/meta-analysis-of-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alternative formulas for the standardized mean difference</title>
-      <link>https://www.jepusto.com/alternative-formulas-for-the-smd/</link>
+      <link>http://localhost:4321/alternative-formulas-for-the-smd/</link>
       <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/alternative-formulas-for-the-smd/</guid>
+      <guid>http://localhost:4321/alternative-formulas-for-the-smd/</guid>
       <description>
 
 
@@ -16173,7 +16485,7 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;http://localhost:4321/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \nu = \frac{2 (n - 1)}{1 + r^2}.
 \]&lt;/span&gt;&lt;/p&gt;
@@ -16283,39 +16595,39 @@ se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}
     
     <item>
       <title>wildmeta</title>
-      <link>https://www.jepusto.com/software/wildmeta/</link>
+      <link>http://localhost:4321/software/wildmeta/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/wildmeta/</guid>
+      <guid>http://localhost:4321/software/wildmeta/</guid>
       <description>&lt;p&gt;An R package for conducting hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in 
-&lt;a href=&#34;https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</title>
-      <link>https://www.jepusto.com/publication/rve-for-meta-regression/</link>
+      <link>http://localhost:4321/publication/rve-for-meta-regression/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-for-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/rve-for-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>https://www.jepusto.com/sped-pro-sem-again/</link>
+      <link>http://localhost:4321/sped-pro-sem-again/</link>
       <pubDate>Tue, 24 Nov 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/sped-pro-sem-again/</guid>
+      <guid>http://localhost:4321/sped-pro-sem-again/</guid>
       <description>
 
 
-&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
+&lt;p&gt;Yesterday evening I again had the pleasure of visiting Dr. Barnes’ pro seminar for first year students in Special Education, where I shared some of my work on research synthesis and meta-analysis of single-case research. &lt;a href=&#34;http://localhost:4321/files/Barnes-Pro-Sem-2015-11.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Correlations between standardized mean differences</title>
-      <link>https://www.jepusto.com/correlations-between-smds/</link>
+      <link>http://localhost:4321/correlations-between-smds/</link>
       <pubDate>Thu, 17 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/correlations-between-smds/</guid>
+      <guid>http://localhost:4321/correlations-between-smds/</guid>
       <description>
 
 
@@ -16365,33 +16677,33 @@ se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}
     
     <item>
       <title>A meta-analytic approach to examine the relationship between religion/spirituality and mental health in cancer</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-mental-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-mental-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-mental-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-mental-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analytic review of religious or spiritual involvement and social health among cancer patients</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-social-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-social-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-social-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-social-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Religion, spirituality, and physical health in cancer patients: A meta-analysis</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-physical-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-physical-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-physical-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-physical-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The clubSandwich package for meta-analysis with RVE</title>
-      <link>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</link>
+      <link>http://localhost:4321/clubsandwich-for-rve-meta-analysis/</link>
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</guid>
+      <guid>http://localhost:4321/clubsandwich-for-rve-meta-analysis/</guid>
       <description>
 
 
@@ -16557,13 +16869,13 @@ summary(m3_metafor)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Meta-sandwich with extra mustard</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-3/</link>
+      <link>http://localhost:4321/robust-meta-analysis-3/</link>
       <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-3/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-3/</guid>
       <description>
 
 
-&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
+&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;http://localhost:4321/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
 You can find her forthcoming paper on the adjustments &lt;a href=&#34;http://dx.doi.org/10.1037/met0000011&#34;&gt;here&lt;/a&gt;.
 My understanding is that these small-sample corrections are important because the uncorrected sandwich estimators can lead to under-statement of uncertainty and inflated type I error rates when a given meta-regression coefficient is estimated from only a small or moderately sized sample of independent studies (or clusters of studies).
 Moreover, it can be difficult to determine exactly when you have a large enough sample to trust the uncorrected sandwiches.&lt;/p&gt;
@@ -16680,13 +16992,13 @@ coef(WOLS)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Another meta-sandwich</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-2/</link>
+      <link>http://localhost:4321/robust-meta-analysis-2/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-2/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-2/</guid>
       <description>
 
 
-&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
+&lt;p&gt;In &lt;a href=&#34;http://localhost:4321/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
 Here’s another example, replicating some more of the calculations from &lt;a href=&#34;http://doi.org/10.1002/jrsm.1091&#34;&gt;Tanner-Smith &amp;amp; Tipton (2013)&lt;/a&gt;.
 (&lt;a href=&#34;https://gist.github.com/jepusto/11147304&#34;&gt;See here&lt;/a&gt; for the complete code.)&lt;/p&gt;
 &lt;p&gt;As a starting point, here are the results produced by the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
@@ -16802,9 +17114,9 @@ cbind(rho = rho_sens, sigma2 = round(sigma2_sens, 4))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A meta-sandwich</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-1/</link>
+      <link>http://localhost:4321/robust-meta-analysis-1/</link>
       <pubDate>Mon, 21 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-1/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-1/</guid>
       <description>
 
 
@@ -16962,29 +17274,29 @@ small-sample corrections to the cluster-robust estimators, based on the bias-red
     
     <item>
       <title>Special Education Pro-Sem</title>
-      <link>https://www.jepusto.com/sped-pro-sem/</link>
+      <link>http://localhost:4321/sped-pro-sem/</link>
       <pubDate>Thu, 10 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/sped-pro-sem/</guid>
+      <guid>http://localhost:4321/sped-pro-sem/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;https://www.jepusto.com/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.edb.utexas.edu/education/departments/sped/about/fac_dir/barnes/&#34;&gt;Dr. Marcia Barnes&lt;/a&gt; from the department of Special Education invited me to visit her pro-seminar this afternoon and talk about some of my work on meta-analytic methods for single-case research. Thanks very much to the students for asking such thoughtful and engaging questions. &lt;a href=&#34;http://localhost:4321/files/Barnes-Pro-Sem-2014-04-10.pdf&#34;&gt;Here are the slides&lt;/a&gt;, which include some additional material that we didn’t get to talk about.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Converting from d to r to z when the design uses extreme groups, dichotomization, or experimental control</title>
-      <link>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</link>
+      <link>http://localhost:4321/publication/converting-from-d-to-r-to-z/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</guid>
+      <guid>http://localhost:4321/publication/converting-from-d-to-r-to-z/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Another project idea: Meta-analytic methods for correlational data</title>
-      <link>https://www.jepusto.com/another-project-idea/</link>
+      <link>http://localhost:4321/another-project-idea/</link>
       <pubDate>Fri, 13 Sep 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/another-project-idea/</guid>
+      <guid>http://localhost:4321/another-project-idea/</guid>
       <description>
 
 

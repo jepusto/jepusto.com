@@ -2,45 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/daniel-m.-swan/</link>
-      <atom:link href="https://www.jepusto.com/authors/daniel-m.-swan/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/daniel-m.-swan/</link>
+      <atom:link href="http://localhost:4321/authors/daniel-m.-swan/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>James E. Pustejovsky</title>
-      <link>https://www.jepusto.com/authors/daniel-m.-swan/</link>
+      <link>http://localhost:4321/authors/daniel-m.-swan/</link>
     </image>
     
     <item>
-      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</link>
+      <title></title>
+      <link>http://localhost:4321/authors/daniel-m.-swan/</link>
       <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</guid>
+      <guid>http://localhost:4321/authors/daniel-m.-swan/</guid>
+      <description>&lt;h1 id=&#34;daniel-swan&#34;&gt;Daniel Swan&lt;/h1&gt;
+&lt;p&gt;Danny is currently a research associate working at the Prevention Science Institute at University of Oregon, where he provides support for evidence reviewer training for the What Works Clearinghouse and assists with revision and refinement of the WWC’s Standards and Procedures Handbooks.
+His dissertation work involved examining the impact of response-guided designs on treatment effect estimates from single-case designs.
+His personal research interests center on analysis and meta-analysis of single-case designs (SCDs) in the context of education. He is particularly interested in the quality indicators of primary studies, the different kinds of inferences made in SCDs, and how the common, frequently unspoken research practices in this field might impact the intervention estimates from these kinds of studies.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
+      <link>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
-      <link>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</link>
+      <link>http://localhost:4321/publication/measurement-procedures-and-baseline-outcomes/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</guid>
+      <guid>http://localhost:4321/publication/measurement-procedures-and-baseline-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
+      <link>http://localhost:4321/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
+      <guid>http://localhost:4321/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SingleCaseES</title>
-      <link>https://www.jepusto.com/software/singlecasees/</link>
+      <link>http://localhost:4321/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/singlecasees/</guid>
+      <guid>http://localhost:4321/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -57,9 +69,9 @@
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
+      <link>http://localhost:4321/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
+      <guid>http://localhost:4321/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     

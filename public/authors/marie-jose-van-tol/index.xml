@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Marie-José van Tol | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/marie-jose-van-tol/</link>
-      <atom:link href="https://www.jepusto.com/authors/marie-jose-van-tol/index.xml" rel="self" type="application/rss+xml" />
-    <description>Marie-José van Tol</description>
+    <title>Marie-José Van Tol | James E. Pustejovsky</title>
+    <link>http://localhost:4321/authors/marie-jose-van-tol/</link>
+      <atom:link href="http://localhost:4321/authors/marie-jose-van-tol/index.xml" rel="self" type="application/rss+xml" />
+    <description>Marie-José Van Tol</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 21 Jul 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Marie-José van Tol</title>
-      <link>https://www.jepusto.com/authors/marie-jose-van-tol/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Marie-José Van Tol</title>
+      <link>http://localhost:4321/authors/marie-jose-van-tol/</link>
     </image>
     
     <item>
       <title>The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
+      <link>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
+      <guid>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
       <description></description>
     </item>
     

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>odds ratio | James E. Pustejovsky</title>
-    <link>/tags/odds-ratio/</link>
-      <atom:link href="/tags/odds-ratio/index.xml" rel="self" type="application/rss+xml" />
-    <description>odds ratio</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2022</copyright><lastBuildDate>Sun, 26 May 2019 00:00:00 +0000</lastBuildDate>
+    <title>Odds Ratio | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/odds-ratio/</link>
+      <atom:link href="http://localhost:4321/tags/odds-ratio/index.xml" rel="self" type="application/rss+xml" />
+    <description>Odds Ratio</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Sun, 26 May 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>odds ratio</title>
-      <link>/tags/odds-ratio/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Odds Ratio</title>
+      <link>http://localhost:4321/tags/odds-ratio/</link>
     </image>
     
     <item>
       <title>Converting from odds ratios to standardized mean differences: What to do with logistic regression coefficients?</title>
-      <link>/converting-odds-ratios-to-standardized-mean-differences/</link>
+      <link>http://localhost:4321/converting-odds-ratios-to-standardized-mean-differences/</link>
       <pubDate>Sun, 26 May 2019 00:00:00 +0000</pubDate>
-      <guid>/converting-odds-ratios-to-standardized-mean-differences/</guid>
+      <guid>http://localhost:4321/converting-odds-ratios-to-standardized-mean-differences/</guid>
       <description>
 
 
@@ -78,7 +78,7 @@ SMDs &amp;lt;-
   geom_point() + geom_line() + 
   facet_grid(SMD ~ p0, labeller = &amp;quot;label_both&amp;quot;) + 
   theme_light()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/Converting-odds-ratios-to-standardized-mean-differences_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Converting-odds-ratios-to-standardized-mean-differences_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

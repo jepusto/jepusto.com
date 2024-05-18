@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mallory A. Snyder | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/mallory-a.-snyder/</link>
-      <atom:link href="https://www.jepusto.com/authors/mallory-a.-snyder/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/mallory-a.-snyder/</link>
+      <atom:link href="http://localhost:4321/authors/mallory-a.-snyder/index.xml" rel="self" type="application/rss+xml" />
     <description>Mallory A. Snyder</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Mon, 10 Aug 2015 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Mallory A. Snyder</title>
-      <link>https://www.jepusto.com/authors/mallory-a.-snyder/</link>
+      <link>http://localhost:4321/authors/mallory-a.-snyder/</link>
     </image>
     
     <item>
       <title>A meta-analytic approach to examine the relationship between religion/spirituality and mental health in cancer</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-mental-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-mental-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-mental-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-mental-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analytic review of religious or spiritual involvement and social health among cancer patients</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-social-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-social-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-social-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-social-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Religion, spirituality, and physical health in cancer patients: A meta-analysis</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-physical-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-physical-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-physical-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-physical-health/</guid>
       <description></description>
     </item>
     

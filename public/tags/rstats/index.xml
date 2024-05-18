@@ -2,21 +2,473 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rstats | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/rstats/</link>
-      <atom:link href="https://www.jepusto.com/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/tags/rstats/</link>
+      <atom:link href="http://localhost:4321/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
     <description>Rstats</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Rstats</title>
-      <link>https://www.jepusto.com/tags/rstats/</link>
+      <link>http://localhost:4321/tags/rstats/</link>
     </image>
     
     <item>
-      <title>Implementing Consul&#39;s generalized Poisson distribution in Stan</title>
-      <link>https://www.jepusto.com/generalized-poisson-in-stan/</link>
+      <title>generalized Poisson versus double Poisson</title>
+      <link>http://localhost:4321/generalized-poisson-vs-double-poisson/</link>
       <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/generalized-poisson-in-stan/</guid>
+      <guid>http://localhost:4321/generalized-poisson-vs-double-poisson/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\def\Pr{{\text{Pr}}}
+\def\E{{\text{E}}}
+\def\Var{{\text{Var}}}
+\def\Cov{{\text{Cov}}}
+\def\bm{\mathbf}
+\def\bs{\boldsymbol}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(patchwork)   # composing figures
+library(rstan)       # Stan interface to R
+library(brms)        # fitting generalized linear models
+library(bayesplot)   # Examine fitted models
+library(loo)         # Model fit measures&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stancode_qr &amp;lt;- &amp;quot;
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi &amp;gt; 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf &amp;lt; p &amp;amp;&amp;amp; q &amp;lt; m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+&amp;quot;
+writeLines(paste(&amp;quot;functions {&amp;quot;, stancode_qr, &amp;quot;}&amp;quot;, sep = &amp;quot;\n&amp;quot;), &amp;quot;GPO-rng.stan&amp;quot;)
+expose_stan_functions(&amp;quot;GPO-rng.stan&amp;quot;)
+gpo_rng_sampler &amp;lt;- function(N, mu, phi) {
+  replicate(N, gpo_rng(mu = mu, phi = phi))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The research project for which we need these distributions involves models that are quite a bit more involved than the simple GLM that I simulated above. We’re especially interested in hierarchical models that allow for cluster-level heterogeneity in both the mean and the dispersion parameter of the distribution. These models go under the heading of generalized additive models for location, scale, and shape (GAMLSS) and have been developed in the likelihood framework with the &lt;a href=&#34;https://www.gamlss.com/&#34;&gt;gamlss package&lt;/a&gt; and in the Bayesian framework with the [bamlss package].&lt;/p&gt;
+&lt;p&gt;I’ll test out my generalized Poisson implementation by simulating data from a model that has random variation in the means and in the variances. The data-generating process is as follows:
+&lt;span class=&#34;math display&#34;&gt;\[
+\begin{aligned}
+N_j &amp;amp;\sim 1 + Pois(15) \\
+\ln \mu_j &amp;amp;\sim N(3.5, \ 1) \\
+\ln \phi_j &amp;amp;\sim N(0.15, \ 0.15) \\
+Y_{ij} &amp;amp;\sim GPO(\mu_j, \phi_j) \quad \text{for} \quad i = 1,...,N_j
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;all for &lt;span class=&#34;math inline&#34;&gt;\(j = 1,...,J\)&lt;/span&gt;. The specified distribution of &lt;span class=&#34;math inline&#34;&gt;\(\phi_j\)&lt;/span&gt;’s leads to dispersions ranging from about 0.61 to 1.22, with a median of 0.86 and and IQR of 0.78 to 0.95.&lt;/p&gt;
+&lt;p&gt;Here’s a simulation from the model with &lt;span class=&#34;math inline&#34;&gt;\(J = 80\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(20231205)
+J &amp;lt;- 80
+
+dat &amp;lt;- 
+  tibble(
+    ID = 1:J, 
+    N = 1L + rpois(J, lambda = 15), 
+    log_mu = rnorm(J, mean = 3.5, sd = 1), 
+    log_phi = rnorm(J, mean = 0.15, sd = 0.15)
+  ) %&amp;gt;%
+  mutate(
+    Y = pmap(list(N = N, mu = exp(log_mu), phi = exp(log_phi)), gpo_rng_sampler)
+  ) %&amp;gt;%
+  unnest(Y)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now let me try fitting some models. I’ll first try fitting some GLMMs, which include random intercepts on the mean term but not on the dispersions. Just for kicks, I’ll use both the generalized Poisson (i.e., the true distribution) and the double Poisson (which is mis-specified).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stancode_gpo &amp;lt;- &amp;quot;
+real gpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real m = mu / (1 - inv(sqrt(phi)));
+  real z = X + sqrt(phi) * (mu - X);
+  if (phi &amp;gt; 1 &amp;amp;&amp;amp; X &amp;gt; m)
+    ans = negative_infinity();
+  else 
+    ans = log(mu) + inv(2) * log(phi) + (X - 1) * log(z) - z - lgamma(X + 1);
+  return ans;
+}
+int gpo_quantile(real p, real mu, real phi) {
+  int q = 0;
+  real phi_sqrt = sqrt(phi);
+  real mu_phi_sqrt = mu * phi_sqrt;
+  real m;
+  if (phi &amp;gt; 1) 
+    m = mu / (1 - inv(phi_sqrt));
+  else 
+    m = positive_infinity();
+  real lpmf = - mu_phi_sqrt;
+  real cdf = exp(lpmf);
+  real ln_inc;
+  while (cdf &amp;lt; p &amp;amp;&amp;amp; q &amp;lt; m) {
+    q += 1;
+    ln_inc = (q - 1) * log(mu_phi_sqrt + q * (1 - phi_sqrt)) - (q - 2) * log(mu_phi_sqrt + (q - 1) * (1 - phi_sqrt)) + (phi_sqrt - 1) - log(q);
+    lpmf += ln_inc;    
+    cdf += exp(lpmf);
+  }
+  return q;
+}
+int gpo_rng(real mu, real phi) {
+  real p = uniform_rng(0,1);
+  int x = gpo_quantile(p, mu, phi);
+  return x;
+}
+&amp;quot;
+generalized_Poisson &amp;lt;- custom_family(
+  &amp;quot;gpo&amp;quot;, dpars = c(&amp;quot;mu&amp;quot;,&amp;quot;phi&amp;quot;),
+  links = c(&amp;quot;log&amp;quot;,&amp;quot;log&amp;quot;),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = &amp;quot;int&amp;quot;
+)
+
+generalized_Poisson_stanvars &amp;lt;- stanvar(scode = stancode_gpo, block = &amp;quot;functions&amp;quot;)
+
+phi_prior &amp;lt;- prior(exponential(1), class = &amp;quot;phi&amp;quot;)
+
+# Fit GPO model with mean random effects
+glmm_gpo &amp;lt;- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_gpo, vectorize = TRUE)
+
+log_lik_gpo &amp;lt;- function(i, prep) {
+  mu &amp;lt;- brms::get_dpar(prep, &amp;quot;mu&amp;quot;, i = i)
+  phi &amp;lt;- brms::get_dpar(prep, &amp;quot;phi&amp;quot;, i = i)
+  y &amp;lt;- prep$data$Y[i]
+  gpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_gpo &amp;lt;- function(i, prep, maxval = NULL, ...) {
+  mu &amp;lt;- brms::get_dpar(prep, &amp;quot;mu&amp;quot;, i = i)
+  phi &amp;lt;- brms::get_dpar(prep, &amp;quot;phi&amp;quot;, i = i)
+  gpo_rng(mu, phi)
+}
+
+summary(glmm_gpo)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  Family: gpo 
+##   Links: mu = log; phi = identity 
+## Formula: Y ~ 1 + (1 | ID) 
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sd(Intercept)     1.03      0.08     0.89     1.22 1.01      184      392
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     3.31      0.11     3.07     3.52 1.06      120      203
+## 
+## Family Specific Parameters: 
+##     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## phi     1.09      0.05     1.01     1.18 1.00     3276     4630
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stancode_dpo &amp;lt;- &amp;quot;
+real dpo_lpmf(int X, real mu, real phi) {
+  real ans;
+  real A = inv(2) * log(phi) - phi * mu;
+  if (X == 0)
+    ans = A;
+  else
+    ans = A + X * (phi * (1 + log(mu)) - 1) - lgamma(X + 1) + (1 - phi) * X * log(X);
+  return ans;
+}
+vector dpo_cdf(real mu, real phi, int maxval) {
+  real d = exp(phi * (1 + log(mu)) - 1);
+  real prob;
+  int n = maxval + 1;
+  vector[n] cdf;
+  cdf[1] = sqrt(phi) * exp(-mu * phi);
+  prob = cdf[1] * d;
+  cdf[2] = cdf[1] + prob;
+  for (i in 2:maxval) {
+    prob = prob * d * exp((1 - phi) * (i - 1) * (log(i) - log(i - 1))) / (i^phi);
+    cdf[i + 1] = cdf[i] + prob;
+    if (prob / cdf[i + 1] &amp;lt; 1e-8) {
+      n = i + 1;
+      break;
+    }
+  }
+  return cdf / cdf[n];
+}
+int dpo_quantile(real p, real mu, real phi, int maxval) {
+  vector[maxval + 1] cdf_vec = dpo_cdf(mu, phi, maxval);
+  int q = 0;
+  while (cdf_vec[q + 1] &amp;lt; p) {
+      q += 1;
+    }
+  return q;
+}
+int dpo_rng(real mu, real phi, int maxval) {
+  real p = uniform_rng(0,1);
+  int x = dpo_quantile(p, mu, phi, maxval);
+  return x;
+}
+&amp;quot;
+double_Poisson &amp;lt;- custom_family(
+  &amp;quot;dpo&amp;quot;, dpars = c(&amp;quot;mu&amp;quot;,&amp;quot;phi&amp;quot;),
+  links = c(&amp;quot;log&amp;quot;,&amp;quot;log&amp;quot;),
+  lb = c(0, 0), ub = c(NA, NA),
+  type = &amp;quot;int&amp;quot;
+)
+
+double_Poisson_stanvars &amp;lt;- stanvar(scode = stancode_dpo, block = &amp;quot;functions&amp;quot;)
+
+# Fit DPO model with mean random effects
+glmm_dpo &amp;lt;- brm(
+  Y ~ 1 + (1 | ID),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  prior = phi_prior,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4,
+  control = list(adapt_delta = 0.80)
+)
+
+expose_functions(glmm_dpo, vectorize = TRUE)
+
+log_lik_dpo &amp;lt;- function(i, prep) {
+  mu &amp;lt;- brms::get_dpar(prep, &amp;quot;mu&amp;quot;, i = i)
+  phi &amp;lt;- brms::get_dpar(prep, &amp;quot;phi&amp;quot;, i = i)
+  y &amp;lt;- prep$data$Y[i]
+  dpo_lpmf(y, mu, phi)
+}
+
+posterior_predict_dpo &amp;lt;- function(i, prep, maxval = NULL, ...) {
+  mu &amp;lt;- brms::get_dpar(prep, &amp;quot;mu&amp;quot;, i = i)
+  phi &amp;lt;- brms::get_dpar(prep, &amp;quot;phi&amp;quot;, i = i)
+  if (is.null(maxval)) maxval &amp;lt;- 20 * mu / min(phi, 1)
+  dpo_rng(mu, phi, maxval = maxval)
+}
+
+
+summary(glmm_dpo)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  Family: dpo 
+##   Links: mu = log; phi = identity 
+## Formula: Y ~ 1 + (1 | ID) 
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## sd(Intercept)     1.05      0.09     0.91     1.25 1.02      150      209
+## 
+## Population-Level Effects: 
+##           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept     3.31      0.12     3.08     3.54 1.12       30      179
+## 
+## Family Specific Parameters: 
+##     Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## phi     1.08      0.04     0.99     1.17 1.00     1435     2708
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I’ll now fit the actual data-generating model, which has random dispersion terms in addition to the random intercepts on the mean. I’ll also try out the same model specification, but with the double Poisson distribution:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit GPO model with mean and dispersion random effects
+gamlss_gpo &amp;lt;- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = generalized_Poisson,
+  stanvars = generalized_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_gpo)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  Family: gpo 
+##   Links: mu = log; phi = log 
+## Formula: Y ~ 1 + (1 | a | ID) 
+##          phi ~ 1 + (1 | a | ID)
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##                              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                    1.04      0.08     0.90     1.22 1.00      577
+## sd(phi_Intercept)                0.21      0.07     0.04     0.34 1.00     1987
+## cor(Intercept,phi_Intercept)     0.22      0.24    -0.26     0.70 1.00     6380
+##                              Tail_ESS
+## sd(Intercept)                    1282
+## sd(phi_Intercept)                1909
+## cor(Intercept,phi_Intercept)     3532
+## 
+## Population-Level Effects: 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept         3.31      0.11     3.08     3.53 1.02      225      593
+## phi_Intercept     0.11      0.05     0.02     0.22 1.00     5237     5580
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit DPO model with mean and dispersion random effects
+gamlss_dpo &amp;lt;- brm(
+  bf(
+    Y ~ 1 + (1 | a | ID),
+    phi ~ 1 + (1 | a | ID)
+  ),
+  data = dat,
+  family = double_Poisson,
+  stanvars = double_Poisson_stanvars,
+  warmup = 1000,
+  iter = 3000,
+  chains = 4, 
+  cores = 4
+)
+
+summary(gamlss_dpo)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  Family: dpo 
+##   Links: mu = log; phi = log 
+## Formula: Y ~ 1 + (1 | a | ID) 
+##          phi ~ 1 + (1 | a | ID)
+##    Data: dat (Number of observations: 1213) 
+##   Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+##          total post-warmup draws = 8000
+## 
+## Group-Level Effects: 
+## ~ID (Number of levels: 80) 
+##                              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS
+## sd(Intercept)                    1.04      0.09     0.88     1.24 1.02      413
+## sd(phi_Intercept)                0.19      0.08     0.03     0.33 1.00     1209
+## cor(Intercept,phi_Intercept)     0.39      0.26    -0.10     0.91 1.00     2846
+##                              Tail_ESS
+## sd(Intercept)                     795
+## sd(phi_Intercept)                1115
+## cor(Intercept,phi_Intercept)     1588
+## 
+## Population-Level Effects: 
+##               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+## Intercept         3.31      0.13     3.06     3.56 1.03      112      191
+## phi_Intercept     0.09      0.05    -0.00     0.19 1.00     3386     5390
+## 
+## Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+## and Tail_ESS are effective sample size measures, and Rhat is the potential
+## scale reduction factor on split chains (at convergence, Rhat = 1).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We get some rather odd results. The simpler GLMMs have better fit (as indicated by LOOIC) than the GAMLSS models:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;loo_comparison &amp;lt;- loo(glmm_gpo, glmm_dpo, gamlss_gpo, gamlss_dpo)
+loo_comparison$diffs&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##            elpd_diff se_diff
+## gamlss_gpo  0.0       0.0   
+## gamlss_dpo -1.3       0.9   
+## glmm_gpo   -2.4       2.9   
+## glmm_dpo   -3.9       2.7&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All of the models also estimate some degree of over-dispersion (&lt;span class=&#34;math inline&#34;&gt;\(\phi &amp;lt; 1\)&lt;/span&gt;) on average. Curious.&lt;/p&gt;
+&lt;div id=&#34;colophon&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Colophon&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;## R version 4.2.2 (2022-10-31 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19045)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8 
+## [2] LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] gamlss.dist_6.0-3   MASS_7.3-57         loo_2.5.1          
+##  [4] bayesplot_1.9.0     brms_2.18.0         Rcpp_1.0.10        
+##  [7] rstan_2.26.23       StanHeaders_2.26.27 patchwork_1.1.3    
+## [10] lubridate_1.9.2     forcats_1.0.0       stringr_1.5.0      
+## [13] dplyr_1.1.2         purrr_1.0.2         readr_2.1.4        
+## [16] tidyr_1.3.0         tibble_3.2.1        ggplot2_3.4.3      
+## [19] tidyverse_2.0.0    
+## 
+## loaded via a namespace (and not attached):
+##   [1] TH.data_1.1-2        colorspace_2.1-0     RcppEigen_0.3.3.9.2 
+##   [4] ellipsis_0.3.2       ggridges_0.5.3       estimability_1.3    
+##   [7] markdown_1.7         QuickJSR_1.0.5       base64enc_0.1-3     
+##  [10] rstudioapi_0.15.0    farver_2.1.1         DT_0.29             
+##  [13] fansi_1.0.4          mvtnorm_1.1-3        bridgesampling_1.1-2
+##  [16] codetools_0.2-18     splines_4.2.2        cachem_1.0.6        
+##  [19] knitr_1.40           shinythemes_1.2.0    jsonlite_1.8.4      
+##  [22] shiny_1.7.4          compiler_4.2.2       emmeans_1.7.3       
+##  [25] backports_1.4.1      Matrix_1.6-3         fastmap_1.1.0       
+##  [28] cli_3.6.1            later_1.3.0          htmltools_0.5.4     
+##  [31] prettyunits_1.1.1    tools_4.2.2          igraph_1.3.5        
+##  [34] coda_0.19-4          gtable_0.3.4         glue_1.6.2          
+##  [37] reshape2_1.4.4       posterior_1.3.1      jquerylib_0.1.4     
+##  [40] vctrs_0.6.3          nlme_3.1-157         blogdown_1.10       
+##  [43] crosstalk_1.2.0      tensorA_0.36.2       xfun_0.40           
+##  [46] ps_1.6.0             timechange_0.2.0     mime_0.12           
+##  [49] miniUI_0.1.1.1       lifecycle_1.0.3      gtools_3.9.3        
+##  [52] zoo_1.8-10           scales_1.2.1         colourpicker_1.1.1  
+##  [55] hms_1.1.3            promises_1.2.0.1     Brobdingnag_1.2-9   
+##  [58] parallel_4.2.2       sandwich_3.0-1       inline_0.3.19       
+##  [61] shinystan_2.6.0      yaml_2.3.5           gridExtra_2.3       
+##  [64] sass_0.4.5           stringi_1.7.12       dygraphs_1.1.1.6    
+##  [67] checkmate_2.1.0      pkgbuild_1.3.1       rlang_1.1.1         
+##  [70] pkgconfig_2.0.3      matrixStats_0.62.0   BH_1.78.0-0         
+##  [73] distributional_0.3.1 evaluate_0.18        lattice_0.20-45     
+##  [76] rstantools_2.2.0     htmlwidgets_1.6.2    processx_3.7.0      
+##  [79] tidyselect_1.2.0     plyr_1.8.8           magrittr_2.0.3      
+##  [82] bookdown_0.26        R6_2.5.1             generics_0.1.3      
+##  [85] multcomp_1.4-23      pillar_1.9.0         withr_2.5.0         
+##  [88] xts_0.12.1           survival_3.4-0       abind_1.4-5         
+##  [91] crayon_1.5.2         utf8_1.2.3           tzdb_0.3.0          
+##  [94] rmarkdown_2.18       grid_4.2.2           callr_3.7.2         
+##  [97] threejs_0.3.3        digest_0.6.30        xtable_1.8-4        
+## [100] httpuv_1.6.8         RcppParallel_5.1.5   stats4_4.2.2        
+## [103] munsell_0.5.0        bslib_0.4.2          shinyjs_2.1.0&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Implementing Consul&#39;s generalized Poisson distribution in Stan</title>
+      <link>http://localhost:4321/generalized-poisson-in-stan/</link>
+      <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/generalized-poisson-in-stan/</guid>
       <description>
 
 
@@ -29,7 +481,7 @@
 \def\bs{\boldsymbol}
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;For a project I am working on, we are using &lt;a href=&#34;https://mc-stan.org/&#34;&gt;Stan&lt;/a&gt; to fit generalized random effects location-scale models to a bunch of count data.
-In &lt;a href=&#34;https://www.jepusto.com/double-poisson-in-Stan/&#34;&gt;a previous post&lt;/a&gt;, I walked through our implementation of &lt;a href=&#34;https://doi.org/10.2307/2289002&#34;&gt;Efron’s (1986)&lt;/a&gt; double-Poisson distribution, which we are interested in using because it allows for both over- and under-dispersion relative to the Poisson distribution.
+In &lt;a href=&#34;http://localhost:4321/double-poisson-in-Stan/&#34;&gt;a previous post&lt;/a&gt;, I walked through our implementation of &lt;a href=&#34;https://doi.org/10.2307/2289002&#34;&gt;Efron’s (1986)&lt;/a&gt; double-Poisson distribution, which we are interested in using because it allows for both over- and under-dispersion relative to the Poisson distribution.
 Another distribution with these properties is the generalized Poisson distribution described by &lt;a href=&#34;https://doi.org/10.1080/00401706.1973.10489112&#34;&gt;Consul and Jain (1973)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In this post, I’ll walk through my implementation of the GPO in Stan.
 The &lt;a href=&#34;https://cran.r-project.org/package=gamlss.dist&#34;&gt;&lt;code&gt;gamlss.dist&lt;/code&gt; package&lt;/a&gt; provides a full set of distributional functions for the generalized Poisson distribution, including a sampler, but the functions are configured to only allow for over-dispersion. Since I’m interested in allowing for under-dispersion as well, I’ll need to write my own functions. As in my previous post, I can validate my Stan functions against the functions from &lt;code&gt;gamlss.dist&lt;/code&gt; (although only for over-dispersion scenarios).&lt;/p&gt;
@@ -95,7 +547,7 @@ test_lpmf &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;phi&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Checks out. Onward!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;quantile-function&#34; class=&#34;section level1&#34;&gt;
@@ -156,7 +608,7 @@ test_quantile &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;phi&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/check-quantile-plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/check-quantile-plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;I should enter this figure in the competition for the world’s most boring statistical graphic.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;sampler&#34; class=&#34;section level1&#34;&gt;
@@ -223,7 +675,7 @@ test_rng &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;Theoretical cdf (gamlss.dist)&amp;quot;, y = &amp;quot;Empirical cdf (my function)&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/check-rng-plot-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/check-rng-plot-1.png&#34; width=&#34;672&#34; /&gt;
 Another approach to checking the sampler is to simulate a bunch of observations and check whether the empirical mean and variance match the theoretical moments. I’ll do this as well, using some values of &lt;span class=&#34;math inline&#34;&gt;\(\phi &amp;gt; 1\)&lt;/span&gt; to test whether the sampler still works when there’s under-dispersion.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test_moments &amp;lt;- 
   expand_grid(
@@ -248,12 +700,12 @@ ggplot(test_moments, aes(phi, ratio, color = mu)) +
   geom_point() + geom_line() + 
   facet_wrap(~ moment) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/test-sample-moments-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/test-sample-moments-1.png&#34; width=&#34;768&#34; /&gt;
 Looks like the sample moments closely match the parameter values, with deviations that look pretty much like random error. Nice!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;using-the-custom-distribution-functions&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Using the custom distribution functions&lt;/h1&gt;
-&lt;p&gt;To finish out my tests of these functions, I’ll try out a small simulation. Following my &lt;a href=&#34;https://www.jepusto.com/Double-Poisson-in-Stan/&#34;&gt;previous post&lt;/a&gt;, I’ll generate data based on a generalized linear model with a single predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, where the outcome &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; follows a generalized Poisson distribution conditional on &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;. The data-generating process is:&lt;/p&gt;
+&lt;p&gt;To finish out my tests of these functions, I’ll try out a small simulation. Following my &lt;a href=&#34;http://localhost:4321/Double-Poisson-in-Stan/&#34;&gt;previous post&lt;/a&gt;, I’ll generate data based on a generalized linear model with a single predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;, where the outcome &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; follows a generalized Poisson distribution conditional on &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;. The data-generating process is:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \begin{aligned}
 X &amp;amp;\sim \Gamma(6,2) \\
@@ -275,7 +727,7 @@ dat &amp;lt;- data.frame(X = X, Y = Y)&lt;/code&gt;&lt;/pre&gt;
   geom_point(alpha = 0.1) + 
   geom_smooth(method = &amp;#39;gam&amp;#39;, formula = y ~ s(x, bs = &amp;quot;cs&amp;quot;)) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/glm-scatterplot-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/glm-scatterplot-1.png&#34; width=&#34;576&#34; /&gt;
 Here is a fit using quasi-likelihood estimation of a log-linear model:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;quasi_fit &amp;lt;- glm(Y ~ X, family = quasipoisson(link = &amp;quot;log&amp;quot;), data = dat)
 summary(quasi_fit)&lt;/code&gt;&lt;/pre&gt;
@@ -508,7 +960,7 @@ DPO_dispersion &amp;lt;-
 
 DPO_dispersion / GPO_dispersion &amp;amp; 
   xlim(1.5, 2.0)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/dispersion-comparison-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/dispersion-comparison-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Right on par. To get a better sense of model fit, I’ll run some posterior predictive checks, using the quasi-likelihood dispersion as a summary statistic:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Yrep_Poisson &amp;lt;- posterior_predict(Poisson_fit, ndraws = 500) 
 Yrep_negbin &amp;lt;- posterior_predict(negbin_fit, ndraws = 500)
@@ -539,7 +991,7 @@ gpo_disp &amp;lt;- ppc_stat(dat$Y, Yrep_gpo, stat = dispersion_coef, binwidth = 
 Poisson_disp / negbin_disp / dpo_disp / gpo_disp &amp;amp;
   theme_minimal() &amp;amp; 
   xlim(c(0.8, 2.1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both the double Poisson and the generalized Poisson models generate data with levels of dispersion similar to the observed data. The negative binomial distribution is not noticeably worse.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;marginal-posterior-predictive-densities&#34; class=&#34;section level2&#34;&gt;
@@ -556,7 +1008,7 @@ gpo_root &amp;lt;- ppc_rootogram(dat$Y, Yrep_gpo, style = &amp;quot;hanging&amp;
 
 Poisson_root / negbin_root / dpo_root / gpo_root &amp;amp;
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-1.png&#34; width=&#34;672&#34; /&gt;
 You can see from these that the Poisson model maybe expects slightly fewer low counts and slightly fewer high counts than are present in the observed data. However, the figure doesn’t really capture the degree of mis-fit that is apparent with the dispersion summary statistics. I think this is because the distribution of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; changes so much depending on the value of the predictor &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;posterior-predictive-residual-densities&#34; class=&#34;section level2&#34;&gt;
@@ -591,7 +1043,7 @@ gpo_resid_density &amp;lt;- ppc_dens_overlay(dat$resid, resid_gpo) + labs(title 
 Poisson_resid_density / negbin_resid_density / dpo_resid_density / gpo_resid_density &amp;amp;
   theme_minimal() &amp;amp; 
   xlim(c(-3.5, 3.5))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residuals-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residuals-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It’s quite a bit clearer from these plots that the DPO and GPO models are closer to replicating the distribution of the data than the Poisson model.
 The negative binomial model is not obviously mis-specified either.&lt;/p&gt;
 &lt;p&gt;A notable difference between the negative binomial versus the DPO and GPO distributions is in the form of the mean-variance relationship.
@@ -639,7 +1091,7 @@ ggplot(smooth_MV, aes(X, sm, group = group, color = distribution)) +
   theme_minimal() + 
   theme(legend.position = &amp;quot;none&amp;quot;) + 
   labs(y = &amp;quot;Loess smooth of squared residuals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residual-smooth-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Generalized-Poisson-in-Stan_files/figure-html/ppd-residual-smooth-1.png&#34; width=&#34;576&#34; /&gt;
 Aha! Here we can clearly see that the negative binomial model generates residuals that have more curvature to the mean-variance relationship, and so don’t really fit with the observed data. The double Poisson and generalized Poisson both generate residuals that match the observed mean-variance relationship decently well.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -713,9 +1165,9 @@ Aha! Here we can clearly see that the negative binomial model generates residual
     
     <item>
       <title>Implementing Efron&#39;s double Poisson distribution in Stan</title>
-      <link>https://www.jepusto.com/double-poisson-in-stan/</link>
+      <link>http://localhost:4321/double-poisson-in-stan/</link>
       <pubDate>Fri, 15 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/double-poisson-in-stan/</guid>
+      <guid>http://localhost:4321/double-poisson-in-stan/</guid>
       <description>
 
 
@@ -791,7 +1243,7 @@ test_lpmf &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;phi&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Checks out. Onward!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;cumulative-distribution-function&#34; class=&#34;section level1&#34;&gt;
@@ -860,7 +1312,7 @@ test_cdf &amp;lt;-
   labs(x = &amp;quot;phi&amp;quot;) + 
   ylim(1 + c(-1e-6, 1e-6)) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Still on track here (although you might wonder—would I be sharing this post if I couldn’t get the function working?).&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;quantile-function-and-sampler&#34; class=&#34;section level1&#34;&gt;
@@ -926,7 +1378,7 @@ test_quantile &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;phi&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Phew, still got it!&lt;/p&gt;
 &lt;p&gt;The last piece of the puzzle is to write a sampler by generating random points from a uniform distribution, then computing the double-Poisson quantiles of these random points. I will implement this two ways: first with an argument for the number of random variates to generate and then, more simply, to generate a single random variate.&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;stancode_qr &amp;lt;- &amp;quot;
@@ -1021,7 +1473,7 @@ test_rng &amp;lt;-
   theme_minimal() + 
   labs(x = &amp;quot;Theoretical cdf (gamlss.dist)&amp;quot;, y = &amp;quot;Empirical cdf (my function)&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Looks pretty good, no?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;using-the-custom-distribution-functions&#34; class=&#34;section level1&#34;&gt;
@@ -1048,7 +1500,7 @@ dat &amp;lt;- data.frame(X = X, Y = Y)&lt;/code&gt;&lt;/pre&gt;
   geom_point(alpha = 0.1) + 
   geom_smooth(method = &amp;#39;gam&amp;#39;, formula = y ~ s(x, bs = &amp;quot;cs&amp;quot;)) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;div id=&#34;comparison-models&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparison models&lt;/h2&gt;
 &lt;p&gt;Before using the custom distribution, I’ll fit a couple of out-of-the-box models that are useful points of comparison.
@@ -1192,7 +1644,7 @@ summary(DPO_fit)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The regression coefficient estimates are basically identical to those from the Poisson and negative-binomial models, estimated with slightly better precision than with the Poisson or negative binomial families. However, we get a posterior for &lt;span class=&#34;math inline&#34;&gt;\(\phi\)&lt;/span&gt; that corresponds to &lt;em&gt;under&lt;/em&gt;-dispersion. Here’s the posterior for the dispersion (i.e., &lt;span class=&#34;math inline&#34;&gt;\(1 / \phi\)&lt;/span&gt;):&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mcmc_areas(DPO_fit, pars = &amp;quot;phi&amp;quot;, transformations = \(x) 1 / x) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/DPO-dispersion-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/DPO-dispersion-1.png&#34; width=&#34;480&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;model-comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Model comparison&lt;/h2&gt;
@@ -1277,7 +1729,7 @@ dpo_root &amp;lt;- ppc_rootogram(dat$Y, Yrep_dpo, style = &amp;quot;hanging&amp;
 
 dpo_root / Poisson_root / negbin_root &amp;amp;
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/ppd-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/ppd-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The differences in predicted frequencies are not that obvious from these plots. The main notable difference is that the Poisson and negative-binomial distributions predict more small counts (in the range of 0 to 3) than are observed, whereas the double-Poisson does better at matching the observed frequency in this range.&lt;/p&gt;
 &lt;p&gt;I think the lack of glaring differences in the above plots happens because I’m just looking at the marginal distribution of the outcome, and the (explained) variation due to the predictor dampens the degree of under-dispersion. To see this, I’ll create some plots that are grouped by quintiles of &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dat$g &amp;lt;- cut(dat$X, breaks = quantile(dat$X, seq(0,1,0.2)), include.lowest = TRUE)
@@ -1308,7 +1760,7 @@ dpo_bars &amp;lt;- ppc_bars_grouped(
 
 dpo_bars / Poisson_bars / negbin_bars &amp;amp;
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/ppd-grouped-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/ppd-grouped-1.png&#34; width=&#34;1152&#34; /&gt;
 Still kind of subtle, I suppose, but you can see more clearly that the double-Poisson does a better job than the other distributions at matching the modes (peaks) of the empirical distribution in each of these subgroups.&lt;/p&gt;
 &lt;p&gt;One last approach is to look directly at the degree of dispersion in the posterior predictive distributions relative to the actual data. I’ll calculate this dispersion by re-fitting the quick-and-dirty quasi-poisson model in each sample:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dispersion_coef &amp;lt;- function(y) {
@@ -1331,7 +1783,7 @@ dpo_disp &amp;lt;- ppc_stat(dat$Y, Yrep_dpo, stat = dispersion_coef, binwidth = 
 dpo_disp / Poisson_disp / negbin_disp &amp;amp;
   theme_minimal() &amp;amp; 
   xlim(c(0.45, 1.3))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Double-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Double-Poisson-in-Stan_files/figure-html/ppc-dispersion-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From this, we can clearly see that the Poisson and negative binomial model generate data with approximately unit dispersion, which doesn’t match at all with the degree of dispersion in the observed data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1425,12 +1877,12 @@ I’m trying to work in Stan to the maximum extent possible solely as an excuse 
     
     <item>
       <title>Cluster-Bootstrapping a meta-analytic selection model</title>
-      <link>https://www.jepusto.com/cluster-bootstrap-selection-model/</link>
+      <link>http://localhost:4321/cluster-bootstrap-selection-model/</link>
       <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/cluster-bootstrap-selection-model/</guid>
+      <guid>http://localhost:4321/cluster-bootstrap-selection-model/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;style type=&#34;text/css&#34;&gt;
@@ -13993,7 +14445,7 @@ RE_robust&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The random effects model indicates an average effect size of about 0.21 standard deviations and substantial heterogeneity, with &lt;span class=&#34;math inline&#34;&gt;\(\hat\tau = 0.32\)&lt;/span&gt;. The cluster-robust standard error is about 27% bigger than the model-based standard error (not shown) because the latter does not account for dependent effect sizes.&lt;/p&gt;
 &lt;p&gt;Here is a contour-enhanced funnel plot of the data:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;funnel(RE_mod, refline = 0, level=c(90, 95, 99), shade=c(&amp;quot;white&amp;quot;, &amp;quot;gray55&amp;quot;, &amp;quot;gray75&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/cluster-bootstrap-selection-model_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;90%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The funnel plot shows some asymmetry, suggesting that there is reason to be concerned about selective reporting bias in these data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;a-selection-model&#34; class=&#34;section level3&#34;&gt;
@@ -14506,23 +14958,23 @@ Xu, L., Gotwalt, C., Hong, Y., King, C. B., &amp;amp; Meeker, W. Q. (2020). Appl
     
     <item>
       <title>POMADE</title>
-      <link>https://www.jepusto.com/software/pomade/</link>
+      <link>http://localhost:4321/software/pomade/</link>
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/pomade/</guid>
+      <guid>http://localhost:4321/software/pomade/</guid>
       <description>&lt;p&gt;An R package for computing power levels, minimum detectable effect sizes, and minimum required sample sizes for the test of the overall average effect size in meta-analysis of dependent effect sizes. The package also includes functions for creating plots of power analysis results.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>An update on code folding with blogdown &#43; Academic theme</title>
-      <link>https://www.jepusto.com/code-folding-update/</link>
+      <link>http://localhost:4321/code-folding-update/</link>
       <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/code-folding-update/</guid>
+      <guid>http://localhost:4321/code-folding-update/</guid>
       <description>
 
 
 &lt;p&gt;&lt;strong&gt;UPDATED November 21, 2020&lt;/strong&gt;. &lt;em&gt;Thanks to Allen O’Brien for pointing out a bug in the codefolding code, which led to the last code chunk defaulting to hidden rather than open. Allen sent along a simple fix to the &lt;a href=&#34;https://github.com/jepusto/jepusto.com/blob/master/static/js/codefolding.js&#34;&gt;&lt;code&gt;codefolding.js&lt;/code&gt;&lt;/a&gt; file.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;https://www.jepusto.com/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
+&lt;p&gt;About a year ago I added a code-folding feature to my site, following an approach developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I recently updated my site to work with the latest version of the &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt; for Hugo, and it turns out that this broke &lt;a href=&#34;http://localhost:4321/code-folding-with-blogdown-academic/&#34;&gt;my code-folding implementation&lt;/a&gt;. It took a bit of putzing and some help from a freelance web developer to fix it, but it’s now working again, and I’m again doing my happy robot dance:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll provide instructions on how to reproduce the approach with the current version of the Academic theme, which is &lt;a href=&#34;https://sourcethemes.com/academic/updates/v4.8.0/&#34;&gt;4.8 (March 2020)&lt;/a&gt;. Credit where credit is due:&lt;/p&gt;
 &lt;ul&gt;
@@ -14572,7 +15024,7 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;p&gt;The above parameters are defaults for your entire site. To over-ride the defaults, you can also set the parameters in the YAML header of any post:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Set &lt;code&gt;disable_codefolding: true&lt;/code&gt; to turn off code folding for the post.&lt;/li&gt;
-&lt;li&gt;Set &lt;code&gt;codefolding_show: hide&lt;/code&gt; to hide the code blocks in the post (as in &lt;a href=&#34;https://www.jepusto.com/package-downloads/&#34;&gt;this post&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;codefolding_show: hide&lt;/code&gt; to hide the code blocks in the post (as in &lt;a href=&#34;http://localhost:4321/package-downloads/&#34;&gt;this post&lt;/a&gt;).&lt;/li&gt;
 &lt;li&gt;Set &lt;code&gt;codefolding_nobutton: true&lt;/code&gt; to turn off the “Show/hide code” button at the top of the post (as in the present post).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I hope these instructions work for you. If not, questions, corrections, and clarifications are welcome. Happy blogging, y’all!&lt;/p&gt;
@@ -14582,11 +15034,11 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
     
     <item>
       <title>lmeInfo</title>
-      <link>https://www.jepusto.com/software/lmeinfo/</link>
+      <link>http://localhost:4321/software/lmeinfo/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/lmeinfo/</guid>
+      <guid>http://localhost:4321/software/lmeinfo/</guid>
       <description>&lt;p&gt;lmeInfo provides analytic derivatives and information matrices for fitted linear mixed effects models and generalized least squares models estimated using &lt;code&gt;nlme::lme()&lt;/code&gt; and &lt;code&gt;nlme::gls()&lt;/code&gt;, respectively. The package includes functions for estimating the sampling variance-covariance of variance component parameters using the inverse Fisher information. The variance components include the parameters of the random effects structure (for lme models), the variance structure, and the correlation structure. The expected and average forms of the Fisher information matrix are used in the calculations, and models estimated by full maximum likelihood or restricted maximum likelihood are supported. The package also includes a function for estimating standardized mean difference effect sizes (
-&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=lmeInfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -14598,9 +15050,9 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
     
     <item>
       <title>simhelpers</title>
-      <link>https://www.jepusto.com/software/simhelpers/</link>
+      <link>http://localhost:4321/software/simhelpers/</link>
       <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/simhelpers/</guid>
+      <guid>http://localhost:4321/software/simhelpers/</guid>
       <description>&lt;p&gt;Monte Carlo simulations are computer experiments designed to study the performance of statistical methods under known data-generating conditions. The goal of simhelpers is to assist in running such simulation studies. The main tools in the package consist of functions to calculate measures of estimator performance, such as bias, root mean squared error, rejection rates. The functions also calculate the associated Monte Carlo standard errors (MCSE) of the performance measures. The functions use the tidyeval principles, so that they play well with dplyr and fit easily into a &lt;code&gt;%&amp;gt;%&lt;/code&gt;-centric workflow.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -14613,19 +15065,19 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
     
     <item>
       <title>Code folding with blogdown &#43; Academic theme</title>
-      <link>https://www.jepusto.com/code-folding-with-blogdown-academic/</link>
+      <link>http://localhost:4321/code-folding-with-blogdown-academic/</link>
       <pubDate>Sun, 14 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/code-folding-with-blogdown-academic/</guid>
+      <guid>http://localhost:4321/code-folding-with-blogdown-academic/</guid>
       <description>
 
 
 &lt;p&gt;&lt;div class=&#34;alert alert-warning&#34;&gt;
   &lt;div&gt;
-    &lt;strong&gt;2020-05-03&lt;/strong&gt; This post describes an implementation of code folding for an older version of the Academic Theme. It does not work with Academic 4.+. See &lt;a href=&#34;https://www.jepusto.com/code-folding-update/&#34;&gt;my updated instructions&lt;/a&gt; to get it working with newer versions of Academic.
+    &lt;strong&gt;2020-05-03&lt;/strong&gt; This post describes an implementation of code folding for an older version of the Academic Theme. It does not work with Academic 4.+. See &lt;a href=&#34;http://localhost:4321/code-folding-update/&#34;&gt;my updated instructions&lt;/a&gt; to get it working with newer versions of Academic.
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;/p&gt;
-&lt;p&gt;Rmarkdown documents now have a very nifty &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding&#34;&gt;code folding option&lt;/a&gt;, which allows the reader of a compiled html document to toggle whether to view or hide code chunks. However, the feature is &lt;a href=&#34;https://github.com/rstudio/blogdown/issues/214&#34;&gt;not supported in blogdown&lt;/a&gt;, the popular Rmarkdown-based website/blog creation package. I recently ran across an implementation of codefolding for blogdown, developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I have been putzing around, trying to get it to work with my blog, which uses the Hugo &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt;—alas, to no avail. To my amazement and good fortune, Sébastien swooped in with &lt;a href=&#34;https://github.com/jepusto/jepusto.com/pull/9&#34;&gt;a pull request&lt;/a&gt; that cleaned up my blundering attempts at implementation. Now all of &lt;a href=&#34;https://www.jepusto.com/package-downloads&#34;&gt;my posts&lt;/a&gt; have &lt;a href=&#34;https://www.jepusto.com/handmade-clubSandwich&#34;&gt;working&lt;/a&gt; &lt;a href=&#34;https://www.jepusto.com/effective-sample-size-aggregation&#34;&gt;code folding&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Rmarkdown documents now have a very nifty &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding&#34;&gt;code folding option&lt;/a&gt;, which allows the reader of a compiled html document to toggle whether to view or hide code chunks. However, the feature is &lt;a href=&#34;https://github.com/rstudio/blogdown/issues/214&#34;&gt;not supported in blogdown&lt;/a&gt;, the popular Rmarkdown-based website/blog creation package. I recently ran across an implementation of codefolding for blogdown, developed by &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;Sébastien Rochette&lt;/a&gt;. I have been putzing around, trying to get it to work with my blog, which uses the Hugo &lt;a href=&#34;https://sourcethemes.com/academic/&#34;&gt;Academic theme&lt;/a&gt;—alas, to no avail. To my amazement and good fortune, Sébastien swooped in with &lt;a href=&#34;https://github.com/jepusto/jepusto.com/pull/9&#34;&gt;a pull request&lt;/a&gt; that cleaned up my blundering attempts at implementation. Now all of &lt;a href=&#34;http://localhost:4321/package-downloads&#34;&gt;my posts&lt;/a&gt; have &lt;a href=&#34;http://localhost:4321/handmade-clubSandwich&#34;&gt;working&lt;/a&gt; &lt;a href=&#34;http://localhost:4321/effective-sample-size-aggregation&#34;&gt;code folding&lt;/a&gt;!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this post, I’ll lay out how to make Sébastien’s code folding feature work with the Academic theme. To be totally clear, all of the hard bits of this were &lt;a href=&#34;https://statnmap.com/2017-11-13-enable-code-folding-in-bookdown-and-blogdown/&#34;&gt;solved by Sébastien&lt;/a&gt;. I don’t know javascript to save my life, and my only contribution is to write down the instructions in what I hope is a coherent fashion, so that you too can soon be doing the happy code folding dance if you so desire.&lt;/p&gt;
 &lt;div id=&#34;code-folding-with-the-academic-theme&#34; class=&#34;section level2&#34;&gt;
@@ -14679,12 +15131,12 @@ codefolding_nobutton = false&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>CRAN downloads of my packages</title>
-      <link>https://www.jepusto.com/package-downloads/</link>
+      <link>http://localhost:4321/package-downloads/</link>
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/package-downloads/</guid>
+      <guid>http://localhost:4321/package-downloads/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://www.jepusto.com/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;http://localhost:4321/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 
 
 &lt;p&gt;At AERA this past weekend, one of the recurring themes was how software availability (and its usability and default features) influences how people conduct meta-analyses. That got me thinking about the R packages that I’ve developed, how to understand the extent to which people are using them, how they’re being used, and so on. I’ve had badges on my github repos for a while now:&lt;/p&gt;
@@ -14898,7 +15350,7 @@ ggplot(downloads_sample, aes(x = package, y = count)) +
   scale_color_discrete_qualitative(palette = &amp;quot;custom-qual&amp;quot;) + 
   labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads (per month)&amp;quot;, title = title_str) + 
   theme(legend.position = &amp;quot;none&amp;quot;, axis.line.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;downloads-over-time&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Downloads over time&lt;/h3&gt;
@@ -14932,7 +15384,7 @@ weekly_downloads %&amp;gt;%
   theme_minimal() + 
   labs(x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads (per month)&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/CRAN-package-downloads_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are a couple of curious features in these plots. For one, there are big spikes in downloads of &lt;code&gt;ARPobservation&lt;/code&gt; and &lt;code&gt;SingleCaseES&lt;/code&gt;. The &lt;code&gt;ARPobservation&lt;/code&gt; spike was in mid-June of 2018, when I was at the IES Single-Case Design training institute and demonstrated some of the package’s tools. The &lt;code&gt;SingleCaseES&lt;/code&gt; spike was in early January, 2019. Perhaps someone was teaching a class in single-case research and demonstrated the package? Or something at the IES PI meeting (January 9-10, 2019)?&lt;/p&gt;
 &lt;p&gt;Another interesting pattern is in the download rate of &lt;code&gt;scdhlm&lt;/code&gt;, which looks like it increased systematically starting in September, 2018. I wonder if this was the result of someone demonstrating or incorporating use of the package into a course. Lacking details about where the downloads are coming from, it’s hard to do anything but speculate.&lt;/p&gt;
 &lt;/div&gt;
@@ -14953,27 +15405,27 @@ Corrections. R package version 0.5.0. &lt;a href=&#34;https://CRAN.R-project.org
     
     <item>
       <title>clubSandwich at the Austin R User Group Meetup</title>
-      <link>https://www.jepusto.com/clubsandwich-at-rug/</link>
+      <link>http://localhost:4321/clubsandwich-at-rug/</link>
       <pubDate>Thu, 26 Apr 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-at-rug/</guid>
+      <guid>http://localhost:4321/clubsandwich-at-rug/</guid>
       <description>
 
 
-&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;https://www.jepusto.com/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
+&lt;p&gt;Last night I attended a joint meetup between the &lt;a href=&#34;https://www.meetup.com/Austin-R-User-Group/&#34;&gt;Austin R User Group&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/rladies-austin/&#34;&gt;R Ladies Austin&lt;/a&gt;, which was great fun. The evening featured several lightning talks on a range of topics, from breaking into data science to network visualization to starting your own blog. I gave a talk about sandwich standard errors and my &lt;a href=&#34;http://localhost:4321/software/clubsandwich&#34;&gt;clubSandwich R package&lt;/a&gt;. Here are links to some of the talks:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/beeonaposy&#34;&gt;Caitlin Hudon&lt;/a&gt;: &lt;a href=&#34;https://www.slideshare.net/CaitlinGarrett1/getting-plugged-into-data-science-87767332&#34;&gt;Getting Plugged into Data Science&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/clairemcwhite&#34;&gt;Claire McWhite&lt;/a&gt;: &lt;a href=&#34;https://speakerdeck.com/clairemcwhite/a-quick-intro-to-networks&#34;&gt;A quick intro to networks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/NathanielRaley&#34;&gt;Nathaniel Woodward&lt;/a&gt;: &lt;a href=&#34;http://goo.gl/vJs8kD&#34;&gt;Blogdown Demo!&lt;/a&gt; (link includes his slides and a demo screencast)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;https://www.jepusto.com/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/jepusto&#34;&gt;me&lt;/a&gt;: &lt;a href=&#34;http://localhost:4321/files/clubSandwich.html&#34;&gt;Robust, easy standard errors with the clubSandwich package&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Pooling clubSandwich results across multiple imputations</title>
-      <link>https://www.jepusto.com/mi-with-clubsandwich/</link>
+      <link>http://localhost:4321/mi-with-clubsandwich/</link>
       <pubDate>Wed, 27 Sep 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/mi-with-clubsandwich/</guid>
+      <guid>http://localhost:4321/mi-with-clubsandwich/</guid>
       <description>
 
 
@@ -15185,13 +15637,13 @@ robust_pooled %&amp;gt;%
     
     <item>
       <title>Imputing covariance matrices for meta-analysis of correlated effects</title>
-      <link>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
+      <link>http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/</link>
       <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
+      <guid>http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/</guid>
       <description>
 
 
-&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;https://www.jepusto.com/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
+&lt;p&gt;In many systematic reviews, it is common for eligible studies to contribute effect size estimates from not just one, but &lt;em&gt;multiple&lt;/em&gt; relevant outcome measures, for a common sample of participants. If those outcomes are correlated, then &lt;a href=&#34;http://localhost:4321/Correlations-between-SMDs&#34;&gt;so too will be the effect size estimates&lt;/a&gt;. To estimate the degree of correlation, you would need the sample correlation among the outcomes—information that is woefully uncommon for primary studies to report (and best of luck to you if you try to follow up with author queries). Thus, the meta-analyst is often left in a situation where the sampling &lt;em&gt;variances&lt;/em&gt; of the effect size estimates can be reasonably well approximated, but the sampling &lt;em&gt;covariances&lt;/em&gt; are unknown for some or all studies.&lt;/p&gt;
 &lt;p&gt;Several solutions to this conundrum have been proposed in the meta-analysis methodology literature. One possible strategy is to just impute a correlation based on subject-matter knowledge (or at least feigned expertise), and assume that this correlation is constant across studies. This analysis could be supplemented with sensitivity analyses to examine the extent to which the parameter estimates and inferences are sensitive to alternative assumptions about the inter-correlation of effects within studies. A related strategy, described by &lt;a href=&#34;https://dx.doi.org/10.1002/sim.5679&#34;&gt;Wei and Higgins (2013)&lt;/a&gt;, is to meta-analyze any available correlation estimates and then use the results to impute correlations for any studies with missing correlations.&lt;/p&gt;
 &lt;p&gt;Both of these approaches require the meta-analyst to calculate block-diagonal sampling covariance matrices for the effect size estimates, which can be a bit unwieldy. I often use the impute-the-correlation strategy in my meta-analysis work and have written a helper function to compute covariance matrices, given known sampling variances and imputed correlations for each study. In the interest of not repeating myself, I’ve added the function to the latest version of my clubSandwich package. In this post, I’ll explain the function and demonstrate how to use it for conducting meta-analysis of correlated effect size estimates.&lt;/p&gt;
 &lt;div id=&#34;an-r-function-for-block-diagonal-covariance-matrices&#34; class=&#34;section level2&#34;&gt;
@@ -15510,9 +15962,9 @@ coef_test(MVRE_hrs, vcov = &amp;quot;CR2&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Bug in nlme::lme with fixed sigma and REML estimation</title>
-      <link>https://www.jepusto.com/bug-in-nlme-with-fixed-sigma/</link>
+      <link>http://localhost:4321/bug-in-nlme-with-fixed-sigma/</link>
       <pubDate>Mon, 07 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/bug-in-nlme-with-fixed-sigma/</guid>
+      <guid>http://localhost:4321/bug-in-nlme-with-fixed-sigma/</guid>
       <description>
 
 
@@ -15736,17 +16188,17 @@ Konstantopoulos(&amp;quot;REML&amp;quot;, constant_var = FALSE)&lt;/code&gt;&lt;
     
     <item>
       <title>Simulation studies in R (Fall, 2016 version)</title>
-      <link>https://www.jepusto.com/simulation-studies-in-r-2016/</link>
+      <link>http://localhost:4321/simulation-studies-in-r-2016/</link>
       <pubDate>Wed, 28 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/simulation-studies-in-r-2016/</guid>
+      <guid>http://localhost:4321/simulation-studies-in-r-2016/</guid>
       <description>
 
 
 &lt;p&gt;In today’s Quant Methods colloquium, I gave an introduction to the logic and purposes of Monte Carlo simulation studies, with examples written in R.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/files/Simulations-in-R-2016.html&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/files/Simulations-in-R-2016.html&#34;&gt;Here are the slides&lt;/a&gt; from my presentation.&lt;/li&gt;
 &lt;li&gt;You can find the code that generates the slides &lt;a href=&#34;https://gist.github.com/jepusto/bf6cdb6e393f54470ba4d016199c6eb8&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Here is my &lt;a href=&#34;https://www.jepusto.com/Designing-simulation-studies-using-R&#34;&gt;presentation on the same topic&lt;/a&gt; from a couple of years ago.&lt;/li&gt;
+&lt;li&gt;Here is my &lt;a href=&#34;http://localhost:4321/Designing-simulation-studies-using-R&#34;&gt;presentation on the same topic&lt;/a&gt; from a couple of years ago.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://varianceexplained.org/r/beta_binomial_baseball/&#34;&gt;David Robinson’s blog&lt;/a&gt; has a much more in-depth discussion of beta-binomial regression.&lt;/li&gt;
 &lt;li&gt;The data I used is from &lt;a href=&#34;http://www.seanlahman.com/baseball-database.html&#34;&gt;Lahman’s baseball database&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
@@ -15755,9 +16207,9 @@ Konstantopoulos(&amp;quot;REML&amp;quot;, constant_var = FALSE)&lt;/code&gt;&lt;
     
     <item>
       <title>Bug in nlme::getVarCov</title>
-      <link>https://www.jepusto.com/bug-in-nlme-getvarcov/</link>
+      <link>http://localhost:4321/bug-in-nlme-getvarcov/</link>
       <pubDate>Wed, 10 Aug 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/bug-in-nlme-getvarcov/</guid>
+      <guid>http://localhost:4321/bug-in-nlme-getvarcov/</guid>
       <description>
 
 
@@ -15972,9 +16424,9 @@ all.equal(V_raw, V_sorted)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Assigning after dplyr</title>
-      <link>https://www.jepusto.com/assigning-after-dplyr/</link>
+      <link>http://localhost:4321/assigning-after-dplyr/</link>
       <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/assigning-after-dplyr/</guid>
+      <guid>http://localhost:4321/assigning-after-dplyr/</guid>
       <description>
 
 
@@ -16115,15 +16567,15 @@ grep(&amp;quot;dat&amp;quot;,ls(), value = TRUE)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>ARPobservation</title>
-      <link>https://www.jepusto.com/software/arpobservation/</link>
+      <link>http://localhost:4321/software/arpobservation/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/arpobservation/</guid>
+      <guid>http://localhost:4321/software/arpobservation/</guid>
       <description>&lt;p&gt;An R package for simulating different methods of recording data based on direct observation of behavior, where behavior is modeled by an alternating renewal process.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://cran.r-project.org/package=ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/getting-started-with-ARPobservation&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/ARPobservation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -16134,14 +16586,14 @@ grep(&amp;quot;dat&amp;quot;,ls(), value = TRUE)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>clubSandwich</title>
-      <link>https://www.jepusto.com/software/clubsandwich/</link>
+      <link>http://localhost:4321/software/clubsandwich/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/clubsandwich/</guid>
+      <guid>http://localhost:4321/software/clubsandwich/</guid>
       <description>&lt;p&gt;R and Stata packages for calculating cluster-robust variance estimators (i.e., sandwich estimators) with small-sample corrections, including the bias-reduced linearization estimator of 
 &lt;a href=&#34;http://www.statcan.gc.ca/pub/12-001-x/2002002/article/9058-eng.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bell and McCaffrey (2002)&lt;/a&gt; and extensions proposed in 
 &lt;a href=&#34;http://psycnet.apa.org/record/2014-14616-001&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tipton (2015)&lt;/a&gt;, 
-&lt;a href=&#34;https://www.jepusto.com/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
-&lt;a href=&#34;https://www.jepusto.com/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/rve-for-meta-regression/&#34;&gt;Tipton and Pustejovsky (2015)&lt;/a&gt;, and 
+&lt;a href=&#34;http://localhost:4321/publication/rve-in-fixed-effects-models/&#34;&gt;Pustejovsky and Tipton (2016)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=clubSandwich&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
@@ -16157,18 +16609,18 @@ grep(&amp;quot;dat&amp;quot;,ls(), value = TRUE)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>scdhlm</title>
-      <link>https://www.jepusto.com/software/scdhlm/</link>
+      <link>http://localhost:4321/software/scdhlm/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/scdhlm/</guid>
+      <guid>http://localhost:4321/software/scdhlm/</guid>
       <description>&lt;p&gt;An R package implementing several methods of estimating a design-comparable standardized mean difference effect size based on data from a single-case design. Methods include those from Hedges, Pustejovsky, &amp;amp; Shadish (
-&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
-&lt;a href=&#34;https://www.jepusto.com/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
-&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/SMD-for-SCD&#34;&gt;2012&lt;/a&gt;, 
+&lt;a href=&#34;http://localhost:4321/publication/SMD-for-MBD&#34;&gt;2013&lt;/a&gt;) and 
+&lt;a href=&#34;http://localhost:4321/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky, Hedges, &amp;amp; Shadish (2014)&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://CRAN.R-project.org/package=scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;a href=&#34;https://www.jepusto.com/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;http://localhost:4321/getting-started-with-scdhlm&#34;&gt;Installation instructions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;https://github.com/jepusto/scdhlm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Source code on Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
@@ -16179,9 +16631,9 @@ grep(&amp;quot;dat&amp;quot;,ls(), value = TRUE)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>SingleCaseES</title>
-      <link>https://www.jepusto.com/software/singlecasees/</link>
+      <link>http://localhost:4321/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/singlecasees/</guid>
+      <guid>http://localhost:4321/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -16198,25 +16650,25 @@ grep(&amp;quot;dat&amp;quot;,ls(), value = TRUE)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>wildmeta</title>
-      <link>https://www.jepusto.com/software/wildmeta/</link>
+      <link>http://localhost:4321/software/wildmeta/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/wildmeta/</guid>
+      <guid>http://localhost:4321/software/wildmeta/</guid>
       <description>&lt;p&gt;An R package for conducting hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in 
-&lt;a href=&#34;https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/&#34;&gt;Joshi, Pustejovsky, and Beretvas (2021)&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Estimating average effects in regression discontinuities with covariate interactions</title>
-      <link>https://www.jepusto.com/rdd-interactions-again/</link>
+      <link>http://localhost:4321/rdd-interactions-again/</link>
       <pubDate>Wed, 27 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions-again/</guid>
+      <guid>http://localhost:4321/rdd-interactions-again/</guid>
       <description>
 
 
 &lt;p&gt;Regression discontinuity designs (RDDs) are now a widely used tool for program evaluation in economics and many other fields. RDDs occur in situations where some treatment/program of interest is assigned on the basis of a numerical score (called the running variable), all units scoring above a certain threshold receiving treatment and all units scoring at or below the threshold having treatment withheld (or vice versa, with treatment assigned to units scoring below the threshold). This mechanism provides a way to identify the &lt;strong&gt;marginal average treatment effect&lt;/strong&gt; (MATE): the average effect of treatment assignment for units on the cusp of the threshold.&lt;/p&gt;
 &lt;p&gt;RDDs are appealing for a couple of reasons. First and foremost, RDD-like mechanism occurs all over the place, since providing treatment on the basis of a numerical measure of need/eligibility is a natural way to allocate resources. Furthermore, analysis of the designs is straight-forward, as it involves nothing more complicated than a linear regression model, estimated using (weighted or un-weighted) least squares, and which can be represented graphically using a simple scatterplot. Things get a little bit more complicated if you are trying to account for imperfect compliance with treatment assignment—as in the “fuzzy” RDD—but for the moment let me focus on “sharp” RDDs.&lt;/p&gt;
-&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;https://www.jepusto.com/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
+&lt;p&gt;The simplest approach to estimating the MATE is to use a local linear regression in the neighborhood of the threshold, with the outcome regressed on the running variable, treatment indicator, and their interaction. However, in practice it is quite common to also include additional covariates in the local linear regression. If the covariates are also interacted with the treatment indicator, there is no longer a single regression coefficient corresponding to the treatment effect. In my &lt;a href=&#34;http://localhost:4321/rdd-interactions&#34;&gt;last post&lt;/a&gt;, I suggested a “centering trick” for estimating the MATE based on a model that included covariate-by-treatment interactions. In this post, I’ll explain the reasoning behind this proposal.&lt;/p&gt;
 &lt;div id=&#34;gday-mate&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;G’day, MATE&lt;/h3&gt;
 &lt;p&gt;I think it’s helpful to start by thinking about the definition of the MATE in non-parametric terms. Let &lt;span class=&#34;math inline&#34;&gt;\(R\)&lt;/span&gt; be the running variable, assumed to be centered at the threshold; &lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt; be an indicator for treatment assignment, with &lt;span class=&#34;math inline&#34;&gt;\(T = I(R &amp;gt; 0)\)&lt;/span&gt;; and &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; be a covariate, which may be vector-valued. Denote the potential outcomes as &lt;span class=&#34;math inline&#34;&gt;\(Y^0\)&lt;/span&gt; (a unit’s outcome if not assigned to treatment) and &lt;span class=&#34;math inline&#34;&gt;\(Y^1\)&lt;/span&gt; (a unit’s outcome if assigned to treatment), so that the observed outcome is &lt;span class=&#34;math inline&#34;&gt;\(Y = Y^0 (1 - T) + Y^1 T\)&lt;/span&gt;. Now consider the potential response surfaces&lt;/p&gt;
@@ -16326,9 +16778,9 @@ coeftest(lm_fit, vcov. = vcovHC(lm_fit, type = &amp;quot;HC1&amp;quot;))[&amp;qu
     
     <item>
       <title>Regression discontinuities with covariate interactions in the rdd package</title>
-      <link>https://www.jepusto.com/rdd-interactions/</link>
+      <link>http://localhost:4321/rdd-interactions/</link>
       <pubDate>Mon, 25 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/rdd-interactions/</guid>
+      <guid>http://localhost:4321/rdd-interactions/</guid>
       <description>
 
 
@@ -16383,7 +16835,7 @@ summary(rdd_simple)&lt;/code&gt;&lt;/pre&gt;
 ## Double-BW  104.74  3         1828        0.000e+00&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using a bandwidth of 1.09, the estimated marginal average treatment effect is 0.303. The figure below illustrates the discontinuity:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;rdd-with-covariates&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;RDD with covariates&lt;/h3&gt;
@@ -16425,7 +16877,7 @@ ldply(covariates, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;Speci
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Y_i = \beta_0 + \beta_1 R_i + \beta_2 T_i + \beta_3 R_i T_i + \beta_4 X_i + \beta_5 X_i T_i + \epsilon_i, \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;while still taking &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; to represent the MATE. This is problematic because, as soon as the &lt;span class=&#34;math inline&#34;&gt;\(X_i T_i\)&lt;/span&gt; term is introduced into the model, &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; represents the difference between treated and untreated units at the threshold (where &lt;span class=&#34;math inline&#34;&gt;\(R_i = 0\)&lt;/span&gt;) and where &lt;span class=&#34;math inline&#34;&gt;\(X_i = 0\)&lt;/span&gt;. Thus, including the &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; is a difference extrapolated &lt;em&gt;way&lt;/em&gt; outside the support of the data, as in the following scatterplot of the outcome versus the covariate &lt;span class=&#34;math inline&#34;&gt;\(X_1\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/rdd-interactions_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;RDestimate&lt;/code&gt; returns as the MATE estimate the difference between the regression lines when &lt;span class=&#34;math inline&#34;&gt;\(X_1 = 0\)&lt;/span&gt;, which in this example is -0.69. Similarly, including the &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt; interaction in the model means that &lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt; will represent the marginal average treatment effect for only one of the categories of &lt;span class=&#34;math inline&#34;&gt;\(X_2\)&lt;/span&gt;, rather than as some sort of average across all four categories.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-to-do-about-this&#34; class=&#34;section level3&#34;&gt;
@@ -16503,13 +16955,13 @@ ldply(covariates_cent, RD_est, mod = &amp;quot;Y ~ R&amp;quot;, .id = &amp;quot;
     
     <item>
       <title>Clustered standard errors and hypothesis tests in fixed effects models</title>
-      <link>https://www.jepusto.com/clubsandwich-for-crve-fe/</link>
+      <link>http://localhost:4321/clubsandwich-for-crve-fe/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-for-crve-fe/</guid>
+      <guid>http://localhost:4321/clubsandwich-for-crve-fe/</guid>
       <description>
 
 
-&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;http://localhost:4321/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The importance of using CRVE (i.e., “clustered standard errors”) in panel models is now widely recognized. Less widely recognized, perhaps, is the fact that standard methods for constructing hypothesis tests and confidence intervals based on CRVE can perform quite poorly in when you have only a limited number of independent clusters. What’s worse, it can be hard to determine what counts as a large-enough sample to trust standard CRVE methods, because the finite-sample behavior of the variance estimators and test statistics depends on the configuration of the covariates, not just the total sample size. For example, suppose you have state-level panel data from 50 states across 15 years and are trying to estimate the effect of some policy using difference-in-differences. If only 5 or 6 states have variation in the policy variable over time, then you’re almost certainly in small-sample territory. And the sample size issues can be subtler than this, too, as I’ll show below.&lt;/p&gt;
 &lt;p&gt;One solution to this problem is to use bias-reduced linearization (BRL), which was proposed by Bell and McCaffrey (2002) and has recently begun to receive attention from econometricians (e.g., Cameron &amp;amp; Miller, 2015; Imbens &amp;amp; Kolesar, 2015). The idea of BRL is to correct the bias of standard CRVE based on a working model, and then to use a degrees-of-freedom correction for Wald tests based on the bias-reduced CRVE. That may seem silly (after all, the whole point of CRVE is to avoid making distributional assumptions about the errors in your model), but it turns out that the correction can help quite a bit, even when the working model is wrong. The degrees-of-freedom correction is based on a standard Satterthwaite-type approximation, and also relies on the working model. There’s now quite a bit of evidence (which we review in the working paper) that BRL performs well even in samples with a small number of clusters.&lt;/p&gt;
 &lt;p&gt;In the working paper, we make two contributions to all this:&lt;/p&gt;
@@ -16639,9 +17091,9 @@ coef_test(lm_Hausman, vcov = &amp;quot;CR2&amp;quot;, cluster = MVA_deaths$state
     
     <item>
       <title>The clubSandwich package for meta-analysis with RVE</title>
-      <link>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</link>
+      <link>http://localhost:4321/clubsandwich-for-rve-meta-analysis/</link>
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-for-rve-meta-analysis/</guid>
+      <guid>http://localhost:4321/clubsandwich-for-rve-meta-analysis/</guid>
       <description>
 
 
@@ -16807,9 +17259,9 @@ summary(m3_metafor)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Getting started with scdhlm</title>
-      <link>https://www.jepusto.com/getting-started-with-scdhlm/</link>
+      <link>http://localhost:4321/getting-started-with-scdhlm/</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/getting-started-with-scdhlm/</guid>
+      <guid>http://localhost:4321/getting-started-with-scdhlm/</guid>
       <description>
 
 
@@ -16851,13 +17303,13 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>New article: Alternating renewal process models for behavioral observation</title>
-      <link>https://www.jepusto.com/new-article-alternating-renewal-process-models-for-behavioral-observation/</link>
+      <link>http://localhost:4321/new-article-alternating-renewal-process-models-for-behavioral-observation/</link>
       <pubDate>Thu, 16 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/new-article-alternating-renewal-process-models-for-behavioral-observation/</guid>
+      <guid>http://localhost:4321/new-article-alternating-renewal-process-models-for-behavioral-observation/</guid>
       <description>
 
 
-&lt;p&gt;My article with Chris Runyon, titled “Alternating renewal process models for behavioral observation: Simulation methods, software , and validity illustrations” has been published in Behavioral Disorders. The abstract is below. &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Runyon-2015.pdf&#34;&gt;Postprint available here&lt;/a&gt;. All of the examples in the paper are available in the R package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My article with Chris Runyon, titled “Alternating renewal process models for behavioral observation: Simulation methods, software , and validity illustrations” has been published in Behavioral Disorders. The abstract is below. &lt;a href=&#34;http://localhost:4321/files/Pustejovsky-Runyon-2015.pdf&#34;&gt;Postprint available here&lt;/a&gt;. All of the examples in the paper are available in the R package &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Direct observation recording procedures produce reductive summary measurements of an underlying stream of behavior. Previous methodological studies of these recording procedures have employed simulation methods for generating random behavior streams, many of which amount to special cases of a statistical model known as the alternating renewal process. This paper describes the alternating renewal process model in its general form, demonstrates how it provides an organizing framework for most past simulation research on direct observation procedures, and introduces a freely available software package that implements the model. The software can be used to simulate behavior streams as well as data from many common recording procedures, including continuous recording, momentary time sampling, event counting, and interval recording procedures. Several examples illustrate how the software can be used to study the validity and reliability of direct observation data and to develop measurement strategies during the planning phases of empirical studies.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -16866,13 +17318,13 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>ARPobservation now on CRAN</title>
-      <link>https://www.jepusto.com/arpobservation-now-on-cran/</link>
+      <link>http://localhost:4321/arpobservation-now-on-cran/</link>
       <pubDate>Sat, 31 May 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/arpobservation-now-on-cran/</guid>
+      <guid>http://localhost:4321/arpobservation-now-on-cran/</guid>
       <description>
 
 
-&lt;p&gt;Version 1.0 of the &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation package&lt;/a&gt; is now available on the Comprehensive R Archive Network. This makes it &lt;a href=&#34;https://www.jepusto.com/getting-started-with-ARPobservation&#34;&gt;even easier to install&lt;/a&gt;. Here’s the package description:&lt;/p&gt;
+&lt;p&gt;Version 1.0 of the &lt;a href=&#34;https://cran.r-project.org/web/packages/ARPobservation/&#34;&gt;ARPobservation package&lt;/a&gt; is now available on the Comprehensive R Archive Network. This makes it &lt;a href=&#34;http://localhost:4321/getting-started-with-ARPobservation&#34;&gt;even easier to install&lt;/a&gt;. Here’s the package description:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ARPobservation: Tools for simulating different methods of observing behavior based on alternating renewal processes&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;ARPobservation provides a set of tools for simulating data based on direct observation of behavior. It works by first simulating a behavior stream based on an alternating renewal process, given specified distributions of event durations and interim times. Different procedures for recording data can then be applied to the simulated behavior stream. Currently, functions are provided for the following recording methods: continuous duration recording, event counting, momentary time sampling, partial interval recording, and whole interval recording.&lt;/em&gt;&lt;/p&gt;
 </description>
@@ -16880,13 +17332,13 @@ shine_scd()&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Meta-sandwich with extra mustard</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-3/</link>
+      <link>http://localhost:4321/robust-meta-analysis-3/</link>
       <pubDate>Sat, 26 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-3/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-3/</guid>
       <description>
 
 
-&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
+&lt;p&gt;In an earlier post about sandwich standard errors for multi-variate meta-analysis, I &lt;a href=&#34;http://localhost:4321/Robust-meta-analysis-1/&#34;&gt;mentioned&lt;/a&gt; that Beth Tipton has recently proposed small-sample corrections for the covariance estimators and t-tests, based on the bias-reduced linearization approach of &lt;a href=&#34;http://www.amstat.org/sections/SRMS/Proceedings/y2001/Proceed/00264.pdf&#34;&gt;McCaffrey, Bell, and Botts (2001)&lt;/a&gt;.
 You can find her forthcoming paper on the adjustments &lt;a href=&#34;http://dx.doi.org/10.1037/met0000011&#34;&gt;here&lt;/a&gt;.
 My understanding is that these small-sample corrections are important because the uncorrected sandwich estimators can lead to under-statement of uncertainty and inflated type I error rates when a given meta-regression coefficient is estimated from only a small or moderately sized sample of independent studies (or clusters of studies).
 Moreover, it can be difficult to determine exactly when you have a large enough sample to trust the uncorrected sandwiches.&lt;/p&gt;
@@ -17003,13 +17455,13 @@ coef(WOLS)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Another meta-sandwich</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-2/</link>
+      <link>http://localhost:4321/robust-meta-analysis-2/</link>
       <pubDate>Wed, 23 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-2/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-2/</guid>
       <description>
 
 
-&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
+&lt;p&gt;In &lt;a href=&#34;http://localhost:4321/Robust-meta-analysis-1/&#34;&gt;a previous post&lt;/a&gt;, I provided some code to do robust variance estimation with &lt;code&gt;metafor&lt;/code&gt; and &lt;code&gt;sandwich&lt;/code&gt;.
 Here’s another example, replicating some more of the calculations from &lt;a href=&#34;http://doi.org/10.1002/jrsm.1091&#34;&gt;Tanner-Smith &amp;amp; Tipton (2013)&lt;/a&gt;.
 (&lt;a href=&#34;https://gist.github.com/jepusto/11147304&#34;&gt;See here&lt;/a&gt; for the complete code.)&lt;/p&gt;
 &lt;p&gt;As a starting point, here are the results produced by the &lt;code&gt;robumeta&lt;/code&gt; package:&lt;/p&gt;
@@ -17125,9 +17577,9 @@ cbind(rho = rho_sens, sigma2 = round(sigma2_sens, 4))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A meta-sandwich</title>
-      <link>https://www.jepusto.com/robust-meta-analysis-1/</link>
+      <link>http://localhost:4321/robust-meta-analysis-1/</link>
       <pubDate>Mon, 21 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/robust-meta-analysis-1/</guid>
+      <guid>http://localhost:4321/robust-meta-analysis-1/</guid>
       <description>
 
 
@@ -17285,13 +17737,13 @@ small-sample corrections to the cluster-robust estimators, based on the bias-red
     
     <item>
       <title>Update: parallel R on the TACC</title>
-      <link>https://www.jepusto.com/parallel-r-on-tacc-update/</link>
+      <link>http://localhost:4321/parallel-r-on-tacc-update/</link>
       <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/parallel-r-on-tacc-update/</guid>
+      <guid>http://localhost:4321/parallel-r-on-tacc-update/</guid>
       <description>
 
 
-&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
+&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;http://localhost:4321/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The version of MVAPICH2 has changed to 2.0b&lt;/li&gt;
 &lt;li&gt;Changes to the Rmpi and snow packages necessitate using the latest version of R (Warm Puppy, 3.0.3). This version is available in the &lt;code&gt;Rstats&lt;/code&gt; module.&lt;/li&gt;
@@ -17303,13 +17755,13 @@ small-sample corrections to the cluster-robust estimators, based on the bias-red
     
     <item>
       <title>Running R in parallel on the TACC</title>
-      <link>https://www.jepusto.com/parallel-r-on-tacc/</link>
+      <link>http://localhost:4321/parallel-r-on-tacc/</link>
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/parallel-r-on-tacc/</guid>
+      <guid>http://localhost:4321/parallel-r-on-tacc/</guid>
       <description>
 
 
-&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
+&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;http://localhost:4321/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
 &lt;p&gt;I’ve started to use the Texas Advanced Computing Cluster to run statistical simulations in R. It takes a little bit of time to get up and running, but once you do it is an amazing tool. To get started, you’ll need&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;An account on the &lt;a href=&#34;https://www.tacc.utexas.edu/&#34;&gt;TACC&lt;/a&gt; and an allocation of computing time.&lt;/li&gt;
@@ -17320,7 +17772,7 @@ small-sample corrections to the cluster-robust estimators, based on the bias-red
 &lt;div id=&#34;the-r-script&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The R script&lt;/h3&gt;
 &lt;p&gt;I’ve been running my simulations using a combination of several packages that provide very high-level functionality for parallel computing, namely &lt;code&gt;foreach&lt;/code&gt;, &lt;code&gt;doSNOW&lt;/code&gt;, and the &lt;code&gt;maply&lt;/code&gt; function in &lt;code&gt;plyr&lt;/code&gt;. All of this runs on top of an &lt;code&gt;Rmpi&lt;/code&gt; implementation developed by the folks at TACC (&lt;a href=&#34;https://portal.tacc.utexas.edu/documents/13601/901835/Parallel_R_Final.pdf/&#34;&gt;more details here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;http://localhost:4321/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Rmpi)
 library(snow)
 library(foreach)
@@ -17397,13 +17849,13 @@ login4$cd project_name&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Designing simulation studies using R</title>
-      <link>https://www.jepusto.com/designing-simulation-studies-using-r/</link>
+      <link>http://localhost:4321/designing-simulation-studies-using-r/</link>
       <pubDate>Fri, 06 Dec 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/designing-simulation-studies-using-r/</guid>
+      <guid>http://localhost:4321/designing-simulation-studies-using-r/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;https://www.jepusto.com/files/Designing-simulation-studies-using-R.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation at this afternoon’s Quant. Methods brown bag. I gave a very quick introduction to using R for conducting simulation studies. I hope it was enough to get people intrigued about the possibilities of using R in their own work.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:4321/files/Designing-simulation-studies-using-R.pdf&#34;&gt;Here are the slides&lt;/a&gt; from my presentation at this afternoon’s Quant. Methods brown bag. I gave a very quick introduction to using R for conducting simulation studies. I hope it was enough to get people intrigued about the possibilities of using R in their own work.&lt;/p&gt;
 &lt;p&gt;The second half of the presentation sketched out a quick-and-dirty simulation of the &lt;a href=&#34;http://en.wikipedia.org/wiki/Behrens%E2%80%93Fisher_problem&#34;&gt;Behrens-Fisher problem&lt;/a&gt;, or more specifically the coverage rates of 95% confidence intervals using Welch’s degrees of freedom approximation, given independent samples with unequal variances. Here is &lt;a href=&#34;https://gist.github.com/jepusto/7686463&#34;&gt;the complete code&lt;/a&gt;. As I mentioned in the talk, there’s lots of room for improvement. The main point that I was trying to illustrate is that simulations have five distinct pieces:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;a data generating model,&lt;/li&gt;
@@ -17418,9 +17870,9 @@ login4$cd project_name&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>ARPobservation: Basic use</title>
-      <link>https://www.jepusto.com/arpobservation-basic-use/</link>
+      <link>http://localhost:4321/arpobservation-basic-use/</link>
       <pubDate>Fri, 25 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/arpobservation-basic-use/</guid>
+      <guid>http://localhost:4321/arpobservation-basic-use/</guid>
       <description>
 
 
@@ -17511,7 +17963,7 @@ c(mean = mean(CDR), var = var(CDR))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##        mean         var 
 ## 0.250140703 0.009567949&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hist(CDR)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/ARPobservation-basic-use_files/figure-html/CDR_hist-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/ARPobservation-basic-use_files/figure-html/CDR_hist-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Another well-known recording procedure is &lt;strong&gt;partial interval recording&lt;/strong&gt; (PIR), which involves dividing the observation session into short intervals, then scoring each interval according to whether or not the behavior occurs at any point during the interval. The function &lt;code&gt;interval_recording&lt;/code&gt; applies partial interval recording (or the closely related procedure of whole interval recording) to a set of simulated behavior streams. Suppose that the observer uses 20 s intervals, back-to-back for 300 s, for a total of 15 intervals. This procedure can be applied to the simulated behavior streams using&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;interval_recording(BS10, interval_length = 20, summarize = FALSE)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
@@ -17574,9 +18026,9 @@ c(mean = mean(CDR), var = var(CDR))&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Getting started with ARPobservation</title>
-      <link>https://www.jepusto.com/getting-started-with-arpobservation/</link>
+      <link>http://localhost:4321/getting-started-with-arpobservation/</link>
       <pubDate>Thu, 24 Oct 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/getting-started-with-arpobservation/</guid>
+      <guid>http://localhost:4321/getting-started-with-arpobservation/</guid>
       <description>
 
 

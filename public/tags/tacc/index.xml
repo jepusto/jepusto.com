@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TACC | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/tacc/</link>
-      <atom:link href="https://www.jepusto.com/tags/tacc/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/tags/tacc/</link>
+      <atom:link href="http://localhost:4321/tags/tacc/index.xml" rel="self" type="application/rss+xml" />
     <description>TACC</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Tue, 08 Apr 2014 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>TACC</title>
-      <link>https://www.jepusto.com/tags/tacc/</link>
+      <link>http://localhost:4321/tags/tacc/</link>
     </image>
     
     <item>
       <title>Update: parallel R on the TACC</title>
-      <link>https://www.jepusto.com/parallel-r-on-tacc-update/</link>
+      <link>http://localhost:4321/parallel-r-on-tacc-update/</link>
       <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/parallel-r-on-tacc-update/</guid>
+      <guid>http://localhost:4321/parallel-r-on-tacc-update/</guid>
       <description>
 
 
-&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
+&lt;p&gt;I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. &lt;a href=&#34;http://localhost:4321/parallel-R-on-TACC&#34;&gt;My earlier post&lt;/a&gt; has been updated to reflect the modifications. The main changes are:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;The version of MVAPICH2 has changed to 2.0b&lt;/li&gt;
 &lt;li&gt;Changes to the Rmpi and snow packages necessitate using the latest version of R (Warm Puppy, 3.0.3). This version is available in the &lt;code&gt;Rstats&lt;/code&gt; module.&lt;/li&gt;
@@ -32,13 +32,13 @@
     
     <item>
       <title>Running R in parallel on the TACC</title>
-      <link>https://www.jepusto.com/parallel-r-on-tacc/</link>
+      <link>http://localhost:4321/parallel-r-on-tacc/</link>
       <pubDate>Fri, 20 Dec 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/parallel-r-on-tacc/</guid>
+      <guid>http://localhost:4321/parallel-r-on-tacc/</guid>
       <description>
 
 
-&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;https://www.jepusto.com/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
+&lt;p&gt;UPDATE (4/8/2014): I have learned from &lt;a href=&#34;https://www.tacc.utexas.edu/staff/yaakoub-el-khamra&#34;&gt;Mr. Yaakoub El Khamra&lt;/a&gt; that he and the good folks at TACC have made some modifications to TACC’s custom MPI implementation and R build in order to correct bugs in Rmpi and snow that were causing crashes. This post &lt;a href=&#34;http://localhost:4321/parallel-R-on-TACC-update&#34;&gt;has been updated&lt;/a&gt; to reflect the modifications.&lt;/p&gt;
 &lt;p&gt;I’ve started to use the Texas Advanced Computing Cluster to run statistical simulations in R. It takes a little bit of time to get up and running, but once you do it is an amazing tool. To get started, you’ll need&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;An account on the &lt;a href=&#34;https://www.tacc.utexas.edu/&#34;&gt;TACC&lt;/a&gt; and an allocation of computing time.&lt;/li&gt;
@@ -49,7 +49,7 @@
 &lt;div id=&#34;the-r-script&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;The R script&lt;/h3&gt;
 &lt;p&gt;I’ve been running my simulations using a combination of several packages that provide very high-level functionality for parallel computing, namely &lt;code&gt;foreach&lt;/code&gt;, &lt;code&gt;doSNOW&lt;/code&gt;, and the &lt;code&gt;maply&lt;/code&gt; function in &lt;code&gt;plyr&lt;/code&gt;. All of this runs on top of an &lt;code&gt;Rmpi&lt;/code&gt; implementation developed by the folks at TACC (&lt;a href=&#34;https://portal.tacc.utexas.edu/documents/13601/901835/Parallel_R_Final.pdf/&#34;&gt;more details here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;https://www.jepusto.com/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;http://localhost:4321/Designing-simulation-studies-using-R/&#34;&gt;an earlier post&lt;/a&gt;, I shared code for running a very simple simulation of the Behrens-Fisher problem. Here’s &lt;a href=&#34;https://gist.github.com/jepusto/8059893&#34;&gt;adapted code&lt;/a&gt; for running the same simulation on Stampede. The main difference is that there are a few extra lines of code to set up a cluster, seed a random number generator, and pass necessary objects (saved in &lt;code&gt;source_func&lt;/code&gt;) to the nodes of the cluster:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(Rmpi)
 library(snow)
 library(foreach)

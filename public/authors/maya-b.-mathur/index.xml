@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Maya B. Mathur | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/maya-b.-mathur/</link>
-      <atom:link href="https://www.jepusto.com/authors/maya-b.-mathur/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/maya-b.-mathur/</link>
+      <atom:link href="http://localhost:4321/authors/maya-b.-mathur/index.xml" rel="self" type="application/rss+xml" />
     <description>Maya B. Mathur</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 23 Jun 2021 12:30:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Maya B. Mathur</title>
-      <link>https://www.jepusto.com/authors/maya-b.-mathur/</link>
+      <link>http://localhost:4321/authors/maya-b.-mathur/</link>
     </image>
     
     <item>
       <title>Statistical frontiers for selective reporting and publication bias</title>
-      <link>https://www.jepusto.com/talk/sips-2021-statistical-frontiers-for-selective-reporting/</link>
+      <link>http://localhost:4321/talk/sips-2021-statistical-frontiers-for-selective-reporting/</link>
       <pubDate>Wed, 23 Jun 2021 12:30:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sips-2021-statistical-frontiers-for-selective-reporting/</guid>
-      <description>&lt;p&gt;This workshop will cover methods to investigate selective reporting in meta-analysis of statistically dependent effect sizes, which are a common feature of systematic reviews in psychology. The workshop is organized into two sections. In the first section, we will describe situations where dependent effect sizes occur and review methods for summarizing findings in the presence of dependent effects. We will then describe methods for creating and interpreting funnel plots, including tests of asymmetry, with dependent effect sizes. In the second section, we will present new statistical sensitivity analyses for publication bias, which perform well in small meta-analyses, those with non-normal or dependent effect sizes, and those with heterogeneity. The sensitivity analyses enable statements such as &amp;ldquo;For publication bias to shift the observed point estimate to the null, &amp;lsquo;significant&amp;rsquo; results would need to be at least 10-fold more likely to be published than negative or &amp;lsquo;non-significant&amp;rsquo; results&amp;rdquo; or &amp;ldquo;no amount of publication bias could explain away the average effect.&amp;rdquo; In both sections, we will demonstrate methods using R code and examples from real meta-analyses.&lt;/p&gt;
+      <guid>http://localhost:4321/talk/sips-2021-statistical-frontiers-for-selective-reporting/</guid>
+      <description>&lt;p&gt;This workshop will cover methods to investigate selective reporting in meta-analysis of statistically dependent effect sizes, which are a common feature of systematic reviews in psychology. The workshop is organized into two sections. In the first section, we will describe situations where dependent effect sizes occur and review methods for summarizing findings in the presence of dependent effects. We will then describe methods for creating and interpreting funnel plots, including tests of asymmetry, with dependent effect sizes. In the second section, we will present new statistical sensitivity analyses for publication bias, which perform well in small meta-analyses, those with non-normal or dependent effect sizes, and those with heterogeneity. The sensitivity analyses enable statements such as &amp;ldquo;For publication bias to shift the observed point estimate to the null, &amp;lsquo;significant&amp;rsquo; results would need to be at least 10-fold more likely to be published than negative or &amp;rsquo;non-significant&amp;rsquo; results&amp;rdquo; or &amp;ldquo;no amount of publication bias could explain away the average effect.&amp;rdquo; In both sections, we will demonstrate methods using R code and examples from real meta-analyses.&lt;/p&gt;
 </description>
     </item>
     

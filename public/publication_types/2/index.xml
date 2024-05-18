@@ -2,429 +2,429 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2 | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/publication_types/2/</link>
-      <atom:link href="https://www.jepusto.com/publication_types/2/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/publication_types/2/</link>
+      <atom:link href="http://localhost:4321/publication_types/2/index.xml" rel="self" type="application/rss+xml" />
     <description>2</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 07 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>2</title>
-      <link>https://www.jepusto.com/publication_types/2/</link>
+      <link>http://localhost:4321/publication_types/2/</link>
     </image>
     
     <item>
       <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
+      <link>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
       <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
+      <guid>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>High replicability of newly-discovered social-behavioral findings is achievable.</title>
-      <link>https://www.jepusto.com/publication/decline-effects/</link>
+      <link>http://localhost:4321/publication/decline-effects/</link>
       <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/decline-effects/</guid>
+      <guid>http://localhost:4321/publication/decline-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The efficacy of combining cognitive training and non-invasive brain stimulation: A transdiagnostic systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
+      <link>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</link>
       <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
+      <guid>http://localhost:4321/publication/efficacy-of-combining-cognitive-training-and-nibs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design</title>
-      <link>https://www.jepusto.com/publication/aac-group-and-scd/</link>
+      <link>http://localhost:4321/publication/aac-group-and-scd/</link>
       <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-group-and-scd/</guid>
+      <guid>http://localhost:4321/publication/aac-group-and-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <link>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</link>
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
+      <guid>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
-      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <link>http://localhost:4321/publication/three-level-bc-smd/</link>
       <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <guid>http://localhost:4321/publication/three-level-bc-smd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single case design research in Special Education: Next generation standards and considerations</title>
-      <link>https://www.jepusto.com/publication/single-case-next-generation-standards/</link>
+      <link>http://localhost:4321/publication/single-case-next-generation-standards/</link>
       <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/single-case-next-generation-standards/</guid>
+      <guid>http://localhost:4321/publication/single-case-next-generation-standards/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Power approximations for overall average effects in meta-analysis of dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</link>
+      <link>http://localhost:4321/publication/power-approximations-for-dependent-effects/</link>
       <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/power-approximations-for-dependent-effects/</guid>
+      <guid>http://localhost:4321/publication/power-approximations-for-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Investigating narrative performance in children with developmental language disorder: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/investigating-narrative-performance/</link>
+      <link>http://localhost:4321/publication/investigating-narrative-performance/</link>
       <pubDate>Fri, 30 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/investigating-narrative-performance/</guid>
+      <guid>http://localhost:4321/publication/investigating-narrative-performance/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <link>http://localhost:4321/publication/sced-mlma-rve/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <guid>http://localhost:4321/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Augmentative and Alternative Communication intervention targets for school-aged participants with ASD and ID: A single-case systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-communication-outcomes/</link>
+      <link>http://localhost:4321/publication/aac-communication-outcomes/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-communication-outcomes/</guid>
+      <guid>http://localhost:4321/publication/aac-communication-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Considering instructional contexts in AAC interventions for people with ASD and/or IDD experiencing complex communication needs: A single-case design meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-instructional-contexts/</link>
+      <link>http://localhost:4321/publication/aac-instructional-contexts/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-instructional-contexts/</guid>
+      <guid>http://localhost:4321/publication/aac-instructional-contexts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Participant characteristics predicting communication outcomes in AAC implementation for individuals with ASD and IDD: Meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-participant-characteristics/</link>
+      <link>http://localhost:4321/publication/aac-participant-characteristics/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-participant-characteristics/</guid>
+      <guid>http://localhost:4321/publication/aac-participant-characteristics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Meta-Analysis with robust variance estimation: Expanding the range of working models</title>
-      <link>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</link>
+      <link>http://localhost:4321/publication/rve-meta-analysis-expanding-the-range/</link>
       <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-meta-analysis-expanding-the-range/</guid>
+      <guid>http://localhost:4321/publication/rve-meta-analysis-expanding-the-range/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</title>
-      <link>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
+      <link>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</link>
       <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/cluster-wild-bootstrap-for-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Examining the effects of social stories on challenging behavior and prosocial skills in young children: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
+      <link>http://localhost:4321/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</link>
       <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
+      <guid>http://localhost:4321/publication/effects-of-social-stories-on-challenging-behavior-and-prosocial-skills/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A systematic review and meta‐analysis of effects of psychosocial interventions on spiritual well‐being in adults with cancer</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-for-spiritual-well-being/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-for-spiritual-well-being/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-for-spiritual-well-being/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-for-spiritual-well-being/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Systematic review and meta-analysis of stay-play-talk interventions for improving social behaviors of young children</title>
-      <link>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</link>
+      <link>http://localhost:4321/publication/stay-play-talk-meta-analysis/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/stay-play-talk-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/stay-play-talk-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Evaluating meta-analytic methods to detect selective reporting in the presence of dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</link>
+      <link>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</link>
       <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/selective-reporting-with-dependent-effects/</guid>
+      <guid>http://localhost:4321/publication/selective-reporting-with-dependent-effects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The impact of response-guided designs on count outcomes in single-case experimental design baselines</title>
-      <link>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</link>
+      <link>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</link>
       <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/response-guided-designs-in-sced-baselines/</guid>
+      <guid>http://localhost:4321/publication/response-guided-designs-in-sced-baselines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Psychosocial interventions for cancer survivors: A meta-analysis of effects on positive affect</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-for-positive-affect/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-for-positive-affect/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-for-positive-affect/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-for-positive-affect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>An examination of measurement procedures and characteristics of baseline outcome data in single-case research</title>
-      <link>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</link>
+      <link>http://localhost:4321/publication/measurement-procedures-and-baseline-outcomes/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/measurement-procedures-and-baseline-outcomes/</guid>
+      <guid>http://localhost:4321/publication/measurement-procedures-and-baseline-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Interventions to enhance self-efficacy in cancer patients and survivors: A meta-analysis of randomized controlled trials</title>
-      <link>https://www.jepusto.com/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</link>
+      <link>http://localhost:4321/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</link>
       <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</guid>
+      <guid>http://localhost:4321/publication/interventions-to-enhance-self-efficacy-in-cancer-patients/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Effects of psychosocial interventions on meaning and purpose in adults with cancer: A systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/psychosocial-interventions-meaning-and-purpose/</link>
+      <link>http://localhost:4321/publication/psychosocial-interventions-meaning-and-purpose/</link>
       <pubDate>Mon, 29 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/psychosocial-interventions-meaning-and-purpose/</guid>
+      <guid>http://localhost:4321/publication/psychosocial-interventions-meaning-and-purpose/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>http://localhost:4321/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing for funnel plot asymmetry of standardized mean differences</title>
-      <link>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
+      <link>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
+      <guid>http://localhost:4321/publication/testing-for-funnel-plot-asymmetry-of-smds/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Current practices in meta-regression in psychology, education, and medicine</title>
-      <link>https://www.jepusto.com/publication/current-practices-in-meta-regression/</link>
+      <link>http://localhost:4321/publication/current-practices-in-meta-regression/</link>
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/current-practices-in-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/current-practices-in-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A history of meta-regression: Technical, conceptual, and practical developments between 1974 and 2018</title>
-      <link>https://www.jepusto.com/publication/history-of-meta-regression/</link>
+      <link>http://localhost:4321/publication/history-of-meta-regression/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/history-of-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/history-of-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models</title>
-      <link>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</link>
+      <link>http://localhost:4321/publication/rve-in-fixed-effects-models/</link>
       <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</guid>
+      <guid>http://localhost:4321/publication/rve-in-fixed-effects-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized effect size analysis of single case design: Examination of the two methods</title>
-      <link>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</link>
+      <link>http://localhost:4321/publication/bcsmd-examination-of-two-methods/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/bcsmd-examination-of-two-methods/</guid>
+      <guid>http://localhost:4321/publication/bcsmd-examination-of-two-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A gradual effects model for single-case designs</title>
-      <link>https://www.jepusto.com/publication/gradual-effects-model/</link>
+      <link>http://localhost:4321/publication/gradual-effects-model/</link>
       <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/gradual-effects-model/</guid>
+      <guid>http://localhost:4321/publication/gradual-effects-model/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single-case synthesis tools II: Comparing overlap measures and parametric effect sizes for synthesizing antecedent sensory-based interventions</title>
-      <link>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</link>
+      <link>http://localhost:4321/publication/scd-synthesis-tools-ii/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</guid>
+      <guid>http://localhost:4321/publication/scd-synthesis-tools-ii/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single-case synthesis tools I: Evaluating the quality and rigor of research on antecedent sensory-based interventions</title>
-      <link>https://www.jepusto.com/publication/scd-synthesis-tools-i/</link>
+      <link>http://localhost:4321/publication/scd-synthesis-tools-i/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-i/</guid>
+      <guid>http://localhost:4321/publication/scd-synthesis-tools-i/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Using response ratios for meta-analyzing single-case designs with behavioral outcomes</title>
-      <link>https://www.jepusto.com/publication/using-response-ratios/</link>
+      <link>http://localhost:4321/publication/using-response-ratios/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/using-response-ratios/</guid>
+      <guid>http://localhost:4321/publication/using-response-ratios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Introduction to the special issue on single-case systematic reviews and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/rase-special-issue-introduction/</link>
+      <link>http://localhost:4321/publication/rase-special-issue-introduction/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rase-special-issue-introduction/</guid>
+      <guid>http://localhost:4321/publication/rase-special-issue-introduction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of school-based group contingency interventions for students with challenging behavior: An update</title>
-      <link>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</link>
+      <link>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/school-based-group-contingencies-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/school-based-group-contingencies-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analysis of technology-aided instruction and intervention for students with ASD</title>
-      <link>https://www.jepusto.com/publication/taii-meta-analysis/</link>
+      <link>http://localhost:4321/publication/taii-meta-analysis/</link>
       <pubDate>Sat, 01 Jul 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/taii-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/taii-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Functional assessment-based interventions for students with or at-risk for high incidence disabilities: Field-testing single-case synthesis methods</title>
-      <link>https://www.jepusto.com/publication/fabi-meta-analysis/</link>
+      <link>http://localhost:4321/publication/fabi-meta-analysis/</link>
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/fabi-meta-analysis/</guid>
+      <guid>http://localhost:4321/publication/fabi-meta-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression</title>
-      <link>https://www.jepusto.com/publication/rve-for-meta-regression/</link>
+      <link>http://localhost:4321/publication/rve-for-meta-regression/</link>
       <pubDate>Tue, 15 Dec 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-for-meta-regression/</guid>
+      <guid>http://localhost:4321/publication/rve-for-meta-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Measurement-comparable effect sizes for single-case studies of free-operant behavior</title>
-      <link>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</link>
+      <link>http://localhost:4321/publication/measurement-comparable-effect-sizes/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/measurement-comparable-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/measurement-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analytic approach to examine the relationship between religion/spirituality and mental health in cancer</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-mental-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-mental-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-mental-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-mental-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A meta-analytic review of religious or spiritual involvement and social health among cancer patients</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-social-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-social-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-social-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-social-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Religion, spirituality, and physical health in cancer patients: A meta-analysis</title>
-      <link>https://www.jepusto.com/publication/religion-spirituality-physical-health/</link>
+      <link>http://localhost:4321/publication/religion-spirituality-physical-health/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/religion-spirituality-physical-health/</guid>
+      <guid>http://localhost:4321/publication/religion-spirituality-physical-health/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Four methods for analyzing partial interval recording data, with application to single-case research</title>
-      <link>https://www.jepusto.com/publication/four-methods-for-pir/</link>
+      <link>http://localhost:4321/publication/four-methods-for-pir/</link>
       <pubDate>Fri, 19 Jun 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/four-methods-for-pir/</guid>
+      <guid>http://localhost:4321/publication/four-methods-for-pir/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Design-comparable effect sizes in multiple baseline designs: A general modeling framework</title>
-      <link>https://www.jepusto.com/publication/design-comparable-effect-sizes/</link>
+      <link>http://localhost:4321/publication/design-comparable-effect-sizes/</link>
       <pubDate>Wed, 01 Oct 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/design-comparable-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/design-comparable-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Alternating renewal process models for behavioral observation: Simulation methods and validity implications</title>
-      <link>https://www.jepusto.com/publication/arp-for-behavioral-observation/</link>
+      <link>http://localhost:4321/publication/arp-for-behavioral-observation/</link>
       <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/arp-for-behavioral-observation/</guid>
+      <guid>http://localhost:4321/publication/arp-for-behavioral-observation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Analysis and meta-analysis of single-case designs with a standardized mean difference statistic: A primer and applications</title>
-      <link>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</link>
+      <link>http://localhost:4321/publication/bc-smd-primer-and-applications/</link>
       <pubDate>Tue, 01 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/bc-smd-primer-and-applications/</guid>
+      <guid>http://localhost:4321/publication/bc-smd-primer-and-applications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Converting from d to r to z when the design uses extreme groups, dichotomization, or experimental control</title>
-      <link>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</link>
+      <link>http://localhost:4321/publication/converting-from-d-to-r-to-z/</link>
       <pubDate>Sat, 01 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/converting-from-d-to-r-to-z/</guid>
+      <guid>http://localhost:4321/publication/converting-from-d-to-r-to-z/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A standardized mean difference effect size for multiple baseline designs</title>
-      <link>https://www.jepusto.com/publication/smd-for-mbd/</link>
+      <link>http://localhost:4321/publication/smd-for-mbd/</link>
       <pubDate>Fri, 23 Aug 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/smd-for-mbd/</guid>
+      <guid>http://localhost:4321/publication/smd-for-mbd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A d-statistic for single-case designs that is equivalent to the usual between-groups d-statistics</title>
-      <link>https://www.jepusto.com/publication/between-groups-d-statistic/</link>
+      <link>http://localhost:4321/publication/between-groups-d-statistic/</link>
       <pubDate>Thu, 18 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/between-groups-d-statistic/</guid>
+      <guid>http://localhost:4321/publication/between-groups-d-statistic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A standardized mean difference effect size for single case designs</title>
-      <link>https://www.jepusto.com/publication/smd-for-scd/</link>
+      <link>http://localhost:4321/publication/smd-for-scd/</link>
       <pubDate>Tue, 14 Aug 2012 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/smd-for-scd/</guid>
+      <guid>http://localhost:4321/publication/smd-for-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Question-order effects in social network name generators</title>
-      <link>https://www.jepusto.com/publication/question-order-effects/</link>
+      <link>http://localhost:4321/publication/question-order-effects/</link>
       <pubDate>Thu, 01 Oct 2009 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/question-order-effects/</guid>
+      <guid>http://localhost:4321/publication/question-order-effects/</guid>
       <description></description>
     </item>
     

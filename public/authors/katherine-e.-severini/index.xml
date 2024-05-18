@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Katherine E. Severini | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/katherine-e.-severini/</link>
-      <atom:link href="https://www.jepusto.com/authors/katherine-e.-severini/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/katherine-e.-severini/</link>
+      <atom:link href="http://localhost:4321/authors/katherine-e.-severini/index.xml" rel="self" type="application/rss+xml" />
     <description>Katherine E. Severini</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 07 Mar 2018 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Katherine E. Severini</title>
-      <link>https://www.jepusto.com/authors/katherine-e.-severini/</link>
+      <link>http://localhost:4321/authors/katherine-e.-severini/</link>
     </image>
     
     <item>
       <title>Single-case synthesis tools II: Comparing overlap measures and parametric effect sizes for synthesizing antecedent sensory-based interventions</title>
-      <link>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</link>
+      <link>http://localhost:4321/publication/scd-synthesis-tools-ii/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</guid>
+      <guid>http://localhost:4321/publication/scd-synthesis-tools-ii/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single-case synthesis tools I: Evaluating the quality and rigor of research on antecedent sensory-based interventions</title>
-      <link>https://www.jepusto.com/publication/scd-synthesis-tools-i/</link>
+      <link>http://localhost:4321/publication/scd-synthesis-tools-i/</link>
       <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-i/</guid>
+      <guid>http://localhost:4321/publication/scd-synthesis-tools-i/</guid>
       <description></description>
     </item>
     

@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jingru Zhang | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/jingru-zhang/</link>
-      <atom:link href="https://www.jepusto.com/authors/jingru-zhang/index.xml" rel="self" type="application/rss+xml" />
-    <description>Jingru Zhang</description>
+    <title>James E. Pustejovsky</title>
+    <link>http://localhost:4321/authors/jingru-zhang/</link>
+      <atom:link href="http://localhost:4321/authors/jingru-zhang/index.xml" rel="self" type="application/rss+xml" />
+    <description>James E. Pustejovsky</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 27 Sep 2023 16:15:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Jingru Zhang</title>
-      <link>https://www.jepusto.com/authors/jingru-zhang/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>James E. Pustejovsky</title>
+      <link>http://localhost:4321/authors/jingru-zhang/</link>
     </image>
     
     <item>
-      <title>Equity-related moderator analysis in syntheses of dependent effect sizes: Conceptual and statistical considerations</title>
-      <link>https://www.jepusto.com/talk/sree-2023-equity-related-moderator-analysis/</link>
+      <title></title>
+      <link>http://localhost:4321/authors/jingru-zhang/</link>
       <pubDate>Wed, 27 Sep 2023 16:15:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/sree-2023-equity-related-moderator-analysis/</guid>
+      <guid>http://localhost:4321/authors/jingru-zhang/</guid>
+      <description>&lt;h1 id=&#34;jingru-zhang&#34;&gt;Jingru Zhang&lt;/h1&gt;
+&lt;p&gt;Jingru Zhang is a doctoral student in the Quantitative Methods area in the Educational Psychology Department at UW-Madison. Her research interests involves methodological development and their applications from design and modeling perspectives, with a focus on causal inference, meta-analysis, mediation analysis, and generalizable and transportable inference.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Equity-related moderator analysis in syntheses of dependent effect sizes: Conceptual and statistical considerations</title>
+      <link>http://localhost:4321/talk/sree-2023-equity-related-moderator-analysis/</link>
+      <pubDate>Wed, 27 Sep 2023 16:15:00 +0000</pubDate>
+      <guid>http://localhost:4321/talk/sree-2023-equity-related-moderator-analysis/</guid>
       <description>&lt;h1 id=&#34;backgroundcontext&#34;&gt;Background/Context&lt;/h1&gt;
 &lt;p&gt;In meta-analyses examining educational interventions, researchers seek to understand the distribution of intervention impacts, in order to draw generalizations about what works, for whom, and under what conditions. One common way to examine equity implications in such reviews is through moderator analysis, which involves modeling how intervention effect sizes vary depending on the characteristics of primary study participants. For example, one might estimate associations between effect size and the percentage of the primary study participants who were from a rural school, from a low-income family, identified as a specific racial or ethnic group, or designated as an English Language Learner. Such moderator analyses can provide insights about the populations and contexts where an intervention is more or less effective—that is, they can address questions of who benefits and how the effects of an educational intervention are distributed.&lt;/p&gt;
 &lt;p&gt;Meta-analyses of educational interventions often include primary studies that report multiple relevant effect size estimates, such for more than one measure of an outcome construct, at multiple time-points, for multiple versions of an intervention, or for different sub-groups of participants. This leads to a data structure where the effects from a given study are correlated, necessitating the use of statistical methods that are appropriate for dependent observations. Methodological research in this area has provided estimation and inference methods that which can handle dependent effect sizes, including multi-level meta-analyses (Van den Noortgate et al., 2013, 2015), robust variance estimation (Hedges et al., 2010), and combinations thereof (Fernández-Castilla et al., 2020; Pustejovsky &amp;amp; Tipton, 2022). However, there has been much less attention to the specific forms of moderator analysis that are of interest in practice.&lt;/p&gt;

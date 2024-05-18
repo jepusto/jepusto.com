@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Christoper-Runyon | James E. Pustejovsky</title>
+    <link>http://localhost:4321/authors/christoper-runyon/</link>
+      <atom:link href="http://localhost:4321/authors/christoper-runyon/index.xml" rel="self" type="application/rss+xml" />
+    <description>Christoper-Runyon</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright>
+    <image>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Christoper-Runyon</title>
+      <link>http://localhost:4321/authors/christoper-runyon/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:4321/authors/christopher-runyon/</link>
+      <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/authors/christopher-runyon/</guid>
+      <description>&lt;h1 id=&#34;chris-runyon&#34;&gt;Chris Runyon&lt;/h1&gt;
+&lt;p&gt;Chris did his doctoral work on causal inference at UT Austin. He is currently a measurement scientist in the Center for Advanced Assessment at the 
+&lt;a href=&#34;https://www.nbme.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;National Board of Medical Examiners&lt;/a&gt;, where his research focuses on developing automated scoring systems for constructed item responses.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

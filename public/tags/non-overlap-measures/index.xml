@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>non-overlap measures | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/non-overlap-measures/</link>
-      <atom:link href="https://www.jepusto.com/tags/non-overlap-measures/index.xml" rel="self" type="application/rss+xml" />
-    <description>non-overlap measures</description>
+    <title>Non-Overlap Measures | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/non-overlap-measures/</link>
+      <atom:link href="http://localhost:4321/tags/non-overlap-measures/index.xml" rel="self" type="application/rss+xml" />
+    <description>Non-Overlap Measures</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 29 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>non-overlap measures</title>
-      <link>https://www.jepusto.com/tags/non-overlap-measures/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Non-Overlap Measures</title>
+      <link>http://localhost:4321/tags/non-overlap-measures/</link>
     </image>
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <link>http://localhost:4321/publication/sced-mlma-rve/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <guid>http://localhost:4321/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures</title>
-      <link>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
+      <link>http://localhost:4321/publication/procedural-sensitivities-of-scd-effect-sizes/</link>
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
+      <guid>http://localhost:4321/publication/procedural-sensitivities-of-scd-effect-sizes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Single-case synthesis tools II: Comparing overlap measures and parametric effect sizes for synthesizing antecedent sensory-based interventions</title>
-      <link>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</link>
+      <link>http://localhost:4321/publication/scd-synthesis-tools-ii/</link>
       <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/scd-synthesis-tools-ii/</guid>
+      <guid>http://localhost:4321/publication/scd-synthesis-tools-ii/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New paper: procedural sensitivities of effect size measures for SCDs</title>
-      <link>https://www.jepusto.com/procedural-sensitivities-paper/</link>
+      <link>http://localhost:4321/procedural-sensitivities-paper/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/procedural-sensitivities-paper/</guid>
+      <guid>http://localhost:4321/procedural-sensitivities-paper/</guid>
       <description>
 
 
@@ -48,7 +48,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;A wide variety of effect size indices have been proposed for quantifying the magnitude of treatment effects in single-case designs. Commonly used measures include parametric indices such as the standardized mean difference, as well as non-overlap measures such as the percentage of non-overlapping data, improvement rate difference, and non-overlap of all pairs. Currently, little is known about the properties of these indices when applied to behavioral data collected by systematic direct observation, even though systematic direct observation is the most common method for outcome measurement in single-case research. This study uses Monte Carlo simulation to investigate the properties of several widely used single-case effect size measures when applied to systematic direct observation data. Results indicate that the magnitude of the non-overlap measures and of the standardized mean difference can be strongly influenced by procedural details of the study’s design, which is a significant limitation to using these indices as effect sizes for meta-analysis of single-case designs. A less widely used parametric index, the log-response ratio, has the advantage of being insensitive to sample size and observation session length, although its magnitude is influenced by the use of partial interval recording.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;https://www.jepusto.com/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
+&lt;p&gt;This paper was a long time coming. The core idea came out of a grant proposal I wrote during the summer of 2014, which I fleshed out for a &lt;a href=&#34;http://localhost:4321/files/AERA-2015-poster-Non-overlap-measures.pdf&#34;&gt;poster presented at AERA&lt;/a&gt; in April of 2015. After finishing a draft of the paper, I tried to publish it in a special education journal, reasoning that the main audience for the paper is researchers interested in meta-analyzing single case research studies that are commonly used in some parts of special education. That turned out to be a non-starter. Four rejection letters later, I re-worked the paper a bit to give more technical details, then submitted it to a more methods-ish journal. This yielded an R&amp;amp;R, I revised the paper extensively, resubmitted it, and it was declined. Buying in fully to the sunk costs fallacy, I sent the paper to Psychological Methods. This time, I received very extensive and helpful feedback from several anonymous reviewers and an associate editor (thank you, anonymous peers!), which helped me to revise the paper yet again, and this time it was accepted. Sixth time is the charm, as they say.&lt;/p&gt;
 &lt;p&gt;Here’s the complete time-line of submissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;August 5, 2015: submitted to journal #1 (special education)&lt;/li&gt;
@@ -75,13 +75,13 @@
     
     <item>
       <title>What is Tau-U?</title>
-      <link>https://www.jepusto.com/what-is-tau-u/</link>
+      <link>http://localhost:4321/what-is-tau-u/</link>
       <pubDate>Thu, 03 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/what-is-tau-u/</guid>
+      <guid>http://localhost:4321/what-is-tau-u/</guid>
       <description>
 
 
-&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dx.doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed the Tau-U index—actually several indices, rather—as effect size measures for single-case designs. The original paper describes several different indices that involve corrections for trend during the baseline phase, treatment phase, both phases, or neither phase. Without correcting for trends in either phase, the index is equal to the Mann-Whitney &lt;span class=&#34;math inline&#34;&gt;\(U\)&lt;/span&gt; statistic calculated by comparing every pair of observations containing one point from each phase, scaled by the total number of such pairs. This version, which I’ll call just “Tau”, is simply a &lt;a href=&#34;http://localhost:4321/NAP-SEs-and-CIs&#34;&gt;linear re-scaling of the NAP statistic&lt;/a&gt; to the range [-1,1].&lt;/p&gt;
 &lt;p&gt;To correct for baseline trend, the original paper proposes to calculate Kendall’s rank correlation (&lt;span class=&#34;math inline&#34;&gt;\(\tau_A\)&lt;/span&gt;) between the phase A outcome data and the session numbers and use the result to make an adjustment to Tau. The other analyses presented in the original paper (incorporating adjustments for time trends during the treatment phase) are not presented in subsequent review papers, nor are they implemented in &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;the web-calculator&lt;/a&gt; created by the authors, and so I won’t discuss them further here. Instead, in this post I will examine the calculation of the version of Tau-U that incorporates a baseline trend correction. This version seems to be the most widely applied in practice (likely due to the availability of the web-calculator) and is presented in several review papers by the same authors. It turns out though, that the definition of the index has shifted from the original paper to subsequent presentations.&lt;/p&gt;
 &lt;p&gt;To make this concrete, let me first define a couple of things. Suppose that we have data from the baseline and treatment phases for a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Let &lt;span class=&#34;math inline&#34;&gt;\(S_P\)&lt;/span&gt; denote Kendall’s S statistic calculated for the comparison between phases and &lt;span class=&#34;math inline&#34;&gt;\(S_A\)&lt;/span&gt; denote Kendall’s S statistic calculated on the baseline trend. More precisely,&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
@@ -110,7 +110,7 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
 \text{Tau-U} = \frac{S_P - S_A}{mn} = \text{Tau} - \frac{m - 1}{2n} t_A.
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The logical range of this version of the index is from &lt;span class=&#34;math inline&#34;&gt;\(-(2n + m - 1) / (2n)\)&lt;/span&gt; to &lt;span class=&#34;math inline&#34;&gt;\((2n + m - 1) / (2n)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;https://www.jepusto.com/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
+&lt;p&gt;This is the version of Tau-U implemented in the &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt; web calculator. It is also the version described in a later chapter by the same authors (&lt;a href=&#34;http://dx.doi.org/10.1037/14376-005&#34;&gt;Parker, Vannest, &amp;amp; Davis, 2014&lt;/a&gt;) and a review article by &lt;a href=&#34;http://dx.doi.org/10.1111/1467-8578.12091&#34;&gt;Rakap (2015)&lt;/a&gt;. &lt;a href=&#34;http://localhost:4321/Tau-U&#34;&gt;My previous post about Tau-U&lt;/a&gt; also presented this version of the index and noted that its magnitude is sensitive to the lengths of the baseline and treatment phases, which makes it rather difficult to interpret the Tau-U index as a measure of treatment effect magnitude.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;comparison&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Comparison&lt;/h2&gt;
@@ -181,13 +181,13 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>New working paper: Procedural sensitivities of SCD effect sizes</title>
-      <link>https://www.jepusto.com/scd-effect-size-sensitivities/</link>
+      <link>http://localhost:4321/scd-effect-size-sensitivities/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/scd-effect-size-sensitivities/</guid>
+      <guid>http://localhost:4321/scd-effect-size-sensitivities/</guid>
       <description>
 
 
-&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
+&lt;p&gt;I’ve just posted a new version of my working paper, &lt;em&gt;Procedural sensitivities of effect sizes for single-case designs with behavioral outcome measures&lt;/em&gt;. The abstract is below. This version is a major update of an &lt;a href=&#34;http://localhost:4321/files/Pustejovsky-2015-Nov-Non-overlap-measures.pdf&#34;&gt;earlier paper&lt;/a&gt; that focused only on the non-overlap measures. The new version also includes analysis of two other effect sizes (the within-case standardized mean difference and the log response ratio) as well as additional results and more succinct summaries of the main findings.&lt;/p&gt;
 &lt;p&gt;The paper itself is available on the Open Science Framework (&lt;a href=&#34;https://osf.io/pxn24/&#34;&gt;here&lt;/a&gt;), as are the &lt;a href=&#34;https://osf.io/hkzsm/&#34;&gt;supplementary materials&lt;/a&gt; and &lt;a href=&#34;https://osf.io/j4gvt/&#34;&gt;Source code&lt;/a&gt;. I also created interaction versions of the graphics from the main paper and the supplementary materials, which can be viewed in &lt;a href=&#34;https://jepusto.shinyapps.io/SCD-effect-size-sensitivities/&#34;&gt;this shiny app&lt;/a&gt;. I would welcome any comments, questions, or feedback that readers may have.&lt;/p&gt;
 &lt;div id=&#34;abstract&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Abstract&lt;/h3&gt;
@@ -198,9 +198,9 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>SingleCaseES</title>
-      <link>https://www.jepusto.com/software/singlecasees/</link>
+      <link>http://localhost:4321/software/singlecasees/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/singlecasees/</guid>
+      <guid>http://localhost:4321/software/singlecasees/</guid>
       <description>&lt;p&gt;An R package for calculating basic effect size indices for single-case designs, including several non-overlap measures and parametric effect size measures, and for estimating the gradual effects model developed by Swan and Pustejovsky (2017).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -217,14 +217,14 @@ S_A &amp;amp;= \sum_{i=1}^{m - 1} \sum_{j = i + 1}^m \left[I\left(y^A_j &amp;gt;
     
     <item>
       <title>Tau-U</title>
-      <link>https://www.jepusto.com/tau-u/</link>
+      <link>http://localhost:4321/tau-u/</link>
       <pubDate>Wed, 23 Mar 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/tau-u/</guid>
+      <guid>http://localhost:4321/tau-u/</guid>
       <description>
 
 
 &lt;p&gt;&lt;a href=&#34;http://doi.org/10.1016/j.beth.2010.08.006&#34;&gt;Parker, Vannest, Davis, and Sauber (2011)&lt;/a&gt; proposed Tau-U as an effect size measure for use in single-case designs that exhibit baseline trend. In their original paper, they actually conceptualize Tau-U as a family of four distinct indices, distinguished by a) whether the index includes an adjustment for the presence of baseline trend and b) whether the index incorporates information about trend during the intervention phase. However, in subsequent presentations the authors seem to have focused exclusively on the index that adjusts for baseline trend but not for intervention phase trend, and so I’ll do the same here. (This version is also the one available in the web-tool at &lt;a href=&#34;http://singlecaseresearch.org/calculators&#34;&gt;singlecaseresearch.org&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;https://www.jepusto.com/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
+&lt;p&gt;Tau-U is an elaboration on their previously proposed effect sizes &lt;a href=&#34;http://localhost:4321/NAP-SEs-and-CIs&#34;&gt;NAP and Tau&lt;/a&gt;, which do not account for baseline trends. The index is calculated as follows. Suppose that we have data from A and B phases from a single case, where the baseline phase has &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; observations and treatment phase has &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; observations. Let &lt;span class=&#34;math inline&#34;&gt;\(y^A_1,...,y^A_m\)&lt;/span&gt; denote the baseline phase data and &lt;span class=&#34;math inline&#34;&gt;\(y^B_1,...,y^B_n\)&lt;/span&gt; denote the treatment phase data. Tau-U is then calculated as&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \text{Tau-U} = \frac{S_P - S_B}{mn}
 \]&lt;/span&gt;&lt;/p&gt;
@@ -294,7 +294,7 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
   geom_line() + 
   labs(y = &amp;quot;Expected magnitude of Tau-U&amp;quot;, color = &amp;quot;m&amp;quot;) + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Tau-U_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the figure above, each plot corresponds to a different value of the baseline slope (&lt;span class=&#34;math inline&#34;&gt;\(\beta_1\)&lt;/span&gt;, ranging from -0.2 in the top row to 0.2 in the bottom row) and treatment shift (&lt;span class=&#34;math inline&#34;&gt;\(\beta_2\)&lt;/span&gt;, ranging from 0 in the first column to 2 in the last column). Within each plot, the x axis corresponds to treatment phase length and the different lines correspond to different baseline phase lengths. The thing to note is that, when the baseline slope is non-zero, the expected value of Tau-U ranges quite widely within each plot, depending on the values of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. For example, when &lt;span class=&#34;math inline&#34;&gt;\(\beta_2 = 0\)&lt;/span&gt; (in the first column), the data follow a simple linear trend with no shift. If the slope of the trend is equal to -0.2 (the first row), then the expected magnitude of Tau-U ranges from -0.8 to 0.3 depending on the phase lengths, which is quite a wide range.&lt;/p&gt;
 &lt;p&gt;Generally, the degree of sample size sensitivity depends on the absolute magnitude of the baseline slope, with steeper slopes leading to increased sensitivity. For steeper values of slope, it appears that the degree to which the measure is affected by sample size even swamps the degree to which the measure is sensitive to the magnitude of the treatment effect. Very peculiar.&lt;/p&gt;
 &lt;/div&gt;
@@ -307,9 +307,9 @@ ggplot(TauU_values, aes(n, TauU, color = factor(m))) +
     
     <item>
       <title>Standard errors and confidence intervals for NAP</title>
-      <link>https://www.jepusto.com/nap-ses-and-cis/</link>
+      <link>http://localhost:4321/nap-ses-and-cis/</link>
       <pubDate>Sun, 28 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/nap-ses-and-cis/</guid>
+      <guid>http://localhost:4321/nap-ses-and-cis/</guid>
       <description>
 
 
@@ -442,7 +442,7 @@ ggplot(NAP_sim, aes(theta, val, color = sd)) +
   facet_grid(n ~ m, labeller = &amp;quot;label_both&amp;quot;) + 
   geom_line() + 
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the above figure, the actual sampling standard deviation of NAP (in red) and the value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; (in purple) are plotted against the true value of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, with separate plots for various combinations of &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;. The expected value of the standard errors &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; (actually the square root of the expectation of the variance estimators) are depicted in green and blue, respectively. The value of &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt; agrees with the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(\delta = 0\)&lt;/span&gt;, but the two diverge when there is a positive treatment effect. It appears that &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{HM}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{New}\)&lt;/span&gt; both under-estimate the actual standard error when &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is equal to 5, and over-estimate for the largest values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;. However, both of these estimators offer a marked improvement over &lt;span class=&#34;math inline&#34;&gt;\(\text{SE}_{null}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -534,7 +534,7 @@ params %&amp;gt;%
   labs(y = &amp;quot;SE&amp;quot;) + 
   geom_hline(yintercept=.90, linetype=&amp;quot;dashed&amp;quot;) +
   theme_bw() + theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/NAP-SEs-and-CIs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The figure above plots the coverage rates of several different confidence intervals for &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;: the naive CI (in blue), the HM Wald CI (red), the Newcombe Wald CI (green), and the Newcombe score CI (purple). The dashed horizontal line is the nominal coverage rate of 90%. It can be seen that the null CI has the correct coverage only when &lt;span class=&#34;math inline&#34;&gt;\(\theta \leq .6\)&lt;/span&gt;; for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt;, its coverage becomes too conservative (tending towards 100%). The Wald-type CIs have below-nominal coverage rates, which improve as the sample size in each phase increases but remain too liberal even at the largest sample size considered. Finally, Newcombe’s score CI maintains close-to-nominal coverage over a wider range of &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; values. Although these CIs have below-nominal coverage for the smallest sample sizes, they generally have good coverage for &lt;span class=&#34;math inline&#34;&gt;\(\theta &amp;lt; .9\)&lt;/span&gt; and when the sample size in each phase is 10 or more. It is also notable that their coverage rates appear to become more accurate as the sample size in a given group increases, even if the sample size in the other group is fairly small and remains constant.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

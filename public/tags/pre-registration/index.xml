@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>pre-registration | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/pre-registration/</link>
-      <atom:link href="https://www.jepusto.com/tags/pre-registration/index.xml" rel="self" type="application/rss+xml" />
-    <description>pre-registration</description>
+    <title>Pre-Registration | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/pre-registration/</link>
+      <atom:link href="http://localhost:4321/tags/pre-registration/index.xml" rel="self" type="application/rss+xml" />
+    <description>Pre-Registration</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Mon, 19 Jun 2017 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>pre-registration</title>
-      <link>https://www.jepusto.com/tags/pre-registration/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Pre-Registration</title>
+      <link>http://localhost:4321/tags/pre-registration/</link>
     </image>
     
     <item>
       <title>The siren song of significance</title>
-      <link>https://www.jepusto.com/siren-song-of-significance/</link>
+      <link>http://localhost:4321/siren-song-of-significance/</link>
       <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/siren-song-of-significance/</guid>
+      <guid>http://localhost:4321/siren-song-of-significance/</guid>
       <description>
 
 

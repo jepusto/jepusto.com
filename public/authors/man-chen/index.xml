@@ -2,87 +2,105 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/man-chen/</link>
-      <atom:link href="https://www.jepusto.com/authors/man-chen/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/man-chen/</link>
+      <atom:link href="http://localhost:4321/authors/man-chen/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 07 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 12 Apr 2024 15:30:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>James E. Pustejovsky</title>
-      <link>https://www.jepusto.com/authors/man-chen/</link>
+      <link>http://localhost:4321/authors/man-chen/</link>
     </image>
     
     <item>
+      <title></title>
+      <link>http://localhost:4321/authors/man-chen/</link>
+      <pubDate>Fri, 12 Apr 2024 15:30:00 +0000</pubDate>
+      <guid>http://localhost:4321/authors/man-chen/</guid>
+      <description>&lt;h1 id=&#34;man-chen&#34;&gt;Man Chen&lt;/h1&gt;
+&lt;p&gt;Man Chen is a doctoral student in the Quantitative Methods area in the Educational Psychology Department at UW-Madison. Her research interests include meta-analysis, single-case experimental designs, and hierarchical linear modeling. She is currently working as a project assistant at the Wisconsin Center for Educational Research (WCER) with Dr. Pustejovsky.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bayesian estimation of between-case standardized mean differences: A simulation study</title>
+      <link>http://localhost:4321/talk/aera-2024-bayes-bcsmd/</link>
+      <pubDate>Fri, 12 Apr 2024 15:30:00 +0000</pubDate>
+      <guid>http://localhost:4321/talk/aera-2024-bayes-bcsmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Equivalences between ad hoc strategies and meta-analytic models for dependent effect sizes</title>
-      <link>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
+      <link>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</link>
       <pubDate>Thu, 07 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
+      <guid>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Systematic review of variables related to instruction in augmentative and alternative communication implementation: Group and single-case design</title>
-      <link>https://www.jepusto.com/publication/aac-group-and-scd/</link>
+      <link>http://localhost:4321/publication/aac-group-and-scd/</link>
       <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-group-and-scd/</guid>
+      <guid>http://localhost:4321/publication/aac-group-and-scd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Empirical benchmarks for between-case standardized mean differences from single-case multiple baseline designs examining academic interventions.</title>
-      <link>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</link>
+      <link>http://localhost:4321/talk/aera-2023-bcsmd-benchmarks/</link>
       <pubDate>Sun, 16 Apr 2023 11:40:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/talk/aera-2023-bcsmd-benchmarks/</guid>
+      <guid>http://localhost:4321/talk/aera-2023-bcsmd-benchmarks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
-      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <link>http://localhost:4321/publication/three-level-bc-smd/</link>
       <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <guid>http://localhost:4321/publication/three-level-bc-smd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <link>http://localhost:4321/publication/sced-mlma-rve/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <guid>http://localhost:4321/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Augmentative and Alternative Communication intervention targets for school-aged participants with ASD and ID: A single-case systematic review and meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-communication-outcomes/</link>
+      <link>http://localhost:4321/publication/aac-communication-outcomes/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-communication-outcomes/</guid>
+      <guid>http://localhost:4321/publication/aac-communication-outcomes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Considering instructional contexts in AAC interventions for people with ASD and/or IDD experiencing complex communication needs: A single-case design meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-instructional-contexts/</link>
+      <link>http://localhost:4321/publication/aac-instructional-contexts/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-instructional-contexts/</guid>
+      <guid>http://localhost:4321/publication/aac-instructional-contexts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Participant characteristics predicting communication outcomes in AAC implementation for individuals with ASD and IDD: Meta-analysis</title>
-      <link>https://www.jepusto.com/publication/aac-participant-characteristics/</link>
+      <link>http://localhost:4321/publication/aac-participant-characteristics/</link>
       <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/aac-participant-characteristics/</guid>
+      <guid>http://localhost:4321/publication/aac-participant-characteristics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lmeInfo</title>
-      <link>https://www.jepusto.com/software/lmeinfo/</link>
+      <link>http://localhost:4321/software/lmeinfo/</link>
       <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/software/lmeinfo/</guid>
+      <guid>http://localhost:4321/software/lmeinfo/</guid>
       <description>&lt;p&gt;lmeInfo provides analytic derivatives and information matrices for fitted linear mixed effects models and generalized least squares models estimated using &lt;code&gt;nlme::lme()&lt;/code&gt; and &lt;code&gt;nlme::gls()&lt;/code&gt;, respectively. The package includes functions for estimating the sampling variance-covariance of variance component parameters using the inverse Fisher information. The variance components include the parameters of the random effects structure (for lme models), the variance structure, and the correlation structure. The expected and average forms of the Fisher information matrix are used in the calculations, and models estimated by full maximum likelihood or restricted maximum likelihood are supported. The package also includes a function for estimating standardized mean difference effect sizes (
-&lt;a href=&#34;https://www.jepusto.com/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
+&lt;a href=&#34;http://localhost:4321/publication/design-comparable-effect-sizes/&#34;&gt;Pustejovsky et al., 2014&lt;/a&gt;) based on fitted lme or gls models.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;R package 
 &lt;a href=&#34;https://cran.r-project.org/package=lmeInfo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;available on the Comprehensive R Archive Network&lt;/a&gt;&lt;/li&gt;

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>measurement-error | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/measurement-error/</link>
-      <atom:link href="https://www.jepusto.com/tags/measurement-error/index.xml" rel="self" type="application/rss+xml" />
-    <description>measurement-error</description>
+    <title>Measurement-Error | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/measurement-error/</link>
+      <atom:link href="http://localhost:4321/tags/measurement-error/index.xml" rel="self" type="application/rss+xml" />
+    <description>Measurement-Error</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Fri, 17 Feb 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>measurement-error</title>
-      <link>https://www.jepusto.com/tags/measurement-error/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Measurement-Error</title>
+      <link>http://localhost:4321/tags/measurement-error/</link>
     </image>
     
     <item>
       <title>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</title>
-      <link>https://www.jepusto.com/dizzy-for-d-z/</link>
+      <link>http://localhost:4321/dizzy-for-d-z/</link>
       <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/dizzy-for-d-z/</guid>
+      <guid>http://localhost:4321/dizzy-for-d-z/</guid>
       <description>
 
 
@@ -135,7 +135,7 @@ density_plot &amp;lt;- function(x, lab, col, limits) {
 p_A_av &amp;lt;- density_plot(A_av, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2,1))
 p_A_z &amp;lt;- density_plot(A_z, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av + p_A_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; is mostly concentrated around the mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}) = 0.898\)&lt;/span&gt;, with a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av}) = 0.085\)&lt;/span&gt;. In contrast, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; has a mean very close to one, &lt;span class=&#34;math inline&#34;&gt;\(E(A_z) = 1.005\)&lt;/span&gt; but a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z) = 0.209\)&lt;/span&gt;, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; than into &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is &lt;span class=&#34;math inline&#34;&gt;\(A_{av}^2\)&lt;/span&gt;, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;. Let’s suppose that researchers always ensure &lt;span class=&#34;math inline&#34;&gt;\(A_{av} \geq 0.8\)&lt;/span&gt; so that reliability is always at least &lt;span class=&#34;math inline&#34;&gt;\(0.64\)&lt;/span&gt;. This leads to the following distributions for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_av_trunc &amp;lt;- A_av[A_av &amp;gt;= 0.8]
@@ -143,7 +143,7 @@ A_z_trunc &amp;lt;- A_z[A_av &amp;gt;= 0.8]
 p_A_av_trunc &amp;lt;- density_plot(A_av_trunc, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2, 1))
 p_A_z_trunc &amp;lt;- density_plot(A_z_trunc, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av_trunc + p_A_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
 The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; loses its left tail, so that its mean is &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)&lt;/span&gt; and its coefficient of variation is reduced to &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av} | A_{av} \geq 0.8) = 0.05\)&lt;/span&gt;. The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; now has a mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_z | A_{av} \geq 0.8) = 1.044\)&lt;/span&gt; and a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z | A_{av} \geq 0.8) = 0.174\)&lt;/span&gt;, about 3.5 times larger than the squared coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Under both of these scenarios, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is substantially more sensitive to procedural heterogeneity than is &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. Based on this model and hypothetical example, it seems clear &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; should be preferred over &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; is the right answer. After all, the underlying effect size model is specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, and the design parameters—including &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; in particular—are treated as noise, uncorrelated with &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;.
 What happens to the observed-score metrics &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; if we instead start with a model specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;?&lt;/p&gt;
@@ -169,7 +169,7 @@ B_av &amp;lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
 p_B_av &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av + p_B_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
 Second, the scenario where observed-score reliability is at least 0.64:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;B_z_trunc &amp;lt;- B_z[A_av &amp;gt;= 0.8]
 B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
@@ -177,7 +177,7 @@ B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
 p_B_av_trunc &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z_trunc &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av_trunc + p_B_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
 The table below reports the coefficients of variation for each of the multiplicative factors I have considered.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 dat &amp;lt;- tibble(A_av, A_z, B_av, B_z)
@@ -304,7 +304,7 @@ ggplot(CV_obs, aes(tau_mu, CV, color = metric)) +
   theme_minimal() + 
   labs(x = expression(tau / mu), y = &amp;quot;Coefficient of variation for observed score ES&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
 Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu = 0.5\)&lt;/span&gt;, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is 0.543. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is strongly affected by measurement heterogeneity, with a CV of 0.592; in comparison, the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; of 0.528. Under both models, these increases in CV are effectively constant for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

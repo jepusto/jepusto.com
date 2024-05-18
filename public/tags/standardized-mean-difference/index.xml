@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>standardized mean difference | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/standardized-mean-difference/</link>
-      <atom:link href="https://www.jepusto.com/tags/standardized-mean-difference/index.xml" rel="self" type="application/rss+xml" />
-    <description>standardized mean difference</description>
+    <title>Standardized Mean Difference | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/standardized-mean-difference/</link>
+      <atom:link href="http://localhost:4321/tags/standardized-mean-difference/index.xml" rel="self" type="application/rss+xml" />
+    <description>Standardized Mean Difference</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Wed, 08 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>standardized mean difference</title>
-      <link>https://www.jepusto.com/tags/standardized-mean-difference/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Standardized Mean Difference</title>
+      <link>http://localhost:4321/tags/standardized-mean-difference/</link>
     </image>
     
     <item>
       <title>Between-case standardized mean differences: Flexible methods for single-case designs</title>
-      <link>https://www.jepusto.com/publication/three-level-bc-smd/</link>
+      <link>http://localhost:4321/publication/three-level-bc-smd/</link>
       <pubDate>Wed, 08 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/three-level-bc-smd/</guid>
+      <guid>http://localhost:4321/publication/three-level-bc-smd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cohen&#39;s $d_z$ makes me dizzy when considering measurement error</title>
-      <link>https://www.jepusto.com/dizzy-for-d-z/</link>
+      <link>http://localhost:4321/dizzy-for-d-z/</link>
       <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/dizzy-for-d-z/</guid>
+      <guid>http://localhost:4321/dizzy-for-d-z/</guid>
       <description>
 
 
@@ -143,7 +143,7 @@ density_plot &amp;lt;- function(x, lab, col, limits) {
 p_A_av &amp;lt;- density_plot(A_av, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2,1))
 p_A_z &amp;lt;- density_plot(A_z, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av + p_A_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; is mostly concentrated around the mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}) = 0.898\)&lt;/span&gt;, with a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av}) = 0.085\)&lt;/span&gt;. In contrast, the distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; has a mean very close to one, &lt;span class=&#34;math inline&#34;&gt;\(E(A_z) = 1.005\)&lt;/span&gt; but a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z) = 0.209\)&lt;/span&gt;, about 2.5 times larger. Thus, variation in measurement procedure induces more extra heterogeneity into the distribution of &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; than into &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Now, one potential objection to this hypothetical scenario is that researchers do not choose the number of trials at random, without consideration for the other parameters of the study design. A more realistic assumption might be that researchers choose &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; to ensure they achieve at least some threshold level of reliability for the observed scores. The reliability of the observed scores is &lt;span class=&#34;math inline&#34;&gt;\(A_{av}^2\)&lt;/span&gt;, so ensuring some threshold of reliability is equivalent to ensuring the square root of the threshold for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;. Let’s suppose that researchers always ensure &lt;span class=&#34;math inline&#34;&gt;\(A_{av} \geq 0.8\)&lt;/span&gt; so that reliability is always at least &lt;span class=&#34;math inline&#34;&gt;\(0.64\)&lt;/span&gt;. This leads to the following distributions for &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(A_z\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_av_trunc &amp;lt;- A_av[A_av &amp;gt;= 0.8]
@@ -151,7 +151,7 @@ A_z_trunc &amp;lt;- A_z[A_av &amp;gt;= 0.8]
 p_A_av_trunc &amp;lt;- density_plot(A_av_trunc, expression(A[av]),&amp;quot;blue&amp;quot;, c(0.2, 1))
 p_A_z_trunc &amp;lt;- density_plot(A_z_trunc, expression(A[z]), &amp;quot;purple&amp;quot;, c(0, 3))
 p_A_av_trunc + p_A_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;960&#34; /&gt;
 The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; loses its left tail, so that its mean is &lt;span class=&#34;math inline&#34;&gt;\(E(A_{av}|A_{av} \geq 0.8) = 0.917\)&lt;/span&gt; and its coefficient of variation is reduced to &lt;span class=&#34;math inline&#34;&gt;\(CV(A_{av} | A_{av} \geq 0.8) = 0.05\)&lt;/span&gt;. The distribution of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt; now has a mean of &lt;span class=&#34;math inline&#34;&gt;\(E(A_z | A_{av} \geq 0.8) = 1.044\)&lt;/span&gt; and a coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(CV(A_z | A_{av} \geq 0.8) = 0.174\)&lt;/span&gt;, about 3.5 times larger than the squared coefficient of variation of &lt;span class=&#34;math inline&#34;&gt;\(A_{av}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Under both of these scenarios, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is substantially more sensitive to procedural heterogeneity than is &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt;. Based on this model and hypothetical example, it seems clear &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; should be preferred over &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; as a metric for meta-analysis. However, these relationships are predicated on a certain model for the study-specific parameters. One might object to this model because there’s a sense that we have assumed that &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt; is the right answer. After all, the underlying effect size model is specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, and the design parameters—including &lt;span class=&#34;math inline&#34;&gt;\(\rho\)&lt;/span&gt; in particular—are treated as noise, uncorrelated with &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;.
 What happens to the observed-score metrics &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; if we instead start with a model specified in terms of &lt;span class=&#34;math inline&#34;&gt;\(\delta_z\)&lt;/span&gt;?&lt;/p&gt;
@@ -177,7 +177,7 @@ B_av &amp;lt;- sqrt(2) * (1 - rho) / sqrt(1 - rho + (1 - phi) / (phi * K))
 p_B_av &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av + p_B_z&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;960&#34; /&gt;
 Second, the scenario where observed-score reliability is at least 0.64:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;B_z_trunc &amp;lt;- B_z[A_av &amp;gt;= 0.8]
 B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
@@ -185,7 +185,7 @@ B_av_trunc &amp;lt;- B_av[A_av &amp;gt;= 0.8]
 p_B_av_trunc &amp;lt;- density_plot(B_av, expression(B[av]),&amp;quot;green&amp;quot;, c(0,1.5))
 p_B_z_trunc &amp;lt;- density_plot(B_z, expression(B[z]), &amp;quot;yellow&amp;quot;, c(0, 1))
 p_B_av_trunc + p_B_z_trunc&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;960&#34; /&gt;
 The table below reports the coefficients of variation for each of the multiplicative factors I have considered.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
 dat &amp;lt;- tibble(A_av, A_z, B_av, B_z)
@@ -312,7 +312,7 @@ ggplot(CV_obs, aes(tau_mu, CV, color = metric)) +
   theme_minimal() + 
   labs(x = expression(tau / mu), y = &amp;quot;Coefficient of variation for observed score ES&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/dizzy-for-d-z_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
 Consider, for instance, a scenario where observed-score reliability is always at least 0.64 and &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu = 0.5\)&lt;/span&gt;, which would be the case if effect sizes are normally distributed and about 97% of effect sizes are positive. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is hardly affected by measurement heterogeneity at all, with a CV of 0.504 but the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; is 0.543. Under the effect size model based on &lt;span class=&#34;math inline&#34;&gt;\(\delta_{av}\)&lt;/span&gt;, the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_{av}\)&lt;/span&gt; is strongly affected by measurement heterogeneity, with a CV of 0.592; in comparison, the CV of the observed-score &lt;span class=&#34;math inline&#34;&gt;\(\tilde\delta_z\)&lt;/span&gt; of 0.528. Under both models, these increases in CV are effectively constant for larger values of &lt;span class=&#34;math inline&#34;&gt;\(\tau / \mu\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -338,17 +338,17 @@ I can promise, dear reader, that the present blog post will not be nearly as cog
     
     <item>
       <title>Multi-level meta-analysis of single-case experimental designs using robust variance estimation</title>
-      <link>https://www.jepusto.com/publication/sced-mlma-rve/</link>
+      <link>http://localhost:4321/publication/sced-mlma-rve/</link>
       <pubDate>Fri, 29 Apr 2022 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/sced-mlma-rve/</guid>
+      <guid>http://localhost:4321/publication/sced-mlma-rve/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Implications of mean-variance relationships for standardized mean differences</title>
-      <link>https://www.jepusto.com/mean-variance-relationships-and-smds/</link>
+      <link>http://localhost:4321/mean-variance-relationships-and-smds/</link>
       <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/mean-variance-relationships-and-smds/</guid>
+      <guid>http://localhost:4321/mean-variance-relationships-and-smds/</guid>
       <description>
 
 
@@ -512,7 +512,7 @@ ggplot(dat) +
   geom_density(aes(log(lambda_i), ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.5) + 
   geom_density(aes(lRR, ..scaled..), fill = &amp;quot;green&amp;quot;, alpha = 0.2) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis confirms that there is only a modest degree of true heterogeneity in the log response ratios:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)
 rma(yi = lRR, vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
@@ -540,7 +540,7 @@ ggplot(dat) +
   geom_density(aes(delta_i, ..scaled..), fill = &amp;quot;blue&amp;quot;, alpha = 0.2) + 
   geom_density(aes(d, ..scaled..), fill = &amp;quot;purple&amp;quot;, alpha = 0.5) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 A random effects meta-analysis of the standardized mean differences shows a greater degree of true heterogeneity, both in terms of the estimated &lt;span class=&#34;math inline&#34;&gt;\(\tau\)&lt;/span&gt; and in &lt;span class=&#34;math inline&#34;&gt;\(I^2\)&lt;/span&gt;, or the proportion of total variance in the effect size estimates that is attributable to true heterogeneity:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(yi = d, vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -584,7 +584,7 @@ ggplot(long_summary_stats,
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;480&#34; /&gt;
 The plot above does suggest a mean-variance relationship, though it’s a bit messy. We can do better by using the scaled SD, after adjusting for the degree of spread that we would expect given &lt;span class=&#34;math inline&#34;&gt;\(T_i\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;long_summary_stats %&amp;gt;%
   mutate(
@@ -599,7 +599,7 @@ The plot above does suggest a mean-variance relationship, though it’s a bit me
   expand_limits(y = 0) + 
   theme_minimal() + 
   theme(legend.position = c(0.1, 0.9))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;480&#34; /&gt;
 From the above, it does appear that there could be a relationship between the scaled SD and the mean. The black curve indicates the theoretical mean-variance relationship that would be expected under the binomial distribution, and indeed the empirical relationship appears to be quite similar. This suggests that mean-variance relationships might be at play (a correct supposition, since of course we know the true data-generating process here).&lt;/p&gt;
 &lt;p&gt;Second, since the outcomes in each group are all proportions, we can simply plot the mean in group &lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt; versus the mean in group &lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(dat, aes(mA, mB)) + 
@@ -608,7 +608,7 @@ From the above, it does appear that there could be a relationship between the sc
   geom_smooth(method = &amp;quot;lm&amp;quot;, formula = y ~ x) + 
   coord_cartesian(xlim = c(0,1), ylim = c(0,1), expand = FALSE) + 
   theme_minimal()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;480&#34; /&gt;
 This plot shows that there is a strong linear relationship between the two means, with a best-fit line that might go through the origin. This suggests that the response ratio might be an appropriate metric (although the difference in proportions might also be appropriate here, since a line with unit slope would probably fit quite well).&lt;/p&gt;
 &lt;p&gt;Third (and most speculatively/hand-wavily), I think exploratory moderator analysis can be useful here, but interpreted in a non-typical way. Under the model I’ve sketched, we would expect that the standardized mean difference estimates should be systematically associated with the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means, as well as with the number of trials used to assess outcomes. The scatter-plots below show that this is indeed the case (the right-hand plot shows &lt;span class=&#34;math inline&#34;&gt;\(d_i\)&lt;/span&gt; versus &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(patchwork)
@@ -628,7 +628,7 @@ Ti_d_plot &amp;lt;-
   theme_minimal()
 
 mA_d_plot + Ti_d_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This impression is also born out by a meta-regression that includes the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt; as moderators:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(d ~ mA + sqrt(T_i), vi = V_d, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -672,7 +672,7 @@ Ti_lRR_plot &amp;lt;-
   theme_minimal()
 
 mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/Mean-variance-relationships-and-SMDs_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;100%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left-hand plot, there does not appear to be any relationship between the effect size estimates and the group-&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt; means. In the right-hand plot, there does seem to be a mild relationship between the effect size estimates and &lt;span class=&#34;math inline&#34;&gt;\(\sqrt{T_i}\)&lt;/span&gt;, which is a bit surprising, although the strength of the relationship is much weaker than what we saw with the standardized mean differences. Meta-regression analysis supports these interpretations:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rma(lRR ~  mA + sqrt(T_i), vi = V_lRR, data = dat)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -714,11 +714,11 @@ mA_lRR_plot + Ti_lRR_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Standardized mean differences in single-group, repeated measures designs</title>
-      <link>https://www.jepusto.com/smds-in-single-group/</link>
+      <link>http://localhost:4321/smds-in-single-group/</link>
       <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/smds-in-single-group/</guid>
+      <guid>http://localhost:4321/smds-in-single-group/</guid>
       <description>
-&lt;script src=&#34;https://www.jepusto.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://localhost:4321/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I received a question from a colleague about computing variances and covariances for standardized mean difference effect sizes from a design involving a single group, measured repeatedly over time. Deriving these quantities is a little exercise in normal distribution theory, which I find kind of relaxing sometimes (hey, we all have our coping mechanisms!).&lt;/p&gt;
@@ -742,7 +742,7 @@ The question is then, what is &lt;span class=&#34;math inline&#34;&gt;\(\text{Va
 \]&lt;/span&gt;
 and
 &lt;span class=&#34;math display&#34;&gt;\[\text{Cov}(D_s, D_t) = \frac{1}{n}\left[\sigma_0^2 + \rho_{st} \sigma_s \sigma_t - \sigma_0 \left(\rho_{s0} \sigma_s + \rho_{t0} \sigma_t\right) \right].\]&lt;/span&gt;
-From a &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
+From a &lt;a href=&#34;http://localhost:4321/distribution-of-sample-variances/&#34;&gt;previous post&lt;/a&gt; about the distribution of sample variances, we have that
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Cov}(s_s^2, s_t^2) = \frac{2 \left(\rho_{st} \sigma_s \sigma_t\right)^2}{n - 1}.
 \]&lt;/span&gt;
@@ -753,7 +753,7 @@ Consequently,
 &amp;amp;= \frac{2}{(n-1)(T + 1)^2} \sum_{s=0}^T \sum_{t=0}^T \left(\rho_{st} \sigma_s \sigma_t\right)^2.
 \end{aligned}
 \]&lt;/span&gt;
-Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;https://www.jepusto.com/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
+Let &lt;span class=&#34;math inline&#34;&gt;\(\sigma_P^2 = \frac{1}{T+1}\sum_{t=0}^T \sigma_t^2\)&lt;/span&gt; denote the average population variance across all &lt;span class=&#34;math inline&#34;&gt;\(T + 1\)&lt;/span&gt; time-points, and let &lt;span class=&#34;math inline&#34;&gt;\(\delta_t\)&lt;/span&gt; denote the standardized mean difference parameter at time &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;. Then, following the &lt;a href=&#34;http://localhost:4321/multivariate-delta-method/&#34;&gt;multivariate delta method&lt;/a&gt;,
 &lt;span class=&#34;math display&#34;&gt;\[
 \text{Var}(d_t) \approx \frac{\text{Var}(D_t)}{\sigma_P^2} + \frac{\delta_t^2}{2 \nu} \qquad \text{and} \qquad \text{Cov}(d_s, d_t) \approx \frac{\text{Cov}(D_s, D_t)}{\sigma_P^2} + \frac{\delta_s \delta_t}{2 \nu},
 \]&lt;/span&gt;
@@ -788,9 +788,9 @@ V_t = \frac{2(1 - r_{t0})}{n} + \frac{d_t^2}{2 \hat\nu} \qquad \text{and} \qquad
     
     <item>
       <title>An ANCOVA puzzler</title>
-      <link>https://www.jepusto.com/ancova-puzzler/</link>
+      <link>http://localhost:4321/ancova-puzzler/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/ancova-puzzler/</guid>
+      <guid>http://localhost:4321/ancova-puzzler/</guid>
       <description>
 
 
@@ -900,13 +900,13 @@ for &lt;span class=&#34;math inline&#34;&gt;\(i = 1,...,n_g\)&lt;/span&gt; and &
     
     <item>
       <title>Simulating correlated standardized mean differences for meta-analysis</title>
-      <link>https://www.jepusto.com/simulating-correlated-smds/</link>
+      <link>http://localhost:4321/simulating-correlated-smds/</link>
       <pubDate>Mon, 30 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/simulating-correlated-smds/</guid>
+      <guid>http://localhost:4321/simulating-correlated-smds/</guid>
       <description>
 
 
-&lt;p&gt;As I’ve discussed in &lt;a href=&#34;https://www.jepusto.com/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
+&lt;p&gt;As I’ve discussed in &lt;a href=&#34;http://localhost:4321/Sometimes-aggregating-effect-sizes-is-fine&#34;&gt;previous posts&lt;/a&gt;, meta-analyses in psychology, education, and other areas often include studies that contribute multiple, statistically dependent effect size estimates.
 I’m interested in methods for meta-analyzing and meta-regressing effect sizes from data structures like this, and studying this sort of thing often entails conducting Monte Carlo simulations.
 Monte Carlo simulations involve generating artificial data—in this case, a set of studies, each of which has one or more dependent effect size estimates—that follows a certain distributional model, applying different analytic methods to the artificial data, and then repeating the process a bunch of times.
 Because we know the true parameters that govern the data-generating process, we can evaluate the performance of the analytic methods in terms of bias, accuracy, hypothesis test calibration and power, confidence interval coverage, and the like.&lt;/p&gt;
@@ -991,7 +991,7 @@ Psi_k&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;Hedges_g = TRUE&lt;/code&gt;, which controls where the simulated effect size is Hedges’ &lt;span class=&#34;math inline&#34;&gt;\(g\)&lt;/span&gt; or Cohen’s &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt;. If it is Hedges’ g, make sure that the standard error is corrected too.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;p_val = TRUE&lt;/code&gt;, which allows the user to control whether or not to return &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;-values from the test of mean differences for each outcome. Note that the p-values should be for a test of the &lt;em&gt;raw&lt;/em&gt; mean differences between groups, rather than a test of the effect size &lt;span class=&#34;math inline&#34;&gt;\(\delta_{jk} = 0\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;https://www.jepusto.com/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add an argument to the function, &lt;code&gt;corr_mat = FALSE&lt;/code&gt;, which controls whether the function returns just the simulated effect sizes and SEs or both the simulated effect sizes and the full sampling variance-covariance matrix of the effect sizes. See &lt;a href=&#34;http://localhost:4321/correlations-between-SMDs&#34;&gt;here&lt;/a&gt; for the relevant formulas.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1006,7 +1006,7 @@ and
 \left(\mathbf{\bar{y}}_{Tk} - \mathbf{\bar{y}}_{Ck}\right) \sim N\left(\boldsymbol\delta_k, \frac{4}{N_k} \boldsymbol\Psi_k\right).
 \]&lt;/span&gt;
 This shows how we could directly simulate the numerator of the standardized mean difference.&lt;/p&gt;
-&lt;p&gt;A &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
+&lt;p&gt;A &lt;a href=&#34;http://localhost:4321/distribution-of-sample-variances&#34;&gt;further bit of distribution theory&lt;/a&gt; says that the pooled sample covariance matrix follows a multiple of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Wishart_distribution&#34;&gt;Wishart distribution&lt;/a&gt; with &lt;span class=&#34;math inline&#34;&gt;\(N_k - 2\)&lt;/span&gt; degrees of freedom and scale matrix &lt;span class=&#34;math inline&#34;&gt;\(\Psi_k\)&lt;/span&gt;:
 &lt;span class=&#34;math display&#34;&gt;\[
 (N_k - 2) \mathbf{S}_k \sim Wishart\left(N_k - 2, \Psi_k \right).
 \]&lt;/span&gt;
@@ -1163,9 +1163,9 @@ where &lt;span class=&#34;math inline&#34;&gt;\(\mathbf{x}_{jk}\)&lt;/span&gt; i
     
     <item>
       <title>You wanna PEESE of d&#39;s?</title>
-      <link>https://www.jepusto.com/pet-peese-performance/</link>
+      <link>http://localhost:4321/pet-peese-performance/</link>
       <pubDate>Thu, 27 Apr 2017 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/pet-peese-performance/</guid>
+      <guid>http://localhost:4321/pet-peese-performance/</guid>
       <description>
 
 
@@ -1237,7 +1237,7 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;li&gt;the modified PEESE estimator, which I’ll call “SPEESE”; and&lt;/li&gt;
 &lt;li&gt;SPET-SPEESE, which follows the same conditional logic as PET-PEESE.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;https://www.jepusto.com/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;https://www.jepusto.com/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Simulation results are summarized across 4000 replications. The R code for all this &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-simulations.R&#34;&gt;lives here&lt;/a&gt;. Complete numerical results &lt;a href=&#34;http://localhost:4321/files/PET-PEESE-Simulation-Results.Rdata&#34;&gt;live here&lt;/a&gt;. Code for creating the graphs below &lt;a href=&#34;http://localhost:4321/R/PET-PEESE-performance-graphs.R&#34;&gt;lives here&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;results&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Results&lt;/h1&gt;
@@ -1245,43 +1245,43 @@ t = d / \sqrt{\frac{n_0 + n_1}{n_0 n_1}}.
 &lt;h3&gt;False-positive rates for publication bias detection&lt;/h3&gt;
 &lt;p&gt;First, let’s consider the performance of PET and PEESE as tests for detecting publication bias. Here, a statistically significant estimate for the coefficient on the SE (for PET) or on &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; (for PEESE) is taken as evidence of small-sample bias. For that logic to hold, the tests should maintain the nominal error rates in the absence of publication bias.&lt;/p&gt;
 &lt;p&gt;The figure below depicts the Type-I error rates of the PET and PEESE tests when &lt;span class=&#34;math inline&#34;&gt;\(\pi = 1\)&lt;/span&gt; (so no publication bias at all), for a one-sided test of &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; at the nominal level of &lt;span class=&#34;math inline&#34;&gt;\(\alpha = .05\)&lt;/span&gt;. Rejection rates are plotted for varying true mean effects, levels of heterogeneity, and sample size distributions. Separate colors are used for maximum sample sizes of 50 or 120.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/PET-PEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both tests are horribly mis-calibrated, tending to reject the null hypothesis far more often than they should. This happens because there is a non-zero correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt;, even in the absence of publication bias. Thus, it does not follow that rejecting &lt;span class=&#34;math inline&#34;&gt;\(H_0: \beta_1 \leq 0\)&lt;/span&gt; implies rejection of the hypothesis that there is no publication bias. (Sorry, that’s at least a triple negative!)&lt;/p&gt;
 &lt;p&gt;Here’s the same graph, but using the SPET and SPEESE estimators:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/SPET-SPEESE-rejection-rates-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Yes, this may be the World’s Most Boring Figure, but it does make clear that both the SPET and SPEESE tests maintain the correct Type-I error rate. (Any variation in rejection rates is just Monte Carlo error.) Thus, it seems pretty clear that if we want to test for small-sample bias, SPET or SPEESE should be used rather than PET or PEESE.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;bias-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Bias of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Now let’s consider the performance of these methods as estimators of the population mean effect. &lt;a href=&#34;http://datacolada.org/59&#34;&gt;Uri’s analysis&lt;/a&gt; focused on the bias of the estimators, meaning the difference between the average value of the estimator (across repeated samples) and the true parameter. The plot below depicts the expected level of PET, PEESE, and PET-PEESE as a function of the true mean effect, using the uniform distribution of studies and a maximum sample size of &lt;span class=&#34;math inline&#34;&gt;\(n = 50\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-PET-PEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All three of these estimators are pretty bad in terms of bias. In the absence of publication bias, they consistently &lt;em&gt;under&lt;/em&gt;-estimate the true mean effect. With intermediate or strong publication bias, PET and PET-PEESE have a consistent downward bias. As an unconditional estimator, PEESE tends to have a positive bias when the true effect is small, but this decreases and becomes negative as the true effect increases. For all three estimators, bias increases as the degree of heterogeneity increases.&lt;/p&gt;
 &lt;p&gt;Here is how these estimators compare to the modified SPET, SPEESE, and SPET-SPEESE estimators, as well as to the usual fixed-effect average with no correction for publication bias:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/bias-of-SPET-SPEESE-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the left column, we see that SPET and SPEESE are exactly unbiased (and SPET-SPEESE is nearly so) in the absence of selective publication. So is regular old fixed effect meta-analysis, of course. In the middle and right columns, studies are selected based partially or fully on statistical significance, and things get messy. Overall, there’s no consistent winner between PEESE versus SPEESE. At small or moderate levels of between-study heterogeneity, and when the true mean effect is small, PEESE, SPEESE, and SPET-SPEESE have fairly similar biases, but PEESE appears to have a slight edge. This seems to me to be nothing but a fortuitous accident, in that the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; just happens to work in the right direction. Then, as the true mean effect increases, SPEESE and SPET-SPEESE start to edge out PEESE. This makes sense because the bias induced by the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; will be larger when the true effect sizes are larger.&lt;br /&gt;
 These trends seem mostly to hold for the other sample size distributions I examined too, although the biases of PEESE and PET-PEESE aren’t as severe when the maximum sample size is larger. You can see for yourself here:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-bias-of-SPET-SPEESE-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;accuracy-of-bias-corrected-estimators&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Accuracy of bias-corrected estimators&lt;/h3&gt;
 &lt;p&gt;Bias isn’t everything, of course. Now let’s look at the overall accuracy of these estimators, as measured by root mean squared error (RMSE). RMSE is a function of both bias and sampling variance, and so is one way to weigh an estimator that is biased but fairly precise against an estimator that is perfectly unbiased but noisy. The following chart plots the RMSE of all of the estimators (following the same layout as above, just with a different vertical axis):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://www.jepusto.com/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:4321/post/PET-PEESE-performance_files/figure-html/RMSE-plots-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Starting in the left column where there’s no selective publication, we can see that the normal fixed-effect average has the smallest RMSE (and so is most accurate). The next most accurate is SPEESE, which uniformly beats out PEESE, PET-PEESE, SPET, and SPET-SPEESE. It’s worth noting, though, that there is a fairly large penalty for using SPEESE when it is unnecessary: even with a quite large sample of 100 studies, SPEESE still has twice the RMSE of the FE estimator.&lt;/p&gt;
 &lt;p&gt;The middle column shows these estimators’ RMSE when there is an intermediate degree of selective publication. Because of the “fortuitous accident” of how the correlation between &lt;span class=&#34;math inline&#34;&gt;\(d\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(V\)&lt;/span&gt; affects the PEESE estimator, it is more accurate than SPEESE for small values of the true mean effect. Its advantage is larger when heterogeneity is larger, and heterogeneity also affects the point (i.e., what true mean effect) at which SPEESE catches up with PEESE. Then at larger true mean effects, the accuracy of SPEESE continues to improve while the accuracy of PEESE degrades. It is also interesting to note that at this intermediate degree of selective publication, none of the other bias-correction estimators (PET-PEESE, SPET, SPET-SPEESE) compete with PEESE and SPEESE.&lt;/p&gt;
 &lt;p&gt;Finally, the right column plots RMSE when there’s strong selective publication, so only statistically significant effects appear. Just as in the middle column, PEESE edges out SPEESE for smaller values of the true mean effect. For very small true effects, both of these estimators are edged out by PET-PEESE and SPET-SPEESE. This only holds over a very small range for the true mean effect though, and for true effects above that range these conditional estimators perform poorly—consistently worse than just using PEESE or SPEESE.&lt;/p&gt;
 &lt;p&gt;Here are charts for the other sample size distributions:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jepusto.com/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-1.png&#34;&gt;Uniform distribution of studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-2.png&#34;&gt;More small studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-3.png&#34;&gt;More small studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-4.png&#34;&gt;More large studies, maximum sample size of 50&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:4321/rmarkdown-libs/figure-html4/more-RMSE-plots-5.png&#34;&gt;More large studies, maximum sample size of 120&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The trends that I’ve noted mostly seem to hold for the other sample size distributions (but correct me if you disagree! I’m getting kind of bleary-eyed at the moment…). One difference worth noting is that when the sample size distribution skews towards having more large studies, the accuracy of the regular fixed-effect estimator improves a bit. At intermediate degrees of selective publication, the fixed-effect estimator is &lt;em&gt;consistently&lt;/em&gt; more accurate than SPEESE, and mostly more accurate than PEESE too. With strong selective publication, though, the FE estimator blows up just as before.&lt;/p&gt;
 &lt;/div&gt;
@@ -1321,9 +1321,9 @@ These trends seem mostly to hold for the other sample size distributions I exami
     
     <item>
       <title>Alternative formulas for the standardized mean difference</title>
-      <link>https://www.jepusto.com/alternative-formulas-for-the-smd/</link>
+      <link>http://localhost:4321/alternative-formulas-for-the-smd/</link>
       <pubDate>Fri, 03 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/alternative-formulas-for-the-smd/</guid>
+      <guid>http://localhost:4321/alternative-formulas-for-the-smd/</guid>
       <description>
 
 
@@ -1413,7 +1413,7 @@ d = \frac{\bar{y}_{post} - \bar{y}_{pre}}{s_p}, \qquad \text{where} \qquad s_p^2
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \frac{se_b}{s_p} = \sqrt{\frac{2(1 - r)}{n}},
 \]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;https://www.jepusto.com/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
+&lt;p&gt;where &lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt; is the sample correlation between the pre- and post-tests. The remaining question is what to use for &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt;. Borenstein (2009) uses &lt;span class=&#34;math inline&#34;&gt;\(\nu = n - 1\)&lt;/span&gt;. My previous post &lt;a href=&#34;http://localhost:4321/distribution-of-sample-variances/&#34;&gt;on the sampling covariance of sample variances&lt;/a&gt; gave the result that &lt;span class=&#34;math inline&#34;&gt;\(\text{Var}(s_p^2) = \sigma^4 (1 + \rho^2) / (n - 1)\)&lt;/span&gt;, which would instead suggest using&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 \nu = \frac{2 (n - 1)}{1 + r^2}.
 \]&lt;/span&gt;&lt;/p&gt;
@@ -1523,9 +1523,9 @@ se_b = \sqrt{\left(\frac{N_C + N_T}{N_C N_T}\right)\left[1 + (n - 1)\rho\right]}
     
     <item>
       <title>Correlations between standardized mean differences</title>
-      <link>https://www.jepusto.com/correlations-between-smds/</link>
+      <link>http://localhost:4321/correlations-between-smds/</link>
       <pubDate>Thu, 17 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/correlations-between-smds/</guid>
+      <guid>http://localhost:4321/correlations-between-smds/</guid>
       <description>
 
 

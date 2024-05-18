@@ -2,15 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/authors/what-evs-donkey/</link>
-      <atom:link href="https://www.jepusto.com/authors/what-evs-donkey/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4321/authors/what-evs-donkey/</link>
+      <atom:link href="http://localhost:4321/authors/what-evs-donkey/index.xml" rel="self" type="application/rss+xml" />
     <description>James E. Pustejovsky</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>James E. Pustejovsky</title>
-      <link>https://www.jepusto.com/authors/what-evs-donkey/</link>
+      <link>http://localhost:4321/authors/what-evs-donkey/</link>
     </image>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:4321/authors/what-evs-donkey/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/authors/what-evs-donkey/</guid>
+      <description>&lt;h1 id=&#34;w-e-donkey&#34;&gt;W. E. Donkey&lt;/h1&gt;
+&lt;p&gt;W. E. is our lab mascot. His name is also his philosophy in life: &amp;ldquo;Whatev&amp;rsquo;s, Donkey!&amp;rdquo;&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

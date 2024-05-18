@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>fixed effects | James E. Pustejovsky</title>
-    <link>https://www.jepusto.com/tags/fixed-effects/</link>
-      <atom:link href="https://www.jepusto.com/tags/fixed-effects/index.xml" rel="self" type="application/rss+xml" />
-    <description>fixed effects</description>
+    <title>Fixed Effects | James E. Pustejovsky</title>
+    <link>http://localhost:4321/tags/fixed-effects/</link>
+      <atom:link href="http://localhost:4321/tags/fixed-effects/index.xml" rel="self" type="application/rss+xml" />
+    <description>Fixed Effects</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 09 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://www.jepusto.com/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>fixed effects</title>
-      <link>https://www.jepusto.com/tags/fixed-effects/</link>
+      <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Fixed Effects</title>
+      <link>http://localhost:4321/tags/fixed-effects/</link>
     </image>
     
     <item>
       <title>Comparison of competing approaches to analyzing cross-classified data: Random effects models, ordinary least squares, or fixed effects with cluster robust standard errors</title>
-      <link>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</link>
+      <link>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</link>
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/competing-approaches-for-cross-classified-data/</guid>
+      <guid>http://localhost:4321/publication/competing-approaches-for-cross-classified-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Small sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models</title>
-      <link>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</link>
+      <link>http://localhost:4321/publication/rve-in-fixed-effects-models/</link>
       <pubDate>Fri, 02 Nov 2018 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/publication/rve-in-fixed-effects-models/</guid>
+      <guid>http://localhost:4321/publication/rve-in-fixed-effects-models/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Clustered standard errors and hypothesis tests in fixed effects models</title>
-      <link>https://www.jepusto.com/clubsandwich-for-crve-fe/</link>
+      <link>http://localhost:4321/clubsandwich-for-crve-fe/</link>
       <pubDate>Sun, 10 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://www.jepusto.com/clubsandwich-for-crve-fe/</guid>
+      <guid>http://localhost:4321/clubsandwich-for-crve-fe/</guid>
       <description>
 
 
-&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;https://www.jepusto.com/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve recently been working with my colleague &lt;a href=&#34;http://blogs.cuit.columbia.edu/let2119/&#34;&gt;Beth Tipton&lt;/a&gt; on methods for cluster-robust variance estimation in the context of some common econometric models, focusing in particular on fixed effects models for panel data—or what statisticians would call “longitudinal data” or “repeated measures.” We have a new working paper, which you can &lt;a href=&#34;http://localhost:4321/files/Pustejovsky-Tipton-201601.pdf&#34;&gt;find here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The importance of using CRVE (i.e., “clustered standard errors”) in panel models is now widely recognized. Less widely recognized, perhaps, is the fact that standard methods for constructing hypothesis tests and confidence intervals based on CRVE can perform quite poorly in when you have only a limited number of independent clusters. What’s worse, it can be hard to determine what counts as a large-enough sample to trust standard CRVE methods, because the finite-sample behavior of the variance estimators and test statistics depends on the configuration of the covariates, not just the total sample size. For example, suppose you have state-level panel data from 50 states across 15 years and are trying to estimate the effect of some policy using difference-in-differences. If only 5 or 6 states have variation in the policy variable over time, then you’re almost certainly in small-sample territory. And the sample size issues can be subtler than this, too, as I’ll show below.&lt;/p&gt;
 &lt;p&gt;One solution to this problem is to use bias-reduced linearization (BRL), which was proposed by Bell and McCaffrey (2002) and has recently begun to receive attention from econometricians (e.g., Cameron &amp;amp; Miller, 2015; Imbens &amp;amp; Kolesar, 2015). The idea of BRL is to correct the bias of standard CRVE based on a working model, and then to use a degrees-of-freedom correction for Wald tests based on the bias-reduced CRVE. That may seem silly (after all, the whole point of CRVE is to avoid making distributional assumptions about the errors in your model), but it turns out that the correction can help quite a bit, even when the working model is wrong. The degrees-of-freedom correction is based on a standard Satterthwaite-type approximation, and also relies on the working model. There’s now quite a bit of evidence (which we review in the working paper) that BRL performs well even in samples with a small number of clusters.&lt;/p&gt;
 &lt;p&gt;In the working paper, we make two contributions to all this:&lt;/p&gt;
