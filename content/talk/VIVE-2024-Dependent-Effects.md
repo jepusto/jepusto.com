@@ -1,12 +1,12 @@
 ---
 publishDate: 2024-04-10T12:00:00  # Schedule page publish date.
 title: "Model-Building Considerations in Meta-Analysis of Dependent Effect Sizes"
-date: 2024-05-10T09:30:00
+date: 2024-05-17T09:30:00
 event: "Danish Center for Social Science Research"
 event_short: "VIVE"
 location: "Copenhagen, Denmark"
 featured: true
-url_slides: ""
+url_slides: "/files/VIVE-2024-Model-building-considerations.pdf"
 math: false
 highlight: false
 abstract: ""
