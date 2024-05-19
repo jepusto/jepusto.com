@@ -21,44 +21,96 @@ Then a few years ago, Wolfgang Viechtbauer added a function called `vcalc()` to 
 
 ## Multi-arm trials
 
-Here's a little made-up dataset with data from two samples, where sample 1 has three treatment arms and sample 2 has two treatment arms:
+Here's some made-up datasets from two hypothetical studies, where the first study has three treatment arms and the second has two treatment arms:
 ```{r}
-A_dat <- data.frame(
-  sampleID = rep(c(1,2), times = c(3,2)),
-  arm_T = c("T","U","V","T","V"),
-  n_T = c(23, 70, 58, 37, 15),
-  m_T = c(3.3, 2.5, 1.9, 10.7, 12.4),
-  sd_T = c(1.9, 1.8, 1.7, 3.4, 3.7),
-  arm_C = rep("C",5),
-  n_C = rep(c(61, 33), times = c(3,2)),
-  m_C = rep(c(2.1, 10.2), times = c(3,2)),
-  sd_C = rep(c(1.7, 3.5), times = c(3,2))
+library(tidyverse)
+
+# Kaplan (2011)
+
+Kaplan_dat <- tibble(
+  Condition = c("Business as usual", "Social media diet","Social media encouragement"),
+  N = c(36, 49, 72),
+  FOMO_Mean = c(39.7, 40.7,48.6),
+  FOMO_SD = c(17.2, 13.5, 14.9),
+  CESD_Mean = c(10.1, 9.8, 11.2),
+  CESD_SD = c(5.7,7.1,8.3)
 )
+
+# Pre-process for effect size calculations
+
+Kaplan_long <-
+  Kaplan_dat %>%
+  pivot_longer(
+    FOMO_Mean:CESD_SD, 
+    names_to = c("outcome",".value"),
+    names_pattern = c("(.+)_(.+)")
+  )
+
+Kaplan_BAU <- 
+  Kaplan_long %>%
+  filter(Condition == "Business as usual") 
+
+Kaplan_ES <-
+  Kaplan_long %>%
+  filter(Condition != "Business as usual") %>%
+  inner_join(Kaplan_BAU, by = "outcome", suffix = c("_T","_C")) %>%
+  mutate(study = "Kaplan (2011)")
+
+
+# Kim & Wollack (2013)
+Kim_dat <- tibble(
+  Condition = c("Business as usual", "Social media diet"),
+  N = c(14, 34),
+  FOMO_Mean = c(22.83, 20.22),
+  FOMO_SD = c(8.3, 9.7),
+  BDI_Mean = c(34.28, 35.55),
+  BDI_SD = c(12.1, 13.3)
+)
+
+Kim_ES <- 
+  Kim_dat %>%
+  mutate(
+    study = "Kim (2011)",
+    arm = c("C","T")
+  ) %>%
+  pivot_longer(
+    FOMO_Mean:BDI_SD, 
+    names_to = c("outcome",".value"),
+    names_pattern = c("(.+)_(.+)")
+  ) %>%
+  pivot_wider(
+    names_from = arm,
+    values_from = c(Condition, N, Mean, SD)
+  )
+  
 ```
 We can compute effect size estimates[^pooling] and variances from the summary statistics as follows:
 ```{r}
 library(metafor)
 
-A_dat <- escalc(
-  data = A_dat, measure = "SMD",
-  n1i = n_T, n2i = n_C,
-  m1i = m_T, m2i = m_C,
-  sd1i = sd_T, sd2i = sd_C
-)
+ES_dat <-
+  bind_rows(Kaplan_ES, Kim_ES) %>%
+  escalc(
+    data = .,
+    measure = "SMD",
+    n1i = N_T, n2i = N_C,
+    m1i = Mean_T, m2i = Mean_C,
+    sd1i = SD_T, sd2i = SD_C
+  )
 
-A_dat
+ES_dat
 ```
 
-[^pooling]: Readers might note that the standardized mean differences calculated here are from multi-arm trials, but the effects are calculated using denominator standard deviations that only pool across pairs of arms, rather than across _all_ arms in the sample. The latter is usually better (because it keeps the scaling of the outcome constant across all the effects from the sample), but I'm too lazy to handle this particular wrinkle right now.
+[^pooling]: Detail-oriented readers might note that the standardized mean differences calculated here are from multi-arm trials, but the effects are calculated using denominator standard deviations that only pool across pairs of arms, rather than across _all_ arms in the sample. The latter is usually better (because it keeps the scaling of the outcome constant across all the effects from the sample), but I'm too lazy to handle this particular wrinkle right now.
 
 Using `impute_covariance_matrix()` on this dataset will return a set of covariance matrices for each sample, where there is a constant correlation between pairs of effect sizes from the same study (here I use a correlation of 0.7):
 ```{r}
 library(clubSandwich)
 
-V_icm <- with(A_dat, 
+V_icm <- with(ES_dat, 
   impute_covariance_matrix(
     vi = vi,
-    cluster = sampleID,
+    cluster = study,
     r = 0.7
   )
 )
@@ -71,23 +123,25 @@ That degree of correlation isn't really right---it's too high, for one, and it s
 To use `vcalc()`, we'll need to provide a bit of additional information about the structure of the arms within each study (in the arguments `grp1` and `grp2`) and the sample sizes of each arm (in the arguments `w1` and `w2`):
 ```{r}
 V_vcalc <- vcalc(
-  data = A_dat,         # dataset
+  data = ES_dat,        # dataset
   vi = vi,              # sampling variances
-  cluster = sampleID,   # identifier for each unique sample
-  grp1 = arm_T,         # identifier for unique treatment arms
-  w1 = n_T,             # effective sample size of each treatment arm
-  grp2 = arm_C,         # identifier for unique contro arms
-  w2 = n_C,             # effective sample size of each control arm
+  cluster = study,      # identifier for each unique sample
+  obs = outcome,        # identifier for each unique outcome within a study
+  grp1 = Condition_T,   # identifier for unique treatment arms
+  w1 = N_T,             # effective sample size of each treatment arm
+  grp2 = Condition_C,   # identifier for unique contro arms
+  w2 = N_C,             # effective sample size of each control arm
+  rho = 0.7,            # assumed correlation between outcomes within a study
   sparse = TRUE         # return a sparse matrix
 )
 
 # look at the blocks for each sample
-V_vcalc_list <- blsplit(V_vcalc, A_dat$sampleID) 
+V_vcalc_list <- blsplit(V_vcalc, ES_dat$study) 
 V_vcalc_list
 ```
 These covariances have smaller correlations between effect sizes for different arms (closer to 0.5 or less):
 ```{r}
-blsplit(V_vcalc, A_dat$sampleID) |> 
+blsplit(V_vcalc, ES_dat$study) |> 
   lapply(cov2cor)
 ```
 
