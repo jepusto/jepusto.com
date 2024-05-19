@@ -5,12 +5,157 @@
     <link>http://localhost:4321/post/</link>
       <atom:link href="http://localhost:4321/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Thu, 28 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2024</copyright><lastBuildDate>Sat, 18 May 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:4321/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>http://localhost:4321/post/</link>
     </image>
+    
+    <item>
+      <title>Computing covariance matrices for meta-analysis of dependent effect size estimates</title>
+      <link>http://localhost:4321/computing-covariance-matrices/</link>
+      <pubDate>Sat, 18 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/computing-covariance-matrices/</guid>
+      <description>
+
+
+&lt;p&gt;&lt;a href=&#34;http://localhost:4321/correlations-between-SMDs/&#34;&gt;A while back&lt;/a&gt;, I wrote up formulas for the sampling covariances between standardized mean differences that are calculated from multi-arm experiments, including experiments with multiple outcomes. Along with the sampling variances of effect size estimates, the covariances are also needed for conducting a meta-analysis of dependent effect size data. However, it’s often hard to get all the information you need to actually apply the formulas in practice, and so we end up relying on simplified, rough approximations (and sensitivity analysis) for the covariance terms. A few years after the post above, &lt;a href=&#34;http://localhost:4321/imputing-covariance-matrices-for-multi-variate-meta-analysis/&#34;&gt;I sketched out some functions&lt;/a&gt; for building these sort of quick-and-dirty covariance matrices, and eventually added them to the &lt;code&gt;clubSandwich package&lt;/code&gt; as &lt;code&gt;impute_covariance_matrix()&lt;/code&gt; and &lt;code&gt;pattern_covariance_matrix()&lt;/code&gt;. Although they’re certainly convenient, and can handle situations where you’d like to assume different correlations for different pairs of outcomes, the covariance matrices you can generate with these functions don’t really handle the situation where you’ve got effect size estimates from multi-arm experiments.&lt;/p&gt;
+&lt;p&gt;Then a few years ago, Wolfgang Viechtbauer added a function called &lt;code&gt;vcalc()&lt;/code&gt; to the &lt;code&gt;metafor&lt;/code&gt; package, which does everything that &lt;code&gt;impute_covariance_matrix()&lt;/code&gt; and &lt;code&gt;pattern_covariance_matrix()&lt;/code&gt; can do, but with even more features and nuance. The &lt;code&gt;vcalc()&lt;/code&gt; doesn’t implement the exact formulas for covariances between standardized mean differences, but it does implement a close approximation that also generalizes readily to other effect size metrics. Consequently, I think it’s really time to retire (or at least deprecate) the clubSandwich functions. To mark the occasion (and hopefully encourage users of &lt;code&gt;clubSandwich::impute_covariance_matrix()&lt;/code&gt; to make the switch), I’m going to use this post to demonstrate some of the nice features of &lt;code&gt;metafor::vcalc()&lt;/code&gt;.&lt;/p&gt;
+&lt;div id=&#34;multi-arm-trials&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multi-arm trials&lt;/h2&gt;
+&lt;p&gt;Here’s a little made-up dataset with data from two samples, where sample 1 has three treatment arms and sample 2 has two treatment arms:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_dat &amp;lt;- data.frame(
+  sampleID = rep(c(1,2), times = c(3,2)),
+  arm_T = c(&amp;quot;T&amp;quot;,&amp;quot;U&amp;quot;,&amp;quot;V&amp;quot;,&amp;quot;T&amp;quot;,&amp;quot;V&amp;quot;),
+  n_T = c(23, 70, 58, 37, 15),
+  m_T = c(3.3, 2.5, 1.9, 10.7, 12.4),
+  sd_T = c(1.9, 1.8, 1.7, 3.4, 3.7),
+  arm_C = rep(&amp;quot;C&amp;quot;,5),
+  n_C = rep(c(61, 33), times = c(3,2)),
+  m_C = rep(c(2.1, 10.2), times = c(3,2)),
+  sd_C = rep(c(1.7, 3.5), times = c(3,2))
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can compute effect size estimates&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and variances from the summary statistics as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: Matrix&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: metadat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: numDeriv&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Loading the &amp;#39;metafor&amp;#39; package (version 4.4-0). For an
+## introduction to the package please type: help(metafor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;A_dat &amp;lt;- escalc(
+  data = A_dat, measure = &amp;quot;SMD&amp;quot;,
+  n1i = n_T, n2i = n_C,
+  m1i = m_T, m2i = m_C,
+  sd1i = sd_T, sd2i = sd_C
+)
+
+A_dat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##   sampleID arm_T n_T  m_T sd_T arm_C n_C  m_C sd_C      yi     vi 
+## 1        1     T  23  3.3  1.9     C  61  2.1  1.7  0.6771 0.0626 
+## 2        1     U  70  2.5  1.8     C  61  2.1  1.7  0.2267 0.0309 
+## 3        1     V  58  1.9  1.7     C  61  2.1  1.7 -0.1169 0.0337 
+## 4        2     T  37 10.7  3.4     C  33 10.2  3.5  0.1434 0.0575 
+## 5        2     V  15 12.4  3.7     C  33 10.2  3.5  0.6075 0.1008&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using &lt;code&gt;impute_covariance_matrix()&lt;/code&gt; on this dataset will return a set of covariance matrices for each sample, where there is a constant correlation between pairs of effect sizes from the same study (here I use a correlation of 0.7):&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(clubSandwich)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;clubSandwich&amp;#39;:
+##   method    from    
+##   bread.mlm sandwich&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;V_icm &amp;lt;- with(A_dat, 
+  impute_covariance_matrix(
+    vi = vi,
+    cluster = sampleID,
+    r = 0.7
+  )
+)
+
+V_icm&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $`1`
+##            [,1]       [,2]       [,3]
+## [1,] 0.06260097 0.03077473 0.03214796
+## [2,] 0.03077473 0.03087531 0.02257712
+## [3,] 0.03214796 0.02257712 0.03369223
+## 
+## $`2`
+##            [,1]       [,2]
+## [1,] 0.05747700 0.05328503
+## [2,] 0.05328503 0.10081386&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lapply(V_icm, cov2cor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $`1`
+##      [,1] [,2] [,3]
+## [1,]  1.0  0.7  0.7
+## [2,]  0.7  1.0  0.7
+## [3,]  0.7  0.7  1.0
+## 
+## $`2`
+##      [,1] [,2]
+## [1,]  1.0  0.7
+## [2,]  0.7  1.0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That degree of correlation isn’t really right—it’s too high, for one, and it shouldn’t be constant across all three pairs of effects from study 1 because the treatment groups have different sample sizes. In fact, the covariances among these effects can be &lt;a href=&#34;http://localhost:4321/correlations-between-SMDs/&#34;&gt;calculated based on the available information&lt;/a&gt;, without the need to impute anything. A closer approximation is possible with &lt;code&gt;vcalc()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To use &lt;code&gt;vcalc()&lt;/code&gt;, we’ll need to provide a bit of additional information about the structure of the arms within each study (in the arguments &lt;code&gt;grp1&lt;/code&gt; and &lt;code&gt;grp2&lt;/code&gt;) and the sample sizes of each arm (in the arguments &lt;code&gt;w1&lt;/code&gt; and &lt;code&gt;w2&lt;/code&gt;):&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;V_vcalc &amp;lt;- vcalc(
+  data = A_dat,         # dataset
+  vi = vi,              # sampling variances
+  cluster = sampleID,   # identifier for each unique sample
+  grp1 = arm_T,         # identifier for unique treatment arms
+  w1 = n_T,             # effective sample size of each treatment arm
+  grp2 = arm_C,         # identifier for unique contro arms
+  w2 = n_C,             # effective sample size of each control arm
+  sparse = TRUE         # return a sparse matrix
+)
+
+# look at the blocks for each sample
+blsplit(V_vcalc, A_dat$sampleID) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $`1`
+## 3 x 3 sparse Matrix of class &amp;quot;dgCMatrix&amp;quot;
+##                                      
+## [1,] 0.06260097 0.01681643 0.01677723
+## [2,] 0.01681643 0.03087531 0.01645979
+## [3,] 0.01677723 0.01645979 0.03369223
+## 
+## $`2`
+## 2 x 2 sparse Matrix of class &amp;quot;dgCMatrix&amp;quot;
+##                           
+## [1,] 0.05747700 0.03093741
+## [2,] 0.03093741 0.10081386&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These covariances have smaller correlations between effect sizes for different arms (closer to 0.5 or less):&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blsplit(V_vcalc, A_dat$sampleID) |&amp;gt; 
+  lapply(cov2cor)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $`1`
+## 3 x 3 sparse Matrix of class &amp;quot;dsCMatrix&amp;quot;
+##                                   
+## [1,] 1.0000000 0.3825055 0.3653127
+## [2,] 0.3825055 1.0000000 0.5103333
+## [3,] 0.3653127 0.5103333 1.0000000
+## 
+## $`2`
+## 2 x 2 sparse Matrix of class &amp;quot;dsCMatrix&amp;quot;
+##                         
+## [1,] 1.0000000 0.4064217
+## [2,] 0.4064217 1.0000000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What’s going on here? The code inside &lt;code&gt;metafor::vcalc()&lt;/code&gt; contains one of the hairiest messes of &lt;code&gt;ifelse&lt;/code&gt; statements I’ve ever encountered, but I think the gist of it is that the covariance terms are calculated differently depending on whether different rows within a cluster share the same &lt;code&gt;grp1&lt;/code&gt; or &lt;code&gt;grp2&lt;/code&gt; identifier. Say that study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; has &lt;span class=&#34;math inline&#34;&gt;\(k_j\)&lt;/span&gt; effect sizes, indexed by &lt;span class=&#34;math inline&#34;&gt;\(i=1,...,k_j\)&lt;/span&gt;, that the covariance between effects &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; is &lt;span class=&#34;math inline&#34;&gt;\(V_{hi,j}\)&lt;/span&gt;, that the weights corresponding to effect &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; are &lt;span class=&#34;math inline&#34;&gt;\(\eta_{1ij}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\eta_{2ij}\)&lt;/span&gt;, and that the group identifiers are &lt;span class=&#34;math inline&#34;&gt;\(g_{1ij}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(g_{2ij}\)&lt;/span&gt;. Assuming that the set of &lt;code&gt;grp1&lt;/code&gt; identifiers does not overlap with the set of &lt;code&gt;grp2&lt;/code&gt; identifiers, then the covariance between effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; in study &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt; is taken to be
+&lt;span class=&#34;math display&#34;&gt;\[
+V_{hi,j} = \left(I(g_{1hj} = g_{1ij}) \sqrt{\frac{\frac{1}{\eta_{1hj}}}{\frac{1}{\eta_{1hj}} + \frac{1}{\eta_{2hj}}} \times \frac{\frac{1}{\eta_{1ij}}}{\frac{1}{\eta_{1ij}} + \frac{1}{\eta_{2ij}}}} + I(g_{2hj} = g_{2ij}) \sqrt{\frac{\frac{1}{\eta_{2hj}}}{\frac{1}{\eta_{2hj}} + \frac{1}{\eta_{2hj}}} \times \frac{\frac{1}{\eta_{1ij}}}{\frac{1}{\eta_{1ij}} + \frac{1}{\eta_{2ij}}}}\right) \times \sqrt{V_{hh,j}  V_{ii,j}}.
+\]&lt;/span&gt;
+For many effect size metrics, the sampling variance has a form like
+&lt;span class=&#34;math inline&#34;&gt;\(V_{ii,j} = \frac{\sigma_{1ij}}{\eta_{1ij}} + \frac{\sigma_{2ij}{\eta_{2ij}}\)&lt;/span&gt;, and so the covariance formula above will effectively pull off the part of the sampling variance that corresponds to a group shared in common by effect sizes &lt;span class=&#34;math inline&#34;&gt;\(h\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;, and will end up reducing to the sampling variance when &lt;span class=&#34;math inline&#34;&gt;\(h = i\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The formula for the sampling variance of a standardized mean difference (based on a simple comparison of group means) is
+&lt;span class=&#34;math display&#34;&gt;\[\text{Var}(d_{ij}) \approx V_{ii,j} = \frac{1}{n_{C,ij}} + \frac{1}{n_{T,ij}} + \frac{d_{ij}^2}{2 \nu},\]&lt;/span&gt;
+where &lt;span class=&#34;math inline&#34;&gt;\(n_{C,ij}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(n_{T,ij}\)&lt;/span&gt; are the sample sizes in the two groups being compared and &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt; is the degrees of freedom of the denominator standard deviation. This doesn’t exactly have the proportional form above, but unless &lt;span class=&#34;math inline&#34;&gt;\(\nu\)&lt;/span&gt; is really small, &lt;span class=&#34;math inline&#34;&gt;\(V_{ii,j}\)&lt;/span&gt; is going to be very close to &lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{n_{C,ij}} + \frac{1}{n_{T,ij}}\)&lt;/span&gt;. Taking &lt;span class=&#34;math inline&#34;&gt;\(\eta_{1,ij} = n_{T,ij}\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(\eta_{2,ij} = n_{C,ij}\)&lt;/span&gt;, the covariance formula implemented in &lt;code&gt;vcalc&lt;/code&gt; ends up giving something quite close to
+&lt;span class=&#34;math display&#34;&gt;\[V_{hi,j} \approx \frac{I(g_{2hj} = g_{2ij})}{n_{C,ij}} + \frac{I(g_{1hj} = g_{1ij})}{n_{T,ij}}.\]&lt;/span&gt;
+Since the covariance formulas I reviewed in my old post are approximations anyways, this further simplification seems pretty much okay.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes footnotes-end-of-document&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Readers might note that the standardized mean differences calculated here are from multi-arm trials, but the effects are calculated using denominator standard deviations that only pool across pairs of arms, rather than across &lt;em&gt;all&lt;/em&gt; arms in the sample. The latter is usually better (because it keeps the scaling of the outcome constant across all the effects from the sample), but I’m too lazy to handle this particular wrinkle right now.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Distribution of the number of significant effect sizes</title>

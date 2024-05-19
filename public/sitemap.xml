@@ -12,13 +12,31 @@
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/authors/admin/</loc>
-    <lastmod>2024-05-17T09:30:00+00:00</lastmod>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/authors/</loc>
-    <lastmod>2024-05-17T09:30:00+00:00</lastmod>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/computing-covariance-matrices/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/tags/distribution-theory/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/tags/effect-size/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/</loc>
-    <lastmod>2024-05-17T09:30:00+00:00</lastmod>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/tags/meta-analysis/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/post/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:4321/tags/</loc>
+    <lastmod>2024-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/talk/vive-2024-dependent-effects/</loc>
     <lastmod>2024-05-17T09:30:00+00:00</lastmod>
@@ -41,18 +59,6 @@
     <loc>http://localhost:4321/distribution-of-significant-effects/</loc>
     <lastmod>2024-03-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:4321/tags/distribution-theory/</loc>
-    <lastmod>2024-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4321/tags/effect-size/</loc>
-    <lastmod>2024-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4321/post/</loc>
-    <lastmod>2024-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4321/tags/</loc>
-    <lastmod>2024-03-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:4321/cluster-robust-wald-statistics/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
@@ -66,9 +72,6 @@
     <lastmod>2024-03-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/publication/equivalences-between-ad-hoc-strategies-and-models/</loc>
-    <lastmod>2024-03-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:4321/tags/meta-analysis/</loc>
     <lastmod>2024-03-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:4321/tags/meta-regression/</loc>
