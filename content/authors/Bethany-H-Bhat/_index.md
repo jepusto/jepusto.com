@@ -1,6 +1,6 @@
 ---
 authors:
-- Bethany H. Bhat
+- Bethany-H.-Bhat
 name: Bethany Hamilton Bhat
 bio: 
 education:
