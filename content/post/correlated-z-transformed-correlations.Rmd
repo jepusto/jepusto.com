@@ -3,7 +3,6 @@ title: Correlations between z-transformed correlation coefficients
 authors:
 - admin
 date: '2024-06-06'
-draft: true
 slug: correlated-z-transformed-correlations
 categories: []
 tags:
