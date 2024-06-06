@@ -1,0 +1,70 @@
+---
+title: Correlations between z-transformed correlation coefficients
+authors:
+- admin
+date: '2024-06-06'
+draft: true
+slug: correlated-z-transformed-correlations
+categories: []
+tags:
+  - effect size
+  - correlation
+  - distribution theory
+  - meta-analysis
+header:
+  caption: ''
+  image: ''
+---
+
+For a little meta-analysis project that I'm working on with [Jingru](/authors/jingru-zhang/), we are dealing with a database of correlation coefficients, where some of the included studies report correlations for more than one instrument or sub-scale for one of the relevant variables. This leads to every meta-analytic methodologist's favorite tongue-twister of distribution theory: inter-correlated correlation coefficients. Fortunately, Grandpa Ingram worked out the distribution theory for this stuff long ago (Olkin and Siotani, 1976; reviewed in [Olkin and Finn, 1990](https://doi.org/10.1037/0033-2909.108.2.330)). 
+
+Suppose that we have three variables, $a$, $b$, and $c$, where $b$ and $c$ are different measures of the same construct. From a sample of size $N$, we have correlation estimates $r_{ab}$ and $r_{ac}$, both of which are relevant for understanding the underlying construct relation. These correlations are estimates of underlying population correlations $\rho_{ab}$ and $\rho_{ac}$ respectively, and the population correlation between $b$ and $c$ is $\rho_{bc}$. Typically, we would analyze the correlations after applying Fisher's variance stabilizing and normalizing transformation. The question is: how strongly correlated are the sampling errors of the resulting effect size estimates. 
+
+Denote the Fisher transformation as $Z(r)= \frac{1}{2}\ln\left(\frac{1 + r}{1 - r}\right)$), with derivative given by $Z'(r) = \frac{1}{1 - r^2}$. Let $z_{ab} = Z(r_{ab}) and $\zeta_{ab} = Z(\rho_{ab}), with the other transformed correlations defined similarly. What is $\text{cor}(z_{ab}, z_{ac})$?
+
+[Olkin and Finn (1990)](https://doi.org/10.1037/0033-2909.108.2.330) give the following expression for the covariance between two sample correlation coefficients that share a common variable:
+$$
+\text{Cov}(r_{ab}, r_{ac}) = \frac{1}{N - 1}\left[\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2\right].
+$$
+If correlations are converted to the Fisher-z scale, then we can use a delta method approximation to obtain an expression for the covariance between two sample z estimates that share a common variable.  Using $N-3$ in place of $N-1$, the covariance between the z-transformed correlations is approximately
+$$
+\begin{aligned}
+\text{Cov}(z_{ab}, z_{ac}) &= Z'(\rho_{ab}) \times Z'(\rho_{ac})\times \text{Cov}(r_{ab}, r_{ac}) \\
+&=\frac{1}{N - 3} \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right) \left(1 - \rho_{ac}^2\right)}.
+\end{aligned}
+$$
+The corresponding correlation is thus
+$$
+\text{cor}(z_{ab}, z_{ac}) = \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right) \left(1 - \rho_{ac}^2\right)}.
+$$
+
+In the context of a meta-analysis, we might expect that the focal correlations will usually be very similar, if not exactly equal. For simplicity, let's assume that they're actually identical, $\rho_{ab} = \rho_{ac}$. The sampling correlation then simplifies further to  
+$$
+\begin{aligned}
+\text{cor}(z_{ab}, z_{ac}) &= \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}^2\right)\left(1 - 2\rho_{ab}^2\right) + \frac{1}{2} \rho_{ab}^2 \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right)^2} \\
+&=1 -  \frac{(1 - \rho_{bc})\left[2 - \rho_{ab}^2(3 - \rho_{bc})\right]}{2\left(1 - \rho_{ab}^2\right)^2}.
+\end{aligned}
+$$.
+
+To apply this formula, we need to specify values of $\rho_{ab}$ and $\rho_{bc}$. The following table gives the resulting correlation between z-transformed sample correlations for a few values of $\rho_{ab} = \rho_{ac}$ and $\rho_{bc}$. 
+
+```{r, echo = FALSE}
+library(kableExtra)
+ccc <- function(r_ab, r_bc) {
+  1 - (1 - r_bc) * (2 - r_ab^2 * (3 - r_bc)) / (2 * (1 - r_ab^2)^2)
+}
+
+r_bc <- seq(0.4, 0.9, 0.1)
+data.frame(
+  r_bc = r_bc, 
+  r_ab_20 = ccc(0.20, r_bc),
+  r_ab_25 = ccc(0.25, r_bc),
+  r_ab_33 = ccc(0.33, r_bc),
+  r_ab_40 = ccc(0.40, r_bc),
+  r_ab_50 = ccc(0.50, r_bc)
+) |>
+  kable(digits = 3, col.names = c("$\\rho_{bc}$", paste0("$\\rho_{ab} = ", c(0.20, 0.25, 0.33, 0.40, 0.50), "$")), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("hover","condensed"))
+```
+
+When the focal correlations are fairly small, then the sampling correlation is the same order of magnitude as $\rho_{bc}$. It's only when the focal correlations are stronger that the sampling correlation is noticeably attenuated from $\rho_{bc}$, and the degree of attenuation is weaker when $\rho_{bc}$ is larger. For strongly related instruments or sub-scales, $\text{corr}(z_{ab}, z_{ac})$ won't be much different from $\rho_{bc}$. 
