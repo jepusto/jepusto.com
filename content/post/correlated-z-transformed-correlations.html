@@ -1,0 +1,195 @@
+---
+title: Correlations between z-transformed correlation coefficients
+authors:
+- admin
+date: '2024-06-06'
+slug: correlated-z-transformed-correlations
+categories: []
+tags:
+  - effect size
+  - correlation
+  - distribution theory
+  - meta-analysis
+header:
+  caption: ''
+  image: ''
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>For a little meta-analysis project that I’m working on with <a href="/authors/jingru-zhang/">Jingru</a>, we are dealing with a database of correlation coefficients, where some of the included studies report correlations for more than one instrument or sub-scale for one of the relevant variables. This leads to every meta-analytic methodologist’s favorite tongue-twister of distribution theory: inter-correlated correlation coefficients. Fortunately, Grandpa Ingram worked out the distribution theory for this stuff long ago (Olkin and Siotani, 1976; reviewed in <a href="https://doi.org/10.1037/0033-2909.108.2.330">Olkin and Finn, 1990</a>).</p>
+<p>Suppose that we have three variables, <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>, where <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> are different measures of the same construct. From a sample of size <span class="math inline">\(N\)</span>, we have correlation estimates <span class="math inline">\(r_{ab}\)</span> and <span class="math inline">\(r_{ac}\)</span>, both of which are relevant for understanding the underlying construct relation. These correlations are estimates of underlying population correlations <span class="math inline">\(\rho_{ab}\)</span> and <span class="math inline">\(\rho_{ac}\)</span> respectively, and the population correlation between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> is <span class="math inline">\(\rho_{bc}\)</span>.
+Typically, we would analyze the correlations after applying Fisher’s variance stabilizing and normalizing transformation.
+Denote the Fisher transformation as <span class="math inline">\(Z(r)= \frac{1}{2}\ln\left(\frac{1 + r}{1 - r}\right)\)</span>), with derivative given by <span class="math inline">\(Z&#39;(r) = \frac{1}{1 - r^2}\)</span>. Let <span class="math inline">\(z_{ab} = Z(r_{ab})\)</span>, with the other transformed correlations defined similarly. The question is then: how strongly correlated are the sampling errors of the resulting effect size estimates—that is, what is <span class="math inline">\(\text{cor}(z_{ab}, z_{ac})\)</span>?</p>
+<p><a href="https://doi.org/10.1037/0033-2909.108.2.330">Olkin and Finn (1990)</a> give the following expression for the covariance between two sample correlation coefficients that share a common variable:
+<span class="math display">\[
+\text{Cov}(r_{ab}, r_{ac}) = \frac{1}{N - 1}\left[\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2\right].
+\]</span>
+If correlations are converted to the Fisher-z scale, then we can use a delta method approximation to obtain an expression for the covariance between two sample z estimates that share a common variable. Using <span class="math inline">\(N-3\)</span> in place of <span class="math inline">\(N-1\)</span>, the covariance between the z-transformed correlations is approximately
+<span class="math display">\[
+\begin{aligned}
+\text{Cov}(z_{ab}, z_{ac}) &amp;= Z&#39;(\rho_{ab}) \times Z&#39;(\rho_{ac})\times \text{Cov}(r_{ab}, r_{ac}) \\
+&amp;=\frac{1}{N - 3} \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right) \left(1 - \rho_{ac}^2\right)}.
+\end{aligned}
+\]</span>
+The corresponding correlation is thus
+<span class="math display">\[
+\text{cor}(z_{ab}, z_{ac}) = \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}\rho_{ac}\right)\left(1 - \rho_{ab}^2 - \rho_{ac}^2\right) + \frac{1}{2} \rho_{ab} \rho_{ac} \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right) \left(1 - \rho_{ac}^2\right)}.
+\]</span></p>
+<p>In the context of a meta-analysis, we might expect that the focal correlations will usually be very similar, if not exactly equal. For simplicity, let’s assume that they’re actually identical, <span class="math inline">\(\rho_{ab} = \rho_{ac}\)</span>. The sampling correlation then simplifies further to<br />
+<span class="math display">\[
+\begin{aligned}
+\text{cor}(z_{ab}, z_{ac}) &amp;= \frac{\left(\rho_{bc} - \frac{1}{2}\rho_{ab}^2\right)\left(1 - 2\rho_{ab}^2\right) + \frac{1}{2} \rho_{ab}^2 \rho_{bc}^2}{\left(1 - \rho_{ab}^2\right)^2} \\
+&amp;=1 -  \frac{(1 - \rho_{bc})\left[2 - \rho_{ab}^2(3 - \rho_{bc})\right]}{2\left(1 - \rho_{ab}^2\right)^2}.
+\end{aligned}
+\]</span>.</p>
+<p>To apply this formula, we need to specify values of <span class="math inline">\(\rho_{ab}\)</span> and <span class="math inline">\(\rho_{bc}\)</span>. The following table gives the resulting correlation between z-transformed sample correlations for a few values of <span class="math inline">\(\rho_{ab} = \rho_{ac}\)</span> and <span class="math inline">\(\rho_{bc}\)</span>.</p>
+<table class="table table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{bc}\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{ab} = 0.2\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{ab} = 0.25\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{ab} = 0.33\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{ab} = 0.4\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(\rho_{ab} = 0.5\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.4
+</td>
+<td style="text-align:right;">
+0.383
+</td>
+<td style="text-align:right;">
+0.373
+</td>
+<td style="text-align:right;">
+0.351
+</td>
+<td style="text-align:right;">
+0.327
+</td>
+<td style="text-align:right;">
+0.280
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.485
+</td>
+<td style="text-align:right;">
+0.476
+</td>
+<td style="text-align:right;">
+0.456
+</td>
+<td style="text-align:right;">
+0.433
+</td>
+<td style="text-align:right;">
+0.389
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.587
+</td>
+<td style="text-align:right;">
+0.579
+</td>
+<td style="text-align:right;">
+0.562
+</td>
+<td style="text-align:right;">
+0.542
+</td>
+<td style="text-align:right;">
+0.502
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+0.689
+</td>
+<td style="text-align:right;">
+0.683
+</td>
+<td style="text-align:right;">
+0.670
+</td>
+<td style="text-align:right;">
+0.653
+</td>
+<td style="text-align:right;">
+0.620
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.8
+</td>
+<td style="text-align:right;">
+0.793
+</td>
+<td style="text-align:right;">
+0.788
+</td>
+<td style="text-align:right;">
+0.778
+</td>
+<td style="text-align:right;">
+0.766
+</td>
+<td style="text-align:right;">
+0.742
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.9
+</td>
+<td style="text-align:right;">
+0.896
+</td>
+<td style="text-align:right;">
+0.894
+</td>
+<td style="text-align:right;">
+0.888
+</td>
+<td style="text-align:right;">
+0.882
+</td>
+<td style="text-align:right;">
+0.869
+</td>
+</tr>
+</tbody>
+</table>
+<p>When the focal correlations are fairly small, then the sampling correlation is the same order of magnitude as <span class="math inline">\(\rho_{bc}\)</span>. It’s only when the focal correlations are stronger that the sampling correlation is noticeably attenuated from <span class="math inline">\(\rho_{bc}\)</span>, and the degree of attenuation is weaker when <span class="math inline">\(\rho_{bc}\)</span> is larger. Thus, for strongly related instruments or sub-scales, <span class="math inline">\(\text{cor}(z_{ab}, z_{ac})\)</span> won’t be much different from <span class="math inline">\(\rho_{bc}\)</span>.</p>
